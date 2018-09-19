@@ -2,12 +2,15 @@
 <html lang="en">
 <head>
     <script src="test.js"></script>
+    <script src="three.js"></script>
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <link rel="stylesheet" href="styles.css">
     <meta charset="UTF-8">
     <title>Monarch TSA 2019</title>
+
 </head>
 <body>
+
     <div id="topBar">
         <i class="material-icons md-48" id="settingsButton">settings</i>
         <i class="material-icons md-48" id="colorButton">color_lens</i>
@@ -16,5 +19,40 @@
     <div id="sideBar">
 
     </div>
+    <div id="mainWindow">
+
+    </div>
+    <script>
+        var scene = new THREE.Scene();
+        var camera = new THREE.PerspectiveCamera( 75, document.getElementById("mainWindow").offsetWidth/document.getElementById("mainWindow").offsetHeight, 0.1, 1000 );
+
+        var renderer = new THREE.WebGLRenderer();
+        renderer.setSize( document.getElementById("mainWindow").offsetWidth, document.getElementById("mainWindow").offsetHeight );
+        document.getElementById("mainWindow").appendChild( renderer.domElement );
+
+        var geometry = new THREE.BoxGeometry( 2, 2, 1 );
+        var material = new THREE.MeshBasicMaterial( { color: 0xffffff } );
+        var cube = new THREE.Mesh( geometry, material );
+        var geometry2 = new THREE.BoxGeometry( 1, 1, 2 );
+        var material2 = new THREE.MeshBasicMaterial( { color: 0xff0000 } );
+        var cube2 = new THREE.Mesh( geometry2, material2 );
+        scene.add( cube );
+        scene.add(cube2);
+
+        camera.position.z = 5;
+        var move = 0.01;
+        var animate = function () {
+            requestAnimationFrame( animate );
+
+            cube.rotation.x += move;
+            cube.rotation.y += move*2;
+            cube2.rotation.x += move;
+            cube2.rotation.y += move*2;
+
+
+            renderer.render( scene, camera );
+        };
+        animate();
+    </script>
 </body>
 </html>

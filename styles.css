@@ -33,3 +33,12 @@
     top:0;
     right: 100px;
 }
+body { margin: 0; }
+canvas { width: 100%; height: 100% }
+#mainWindow{
+    position:absolute;
+    top:50px;
+    left:300px;
+    bottom:0px;
+    right:0px;
+}
