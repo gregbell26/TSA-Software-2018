@@ -38,12 +38,16 @@
         var cube2 = new THREE.Mesh( geometry2, material2 );
         scene.add( cube );
         scene.add(cube2);
-
+        var colorChange=false
         camera.position.z = 5;
         var move = 0.01;
         var animate = function () {
             requestAnimationFrame( animate );
-
+            if(cube2.scale.x>=2 && !colorChange){
+                colorChange=true;
+                console.log("done")
+                cube2.material.color.setHex( 0xff0000 );
+            }
             cube.rotation.x += move;
             cube.rotation.y += move;
             cube2.rotation.x += move;
