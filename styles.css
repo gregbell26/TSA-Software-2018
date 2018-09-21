@@ -1,3 +1,18 @@
+/*This is gregory's code*/
+
+.parameterBox {
+	font-family: "Comic Sans MS";
+	margin: 3px;
+	
+
+}
+.parameterBox input {
+	background-color: #939393;
+	/*border-radius: .5px;*/
+}
+
+
+/*EOF Gregorys code*/
 #topBar{
     background-color: #DDDDDD;
     position:absolute;

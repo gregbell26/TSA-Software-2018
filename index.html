@@ -17,9 +17,10 @@
         <i class="material-icons md-48" id="sizeButton">aspect_ratio</i>
     </div>
     <div id="sideBar">
-        X: <input type="number" onkeyup="changeBoxDims('x',this.value)" value="1"><br>
-        Y: <input type="number" onkeyup="changeBoxDims('y',this.value)" value="1"><br>
-        Z: <input type="number" onkeyup="changeBoxDims('z',this.value)" value="1"><br>
+		
+        <div class="parameterBox">X: <input type="number" onkeyup="changeBoxDims('x',this.value)" value="1"><br></div>
+        <div class="parameterBox">Y: <input type="number" onkeyup="changeBoxDims('y',this.value)" value="1"><br></div>
+        <div class="parameterBox">Z: <input type="number" onkeyup="changeBoxDims('z',this.value)" value="1"><br></div>
     </div>
     <div id="mainWindow">
 
@@ -68,9 +69,16 @@
             renderer.render( scene, camera );
         };
         function changeBoxDims(dimension,value){
-            if(dimension=="x"){x=value;}
-            else if(dimension=="y"){y=value;}
-            else if(dimension=="z"){z=value;}
+            if(dimension=="x"){
+				x=value;
+			}
+            else if(dimension=="y"){
+				y=value;
+			}
+            else if(dimension=="z"){
+				z=value;
+			}
+			console.log("INFORMATION: New deminsion for " + "Cube 1 " + dimension + " =" + value)
 
         }
         animate();
