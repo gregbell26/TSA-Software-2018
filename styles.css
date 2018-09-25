@@ -38,6 +38,16 @@
     top:0;
     right:0;
 }
+#cubeButton{
+    position:absolute;
+    top:0px;
+    left:0px;
+}
+#pyramidButton{
+    position:absolute;
+    top:0px;
+    left:50px;
+}
 #colorButton{
     position:absolute;
     top:0;
