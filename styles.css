@@ -41,12 +41,12 @@
 #cubeButton{
     position:absolute;
     top:0px;
-    left:0px;
-}
-#pyramidButton{
-    position:absolute;
-    top:0px;
     left:50px;
+}
+#listButton{
+    position: absolute;
+    top: 0px;
+    left: 0px;
 }
 #colorButton{
     position:absolute;
