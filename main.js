@@ -1,4 +1,5 @@
 var shapes = [];
+var scales = [[1,1,1],[3,3,3]]
 var x = 1;
 var y = 1;
 var z = 1;
@@ -32,13 +33,13 @@ var animate = function () {
     for (var i=0; i<shapes.length; i++){
         shapes[i].rotation.x+=move;
         shapes[i].rotation.y+=move;
+        shapes[i].scale.x=scales[i][0];
+        shapes[i].scale.y=scales[i][1];
+        shapes[i].scale.z=scales[i][2];
     }
     /*cube2.scale.x+=0.01;
     cube2.scale.y+=0.01;
     cube2.scale.z+=0.01*/
-    shapes[1].scale.x=x;
-    shapes[1].scale.y=y;
-    shapes[1].scale.z=z;
 
     renderer.render( scene, camera );
 };
@@ -67,13 +68,33 @@ function showList(){
 }
 
 function newCube(){
-    var newGeometry = new THREE.BoxGeometry(3,3,3);
+    var newGeometry = new THREE.BoxGeometry(1,1,1);
     var newMaterial = new THREE.MeshBasicMaterial({color: getRandomColor()})
     shapes[shapes.length]=new THREE.Mesh(newGeometry, newMaterial);
+    console.log(scales.length);
+    scales[scales.length]=[];
+    scales[scales.length-1][0]=1;
+    scales[scales.length-1][1]=1;
+    scales[scales.length-1][2]=1;
     scene.add(shapes[shapes.length-1]);
     shapes[shapes.length-1].rotation.x = shapes[0].rotation.x;
     shapes[shapes.length-1].rotation.y = shapes[0].rotation.y;
 
+
+
+}
+function newCubeDimensions(dimension,value){
+    switch(dimension){
+        case "x":
+            scales[scales.length-1][0]=value;
+            break;
+        case "y":
+            scales[scales.length-1][1]=value;
+            break;
+        case "z":
+            scales[scales.length-1][2]=value;
+            break;
+    }
 }
 function getRandomColor() {
     var letters = '0123456789ABCDEF';
