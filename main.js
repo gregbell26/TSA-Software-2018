@@ -28,10 +28,10 @@ var animate = function () {
         console.log("done")
         cube2.material.color.setHex( 0xff0000 );
     }*/
-    shapes[0].rotation.x += move;
-    shapes[0].rotation.y += move;
-    shapes[1].rotation.x += move;
-    shapes[1].rotation.y += move;
+    for (var i=0; i<shapes.length; i++){
+        shapes[i].rotation.x+=move;
+        shapes[i].rotation.y+=move;
+    }
     /*cube2.scale.x+=0.01;
     cube2.scale.y+=0.01;
     cube2.scale.z+=0.01*/
@@ -60,4 +60,22 @@ function showList(){
     for (var i=0; i<shapes.length; i++){
         console.log("Shape "+(i+1)+": "+shapes[i]['geometry']['type'])
     }
+}
+
+function newCube(){
+    var newGeometry = new THREE.BoxGeometry(3,3,3);
+    var newMaterial = new THREE.MeshBasicMaterial({color: getRandomColor()})
+    shapes[shapes.length]=new THREE.Mesh(newGeometry, newMaterial);
+    scene.add(shapes[shapes.length-1]);
+    shapes[shapes.length-1].rotation.x = shapes[0].rotation.x;
+    shapes[shapes.length-1].rotation.y = shapes[0].rotation.y;
+
+}
+function getRandomColor() {
+    var letters = '0123456789ABCDEF';
+    var color = '#';
+    for (var i = 0; i < 6; i++) {
+        color += letters[Math.floor(Math.random() * 16)];
+    }
+    return color;
 }
