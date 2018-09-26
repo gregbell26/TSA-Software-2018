@@ -1,5 +1,5 @@
 var shapes = [];
-var scales = [[1,1,1],[3,3,3]]
+var scales = [[2,2,2],[3,3,1]];
 var x = 1;
 var y = 1;
 var z = 1;
@@ -10,7 +10,7 @@ var renderer = new THREE.WebGLRenderer();
 renderer.setSize( document.getElementById("mainWindow").offsetWidth, document.getElementById("mainWindow").offsetHeight );
 document.getElementById("mainWindow").appendChild( renderer.domElement );
 
-var geometry = new THREE.BoxGeometry( 2,2,1 );
+var geometry = new THREE.BoxGeometry( 1,1,1 );
 var material = new THREE.MeshBasicMaterial( { color: 0x00ff00 } );
 shapes[0] = new THREE.Mesh( geometry, material );
 var geometry2 = new THREE.BoxGeometry( 1, 1,1);
@@ -33,6 +33,7 @@ var animate = function () {
     for (var i=0; i<shapes.length; i++){
         shapes[i].rotation.x+=move;
         shapes[i].rotation.y+=move;
+        shapes[i].rotation.z+=move;
         shapes[i].scale.x=scales[i][0];
         shapes[i].scale.y=scales[i][1];
         shapes[i].scale.z=scales[i][2];
@@ -79,6 +80,7 @@ function newCube(){
     scene.add(shapes[shapes.length-1]);
     shapes[shapes.length-1].rotation.x = shapes[0].rotation.x;
     shapes[shapes.length-1].rotation.y = shapes[0].rotation.y;
+    shapes[shapes.length-1].rotation.z = shapes[0].rotation.z;
 
 
 
