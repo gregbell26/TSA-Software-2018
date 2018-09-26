@@ -20,6 +20,7 @@ scene.add(shapes[1]);
 var colorChange=false;
 camera.position.z = 5;
 var move = 0.01;
+
 var animate = function () {
     requestAnimationFrame( animate );
     //Animation settings
@@ -57,8 +58,11 @@ function changeBoxDims(dimension,value){
 animate();
 
 function showList(){
+    var sideBar=document.getElementById('sideBar');
+    sideBar.innerHTML="";
     for (var i=0; i<shapes.length; i++){
-        console.log("Shape "+(i+1)+": "+shapes[i]['geometry']['type'])
+        console.log("Shape "+(i+1)+": "+shapes[i]['geometry']['type']);
+        sideBar.innerHTML+=(i+1)+": "+shapes[i]['geometry']['type']+"<br>";
     }
 }
 
