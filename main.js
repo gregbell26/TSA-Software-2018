@@ -72,15 +72,15 @@ function newCube(){
     var newGeometry = new THREE.BoxGeometry(1,1,1);
     var newMaterial = new THREE.MeshBasicMaterial({color: getRandomColor()})
     shapes[shapes.length]=new THREE.Mesh(newGeometry, newMaterial);
-    console.log(scales.length);
-    scales[scales.length]=[];
-    scales[scales.length-1][0]=1;
-    scales[scales.length-1][1]=1;
-    scales[scales.length-1][2]=1;
+    var length = scales.length;
+    scales[length]=[];
+    scales[length][0]=1;
+    scales[length][1]=1;
+    scales[length][2]=1;
     scene.add(shapes[shapes.length-1]);
-    shapes[shapes.length-1].rotation.x = shapes[0].rotation.x;
-    shapes[shapes.length-1].rotation.y = shapes[0].rotation.y;
-    shapes[shapes.length-1].rotation.z = shapes[0].rotation.z;
+    shapes[length].rotation.x = shapes[0].rotation.x;
+    shapes[length].rotation.y = shapes[0].rotation.y;
+    shapes[length].rotation.z = shapes[0].rotation.z;
 
 
 
@@ -105,4 +105,7 @@ function getRandomColor() {
         color += letters[Math.floor(Math.random() * 16)];
     }
     return color;
+}
+function changeColor(value){
+    shapes[shapes.length-1].material.color.set(value);
 }
