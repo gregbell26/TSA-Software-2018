@@ -16,20 +16,15 @@ shapes[0] = new THREE.Mesh( geometry, material );
 var geometry2 = new THREE.BoxGeometry( 1, 1,1);
 var material2 = new THREE.MeshBasicMaterial( { color: 0x8000ff } );
 shapes[1] = new THREE.Mesh( geometry2, material2 );
+document.getElementById('colorChanger').value="#00FF00"
 scene.add(shapes[0]);
 scene.add(shapes[1]);
-var colorChange=false;
 camera.position.z = 5;
 var move = 0.01;
 
 var animate = function () {
     requestAnimationFrame( animate );
     //Animation settings
-    /*if(cube2.scale.x>=2 && !colorChange){
-        colorChange=true;
-        console.log("done")
-        cube2.material.color.setHex( 0xff0000 );
-    }*/
     for (var i=0; i<shapes.length; i++){
         shapes[i].rotation.x+=move;
         shapes[i].rotation.y+=move;
@@ -38,9 +33,6 @@ var animate = function () {
         shapes[i].scale.y=scales[i][1];
         shapes[i].scale.z=scales[i][2];
     }
-    /*cube2.scale.x+=0.01;
-    cube2.scale.y+=0.01;
-    cube2.scale.z+=0.01*/
 
     renderer.render( scene, camera );
 };
