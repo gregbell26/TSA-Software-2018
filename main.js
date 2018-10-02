@@ -55,6 +55,11 @@ function setSelectedShape(num){
     document.getElementById("sideBarBoxEdit").style.display="inherit";
     document.getElementById("sideBarList").style.display="none";
 }
+
+function cubeMenu(){
+    document.getElementById("sideBarBoxEdit").style.display="inherit";
+    document.getElementById("sideBarList").style.display="none";
+}
 function newCube(){
     document.getElementById("sideBarBoxEdit").style.display="inherit";
     document.getElementById("sideBarList").style.display="none";
