@@ -16,7 +16,7 @@ shapes[0] = new THREE.Mesh( geometry, material );
 var geometry2 = new THREE.BoxGeometry( 1, 1,1);
 var material2 = new THREE.MeshBasicMaterial( { color: 0x8000ff } );
 shapes[1] = new THREE.Mesh( geometry2, material2 );
-document.getElementById('colorChanger').value="#00FF00"
+document.getElementById('colorChanger').value="#8000ff"
 scene.add(shapes[0]);
 scene.add(shapes[1]);
 camera.position.z = 5;
@@ -62,7 +62,9 @@ function showList(){
 
 function newCube(){
     var newGeometry = new THREE.BoxGeometry(1,1,1);
-    var newMaterial = new THREE.MeshBasicMaterial({color: getRandomColor()})
+    var color = getRandomColor();
+    document.getElementById('colorChanger').value=color;
+    var newMaterial = new THREE.MeshBasicMaterial({color: color})
     shapes[shapes.length]=new THREE.Mesh(newGeometry, newMaterial);
     var length = scales.length;
     scales[length]=[];
