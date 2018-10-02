@@ -3,6 +3,7 @@ var scales = [[2,2,2],[3,3,1]];
 var x = 1;
 var y = 1;
 var z = 1;
+var selectedShape = 1;
 var scene = new THREE.Scene();
 var camera = new THREE.PerspectiveCamera( 75, document.getElementById("mainWindow").offsetWidth/document.getElementById("mainWindow").offsetHeight, 0.1, 1000 );
 
@@ -16,20 +17,15 @@ shapes[0] = new THREE.Mesh( geometry, material );
 var geometry2 = new THREE.BoxGeometry( 1, 1,1);
 var material2 = new THREE.MeshBasicMaterial( { color: 0x8000ff } );
 shapes[1] = new THREE.Mesh( geometry2, material2 );
+document.getElementById('colorChanger').value="#8000ff"
 scene.add(shapes[0]);
 scene.add(shapes[1]);
-var colorChange=false;
 camera.position.z = 5;
 var move = 0.01;
 
 var animate = function () {
     requestAnimationFrame( animate );
     //Animation settings
-    /*if(cube2.scale.x>=2 && !colorChange){
-        colorChange=true;
-        console.log("done")
-        cube2.material.color.setHex( 0xff0000 );
-    }*/
     for (var i=0; i<shapes.length; i++){
         shapes[i].rotation.x+=move;
         shapes[i].rotation.y+=move;
@@ -38,9 +34,6 @@ var animate = function () {
         shapes[i].scale.y=scales[i][1];
         shapes[i].scale.z=scales[i][2];
     }
-    /*cube2.scale.x+=0.01;
-    cube2.scale.y+=0.01;
-    cube2.scale.z+=0.01*/
 
     renderer.render( scene, camera );
 };
@@ -60,7 +53,9 @@ function changeBoxDims(dimension,value){
 animate();
 
 function showList(){
-    var sideBar=document.getElementById('sideBar');
+    var sideBar=document.getElementById('sideBarList');
+    document.getElementById("sideBarBoxEdit").style.display="none";
+    document.getElementById("sideBarList").style.display="inherit";
     sideBar.innerHTML="";
     for (var i=0; i<shapes.length; i++){
         console.log("Shape "+(i+1)+": "+shapes[i]['geometry']['type']);
@@ -69,8 +64,12 @@ function showList(){
 }
 
 function newCube(){
+    document.getElementById("sideBarBoxEdit").style.display="inherit";
+    document.getElementById("sideBarList").style.display="none";
     var newGeometry = new THREE.BoxGeometry(1,1,1);
-    var newMaterial = new THREE.MeshBasicMaterial({color: getRandomColor()})
+    var color = getRandomColor();
+    document.getElementById('colorChanger').value=color;
+    var newMaterial = new THREE.MeshBasicMaterial({color: color})
     shapes[shapes.length]=new THREE.Mesh(newGeometry, newMaterial);
     var length = scales.length;
     scales[length]=[];

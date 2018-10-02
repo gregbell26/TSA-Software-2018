@@ -9,10 +9,15 @@
 .parameterBox input {
 	border-color: none;
 	border-bottom-width: 0;
+<<<<<<< HEAD
 	border-radius: 1px;
 	border-style: none;
 	background-color: #fff;
 	font-family:"Comic Sans MS";
+=======
+	border-radius: .5px;
+	border-style: none;
+>>>>>>> origin/master
 
 }
 
