@@ -1,4 +1,8 @@
 /*This is gregory's code*/
+body{
+	font-family: "Comic Sans MS"
+}
+
 
 .parameterBox {
 	font-family: "Comic Sans MS";
@@ -9,18 +13,28 @@
 .parameterBox input {
 	border-color: none;
 	border-bottom-width: 0;
-<<<<<<< HEAD
 	border-radius: 1px;
 	border-style: none;
 	background-color: #fff;
 	font-family:"Comic Sans MS";
-=======
 	border-radius: .5px;
 	border-style: none;
->>>>>>> origin/master
 
 }
 
+#sideBarList{
+	margin: 3px;
+	padding: 1px;
+	font-family: "Comic Sans MS";
+	font-size: 14pt;
+}
+
+#sideBarList a {
+	background-color: #fff;
+	border-radius: .5px;
+
+	
+}
 
 /*EOF Gregorys code*/
 #topBar{
