@@ -31,9 +31,21 @@ body{
 
 #sideBarList a {
 	background-color: #fff;
+	padding 2px;
+	
 	border-radius: .5px;
 
 	
+}
+#colorChanger {
+		border-color: none;
+	border-bottom-width: 0;
+	border-radius: 1px;
+	border-style: none;
+	background-color: #fff;
+	font-family:"Comic Sans MS";
+	border-radius: .5px;
+	border-style: none;
 }
 
 /*EOF Gregorys code*/
