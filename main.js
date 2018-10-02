@@ -37,19 +37,6 @@ var animate = function () {
 
     renderer.render( scene, camera );
 };
-function changeBoxDims(dimension,value){
-    if(dimension=="x"){
-        x=value;
-    }
-    else if(dimension=="y"){
-        y=value;
-    }
-    else if(dimension=="z"){
-        z=value;
-    }
-    console.log("INFORMATION: New deminsion for " + "Cube 1 " + dimension + " =" + value)
-
-}
 animate();
 
 function showList(){
@@ -58,11 +45,16 @@ function showList(){
     document.getElementById("sideBarList").style.display="inherit";
     sideBar.innerHTML="";
     for (var i=0; i<shapes.length; i++){
-        console.log("Shape "+(i+1)+": "+shapes[i]['geometry']['type']);
-        sideBar.innerHTML+=(i+1)+": "+shapes[i]['geometry']['type']+"<br>";
+        //console.log("Shape "+(i+1)+": "+shapes[i]['geometry']['type']);
+        sideBar.innerHTML+="<a onclick='setSelectedShape("+i+")'>"+(i+1)+": "+shapes[i]['geometry']['type']+"</a><br>";
     }
 }
-
+function setSelectedShape(num){
+    selectedShape = num;
+    document.getElementById('boxSelected').innerHTML="#"+(selectedShape+1);
+    document.getElementById("sideBarBoxEdit").style.display="inherit";
+    document.getElementById("sideBarList").style.display="none";
+}
 function newCube(){
     document.getElementById("sideBarBoxEdit").style.display="inherit";
     document.getElementById("sideBarList").style.display="none";
@@ -80,20 +72,20 @@ function newCube(){
     shapes[length].rotation.x = shapes[0].rotation.x;
     shapes[length].rotation.y = shapes[0].rotation.y;
     shapes[length].rotation.z = shapes[0].rotation.z;
-
-
-
+    selectedShape++;
+    document.getElementById('boxSelected').innerHTML="#"+(selectedShape+1);
 }
-function newCubeDimensions(dimension,value){
+function boxDimension(dimension,value){
+
     switch(dimension){
         case "x":
-            scales[scales.length-1][0]=value;
+            scales[selectedShape][0]=value;
             break;
         case "y":
-            scales[scales.length-1][1]=value;
+            scales[selectedShape][1]=value;
             break;
         case "z":
-            scales[scales.length-1][2]=value;
+            scales[selectedShape][2]=value;
             break;
     }
 }
@@ -106,5 +98,5 @@ function getRandomColor() {
     return color;
 }
 function changeColor(value){
-    shapes[shapes.length-1].material.color.set(value);
+    shapes[selectedShape].material.color.set(value);
 }
