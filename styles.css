@@ -9,8 +9,10 @@
 .parameterBox input {
 	border-color: none;
 	border-bottom-width: 0;
-	border-radius: .5px;
+	border-radius: 1px;
 	border-style: none;
+	background-color: #fff;
+	font-family:"Comic Sans MS";
 
 }
 
