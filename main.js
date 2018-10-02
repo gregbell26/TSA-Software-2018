@@ -3,6 +3,7 @@ var scales = [[2,2,2],[3,3,1]];
 var x = 1;
 var y = 1;
 var z = 1;
+var selectedShape = 1;
 var scene = new THREE.Scene();
 var camera = new THREE.PerspectiveCamera( 75, document.getElementById("mainWindow").offsetWidth/document.getElementById("mainWindow").offsetHeight, 0.1, 1000 );
 
@@ -52,7 +53,9 @@ function changeBoxDims(dimension,value){
 animate();
 
 function showList(){
-    var sideBar=document.getElementById('sideBar');
+    var sideBar=document.getElementById('sideBarList');
+    document.getElementById("sideBarBoxEdit").style.display="none";
+    document.getElementById("sideBarList").style.display="inherit";
     sideBar.innerHTML="";
     for (var i=0; i<shapes.length; i++){
         console.log("Shape "+(i+1)+": "+shapes[i]['geometry']['type']);
@@ -61,6 +64,8 @@ function showList(){
 }
 
 function newCube(){
+    document.getElementById("sideBarBoxEdit").style.display="inherit";
+    document.getElementById("sideBarList").style.display="none";
     var newGeometry = new THREE.BoxGeometry(1,1,1);
     var color = getRandomColor();
     document.getElementById('colorChanger').value=color;
