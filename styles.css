@@ -3,12 +3,15 @@
 .parameterBox {
 	font-family: "Comic Sans MS";
 	margin: 3px;
-	
+	padding: 1px;
 
 }
 .parameterBox input {
-	background-color: #939393;
-	/*border-radius: .5px;*/
+	border-color: none;
+	border-bottom-width: 0;
+	border-radius: .5px;
+	border-style: none;
+
 }
 
 
