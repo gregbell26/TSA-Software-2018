@@ -17,7 +17,6 @@ shapes[0] = new THREE.Mesh( geometry, material );
 var geometry2 = new THREE.BoxGeometry( 1, 1,1);
 var material2 = new THREE.MeshBasicMaterial( { color: 0x8000ff } );
 shapes[1] = new THREE.Mesh( geometry2, material2 );
-document.getElementById('colorChanger').value="#8000ff"
 scene.add(shapes[0]);
 scene.add(shapes[1]);
 camera.position.z = 5;
@@ -38,6 +37,7 @@ var animate = function () {
     renderer.render( scene, camera );
 };
 animate();
+setSelectedShape(0);
 
 function showList(){
     var sideBar=document.getElementById('sideBarList');
@@ -54,6 +54,14 @@ function setSelectedShape(num){
     document.getElementById('boxSelected').innerHTML="#"+(selectedShape+1);
     document.getElementById("sideBarBoxEdit").style.display="inherit";
     document.getElementById("sideBarList").style.display="none";
+    var color = "#";
+    color += rgbToHex(shapes[selectedShape].material.color['r']*255)
+    color += rgbToHex(shapes[selectedShape].material.color['g']*255)
+    color += rgbToHex(shapes[selectedShape].material.color['b']*255)
+    document.getElementById('colorChanger').value = color;
+    document.getElementById('parameterBoxX').value = shapes[selectedShape].scale.x;
+    document.getElementById('parameterBoxY').value = shapes[selectedShape].scale.y;
+    document.getElementById('parameterBoxZ').value = shapes[selectedShape].scale.z;
 }
 
 function cubeMenu(){
@@ -105,12 +113,17 @@ function getRandomColor() {
 function changeColor(value){
     shapes[selectedShape].material.color.set(value);
 }
-
 function removeCube(){
     scene.remove(shapes[selectedShape]);
     shapes.splice(selectedShape,1);
     scales.splice(selectedShape,1);
     selectedShape--;
     setSelectedShape(selectedShape);
-
 }
+function rgbToHex (rgb) {
+    var hex = Number(rgb).toString(16);
+    if (hex.length < 2) {
+        hex = "0" + hex;
+    }
+    return hex;
+};
