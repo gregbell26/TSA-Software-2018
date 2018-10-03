@@ -37,7 +37,7 @@ var animate = function () {
     renderer.render( scene, camera );
 };
 animate();
-setSelectedShape(0);
+setSelectedShape(1);
 
 function showList(){
     var sideBar=document.getElementById('sideBarList');
@@ -73,7 +73,6 @@ function newCube(){
     document.getElementById("sideBarList").style.display="none";
     var newGeometry = new THREE.BoxGeometry(1,1,1);
     var color = getRandomColor();
-    document.getElementById('colorChanger').value=color;
     var newMaterial = new THREE.MeshBasicMaterial({color: color})
     shapes[shapes.length]=new THREE.Mesh(newGeometry, newMaterial);
     var length = scales.length;
@@ -86,7 +85,7 @@ function newCube(){
     shapes[length].rotation.y = shapes[0].rotation.y;
     shapes[length].rotation.z = shapes[0].rotation.z;
     selectedShape++;
-    document.getElementById('boxSelected').innerHTML="#"+(selectedShape+1);
+    setSelectedShape(selectedShape);
 }
 function boxDimension(dimension,value){
 
