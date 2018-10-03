@@ -105,3 +105,12 @@ function getRandomColor() {
 function changeColor(value){
     shapes[selectedShape].material.color.set(value);
 }
+
+function removeCube(){
+    scene.remove(shapes[selectedShape]);
+    shapes.splice(selectedShape,1);
+    scales.splice(selectedShape,1);
+    selectedShape--;
+    setSelectedShape(selectedShape);
+
+}
