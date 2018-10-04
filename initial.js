@@ -1,3 +1,5 @@
+//jordan's code
+
 var shapes = [];
 var scales = [[2,2,2],[3,3,1]];
 var x = 1;

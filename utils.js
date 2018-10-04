@@ -1,3 +1,5 @@
+//jordan's code
+
 function getRandomColor() {
     var letters = '0123456789ABCDEF';
     var color = '#';
@@ -10,8 +12,8 @@ function changeColor(value){
     shapes[selectedShape].material.color.set(value);
 }
 
-function rgbToHex (rgb) {
-    var hex = Number(rgb).toString(16);
+function rgbToHex (num) {
+    var hex = Number(num).toString(16);
     if (hex.length < 2) {
         hex = "0" + hex;
     }

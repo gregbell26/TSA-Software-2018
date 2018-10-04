@@ -1,3 +1,4 @@
+//core code of movement and stuff here.
 var animate = function () {
     requestAnimationFrame( animate );
     //Animation settings

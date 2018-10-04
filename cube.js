@@ -1,3 +1,5 @@
+//jordan's code
+
 function newCube(){
     document.getElementById("sideBarBoxEdit").style.display="inherit";
     document.getElementById("sideBarList").style.display="none";
@@ -31,6 +33,7 @@ function cubeDimension(dimension,value){
             break;
     }
 }
+//corbin wrote this method:
 function moveShape(dimension, value){
     switch(dimension){
         case "x":
