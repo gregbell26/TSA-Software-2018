@@ -126,3 +126,17 @@ function rgbToHex (rgb) {
     }
     return hex;
 };
+
+function moveShape(dimension, value){
+    switch(dimension){
+        case "x":
+            shapes[selectedShape].position.x = value;
+            break;
+        case "y":
+            shapes[selectedShape].position.y = value;
+            break;
+        case "z":
+            shapes[selectedShape].position.z = value;
+            break;
+    }
+}
