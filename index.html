@@ -30,20 +30,30 @@
 		<div id="sideBarBoxEdit">
             <span onclick="newCube()"><span style="font-size:20px">+</span> New Cube</span>
             <span onclick="removeCube()"><span style="font-size:20px">+</span> Delete Cube</span>
-			<h3>
-				Dimensions
-			</h3>
-            <div class="parameterBox">X: <input type="number" id='parameterBoxX' onchange="boxDimension('x',this.value)" value="1"><br></div>
-            <div class="parameterBox">Y: <input type="number" id='parameterBoxY' onchange="boxDimension('y',this.value)" value="1"><br></div>
-            <div class="parameterBox">Z: <input type="number" id='parameterBoxZ' onchange="boxDimension('z',this.value)" value="1"><br></div>
-			<h3>
-				Colors
-			</h3>
-            <input type="color" value="#FF0000" id='colorChanger' onchange="changeColor(this.value)">
+            <div id="dimensionMenu">
+                <h3>
+                    Dimensions
+                </h3>
+                <div class="parameterBox">X: <input type="number" id='parameterBoxX' onchange="boxDimension('x',this.value)" value="1"><br></div>
+                <div class="parameterBox">Y: <input type="number" id='parameterBoxY' onchange="boxDimension('y',this.value)" value="1"><br></div>
+                <div class="parameterBox">Z: <input type="number" id='parameterBoxZ' onchange="boxDimension('z',this.value)" value="1"><br></div>
+            </div>
+			<div id="positionMenu">
+                <h3>
+                    Position
+                </h3>
+                <div class="parameterBox">X: <input type="number" id='positionBoxX' onchange="moveShape('x',this.value)" value="0"><br></div>
+                <div class="parameterBox">Y: <input type="number" id='positionBoxY' onchange="moveShape('y',this.value)" value="0"><br></div>
+                <div class="parameterBox">Z: <input type="number" id='positionBoxZ' onchange="moveShape('z',this.value)" value="0"><br></div>
+            </div>
+			<div id="colorMenu">
+                <h3>
+                    Colors
+                </h3>
+                <input type="color" value="#FF0000" id='colorChanger' onchange="changeColor(this.value)">
+            </div>
         </div>
-        <div id="sideBarList" style="display:none">
-
-        </div>
+        <div id="sideBarList" style="display:none"></div>
     </div>
     <div id="mainWindow">
     </div>
