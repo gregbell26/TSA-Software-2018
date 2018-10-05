@@ -1,12 +1,10 @@
 //core code of movement and stuff here.
-var turnSpeed = 0.0;
-var radius = 10;
 var animate = function () {
     requestAnimationFrame( animate );
-    turnSpeed+=1;
-    camera.position.x = radius * Math.sin( THREE.Math.degToRad( turnSpeed ) );
-    camera.position.y = radius * Math.sin( THREE.Math.degToRad( turnSpeed ) );
-    camera.position.z = radius * Math.cos( THREE.Math.degToRad( turnSpeed ) );
+    theta+=turnSpeed/10;
+    camera.position.x = distance * Math.sin( THREE.Math.degToRad( theta ) );
+    camera.position.y = distance * Math.sin( THREE.Math.degToRad( theta ) );
+    camera.position.z = distance * Math.cos( THREE.Math.degToRad( theta ) );
     camera.lookAt(scene.position);
     for (var i=0; i<shapes.length; i++){
         shapes[i].scale.x=scales[i][0];

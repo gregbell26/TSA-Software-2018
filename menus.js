@@ -4,7 +4,7 @@ setSelectedShape(1)
 
 function showList(){
     var sideBar=document.getElementById('sideBarList');
-    document.getElementById("sideBarBoxEdit").style.display="none";
+    hideAll();
     document.getElementById("sideBarList").style.display="inherit";
     sideBar.innerHTML="";
     for (var i=0; i<shapes.length; i++){
@@ -13,14 +13,14 @@ function showList(){
     }
 }
 function cubeMenu(){
+    hideAll();
     document.getElementById("sideBarBoxEdit").style.display="inherit";
-    document.getElementById("sideBarList").style.display="none";
 }
 function setSelectedShape(num){
     selectedShape = num;
     document.getElementById('boxSelected').innerHTML="#"+(selectedShape+1);
+    hideAll();
     document.getElementById("sideBarBoxEdit").style.display="inherit";
-    document.getElementById("sideBarList").style.display="none";
     var color = "#";
     color += rgbToHex(shapes[selectedShape].material.color['r']*255)
     color += rgbToHex(shapes[selectedShape].material.color['g']*255)
@@ -31,3 +31,13 @@ function setSelectedShape(num){
     document.getElementById('parameterBoxZ').value = shapes[selectedShape].scale.z;
 }
 
+function cameraMenu(){
+    hideAll();
+    document.getElementById('sideBarCamera').style.display="inherit";
+}
+
+function hideAll(){
+    document.getElementById("sideBarList").style.display="none";
+    document.getElementById("sideBarBoxEdit").style.display="none";
+    document.getElementById("sideBarCamera").style.display="none";
+}
