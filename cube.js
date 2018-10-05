@@ -13,9 +13,6 @@ function newCube(){
     scales[length][1]=1;
     scales[length][2]=1;
     scene.add(shapes[shapes.length-1]);
-    shapes[length].rotation.x = shapes[0].rotation.x;
-    shapes[length].rotation.y = shapes[0].rotation.y;
-    shapes[length].rotation.z = shapes[0].rotation.z;
     selectedShape++;
     setSelectedShape(selectedShape);
 }
