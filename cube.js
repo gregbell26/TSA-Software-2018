@@ -1,8 +1,6 @@
 //jordan's code
 
 function newCube(){
-    document.getElementById("sideBarBoxEdit").style.display="inherit";
-    document.getElementById("sideBarList").style.display="none";
     var newGeometry = new THREE.BoxGeometry(1,1,1);
     var color = getRandomColor();
     var newMaterial = new THREE.MeshBasicMaterial({color: color})
