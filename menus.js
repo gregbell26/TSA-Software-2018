@@ -29,6 +29,9 @@ function setSelectedShape(num){
     document.getElementById('parameterBoxX').value = shapes[selectedShape].scale.x;
     document.getElementById('parameterBoxY').value = shapes[selectedShape].scale.y;
     document.getElementById('parameterBoxZ').value = shapes[selectedShape].scale.z;
+    document.getElementById('positionBoxX').value = shapes[selectedShape].position.x;
+    document.getElementById('positionBoxY').value = shapes[selectedShape].position.y;
+    document.getElementById('positionBoxZ').value = shapes[selectedShape].position.z;
 }
 
 function cameraMenu(){
@@ -40,4 +43,8 @@ function hideAll(){
     document.getElementById("sideBarList").style.display="none";
     document.getElementById("sideBarBoxEdit").style.display="none";
     document.getElementById("sideBarCamera").style.display="none";
+}
+function cylinderMenu(){
+    hideAll()
+    document.getElementById("sideBarCylinder").style.display="inherit"
 }

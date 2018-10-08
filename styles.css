@@ -79,10 +79,17 @@ body{
     height:50px;
     width:60px;
 }
-#cameraButton{
+#cylinderButton{
     position:absolute;
     top:0px;
     left:120px;
+    height:50px;
+    width:60px;
+}
+#cameraButton{
+    position:absolute;
+    top:0px;
+    left:180px;
     height:50px;
     width:60px;
 }
