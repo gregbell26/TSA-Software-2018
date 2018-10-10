@@ -41,6 +41,7 @@ function moveShape(dimension, value){
             shapes[selectedShape].position.z = value;
             break;
     }
+
 }
 function removeCube(){
     scene.remove(shapes[selectedShape]);

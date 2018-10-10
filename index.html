@@ -23,7 +23,7 @@
         <button class="" id="cylinderButton" onclick="cylinderMenu()">cylinder</button>
         <button class="material-icons md-48" id="cameraButton" onclick="cameraMenu()">camera_alt</button>
         <button class="material-icons md-48" id="settingsButton">settings</button>
-        <button class="material-icons md-48" id="colorButton">color_lens</button>
+        <button class="material-icons md-48" id="colorButton" onclick="colorMenu()">color_lens</button>
         <button class="material-icons md-48" id="sizeButton">aspect_ratio</button>
     </div>
     <div id="sideBar">
@@ -46,12 +46,12 @@
                 <div class="parameterBox">Y: <input type="number" id='positionBoxY' onchange="moveShape('y',this.value)" onkeyup="moveShape('y',this.value)" value="0"><br></div>
                 <div class="parameterBox">Z: <input type="number" id='positionBoxZ' onchange="moveShape('z',this.value)" onkeyup="moveShape('z',this.value)" value="0"><br></div>
             </div>
-			<div id="colorMenu">
-                <h3>
-                    Colors
-                </h3>
-                <input type="color" value="#FF0000" id='colorChanger' onchange="changeColor(this.value)">
-            </div>
+        </div>
+        <div id="colorMenu">
+            <h3>
+                Colors
+            </h3>
+            <input type="color" value="#FF0000" id='colorChanger' onchange="changeColor(this.value)">
         </div>
         <div id="sideBarList" style="display:none"></div>
         <div id="sideBarCylinder" style="display: none">

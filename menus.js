@@ -43,8 +43,15 @@ function hideAll(){
     document.getElementById("sideBarList").style.display="none";
     document.getElementById("sideBarBoxEdit").style.display="none";
     document.getElementById("sideBarCamera").style.display="none";
+    document.getElementById("sideBarCylinder").style.display="none";
+    document.getElementById("colorMenu").style.display="none";
+
 }
 function cylinderMenu(){
-    hideAll()
-    document.getElementById("sideBarCylinder").style.display="inherit"
+    hideAll();
+    document.getElementById("sideBarCylinder").style.display="inherit";
+}
+function colorMenu(){
+    hideAll();
+    document.getElementById("colorMenu").style.display="inherit";
 }
