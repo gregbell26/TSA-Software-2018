@@ -14,6 +14,8 @@ function newCube(){
     selectedShape++;
     setSelectedShape(selectedShape);
 }
+
+
 function cubeDimension(dimension,value){
 
     switch(dimension){
@@ -28,6 +30,7 @@ function cubeDimension(dimension,value){
             break;
     }
 }
+
 //corbin wrote this method:
 function moveShape(dimension, value){
     switch(dimension){
