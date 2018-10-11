@@ -3,7 +3,7 @@
 function newCube(){
     var newGeometry = new THREE.BoxGeometry(1,1,1);
     var color = getRandomColor();
-    var newMaterial = new THREE.MeshBasicMaterial({color: color})
+    var newMaterial = new THREE.MeshBasicMaterial({color: color});
     shapes[shapes.length]=new THREE.Mesh(newGeometry, newMaterial);
     var length = scales.length;
     scales[length]=[];
