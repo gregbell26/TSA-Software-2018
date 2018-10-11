@@ -1,6 +1,6 @@
 //jordan's code
 
-setSelectedShape(1)
+setSelectedShape(1);
 
 function showList(){
     var sideBar=document.getElementById('sideBarList');
@@ -39,12 +39,19 @@ function cameraMenu(){
     document.getElementById('sideBarCamera').style.display="inherit";
 }
 
+function meshMenu(){
+    hideAll()
+    document.getElementById("meshMenu").style.display="inherit";
+
+}
+
 function hideAll(){
     document.getElementById("sideBarList").style.display="none";
     document.getElementById("sideBarBoxEdit").style.display="none";
     document.getElementById("sideBarCamera").style.display="none";
     document.getElementById("sideBarCylinder").style.display="none";
     document.getElementById("colorMenu").style.display="none";
+    document.getElementById("meshMenu").style.display="none";
 
 }
 function cylinderMenu(){

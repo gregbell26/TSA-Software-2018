@@ -20,8 +20,9 @@
                 </g>
             </svg><span id="boxSelected" style="position: absolute;bottom: 2px;right: 2px;">#2</span>
         </button>
-        <button class="material-icons md-48" id="cylinderButton" onclick="cylinderMenu()">cylinder</button>
+        <button class="" id="cylinderButton" onclick="cylinderMenu()">cylinder</button>
         <button class="material-icons md-48" id="cameraButton" onclick="cameraMenu()">camera_alt</button>
+        <button class="" id="meshButton" onclick="meshMenu()">mesh</button>
         //Place holders
         <button class="material-icons md-48" id="settingsButton">settings</button>
         <button class="material-icons md-48" id="colorButton" onclick="colorMenu()">color_lens</button>
@@ -62,6 +63,18 @@
             <div class="parameterBox">Distance <input type="number" id='cameraDistanceBox' onchange="distance = this.value" onkeyup="distance = this.value" value="10"><br></div>
             <div class="parameterBox">Rotation Speed: <input type="number" id='turnSpeedBox' onchange="turnSpeed = this.value" onkeyup="turnSpeed = this.value" value="5"><br></div>
         </div>
+        <div id="meshMenu">
+            <h3>
+                Materials
+            </h3>
+            <span onclick="mesh()"><span style="font-size:20px">+</span>Basic</span>
+            <span onclick="mesh('depth')"><span style="font-size:20px">+</span>Depth</span>
+            <span onclick="mesh('rainbow')"><span style="font-size:20px">+</span>Rainbow</span>
+
+
+
+        </div>
+
     </div>
     <div id="mainWindow">
     </div>

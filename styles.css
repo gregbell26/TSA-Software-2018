@@ -89,7 +89,7 @@ body{
 #cameraButton{
     position:absolute;
     top:0px;
-    left:180px;
+    left:240px;
     height:50px;
     width:60px;
 }
@@ -97,6 +97,13 @@ body{
     position: absolute;
     top: 0px;
     left: 0px;
+}
+#meshButton{
+    position:absolute;
+    top:0px;
+    left:180px;
+    height:50px;
+    width:60px;
 }
 #colorButton{
     position:absolute;
