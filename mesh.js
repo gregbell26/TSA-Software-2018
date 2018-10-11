@@ -7,13 +7,13 @@ var rainbowMesh = new THREE.MeshNormalMaterial();
 function mesh(meshType) {
     switch (meshType) {
         case "basic":
-            shapes[selectedShape]=basicMesh;
+            shapes[selectedShape].material=basicMesh;
             break;
         case "depth":
-            shapes[selectedShape]=depthMesh;
+            shapes[selectedShape].material=depthMesh;
             break;
         case "rainbow":
-            shapes[selectedShape]=rainbowMesh;
+            shapes[selectedShape].material=rainbowMesh;
             break;
 
 
