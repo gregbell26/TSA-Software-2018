@@ -1,5 +1,4 @@
 //Materials
-import * as THREE from "./three";
 
 var basicMesh = new THREE.MeshBasicMaterial();
 var depthMesh = new THREE.MeshDepthMaterial();
