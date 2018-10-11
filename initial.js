@@ -11,7 +11,7 @@ var camera = new THREE.PerspectiveCamera( 75, document.getElementById("mainWindo
 var turnSpeed = 5;
 var distance = 10;
 var theta = 0;
-var renderer = new THREE.WebGLRenderer();
+var renderer = new THREE.WebGLRenderer({logarithmicDepthBuffer: true });
 renderer.setSize( document.getElementById("mainWindow").offsetWidth, document.getElementById("mainWindow").offsetHeight );
 document.getElementById("mainWindow").appendChild( renderer.domElement );
 
