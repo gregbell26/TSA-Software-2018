@@ -11,15 +11,17 @@ function showList(){
         //console.log("Shape "+(i+1)+": "+shapes[i]['geometry']['type']);
         sideBar.innerHTML+="<a onclick='setSelectedShape("+i+")'>"+(i+1)+": "+shapes[i]['geometry']['type']+"</a><br>";
     }
+    console.log("Showed List");
 }
 
-function cubeMenu(){
+function cubeMenu() {
     hideAll();
-    document.getElementById("sideBarBoxEdit").style.display="inherit";
-    document.getElementById("meshMenu").style.display="inherit";
-    document.getElementById("dimensionMenu").style.display="inherit";
-    document.getElementById("positionMenu").style.display="inherit";
-    document.getElementById("colorMenu").style.display="inherit";
+    document.getElementById("sideBarBoxEdit").style.display = "inherit";
+    document.getElementById("meshMenu").style.display = "inherit";
+    document.getElementById("dimensionMenu").style.display = "inherit";
+    document.getElementById("positionMenu").style.display = "inherit";
+    document.getElementById("colorMenu").style.display = "inherit";
+    console.log("Showed Cube Menu");
 }
 
 function setSelectedShape(num){
@@ -39,16 +41,21 @@ function setSelectedShape(num){
     document.getElementById('positionBoxX').value = shapes[selectedShape].position.x;
     document.getElementById('positionBoxY').value = shapes[selectedShape].position.y;
     document.getElementById('positionBoxZ').value = shapes[selectedShape].position.z;
+    console.log("Set Shape Num")
 }
 
 function cameraMenu(){
     hideAll();
     document.getElementById('sideBarCamera').style.display="inherit";
+    console.log("Showed Camera")
+
 }
 
 function meshMenu(){
     hideAll();
     document.getElementById("meshMenu").style.display="inherit";
+    console.log("Showed Mesh")
+
 
 }
 
@@ -61,6 +68,8 @@ function hideAll(){
     document.getElementById("meshMenu").style.display="none";
     document.getElementById("dimensionMenu").style.display="none";
     document.getElementById("positionMenu").style.display="none";
+    console.log("Hide all")
+
 }
 
 function cylinderMenu(){
@@ -70,15 +79,21 @@ function cylinderMenu(){
     document.getElementById("dimensionMenu").style.display="inherit";
     document.getElementById("positionMenu").style.display="inherit";
     document.getElementById("colorMenu").style.display="inherit";
+    console.log("wOw A cIlEnDeR")
+
 }
 
 function colorMenu(){
     hideAll();
     document.getElementById("colorMenu").style.display="inherit";
+    console.log("SCOLOR")
+
 }
 
 function dimensionsMenu(){
     hideAll();
     document.getElementById("dimensionMenu").style.display="inherit";
     document.getElementById("positionMenu").style.display="inherit";
+    console.log("WOEZER DEM")
+
 }
