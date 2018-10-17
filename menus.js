@@ -20,7 +20,8 @@ function setSelectedShape(num){
     selectedShape = num;
     document.getElementById('boxSelected').innerHTML="#"+(selectedShape+1);
     hideAll();
-    document.getElementById("sideBarBoxEdit").style.display="inherit";
+    document.getElementById("dimensionMenu").style.display="inherit";
+    document.getElementById("positionMenu").style.display="inherit";
     var color = "#";
     color += rgbToHex(shapes[selectedShape].material.color['r']*255)
     color += rgbToHex(shapes[selectedShape].material.color['g']*255)
@@ -40,7 +41,7 @@ function cameraMenu(){
 }
 
 function meshMenu(){
-    hideAll()
+    hideAll();
     document.getElementById("meshMenu").style.display="inherit";
 
 }
@@ -52,7 +53,8 @@ function hideAll(){
     document.getElementById("sideBarCylinder").style.display="none";
     document.getElementById("colorMenu").style.display="none";
     document.getElementById("meshMenu").style.display="none";
-
+    document.getElementById("dimensionMenu").style.display="none";
+    document.getElementById("positionMenu").style.display="none";
 }
 function cylinderMenu(){
     hideAll();
@@ -61,4 +63,9 @@ function cylinderMenu(){
 function colorMenu(){
     hideAll();
     document.getElementById("colorMenu").style.display="inherit";
+}
+function dimensionsMenu(){
+    hideAll();
+    document.getElementById("dimensionMenu").style.display="inherit";
+    document.getElementById("positionMenu").style.display="inherit";
 }

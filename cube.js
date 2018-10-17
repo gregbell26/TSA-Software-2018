@@ -46,9 +46,11 @@ function moveShape(dimension, value){
 
 }
 function removeCube(){
-    scene.remove(shapes[selectedShape]);
-    shapes.splice(selectedShape,1);
-    scales.splice(selectedShape,1);
-    selectedShape--;
-    setSelectedShape(selectedShape);
+    if(selectedShape >= 0){
+        scene.remove(shapes[selectedShape]);
+        shapes.splice(selectedShape,1);
+        scales.splice(selectedShape,1);
+        selectedShape--;
+        setSelectedShape(selectedShape);
+    }
 }
