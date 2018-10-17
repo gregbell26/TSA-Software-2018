@@ -34,6 +34,11 @@
             <span onclick="removeCube()"><span style="font-size:20px">+</span> Delete Cube</span>
         </div>
 
+        <div id="sideBarCylinder" style="display: none">
+            <span onclick="newCylinder()"><span style="font-size:20px">+</span> New Cylinder</span>
+            <span onclick="removeCylinder()"><span style="font-size:20px">+</span> Delete Cylinder</span>
+        </div>
+
         <div id="dimensionMenu">
             <h3>
                 Dimensions
@@ -51,21 +56,21 @@
             <div class="parameterBox">Y: <input type="number" id='positionBoxY' onchange="moveShape('y',this.value)" onkeyup="moveShape('y',this.value)" value="0"><br></div>
             <div class="parameterBox">Z: <input type="number" id='positionBoxZ' onchange="moveShape('z',this.value)" onkeyup="moveShape('z',this.value)" value="0"><br></div>
         </div>
+
         <div id="colorMenu">
             <h3>
                 Colors
             </h3>
             <input type="color" value="#FF0000" id='colorChanger' onchange="changeColor(this.value)">
         </div>
+
         <div id="sideBarList" style="display:none"></div>
-        <div id="sideBarCylinder" style="display: none">
-            <span onclick="newCylinder()"><span style="font-size:20px">+</span> New Cylinder</span>
-            <span onclick="removeCylinder()"><span style="font-size:20px">+</span> Remove Cylinder</span>
-        </div>
+
         <div id="sideBarCamera" style="display:none">
             <div class="parameterBox">Distance <input type="number" id='cameraDistanceBox' onchange="distance = this.value" onkeyup="distance = this.value" value="10"><br></div>
             <div class="parameterBox">Rotation Speed: <input type="number" id='turnSpeedBox' onchange="turnSpeed = this.value" onkeyup="turnSpeed = this.value" value="5"><br></div>
         </div>
+
         <div id="meshMenu">
             <h3>
                 Materials

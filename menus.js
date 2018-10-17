@@ -12,10 +12,16 @@ function showList(){
         sideBar.innerHTML+="<a onclick='setSelectedShape("+i+")'>"+(i+1)+": "+shapes[i]['geometry']['type']+"</a><br>";
     }
 }
+
 function cubeMenu(){
     hideAll();
     document.getElementById("sideBarBoxEdit").style.display="inherit";
+    document.getElementById("meshMenu").style.display="inherit";
+    document.getElementById("dimensionMenu").style.display="inherit";
+    document.getElementById("positionMenu").style.display="inherit";
+    document.getElementById("colorMenu").style.display="inherit";
 }
+
 function setSelectedShape(num){
     selectedShape = num;
     document.getElementById('boxSelected').innerHTML="#"+(selectedShape+1);
@@ -56,14 +62,21 @@ function hideAll(){
     document.getElementById("dimensionMenu").style.display="none";
     document.getElementById("positionMenu").style.display="none";
 }
+
 function cylinderMenu(){
     hideAll();
     document.getElementById("sideBarCylinder").style.display="inherit";
+    document.getElementById("meshMenu").style.display="inherit";
+    document.getElementById("dimensionMenu").style.display="inherit";
+    document.getElementById("positionMenu").style.display="inherit";
+    document.getElementById("colorMenu").style.display="inherit";
 }
+
 function colorMenu(){
     hideAll();
     document.getElementById("colorMenu").style.display="inherit";
 }
+
 function dimensionsMenu(){
     hideAll();
     document.getElementById("dimensionMenu").style.display="inherit";
