@@ -103,19 +103,20 @@ body{
 #meshButton{
     position:absolute;
     top:0px;
-    left:180px;
+    right:182.5px;
     height:50px;
     width:60px;
 }
 #colorButton{
     position:absolute;
     top:0;
-    right: 60px;
+    right:60px;
 }
 #sizeButton{
     position:absolute;
     top:0;
     right: 120px;
+    height
 }
 body { margin: 0; }
 canvas { width: 100%; height: 100% }
