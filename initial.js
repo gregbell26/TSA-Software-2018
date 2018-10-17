@@ -13,6 +13,8 @@ var turnSpeed = 5;
 var distance = 10;
 var theta = 0;
 var renderer = new THREE.WebGLRenderer({logarithmicDepthBuffer: true });
+var ambientLight = new THREE.AmbientLight(0x404040);
+
 renderer.setSize( document.getElementById("mainWindow").offsetWidth, document.getElementById("mainWindow").offsetHeight );
 document.getElementById("mainWindow").appendChild( renderer.domElement );
 var geometry = new THREE.BoxGeometry( 1,1,1 );
@@ -22,6 +24,7 @@ var geometry2 = new THREE.BoxGeometry( 1, 1,1);
 var ambientLight = new THREE.AmbientLight(0x404040);
 var material2 = new THREE.MeshBasicMaterial( { color: 0x8000ff } );
 shapes[1] = new THREE.Mesh( geometry2, material2 );
+scene.add(ambientLight);
 scene.add(shapes[0]);
 scene.add(shapes[1]);
 
