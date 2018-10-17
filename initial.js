@@ -20,6 +20,7 @@ var geometry = new THREE.BoxGeometry( 1,1,1 );
 var material = new THREE.MeshBasicMaterial( { color: 0x00ff00 } );
 shapes[0] = new THREE.Mesh( geometry, material );
 var geometry2 = new THREE.BoxGeometry( 1, 1,1);
+var ambientLight = new THREE.AmbientLight(0x404040);
 var material2 = new THREE.MeshBasicMaterial( { color: 0x8000ff } );
 shapes[1] = new THREE.Mesh( geometry2, material2 );
 scene.add(shapes[0]);
