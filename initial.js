@@ -15,7 +15,6 @@ var theta = 0;
 var renderer = new THREE.WebGLRenderer({logarithmicDepthBuffer: true });
 renderer.setSize( document.getElementById("mainWindow").offsetWidth, document.getElementById("mainWindow").offsetHeight );
 document.getElementById("mainWindow").appendChild( renderer.domElement );
-
 var geometry = new THREE.BoxGeometry( 1,1,1 );
 var material = new THREE.MeshBasicMaterial( { color: 0x00ff00 } );
 shapes[0] = new THREE.Mesh( geometry, material );
@@ -24,5 +23,6 @@ var material2 = new THREE.MeshBasicMaterial( { color: 0x8000ff } );
 shapes[1] = new THREE.Mesh( geometry2, material2 );
 scene.add(shapes[0]);
 scene.add(shapes[1]);
+
 camera.position.z = 5;
 var move = 0.01;

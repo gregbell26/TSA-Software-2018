@@ -1,6 +1,6 @@
 //jordan's code
 
-setSelectedShape(1);
+
 
 function showList(){
     var sideBar=document.getElementById('sideBarList');
