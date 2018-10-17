@@ -45,7 +45,8 @@ function hideAll(){
     document.getElementById("sideBarCamera").style.display="none";
     document.getElementById("sideBarCylinder").style.display="none";
     document.getElementById("colorMenu").style.display="none";
-
+    document.getElementById("dimensionMenu").style.display="none";
+    document.getElementById("positionMenu").style.display="none";
 }
 function cylinderMenu(){
     hideAll();
@@ -54,4 +55,9 @@ function cylinderMenu(){
 function colorMenu(){
     hideAll();
     document.getElementById("colorMenu").style.display="inherit";
+}
+function dimensionMenu(){
+    hideAll();
+    document.getElementById("dimensionMenu").style.display="inherit";
+    document.getElementById("positionMenu").style.display="inherit";
 }

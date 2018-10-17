@@ -24,28 +24,28 @@
         <button class="material-icons md-48" id="cameraButton" onclick="cameraMenu()">camera_alt</button>
         <button class="material-icons md-48" id="settingsButton">settings</button>
         <button class="material-icons md-48" id="colorButton" onclick="colorMenu()">color_lens</button>
-        <button class="material-icons md-48" id="sizeButton">aspect_ratio</button>
+        <button class="material-icons md-48" id="sizeButton" onclick="dimensionMenu()">aspect_ratio</button>
     </div>
     <div id="sideBar">
 		<div id="sideBarBoxEdit">
             <span onclick="newCube()"><span style="font-size:20px">+</span> New Cube</span>
             <span onclick="removeCube()"><span style="font-size:20px">+</span> Delete Cube</span>
-            <div id="dimensionMenu">
-                <h3>
-                    Dimensions
-                </h3>
-                <div class="parameterBox">X: <input type="number" id='parameterBoxX' onchange="cubeDimension('x',this.value)" onkeyup="cubeDimension('x',this.value)" value="0"><br></div>
-                <div class="parameterBox">Y: <input type="number" id='parameterBoxY' onchange="cubeDimension('y',this.value)" onkeyup="cubeDimension('y',this.value)" value="0"><br></div>
-                <div class="parameterBox">Z: <input type="number" id='parameterBoxZ' onchange="cubeDimension('z',this.value)" onkeyup="cubeDimension('z',this.value)" value="0"><br></div>
-            </div>
-			<div id="positionMenu">
-                <h3>
-                    Position
-                </h3>
-                <div class="parameterBox">X: <input type="number" id='positionBoxX' onchange="moveShape('x',this.value)" onkeyup="moveShape('x',this.value)" value="0"><br></div>
-                <div class="parameterBox">Y: <input type="number" id='positionBoxY' onchange="moveShape('y',this.value)" onkeyup="moveShape('y',this.value)" value="0"><br></div>
-                <div class="parameterBox">Z: <input type="number" id='positionBoxZ' onchange="moveShape('z',this.value)" onkeyup="moveShape('z',this.value)" value="0"><br></div>
-            </div>
+        </div>
+        <div id="dimensionMenu">
+            <h3>
+                Dimensions
+            </h3>
+            <div class="parameterBox">X: <input type="number" id='parameterBoxX' onchange="cubeDimension('x',this.value)" onkeyup="cubeDimension('x',this.value)" value="0"><br></div>
+            <div class="parameterBox">Y: <input type="number" id='parameterBoxY' onchange="cubeDimension('y',this.value)" onkeyup="cubeDimension('y',this.value)" value="0"><br></div>
+            <div class="parameterBox">Z: <input type="number" id='parameterBoxZ' onchange="cubeDimension('z',this.value)" onkeyup="cubeDimension('z',this.value)" value="0"><br></div>
+        </div>
+        <div id="positionMenu">
+            <h3>
+                Position
+            </h3>
+            <div class="parameterBox">X: <input type="number" id='positionBoxX' onchange="moveShape('x',this.value)" onkeyup="moveShape('x',this.value)" value="0"><br></div>
+            <div class="parameterBox">Y: <input type="number" id='positionBoxY' onchange="moveShape('y',this.value)" onkeyup="moveShape('y',this.value)" value="0"><br></div>
+            <div class="parameterBox">Z: <input type="number" id='positionBoxZ' onchange="moveShape('z',this.value)" onkeyup="moveShape('z',this.value)" value="0"><br></div>
         </div>
         <div id="colorMenu">
             <h3>
@@ -56,10 +56,13 @@
         <div id="sideBarList" style="display:none"></div>
         <div id="sideBarCylinder" style="display: none">
             <span onclick="newCylinder()"><span style="font-size:20px">+</span> New Cylinder</span>
+            <span onclick="removeCylinder()"><span style="font-size:20px">+</span> Remove Cylinder</span>
         </div>
         <div id="sideBarCamera" style="display:none">
             <div class="parameterBox">Distance <input type="number" id='cameraDistanceBox' onchange="distance = this.value" onkeyup="distance = this.value" value="10"><br></div>
             <div class="parameterBox">Rotation Speed: <input type="number" id='turnSpeedBox' onchange="turnSpeed = this.value" onkeyup="turnSpeed = this.value" value="5"><br></div>
+        </div>
+        <div id="texturesMenu">
         </div>
     </div>
     <div id="mainWindow">

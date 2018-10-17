@@ -15,7 +15,6 @@ function newCube(){
     setSelectedShape(selectedShape);
 }
 function cubeDimension(dimension,value){
-
     switch(dimension){
         case "x":
             scales[selectedShape][0]=value;
