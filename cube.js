@@ -3,7 +3,7 @@
 function newCube(){
     var newGeometry = new THREE.BoxGeometry(1,1,1);
     var color = getRandomColor();
-    var newMaterial = new THREE.MeshBasicMaterial({color: color})
+    var newMaterial = new THREE.MeshBasicMaterial({color: color});
     shapes[shapes.length]=new THREE.Mesh(newGeometry, newMaterial);
     var length = scales.length;
     scales[length]=[];
@@ -14,6 +14,8 @@ function newCube(){
     selectedShape++;
     setSelectedShape(selectedShape);
 }
+
+
 function cubeDimension(dimension,value){
     switch(dimension){
         case "x":
@@ -27,6 +29,7 @@ function cubeDimension(dimension,value){
             break;
     }
 }
+
 //corbin wrote this method:
 function moveShape(dimension, value){
     switch(dimension){
