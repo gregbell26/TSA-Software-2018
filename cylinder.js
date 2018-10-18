@@ -1,5 +1,5 @@
 function newCylinder(){
-    var newGeometry = new THREE.CylinderGeometry( 3, 3, 5,100 );
+    var newGeometry = new THREE.CylinderGeometry( 1, 1, 1,100 );
     var color = getRandomColor();
     var newMaterial = new THREE.MeshBasicMaterial({color: color});
     shapes[shapes.length]=new THREE.Mesh(newGeometry, newMaterial);
