@@ -23,20 +23,20 @@
         <button class="" id="cylinderButton" onclick="cylinderMenu()">cylinder</button>
         <button class="material-icons md-48" id="cameraButton" onclick="cameraMenu()">camera_alt</button>
         <button class="" id="meshButton" onclick="meshMenu()">mesh</button>
-        //Jorden Sucks
+        //Jordan Sucks
         <button class="material-icons md-48" id="settingsButton">settings</button>
         <button class="material-icons md-48" id="colorButton" onclick="colorMenu()">color_lens</button>
         <button class="material-icons md-48" id="sizeButton" onclick="dimensionsMenu()">aspect_ratio</button>
     </div>
     <div id="sideBar">
 		<div id="sideBarBoxEdit">
-            <span onclick="newCube()"><span style="font-size:20px">+</span> New Cube</span>
-            <span onclick="removeCube()"><span style="font-size:20px">+</span> Delete Cube</span>
+            <button class="button addButton" onclick="newCube()">New Cube</button>
+            <button class="button removeButton" onclick="removeCube()">Delete Cube</button>
         </div>
 
         <div id="sideBarCylinder" style="display: none">
-            <span onclick="newCylinder()"><span style="font-size:20px">+</span> New Cylinder</span>
-            <span onclick="removeCylinder()"><span style="font-size:20px">+</span> Delete Cylinder</span>
+            <button class="button addButton" onclick="newCylinder()">New Cylinder</button>
+            <button class="button removeButton" onclick="removeCylinder()">Delete Cylinder</button>
         </div>
 
         <div id="dimensionMenu">

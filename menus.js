@@ -27,9 +27,6 @@ function cubeMenu() {
 function setSelectedShape(num){
     selectedShape = num;
     document.getElementById('boxSelected').innerHTML="#"+(selectedShape+1);
-    hideAll();
-    document.getElementById("dimensionMenu").style.display="inherit";
-    document.getElementById("positionMenu").style.display="inherit";
     var color = "#";
     color += rgbToHex(shapes[selectedShape].material.color['r']*255)
     color += rgbToHex(shapes[selectedShape].material.color['g']*255)
