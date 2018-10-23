@@ -3,13 +3,13 @@
 
 
 function showList(){
-    var sideBar=document.getElementById('sideBarList');
+    var sideBar=document.getElementById('listButtons');
     hideAll();
     document.getElementById("sideBarList").style.display="inherit";
     sideBar.innerHTML="";
     for (var i=0; i<shapes.length; i++){
         //console.log("Shape "+(i+1)+": "+shapes[i]['geometry']['type']);
-        sideBar.innerHTML+="<a onclick='setSelectedShape("+i+")'>"+(i+1)+": "+shapes[i]['geometry']['type']+"</a><br>";
+        sideBar.innerHTML+="<button onclick='setSelectedShape("+i+")'>"+(i+1)+": "+shapes[i]['geometry']['type']+"</button>";
     }
     console.log("Showed List");
 }
@@ -38,7 +38,12 @@ function setSelectedShape(num){
     document.getElementById('positionBoxX').value = shapes[selectedShape].position.x;
     document.getElementById('positionBoxY').value = shapes[selectedShape].position.y;
     document.getElementById('positionBoxZ').value = shapes[selectedShape].position.z;
-    console.log("Set Shape Num")
+    if(shapes[selectedShape].geometry.type == "BoxGeometry"){
+        cubeMenu();
+    }else if(shapes[selectedShape].geometry.type == "CylinderGeometry"){
+        cylinderMenu();
+    }
+    console.log("Set Shape Num");
 }
 
 function cameraMenu(){

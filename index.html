@@ -30,13 +30,13 @@
     </div>
     <div id="sideBar">
 		<div id="sideBarBoxEdit">
-            <button class="button addButton" onclick="newCube()">New Cube</button>
-            <button class="button removeButton" onclick="removeCube()">Delete Cube</button>
+            <button class="objButton addButton" onclick="newCube()">New Cube</button>
+            <button class="objButton removeButton" onclick="removeCube()">Delete Cube</button>
         </div>
 
         <div id="sideBarCylinder" style="display: none">
-            <button class="button addButton" onclick="newCylinder()">New Cylinder</button>
-            <button class="button removeButton" onclick="removeCylinder()">Delete Cylinder</button>
+            <button class="objButton addButton" onclick="newCylinder()">New Cylinder</button>
+            <button class="objButton removeButton" onclick="removeCylinder()">Delete Cylinder</button>
         </div>
 
         <div id="dimensionMenu">
@@ -64,7 +64,12 @@
             <input type="color" value="#FF0000" id='colorChanger' onchange="changeColor(this.value)">
         </div>
 
-        <div id="sideBarList" style="display:none"></div>
+        <div id="sideBarList" style="display:none">
+            <h3>
+                Objects
+            </h3>
+            <div id="listButtons" class="setGroup"></div>
+        </div>
 
         <div id="sideBarCamera" style="display:none">
             <div class="parameterBox">Distance <input type="number" id='cameraDistanceBox' onchange="distance = this.value" onkeyup="distance = this.value" value="10"><br></div>
