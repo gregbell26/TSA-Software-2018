@@ -1,8 +1,10 @@
 function addFrame(){
+    console.log(shapes);
+    console.log(JSON.stringify(shapes));
     keyFrames.push(
         {
             duration: 5000,
-            shapes: JSON.parse(JSON.stringify(shapes)),
+            shapes: getShapes(shapes),
             scales: JSON.parse(JSON.stringify(scales)),
             xPosition: xPosition,
             yPosition: yPosition,
@@ -30,6 +32,9 @@ function playAnimation(){
                 scales[i][0]=keyFrames[a].scales[i][0] + (keyFrames[a+1].scales[i][0]-keyFrames[a].scales[i][0])/keyFrames[a].duration*timingCounter;
                 scales[i][1]=keyFrames[a].scales[i][1] + (keyFrames[a+1].scales[i][1]-keyFrames[a].scales[i][1])/keyFrames[a].duration*timingCounter;
                 scales[i][2]=keyFrames[a].scales[i][2] + (keyFrames[a+1].scales[i][2]-keyFrames[a].scales[i][2])/keyFrames[a].duration*timingCounter;
+                shapes[i].position.x = keyFrames[a].shapes[i][0] + (keyFrames[a+1].shapes[i][0]-keyFrames[a].shapes[i][0])/keyFrames[a].duration*timingCounter;
+                shapes[i].position.y = keyFrames[a].shapes[i][1] + (keyFrames[a+1].shapes[i][1]-keyFrames[a].shapes[i][1])/keyFrames[a].duration*timingCounter;
+                shapes[i].position.z = keyFrames[a].shapes[i][2] + (keyFrames[a+1].shapes[i][2]-keyFrames[a].shapes[i][2])/keyFrames[a].duration*timingCounter;
             }
         }
         else {
@@ -40,4 +45,12 @@ function playAnimation(){
 
 function setSpeed(amount, speed){
 
+}
+
+function getShapes(s){
+    var ret = [];
+    for (var i=0; i<s.length; i++){
+        ret.push([s[i].position.x,s[i].position.y,s[i].position.z]);
+    }
+    return ret;
 }
