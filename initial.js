@@ -3,6 +3,7 @@
 
 var shapes = [];
 var scales = [[2,2,2],[3,3,1]];
+var keyFrames = [];
 var x = 1;
 var y = 1;
 var z = 1;
