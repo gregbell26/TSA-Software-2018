@@ -112,6 +112,10 @@ body{
     background-color:#C9C9C9;
 }
 
+#keyMenu{
+    display: none;
+}
+
 #cylinderButton{
     position:absolute;
     top:0px;

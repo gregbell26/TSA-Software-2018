@@ -9,11 +9,12 @@ var z = 1;
 var selectedShape = 1;
 var scene = new THREE.Scene();
 var camera = new THREE.PerspectiveCamera( 75, document.getElementById("mainWindow").offsetWidth/document.getElementById("mainWindow").offsetHeight, 0.1, 1000 );
-var turnSpeed = 5;
-var distance = 10;
 var theta = 0;
 var renderer = new THREE.WebGLRenderer({logarithmicDepthBuffer: true });
-var ambientLight = new THREE.AmbientLight(0x404040);
+var xPosition = 10;
+var yPosition = 10;
+var zPosition = 10;
+
 
 renderer.setSize( document.getElementById("mainWindow").offsetWidth, document.getElementById("mainWindow").offsetHeight );
 document.getElementById("mainWindow").appendChild( renderer.domElement );

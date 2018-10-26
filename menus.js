@@ -70,6 +70,7 @@ function hideAll(){
     document.getElementById("meshMenu").style.display="none";
     document.getElementById("dimensionMenu").style.display="none";
     document.getElementById("positionMenu").style.display="none";
+    document.getElementById("keyMenu").style.display="none";
     console.log("Hide all")
 
 }
@@ -98,4 +99,9 @@ function dimensionsMenu(){
     document.getElementById("positionMenu").style.display="inherit";
     console.log("WOEZER DEM")
 
+}
+
+function keyMenu(){
+    hideAll();
+    document.getElementById("keyMenu").style.display="inherit";
 }
