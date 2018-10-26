@@ -20,4 +20,56 @@ function rgbToHex (num) {
     return hex;
 };
 
+function addShape(){
+    var shapeType = document.getElementById("shapeSelector").value;
+    switch(shapeType){
+        case "cube" :
+            addCubeMenu();
+            break;
+        case "cylinder" :
+            addCylinderMenu();
+            break;
+    }
+}
 
+function createShape(){
+    var shapeType = document.getElementById("shapeSelector").value;
+
+    switch(shapeType){
+        case "cube" :
+            newCube(createX, createY, createZ);
+            break;
+        case "cylinder" :
+            newCylinder(createX, createY, createZ);
+            break;
+    }
+}
+
+function removeShape(){
+    var shapeType = document.getElementById("shapeSelector").value;
+
+    switch(shapeType){
+        case "cube" :
+            removeCube();
+            break;
+        case "cylinder" :
+            removeCylinder();
+            break;
+    }
+}
+
+//corbin wrote this method:
+function moveShape(dimension, value){
+    switch(dimension){
+        case "x":
+            shapes[selectedShape].position.x = value;
+            break;
+        case "y":
+            shapes[selectedShape].position.y = value;
+            break;
+        case "z":
+            shapes[selectedShape].position.z = value;
+            break;
+    }
+
+}

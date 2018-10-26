@@ -1,22 +1,22 @@
 //jordan's code
 
-function newCube(){
-    var newGeometry = new THREE.BoxGeometry(1,1,1);
+function newCube(x, y, z){
+    var newGeometry = new THREE.BoxGeometry(1 , 1, 1);
     var color = getRandomColor();
     var newMaterial = new THREE.MeshBasicMaterial({color: color});
     shapes[shapes.length]=new THREE.Mesh(newGeometry, newMaterial);
     var length = scales.length;
     scales[length]=[];
-    scales[length][0]=1;
-    scales[length][1]=1;
-    scales[length][2]=1;
+    scales[length][0]=x;
+    scales[length][1]=y;
+    scales[length][2]=z;
     scene.add(shapes[shapes.length-1]);
     selectedShape++;
     setSelectedShape(selectedShape);
 }
 
 
-function cubeDimension(dimension,value){
+function cubeDimension(dimension, value){
     switch(dimension){
         case "x":
             scales[selectedShape][0]=value;
@@ -30,21 +30,7 @@ function cubeDimension(dimension,value){
     }
 }
 
-//corbin wrote this method:
-function moveShape(dimension, value){
-    switch(dimension){
-        case "x":
-            shapes[selectedShape].position.x = value;
-            break;
-        case "y":
-            shapes[selectedShape].position.y = value;
-            break;
-        case "z":
-            shapes[selectedShape].position.z = value;
-            break;
-    }
 
-}
 function removeCube(){
     if(selectedShape >= 0){
         scene.remove(shapes[selectedShape]);
