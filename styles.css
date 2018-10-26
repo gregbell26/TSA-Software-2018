@@ -98,6 +98,20 @@ body{
     background-color:#C9C9C9;
 }
 
+#keyButton{
+    position:absolute;
+    top:0px;
+    left:234px;
+    height:50px;
+    width:60px;
+    -webkit-transition-duration: 0.4s; /* Safari */
+    transition-duration: 0.4s;
+}
+
+#keyButton:hover {
+    background-color:#C9C9C9;
+}
+
 #cylinderButton{
     position:absolute;
     top:0px;
