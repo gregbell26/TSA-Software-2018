@@ -7,6 +7,8 @@ var keyFrames = [];
 var x = 1;
 var y = 1;
 var z = 1;
+var animationTimer;
+var timingCounter;
 var selectedShape = 1;
 var scene = new THREE.Scene();
 var camera = new THREE.PerspectiveCamera( 75, document.getElementById("mainWindow").offsetWidth/document.getElementById("mainWindow").offsetHeight, 0.1, 1000 );
