@@ -97,7 +97,15 @@ function colorMenu(){
 
 function dimensionsMenu(){
     hideAll();
-    document.getElementById("dimensionMenu").style.display="inherit";
+    var shapeType = shapes[selectedShape].geometry.name;
+    switch(shapeType){
+        case "cube":
+            document.getElementById("sideBarBoxEdit").style.display="inherit";
+            break;
+        case "cylinder":
+            document.getElementById("sideBarCylinder").style.display="inherit";
+            break;
+    }
     document.getElementById("positionMenu").style.display="inherit";
     console.log("WOEZER DEM");
 

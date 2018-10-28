@@ -101,7 +101,7 @@ body{
 #keyButton{
     position:absolute;
     top:0px;
-    left:234px;
+    left:176px;
     height:50px;
     width:60px;
     -webkit-transition-duration: 0.4s; /* Safari */
@@ -133,7 +133,7 @@ body{
 #cameraButton{
     position:absolute;
     top:0px;
-    left:176px;
+    left:117px;
     height:50px;
     width:60px;
     -webkit-transition-duration: 0.4s; /* Safari */

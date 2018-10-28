@@ -4,6 +4,7 @@ function newCylinder(x, y, z){
     var newMaterial = new THREE.MeshBasicMaterial({color: color});
     shapes[shapes.length]=new THREE.Mesh(newGeometry, newMaterial);
     var length = scales.length;
+    newGeometry.name = "cylinder"
     scales[length]=[];
     scales[length][0]=x;
     scales[length][1]=y;

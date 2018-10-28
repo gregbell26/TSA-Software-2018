@@ -46,7 +46,7 @@ function createShape(){
 }
 
 function removeShape(){
-    var shapeType = document.getElementById("shapeSelector").value;
+    var shapeType = shapes[selectedShape].geometry.name;
 
     switch(shapeType){
         case "cube" :
