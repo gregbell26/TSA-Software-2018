@@ -1,6 +1,4 @@
 function addFrame(){
-    console.log(shapes);
-    console.log(JSON.stringify(shapes));
     keyFrames.push(
         {
             duration: 5000,

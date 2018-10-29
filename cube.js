@@ -19,13 +19,13 @@ function newCube(){
 function cubeDimension(dimension,value){
     switch(dimension){
         case "x":
-            scales[selectedShape][0]=value;
+            scales[selectedShape][0]=Number(value);
             break;
         case "y":
-            scales[selectedShape][1]=value;
+            scales[selectedShape][1]=Number(value);
             break;
         case "z":
-            scales[selectedShape][2]=value;
+            scales[selectedShape][2]=Number(value);
             break;
     }
 }
@@ -34,13 +34,13 @@ function cubeDimension(dimension,value){
 function moveShape(dimension, value){
     switch(dimension){
         case "x":
-            shapes[selectedShape].position.x = value;
+            shapes[selectedShape].position.x = Number(value);
             break;
         case "y":
-            shapes[selectedShape].position.y = value;
+            shapes[selectedShape].position.y = Number(value);
             break;
         case "z":
-            shapes[selectedShape].position.z = value;
+            shapes[selectedShape].position.z = Number(value);
             break;
     }
 
