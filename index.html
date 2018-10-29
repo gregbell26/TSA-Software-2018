@@ -11,7 +11,7 @@
 <body>
     <div id="topBar">
         <button id="listButton" onclick="showList()" class="md-48 material-icons">list</button>
-        <button id="cubeButton" onclick="cubeMenu()">
+        <button id="shapeButton" onclick="shapeMenu()">
             <svg width="40" height="40" viewBox="-0.9 -0.9 1.8 1.8">
                 <g xmlns="http://www.w3.org/2000/svg" style="stroke-width:0.1;stroke-linejoin:round;opacity:1">
                     <polygon fill="#000000" stroke="#FFFFFF" points="-4.9165444345E-17,-0.717341709543 0.704050371456,-0.412727063605 6.3108540578E-17,-0.0217250905725 -0.704050371456,-0.412727063605"></polygon>
@@ -20,7 +20,6 @@
                 </g>
             </svg><span id="boxSelected" style="position: absolute;bottom: 2px;right: 2px;">#2</span>
         </button>
-        <button class="" id="cylinderButton" onclick="cylinderMenu()">cylinder</button>
         <button class="material-icons md-48" id="cameraButton" onclick="cameraMenu()">camera_alt</button>
         <button class="material-icons md-48" id="keyButton" onclick="keyMenu()">vpn_key</button>
         <button class="" id="meshButton" onclick="meshMenu()">mesh</button>
@@ -28,43 +27,57 @@
         <button class="material-icons md-48" id="colorButton" onclick="colorMenu()">color_lens</button>
         <button class="material-icons md-48" id="sizeButton" onclick="dimensionsMenu()">aspect_ratio</button>
     </div>
+
     <div id="sideBar">
+
+        <div id="shapeMenu" style="display: none">
+            <button class="objButton addButton" onclick="newShapeMenu()">New Shape</button>
+            <button class="objButton removeButton" onclick="removeShape()">Delete Shape</button>
+        </div>
+
+
+        <div id="addMenu" style="display: none">
+            <select id="shapeSelector">
+                <option value="cube">Cube</option>
+                <option value="cylinder">Cylinder</option>
+            </select>
+            <br>
+            <button class="objButton addButton" onclick="addShape()">OK</button>
+            <button class="objButton removeButton" onclick="shapeMenu()">Cancel</button>
+        </div>
+
 		<div id="sideBarBoxEdit">
-            <button class="objButton addButton" onclick="newCube()">New Cube</button>
-            <button class="objButton removeButton" onclick="removeCube()">Delete Cube</button>
-        </div>
-        <div id="sideBarCylinder" style="display: none">
-            <button class="objButton addButton" onclick="newCylinder()">New Cylinder</button>
-            <button class="objButton removeButton" onclick="removeCylinder()">Delete Cylinder</button>
-        </div>
-        <div id="dimensionMenu">
             <h3>
                 Dimensions
             </h3>
-            <div class="parameterBox">X: <input type="number" id='parameterBoxX' onchange="cubeDimension('x',this.value)" onkeyup="cubeDimension('x',this.value)" value="0"><br></div>
-            <div class="parameterBox">Y: <input type="number" id='parameterBoxY' onchange="cubeDimension('y',this.value)" onkeyup="cubeDimension('y',this.value)" value="0"><br></div>
-            <div class="parameterBox">Z: <input type="number" id='parameterBoxZ' onchange="cubeDimension('z',this.value)" onkeyup="cubeDimension('z',this.value)" value="0"><br></div>
+            <div class="parameterBox">X: <input type="number" id='cubeParameterBoxX' onchange="cubeDimension('x',this.value)" onkeyup="cubeDimension('x',this.value)" value="0"><br></div>
+            <div class="parameterBox">Y: <input type="number" id='cubeParameterBoxY' onchange="cubeDimension('y',this.value)" onkeyup="cubeDimension('y',this.value)" value="0"><br></div>
+            <div class="parameterBox">Z: <input type="number" id='cubeParameterBoxZ' onchange="cubeDimension('z',this.value)" onkeyup="cubeDimension('z',this.value)" value="0"><br></div>
         </div>
-        <div id="positionMenu">
+
+        <div id="sideBarCylinder" style="display: none">
             <h3>
-                Position
+                Dimensions
             </h3>
-            <div class="parameterBox">X: <input type="number" id='positionBoxX' onchange="moveShape('x',this.value)" onkeyup="moveShape('x',this.value)" value="0"><br></div>
-            <div class="parameterBox">Y: <input type="number" id='positionBoxY' onchange="moveShape('y',this.value)" onkeyup="moveShape('y',this.value)" value="0"><br></div>
-            <div class="parameterBox">Z: <input type="number" id='positionBoxZ' onchange="moveShape('z',this.value)" onkeyup="moveShape('z',this.value)" value="0"><br></div>
+            <div class="parameterBox">X: <input type="number" id='cylParameterBoxX' onchange="cubeDimension('x',this.value)" onkeyup="cubeDimension('x',this.value)" value="0"><br></div>
+            <div class="parameterBox">Y: <input type="number" id='cylParameterBoxY' onchange="cubeDimension('y',this.value)" onkeyup="cubeDimension('y',this.value)" value="0"><br></div>
+            <div class="parameterBox">Z: <input type="number" id='cylParameterBoxZ' onchange="cubeDimension('z',this.value)" onkeyup="cubeDimension('z',this.value)" value="0"><br></div>
         </div>
+
         <div id="colorMenu">
             <h3>
                 Color
             </h3>
             <input type="color" value="#FF0000" id='colorChanger' onchange="changeColor(this.value)">
         </div>
+
         <div id="sideBarList" style="display:none">
             <h3>
                 Objects
             </h3>
             <div id="listButtons" class="setGroup"></div>
         </div>
+
         <div id="sideBarCamera" style="display:none">
             <div class="parameterBox">X Position: <input type="number" id='xPositionBox' onchange="xPosition = this.value" onkeyup="xPosition = this.value" value="10"><br></div>
             <div class="parameterBox">Y Position: <input type="number" id='yPositionBox' onchange="yPosition = this.value" onkeyup="yPosition = this.value" value="10"><br></div>
@@ -81,10 +94,26 @@
                 <button onclick="mesh('depth')">Depth</button>
                 <button onclick="mesh('rainbow')">Rainbow</button>
             </div>
+        </div>
 
+        <div id="positionMenu">
+            <h3>
+                Position
+            </h3>
+            <div class="parameterBox">X: <input type="number" id='positionBoxX' onchange="moveShape('x',this.value)" onkeyup="moveShape('x',this.value)" value="0"><br></div>
+            <div class="parameterBox">Y: <input type="number" id='positionBoxY' onchange="moveShape('y',this.value)" onkeyup="moveShape('y',this.value)" value="0"><br></div>
+            <div class="parameterBox">Z: <input type="number" id='positionBoxZ' onchange="moveShape('z',this.value)" onkeyup="moveShape('z',this.value)" value="0"><br></div>
+        </div>
 
-
-
+        <div id="createShape" style="display:none">
+            <h3>
+                Dimensions
+            </h3>
+            <div class="parameterBox">X: <input type="number" id='createParameterX' onchange="createX = this.value" onkeyup="createX = this.value" value="0"><br></div>
+            <div class="parameterBox">Y: <input type="number" id='createParameterY' onchange="createY = this.value" onkeyup="createY = this.value" value="0"><br></div>
+            <div class="parameterBox">Z: <input type="number" id='createParameterZ' onchange="createZ = this.value" onkeyup="createZ = this.value" value="0"><br></div>
+            <button class="objButton addButton" onclick="createShape()">OK</button>
+            <button class="objButton removeButton" onclick="shapeMenu()">Cancel</button>
         </div>
         <div id="keyMenu">
             <button class="material-icons" onclick="playAnimation()">play_arrow</button>
