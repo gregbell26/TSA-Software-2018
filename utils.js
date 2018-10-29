@@ -73,3 +73,10 @@ function moveShape(dimension, value){
     }
 
 }
+
+function save(){
+    localStorage.setItem('keyFrames',JSON.stringify(keyFrames));
+    localStorage.setItem('shapes',JSON.stringify(shapes));
+    localStorage.setItem('scales',JSON.stringify(scales));
+    console.log('saved')
+}

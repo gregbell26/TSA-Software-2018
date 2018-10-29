@@ -161,7 +161,7 @@ body{
 #meshButton{
     position:absolute;
     top:0px;
-    right:182.5px;
+    right:180px;
     height:50px;
     width:60px;
     -webkit-transition-duration: 0.4s; /* Safari */
@@ -169,6 +169,20 @@ body{
 }
 
 #meshButton:hover {
+    background-color:#C9C9C9;
+}
+
+#saveButton{
+    position:absolute;
+    top:0px;
+    right:240px;
+    height:50px;
+    width:60px;
+    -webkit-transition-duration: 0.4s; /* Safari */
+    transition-duration: 0.4s;
+}
+
+#saveButton:hover {
     background-color:#C9C9C9;
 }
 

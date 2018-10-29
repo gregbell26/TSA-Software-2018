@@ -1,9 +1,19 @@
 //jordan's code
+var shapes;
+var scales;
+var keyFrames;
+if(localStorage.getItem('keyFrames')==null){
+     shapes = [];
+     scales = [[2,2,2],[3,3,1]];
+     keyFrames = [];
+}
+else{
+    //shapes = JSON.parse(localStorage.getItem('shapes'));
+    shapes = [];
+    keyFrames = JSON.parse(localStorage.getItem('keyFrames'));
+    scales = JSON.parse(localStorage.getItem('scales'));
+}
 
-
-var shapes = [];
-var scales = [[2,2,2],[3,3,1]];
-var keyFrames = [];
 var x = 1;
 var y = 1;
 var z = 1;
