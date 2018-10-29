@@ -31,10 +31,10 @@ function cubeDimension(dimension, value){
     }
 }
 
-<<<<<<< HEAD
+//<<<<<<< HEAD
 //corbin wrote this method:
-function moveShape(dimension, value){
-    switch(dimension){
+function moveShape(dimension, value) {
+    switch (dimension) {
         case "x":
             shapes[selectedShape].position.x = Number(value);
             break;
@@ -45,8 +45,9 @@ function moveShape(dimension, value){
             shapes[selectedShape].position.z = Number(value);
             break;
     }
-=======
->>>>>>> e4d93a74d07f90a8cf7a5e8213d0e5dbaa9c93a1
+}
+//=======
+//>>>>>>> e4d93a74d07f90a8cf7a5e8213d0e5dbaa9c93a1
 
 function removeCube(){
     if(selectedShape >= 0){

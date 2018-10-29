@@ -123,9 +123,9 @@ function newShapeMenu(){
 
 function addCylinderMenu(){
     hideAll();
-    document.getElementById("meshMenu").style.display="inherit";
-    document.getElementById("positionMenu").style.display="inherit";
-    document.getElementById("colorMenu").style.display="inherit";
+    //document.getElementById("meshMenu").style.display="inherit";
+    //document.getElementById("positionMenu").style.display="inherit";
+    //document.getElementById("colorMenu").style.display="inherit";
     document.getElementById("createShape").style.display="inherit";
     console.log("wOw A cIlEnDeR")
 }
@@ -137,9 +137,10 @@ function keyMenu(){
 
 function addCubeMenu() {
     hideAll();
-    document.getElementById("meshMenu").style.display = "inherit";
-    document.getElementById("positionMenu").style.display = "inherit";
-    document.getElementById("colorMenu").style.display = "inherit";
+    //commented elements  control the wrong shape, same thing with addCylinderMenu. Should be easy fix but I'm lazy -Jordan
+    //document.getElementById("meshMenu").style.display = "inherit";
+    //document.getElementById("positionMenu").style.display = "inherit";
+    //document.getElementById("colorMenu").style.display = "inherit";
     document.getElementById("createShape").style.display="inherit";
     console.log("Showed Cube Menu");
 }
