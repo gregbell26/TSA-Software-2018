@@ -52,8 +52,6 @@ else{
             shapes[shapes.length]=new THREE.Mesh(newGeometry, newMaterial);
             newGeometry.name = "cube"
             scene.add(shapes[shapes.length-1]);
-            console.log(selectedShape);
-            console.log(shapes)
             shapes[selectedShape].position.x = shapeData[i].positionX;
             shapes[selectedShape].position.y = shapeData[i].positionY;
             shapes[selectedShape].position.z = shapeData[i].positionZ;
