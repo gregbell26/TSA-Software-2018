@@ -2,10 +2,7 @@
 
 function newCube(x, y, z, posX, posY, posZ, newColor){
     var newGeometry = new THREE.BoxGeometry(1 , 1, 1);
-    var color = parseInt(newColor);
-    console.log(newColor);
-    console.log(color);
-    var newMaterial = new THREE.MeshBasicMaterial({color: color});
+    var newMaterial = new THREE.MeshBasicMaterial({color: newColor});
     shapes[shapes.length]=new THREE.Mesh(newGeometry, newMaterial);
     var length = scales.length;
     newGeometry.name = "cube"
