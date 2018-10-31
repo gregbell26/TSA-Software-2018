@@ -14,9 +14,9 @@ function newCube(x, y, z, posX, posY, posZ){
     scene.add(shapes[shapes.length-1]);
     selectedShape++;
     setSelectedShape(selectedShape);
-    moveShape(x, posX);
-    moveShape(y, posY);
-    moveShape(z, posZ);
+    moveShape('x', posX);
+    moveShape('y', posY);
+    moveShape('z', posZ);
 }
 
 
