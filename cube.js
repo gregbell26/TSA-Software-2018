@@ -1,6 +1,6 @@
 //jordan's code
 
-function newCube(x, y, z){
+function newCube(x, y, z, posX, posY, posZ){
     var newGeometry = new THREE.BoxGeometry(1 , 1, 1);
     var color = getRandomColor();
     var newMaterial = new THREE.MeshBasicMaterial({color: color});
@@ -14,6 +14,9 @@ function newCube(x, y, z){
     scene.add(shapes[shapes.length-1]);
     selectedShape++;
     setSelectedShape(selectedShape);
+    moveShape(x, posX);
+    moveShape(y, posY);
+    moveShape(z, posZ);
 }
 
 
@@ -31,7 +34,7 @@ function cubeDimension(dimension, value){
     }
 }
 
-//<<<<<<< HEAD
+
 //corbin wrote this method:
 function moveShape(dimension, value) {
     switch (dimension) {
@@ -46,8 +49,6 @@ function moveShape(dimension, value) {
             break;
     }
 }
-//=======
-//>>>>>>> e4d93a74d07f90a8cf7a5e8213d0e5dbaa9c93a1
 
 function removeCube(){
     if(selectedShape >= 0){
