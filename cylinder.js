@@ -1,7 +1,6 @@
-function newCylinder(x, y, z){
+function newCylinder(x, y, z, posX, posY, posZ, newColor){
     var newGeometry = new THREE.CylinderGeometry( 0.5, 0.5, 1, 100);
-    var color = getRandomColor();
-    var newMaterial = new THREE.MeshBasicMaterial({color: color});
+    var newMaterial = new THREE.MeshBasicMaterial({color: newColor});
     shapes[shapes.length]=new THREE.Mesh(newGeometry, newMaterial);
     var length = scales.length;
     newGeometry.name = "cylinder"
@@ -12,6 +11,9 @@ function newCylinder(x, y, z){
     scene.add(shapes[shapes.length-1]);
     selectedShape++;
     setSelectedShape(selectedShape);
+    moveShape(x, posX);
+    moveShape(y, posY);
+    moveShape(z, posZ);
 }
 
 function removeCylinder(){

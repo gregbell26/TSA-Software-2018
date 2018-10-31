@@ -34,13 +34,18 @@ function addShape(){
 
 function createShape(){
     var shapeType = document.getElementById("shapeSelector").value;
+    var setColor = document.getElementById("colorSet").value;
+    var posX = document.getElementById("createPositionX").value;
+    var posY = document.getElementById("createPositionY").value;
+    var posZ = document.getElementById("createPositionZ").value;
+
 
     switch(shapeType){
         case "cube" :
-            newCube(createX, createY, createZ);
+            newCube(createX, createY, createZ, posX, posY, posZ, setColor);
             break;
         case "cylinder" :
-            newCylinder(createX, createY, createZ);
+            newCylinder(createX, createY, createZ, posX, posY, posZ, setColor);
             break;
     }
 }
