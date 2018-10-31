@@ -37,10 +37,11 @@ function createShape(){
 
     switch(shapeType){
         case "cube" :
-            newCube(createX, createY, createZ);
+            console.log(setColor);
+            newCube(createX, createY, createZ, posX, posY, posZ, setColor);
             break;
         case "cylinder" :
-            newCylinder(createX, createY, createZ);
+            newCylinder(createX, createY, createZ, posX, posY, posZ, setColor);
             break;
     }
 }

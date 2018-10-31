@@ -1,8 +1,10 @@
 //jordan's code
 
-function newCube(x, y, z, posX, posY, posZ){
+function newCube(x, y, z, posX, posY, posZ, newColor){
     var newGeometry = new THREE.BoxGeometry(1 , 1, 1);
-    var color = getRandomColor();
+    var color = parseInt(newColor);
+    console.log(newColor);
+    console.log(color);
     var newMaterial = new THREE.MeshBasicMaterial({color: color});
     shapes[shapes.length]=new THREE.Mesh(newGeometry, newMaterial);
     var length = scales.length;
