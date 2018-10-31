@@ -133,6 +133,7 @@ function addCylinderMenu(){
 function keyMenu(){
     hideAll();
     document.getElementById("keyMenu").style.display="inherit";
+    loadKeyList()
 }
 
 function addCubeMenu() {
