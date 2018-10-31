@@ -29,5 +29,5 @@ function loadSet(name){
 }
 
 function cloudSave(){
-    
+
 }
