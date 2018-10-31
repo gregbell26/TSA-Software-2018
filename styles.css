@@ -1,12 +1,13 @@
 /*This is gregory's code*/
 /*hello this is schmidy*/
 body{
-	font-family: "Comic Sans MS"
+	font-family: 'Roboto', sans-serif;
 }
 
+html, body {overflow: hidden}
 
 .parameterBox {
-	font-family: "Comic Sans MS";
+	font-family: 'Roboto', sans-serif;
 	margin: 3px;
 	padding: 1px;
 
@@ -17,7 +18,7 @@ body{
 	border-radius: 1px;
 	border-style: none;
 	background-color: #fff;
-	font-family:"Comic Sans MS";
+	font-family:'Roboto', sans-serif;
 	border-radius: .5px;
 	border-style: none;
 
@@ -26,7 +27,7 @@ body{
 #sideBarList{
 	margin: 3px;
 	padding: 1px;
-	font-family: "Comic Sans MS";
+	font-family: 'Roboto', sans-serif;
 	font-size: 14pt;
 }
 
@@ -42,7 +43,7 @@ body{
 	border-radius: 1px;
 	border-style: none;
 	background-color: #fff;
-	font-family:"Comic Sans MS";
+	font-family:'Roboto', sans-serif;
 	border-radius: .5px;
 	border-style: none;
 }
@@ -76,8 +77,8 @@ body{
     top:0;
     right:0;
     height:50px;
-    -webkit-transition-duration: 0.4s; /* Safari */
-    transition-duration: 0.4s;
+    -webkit-transition-duration: 0.2s; /* Safari */
+    transition-duration: 0.2s;
 }
 
 #settingsButton:hover {
@@ -90,8 +91,8 @@ body{
     left:57.5px;
     height:50px;
     width:60px;
-    -webkit-transition-duration: 0.4s; /* Safari */
-    transition-duration: 0.4s;
+    -webkit-transition-duration: 0.2s; /* Safari */
+    transition-duration: 0.2s;
 }
 
 #shapeButton:hover {
@@ -104,8 +105,8 @@ body{
     left:176px;
     height:50px;
     width:60px;
-    -webkit-transition-duration: 0.4s; /* Safari */
-    transition-duration: 0.4s;
+    -webkit-transition-duration: 0.2s; /* Safari */
+    transition-duration: 0.2s;
 }
 
 #keyButton:hover {
@@ -122,8 +123,8 @@ body{
     left:117px;
     height:50px;
     width:60px;
-    -webkit-transition-duration: 0.4s; /* Safari */
-    transition-duration: 0.4s;
+    -webkit-transition-duration: 0.2s; /* Safari */
+    transition-duration: 0.2s;
 }
 
 #cylinderButton:hover {
@@ -136,8 +137,8 @@ body{
     left:117px;
     height:50px;
     width:60px;
-    -webkit-transition-duration: 0.4s; /* Safari */
-    transition-duration: 0.4s;
+    -webkit-transition-duration: 0.2s; /* Safari */
+    transition-duration: 0.2s;
 }
 
 #cameraButton:hover {
@@ -150,8 +151,8 @@ body{
     left: 0px;
     height:50px;
     width:60px;
-    -webkit-transition-duration: 0.4s; /* Safari */
-    transition-duration: 0.4s;
+    -webkit-transition-duration: 0.2s; /* Safari */
+    transition-duration: 0.2s;
 }
 
 #listButton:hover {
@@ -164,8 +165,8 @@ body{
     right:180px;
     height:50px;
     width:60px;
-    -webkit-transition-duration: 0.4s; /* Safari */
-    transition-duration: 0.4s;
+    -webkit-transition-duration: 0.2s; /* Safari */
+    transition-duration: 0.2s;
 }
 
 #meshButton:hover {
@@ -178,8 +179,8 @@ body{
     right:240px;
     height:50px;
     width:60px;
-    -webkit-transition-duration: 0.4s; /* Safari */
-    transition-duration: 0.4s;
+    -webkit-transition-duration: 0.2s; /* Safari */
+    transition-duration: 0.2s;
 }
 
 #saveButton:hover {
@@ -191,8 +192,8 @@ body{
     top:0;
     right:60px;
     height:50px;
-    -webkit-transition-duration: 0.4s; /* Safari */
-    transition-duration: 0.4s;
+    -webkit-transition-duration: 0.2s; /* Safari */
+    transition-duration: 0.2s;
 }
 
 #colorButton:hover {
@@ -204,8 +205,8 @@ body{
     top:0;
     right:120px;
     height:50px;
-    -webkit-transition-duration: 0.4s; /* Safari */
-    transition-duration: 0.4s;
+    -webkit-transition-duration: 0.2s; /* Safari */
+    transition-duration: 0.2s;
 }
 
 #sizeButton:hover {
@@ -233,8 +234,8 @@ canvas { width: 100%; height: 100% }
     font-size: 12px;
     margin: 4px 2px;
     border-radius: 8px;
-    -webkit-transition-duration: 0.4s; /* Safari */
-    transition-duration: 0.4s;
+    -webkit-transition-duration: 0.2s; /* Safari */
+    transition-duration: 0.2s;
     cursor: pointer;
 }
 .addButton {
@@ -263,8 +264,8 @@ canvas { width: 100%; height: 100% }
     padding: 10px 24px;
     cursor: pointer;
     float: left;
-    -webkit-transition-duration: 0.4s; /* Safari */
-    transition-duration: 0.4s;
+    -webkit-transition-duration: 0.2s; /* Safari */
+    transition-duration: 0.2s;
 }
 
 /* Clear floats (clearfix hack) */
@@ -290,8 +291,8 @@ canvas { width: 100%; height: 100% }
     cursor: pointer;
     display: block;
     border-radius: 5px;
-    -webkit-transition-duration: 0.4s; /* Safari */
-    transition-duration: 0.4s;
+    -webkit-transition-duration: 0.2s; /* Safari */
+    transition-duration: 0.2s;
 }
 
 /* Clear floats (clearfix hack) */
