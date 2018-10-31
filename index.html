@@ -3,19 +3,9 @@
 <head>
     <script src="three.js"></script>
     <script src="https://www.gstatic.com/firebasejs/5.5.6/firebase.js"></script>
-    <script>
-        var config = {
-            apiKey: "<API_KEY>",
-            authDomain: "<PROJECT_ID>.firebaseapp.com",
-            databaseURL: "https://<DATABASE_NAME>.firebaseio.com",
-            projectId: "<PROJECT_ID>",
-            storageBucket: "<BUCKET>.appspot.com",
-            messagingSenderId: "<SENDER_ID>",
-        };
-        firebase.initializeApp(config);
-    </script>
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
+    <script src="firebase.js"></script>
     <link rel="stylesheet" href="styles.css">
     <meta charset="UTF-8">
     <title>Monarch TSA 2019</title>
@@ -36,7 +26,7 @@
         <button onfocus="this.blur()" class="material-icons md-48" id="cameraButton" onclick="cameraMenu()">camera_alt</button>
         <button onfocus="this.blur()" class="material-icons md-48" id="keyButton" onclick="keyMenu()">vpn_key</button>
         <button onfocus="this.blur()" class="material-icons md-48" id="saveButton" onclick="save()">save_alt</button>
-        <button onfocus="this.blur()" class="material-icons md-48" id="userButton" onclick="signInWithGoogle()">user</button>
+        <button onfocus="this.blur()" class="material-icons md-48" id="userButton" onclick="signInWithGoogle()">person</button>
         <button onfocus="this.blur()" class="" id="meshButton" onclick="meshMenu()">mesh</button>
         <button onfocus="this.blur()" class="material-icons md-48" id="settingsButton">settings</button>
         <button onfocus="this.blur()" class="material-icons md-48" id="colorButton" onclick="colorMenu()">color_lens</button>
@@ -165,6 +155,6 @@
     <script src="mesh.js"></script>
     <script src="keyframes.js"></script>
     <script src="storage.js"></script>
-    <script src="firebase.js"></script>
+
 </body>
 </html>
