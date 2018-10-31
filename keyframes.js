@@ -7,7 +7,8 @@ function addFrame(){
             xPosition: xPosition,
             yPosition: yPosition,
             zPosition: zPosition,
-            color: getColors(shapes)
+            color: getColors(shapes),
+            name: "Frame "+keyFrames.length.toString(),
         }
     );
     console.log('frame added');
@@ -18,16 +19,49 @@ function addFrame(){
 function loadKeyList(){
     document.getElementById('keyList').innerHTML = "";
     for(var i=0; i<keyFrames.length-1; i++){
-        document.getElementById('keyList').innerHTML+=i+"<button class='material-icons' onclick='removeFrame("+i+")'>close</button><br><input type='number' value='"+keyFrames[i].duration+"' onchange='setSpeed("+i+",Number(this.value))' onkeyup='setSpeed("+i+",Number(this.value))' style='width: 50px;'>milliseconds<br>";
+        var add = ""
+        if(i!=0){
+            add = `<button class="material-icons" onclick="moveUp(`+i+`)">arrow_upward</button>`
+        }
+        document.getElementById('keyList').innerHTML+=`<input type="text" value="`+keyFrames[i].name+`" onkeyup="keyName(this.value,`+i+`)" onchange="keyName(this.value,`+i+`)">
+<button class='material-icons' onclick='removeFrame(`+i+`)'>close</button>
+`+add+`
+<button class="material-icons" onclick="moveDown(`+i+`)">arrow_downward</button>
+<br>
+<input type='number' value='`+keyFrames[i].duration+`' onchange='setSpeed(`+i+`,Number(this.value))' onkeyup='setSpeed(`+i+`,Number(this.value))' style='width: 50px;'>milliseconds
+<br>`;
     }
+
     if (keyFrames.length!=0){
-        document.getElementById('keyList').innerHTML += (keyFrames.length - 1) + "<button class='material-icons' onclick='removeFrame(" + (keyFrames.length - 1) + ")'>close</button><br>";
+        var add = "";
+        if(keyFrames.length!=1){
+            add = `<button class="material-icons" onclick="moveUp(`+(keyFrames.length - 1)+`)">arrow_upward</button>`
+        }
+        document.getElementById('keyList').innerHTML += `<input type="text" value="`+keyFrames[i].name+`" onkeyup="keyName(this.value,`+(keyFrames.length - 1)+`)" onchange="keyName(this.value,`+(keyFrames.length - 1)+`)"><button class='material-icons' onclick='removeFrame(` + (keyFrames.length - 1) + `)'>close</button>
+`+add+`<br>`;
     }
+}
+
+function keyName(name,frame){
+    keyFrames[frame].name = name;
 }
 
 function removeFrame(frame){
     keyFrames.splice(frame,1);
     loadKeyList()
+}
+
+function moveUp(frame){
+    var hold = keyFrames[frame];
+    keyFrames.splice(frame,1);
+    keyFrames.splice(frame-1,0,hold);
+    loadKeyList();
+}
+function moveDown(frame){
+    var hold = keyFrames[frame];
+    keyFrames.splice(frame,1);
+    keyFrames.splice(frame+1,0,hold);
+    loadKeyList();
 }
 
 function playAnimation() {

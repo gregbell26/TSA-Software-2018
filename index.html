@@ -11,8 +11,8 @@
 </head>
 <body>
     <div id="topBar">
-        <button id="listButton" onclick="showList()" class="md-48 material-icons">list</button>
-        <button id="shapeButton" onclick="shapeMenu()">
+        <button onfocus="this.blur()" id="listButton" onclick="showList()" class="md-48 material-icons">list</button>
+        <button onfocus="this.blur()" id="shapeButton" onclick="shapeMenu()">
             <svg width="40" height="40" viewBox="-0.9 -0.9 1.8 1.8">
                 <g xmlns="http://www.w3.org/2000/svg" style="stroke-width:0.1;stroke-linejoin:round;opacity:1">
                     <polygon fill="#000000" stroke="#FFFFFF" points="-4.9165444345E-17,-0.717341709543 0.704050371456,-0.412727063605 6.3108540578E-17,-0.0217250905725 -0.704050371456,-0.412727063605"></polygon>
@@ -21,20 +21,20 @@
                 </g>
             </svg><span id="boxSelected" style="position: absolute;bottom: 2px;right: 2px;">#2</span>
         </button>
-        <button class="material-icons md-48" id="cameraButton" onclick="cameraMenu()">camera_alt</button>
-        <button class="material-icons md-48" id="keyButton" onclick="keyMenu()">vpn_key</button>
-        <button class="material-icons md-48" id="saveButton" onclick="save()">save_alt</button>
-        <button class="" id="meshButton" onclick="meshMenu()">mesh</button>
-        <button class="material-icons md-48" id="settingsButton">settings</button>
-        <button class="material-icons md-48" id="colorButton" onclick="colorMenu()">color_lens</button>
-        <button class="material-icons md-48" id="sizeButton" onclick="dimensionsMenu()">aspect_ratio</button>
+        <button onfocus="this.blur()" class="material-icons md-48" id="cameraButton" onclick="cameraMenu()">camera_alt</button>
+        <button onfocus="this.blur()" class="material-icons md-48" id="keyButton" onclick="keyMenu()">vpn_key</button>
+        <button onfocus="this.blur()" class="material-icons md-48" id="saveButton" onclick="save()">save_alt</button>
+        <button onfocus="this.blur()" class="" id="meshButton" onclick="meshMenu()">mesh</button>
+        <button onfocus="this.blur()" class="material-icons md-48" id="settingsButton">settings</button>
+        <button onfocus="this.blur()" class="material-icons md-48" id="colorButton" onclick="colorMenu()">color_lens</button>
+        <button onfocus="this.blur()" class="material-icons md-48" id="sizeButton" onclick="dimensionsMenu()">aspect_ratio</button>
     </div>
 
     <div id="sideBar">
 
         <div id="shapeMenu" style="display: none">
-            <button class="objButton addButton" onclick="newShapeMenu()">New Shape</button>
-            <button class="objButton removeButton" onclick="removeShape()">Delete Shape</button>
+            <button onfocus="this.blur()" class="objButton addButton" onclick="newShapeMenu()">New Shape</button>
+            <button onfocus="this.blur()" class="objButton removeButton" onclick="removeShape()">Delete Shape</button>
         </div>
 
 
@@ -44,8 +44,8 @@
                 <option value="cylinder">Cylinder</option>
             </select>
             <br>
-            <button class="objButton addButton" onclick="addShape()">OK</button>
-            <button class="objButton removeButton" onclick="shapeMenu()">Cancel</button>
+            <button onfocus="this.blur()" class="objButton addButton" onclick="addShape()">OK</button>
+            <button onfocus="this.blur()" class="objButton removeButton" onclick="shapeMenu()">Cancel</button>
         </div>
 
 		<div id="sideBarBoxEdit">
@@ -93,9 +93,9 @@
                 Materials
             </h3>
             <div class="meshGroup">
-                <button onclick="mesh('basic')">Basic</button>
-                <button onclick="mesh('depth')">Depth</button>
-                <button onclick="mesh('rainbow')">Rainbow</button>
+                <button onfocus=this.blur()" onclick="mesh('basic')">Basic</button>
+                <button onfocus=this.blur()" onclick="mesh('depth')">Depth</button>
+                <button onfocus=this.blur()" onclick="mesh('rainbow')">Rainbow</button>
             </div>-->
         </div>
 
@@ -115,12 +115,12 @@
             <div class="parameterBox">X: <input type="number" id='createParameterX' onchange="createX = Number(this.value)" onkeyup="createX = Number(this.value)" value="0"><br></div>
             <div class="parameterBox">Y: <input type="number" id='createParameterY' onchange="createY = Number(this.value)" onkeyup="createY = Number(this.value)" value="0"><br></div>
             <div class="parameterBox">Z: <input type="number" id='createParameterZ' onchange="createZ = Number(this.value)" onkeyup="createZ = Number(this.value)" value="0"><br></div>
-            <button class="objButton addButton" onclick="createShape()">OK</button>
-            <button class="objButton removeButton" onclick="shapeMenu()">Cancel</button>
+            <button onfocus="this.blur()" class="objButton addButton" onclick="createShape()">OK</button>
+            <button onfocus="this.blur()" class="objButton removeButton" onclick="shapeMenu()">Cancel</button>
         </div>
         <div id="keyMenu">
-            <button class="material-icons" onclick="playAnimation()">play_arrow</button>
-            <button onclick="addFrame()">Add Keyframe</button>
+            <button onfocus="this.blur()" class="material-icons" onclick="playAnimation()">play_arrow</button>
+            <button onfocus="this.blur()" onclick="addFrame()">Add Keyframe</button>
             <div id="keyList"></div>
         </div>
     </div>
