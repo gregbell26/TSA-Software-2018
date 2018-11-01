@@ -22,21 +22,24 @@ document.getElementById("mainWindow").appendChild( renderer.domElement );
 camera.position.z = 5;
 var move = 0.01;
 
-var shapes;
-var scales;
-var keyFrames;
+var shapes = [];
+var scales = [];
+var keyFrames = [];
 if(localStorage.getItem('keyFrames')==null){
     shapes = [];
     scales = [[2,2,2],[3,3,1]];
     keyFrames = [];
     var geometry = new THREE.BoxGeometry( 1,1,1 );
     var material = new THREE.MeshBasicMaterial( { color: 0x00ff00 } );
+    geometry.name="cube";
     shapes[0] = new THREE.Mesh( geometry, material );
     var geometry2 = new THREE.BoxGeometry( 1, 1,1);
     var material2 = new THREE.MeshBasicMaterial( { color: 0x8000ff } );
+    geometry2.name="cube";
     shapes[1] = new THREE.Mesh( geometry2, material2 );
     scene.add(shapes[0]);
     scene.add(shapes[1]);
+    selectedShape++;
 }
 else{
     //shapes = JSON.parse(localStorage.getItem('shapes'));

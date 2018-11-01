@@ -65,6 +65,7 @@ html, body {overflow: hidden}
     left:0;
     width:300px;
     height: calc(100% - 50px);
+    overflow: scroll;
 }
 
 .material-icons.md-18 { font-size: 18px; }

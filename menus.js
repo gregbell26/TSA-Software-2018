@@ -14,14 +14,6 @@ function showList(){
     console.log("Showed List");
 }
 
-function cubeMenu() {
-    hideAll();
-    document.getElementById("sideBarBoxEdit").style.display = "inherit";
-    document.getElementById("meshMenu").style.display = "inherit";
-    document.getElementById("positionMenu").style.display = "inherit";
-    document.getElementById("colorMenu").style.display = "inherit";
-    console.log("Showed Cube Menu");
-}
 
 function setSelectedShape(num){
     selectedShape = num;
@@ -78,6 +70,15 @@ function hideAll(){
     console.log("Hide all")
 }
 
+function cubeMenu() {
+    hideAll();
+    document.getElementById("sideBarBoxEdit").style.display = "inherit";
+    document.getElementById("meshMenu").style.display = "inherit";
+    document.getElementById("positionMenu").style.display = "inherit";
+    document.getElementById("colorMenu").style.display = "inherit";
+    console.log("Showed Cube Menu");
+}
+
 function cylinderMenu(){
     hideAll();
     document.getElementById("sideBarCylinder").style.display="inherit";
@@ -124,8 +125,6 @@ function newShapeMenu(){
 function addCylinderMenu(){
     hideAll();
     //document.getElementById("meshMenu").style.display="inherit";
-    //document.getElementById("positionMenu").style.display="inherit";
-    //document.getElementById("colorMenu").style.display="inherit";
     document.getElementById("createShape").style.display="inherit";
     console.log("wOw A cIlEnDeR")
 }
@@ -140,8 +139,6 @@ function addCubeMenu() {
     hideAll();
     //commented elements  control the wrong shape, same thing with addCylinderMenu. Should be easy fix but I'm lazy -Jordan
     //document.getElementById("meshMenu").style.display = "inherit";
-    //document.getElementById("positionMenu").style.display = "inherit";
-    //document.getElementById("colorMenu").style.display = "inherit";
     document.getElementById("createShape").style.display="inherit";
     console.log("Showed Cube Menu");
 }
