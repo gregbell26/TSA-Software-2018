@@ -1,9 +1,9 @@
-function newCylinder(x, y, z, posX, posY, posZ, newColor){
-    var newGeometry = new THREE.CylinderGeometry( 0.5, 0.5, 1, 100);
+function newText(x, y, z, posX, posY, posZ, newColor){
+    var newGeometry = new THREE.TextGeometry( 0.5, 0.5, 1, 100);
     var newMaterial = new THREE.MeshBasicMaterial({color: newColor});
     shapes[shapes.length]=new THREE.Mesh(newGeometry, newMaterial);
     var length = scales.length;
-    newGeometry.name = "cylinder"
+    newGeometry.name = "text"
     scales[length]=[];
     scales[length][0]=x;
     scales[length][1]=y;
@@ -16,17 +16,7 @@ function newCylinder(x, y, z, posX, posY, posZ, newColor){
     moveShape(z, posZ);
 }
 
-function removeCylinder(){
-    if(selectedShape >= 0){
-        scene.remove(shapes[selectedShape]);
-        shapes.splice(selectedShape,1);
-        scales.splice(selectedShape,1);
-        selectedShape--;
-        setSelectedShape(selectedShape);
-    }
-}
-
-function cylinderDimension(dimension,value){
+function textDimension(dimension,value){
     switch(dimension){
         case "x":
            scales[selectedShape][0]=value;
