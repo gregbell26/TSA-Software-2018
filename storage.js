@@ -28,6 +28,8 @@ function loadSet(name){
 
 }
 
+
+//everything below here is for Firebase.
 function cloudSave(){
     var obj = {};
     obj.keyFrames = keyFrames
@@ -53,29 +55,26 @@ function cloudGet(){
                 var newMaterial = new THREE.MeshBasicMaterial({color: 0x00ff00});
                 shapes[shapes.length]=new THREE.Mesh(newGeometry, newMaterial);
                 newGeometry.name = "cube"
-                scene.add(shapes[shapes.length-1]);
-                shapes[selectedShape].position.x = shapeData[i].positionX;
-                shapes[selectedShape].position.y = shapeData[i].positionY;
-                shapes[selectedShape].position.z = shapeData[i].positionZ;
-                shapes[selectedShape].material.color.r = shapeData[i].r;
-                shapes[selectedShape].material.color.g = shapeData[i].g;
-                shapes[selectedShape].material.color.b = shapeData[i].b;
-                selectedShape++;
+                loadCloudShape(shapeData);
             }
             else if (type=="CylinderGeometry"){
                 var newGeometry = new THREE.CylinderGeometry( 0.5, 0.5, 1, 100);
                 var newMaterial = new THREE.MeshBasicMaterial({color: 0x00ff00});
                 shapes[shapes.length]=new THREE.Mesh(newGeometry, newMaterial);
                 newGeometry.name = "cylinder"
-                scene.add(shapes[shapes.length-1]);
-                shapes[selectedShape].position.x = shapeData[i].positionX;
-                shapes[selectedShape].position.y = shapeData[i].positionY;
-                shapes[selectedShape].position.z = shapeData[i].positionZ;
-                shapes[selectedShape].material.color.r = shapeData[i].r;
-                shapes[selectedShape].material.color.g = shapeData[i].g;
-                shapes[selectedShape].material.color.b = shapeData[i].b;
-                selectedShape++;
+                loadCloudShape(shapeData);
             }
         }
     })
+}
+
+function loadCloudShape(shapeData){
+    scene.add(shapes[shapes.length-1]);
+    shapes[selectedShape].position.x = shapeData[i].positionX;
+    shapes[selectedShape].position.y = shapeData[i].positionY;
+    shapes[selectedShape].position.z = shapeData[i].positionZ;
+    shapes[selectedShape].material.color.r = shapeData[i].r;
+    shapes[selectedShape].material.color.g = shapeData[i].g;
+    shapes[selectedShape].material.color.b = shapeData[i].b;
+    selectedShape++;
 }

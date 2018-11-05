@@ -7,8 +7,9 @@ var config = {
     messagingSenderId: "894831766771"
 };
 firebase.initializeApp(config);
+//inits database
 var database = firebase.database();
-var uid;
+var uid; //user id.
 firebase.auth().onAuthStateChanged(function(user) {
     if (user) {
         // User is signed in.
@@ -28,15 +29,7 @@ function signInWithGoogle() {
         // The signed-in user info.
         var user = result.user;
         console.log(user)
-        // ...
     }).catch(function(error) {
-        // Handle Errors here.
-        var errorCode = error.code;
-        var errorMessage = error.message;
-        // The email of the user's account used.
-        var email = error.email;
-        // The firebase.auth.AuthCredential type that was used.
-        var credential = error.credential;
-        // ...
+        //put error code here.
     });
 }

@@ -104,11 +104,13 @@ function playAnimation() {
     }
 }
 
+//sets speed of animation.
 function setSpeed(i, speed){
     console.log(i);
     keyFrames[i].duration = speed;
 }
 
+//used to store shape data because the library doesn't like us doing stuff.
 function getShapes(s){
     var ret = [];
     for (var i=0; i<s.length; i++){
@@ -116,6 +118,8 @@ function getShapes(s){
     }
     return ret;
 }
+
+//used to store color values because the library doesn't like us doing stuff.
 function getColors(s){
     var ret = [];
     for (var i=0; i<s.length; i++){

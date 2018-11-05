@@ -56,6 +56,7 @@ function meshMenu(){
 }
 
 function hideAll(){
+    //used to make only one menu show up
     document.getElementById("sideBarList").style.display="none";
     document.getElementById("sideBarBoxEdit").style.display="none";
     document.getElementById("sideBarCamera").style.display="none";
