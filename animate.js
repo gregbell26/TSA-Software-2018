@@ -1,4 +1,5 @@
 //core code of movement and stuff here.
+//you probably don't want to change this stuff, unless were adding a new function that changes how things animate
 var animate = function () {
     requestAnimationFrame( animate );
 
