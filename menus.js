@@ -26,17 +26,13 @@ function setSelectedShape(num){
     document.getElementById('positionBoxX').value = shapes[selectedShape].position.x;
     document.getElementById('positionBoxY').value = shapes[selectedShape].position.y;
     document.getElementById('positionBoxZ').value = shapes[selectedShape].position.z;
-    if(shapes[selectedShape].geometry.type == "BoxGeometry"){
-        document.getElementById('cubeParameterBoxX').value = shapes[selectedShape].scale.x;
-        document.getElementById('cubeParameterBoxY').value = shapes[selectedShape].scale.y;
-        document.getElementById('cubeParameterBoxZ').value = shapes[selectedShape].scale.z;
-        cubeMenu();
-    }else if(shapes[selectedShape].geometry.type == "CylinderGeometry"){
-        document.getElementById('cylParameterBoxX').value = shapes[selectedShape].scale.x;
-        document.getElementById('cylParameterBoxY').value = shapes[selectedShape].scale.y;
-        document.getElementById('cylParameterBoxZ').value = shapes[selectedShape].scale.z;
-        cylinderMenu();
-    }
+    document.getElementById('rotateBoxX').value = shapes[selectedShape].rotation.x*180/Math.PI;
+    document.getElementById('rotateBoxY').value = shapes[selectedShape].rotation.y*180/Math.PI;
+    document.getElementById('rotateBoxZ').value = shapes[selectedShape].rotation.z*180/Math.PI;
+    document.getElementById('dimensionX').value = shapes[selectedShape].scale.x;
+    document.getElementById('dimensionY').value = shapes[selectedShape].scale.y;
+    document.getElementById('dimensionZ').value = shapes[selectedShape].scale.z;
+    editMenu();
     console.log("Set Shape Num");
 }
 
@@ -56,11 +52,10 @@ function meshMenu(){
 }
 
 function hideAll(){
-    //used to make only one menu show up
+    //used to make correct menus show up
     document.getElementById("sideBarList").style.display="none";
     document.getElementById("sideBarBoxEdit").style.display="none";
     document.getElementById("sideBarCamera").style.display="none";
-    document.getElementById("sideBarCylinder").style.display="none";
     document.getElementById("colorMenu").style.display="none";
     document.getElementById("meshMenu").style.display="none";
     document.getElementById("positionMenu").style.display="none";
@@ -68,16 +63,18 @@ function hideAll(){
     document.getElementById("shapeMenu").style.display="none";
     document.getElementById("addMenu").style.display="none";
     document.getElementById("createShape").style.display="none";
+    document.getElementById("rotateMenu").style.display="none";
     console.log("Hide all")
 }
 
-function cubeMenu() {
+function editMenu() {
     hideAll();
     document.getElementById("sideBarBoxEdit").style.display = "inherit";
     document.getElementById("meshMenu").style.display = "inherit";
     document.getElementById("positionMenu").style.display = "inherit";
     document.getElementById("colorMenu").style.display = "inherit";
-    console.log("Showed Cube Menu");
+    document.getElementById("rotateMenu").style.display="inherit";
+    console.log("Showed Menu");
 }
 
 function cylinderMenu(){
@@ -86,6 +83,7 @@ function cylinderMenu(){
     document.getElementById("meshMenu").style.display="inherit";
     document.getElementById("positionMenu").style.display="inherit";
     document.getElementById("colorMenu").style.display="inherit";
+    document.getElementById("rotateMenu").style.display="inherit";
     console.log("wOw A cIlEnDeR")
 
 }

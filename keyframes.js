@@ -83,6 +83,9 @@ function playAnimation() {
                     shapes[i].position.x = keyFrames[a].shapes[i][0] + (keyFrames[a + 1].shapes[i][0] - keyFrames[a].shapes[i][0]) / keyFrames[a].duration * timingCounter;
                     shapes[i].position.y = keyFrames[a].shapes[i][1] + (keyFrames[a + 1].shapes[i][1] - keyFrames[a].shapes[i][1]) / keyFrames[a].duration * timingCounter;
                     shapes[i].position.z = keyFrames[a].shapes[i][2] + (keyFrames[a + 1].shapes[i][2] - keyFrames[a].shapes[i][2]) / keyFrames[a].duration * timingCounter;
+                    shapes[i].rotation.x = keyFrames[a].shapes[i][3] + (keyFrames[a + 1].shapes[i][3] - keyFrames[a].shapes[i][3]) / keyFrames[a].duration * timingCounter;
+                    shapes[i].rotation.y = keyFrames[a].shapes[i][4] + (keyFrames[a + 1].shapes[i][4] - keyFrames[a].shapes[i][4]) / keyFrames[a].duration * timingCounter;
+                    shapes[i].rotation.z = keyFrames[a].shapes[i][5] + (keyFrames[a + 1].shapes[i][5] - keyFrames[a].shapes[i][5]) / keyFrames[a].duration * timingCounter;
                     shapes[i].material.color.r = keyFrames[a].color[i][0] + (keyFrames[a + 1].color[i][0] - keyFrames[a].color[i][0]) / keyFrames[a].duration * timingCounter;
                     shapes[i].material.color.g = keyFrames[a].color[i][1] + (keyFrames[a + 1].color[i][1] - keyFrames[a].color[i][1]) / keyFrames[a].duration * timingCounter;
                     shapes[i].material.color.b = keyFrames[a].color[i][2] + (keyFrames[a + 1].color[i][2] - keyFrames[a].color[i][2]) / keyFrames[a].duration * timingCounter;
@@ -114,7 +117,7 @@ function setSpeed(i, speed){
 function getShapes(s){
     var ret = [];
     for (var i=0; i<s.length; i++){
-        ret.push([s[i].position.x,s[i].position.y,s[i].position.z]);
+        ret.push([s[i].position.x,s[i].position.y,s[i].position.z,s[i].rotation.x,s[i].rotation.y,s[i].rotation.z]);
     }
     return ret;
 }

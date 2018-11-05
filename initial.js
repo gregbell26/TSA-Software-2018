@@ -7,6 +7,7 @@ var animationTimer;
 var timingCounter;
 var selectedShape = 0;
 var scene = new THREE.Scene();
+scene.background = new THREE.Color(0x000000);
 var camera = new THREE.PerspectiveCamera( 75, document.getElementById("mainWindow").offsetWidth/document.getElementById("mainWindow").offsetHeight, 0.1, 1000 );
 var theta = 0;
 var renderer = new THREE.WebGLRenderer({logarithmicDepthBuffer: true });
