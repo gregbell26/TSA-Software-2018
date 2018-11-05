@@ -45,6 +45,7 @@ function cloudGet(){
         shapes = [];
         var shapeData = obj.shapes;
         console.log(shapeData);
+        selectedShape = 0;
         for(var i=0; i<shapeData.length; i++){
             var type = shapeData[i].type;
             if(type=="BoxGeometry"){

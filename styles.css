@@ -1,13 +1,12 @@
 /*This is gregory's code*/
 /*hello this is schmidy*/
-body{
-	font-family: 'Roboto', sans-serif;
+
+html, body {
+    overflow: hidden;
+    font-family: 'Roboto', sans-serif
 }
 
-html, body {overflow: hidden}
-
 .parameterBox {
-	font-family: 'Roboto', sans-serif;
 	margin: 3px;
 	padding: 1px;
 
@@ -27,7 +26,6 @@ html, body {overflow: hidden}
 #sideBarList{
 	margin: 3px;
 	padding: 1px;
-	font-family: 'Roboto', sans-serif;
 	font-size: 14pt;
 }
 
@@ -73,156 +71,63 @@ html, body {overflow: hidden}
 .material-icons.md-36 { font-size: 36px; }
 .material-icons.md-48 { font-size: 48px; }
 
-#settingsButton{
-    position:absolute;
-    top:0;
-    right:0;
-    height:50px;
-    -webkit-transition-duration: 0.2s; /* Safari */
-    transition-duration: 0.2s;
-}
-
-#settingsButton:hover {
-    background-color:#C9C9C9;
-}
-
-#shapeButton{
-    position:absolute;
-    top:0px;
-    left:57.5px;
-    height:50px;
-    width:60px;
-    -webkit-transition-duration: 0.2s; /* Safari */
-    transition-duration: 0.2s;
-}
-
-#shapeButton:hover {
-    background-color:#C9C9C9;
-}
-
-#keyButton{
-    position:absolute;
-    top:0px;
-    left:176px;
-    height:50px;
-    width:60px;
-    -webkit-transition-duration: 0.2s; /* Safari */
-    transition-duration: 0.2s;
-}
-
-#keyButton:hover {
-    background-color:#C9C9C9;
-}
-
 #keyMenu{
     display: none;
 }
 
-#cylinderButton{
-    position:absolute;
-    top:0px;
-    left:117px;
-    height:50px;
-    width:60px;
-    -webkit-transition-duration: 0.2s; /* Safari */
-    transition-duration: 0.2s;
+#listButton{
+    left: 0px;
 }
 
-#cylinderButton:hover {
-    background-color:#C9C9C9;
+#shapeButton{
+    left:60px;
 }
 
 #cameraButton{
-    position:absolute;
-    top:0px;
-    left:117px;
-    height:50px;
-    width:60px;
-    -webkit-transition-duration: 0.2s; /* Safari */
-    transition-duration: 0.2s;
+    left:120px;
 }
 
-#cameraButton:hover {
-    background-color:#C9C9C9;
+#keyButton{
+    left:180px;
 }
 
-#listButton{
-    position: absolute;
-    top: 0px;
-    left: 0px;
-    height:50px;
-    width:60px;
-    -webkit-transition-duration: 0.2s; /* Safari */
-    transition-duration: 0.2s;
-}
-
-#listButton:hover {
-    background-color:#C9C9C9;
-}
-
-#meshButton{
-    position:absolute;
-    top:0px;
-    right:180px;
-    height:50px;
-    width:60px;
-    -webkit-transition-duration: 0.2s; /* Safari */
-    transition-duration: 0.2s;
-}
-
-#meshButton:hover {
-    background-color:#C9C9C9;
-}
-
-#saveButton{
-    position:absolute;
-    top:0px;
-    right:240px;
-    height:50px;
-    width:60px;
-    -webkit-transition-duration: 0.2s; /* Safari */
-    transition-duration: 0.2s;
-}
-
-#saveButton:hover, #userButton:hover {
-    background-color:#C9C9C9;
-}
-
-#userButton{
-    position:absolute;
-    top:0px;
-    right:300px;
-    height:50px;
-    width:60px;
-    -webkit-transition-duration: 0.2s; /* Safari */
-    transition-duration: 0.2s;
+#settingsButton{
+    right:0;
 }
 
 #colorButton{
-    position:absolute;
-    top:0;
     right:60px;
-    height:50px;
-    -webkit-transition-duration: 0.2s; /* Safari */
-    transition-duration: 0.2s;
-}
-
-#colorButton:hover {
-    background-color:#C9C9C9;
 }
 
 #sizeButton{
+    right:120px;
+}
+
+#meshButton{
+    right:180px;
+}
+
+#saveButton{
+    right:240px;
+}
+
+#userButton{
+    right:300px;
+}
+
+.topButton{
     position:absolute;
     top:0;
-    right:120px;
     height:50px;
+    width: 60px;
     -webkit-transition-duration: 0.2s; /* Safari */
     transition-duration: 0.2s;
 }
 
-#sizeButton:hover {
+.topButton:hover  {
     background-color:#C9C9C9;
 }
+
 
 body { margin: 0; }
 
