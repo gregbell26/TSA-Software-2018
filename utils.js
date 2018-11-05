@@ -24,10 +24,37 @@ function addShape(){
     var shapeType = document.getElementById("shapeSelector").value;
     switch(shapeType){
         case "cube" :
-            addCubeMenu();
+            addShapeMenu();
             break;
         case "cylinder" :
-            addCylinderMenu();
+            addShapeMenu();
+            break;
+        case "cone" :
+            addShapeMenu();
+            break;
+        case "dodecahedron" :
+            addShapeMenu();
+            break;
+        case "icosahedron" :
+            addShapeMenu();
+            break;
+        case "octahedron" :
+            addShapeMenu();
+            break;
+        case "pyramid" :
+            addShapeMenu();
+            break;
+        case "ring" :
+            addShapeMenu();
+            break;
+        case "sphere" :
+            addShapeMenu();
+            break;
+        case "text" :
+            addShapeMenu();
+            break;
+        case "tube" :
+            addShapeMenu();
             break;
     }
 }
@@ -39,7 +66,6 @@ function createShape(){
     var posY = document.getElementById("createPositionY").value;
     var posZ = document.getElementById("createPositionZ").value;
 
-
     switch(shapeType){
         case "cube" :
             newCube(createX, createY, createZ, posX, posY, posZ, setColor);
@@ -47,19 +73,44 @@ function createShape(){
         case "cylinder" :
             newCylinder(createX, createY, createZ, posX, posY, posZ, setColor);
             break;
+        case "cone" :
+            newCone(createX, createY, createZ, posX, posY, posZ, setColor);
+            break;
+        case "dodecahedron" :
+            newDodecahedron(createX, createY, createZ, posX, posY, posZ, setColor);
+            break;
+        case "icosahedron" :
+            newIcosahedron(createX, createY, createZ, posX, posY, posZ, setColor);
+            break;
+        case "octahedron" :
+            newOctahedron(createX, createY, createZ, posX, posY, posZ, setColor);
+            break;
+        case "pyramid" :
+            newPyramid(createX, createY, createZ, posX, posY, posZ, setColor);
+            break;
+        case "ring" :
+            newRing(createX, createY, createZ, posX, posY, posZ, setColor);
+            break;
+        case "sphere" :
+            newSphere(createX, createY, createZ, posX, posY, posZ, setColor);
+            break;
+        case "text" :
+           newText(createX, createY, createZ, posX, posY, posZ, setColor);
+           break;
+        case "tube" :
+            newTube(createX, createY, createZ, posX, posY, posZ, setColor);
+            break;
     }
+
 }
 
 function removeShape(){
-    var shapeType = shapes[selectedShape].geometry.name;
-
-    switch(shapeType){
-        case "cube" :
-            removeCube();
-            break;
-        case "cylinder" :
-            removeCylinder();
-            break;
+    if(selectedShape >= 0){
+        scene.remove(shapes[selectedShape]);
+        shapes.splice(selectedShape,1);
+        scales.splice(selectedShape,1);
+        selectedShape--;
+        setSelectedShape(selectedShape);
     }
 }
 
