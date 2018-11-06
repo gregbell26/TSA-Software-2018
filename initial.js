@@ -51,53 +51,82 @@ else{
     for(var i=0; i<shapeData.length; i++){
         var type = shapeData[i].type;
         var newGeometry;
-        if(type=="BoxGeometry"){
-            newGeometry = new THREE.BoxGeometry(1, 1, 1);
-            newGeometry.name = "cube"
-        }
-        else if (type=="CylinderGeometry"){
-            newGeometry = new THREE.CylinderGeometry( 0.5, 0.5, 1, 100);
-            newGeometry.name = "cylinder"
-        }
-        else if (type=="ConeGeometry"){
-            newGeometry = new THREE.ConeGeometry( 0.5, 1, 100);
-            newGeometry.name = "cone"
-        }
-        else if (type=="DodecahedronGeometry"){
-            newGeometry = new THREE.DodecahedronGeometry( 0.5, 0);
-            newGeometry.name = "dodecahedron"
-        }
-        else if (type=="IcosahedronGeometry"){
-            newGeometry = new THREE.IcosahedronGeometry( 0.5, 0);
-            newGeometry.name = "icosahedron"
-        }
-        else if (type=="OctahedronGeometry"){
-            newGeometry = new THREE.OctahedronGeometry( 0.5, 0);
-            newGeometry.name = "octahedron"
-        }
-        else if (type=="TetrahedronGeometry"){
-            newGeometry = new THREE.TetrahedronGeometry( 0.5, 0);
-            newGeometry.name = "praymid"
-        }
-        else if (type=="TorusGeometry"){
-            newGeometry = new THREE.TorusGeometry( 0.5, 0.25, 200, 200);
-            newGeometry.name = "ring"
-        }
-        else if (type=="SphereGeometry"){
-            newGeometry = new THREE.SphereGeometry( 0.5, 100,100);
-            newGeometry.name = "sphere"
-        }
-        const newMaterial = new THREE.MeshBasicMaterial({color: 0x00ff00});
-        shapes[shapes.length]=new THREE.Mesh(newGeometry, newMaterial);
-        scene.add(shapes[shapes.length-1]);
-        shapes[selectedShape].position.x = shapeData[i].positionX;
-        shapes[selectedShape].position.y = shapeData[i].positionY;
-        shapes[selectedShape].position.z = shapeData[i].positionZ;
-        shapes[selectedShape].material.color.r = shapeData[i].r;
-        shapes[selectedShape].material.color.g = shapeData[i].g;
-        shapes[selectedShape].material.color.b = shapeData[i].b;
-        selectedShape++;
-    }
+        if (type =="TextGeometry") {
+            console.log('text');
+            var loader = new THREE.FontLoader();
+            loader.load( 'fonts/helvetiker_regular.typeface.json', function ( font ) {
 
+                var newGeometry = new THREE.TextGeometry( 'Text test!', {
+                    font: font,
+                    size: 1,
+                    height: 0.05,
+                    curveSegments: 6,
+                    bevelEnabled: true,
+                    bevelThickness: 0.5,
+                    bevelSize: 0.05,
+                    bevelSegments: 2.5
+                } );
+                newGeometry.name="text";
+                const newMaterial = new THREE.MeshBasicMaterial({color: 0x00ff00});
+                shapes[shapes.length] = new THREE.Mesh(newGeometry, newMaterial);
+                scene.add(shapes[shapes.length - 1]);
+                shapes[selectedShape].position.x = shapeData[i].positionX;
+                shapes[selectedShape].position.y = shapeData[i].positionY;
+                shapes[selectedShape].position.z = shapeData[i].positionZ;
+                shapes[selectedShape].material.color.r = shapeData[i].r;
+                shapes[selectedShape].material.color.g = shapeData[i].g;
+                shapes[selectedShape].material.color.b = shapeData[i].b;
+                selectedShape++;
+            } );
+        }
+        else {
+            if (type == "BoxGeometry") {
+                newGeometry = new THREE.BoxGeometry(1, 1, 1);
+                newGeometry.name = "cube"
+            }
+            else if (type == "CylinderGeometry") {
+                newGeometry = new THREE.CylinderGeometry(0.5, 0.5, 1, 100);
+                newGeometry.name = "cylinder"
+            }
+            else if (type == "ConeGeometry") {
+                newGeometry = new THREE.ConeGeometry(0.5, 1, 100);
+                newGeometry.name = "cone"
+            }
+            else if (type == "DodecahedronGeometry") {
+                newGeometry = new THREE.DodecahedronGeometry(0.5, 0);
+                newGeometry.name = "dodecahedron"
+            }
+            else if (type == "IcosahedronGeometry") {
+                newGeometry = new THREE.IcosahedronGeometry(0.5, 0);
+                newGeometry.name = "icosahedron"
+            }
+            else if (type == "OctahedronGeometry") {
+                newGeometry = new THREE.OctahedronGeometry(0.5, 0);
+                newGeometry.name = "octahedron"
+            }
+            else if (type == "TetrahedronGeometry") {
+                newGeometry = new THREE.TetrahedronGeometry(0.5, 0);
+                newGeometry.name = "praymid"
+            }
+            else if (type == "TorusGeometry") {
+                newGeometry = new THREE.TorusGeometry(0.5, 0.25, 200, 200);
+                newGeometry.name = "ring"
+            }
+            else if (type == "SphereGeometry") {
+                newGeometry = new THREE.SphereGeometry(0.5, 100, 100);
+                newGeometry.name = "sphere"
+            }
+            const newMaterial = new THREE.MeshBasicMaterial({color: 0x00ff00});
+            shapes[shapes.length] = new THREE.Mesh(newGeometry, newMaterial);
+            scene.add(shapes[shapes.length - 1]);
+            shapes[selectedShape].position.x = shapeData[i].positionX;
+            shapes[selectedShape].position.y = shapeData[i].positionY;
+            shapes[selectedShape].position.z = shapeData[i].positionZ;
+            shapes[selectedShape].material.color.r = shapeData[i].r;
+            shapes[selectedShape].material.color.g = shapeData[i].g;
+            shapes[selectedShape].material.color.b = shapeData[i].b;
+            selectedShape++;
+        }
+    }
 }
 //
