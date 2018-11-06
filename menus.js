@@ -125,7 +125,6 @@ function addShapeMenu(){
     hideAll();
     //document.getElementById("meshMenu").style.display="inherit";
     document.getElementById("createShape").style.display="inherit";
-    console.log("wOw A cIlEnDeR")
 }
 
 function keyMenu(){

@@ -1,5 +1,6 @@
 function newTube(x, y, z, posX, posY, posZ, newColor){
-    var newGeometry = new THREE.TubeGeometry( 0.5, 0.5, 1, 100);
+    var path = new CustomSinCurve( 10 );
+    var newGeometry = new THREE.TubeGeometry( path, 100 ,0.5, 20, false );
     var newMaterial = new THREE.MeshBasicMaterial({color: newColor});
     shapes[shapes.length]=new THREE.Mesh(newGeometry, newMaterial);
     var length = scales.length;
@@ -16,16 +17,23 @@ function newTube(x, y, z, posX, posY, posZ, newColor){
     moveShape(z, posZ);
 }
 
-function tubeDimension(dimension,value){
-    switch(dimension){
-        case "x":
-           scales[selectedShape][0]=value;
-            break;
-        case "y":
-            scales[selectedShape][1]=value;
-            break;
-        case "z":
-            scales[selectedShape][2]=value;
-            break;
-    }
+function CustomSinCurve( scale ) {
+
+    THREE.Curve.call( this );
+
+    this.scale = ( scale === undefined ) ? 1 : scale;
+
 }
+
+CustomSinCurve.prototype = Object.create( THREE.Curve.prototype );
+CustomSinCurve.prototype.constructor = CustomSinCurve;
+
+CustomSinCurve.prototype.getPoint = function ( t ) {
+
+    var tx = t * 3 - 1.5;
+    var ty = Math.sin( 2 * Math.PI * t );
+    var tz = 0;
+
+    return new THREE.Vector3( tx, ty, tz ).multiplyScalar( this.scale );
+
+};

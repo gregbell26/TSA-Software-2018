@@ -1,5 +1,5 @@
 function newSphere(x, y, z, posX, posY, posZ, newColor){
-    var newGeometry = new THREE.SphereGeometry( 0.5, 0.5, 1, 100);
+    var newGeometry = new THREE.SphereGeometry( 0.5, 100,100);
     var newMaterial = new THREE.MeshBasicMaterial({color: newColor});
     shapes[shapes.length]=new THREE.Mesh(newGeometry, newMaterial);
     var length = scales.length;
@@ -14,28 +14,4 @@ function newSphere(x, y, z, posX, posY, posZ, newColor){
     moveShape(x, posX);
     moveShape(y, posY);
     moveShape(z, posZ);
-}
-
-function removeSphere(){
-    if(selectedShape >= 0){
-        scene.remove(shapes[selectedShape]);
-        shapes.splice(selectedShape,1);
-        scales.splice(selectedShape,1);
-        selectedShape--;
-        setSelectedShape(selectedShape);
-    }
-}
-
-function sphereDimension(dimension,value){
-    switch(dimension){
-        case "x":
-           scales[selectedShape][0]=value;
-            break;
-        case "y":
-            scales[selectedShape][1]=value;
-            break;
-        case "z":
-            scales[selectedShape][2]=value;
-            break;
-    }
 }

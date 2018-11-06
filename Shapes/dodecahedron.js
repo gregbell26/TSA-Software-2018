@@ -1,6 +1,6 @@
 function newDodecahedron(x, y, z, posX, posY, posZ, newColor){
-    var newGeometry = new THREE.DodecahedronGeometry( 0.5, 0.5, 1, 100);
-    var newMaterial = new THREE.MeshBasicMaterial({color: newColor});
+    var newGeometry = new THREE.DodecahedronGeometry( 0.5, 0);
+    var newMaterial = new THREE.MeshBasicMaterial({color: newColor, wireframe   : true});
     shapes[shapes.length]=new THREE.Mesh(newGeometry, newMaterial);
     var length = scales.length;
     newGeometry.name = "dodecahedron"
@@ -14,18 +14,4 @@ function newDodecahedron(x, y, z, posX, posY, posZ, newColor){
     moveShape(x, posX);
     moveShape(y, posY);
     moveShape(z, posZ);
-}
-
-function dodecahedronDimension(dimension,value){
-    switch(dimension){
-        case "x":
-           scales[selectedShape][0]=value;
-            break;
-        case "y":
-            scales[selectedShape][1]=value;
-            break;
-        case "z":
-            scales[selectedShape][2]=value;
-            break;
-    }
 }
