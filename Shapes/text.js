@@ -2,7 +2,7 @@ function newText(x, y, z, posX, posY, posZ, newColor){
     var loader = new THREE.FontLoader();
     loader.load( 'fonts/helvetiker_regular.typeface.json', function ( font ) {
 
-        var newGeometry = new THREE.TextGeometry( 'Hello three.js!', {
+        var newGeometry = new THREE.TextGeometry( 'Text test!', {
             font: font,
             size: 1,
             height: 0.05,

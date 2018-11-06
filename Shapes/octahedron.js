@@ -3,7 +3,7 @@ function newOctahedron(x, y, z, posX, posY, posZ, newColor){
     var newMaterial = new THREE.MeshBasicMaterial({color: newColor});
     shapes[shapes.length]=new THREE.Mesh(newGeometry, newMaterial);
     var length = scales.length;
-    newGeometry.name = "sphere"
+    newGeometry.name = "octahedron"
     scales[length]=[];
     scales[length][0]=x;
     scales[length][1]=y;

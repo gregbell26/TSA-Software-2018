@@ -1,5 +1,5 @@
 function newCone(x, y, z, posX, posY, posZ, newColor){
-    var newGeometry = new THREE.ConeGeometry( 0.5, 0.5, 100);
+    var newGeometry = new THREE.ConeGeometry( 0.5, 1, 100);
     var newMaterial = new THREE.MeshBasicMaterial({color: newColor});
     shapes[shapes.length]=new THREE.Mesh(newGeometry, newMaterial);
     var length = scales.length;
