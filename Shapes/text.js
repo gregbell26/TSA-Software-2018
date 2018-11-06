@@ -1,6 +1,6 @@
 function newText(x, y, z, posX, posY, posZ, newColor){
     var loader = new THREE.FontLoader();
-    loader.load( 'fonts/helvetiker_regular.typeface.json', function ( font ) {
+    loader.load( 'https://threejs.org/examples/fonts/helvetiker_regular.typeface.json', function ( font ) {
 
         var newGeometry = new THREE.TextGeometry( 'Text test!', {
             font: font,
