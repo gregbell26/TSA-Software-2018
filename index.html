@@ -27,10 +27,10 @@
         <button onfocus="this.blur()" class="material-icons md-48 topButton" id="keyButton" onclick="keyMenu()">vpn_key</button>
         <button onfocus="this.blur()" class="material-icons md-48 topButton" id="saveButton" onclick="save()">save_alt</button>
         <button onfocus="this.blur()" class="material-icons md-48 topButton" id="userButton" onclick="signInWithGoogle()">person</button>
-        <button onfocus="this.blur()" class="topButton" id="meshButton" onclick="meshMenu()">mesh</button>
+        <button onfocus="this.blur()" class="topButton" style="font-size: 20px" id="meshButton" onclick="meshMenu()">mesh</button>
         <button onfocus="this.blur()" class="material-icons md-48 topButton" id="settingsButton">settings</button>
         <button onfocus="this.blur()" class="material-icons md-48 topButton" id="colorButton" onclick="colorMenu()">color_lens</button>
-        <button onfocus="this.blur()" class="material-icons md-48 topButton" id="sizeButton" onclick="dimensionsMenu()">aspect_ratio</button>
+        <button onfocus="this.blur()" class="material-icons md-48 topButton" id="sceneButton" onclick="sceneMenu()">aspect_ratio</button>
     </div>
 
     <div id="sideBar">
@@ -150,7 +150,30 @@
             <button onfocus="this.blur()" class="objButton addButton"onclick="addFrame()">Add Keyframe</button>
             <div id="keyList"></div>
         </div>
-
+        <div id="sceneMenu" style="display: none">
+            <h3>
+                Scale
+            </h3>
+            <div class="parameterBox">X: <input type="number" id='sceneScaleX' onchange="sceneScale('x',this.value)" onkeyup="sceneScale('x',this.value)" value="1"><br></div>
+            <div class="parameterBox">Y: <input type="number" id='sceneScaleY' onchange="sceneScale('y',this.value)" onkeyup="sceneScale('y',this.value)" value="1"><br></div>
+            <div class="parameterBox">Z: <input type="number" id='sceneScaleZ' onchange="sceneScale('z',this.value)" onkeyup="sceneScale('z',this.value)" value="1"><br></div>
+            <h3>
+                Position
+            </h3>
+            <div class="parameterBox">X: <input type="number" id='scenePosX' onchange="scenePosition('x',this.value)" onkeyup="scenePosition('x',this.value)" value="0"><br></div>
+            <div class="parameterBox">Y: <input type="number" id='scenePosY' onchange="scenePosition('y',this.value)" onkeyup="scenePosition('y',this.value)" value="0"><br></div>
+            <div class="parameterBox">Z: <input type="number" id='scenePosZ' onchange="scenePosition('z',this.value)" onkeyup="scenePosition('z',this.value)" value="0"><br></div>
+            <h3>
+                Rotation (in degrees)
+            </h3>
+            <div class="parameterBox">X: <input type="number" id='sceneRotX' onchange="sceneRotation('x',this.value)" onkeyup="sceneRotation('x',this.value)" value="0"><br></div>
+            <div class="parameterBox">Y: <input type="number" id='sceneRotY' onchange="sceneRotation('y',this.value)" onkeyup="sceneRotation('y',this.value)" value="0"><br></div>
+            <div class="parameterBox">Z: <input type="number" id='sceneRotZ' onchange="sceneRotation('z',this.value)" onkeyup="sceneRotation('z',this.value)" value="0"><br></div>
+            <h3>
+                Background Color
+            </h3>
+            <input type="color" value="#000000" id='sceneColor' onchange="sceneBackground(this.value)">
+        </div>
     </div>
 
     <div id="mainWindow">

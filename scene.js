@@ -6,8 +6,8 @@ function sceneScale(dimension, value){
     scene.scale[dimension]=Number(value);
 }
 
-function sceneBackground(rgb, value){
-    scene.background[rgb] = Number(value);
+function sceneBackground(value){
+    scene.background= new THREE.Color(value);
 }
 
 function sceneRotation(dimension,value){

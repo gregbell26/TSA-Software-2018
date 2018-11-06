@@ -64,6 +64,7 @@ function hideAll(){
     document.getElementById("addMenu").style.display="none";
     document.getElementById("createShape").style.display="none";
     document.getElementById("rotateMenu").style.display="none";
+    document.getElementById("sceneMenu").style.display='none';
     console.log("Hide all")
 }
 
@@ -95,22 +96,6 @@ function colorMenu(){
 
 }
 
-function dimensionsMenu(){
-    hideAll();
-    var shapeType = shapes[selectedShape].geometry.name;
-    switch(shapeType){
-        case "cube":
-            document.getElementById("sideBarBoxEdit").style.display="inherit";
-            break;
-        case "cylinder":
-            document.getElementById("sideBarCylinder").style.display="inherit";
-            break;
-    }
-    document.getElementById("positionMenu").style.display="inherit";
-    console.log("WOEZER DEM");
-
-}
-
 function shapeMenu(){
     hideAll();
     document.getElementById("shapeMenu").style.display="inherit";
@@ -133,3 +118,8 @@ function keyMenu(){
     loadKeyList()
 }
 
+function sceneMenu() {
+    hideAll();
+    document.getElementById("sceneMenu").style.display='inherit';
+
+}

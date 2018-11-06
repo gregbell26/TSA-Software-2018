@@ -90,6 +90,9 @@ html, body {
 #keyButton{
     left:180px;
 }
+#sceneButton{
+    left:240px;
+}
 
 #settingsButton{
     right:0;
@@ -98,21 +101,16 @@ html, body {
 #colorButton{
     right:60px;
 }
-
-#sizeButton{
+#meshButton{
     right:120px;
 }
 
-#meshButton{
+#saveButton{
     right:180px;
 }
 
-#saveButton{
-    right:240px;
-}
-
 #userButton{
-    right:300px;
+    right:240px;
 }
 
 .topButton{
