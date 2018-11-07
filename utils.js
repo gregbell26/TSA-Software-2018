@@ -104,28 +104,4 @@ function createShape(){
 
 }
 
-function removeShape(){
-    if(selectedShape >= 0){
-        scene.remove(shapes[selectedShape]);
-        shapes.splice(selectedShape,1);
-        scales.splice(selectedShape,1);
-        selectedShape--;
-        setSelectedShape(selectedShape);
-    }
-}
 
-//corbin wrote this method:
-function moveShape(dimension, value){
-    switch(dimension){
-        case "x":
-            shapes[selectedShape].position.x = value;
-            break;
-        case "y":
-            shapes[selectedShape].position.y = value;
-            break;
-        case "z":
-            shapes[selectedShape].position.z = value;
-            break;
-    }
-
-}

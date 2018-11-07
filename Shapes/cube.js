@@ -20,9 +20,9 @@ function newCube(x, y, z, posX, posY, posZ, newColor){
     borderToAdd.scale.z = z;
     borders.push(borderToAdd);
     scene.add( borderToAdd );
-    moveShape('x', posX);
-    moveShape('y', posY);
-    moveShape('z', posZ);
+    moveShape("x", posX);
+    moveShape("y", posY);
+    moveShape("z", posZ);
 
 }
 

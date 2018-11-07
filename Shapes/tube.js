@@ -12,9 +12,9 @@ function newTube(x, y, z, posX, posY, posZ, newColor){
     scene.add(shapes[shapes.length-1]);
     selectedShape++;
     setSelectedShape(selectedShape);
-    moveShape(x, posX);
-    moveShape(y, posY);
-    moveShape(z, posZ);
+    moveShape("x", posX);
+    moveShape("y", posY);
+    moveShape("z", posZ);
 }
 
 function CustomSinCurve( scale ) {
