@@ -7,3 +7,19 @@ function toggleColorBorder(checked){
     }
 
 }
+
+
+var screen = document.getElementById("mainWindow");
+screen.onmousedown = function(event){
+    function dragScreen(event){
+        xPosition += movementX;
+        yPosition += movementY;
+    }
+
+    document.addEventListener('mousemove', dragScreen);
+
+    ball.onmouseup = function() {
+        document.removeEventListener('mousemove', dragScreen);
+        ball.onmouseup = null;
+    };
+}
