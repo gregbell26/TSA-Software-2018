@@ -25,6 +25,7 @@ var move = 0.01;
 var shapes = [];
 var scales = [];
 var keyFrames = [];
+var borders = [null,null];
 if(localStorage.getItem('keyFrames')==null){
     shapes = [];
     scales = [[2,2,2],[3,3,1]];
@@ -61,10 +62,7 @@ else{
                     size: 1,
                     height: 0.05,
                     curveSegments: 6,
-                    bevelEnabled: true,
-                    bevelThickness: 0.5,
-                    bevelSize: 0.05,
-                    bevelSegments: 2.5
+                    bevelEnabled: false
                 } );
                 newGeometry.name="text";
                 const newMaterial = new THREE.MeshBasicMaterial({color: 0x00ff00});
