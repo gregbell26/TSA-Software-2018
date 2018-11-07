@@ -1,5 +1,5 @@
 //jordan's code
-function newCube(x, y, z, posX, posY, posZ, newColor){
+function newCube(x, y, z, posX, posY, posZ, newColor, borderColor){
     var newGeometry = new THREE.BoxGeometry(1, 1, 1);
     var newMaterial = new THREE.MeshBasicMaterial({color: newColor});
     shapes[shapes.length]=new THREE.Mesh(newGeometry, newMaterial);
@@ -14,7 +14,7 @@ function newCube(x, y, z, posX, posY, posZ, newColor){
     setSelectedShape(selectedShape);
     var geometry = new THREE.BoxBufferGeometry( 1, 1, 1 );
     var edges = new THREE.EdgesGeometry( geometry );
-    var borderToAdd = new THREE.LineSegments( edges, new THREE.LineBasicMaterial( { color: 0xffffff } ) );
+    var borderToAdd = new THREE.LineSegments( edges, new THREE.LineBasicMaterial( { color: borderColor } ) );
     borderToAdd.scale.x = x;
     borderToAdd.scale.y = y;
     borderToAdd.scale.z = z;

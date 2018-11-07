@@ -5,6 +5,7 @@
     <script src="https://www.gstatic.com/firebasejs/5.5.6/firebase.js"></script>
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
+    <script src="jquery-3.3.1.min.js"></script>
     <script src="firebase.js"></script>
     <link rel="stylesheet" href="styles.css">
     <meta charset="UTF-8">
@@ -140,8 +141,9 @@
                 Color
             </h3>
             <input type="color" value="#FF0000" id='colorSet'><br>
-            <!--Border Color: <input type="checkbox" name="createShapeBorder" onchange="toggleColorBorder(this.checked)">
-            <input type="color" value="#000000" id="createColorBorder" style="display:none;"><br>-->
+            Border Color:
+            <!--<input type="checkbox" name="createShapeBorder" onchange="toggleColorBorder(this.checked)">-->
+            <input type="color" value="#000000" id="createColorBorder"><br>
             <button onfocus="this.blur()" class="objButton addButton" onclick="createShape()">OK</button>
             <button onfocus="this.blur()" class="objButton removeButton" onclick="shapeMenu()">Cancel</button>
         </div>

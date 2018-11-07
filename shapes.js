@@ -30,8 +30,10 @@ function cubeDimension(dimension, value){
 function removeShape(){
     if(selectedShape >= 0){
         scene.remove(shapes[selectedShape]);
+        scene.remove(borders[selectedShape])
         shapes.splice(selectedShape,1);
         scales.splice(selectedShape,1);
+        borders.splice(selectedShape,1);
         selectedShape--;
         setSelectedShape(selectedShape);
     }

@@ -1,4 +1,4 @@
-function newText(x, y, z, posX, posY, posZ, newColor){
+function newText(x, y, z, posX, posY, posZ, newColor, borderColor){
     var loader = new THREE.FontLoader();
     loader.load( 'https://threejs.org/examples/fonts/helvetiker_regular.typeface.json', function ( font ) {
 
@@ -34,7 +34,7 @@ function newText(x, y, z, posX, posY, posZ, newColor){
             bevelSegments: 2.5
         } );
         var edges = new THREE.EdgesGeometry( geometry );
-        var borderToAdd = new THREE.LineSegments( edges, new THREE.LineBasicMaterial( { color: 0xffffff } ) );
+        var borderToAdd = new THREE.LineSegments( edges, new THREE.LineBasicMaterial( { color: borderColor } ) );
         borderToAdd.scale.x = x;
         borderToAdd.scale.y = y;
         borderToAdd.scale.z = z;

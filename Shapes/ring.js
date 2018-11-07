@@ -1,4 +1,4 @@
-function newRing(x, y, z, posX, posY, posZ, newColor){
+function newRing(x, y, z, posX, posY, posZ, newColor, borderColor){
     var newGeometry = new THREE.TorusGeometry( 0.5, 0.25, 200, 200);
     var newMaterial = new THREE.MeshBasicMaterial({color: newColor});
     shapes[shapes.length]=new THREE.Mesh(newGeometry, newMaterial);
@@ -13,7 +13,7 @@ function newRing(x, y, z, posX, posY, posZ, newColor){
     setSelectedShape(selectedShape);
     var geometry = new THREE.TorusBufferGeometry( 0.5, 0.25, 200, 200);
     var edges = new THREE.EdgesGeometry( geometry );
-    var borderToAdd = new THREE.LineSegments( edges, new THREE.LineBasicMaterial( { color: 0xffffff } ) );
+    var borderToAdd = new THREE.LineSegments( edges, new THREE.LineBasicMaterial( { color: borderColor } ) );
     borderToAdd.scale.x = x;
     borderToAdd.scale.y = y;
     borderToAdd.scale.z = z;

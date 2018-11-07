@@ -65,40 +65,41 @@ function createShape(){
     var posX = document.getElementById("createPositionX").value;
     var posY = document.getElementById("createPositionY").value;
     var posZ = document.getElementById("createPositionZ").value;
+    var borderColor = document.getElementById('createColorBorder').value;
 
     switch(shapeType){
         case "cube" :
-            newCube(createX, createY, createZ, posX, posY, posZ, setColor);
+            newCube(createX, createY, createZ, posX, posY, posZ, setColor, borderColor);
             break;
         case "cylinder" :
-            newCylinder(createX, createY, createZ, posX, posY, posZ, setColor);
+            newCylinder(createX, createY, createZ, posX, posY, posZ, setColor, borderColor);
             break;
         case "cone" :
-            newCone(createX, createY, createZ, posX, posY, posZ, setColor);
+            newCone(createX, createY, createZ, posX, posY, posZ, setColor, borderColor);
             break;
         case "dodecahedron" :
-            newDodecahedron(createX, createY, createZ, posX, posY, posZ, setColor);
+            newDodecahedron(createX, createY, createZ, posX, posY, posZ, setColor, borderColor);
             break;
         case "icosahedron" :
-            newIcosahedron(createX, createY, createZ, posX, posY, posZ, setColor);
+            newIcosahedron(createX, createY, createZ, posX, posY, posZ, setColor, borderColor);
             break;
         case "octahedron" :
-            newOctahedron(createX, createY, createZ, posX, posY, posZ, setColor);
+            newOctahedron(createX, createY, createZ, posX, posY, posZ, setColor, borderColor);
             break;
         case "pyramid" :
-            newPyramid(createX, createY, createZ, posX, posY, posZ, setColor);
+            newPyramid(createX, createY, createZ, posX, posY, posZ, setColor, borderColor);
             break;
         case "ring" :
-            newRing(createX, createY, createZ, posX, posY, posZ, setColor);
+            newRing(createX, createY, createZ, posX, posY, posZ, setColor, borderColor);
             break;
         case "sphere" :
-            newSphere(createX, createY, createZ, posX, posY, posZ, setColor);
+            newSphere(createX, createY, createZ, posX, posY, posZ, setColor, borderColor);
             break;
         case "text" :
-           newText(createX, createY, createZ, posX, posY, posZ, setColor);
+           newText(createX, createY, createZ, posX, posY, posZ, setColor, borderColor);
            break;
         case "tube" :
-            newTube(createX, createY, createZ, posX, posY, posZ, setColor);
+            newTube(createX, createY, createZ, posX, posY, posZ, setColor, borderColor);
             break;
     }
 
