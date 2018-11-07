@@ -11,6 +11,14 @@ function newRing(x, y, z, posX, posY, posZ, newColor){
     scene.add(shapes[shapes.length-1]);
     selectedShape++;
     setSelectedShape(selectedShape);
+    var geometry = new THREE.TorusBufferGeometry( 0.5, 0.25, 200, 200);
+    var edges = new THREE.EdgesGeometry( geometry );
+    var borderToAdd = new THREE.LineSegments( edges, new THREE.LineBasicMaterial( { color: 0xffffff } ) );
+    borderToAdd.scale.x = x;
+    borderToAdd.scale.y = y;
+    borderToAdd.scale.z = z;
+    borders.push(borderToAdd);
+    scene.add( borderToAdd );
     moveShape(x, posX);
     moveShape(y, posY);
     moveShape(z, posZ);
