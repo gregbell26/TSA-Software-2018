@@ -11,7 +11,6 @@ function newCube(x, y, z, posX, posY, posZ, newColor, borderColor){
     scales[length][2]=z;
     scene.add(shapes[shapes.length-1]);
     selectedShape++;
-    setSelectedShape(selectedShape);
     var geometry = new THREE.BoxBufferGeometry( 1, 1, 1 );
     var edges = new THREE.EdgesGeometry( geometry );
     var borderToAdd = new THREE.LineSegments( edges, new THREE.LineBasicMaterial( { color: borderColor } ) );
@@ -20,6 +19,7 @@ function newCube(x, y, z, posX, posY, posZ, newColor, borderColor){
     borderToAdd.scale.z = z;
     borders.push(borderToAdd);
     scene.add( borderToAdd );
+    setSelectedShape(selectedShape);
     moveShape("x", posX);
     moveShape("y", posY);
     moveShape("z", posZ);

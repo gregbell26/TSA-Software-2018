@@ -23,12 +23,13 @@ function setSelectedShape(num){
     color += rgbToHex(shapes[selectedShape].material.color['g']*255)
     color += rgbToHex(shapes[selectedShape].material.color['b']*255)
     document.getElementById('colorChanger').value = color;
+    document.getElementById("borderColor").value = "#"+borders[selectedShape].material.color.getHexString();
     document.getElementById('positionBoxX').value = shapes[selectedShape].position.x;
     document.getElementById('positionBoxY').value = shapes[selectedShape].position.y;
     document.getElementById('positionBoxZ').value = shapes[selectedShape].position.z;
-    document.getElementById('rotateBoxX').value = shapes[selectedShape].rotation.x*180/Math.PI;
-    document.getElementById('rotateBoxY').value = shapes[selectedShape].rotation.y*180/Math.PI;
-    document.getElementById('rotateBoxZ').value = shapes[selectedShape].rotation.z*180/Math.PI;
+    document.getElementById('rotateBoxX').value = (shapes[selectedShape].rotation.x*180/Math.PI);
+    document.getElementById('rotateBoxY').value = (shapes[selectedShape].rotation.y*180/Math.PI);
+    document.getElementById('rotateBoxZ').value = (shapes[selectedShape].rotation.z*180/Math.PI);
     document.getElementById('dimensionX').value = shapes[selectedShape].scale.x;
     document.getElementById('dimensionY').value = shapes[selectedShape].scale.y;
     document.getElementById('dimensionZ').value = shapes[selectedShape].scale.z;
@@ -39,6 +40,9 @@ function setSelectedShape(num){
 function cameraMenu(){
     hideAll();
     document.getElementById('sideBarCamera').style.display="inherit";
+    document.getElementById('xPositionBox').value = xPosition;
+    document.getElementById('yPositionBox').value = yPosition;
+    document.getElementById('zPositionBox').value = zPosition;
     console.log("Showed Camera")
 
 }

@@ -22,8 +22,7 @@ function newText(x, y, z, posX, posY, posZ, newColor, borderColor){
         scales[length][2]=z;
         scene.add(shapes[shapes.length-1]);
         selectedShape++;
-        setSelectedShape(selectedShape);
-        var geometry = new THREE.TextGeometry( 'Text test!', {
+        var geometry = new THREE.TextBufferGeometry( 'Text test!', {
             font: font,
             size: 1,
             height: 0.05,
@@ -40,6 +39,7 @@ function newText(x, y, z, posX, posY, posZ, newColor, borderColor){
         borderToAdd.scale.z = z;
         borders.push(borderToAdd);
         scene.add(borderToAdd);
+        setSelectedShape(selectedShape);
         moveShape("x", posX);
         moveShape("y", posY);
         moveShape("z", posZ);

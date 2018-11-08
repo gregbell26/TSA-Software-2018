@@ -14,22 +14,18 @@ var xPosStart = xPosition;
 var yPosStart = yPosition;
 var mouseDown = false;
 $(document).on('mousedown',function(e){
-    console.log('mouse down')
-    xStart = e.pageX;
-    yStart = e.pageY;
-    console.log(xStart);
-    console.log(yStart);
-    mouseDown = true;
+    if(e.pageX>=300 && e.pageY >=50) {
+        xStart = e.pageX;
+        yStart = e.pageY;
+        mouseDown = true;
+    }
 })
 $(document).on('mouseup',function(e){
-    console.log('mouse up')
     mouseDown=false;
 })
 $(document).ready(function(){
     $(document).on('mousemove', function(e){
-        console.log('mousemove')
         if(mouseDown){
-            console.log(true);
             xPosition = xPosStart - (e.pageX-xStart)/10;
             yPosition = yPosStart - (e.pageY-yStart)/10;
         }

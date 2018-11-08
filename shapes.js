@@ -38,3 +38,8 @@ function removeShape(){
         setSelectedShape(selectedShape);
     }
 }
+
+function borderChange(value){
+    borders[selectedShape].material.color.set(value);
+
+}
