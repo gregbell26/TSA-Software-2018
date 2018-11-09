@@ -1,7 +1,5 @@
 //jordan's code
 
-
-
 function showList(){
     var sideBar=document.getElementById('listButtons');
     hideAll();
@@ -9,11 +7,10 @@ function showList(){
     sideBar.innerHTML="";
     for (var i=0; i<shapes.length; i++){
         //console.log("Shape "+(i+1)+": "+shapes[i]['geometry']['type']);
-        sideBar.innerHTML+="<button onclick='setSelectedShape("+i+")'>"+(i+1)+": "+shapes[i].geometry.name+"</button>";
+        sideBar.innerHTML+="<button onclick='setSelectedShape("+i+")'>"+(i+1)+": "+shapes[i].geometry.name+" <div style='width: 14px; height: 14px; background-color: #"+shapes[i].material.color.getHexString()+"; display: inline-block'></div></button>";
     }
     console.log("Showed List");
 }
-
 
 function setSelectedShape(num){
     selectedShape = num;

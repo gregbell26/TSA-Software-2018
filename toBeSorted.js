@@ -8,6 +8,9 @@ function toggleColorBorder(checked){
 
 }
 
+var xPosition = 10;
+var yPosition = 10;
+var zPosition = 10;
 var xStart = 0;
 var yStart = 0;
 var xPosStart = xPosition;

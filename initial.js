@@ -4,48 +4,30 @@ var y = 1;
 var z = 1;
 var animationRunning = false;
 var animationTimer;
-var selectedShape = 0;
+var selectedShape = -1;
 var scene = new THREE.Scene();
 scene.background = new THREE.Color("#000000");
 var camera = new THREE.PerspectiveCamera( 75, document.getElementById("mainWindow").offsetWidth/document.getElementById("mainWindow").offsetHeight, 0.1, 1000 );
 var theta = 0;
 var renderer = new THREE.WebGLRenderer({logarithmicDepthBuffer: true });
-var xPosition = 10;
-var yPosition = 10;
-var zPosition = 10;
 
 
 renderer.setSize( document.getElementById("mainWindow").offsetWidth, document.getElementById("mainWindow").offsetHeight );
 document.getElementById("mainWindow").appendChild( renderer.domElement );
 
-
-camera.position.z = 5;
-var move = 0.01;
-
 var shapes = [];
 var scales = [];
 var keyFrames = [];
-var borders = [null,null];
+var borders = [];
 if(localStorage.getItem('keyFrames')==null){
-    shapes = [];
-    scales = [[2,2,2],[3,3,1]];
-    keyFrames = [];
-    var geometry = new THREE.BoxGeometry( 1,1,1 );
-    var material = new THREE.MeshBasicMaterial( { color: 0x00ff00 } );
-    geometry.name="cube";
-    shapes[0] = new THREE.Mesh( geometry, material );
-    var geometry2 = new THREE.BoxGeometry( 1, 1,1);
-    var material2 = new THREE.MeshBasicMaterial( { color: 0x8000ff } );
-    geometry2.name="cube";
-    shapes[1] = new THREE.Mesh( geometry2, material2 );
-    scene.add(shapes[0]);
-    scene.add(shapes[1]);
-    selectedShape++;
+    newCube(2,2,2,0,0,0,"#00FF00","#000000");
+    newCube(3,3,1,0,0,0,"#8000FF","#8000FF");
 }
 else{
     //shapes = JSON.parse(localStorage.getItem('shapes'));
     shapes = [];
     borders = [];
+    selectedShape = 0;
     var shapeData = JSON.parse(localStorage.getItem('shapes'));
     keyFrames = JSON.parse(localStorage.getItem('keyFrames'));
     scales = JSON.parse(localStorage.getItem('scales'));
