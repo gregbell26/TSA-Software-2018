@@ -1,16 +1,16 @@
 //corbin wrote this method, simplified by Jordan
-function moveShape(dimension, value) {
+function moveShape(dimension, value) {//Moves a shape value units in the direction of dimension x=0, y=1, x=2    
     shapes[selectedShape].position[dimension] = Number(value);
     borders[selectedShape].position[dimension] = Number(value);
 }
 
 
-function rotateShape(dimension, value) {
+function rotateShape(dimension, value) {//Rotates a shape value degrees in the direction of dimension x=0, y=1, x=2
     shapes[selectedShape].rotation[dimension] = Number(value)*Math.PI/180;
     borders[selectedShape].rotation[dimension] = Number(value)*Math.PI/180;
 }
 
-function cubeDimension(dimension, value){
+function cubeDimension(dimension, value){//scales a shapes in dimension x=0, y=1, x=2 by value
     switch(dimension){
         case "x":
             scales[selectedShape][0]=Number(value);
