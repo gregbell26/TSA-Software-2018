@@ -1,13 +1,4 @@
  //jordan's code
-
-function getRandomColor() {
-    var letters = '0123456789ABCDEF';
-    var color = '#';
-    for (var i = 0; i < 6; i++) {
-        color += letters[Math.floor(Math.random() * 16)];
-    }
-    return color;
-}
 function changeColor(value){
     shapes[selectedShape].material.color.set(value);
 }
@@ -21,6 +12,7 @@ function rgbToHex (num) {
 };
 
 function addShape(){
+    document.getElementById('createText').style.display = 'none';
     var shapeType = document.getElementById("shapeSelector").value;
     switch(shapeType){
         case "cube" :
@@ -51,6 +43,7 @@ function addShape(){
             addShapeMenu();
             break;
         case "text" :
+            document.getElementById('createText').style.display = 'inherit';
             addShapeMenu();
             break;
         case "tube" :
@@ -66,6 +59,9 @@ function createShape(){
     var posY = document.getElementById("createPositionY").value;
     var posZ = document.getElementById("createPositionZ").value;
     var borderColor = document.getElementById('createColorBorder').value;
+    var createX = document.getElementById('createParameterX').value;
+    var createY = document.getElementById('createParameterY').value;
+    var createZ = document.getElementById('createParameterZ').value;
 
     switch(shapeType){
         case "cube" :

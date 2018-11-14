@@ -1,8 +1,9 @@
 function newText(x, y, z, posX, posY, posZ, newColor, borderColor){
+    var myText = document.getElementById('createText').value;
     var loader = new THREE.FontLoader();
     loader.load( 'https://threejs.org/examples/fonts/helvetiker_regular.typeface.json', function ( font ) {
 
-        var newGeometry = new THREE.TextGeometry( 'Text test!', {
+        var newGeometry = new THREE.TextGeometry( myText, {
             font: font,
             size: 1,
             height: 0.05,
@@ -22,7 +23,7 @@ function newText(x, y, z, posX, posY, posZ, newColor, borderColor){
         scales[length][2]=z;
         scene.add(shapes[shapes.length-1]);
         selectedShape++;
-        var geometry = new THREE.TextBufferGeometry( 'Text test!', {
+        var geometry = new THREE.TextBufferGeometry( myText, {
             font: font,
             size: 1,
             height: 0.05,

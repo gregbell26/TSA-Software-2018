@@ -1,13 +1,3 @@
-function toggleColorBorder(checked){
-    if(checked){
-        document.getElementById('createColorBorder').style.display = 'inherit'
-    }
-    else{
-        document.getElementById('createColorBorder').style.display = 'none'
-    }
-
-}
-
 var xPosition = 10;
 var yPosition = 10;
 var zPosition = 10;
