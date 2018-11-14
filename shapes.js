@@ -5,12 +5,12 @@ function moveShape(dimension, value) {//Moves a shape value units in the directi
 }
 
 
-function rotateShape(dimension, value) {//Rotates a shape value degrees in the direction of dimension x=0, y=1, x=2
+function rotateShape(dimension, value) {//Rotates the selected shape value degrees in the direction of dimension x=0, y=1, x=2
     shapes[selectedShape].rotation[dimension] = Number(value)*Math.PI/180;
     borders[selectedShape].rotation[dimension] = Number(value)*Math.PI/180;
 }
 
-function cubeDimension(dimension, value){//scales a shapes in dimension x=0, y=1, x=2 by value
+function cubeDimension(dimension, value){//scales the selected shapes in dimension x=0, y=1, x=2 by value
     switch(dimension){
         case "x":
             scales[selectedShape][0]=Number(value);
@@ -27,7 +27,7 @@ function cubeDimension(dimension, value){//scales a shapes in dimension x=0, y=1
     }
 }
 
-function removeShape(){
+function removeShape(){//removes the selected shape
     if(selectedShape >= 0){
         scene.remove(shapes[selectedShape]);
         scene.remove(borders[selectedShape])
@@ -35,11 +35,12 @@ function removeShape(){
         scales.splice(selectedShape,1);
         borders.splice(selectedShape,1);
         selectedShape--;
+        //why?
         setSelectedShape(selectedShape);
     }
 }
 
-function borderChange(value){
+function borderChange(value){//Sets the boreder to value in (in what, hex?) NYI
     borders[selectedShape].material.color.set(value);
 
 }
