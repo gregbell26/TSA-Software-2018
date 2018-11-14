@@ -10,7 +10,7 @@ function newTube(x, y, z, posX, posY, posZ, newColor){
     scales[length][1]=y;
     scales[length][2]=z;
     scene.add(shapes[shapes.length-1]);
-    selectedShape++;
+    selectedShape = shapes.length-1;
     setSelectedShape(selectedShape);
     moveShape("x", posX);
     moveShape("y", posY);

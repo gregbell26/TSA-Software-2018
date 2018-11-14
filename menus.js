@@ -53,7 +53,7 @@ function meshMenu(){
 }
 
 function hideAll(){
-    //used to make correct menus show up
+    //used to make correct menus show up, and the wrong menus don't show up. This is called every time we open a menu.
     document.getElementById("sideBarList").style.display="none";
     document.getElementById("sideBarBoxEdit").style.display="none";
     document.getElementById("sideBarCamera").style.display="none";
@@ -79,21 +79,10 @@ function editMenu() {
     console.log("Showed Menu");
 }
 
-function cylinderMenu(){
-    hideAll();
-    document.getElementById("sideBarCylinder").style.display="inherit";
-    document.getElementById("meshMenu").style.display="inherit";
-    document.getElementById("positionMenu").style.display="inherit";
-    document.getElementById("colorMenu").style.display="inherit";
-    document.getElementById("rotateMenu").style.display="inherit";
-    console.log("wOw A cIlEnDeR")
-
-}
-
 function colorMenu(){
     hideAll();
     document.getElementById("colorMenu").style.display="inherit";
-    console.log("SCOLOR")
+    console.log("COLOR")
 
 }
 
@@ -109,7 +98,6 @@ function newShapeMenu(){
 
 function addShapeMenu(){
     hideAll();
-    //document.getElementById("meshMenu").style.display="inherit";
     document.getElementById("createShape").style.display="inherit";
 }
 

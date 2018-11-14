@@ -109,7 +109,6 @@ else{
             var borderToAdd = new THREE.LineSegments( edges, new THREE.LineBasicMaterial( { color: 0xffffff } ) );
             borders.push(borderToAdd);
             scene.add( borderToAdd );
-
             scene.add(shapes[shapes.length - 1]);
             shapes[selectedShape].position.x = shapeData[i].positionX;
             shapes[selectedShape].position.y = shapeData[i].positionY;

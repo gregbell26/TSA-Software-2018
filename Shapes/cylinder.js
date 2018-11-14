@@ -9,7 +9,7 @@ function newCylinder(x, y, z, posX, posY, posZ, newColor, borderColor){
     scales[length][1]=y;
     scales[length][2]=z;
     scene.add(shapes[shapes.length-1]);
-    selectedShape++;
+    selectedShape = shapes.length-1;
     var geometry = new THREE.CylinderBufferGeometry( 0.5, 0.5, 1, 100);
     var edges = new THREE.EdgesGeometry( geometry );
     var borderToAdd = new THREE.LineSegments( edges, new THREE.LineBasicMaterial( { color: borderColor } ) );
@@ -22,18 +22,4 @@ function newCylinder(x, y, z, posX, posY, posZ, newColor, borderColor){
     moveShape("x", posX);
     moveShape("y", posY);
     moveShape("z", posZ);
-}
-
-function cylinderDimension(dimension,value){
-    switch(dimension){
-        case "x":
-           scales[selectedShape][0]=value;
-            break;
-        case "y":
-            scales[selectedShape][1]=value;
-            break;
-        case "z":
-            scales[selectedShape][2]=value;
-            break;
-    }
 }

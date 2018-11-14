@@ -14,41 +14,9 @@ function rgbToHex (num) {
 function addShape(){
     document.getElementById('createText').style.display = 'none';
     var shapeType = document.getElementById("shapeSelector").value;
-    switch(shapeType){
-        case "cube" :
-            addShapeMenu();
-            break;
-        case "cylinder" :
-            addShapeMenu();
-            break;
-        case "cone" :
-            addShapeMenu();
-            break;
-        case "dodecahedron" :
-            addShapeMenu();
-            break;
-        case "icosahedron" :
-            addShapeMenu();
-            break;
-        case "octahedron" :
-            addShapeMenu();
-            break;
-        case "pyramid" :
-            addShapeMenu();
-            break;
-        case "ring" :
-            addShapeMenu();
-            break;
-        case "sphere" :
-            addShapeMenu();
-            break;
-        case "text" :
-            document.getElementById('createText').style.display = 'inherit';
-            addShapeMenu();
-            break;
-        case "tube" :
-            addShapeMenu();
-            break;
+    addShapeMenu();
+    if(shapeType=='text'){
+        document.getElementById('createText').style.display = 'inherit';
     }
 }
 
