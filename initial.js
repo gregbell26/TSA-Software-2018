@@ -11,7 +11,6 @@ var renderer = new THREE.WebGLRenderer({logarithmicDepthBuffer: true });// the T
 
 renderer.setSize( document.getElementById("mainWindow").offsetWidth, document.getElementById("mainWindow").offsetHeight );
 document.getElementById("mainWindow").appendChild( renderer.domElement );
-//TODO turn all this stuff ArrayLists
 var shapes = [];//array of shape objects
 var scales = [];//array for shape scaling
 //TODO try to store in shape objects
