@@ -112,3 +112,15 @@ function sceneMenu() {
     document.getElementById("sceneMenu").style.display='inherit';
 
 }
+
+
+function borderVisibility(){
+    var checked = document.getElementById("borderVisibility").checked;
+    if(checked){
+        borders[selectedShape].visible = true;
+        document.getElementById("borderMenu").style.display="inherit";
+    }else{
+        borders[selectedShape].visible = false;
+        document.getElementById("borderMenu").style.display="none";
+    }
+}
