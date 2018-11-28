@@ -22,7 +22,7 @@
                     <polygon fill="#000000" stroke="#FFFFFF" points="6.3108540578E-17,-0.0217250905725 0.704050371456,-0.412727063605 0.629480283571,0.369012729157 5.55894689594E-17,0.811070564442"></polygon>
                     <polygon fill="#000000" stroke="#FFFFFF" points="-0.704050371456,-0.412727063605 6.3108540578E-17,-0.0217250905725 5.55894689594E-17,0.811070564442 -0.629480283571,0.369012729157"></polygon>
                 </g>
-            </svg><span id="boxSelected" style="position: absolute;bottom: 2px;right: 2px;">#2</span>
+            </svg><span id="boxSelected" style="position: absolute;bottom: 2px;right: 2px;">#0</span>
         </button>
         <button onfocus="this.blur()" class="material-icons md-48 topButton" id="cameraButton" onclick="cameraMenu()">camera_alt</button>
         <button onfocus="this.blur()" class="material-icons md-48 topButton" id="keyButton" onclick="keyMenu()">vpn_key</button>
@@ -93,34 +93,13 @@
                 Color
             </h3>
             <input type="color" value="#FF0000" id='colorChanger' onchange="changeColor(this.value)"><br>
-            Borders: <input id="borderVisibility" type="checkbox" checked="true" onchange="borderVisibility()"><br>
-            Border Color: <input type="color" id='borderColor' onchange="borderChange(this.value)">
-        </div>
-
-        <div id="sideBarList" style="display:none">
             <h3>
-                Objects
+                Borders
             </h3>
-            <div id="listButtons" class="setGroup"></div>
-        </div>
-
-        <div id="sideBarCamera" style="display:none">
-            <div class="parameterBox">X Position: <input type="number" id='xPositionBox' onchange="xPosition = Number(this.value)" onkeyup="xPosition = Number(this.value)" value="10"><br></div>
-            <div class="parameterBox">Y Position: <input type="number" id='yPositionBox' onchange="yPosition = Number(this.value)" onkeyup="yPosition = Number(this.value)" value="10"><br></div>
-            <div class="parameterBox">Z Position: <input type="number" id='zPositionBox' onchange="zPosition = Number(this.value)" onkeyup="zPosition = Number(this.value)" value="10"><br></div>
-
-        </div>
-
-        <div id="meshMenu">
-            <!-- this doesn't work at all so we need to get it working before we show it all the time>
-            <!--<h3>
-                Materials
-            </h3>
-            <div class="meshGroup">
-                <button onfocus=this.blur()" onclick="mesh('basic')">Basic</button>
-                <button onfocus=this.blur()" onclick="mesh('depth')">Depth</button>
-                <button onfocus=this.blur()" onclick="mesh('rainbow')">Rainbow</button>
-            </div>-->
+            Visible: <input id="borderVisibility" type="checkbox" checked="true" onchange="borderVisibility()"><br>
+            <div id="borderMenu">
+                Border Color: <input type="color" id='borderColor' onchange="borderChange(this.value)">
+            </div>
         </div>
 
         <div id="createShape" style="display:none">
@@ -151,11 +130,37 @@
             <button onfocus="this.blur()" class="objButton removeButton" onclick="shapeMenu()">Cancel</button>
         </div>
 
+        <div id="sideBarList" style="display:none">
+            <h3>
+                Objects
+            </h3>
+            <div id="listButtons" class="setGroup"></div>
+        </div>
+
+        <div id="sideBarCamera" style="display:none">
+            <div class="parameterBox">X Position: <input type="number" id='xPositionBox' onchange="xPosition = Number(this.value)" onkeyup="xPosition = Number(this.value)" value="10"><br></div>
+            <div class="parameterBox">Y Position: <input type="number" id='yPositionBox' onchange="yPosition = Number(this.value)" onkeyup="yPosition = Number(this.value)" value="10"><br></div>
+            <div class="parameterBox">Z Position: <input type="number" id='zPositionBox' onchange="zPosition = Number(this.value)" onkeyup="zPosition = Number(this.value)" value="10"><br></div>
+        </div>
+
+        <div id="meshMenu">
+            <!-- this doesn't work at all so we need to get it working before we show it all the time>
+            <!--<h3>
+                Materials
+            </h3>
+            <div class="meshGroup">
+                <button onfocus=this.blur()" onclick="mesh('basic')">Basic</button>
+                <button onfocus=this.blur()" onclick="mesh('depth')">Depth</button>
+                <button onfocus=this.blur()" onclick="mesh('rainbow')">Rainbow</button>
+            </div>-->
+        </div>
+
         <div id="keyMenu">
             <button onfocus="this.blur()" class="material-icons" onclick="playAnimation()">play_arrow</button>
             <button onfocus="this.blur()" class="objButton addButton"onclick="addFrame()">Add Keyframe</button>
             <div id="keyList"></div>
         </div>
+
         <div id="sceneMenu" style="display: none">
             <h3>
                 Scale
@@ -180,6 +185,7 @@
             </h3>
             <input type="color" value="#000000" id='sceneColor' onchange="sceneBackground(this.value)">
         </div>
+
     </div>
 
     <div id="mainWindow">
