@@ -244,3 +244,11 @@ select{
     border-radius: 4px;
     background-color: #f1f1f1;
 }
+
+.startButton button{
+    background-color: #C0C0C0;
+}
+
+.startButton:hover {
+    background-color: #808080;
+}

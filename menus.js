@@ -48,8 +48,6 @@ function meshMenu(){
     hideAll();
     document.getElementById("meshMenu").style.display="inherit";
     console.log("Showed Mesh")
-
-
 }
 
 function hideAll(){
