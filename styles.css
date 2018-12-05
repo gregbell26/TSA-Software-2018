@@ -6,6 +6,16 @@ html, body {
     font-family: 'Roboto', sans-serif
 }
 
+#welcomeScreen{
+    position: absolute;
+    top:0;
+    bottom:0;
+    left:0;
+    right:0;
+    background-color:white;
+    z-index: 2;
+}
+
 .parameterBox {
 	margin: 3px;
 	padding: 1px;

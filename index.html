@@ -13,6 +13,23 @@
 
 </head>
 <body>
+    <div id="welcomeScreen">
+        <h1>Welcome to [insert name here]</h1>
+        <h2>2019 TSA Project</h2>
+        <h3>Choose how you want to start:</h3>
+        <button onclick="document.getElementById('welcomeScreen').style.display = 'none';">Start from scratch</button> <!--<button>Upload a file</button>--> <button onclick="launchTutorial()">View the tutorial</button>
+    </div>
+
+    <span id='tutorialArrow' style="
+        position:absolute;
+        top:-60px;
+        left: 106px;
+        font-size: 150px;
+        color: red;
+        z-index: 2;
+        display: none;
+    ">&larr;</span>
+
     <div id="topBar">
         <button onfocus="this.blur()" id="listButton" onclick="showList()" class="md-48 material-icons topButton">list</button>
         <button onfocus="this.blur()" id="shapeButton" class="topButton" onclick="shapeMenu()">
@@ -211,5 +228,6 @@
     <script src="Shapes/tube.js"></script>
     <script src="initial.js"></script>
     <script src="animate.js"></script>
+    <script src="tutorial.js"></script>
 </body>
 </html>
