@@ -89,11 +89,17 @@ function colorMenu(){
 function shapeMenu(){
     hideAll();
     document.getElementById("shapeMenu").style.display="inherit";
+    if(usingTutorial){
+        tutorialMoveArrowNewShape();
+    }
 }
 
 function newShapeMenu(){
     hideAll();
     document.getElementById("addMenu").style.display="inherit";
+    if(usingTutorial){
+        document.getElementById('tutorialArrow').style.display = 'none';
+    }
 }
 
 
