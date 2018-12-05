@@ -32,6 +32,7 @@ $(document).on('mouseup',function(e){
 $(document).ready(function(){
     $(document).on('mousemove', function(e){
         if(mouseDown){
+            //zoom calc here
             var MvX = mouseSensitivity*(e.pageX-xStart)/100;
             var MvY = mouseSensitivity*(e.pageY-yStart)/100;
             var cameraRz;
@@ -57,6 +58,10 @@ $(document).ready(function(){
             
             cameraRz += MvX;
             cameraRy += MvY;
+            
+            xPosition = zoom * cos(cameraRz)/5;
+            //yPosition =
+            zPosition = zoom * sin(cameraRz)/5;
             
             
             xPosition = xPosStart - (e.pageX-xStart)/10;
