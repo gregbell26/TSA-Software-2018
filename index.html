@@ -65,9 +65,9 @@
             <h3>
                 Dimensions
             </h3>
-            <div class="parameterBox">X: <input type="number" id='dimensionX' onchange="cubeDimension('x',this.value)" onkeyup="cubeDimension('x',this.value)" value="1"><br></div>
-            <div class="parameterBox">Y: <input type="number" id='dimensionY' onchange="cubeDimension('y',this.value)" onkeyup="cubeDimension('y',this.value)" value="1"><br></div>
-            <div class="parameterBox">Z: <input type="number" id='dimensionZ' onchange="cubeDimension('z',this.value)" onkeyup="cubeDimension('z',this.value)" value="1"><br></div>
+            <div class="parameterBox">X: <input type="number" id='dimensionX' onchange="cubeDimension('x',this.value)" onkeyup="cubeDimension('x',this.value)" value="0"><br></div>
+            <div class="parameterBox">Y: <input type="number" id='dimensionY' onchange="cubeDimension('y',this.value)" onkeyup="cubeDimension('y',this.value)" value="0"><br></div>
+            <div class="parameterBox">Z: <input type="number" id='dimensionZ' onchange="cubeDimension('z',this.value)" onkeyup="cubeDimension('z',this.value)" value="0"><br></div>
         </div>
 
         <div id="positionMenu">
@@ -102,31 +102,10 @@
             </div>
         </div>
 
-        <div id="createShape" style="display:none">
-            <h3>
-                Dimensions
-            </h3>
-            <div class="parameterBox">X: <input type="number" id='createParameterX' onchange="createX = Number(this.value)" onkeyup="createX = Number(this.value)" value="0"><br></div>
-            <div class="parameterBox">Y: <input type="number" id='createParameterY' onchange="createY = Number(this.value)" onkeyup="createY = Number(this.value)" value="0"><br></div>
-            <div class="parameterBox">Z: <input type="number" id='createParameterZ' onchange="createZ = Number(this.value)" onkeyup="createZ = Number(this.value)" value="0"><br></div>
-
-
-            <h3>
-                Position
-            </h3>
-            <div class="parameterBox">X: <input type="number" id='createPositionX' value="0"><br></div>
-            <div class="parameterBox">Y: <input type="number" id='createPositionY' value="0"><br></div>
-            <div class="parameterBox">Z: <input type="number" id='createPositionZ' value="0"><br></div>
-
-            <h3>
-                Color
-            </h3>
-            <input type="color" value="#FF0000" id='colorSet'><br>
-            Border Color:
-            <!--<input type="checkbox" name="createShapeBorder" onchange="toggleColorBorder(this.checked)">-->
-            <input type="color" value="#000000" id="createColorBorder"><br>
-            <input type="text" placeholder="Enter your text here..." id="createText" style="display: none;">
-            <button onfocus="this.blur()" class="objButton addButton" onclick="createShape()">OK</button>
+        <div id="createTextMenu" style="display: none;">
+            <input type="text" placeholder="Enter your text here..." id="createText">
+            <br>
+            <button onfocus="this.blur()" class="objButton addButton" onclick="newText(0, 0, 0, 0, 0, 0, '#ff0000', '#000000')">OK</button>
             <button onfocus="this.blur()" class="objButton removeButton" onclick="shapeMenu()">Cancel</button>
         </div>
 

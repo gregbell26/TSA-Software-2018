@@ -63,9 +63,9 @@ function hideAll(){
     document.getElementById("keyMenu").style.display="none";
     document.getElementById("shapeMenu").style.display="none";
     document.getElementById("addMenu").style.display="none";
-    document.getElementById("createShape").style.display="none";
     document.getElementById("rotateMenu").style.display="none";
     document.getElementById("sceneMenu").style.display='none';
+    document.getElementById('createTextMenu').style.display = 'none';
     console.log("Hide all")
 }
 
@@ -96,10 +96,6 @@ function newShapeMenu(){
     document.getElementById("addMenu").style.display="inherit";
 }
 
-function addShapeMenu(){
-    hideAll();
-    document.getElementById("createShape").style.display="inherit";
-}
 
 function keyMenu(){
     hideAll();

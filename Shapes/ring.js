@@ -22,4 +22,12 @@ function newRing(x, y, z, posX, posY, posZ, newColor, borderColor){
     moveShape("x", posX);
     moveShape("y", posY);
     moveShape("z", posZ);
+
+    document.getElementById('dimensionX').value = x;
+    document.getElementById('dimensionY').value = y;
+    document.getElementById('dimensionZ').value = z;
+
+    document.getElementById('positionBoxX').value = posX;
+    document.getElementById('positionBoxY').value = posY;
+    document.getElementById('positionBoxZ').value = posZ;
 }

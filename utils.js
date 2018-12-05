@@ -12,61 +12,43 @@ function rgbToHex (num) {
 };
 
 function addShape(){
-    document.getElementById('createText').style.display = 'none';
+    document.getElementById('createTextMenu').style.display = 'none';
     var shapeType = document.getElementById("shapeSelector").value;
-    addShapeMenu();
-    if(shapeType=='text'){
-        document.getElementById('createText').style.display = 'inherit';
-    }
-}
-
-function createShape(){
-    var shapeType = document.getElementById("shapeSelector").value;
-    var setColor = document.getElementById("colorSet").value;
-    var posX = document.getElementById("createPositionX").value;
-    var posY = document.getElementById("createPositionY").value;
-    var posZ = document.getElementById("createPositionZ").value;
-    var borderColor = document.getElementById('createColorBorder').value;
-    var createX = document.getElementById('createParameterX').value;
-    var createY = document.getElementById('createParameterY').value;
-    var createZ = document.getElementById('createParameterZ').value;
-
     switch(shapeType){
-        case "cube" :
-            newCube(createX, createY, createZ, posX, posY, posZ, setColor, borderColor);
-            break;
-        case "cylinder" :
-            newCylinder(createX, createY, createZ, posX, posY, posZ, setColor, borderColor);
-            break;
-        case "cone" :
-            newCone(createX, createY, createZ, posX, posY, posZ, setColor, borderColor);
-            break;
-        case "dodecahedron" :
-            newDodecahedron(createX, createY, createZ, posX, posY, posZ, setColor, borderColor);
-            break;
-        case "icosahedron" :
-            newIcosahedron(createX, createY, createZ, posX, posY, posZ, setColor, borderColor);
-            break;
-        case "octahedron" :
-            newOctahedron(createX, createY, createZ, posX, posY, posZ, setColor, borderColor);
-            break;
-        case "pyramid" :
-            newPyramid(createX, createY, createZ, posX, posY, posZ, setColor, borderColor);
-            break;
-        case "ring" :
-            newRing(createX, createY, createZ, posX, posY, posZ, setColor, borderColor);
-            break;
-        case "sphere" :
-            newSphere(createX, createY, createZ, posX, posY, posZ, setColor, borderColor);
-            break;
-        case "text" :
-           newText(createX, createY, createZ, posX, posY, posZ, setColor, borderColor);
-           break;
-        case "tube" :
-            newTube(createX, createY, createZ, posX, posY, posZ, setColor, borderColor);
-            break;
-    }
-
+            case "cube" :
+                newCube(0, 0, 0, 0, 0, 0, "#ff0000", "#000000");
+                break;
+            case "cylinder" :
+                newCylinder(0, 0, 0, 0, 0, 0, "#ff0000", "#000000");
+                break;
+            case "cone" :
+                newCone(0, 0, 0, 0, 0, 0, "#ff0000", "#000000");
+                break;
+            case "dodecahedron" :
+                newDodecahedron(0, 0, 0, 0, 0, 0, "#ff0000", "#000000");
+                break;
+            case "icosahedron" :
+                newIcosahedron(0, 0, 0, 0, 0, 0, "#ff0000", "#000000");
+                break;
+            case "octahedron" :
+                newOctahedron(0, 0, 0, 0, 0, 0, "#ff0000", "#000000");
+                break;
+            case "pyramid" :
+                newPyramid(0, 0, 0, 0, 0, 0, "#ff0000", "#000000");
+                break;
+            case "ring" :
+                newRing(0, 0, 0, 0, 0, 0, "#ff0000", "#000000");
+                break;
+            case "sphere" :
+                newSphere(0, 0, 0, 0, 0, 0, "#ff0000", "#000000");
+                break;
+            case "text" :
+                hideAll();
+                document.getElementById('createTextMenu').style.display = 'inherit';
+                break;
+            case "tube" :
+                newTube(0, 0, 0, 0, 0, 0, "#ff0000", "#000000");
+                break;
+        }
 }
-
 
