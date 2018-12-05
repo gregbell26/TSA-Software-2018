@@ -34,31 +34,30 @@ $(document).ready(function(){
         if(mouseDown){
             var MvX = mouseSensitivity*(e.pageX-xStart)/100;
             var MvY = mouseSensitivity*(e.pageY-yStart)/100;
-            var cameraRx;
+            var cameraRz;
             var cameraRy;
-            if(xPostiton != 0)
-                cameraRx = atan(zPosition/xPosition);
+            if(xPosition != 0)
+                cameraRz = atan(zPosition/xPosition);
             else if(zPosition > 0)
-                cameraRx = Math.PI;
+                cameraRz = Math.PI;
             else if(zPosition < 0)
-                cameraRx = -Math.PI;
+                cameraRz = -Math.PI;
                 
-            if(xPostion < 0 && cameraRx > 0)
-                cameraRx += Math.PI;
-            else if(xPostion < 0 && cameraRx < 0)
-                cameraRx -= Math.PI;
+            if(xPosition < 0 && cameraRz > 0)
+                cameraRz += Math.PI;
+            else if(xPosition < 0 && cameraRz < 0)
+                cameraRz -= Math.PI;
             
-            if(xPostiton != 0)
-                cameraRy = atan(yPosition/xPosition);
+            if(xPosition != 0 && zPosition != 0)
+                cameraRy = atan(yPosition/POW(POW(xPosition,2)+POW(xPosition,2),.5));
             else if(yPosition > 0)
                 cameraRy = Math.PI;
             else if(yPosition < 0)
                 cameraRy = -Math.PI;
-                
-            if(xPostion < 0 && cameraRy > 0)
-                cameraRy += Math.PI;
-            else if(xPostion < 0 && cameraRy < 0)
-                cameraRy -= Math.PI;
+            
+            cameraRz += MvX;
+            cameraRy += MvY;
+            
             
             xPosition = xPosStart - (e.pageX-xStart)/10;
             yPosition = yPosStart - (e.pageY-yStart)/10;
