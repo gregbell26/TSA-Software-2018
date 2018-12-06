@@ -23,7 +23,7 @@ else{
     shapes = [];
     borders = [];
     selectedShape = 0;
-    var shapeData = JSON.parse(localStorage.getItem('shapes'));
+    var shapeData = JSON.parse(localStorage.getItem('shapes'));//TODO NO
     keyFrames = JSON.parse(localStorage.getItem('keyFrames'));
     scales = JSON.parse(localStorage.getItem('scales'));
     console.log(shapeData);

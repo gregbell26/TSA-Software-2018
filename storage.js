@@ -1,9 +1,38 @@
-function save(){
+/*function save(){
     localStorage.setItem('keyFrames',JSON.stringify(keyFrames));
     localStorage.setItem('shapes',JSON.stringify(convertShapeObjs()));
     localStorage.setItem('scales',JSON.stringify(scales));
     console.log('saved')
+}*/
+
+
+function startSaveSubSystem(isUsingSaves){
+    //check if we are using saves
+    //LAUGHS AT JORDEN
+
 }
+
+
+function save() {
+    //check for changes
+    //set new version number
+    //Save name as file name
+    //save all data
+    //print message to console
+    //???
+    //profit
+
+}
+
+
+function loadSave(name){
+    //check name with local save
+    //if not then print error
+    //if so then load save
+
+}
+
+//Todo Redo this function
 function convertShapeObjs(){
     var arr= [];
     for (var i=0; i<shapes.length; i++){
@@ -32,10 +61,10 @@ function loadSet(name){
 //everything below here is for Firebase.
 function cloudSave(){
     var obj = {};
-    obj.keyFrames = keyFrames
+    obj.keyFrames = keyFrames;
     obj.shapes = convertShapeObjs();
     obj.scales = scales;
-    console.log(obj)
+    console.log(obj);
     firebase.database().ref(uid).set(obj);
 }
 
@@ -54,14 +83,14 @@ function cloudGet(){
                 var newGeometry = new THREE.BoxGeometry(1 , 1, 1);
                 var newMaterial = new THREE.MeshBasicMaterial({color: 0x00ff00});
                 shapes[shapes.length]=new THREE.Mesh(newGeometry, newMaterial);
-                newGeometry.name = "cube"
+                newGeometry.name = "cube";
                 loadCloudShape(shapeData);
             }
             else if (type=="CylinderGeometry"){
                 var newGeometry = new THREE.CylinderGeometry( 0.5, 0.5, 1, 100);
                 var newMaterial = new THREE.MeshBasicMaterial({color: 0x00ff00});
                 shapes[shapes.length]=new THREE.Mesh(newGeometry, newMaterial);
-                newGeometry.name = "cylinder"
+                newGeometry.name = "cylinder";
                 loadCloudShape(shapeData);
             }
         }
