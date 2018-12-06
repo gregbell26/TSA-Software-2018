@@ -59,9 +59,9 @@ $(document).ready(function(){
             cameraRz += MvX;
             cameraRy += MvY;
             
-            xPosition = zoom * cos(cameraRz)/5;
-            //yPosition =
-            zPosition = zoom * sin(cameraRz)/5;
+            xPosition = zoom * cos(cameraRz);
+            yPosition = zoom * sin(cameraRy);
+            zPosition = zoom * sin(cameraRz);
             
             
             xPosition = xPosStart - (e.pageX-xStart)/10;
