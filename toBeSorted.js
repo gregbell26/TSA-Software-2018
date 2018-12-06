@@ -62,10 +62,6 @@ $(document).ready(function(){
             xPosition = zoom * cos(cameraRz);
             yPosition = zoom * sin(cameraRy);
             zPosition = zoom * sin(cameraRz);
-            
-            
-            xPosition = xPosStart - (e.pageX-xStart)/10;
-            yPosition = yPosStart - (e.pageY-yStart)/10;
         }
     });
 });
