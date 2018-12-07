@@ -6,9 +6,16 @@
 }*/
 
 
-function startSaveSubSystem(isUsingSaves){
-    //check if we are using saves
-    //LAUGHS AT JORDEN
+function startSaveSubSystem(isUsingSaves, loadPreviousSave, saveToLoad){
+    if(isUsingSaves){
+        console.log("Starting save subsystem....");
+        if(!loadPreviousSave){
+            console.log("Creating new save....");
+            localStorage.setItem(saveToLoad, "1");
+        }
+
+
+    }
 
 }
 
@@ -25,7 +32,7 @@ function save() {
 }
 
 
-function loadSave(name){
+function loadSave(saveToLoad){
     //check name with local save
     //if not then print error
     //if so then load save
