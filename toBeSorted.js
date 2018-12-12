@@ -17,7 +17,7 @@ var xPosStart = xPosition;//the cameras start position x
 var yPosStart = yPosition;//the cameras start position y
 
 var mouseDown = false;//if the right mouse button is pressed down
-var mouseSensitivity = 0.1;//the percent sensitivity
+var mouseSensitivity = 1;//the percent sensitivity
 var zoom = 5;//the zoom on the cube
 $(document).on('mousedown',function(e){
     if(e.pageX>=300 && e.pageY >=50) {
@@ -62,6 +62,12 @@ $(document).ready(function(){
             xPosition = zoom * Math.cos(cameraRz);
             yPosition = zoom * Math.sin(cameraRy);
             zPosition = zoom * Math.sin(cameraRz);
+
+            if(e.pageX>=300 && e.pageY >=50) {
+                xStart = e.pageX;
+                yStart = e.pageY;
+                mouseDown = true;
+            }
         }
     });
 });
