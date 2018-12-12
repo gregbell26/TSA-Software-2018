@@ -17,7 +17,7 @@ var xPosStart = xPosition;//the cameras start position x
 var yPosStart = yPosition;//the cameras start position y
 
 var mouseDown = false;//if the right mouse button is pressed down
-var mouseSensitivity = 1;//the percent sensitivity
+var mouseSensitivity = 2;//the percent sensitivity
 var zoom = 5;//the zoom on the cube
 $(document).on('mousedown',function(e){
     if(e.pageX>=300 && e.pageY >=50) {
@@ -50,7 +50,7 @@ $(document).ready(function(){
                 cameraRz -= Math.PI;
             
             if(xPosition != 0 && zPosition != 0)
-                cameraRy = Math.atan(yPosition/POW(POW(xPosition,2)+POW(xPosition,2),.5));
+                cameraRy = Math.atan(yPosition/Math.POW(Math.POW(xPosition,2)+Math.POW(xPosition,2),.5));
             else if(yPosition > 0)
                 cameraRy = Math.PI;
             else if(yPosition < 0)
