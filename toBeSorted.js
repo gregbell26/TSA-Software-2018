@@ -38,7 +38,7 @@ $(document).ready(function(){
             var cameraRz;
             var cameraRy;
             if(xPosition != 0)
-                cameraRz = atan(zPosition/xPosition);
+                cameraRz = Math.atan(zPosition/xPosition);
             else if(zPosition > 0)
                 cameraRz = Math.PI;
             else if(zPosition < 0)
@@ -50,7 +50,7 @@ $(document).ready(function(){
                 cameraRz -= Math.PI;
             
             if(xPosition != 0 && zPosition != 0)
-                cameraRy = atan(yPosition/POW(POW(xPosition,2)+POW(xPosition,2),.5));
+                cameraRy = Math.atan(yPosition/POW(POW(xPosition,2)+POW(xPosition,2),.5));
             else if(yPosition > 0)
                 cameraRy = Math.PI;
             else if(yPosition < 0)
