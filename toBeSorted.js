@@ -17,7 +17,7 @@ var xPosStart = xPosition;//the cameras start position x
 var yPosStart = yPosition;//the cameras start position y
 
 var mouseDown = false;//if the right mouse button is pressed down
-var mouseSensitivity = 100;//the percent sensitivity
+var mouseSensitivity = 10;//the percent sensitivity
 var zoom = 5;//the zoom on the cube
 $(document).on('mousedown',function(e){
     if(e.pageX>=300 && e.pageY >=50) {
