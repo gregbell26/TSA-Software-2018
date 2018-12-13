@@ -11,14 +11,16 @@ var renderer = new THREE.WebGLRenderer({logarithmicDepthBuffer: true });
 renderer.setSize( document.getElementById("mainWindow").offsetWidth, document.getElementById("mainWindow").offsetHeight );
 document.getElementById("mainWindow").appendChild( renderer.domElement );
 
+
 var shapes = [];
 var scales = [];
 var keyFrames = [];
 var borders = [];
-if(localStorage.getItem('keyFrames')==null){
+if(!saveSubSystem.isUsingSaves){
+    saveSubSystem.startSaveSubSystem(true, false, "A Save");
     shapeMenu();
 }
-else{
+else {
     //shapes = JSON.parse(localStorage.getItem('shapes'));
     shapes = [];
     borders = [];
