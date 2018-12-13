@@ -1,5 +1,29 @@
 /*This is gregory's code*/
-/*hello this is schmidy*/
+@keyframes startUpScreen {
+    0% {background-color: #4b0000
+    }
+    10% {background-color: #4b0035
+    }
+    20% {background-color: #4a004b
+    }
+    30% {background-color: #23004b
+    }
+    40% {background-color: #01004b
+    }
+    50% {background-color: #00234b
+    }
+    60% {background-color: #00404b
+    }
+    70% {background-color: #00484b
+    }
+    80% {background-color: #004b24
+    }
+    90% {background-color: #034b00
+    }
+    100% {background-color: #4b0000
+    }
+
+}
 
 html, body {
     overflow: hidden;
@@ -14,6 +38,22 @@ html, body {
     right:0;
     background-color:white;
     z-index: 2;
+    /*DON'T PANIC*/
+    animation-name: startUpScreen;
+    animation-duration: 20s;
+    animation-iteration-count: infinite;
+
+}
+
+#welcomeScreenBody {
+    color: #ffffff;
+    display: block;
+    height: auto;
+    width: 50%;
+    /*Should center on sreen*/
+    margin: auto;
+    text-align: center;
+
 }
 
 .parameterBox {

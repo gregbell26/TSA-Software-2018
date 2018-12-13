@@ -14,12 +14,15 @@
 </head>
 <body>
     <div id="welcomeScreen">
-        <h1>Welcome to Monarch Animation</h1>
-        <h2>2019 TSA Project</h2>
-        <h3>Choose how you want to start:</h3>
-        <button onclick="document.getElementById('welcomeScreen').style.display = 'none';" class="objButton startButton">Start from scratch</button>
-        <!--<button>Upload a file</button>-->
-        <button onclick="launchTutorial()" class="objButton startButton">View the tutorial</button>
+        <div id="welcomeScreenBody">
+            <h1><strong>Welcome to Monarch Animation</strong></h1>
+            <!--<h2>2019 TSA Project</h2>-->
+            <h3>Choose how you want to start:</h3>
+            <button onclick="document.getElementById('welcomeScreen').style.display = 'none'; saveSubSystem.isUsingSaves =false; " class="objButton startButton">Start from scratch</button>
+            <!--<button>Upload a file</button>-->
+            <button onclick="launchTutorial()" class="objButton startButton">View the tutorial</button>
+            <button onclick="document.getElementById('welcomeScreen').style.display = 'none'; saveSubSystem.isUsingSaves =true; "; class="objButton startButton">Load Save</button>
+        </div>
     </div>
 
     <span id='tutorialArrow' style="
@@ -45,7 +48,7 @@
         </button>
         <button onfocus="this.blur()" class="material-icons md-48 topButton" id="cameraButton" onclick="cameraMenu()">camera_alt</button>
         <button onfocus="this.blur()" class="material-icons md-48 topButton" id="keyButton" onclick="keyMenu()">vpn_key</button>
-        <button onfocus="this.blur()" class="material-icons md-48 topButton" id="saveButton" onclick="save()">save_alt</button>
+        <button onfocus="this.blur()" class="material-icons md-48 topButton" id="saveButton" onclick="saveSubSystem.save()">save_alt</button>
         <button onfocus="this.blur()" class="material-icons md-48 topButton" id="userButton" onclick="signInWithGoogle()">person</button>
         <button onfocus="this.blur()" class="topButton" style="font-size: 20px" id="meshButton" onclick="meshMenu()">mesh</button>
         <button onfocus="this.blur()" class="material-icons md-48 topButton" id="settingsButton">settings</button>
