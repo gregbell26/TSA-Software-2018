@@ -32,12 +32,12 @@ $(document).on('mouseup',function(e){
 $(document).ready(function(){
     $(document).on('mousemove', function(e){
         if(mouseDown){
-            //zoom calc here
+            zoom = Math.pow((Math.pow(xPosition,2)+Math.pow(yPosition,2)+Math.pow(zPosition,2)),.5);//zoom calc here
             var MvX = mouseSensitivity*(e.pageX-xStart)/100;
             var MvY = mouseSensitivity*(e.pageY-yStart)/100;
             var cameraRz;
             var cameraRy;
-            if(xPosition != 0)
+            if(xPosition !== 0)
                 cameraRz = Math.atan(zPosition/xPosition);
             else if(zPosition > 0)
                 cameraRz = Math.PI;
@@ -49,8 +49,8 @@ $(document).ready(function(){
             else if(xPosition < 0 && cameraRz < 0)
                 cameraRz -= Math.PI;
             
-            if(xPosition != 0 && zPosition != 0)
-                cameraRy = Math.atan(yPosition/Math.pow(Math.pow(xPosition,2)+Math.pow(xPosition,2),.5));
+            if(xPosition !== 0 && zPosition !== 0)
+                cameraRy = Math.atan(yPosition/(Math.pow(Math.pow(xPosition,2)+Math.pow(xPosition,2),.5)));
             else if(yPosition > 0)
                 cameraRy = Math.PI;
             else if(yPosition < 0)
