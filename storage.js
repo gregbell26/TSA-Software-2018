@@ -3,6 +3,7 @@
     console.log('saved')
 }*/
 
+
 /**
  * Wow
  * This is a special form of torture
@@ -16,7 +17,7 @@ var saveSubSystem =
     openPrevious : false,
     currentVer : 0,
     fileName : "",
-    saveFileNamesList : ['',''],
+    saveFileNamesList : [],
 
 
     setFileName : function(fileName) {
@@ -24,8 +25,8 @@ var saveSubSystem =
         console.log("Old Name: " + this.fileName);
         console.log("New Name: " + fileName);
         this.fileName = fileName;
-        saveFileNamesList.push(this.fileName);
-        localStorage.setItem("fileNames", JSON.stringify(saveFileNamesList));
+        this.saveFileNamesList.push(this.fileName);
+        localStorage.setItem("fileNames", JSON.stringify(this.saveFileNamesList));
         console.log("Saved new file. FILE DATA IS NOT SAVED");
     },
 
@@ -85,7 +86,9 @@ var saveSubSystem =
     },
 
     loadSaveNames : function () {
-        saveFileNamesList = JSON.parse(localStorage.getItem("fileNames"));
+        if(localStorage.getItem("fileNames") !== null) {
+            this.saveFileNamesList = JSON.parse(localStorage.getItem("fileNames"));
+        }
     }
 
 
@@ -117,7 +120,7 @@ var saveSubSystem =
             selectedShape = 0;
             for (var i = 0; i < shapeData.length; i++) {
                 var type = shapeData[i].type;
-                if (type == "BoxGeometry") {
+                if (type === "BoxGeometry") {
                     var newGeometry = new THREE.BoxGeometry(1, 1, 1);
                     var newMaterial = new THREE.MeshBasicMaterial({color: 0x00ff00});
                     shapes[shapes.length] = new THREE.Mesh(newGeometry, newMaterial);
