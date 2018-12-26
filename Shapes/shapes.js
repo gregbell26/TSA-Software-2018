@@ -1,4 +1,4 @@
-//corbin wrote this method, simplified by Jordan
+-//corbin wrote this method, simplified by Jordan
 function moveShape(dimension, value) {
     shapes[selectedShape].position[dimension] = Number(value);
     borders[selectedShape].position[dimension] = Number(value);

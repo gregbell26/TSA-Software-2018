@@ -56,6 +56,17 @@ html, body {
 
 }
 
+#saveFileContainer {
+    color: #ffffff;
+    display: block;
+    height: auto;
+    width: 50%;
+    /*Should center on sreen*/
+    margin: auto;
+    text-align: center;
+}
+
+
 .parameterBox {
 	margin: 3px;
 	padding: 1px;

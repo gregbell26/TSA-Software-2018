@@ -13,22 +13,27 @@
 var saveSubSystem =
 {
     isUsingSaves : false,
+    openPrevious : false,
     currentVer : 0,
     fileName : "",
+    saveFileNamesList : ['',''],
 
 
-    startSaveSubSystem :function (isUsingSaves, loadPreviousSave, saveToLoad) {
-        if (isUsingSaves) {
-            this.currentVer++;
-            console.log("Starting save subsystem....");
-            if (!loadPreviousSave) {
-                console.log("Creating new save....");
-                localStorage.setItem(this.fileName, "1");
-            }
+    setFileName : function(fileName) {
+        console.log("Replacing active file name");
+        console.log("Old Name: " + this.fileName);
+        console.log("New Name: " + fileName);
+        this.fileName = fileName;
+        saveFileNamesList.push(this.fileName);
+        localStorage.setItem("fileNames", JSON.stringify(saveFileNamesList));
+        console.log("Saved new file. FILE DATA IS NOT SAVED");
+    },
 
-
-        }
-
+    setIsUsingSaves: function(usingSaves, loading){
+        console.log("New status " + usingSaves);
+        this.isUsingSaves = usingSaves;
+        console.log("New loading status: " + loading);
+        this.openPrevious = loading;
     },
 
 
@@ -37,10 +42,9 @@ var saveSubSystem =
         this.currentVer++;
         localStorage.setItem(this.fileName, this.currentVer);
         //make better
-        localStorage.setItem('keyFrames' + this.fileName,JSON.stringify(keyFrames));
-        localStorage.setItem('shapes' + this.fileName,JSON.stringify(this.convertShapeObjs()));
-        localStorage.setItem('scales' + this.fileName ,JSON.stringify(scales));
-        localStorage.setItem("EOF SAVE: " + this.fileName);
+        localStorage.setItem('keyFrames:' + this.fileName,JSON.stringify(keyFrames));
+        localStorage.setItem('shapes:' + this.fileName,JSON.stringify(this.convertShapeObjs()));
+        localStorage.setItem('scales:' + this.fileName ,JSON.stringify(scales));
         console.log("Save of " + this.fileName + " complete.")
         //???
         //profit
@@ -55,7 +59,7 @@ var saveSubSystem =
 
     },
 
-//Todo Redo this function
+//this seems to be working fine. I think we are good to go with this
     convertShapeObjs : function () {
         var arr = [];
         for (var i = 0; i < shapes.length; i++) {
@@ -78,7 +82,13 @@ var saveSubSystem =
 
     loadSet: function (name) {
 
+    },
+
+    loadSaveNames : function () {
+        saveFileNamesList = JSON.parse(localStorage.getItem("fileNames"));
     }
+
+
 };
 
 
