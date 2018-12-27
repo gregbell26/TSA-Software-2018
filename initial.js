@@ -11,41 +11,141 @@ var renderer = new THREE.WebGLRenderer({logarithmicDepthBuffer: true });
 renderer.setSize( document.getElementById("mainWindow").offsetWidth, document.getElementById("mainWindow").offsetHeight );
 document.getElementById("mainWindow").appendChild( renderer.domElement );
 
+//lists of cool things
 var shapes = [];
 var scales = [];
 var keyFrames = [];
 var borders = [];
-if(localStorage.getItem('keyFrames')==null){
-    shapeMenu();
-}
-else{
-    //shapes = JSON.parse(localStorage.getItem('shapes'));
-    shapes = [];
-    borders = [];
-    selectedShape = 0;
-    var shapeData = JSON.parse(localStorage.getItem('shapes'));//TODO NO
-    keyFrames = JSON.parse(localStorage.getItem('keyFrames'));
-    scales = JSON.parse(localStorage.getItem('scales'));
-    console.log(shapeData);
-    for(var i=0; i<shapeData.length; i++){
-        var type = shapeData[i].type;
-        var newGeometry;
-        var borderGeometry;
-        if (type =="TextGeometry") {
-            console.log('text');
-            var loader = new THREE.FontLoader();
-            loader.load( 'fonts/helvetiker_regular.typeface.json', function ( font ) {
 
-                newGeometry = new THREE.TextGeometry( 'Text test!', {
-                    font: font,
-                    size: 1,
-                    height: 0.05,
-                    curveSegments: 6,
-                    bevelEnabled: false
+//Stuff for saves
+
+saveSubSystem.loadSaveNames();//Loads the names of the saves into an arraylist
+var div = document.querySelector("#saveFileContainer"),
+    frag = document.createDocumentFragment(),
+    saveSelector = document.createElement("select");
+
+if (saveSubSystem.saveFileNamesList.length !== 0){
+    for(var i =0; i < saveSubSystem.saveFileNamesList.length; i++)
+        saveSelector.options.add(new Option(saveSubSystem.saveFileNamesList[i], saveSubSystem.saveFileNamesList[i]));//parm 1 is the text displayed to the user
+                                                                                                                    //Parm 2 is what the javascript sees
+}
+saveSelector.options.add(new Option("New Save", "GET NAME"));
+
+
+
+frag.appendChild(saveSelector);
+div.appendChild(frag);
+//---------------------
+
+
+
+
+
+//Greatness by Gregory
+function start() {
+    if(saveSelector.valueOf() === "GET NAME" || !saveSubSystem.openPrevious){
+        var saveName = prompt("Please enter a name for your save", "New Animation");
+        if (saveName !== null) {
+            console.log("User message received.");
+            saveSubSystem.setIsUsingSaves(true);
+            saveSubSystem.setFileName(saveName);
+        }
+    }
+    if(!saveSubSystem.isUsingSaves){
+        console.log("Save subsystem has been disabled by the user");
+
+    }
+
+    if(saveSubSystem.openPrevious && saveSubSystem.isUsingSaves){
+        //shapes = JSON.parse(localStorage.getItem('shapes'));
+        shapes = [];
+        borders = [];
+        selectedShape = 0;
+        var shapeData = JSON.parse(localStorage.getItem('shapes'));//TODO NO
+        keyFrames = JSON.parse(localStorage.getItem('keyFrames'));
+        scales = JSON.parse(localStorage.getItem('scales'));
+        console.log(shapeData);
+        for(var i=0; i<shapeData.length; i++){
+            var type = shapeData[i].type;
+            var newGeometry;
+            var borderGeometry;
+            if (type =="TextGeometry") {
+                console.log('text');
+                var loader = new THREE.FontLoader();
+                loader.load( 'fonts/helvetiker_regular.typeface.json', function ( font ) {
+
+                    newGeometry = new THREE.TextGeometry( 'Text test!', {
+                        font: font,
+                        size: 1,
+                        height: 0.05,
+                        curveSegments: 6,
+                        bevelEnabled: false
+                    } );
+                    newGeometry.name="text";
+                    const newMaterial = new THREE.MeshBasicMaterial({color: 0x00ff00});
+                    shapes[shapes.length] = new THREE.Mesh(newGeometry, newMaterial);
+                    scene.add(shapes[shapes.length - 1]);
+                    shapes[selectedShape].position.x = shapeData[i].positionX;
+                    shapes[selectedShape].position.y = shapeData[i].positionY;
+                    shapes[selectedShape].position.z = shapeData[i].positionZ;
+                    shapes[selectedShape].material.color.r = shapeData[i].r;
+                    shapes[selectedShape].material.color.g = shapeData[i].g;
+                    shapes[selectedShape].material.color.b = shapeData[i].b;
+                    selectedShape++;
                 } );
-                newGeometry.name="text";
+            }
+            else {
+                if (type == "BoxGeometry") {
+                    newGeometry = new THREE.BoxGeometry(1, 1, 1);
+                    borderGeometry = new THREE.BoxBufferGeometry(1, 1, 1);
+                    newGeometry.name = "cube"
+                }
+                else if (type == "CylinderGeometry") {
+                    newGeometry = new THREE.CylinderGeometry(0.5, 0.5, 1, 100);
+                    borderGeometry = new THREE.CylinderBufferGeometry(0.5, 0.5, 1, 100);
+                    newGeometry.name = "cylinder"
+                }
+                else if (type == "ConeGeometry") {
+                    newGeometry = new THREE.ConeGeometry(0.5, 1, 100);
+                    borderGeometry = new THREE.ConeBufferGeometry(0.5, 1, 100);
+                    newGeometry.name = "cone"
+                }
+                else if (type == "DodecahedronGeometry") {
+                    newGeometry = new THREE.DodecahedronGeometry(0.5, 0);
+                    borderGeometry = new THREE.DodecahedronBufferGeometry(0.5, 0);
+                    newGeometry.name = "dodecahedron"
+                }
+                else if (type == "IcosahedronGeometry") {
+                    newGeometry = new THREE.IcosahedronGeometry(0.5, 0);
+                    borderGeometry = new THREE.IcosahedronBufferGeometry(0.5, 0);
+                    newGeometry.name = "icosahedron"
+                }
+                else if (type == "OctahedronGeometry") {
+                    newGeometry = new THREE.OctahedronGeometry(0.5, 0);
+                    borderGeometry = new THREE.OctahedronBufferGeometry(0.5, 0);
+                    newGeometry.name = "octahedron"
+                }
+                else if (type == "TetrahedronGeometry") {
+                    newGeometry = new THREE.TetrahedronGeometry(0.5, 0);
+                    borderGeometry = new THREE.TetrahedronBufferGeometry(0.5, 0);
+                    newGeometry.name = "praymid"
+                }
+                else if (type == "TorusGeometry") {
+                    newGeometry = new THREE.TorusGeometry(0.5, 0.25, 200, 200);
+                    borderGeometry = new THREE.TorusBufferGeometry(0.5, 0.25, 200, 200);
+                    newGeometry.name = "ring"
+                }
+                else if (type == "SphereGeometry") {
+                    newGeometry = new THREE.SphereGeometry(0.5, 100, 100);
+                    borderGeometry = new THREE.SphereBufferGeometry(0.5, 100, 100);
+                    newGeometry.name = "sphere"
+                }
                 const newMaterial = new THREE.MeshBasicMaterial({color: 0x00ff00});
                 shapes[shapes.length] = new THREE.Mesh(newGeometry, newMaterial);
+                var edges = new THREE.EdgesGeometry( borderGeometry );
+                var borderToAdd = new THREE.LineSegments( edges, new THREE.LineBasicMaterial( { color: 0xffffff } ) );
+                borders.push(borderToAdd);
+                scene.add( borderToAdd );
                 scene.add(shapes[shapes.length - 1]);
                 shapes[selectedShape].position.x = shapeData[i].positionX;
                 shapes[selectedShape].position.y = shapeData[i].positionY;
@@ -53,73 +153,13 @@ else{
                 shapes[selectedShape].material.color.r = shapeData[i].r;
                 shapes[selectedShape].material.color.g = shapeData[i].g;
                 shapes[selectedShape].material.color.b = shapeData[i].b;
+                borders[selectedShape].scale.x = scales[selectedShape][0];
+                borders[selectedShape].scale.y = scales[selectedShape][1];
+                borders[selectedShape].scale.z = scales[selectedShape][2];
                 selectedShape++;
-            } );
-        }
-        else {
-            if (type == "BoxGeometry") {
-                newGeometry = new THREE.BoxGeometry(1, 1, 1);
-                borderGeometry = new THREE.BoxBufferGeometry(1, 1, 1);
-                newGeometry.name = "cube"
             }
-            else if (type == "CylinderGeometry") {
-                newGeometry = new THREE.CylinderGeometry(0.5, 0.5, 1, 100);
-                borderGeometry = new THREE.CylinderBufferGeometry(0.5, 0.5, 1, 100);
-                newGeometry.name = "cylinder"
-            }
-            else if (type == "ConeGeometry") {
-                newGeometry = new THREE.ConeGeometry(0.5, 1, 100);
-                borderGeometry = new THREE.ConeBufferGeometry(0.5, 1, 100);
-                newGeometry.name = "cone"
-            }
-            else if (type == "DodecahedronGeometry") {
-                newGeometry = new THREE.DodecahedronGeometry(0.5, 0);
-                borderGeometry = new THREE.DodecahedronBufferGeometry(0.5, 0);
-                newGeometry.name = "dodecahedron"
-            }
-            else if (type == "IcosahedronGeometry") {
-                newGeometry = new THREE.IcosahedronGeometry(0.5, 0);
-                borderGeometry = new THREE.IcosahedronBufferGeometry(0.5, 0);
-                newGeometry.name = "icosahedron"
-            }
-            else if (type == "OctahedronGeometry") {
-                newGeometry = new THREE.OctahedronGeometry(0.5, 0);
-                borderGeometry = new THREE.OctahedronBufferGeometry(0.5, 0);
-                newGeometry.name = "octahedron"
-            }
-            else if (type == "TetrahedronGeometry") {
-                newGeometry = new THREE.TetrahedronGeometry(0.5, 0);
-                borderGeometry = new THREE.TetrahedronBufferGeometry(0.5, 0);
-                newGeometry.name = "praymid"
-            }
-            else if (type == "TorusGeometry") {
-                newGeometry = new THREE.TorusGeometry(0.5, 0.25, 200, 200);
-                borderGeometry = new THREE.TorusBufferGeometry(0.5, 0.25, 200, 200);
-                newGeometry.name = "ring"
-            }
-            else if (type == "SphereGeometry") {
-                newGeometry = new THREE.SphereGeometry(0.5, 100, 100);
-                borderGeometry = new THREE.SphereBufferGeometry(0.5, 100, 100);
-                newGeometry.name = "sphere"
-            }
-            const newMaterial = new THREE.MeshBasicMaterial({color: 0x00ff00});
-            shapes[shapes.length] = new THREE.Mesh(newGeometry, newMaterial);
-            var edges = new THREE.EdgesGeometry( borderGeometry );
-            var borderToAdd = new THREE.LineSegments( edges, new THREE.LineBasicMaterial( { color: 0xffffff } ) );
-            borders.push(borderToAdd);
-            scene.add( borderToAdd );
-            scene.add(shapes[shapes.length - 1]);
-            shapes[selectedShape].position.x = shapeData[i].positionX;
-            shapes[selectedShape].position.y = shapeData[i].positionY;
-            shapes[selectedShape].position.z = shapeData[i].positionZ;
-            shapes[selectedShape].material.color.r = shapeData[i].r;
-            shapes[selectedShape].material.color.g = shapeData[i].g;
-            shapes[selectedShape].material.color.b = shapeData[i].b;
-            borders[selectedShape].scale.x = scales[selectedShape][0];
-            borders[selectedShape].scale.y = scales[selectedShape][1];
-            borders[selectedShape].scale.z = scales[selectedShape][2];
-            selectedShape++;
         }
     }
 }
+
 //
