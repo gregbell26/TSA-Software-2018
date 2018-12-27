@@ -17,7 +17,7 @@ var xPosStart = xPosition;//the cameras start position x
 var yPosStart = yPosition;//the cameras start position y
 
 var mouseDown = false;//if the right mouse button is pressed down
-var mouseSensitivity = 100;//the percent sensitivity
+var mouseSensitivity = 0.01;//the percent sensitivity
 var zoom = 5;//the zoom on the cube
 $(document).on('mousedown',function(e){
     if(e.pageX>=300 && e.pageY >=50) {
@@ -38,7 +38,7 @@ $(document).ready(function(){
             var cameraRz;
             var cameraRy;
             if(xPosition != 0)
-                cameraRz = atan(zPosition/xPosition);
+                cameraRz = Math.atan(zPosition/xPosition);
             else if(zPosition > 0)
                 cameraRz = Math.PI;
             else if(zPosition < 0)
@@ -50,7 +50,7 @@ $(document).ready(function(){
                 cameraRz -= Math.PI;
             
             if(xPosition != 0 && zPosition != 0)
-                cameraRy = atan(yPosition/POW(POW(xPosition,2)+POW(xPosition,2),.5));
+                cameraRy = Math.atan(yPosition/Math.pow(Math.pow(xPosition,2)+Math.pow(xPosition,2),.5));
             else if(yPosition > 0)
                 cameraRy = Math.PI;
             else if(yPosition < 0)
@@ -59,9 +59,9 @@ $(document).ready(function(){
             cameraRz += MvX;
             cameraRy += MvY;
             
-            xPosition = zoom * cos(cameraRz);
-            yPosition = zoom * sin(cameraRy);
-            zPosition = zoom * sin(cameraRz);
+            xPosition = zoom * Math.cos(cameraRz);
+            yPosition = zoom * Math.sin(cameraRy);
+            zPosition = zoom * Math.sin(cameraRz);
         }
     });
 });
