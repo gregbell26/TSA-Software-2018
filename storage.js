@@ -19,6 +19,10 @@ var saveSubSystem =
     fileName : "",
     saveFileNamesList : [],
 
+    loadedKeyframes : [],
+    loadedShapes : [],
+    loadedScales : [],
+
 
     setFileName : function(fileName) {
         console.log("Replacing active file name");
@@ -53,10 +57,20 @@ var saveSubSystem =
     },
 
 
-    loadSave: function (saveToLoad) {
-        //check name with local save
-        //if not then print error
-        //if so then load save
+    loadSave: function () {
+        var processedShapeData= [];
+        if(localStorage.getItem(this.fileName) !== null){
+            this.currentVer = localStorage.getItem(this.fileName);
+            this.loadedKeyframes = JSON.parse(localStorage.getItem("keyFrames:"+this.fileName));
+            this.loadedScales = JSON.parse(localStorage.getItem("scales:"+this.fileName));
+            this.loadedShapes = JSON.parse(localStorage.getItem("shapes:"+this.fileName));
+            processedShapeData = processShapeData(this.loadedShapes, this.loadedScales);
+        }
+        else{
+            console.log("Save not found.");
+            processedShapeData.push(1);
+        }
+        return processedShapeData;
 
     },
 
