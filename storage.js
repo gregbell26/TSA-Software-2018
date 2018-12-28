@@ -24,14 +24,17 @@ var saveSubSystem =
     loadedScales : [],
 
 
-    setFileName : function(fileName) {
+    setFileName : function(fileName, newFile) {
         console.log("Replacing active file name");
         console.log("Old Name: " + this.fileName);
         console.log("New Name: " + fileName);
         this.fileName = fileName;
-        this.saveFileNamesList.push(this.fileName);
-        localStorage.setItem("fileNames", JSON.stringify(this.saveFileNamesList));
-        console.log("Saved new file. FILE DATA IS NOT SAVED");
+        if (newFile) {
+            this.saveFileNamesList.push(this.fileName);
+            localStorage.setItem("fileNames", JSON.stringify(this.saveFileNamesList));
+            console.log("Saved new file. FILE DATA IS NOT SAVED");
+        }
+
     },
 
     setIsUsingSaves: function(usingSaves, loading){

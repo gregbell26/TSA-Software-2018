@@ -25,9 +25,10 @@ var div = document.querySelector("#saveFileContainer"),
     saveSelector = document.createElement("select");
 
 if (saveSubSystem.saveFileNamesList.length !== 0){
-    for(var i =0; i < saveSubSystem.saveFileNamesList.length; i++)
+    for(var i =0; i < saveSubSystem.saveFileNamesList.length; i++) {
         saveSelector.options.add(new Option(saveSubSystem.saveFileNamesList[i], saveSubSystem.saveFileNamesList[i]));//parm 1 is the text displayed to the user
-                                                                                                                    //Parm 2 is what the javascript sees
+        //Parm 2 is what the javascript sees
+    }
 }
 saveSelector.options.add(new Option("New Save", "GET NAME"));
 
@@ -49,14 +50,15 @@ function start() {
     keyFrames =[];
     borders= [];
     selectedShape = 0;
+    //console.log(saveSelector.options[saveSelector.selectedIndex].value);
 
 
-    if(saveSelector.valueOf() === "GET NAME" || !saveSubSystem.openPrevious){
+    if(saveSelector.options[saveSelector.selectedIndex].value === "GET NAME" || !saveSubSystem.openPrevious){
         var saveName = prompt("Please enter a name for your save", "New Animation");
         if (saveName !== null) {
             console.log("User message received.");
             saveSubSystem.setIsUsingSaves(true);
-            saveSubSystem.setFileName(saveName);
+            saveSubSystem.setFileName(saveName, true);
         }
     }
     if(!saveSubSystem.isUsingSaves){
@@ -65,9 +67,9 @@ function start() {
     }
 
     if(saveSubSystem.openPrevious && saveSubSystem.isUsingSaves){
-        saveSubSystem.setFileName(saveSelector.valueOf());
+        saveSubSystem.setFileName(saveSelector.options[saveSelector.selectedIndex].value, false);
         var loadedData = saveSubSystem.loadSave();
-        if(loadedData ===1 || loadedData[0][0] === 1){
+        if(loadedData[0] ===1 || loadedData[0][0] === 1){
             console.log("An error occured during loading");
             return;
         }
@@ -86,6 +88,14 @@ function start() {
             shapes[i].material.color.r = loadedData[0][i].r;
             shapes[i].material.color.g = loadedData[0][i].g;
             shapes[i].material.color.b = loadedData[0][i].b;
+
+            /*
+            shapes[i].scale.x = scales[i][0];
+            shapes[i].scale.y = scales[i][1];
+            shapes[i].scale.z = scales[i][2];
+            */
+
+
 
             borders[i].scale.x = scales[i][0];
             borders[i].scale.y = scales[i][1];
