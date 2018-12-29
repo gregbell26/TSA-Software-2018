@@ -86,7 +86,7 @@ function start() {
             console.log(scales);
 
 //This is throwing undefined errors for some reason-- The parameter is there its just not correct...
-            //Might want to try to create a new object then just adding the parameters... But that would be extreamly taxing on the ram and the cpu as I can't delete an object that is no longer in use because javascript sucks. 
+            //Might want to try to create a new object then just adding the parameters... But that would be extreamly taxing on the ram and the cpu as I can't delete an object that is no longer in use because javascript sucks.
             /*shapes[i].positionX = loadedData[0][i].positionX;
             shapes[i].positionY = loadedData[0][i].positionY;
             shapes[i].positionZ = loadedData[0][i].positionZ;
