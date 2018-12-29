@@ -61,7 +61,7 @@ var saveSubSystem =
 
 
     loadSave: function () {
-        var processedShapeData= [];
+        var processedShapeData= [[],[]];
         if(localStorage.getItem(this.fileName) !== null){
             this.currentVer = localStorage.getItem(this.fileName);
             this.loadedKeyframes = JSON.parse(localStorage.getItem("keyFrames:"+this.fileName));
@@ -71,8 +71,11 @@ var saveSubSystem =
         }
         else{
             console.log("Save not found.");
-            processedShapeData.push(1);
+            processedShapeData[0][0] = 1;
         }
+        for(var i =0; i <processedShapeData.length; i++)
+            for(var j=0; j < processedShapeData[i].length; j++)
+                console.log(processedShapeData[i][j]);
         return processedShapeData;
 
     },

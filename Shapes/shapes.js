@@ -69,8 +69,8 @@ function printArray(arr){
 }
 
 function processShapeData(loadedShapes,loadedScales) {
-    var shapeData = new Array(loadedShapes.length).fill(new Array(3).fill(1));
-    printArray(shapeData);
+    var shapeData =[[],[]];
+    //var shapeData = [3, loadedShapes.length];
     var newGeometry;
     var borderGeometry;
     var geometryToAdd;
@@ -143,9 +143,15 @@ function processShapeData(loadedShapes,loadedScales) {
             borderToAdd  = new THREE.LineSegments(edgyBoi, new THREE.LineBasicMaterial({color: 0xffffff}));
             shapeData[0][i] = geometryToAdd;
             shapeData[1][i] = borderToAdd;
-            shapeData[2][i] = loadedScales[i];
+            //if(loadedShapes.length !== 1)
+                //shapeData[2][i] = loadedScales[i];
 
         }
+        //console.log(loadedScales);
+        //if (loadedShapes.length === 1)
+            //shapeData[2][0] = loadedShapes;
+        return shapeData;//OMG IN FUCKING FORGOT THE RETRUN!
+
 
 }
 
