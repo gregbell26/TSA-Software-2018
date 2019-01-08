@@ -11,115 +11,114 @@ var renderer = new THREE.WebGLRenderer({logarithmicDepthBuffer: true });
 renderer.setSize( document.getElementById("mainWindow").offsetWidth, document.getElementById("mainWindow").offsetHeight );
 document.getElementById("mainWindow").appendChild( renderer.domElement );
 
+//lists of cool things
 var shapes = [];
 var scales = [];
 var keyFrames = [];
 var borders = [];
-if(localStorage.getItem('keyFrames')==null){
-    shapeMenu();
-}
-else{
-    //shapes = JSON.parse(localStorage.getItem('shapes'));
-    shapes = [];
-    borders = [];
-    selectedShape = 0;
-    var shapeData = JSON.parse(localStorage.getItem('shapes'));//TODO NO
-    keyFrames = JSON.parse(localStorage.getItem('keyFrames'));
-    scales = JSON.parse(localStorage.getItem('scales'));
-    console.log(shapeData);
-    for(var i=0; i<shapeData.length; i++){
-        var type = shapeData[i].type;
-        var newGeometry;
-        var borderGeometry;
-        if (type =="TextGeometry") {
-            console.log('text');
-            var loader = new THREE.FontLoader();
-            loader.load( 'fonts/helvetiker_regular.typeface.json', function ( font ) {
 
-                newGeometry = new THREE.TextGeometry( 'Text test!', {
-                    font: font,
-                    size: 1,
-                    height: 0.05,
-                    curveSegments: 6,
-                    bevelEnabled: false
-                } );
-                newGeometry.name="text";
-                const newMaterial = new THREE.MeshBasicMaterial({color: 0x00ff00});
-                shapes[shapes.length] = new THREE.Mesh(newGeometry, newMaterial);
-                scene.add(shapes[shapes.length - 1]);
-                shapes[selectedShape].position.x = shapeData[i].positionX;
-                shapes[selectedShape].position.y = shapeData[i].positionY;
-                shapes[selectedShape].position.z = shapeData[i].positionZ;
-                shapes[selectedShape].material.color.r = shapeData[i].r;
-                shapes[selectedShape].material.color.g = shapeData[i].g;
-                shapes[selectedShape].material.color.b = shapeData[i].b;
-                selectedShape++;
-            } );
-        }
-        else {
-            if (type == "BoxGeometry") {
-                newGeometry = new THREE.BoxGeometry(1, 1, 1);
-                borderGeometry = new THREE.BoxBufferGeometry(1, 1, 1);
-                newGeometry.name = "cube"
-            }
-            else if (type == "CylinderGeometry") {
-                newGeometry = new THREE.CylinderGeometry(0.5, 0.5, 1, 100);
-                borderGeometry = new THREE.CylinderBufferGeometry(0.5, 0.5, 1, 100);
-                newGeometry.name = "cylinder"
-            }
-            else if (type == "ConeGeometry") {
-                newGeometry = new THREE.ConeGeometry(0.5, 1, 100);
-                borderGeometry = new THREE.ConeBufferGeometry(0.5, 1, 100);
-                newGeometry.name = "cone"
-            }
-            else if (type == "DodecahedronGeometry") {
-                newGeometry = new THREE.DodecahedronGeometry(0.5, 0);
-                borderGeometry = new THREE.DodecahedronBufferGeometry(0.5, 0);
-                newGeometry.name = "dodecahedron"
-            }
-            else if (type == "IcosahedronGeometry") {
-                newGeometry = new THREE.IcosahedronGeometry(0.5, 0);
-                borderGeometry = new THREE.IcosahedronBufferGeometry(0.5, 0);
-                newGeometry.name = "icosahedron"
-            }
-            else if (type == "OctahedronGeometry") {
-                newGeometry = new THREE.OctahedronGeometry(0.5, 0);
-                borderGeometry = new THREE.OctahedronBufferGeometry(0.5, 0);
-                newGeometry.name = "octahedron"
-            }
-            else if (type == "TetrahedronGeometry") {
-                newGeometry = new THREE.TetrahedronGeometry(0.5, 0);
-                borderGeometry = new THREE.TetrahedronBufferGeometry(0.5, 0);
-                newGeometry.name = "praymid"
-            }
-            else if (type == "TorusGeometry") {
-                newGeometry = new THREE.TorusGeometry(0.5, 0.25, 200, 200);
-                borderGeometry = new THREE.TorusBufferGeometry(0.5, 0.25, 200, 200);
-                newGeometry.name = "ring"
-            }
-            else if (type == "SphereGeometry") {
-                newGeometry = new THREE.SphereGeometry(0.5, 100, 100);
-                borderGeometry = new THREE.SphereBufferGeometry(0.5, 100, 100);
-                newGeometry.name = "sphere"
-            }
-            const newMaterial = new THREE.MeshBasicMaterial({color: 0x00ff00});
-            shapes[shapes.length] = new THREE.Mesh(newGeometry, newMaterial);
-            var edges = new THREE.EdgesGeometry( borderGeometry );
-            var borderToAdd = new THREE.LineSegments( edges, new THREE.LineBasicMaterial( { color: 0xffffff } ) );
-            borders.push(borderToAdd);
-            scene.add( borderToAdd );
-            scene.add(shapes[shapes.length - 1]);
-            shapes[selectedShape].position.x = shapeData[i].positionX;
-            shapes[selectedShape].position.y = shapeData[i].positionY;
-            shapes[selectedShape].position.z = shapeData[i].positionZ;
-            shapes[selectedShape].material.color.r = shapeData[i].r;
-            shapes[selectedShape].material.color.g = shapeData[i].g;
-            shapes[selectedShape].material.color.b = shapeData[i].b;
-            borders[selectedShape].scale.x = scales[selectedShape][0];
-            borders[selectedShape].scale.y = scales[selectedShape][1];
-            borders[selectedShape].scale.z = scales[selectedShape][2];
-            selectedShape++;
-        }
+//Stuff for saves
+
+saveSubSystem.loadSaveNames();//Loads the names of the saves into an arraylist
+var div = document.querySelector("#saveFileContainer"),
+    frag = document.createDocumentFragment(),
+    saveSelector = document.createElement("select");
+
+if (saveSubSystem.saveFileNamesList.length !== 0){
+    for(var i =0; i < saveSubSystem.saveFileNamesList.length; i++) {
+        saveSelector.options.add(new Option(saveSubSystem.saveFileNamesList[i], saveSubSystem.saveFileNamesList[i]));//parm 1 is the text displayed to the user
+        //Parm 2 is what the javascript sees
     }
 }
+saveSelector.options.add(new Option("New Save", "GET NAME"));
+
+
+
+frag.appendChild(saveSelector);
+div.appendChild(frag);
+//---------------------
+
+
+
+
+
+//Greatness by Gregory
+function start() {
+    //Making sure that everything is empty
+    shapes = [];
+    scales =[];
+    keyFrames =[];
+    borders= [];
+    selectedShape = 0;
+    //console.log(saveSelector.options[saveSelector.selectedIndex].value);
+
+
+    if(saveSelector.options[saveSelector.selectedIndex].value === "GET NAME" || !saveSubSystem.openPrevious){
+        var saveName = prompt("Please enter a name for your save", "New Animation");
+        if (saveName !== null) {
+            console.log("User message received.");
+            saveSubSystem.setIsUsingSaves(true);
+            saveSubSystem.setFileName(saveName, true);
+        }
+    }
+    if(!saveSubSystem.isUsingSaves){
+        console.log("Save subsystem has been disabled by the user");
+
+    }
+
+    if(saveSubSystem.openPrevious && saveSubSystem.isUsingSaves){
+        var loadedData = [[],[]];
+        saveSubSystem.setFileName(saveSelector.options[saveSelector.selectedIndex].value, false);
+        loadedData = saveSubSystem.loadSave();
+        for(var i =0; i <loadedData.length; i++)
+            for(var j=0; j < loadedData[i].length; j++)
+                console.log(loadedData[i][j]);
+
+        if(loadedData[0][0] === 1){
+            console.log("An error occured during loading");
+            return;
+        }
+        for(var i =0; i < loadedData.length; i++) {
+            shapes[i] =loadedData[0][i];
+            borders[i] =loadedData[1][i];
+            //scales.push(loadedData[2][i]);
+            scales = saveSubSystem.loadedScales;//This seems to work better
+            console.log(scales);
+
+//This is throwing undefined errors for some reason-- The parameter is there its just not correct...
+            //Might want to try to create a new object then just adding the parameters... But that would be extreamly taxing on the ram and the cpu as I can't delete an object that is no longer in use because javascript sucks.
+            /*shapes[i].positionX = loadedData[0][i].positionX;
+            shapes[i].positionY = loadedData[0][i].positionY;
+            shapes[i].positionZ = loadedData[0][i].positionZ;
+
+            shapes[i].material.color.r = loadedData[0][i].r;
+            shapes[i].material.color.g = loadedData[0][i].g;
+            shapes[i].material.color.b = loadedData[0][i].b;
+
+
+            shapes[i].scale.x = scales[i][0];
+            shapes[i].scale.y = scales[i][1];
+            shapes[i].scale.z = scales[i][2];
+
+
+
+
+            borders[i].scale.x = scales[i][0];
+            borders[i].scale.y = scales[i][1];
+            borders[i].scale.z = scales[i][2];*/
+
+            scene.add(shapes[i]);//The issue is that 3JS isn't reconising the 3js object that is created else where as a 3js object
+            //That causes the entire program to freak out
+            //I think there should be a way create a new object from a created object.
+            //But other than that the loading works as intended and it does load the files from memory as intended
+
+            //scene.add(shapes[i]);
+
+
+        }
+
+
+    }
+}
+
 //

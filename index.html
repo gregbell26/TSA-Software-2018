@@ -14,12 +14,18 @@
 </head>
 <body>
     <div id="welcomeScreen">
-        <h1>Welcome to Monarch Animation</h1>
-        <h2>2019 TSA Project</h2>
-        <h3>Choose how you want to start:</h3>
-        <button onclick="document.getElementById('welcomeScreen').style.display = 'none';" class="objButton startButton">Start from scratch</button>
-        <!--<button>Upload a file</button>-->
-        <button onclick="launchTutorial()" class="objButton startButton">View the tutorial</button>
+        <div id="welcomeScreenBody">
+            <h1><strong>Welcome to Monarch Animation</strong></h1>
+            <!--<h2>2019 TSA Project</h2>-->
+            <h3>Choose how you want to start:</h3>
+            <button onclick="saveSubSystem.setIsUsingSaves(true, false); document.getElementById('welcomeScreen').style.display = 'none';  start();" class="objButton startButton">Start from scratch</button>
+            <!--<button>Upload a file</button>-->
+            <button onclick="start(); launchTutorial()" class="objButton startButton">View the tutorial</button>
+            <div id="saveFileContainer">
+                <button onclick="saveSubSystem.setIsUsingSaves(true, true); document.getElementById('welcomeScreen').style.display = 'none';  start(); "; class="objButton startButton">Load Save</button>
+
+            </div>
+        </div>
     </div>
 
     <span id='tutorialArrow' style="
@@ -45,7 +51,7 @@
         </button>
         <button onfocus="this.blur()" class="material-icons md-48 topButton" id="cameraButton" onclick="cameraMenu()">camera_alt</button>
         <button onfocus="this.blur()" class="material-icons md-48 topButton" id="keyButton" onclick="keyMenu()">vpn_key</button>
-        <button onfocus="this.blur()" class="material-icons md-48 topButton" id="saveButton" onclick="save()">save_alt</button>
+        <button onfocus="this.blur()" class="material-icons md-48 topButton" id="saveButton" onclick="saveSubSystem.save()">save_alt</button>
         <button onfocus="this.blur()" class="material-icons md-48 topButton" id="userButton" onclick="signInWithGoogle()">person</button>
         <button onfocus="this.blur()" class="topButton" style="font-size: 20px" id="meshButton" onclick="meshMenu()">mesh</button>
         <button onfocus="this.blur()" class="material-icons md-48 topButton" id="settingsButton">settings</button>
@@ -188,14 +194,20 @@
 
     <div id="mainWindow">
     </div>
+
     <script src="utils.js"></script>
     <script src="menus.js"></script>
     <script src="mesh.js"></script>
     <script src="keyframes.js"></script>
     <script src="storage.js"></script>
-    <script src="shapes.js"></script>
     <script src="scene.js"></script>
     <script src="toBeSorted.js"></script>
+    <script src="initial.js"></script>
+    <script src="animate.js"></script>
+    <script src="tutorial.js"></script>
+
+
+    <script src="Shapes/shapes.js"></script>
     <script src="Shapes/cube.js"></script>
     <script src="Shapes/cylinder.js"></script>
     <script src="Shapes/cone.js"></script>
@@ -207,8 +219,6 @@
     <script src="Shapes/ring.js"></script>
     <script src="Shapes/text.js"></script>
     <script src="Shapes/tube.js"></script>
-    <script src="initial.js"></script>
-    <script src="animate.js"></script>
-    <script src="tutorial.js"></script>
+
 </body>
 </html>

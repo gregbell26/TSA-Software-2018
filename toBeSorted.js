@@ -26,6 +26,10 @@ var yPosStart = yPosition;//the cameras start position y
 
 var mouseDown = false;//if the right mouse button is pressed down
 var mouseSensitivity = .5;//the percent sensitivity
+var mouseSensitivity = 0.01;//the percent sensitivity
+
+
+
 var zoom = 5;//the zoom on the cube
 var zoomZ = 5;//zoom with only X and Z
 $(document).on('mousedown',function(e){
@@ -77,6 +81,7 @@ $(document).ready(function(){
             yPosition = zoom * Math.sin(cameraRy);
             zPosition = (zoomZ ) * Math.sin(cameraRz) ;
 
+            zPosition = zoom * Math.sin(cameraRz);
             if(e.pageX>=300 && e.pageY >=50) {
                 xStart = e.pageX;
                 yStart = e.pageY;

@@ -1,5 +1,29 @@
 /*This is gregory's code*/
-/*hello this is schmidy*/
+@keyframes startUpScreen {
+    0% {background-color: #4b0000
+    }
+    10% {background-color: #4b0035
+    }
+    20% {background-color: #4a004b
+    }
+    30% {background-color: #23004b
+    }
+    40% {background-color: #01004b
+    }
+    50% {background-color: #00234b
+    }
+    60% {background-color: #00404b
+    }
+    70% {background-color: #00484b
+    }
+    80% {background-color: #004b24
+    }
+    90% {background-color: #034b00
+    }
+    100% {background-color: #4b0000
+    }
+
+}
 
 html, body {
     overflow: hidden;
@@ -14,7 +38,34 @@ html, body {
     right:0;
     background-color:white;
     z-index: 2;
+    /*DON'T PANIC*/
+    animation-name: startUpScreen;
+    animation-duration: 20s;
+    animation-iteration-count: infinite;
+
 }
+
+#welcomeScreenBody {
+    color: #ffffff;
+    display: block;
+    height: auto;
+    width: 50%;
+    /*Should center on sreen*/
+    margin: auto;
+    text-align: center;
+
+}
+
+#saveFileContainer {
+    color: #ffffff;
+    display: block;
+    height: auto;
+    width: 50%;
+    /*Should center on sreen*/
+    margin: auto;
+    text-align: center;
+}
+
 
 .parameterBox {
 	margin: 3px;
@@ -128,7 +179,7 @@ html, body {
     top:0;
     height:50px;
     width: 60px;
-    -webkit-transition-duration: 0.2s; /* Safari */
+    -webkit-transition-duration: 0.2s;
     transition-duration: 0.2s;
 }
 
@@ -158,7 +209,7 @@ canvas { width: 100%; height: 100% }
     font-size: 12px;
     margin: 4px 2px;
     border-radius: 8px;
-    -webkit-transition-duration: 0.2s; /* Safari */
+    -webkit-transition-duration: 0.2s;
     transition-duration: 0.2s;
     cursor: pointer;
 }
@@ -188,11 +239,10 @@ canvas { width: 100%; height: 100% }
     padding: 10px 24px;
     cursor: pointer;
     float: left;
-    -webkit-transition-duration: 0.2s; /* Safari */
+    -webkit-transition-duration: 0.2s;
     transition-duration: 0.2s;
 }
 
-/* Clear floats (clearfix hack) */
 .meshGroup:after {
     content: "";
     clear: both;
@@ -200,7 +250,7 @@ canvas { width: 100%; height: 100% }
 }
 
 .meshGroup button:not(:last-child) {
-    border-right: none; /* Prevent double borders */
+    border-right: none;
 }
 
 .meshGroup button:hover {
@@ -215,11 +265,10 @@ canvas { width: 100%; height: 100% }
     cursor: pointer;
     display: block;
     border-radius: 5px;
-    -webkit-transition-duration: 0.2s; /* Safari */
+    -webkit-transition-duration: 0.2s;
     transition-duration: 0.2s;
 }
 
-/* Clear floats (clearfix hack) */
 .setGroup:after {
     content: "";
     clear: both;
@@ -227,7 +276,7 @@ canvas { width: 100%; height: 100% }
 }
 
 .setGroup button:not(:last-child) {
-    border-bottom: none; /* Prevent double borders */
+    border-bottom: none;
 }
 
 .setGroup button:hover {
