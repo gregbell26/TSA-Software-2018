@@ -25,31 +25,70 @@ var xPosStart = xPosition;//the cameras start position x
 var yPosStart = yPosition;//the cameras start position y
 
 var mouseDown = false;//if the right mouse button is pressed down
-var mouseSensitivity = .5;//the percent sensitivity
-var mouseSensitivity = 0.01;//the percent sensitivity
-
+var zoomAmount = 1.5;// the zoom multiplier for one key press
+var mouseSensitivity = 1.00;//the percent sensitivity
+var inAnimationWindow = 0;//is the mouse in the animation window
 
 
 var zoom = 5;//the zoom on the cube
 var zoomZ = 5;//zoom with only X and Z
 $(document).on('mousedown',function(e){
-    if(e.pageX>=300 && e.pageY >=50) {
+    if(inAnimationWindow) {
         xStart = e.pageX;
         yStart = e.pageY;
         mouseDown = true;
     }
 });
 $(document).on('mouseup',function(e){
-    mouseDown=false;
+    if(e.pageX>=300 && e.pageY >=50) {
+        mouseDown = false;
+    }
+});
+$(document).on('keydown',function(e) {
+    if (inAnimationWindow) {
+        zoom = Math.pow((Math.pow(xPosition, 2) + Math.pow(yPosition, 2) + Math.pow(zPosition, 2)), .5);//zoom calc here
+        if (e.key == "-")
+            zoom *= zoomAmount;
+        else if (e.key == "=")
+            zoom /= zoomAmount;
+        zoomZ = Math.cos(Math.asin(yPosition / zoom));
+        var cameraRz;
+        var cameraRy;
+        if (xPosition !== 0)
+            cameraRz = Math.atan(zPosition / xPosition);
+    else if (zPosition > 0)
+        cameraRz = Math.PI;
+    else if (zPosition < 0)
+        cameraRz = -Math.PI;
+    if (xPosition < 0 && cameraRz > 0)
+        cameraRz += Math.PI;
+    else if (xPosition < 0 && cameraRz < 0)
+        cameraRz -= Math.PI;
+
+    if (xPosition !== 0 || zPosition !== 0)
+        cameraRy = Math.atan((yPosition) / (Math.pow(Math.pow(xPosition, 2) + Math.pow(zPosition, 2), .5)));
+    else if (yPosition > 0)
+        cameraRy = Math.PI;
+    else if (yPosition < 0)
+        cameraRy = -Math.PI;
+
+        yPosition = zoom * Math.sin(cameraRy);
+        xPosition = (zoom * Math.cos(Math.asin(yPosition/zoom))) * Math.cos(cameraRz);
+        zPosition = (zoom * Math.cos(Math.asin(yPosition/zoom))) * Math.sin(cameraRz);
+}
 });
 $(document).on('mouseup',function(e){
     mouseDown=false;
 });
 $(document).ready(function(){
     $(document).on('mousemove', function(e){
-        if(mouseDown){
-            zoom = Math.pow((Math.pow(xPosition,2)+Math.pow(yPosition,2)+Math.pow(zPosition,2)),.5);//zoom calc here
+        if(e.pageX>=300 && e.pageY >=50) {
+            inAnimationWindow = 1;
+        }
+        if(mouseDown && inAnimationWindow){
             zoomZ = Math.pow(Math.pow(xPosition,2)+Math.pow(zPosition, 2),.5);
+            zoom = Math.pow((Math.pow(zoomZ,2)+Math.pow(yPosition,2)),.5);//zoom calc here
+
             var MvX = mouseSensitivity*(e.pageX-xStart)/100;
             var MvY = mouseSensitivity*(e.pageY-yStart)/100;
             var cameraRz;
@@ -65,23 +104,23 @@ $(document).ready(function(){
             else if(xPosition < 0 && cameraRz < 0)
                 cameraRz -= Math.PI;
 
+
+
             if(xPosition !== 0 || zPosition !== 0)
-                cameraRy = Math.atan((yPosition)/(Math.pow(Math.pow(xPosition,2)+Math.pow(zPosition,2),.5)));
+                cameraRy = Math.atan((yPosition)/zoomZ);
             else if(yPosition > 0)
                 cameraRy = Math.PI;
             else if(yPosition < 0)
                 cameraRy = -Math.PI;
-            
+
             cameraRz += MvX;
             cameraRy += MvY;
 
-            console.log(Math.cos(cameraRy));
-
-            xPosition = (zoomZ ) * Math.cos(cameraRz) ;
             yPosition = zoom * Math.sin(cameraRy);
-            zPosition = (zoomZ ) * Math.sin(cameraRz) ;
+            xPosition = (zoom * Math.cos(Math.asin(yPosition/zoom))) * Math.cos(cameraRz);
+            zPosition = (zoom * Math.cos(Math.asin(yPosition/zoom))) * Math.sin(cameraRz);
 
-            zPosition = zoom * Math.sin(cameraRz);
+
             if(e.pageX>=300 && e.pageY >=50) {
                 xStart = e.pageX;
                 yStart = e.pageY;
