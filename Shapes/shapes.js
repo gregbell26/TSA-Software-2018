@@ -87,6 +87,7 @@ function processShapeData(loadedShapes,loadedScales) {
     }
 
     for(var i=0; i<loadedShapes.length; i++) {
+        console.log(i);
         newGeometry = null;
         borderGeometry = null;
 
