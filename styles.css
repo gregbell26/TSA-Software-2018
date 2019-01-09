@@ -294,8 +294,8 @@ select{
     background-color: #f1f1f1;
 }
 
-.startButton button{
-    background-color: #C0C0C0;
+.startButton{
+    color:white
 }
 
 .startButton:hover {
