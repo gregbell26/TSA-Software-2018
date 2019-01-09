@@ -151,7 +151,7 @@ function processShapeData(loadedShapes,loadedScales) {
         //console.log(loadedScales);
         //if (loadedShapes.length === 1)
             //shapeData[2][0] = loadedShapes;
-        return shapeData;//OMG IN FUCKING FORGOT THE RETRUN!
+        return shapeData;
 
 
 }
