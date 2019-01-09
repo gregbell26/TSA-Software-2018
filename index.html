@@ -93,8 +93,17 @@
             <h3>
                 Dimensions
             </h3>
-            <div class="parameterBox">X: <input type="number" id='dimensionX' onchange="cubeDimension('x',this.value)" onkeyup="cubeDimension('x',this.value)" value="0"><br></div>
-            <div class="parameterBox">Y: <input type="number" id='dimensionY' onchange="cubeDimension('y',this.value)" onkeyup="cubeDimension('y',this.value)" value="0"><br></div>
+            <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+                <input class="mdl-textfield__input" type="number" id='dimensionX' onchange="cubeDimension('x',this.value)" onkeyup="cubeDimension('x',this.value)" value="0">
+                <label class="mdl-textfield__label" for="dimensionX">X Dimension</label>
+                <span class="mdl-textfield__error">Input is not a number!</span>
+            </div>
+            <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+                <input class="mdl-textfield__input"  type="number" id='dimensionY' onchange="cubeDimension('y',this.value)" onkeyup="cubeDimension('y',this.value)" value="0">
+                <label class="mdl-textfield__label" for="dimensionY">X Dimension</label>
+                <span class="mdl-textfield__error">Input is not a number!</span>
+            </div>
+            <!--<div class="parameterBox">Y: <input type="number" id='dimensionY' onchange="cubeDimension('y',this.value)" onkeyup="cubeDimension('y',this.value)" value="0"><br></div>-->
             <div class="parameterBox">Z: <input type="number" id='dimensionZ' onchange="cubeDimension('z',this.value)" onkeyup="cubeDimension('z',this.value)" value="0"><br></div>
         </div>
 
@@ -151,7 +160,7 @@
         </div>
 
         <div id="meshMenu">
-            <!-- this doesn't work at all so we need to get it working before we show it all the time>
+            <!-- this doesn't work at all so we need to get it working before we show it all the time-->
             <!--<h3>
                 Materials
             </h3>
@@ -208,8 +217,6 @@
     <script src="initial.js"></script>
     <script src="animate.js"></script>
     <script src="tutorial.js"></script>
-
-
     <script src="Shapes/shapes.js"></script>
     <script src="Shapes/cube.js"></script>
     <script src="Shapes/cylinder.js"></script>
