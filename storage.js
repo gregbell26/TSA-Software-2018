@@ -74,9 +74,9 @@ var saveSubSystem =
             console.log("Save not found.");
             //processedShapeData[0][0] = 1;
         }
-        for(var i =0; i <processedShapeData.length; i++)
+        /*for(var i =0; i <processedShapeData.length; i++)
             for(var j=0; j < processedShapeData[i].length; j++)
-                console.log(processedShapeData[i][j]);
+                console.log(processedShapeData[i][j]);*/
         return this.loadedKeyframes;
 
     },

@@ -142,21 +142,21 @@ function processShapeData(loadedShapes,loadedScales) {
                 /*newGeometry = new THREE.TetrahedronGeometry(0.5, 0);
                 borderGeometry = new THREE.TetrahedronBufferGeometry(0.5, 0);
                 newGeometry.name = "pyramid"*/
-                //newTetrahedron(loadedScales[i].x, loadedScales[i].y, loadedScales[i].z, loadedShapes[i].positionX, loadedShapes[i].positionY, loadedShapes[i].positionZ, loadedShapes[i].color, loadedScales[i].color)
+                //newTetrahedron(loadedScales[i].x, loadedScales[i].y, loadedScales[i].z, loadedShapes[i].positionX, loadedShapes[i].positionY, loadedShapes[i].positionZ, loadedShapes[i].color, 0xffffff)
 
             }
             else if (loadedShapes[i].type === "TorusGeometry") {
                 /*newGeometry = new THREE.TorusGeometry(0.5, 0.25, 200, 200);
                 borderGeometry = new THREE.TorusBufferGeometry(0.5, 0.25, 200, 200);
                 newGeometry.name = "ring"*/
-                //newTorus(loadedScales[i].x, loadedScales[i].y, loadedScales[i].z, loadedShapes[i].positionX, loadedShapes[i].positionY, loadedShapes[i].positionZ, loadedShapes[i].color, loadedScales[i].color)
+                //newTorus(loadedScales[i].x, loadedScales[i].y, loadedScales[i].z, loadedShapes[i].positionX, loadedShapes[i].positionY, loadedShapes[i].positionZ, loadedShapes[i].color, 0xffffff)
 
             }
             else if (loadedShapes[i].type === "SphereGeometry") {
                 /*newGeometry = new THREE.SphereGeometry(0.5, 100, 100);
                 borderGeometry = new THREE.SphereBufferGeometry(0.5, 100, 100);
                 newGeometry.name = "sphere"*/
-                newSphere(loadedScales[i].x, loadedScales[i].y, loadedScales[i].z, loadedShapes[i].positionX, loadedShapes[i].positionY, loadedShapes[i].positionZ, loadedShapes[i].color, loadedScales[i].color)
+                newSphere(loadedScales[i].x, loadedScales[i].y, loadedScales[i].z, loadedShapes[i].positionX, loadedShapes[i].positionY, loadedShapes[i].positionZ, loadedShapes[i].r , 0xffffff)
 
             }
             else {
