@@ -67,7 +67,7 @@
 
         <div id="shapeMenu" style="display: none">
             <button onfocus="this.blur()" class="objButton addButton" onclick="newShapeMenu()">New Shape</button>
-            <button onfocus="this.blur()" class="objButton removeButton" onclick="removeShape()">Delete Shape</button>
+            <button onfocus="this.blur()" class="objButton removeButton" onclick="repostitionShape()">Delete Shape</button>
         </div>
 
 
@@ -103,9 +103,9 @@
             <h3>
                 Position
             </h3>
-            <div class="parameterBox">X: <input type="number" id='positionBoxX' onchange="moveShape('x',this.value)" onkeyup="moveShape('x',this.value)" value="0"><br></div>
-            <div class="parameterBox">Y: <input type="number" id='positionBoxY' onchange="moveShape('y',this.value)" onkeyup="moveShape('y',this.value)" value="0"><br></div>
-            <div class="parameterBox">Z: <input type="number" id='positionBoxZ' onchange="moveShape('z',this.value)" onkeyup="moveShape('z',this.value)" value="0"><br></div>
+            <div class="parameterBox">X: <input type="number" id='positionBoxX' onchange="postitionShape('x',this.value)" onkeyup="postitionShape('x',this.value)" value="0"><br></div>
+            <div class="parameterBox">Y: <input type="number" id='positionBoxY' onchange="postitionShape('y',this.value)" onkeyup="postitionShape('y',this.value)" value="0"><br></div>
+            <div class="parameterBox">Z: <input type="number" id='positionBoxZ' onchange="postitionShape('z',this.value)" onkeyup="postitionShape('z',this.value)" value="0"><br></div>
         </div>
 
         <div id="rotateMenu">
