@@ -8,12 +8,11 @@ function toggleColorBorder(checked){//if checked is true turns on the border, if
 
 }
 
-function changeZoom(change) {//zooms in or out by a value of change
-    zoom += change;
-    if (zoom < 1) {
-        zoom = 1;
-    }
-    zoomZ = Math.pow(Math.pow(zoom,2)-Math.pow(yPosition,2),.5)
+function changeSensitivity(change) {//Changes sensitivity to change
+    mouseSensitivity = change;
+}
+function changeZoomSensitivity(change) {//Changes the Zoom sensitivity to change
+    zoomAmount = 1 + change/2;
 }
 
 var xPosition = 10;//camera position x
@@ -26,6 +25,7 @@ var yPosStart = yPosition;//the cameras start position y
 
 var mouseDown = false;//if the right mouse button is pressed down
 var zoomAmount = 1.5;// the zoom multiplier for one key press
+var zoomSensitivity = 1.00;//the percent sensitivity
 var mouseSensitivity = 1.00;//the percent sensitivity
 var inAnimationWindow = 0;//is the mouse in the animation window
 

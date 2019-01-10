@@ -27,9 +27,10 @@ function setSelectedShape(num){
     document.getElementById('rotateBoxX').value = (shapes[selectedShape].rotation.x*180/Math.PI);
     document.getElementById('rotateBoxY').value = (shapes[selectedShape].rotation.y*180/Math.PI);
     document.getElementById('rotateBoxZ').value = (shapes[selectedShape].rotation.z*180/Math.PI);
-    document.getElementById('dimensionX').value = shapes[selectedShape].scale.x;
-    document.getElementById('dimensionY').value = shapes[selectedShape].scale.y;
-    document.getElementById('dimensionZ').value = shapes[selectedShape].scale.z;
+    //This is causing the 1 at creation problem
+    document.getElementById('dimensionX').value = scales[selectedShape][0];
+    document.getElementById('dimensionY').value = scales[selectedShape][1];
+    document.getElementById('dimensionZ').value = scales[selectedShape][2];
     editMenu();
     console.log("Set Shape Num");
 }

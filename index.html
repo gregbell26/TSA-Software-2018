@@ -67,7 +67,7 @@
 
         <div id="shapeMenu" style="display: none">
             <button onfocus="this.blur()" class="objButton addButton" onclick="newShapeMenu()">New Shape</button>
-            <button onfocus="this.blur()" class="objButton removeButton" onclick="removeShape()">Delete Shape</button>
+            <button onfocus="this.blur()" class="objButton removeButton" onclick="repostitionShape()">Delete Shape</button>
         </div>
 
 
@@ -83,7 +83,6 @@
                 <option value="pyramid">Pyramid</option>
                 <option value="text">Text</option>
                 <option value="ring">Ring</option>
-                <option value="tube">Tube</option>
             </select>
             <br>
             <button onfocus="this.blur()" class="objButton addButton" onclick="addShape()">OK</button>
@@ -101,29 +100,68 @@
             </div>
             <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
                 <input class="mdl-textfield__input"  type="number" id='dimensionY' onchange="cubeDimension('y',this.value)" onkeyup="cubeDimension('y',this.value)" value="0">
-                <label class="mdl-textfield__label" for="dimensionY">X Dimension</label>
+                <label class="mdl-textfield__label" for="dimensionY">Y Dimension</label>
                 <span class="mdl-textfield__error">Input is not a number!</span>
             </div>
-            <!--<div class="parameterBox">Y: <input type="number" id='dimensionY' onchange="cubeDimension('y',this.value)" onkeyup="cubeDimension('y',this.value)" value="0"><br></div>-->
-            <div class="parameterBox">Z: <input type="number" id='dimensionZ' onchange="cubeDimension('z',this.value)" onkeyup="cubeDimension('z',this.value)" value="0"><br></div>
+            <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+                <input class="mdl-textfield__input" type="number" id='dimensionZ' onchange="cubeDimension('z',this.value)" onkeyup="cubeDimension('z',this.value)" value="0">
+                <label class="mdl-textfield__label" for="dimensionZ">Z Dimension</label>
+                <span class="mdl-textfield__error">Input is not a number!</span>
+            </div>
         </div>
 
         <div id="positionMenu">
             <h3>
                 Position
             </h3>
-            <div class="parameterBox">X: <input type="number" id='positionBoxX' onchange="moveShape('x',this.value)" onkeyup="moveShape('x',this.value)" value="0"><br></div>
-            <div class="parameterBox">Y: <input type="number" id='positionBoxY' onchange="moveShape('y',this.value)" onkeyup="moveShape('y',this.value)" value="0"><br></div>
-            <div class="parameterBox">Z: <input type="number" id='positionBoxZ' onchange="moveShape('z',this.value)" onkeyup="moveShape('z',this.value)" value="0"><br></div>
+<<<<<<< HEAD
+            <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+                <input class="mdl-textfield__input"  type="number" id='positionBoxX' onchange="moveShape('x',this.value)" onkeyup="moveShape('x',this.value)" value="0">
+                <label class="mdl-textfield__label" for="positionBoxX">X Position</label>
+                <span class="mdl-textfield__error">Input is not a number!</span>
+            </div>
+            <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+                <input class="mdl-textfield__input"  type="number" id='positionBoxY' onchange="moveShape('y',this.value)" onkeyup="moveShape('y',this.value)" value="0">
+                <label class="mdl-textfield__label" for="positionBoxY">Y Position</label>
+                <span class="mdl-textfield__error">Input is not a number!</span>
+            </div>
+            <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+                <input class="mdl-textfield__input"  type="number" id='positionBoxZ' onchange="moveShape('z',this.value)" onkeyup="moveShape('z',this.value)" value="0">
+                <label class="mdl-textfield__label" for="positionBoxZ">Z Position</label>
+                <span class="mdl-textfield__error">Input is not a number!</span>
+            </div>
+            <!--<div class="parameterBox">X: <input type="number" id='positionBoxX' onchange="moveShape('x',this.value)" onkeyup="moveShape('x',this.value)" value="0"><br></div>-->
+            <!--<div class="parameterBox">Y: <input type="number" id='positionBoxY' onchange="moveShape('y',this.value)" onkeyup="moveShape('y',this.value)" value="0"><br></div>-->
+            <!--<div class="parameterBox">Z: <input type="number" id='positionBoxZ' onchange="moveShape('z',this.value)" onkeyup="moveShape('z',this.value)" value="0"><br></div>-->
+=======
+            <div class="parameterBox">X: <input type="number" id='positionBoxX' onchange="postitionShape('x',this.value)" onkeyup="postitionShape('x',this.value)" value="0"><br></div>
+            <div class="parameterBox">Y: <input type="number" id='positionBoxY' onchange="postitionShape('y',this.value)" onkeyup="postitionShape('y',this.value)" value="0"><br></div>
+            <div class="parameterBox">Z: <input type="number" id='positionBoxZ' onchange="postitionShape('z',this.value)" onkeyup="postitionShape('z',this.value)" value="0"><br></div>
+>>>>>>> 51ee38a60fd0cf1a9bebd3cfb8a8e8ca5f81736e
         </div>
 
         <div id="rotateMenu">
             <h3>
                 Rotations (in degrees)
             </h3>
-            <div class="parameterBox">X: <input type="number" id='rotateBoxX' onchange="rotateShape('x',this.value)" onkeyup="rotateShape('x',this.value)" value="0"><br></div>
-            <div class="parameterBox">Y: <input type="number" id='rotateBoxY' onchange="rotateShape('y',this.value)" onkeyup="rotateShape('y',this.value)" value="0"><br></div>
-            <div class="parameterBox">Z: <input type="number" id='rotateBoxZ' onchange="rotateShape('z',this.value)" onkeyup="rotateShape('z',this.value)" value="0"><br></div>
+            <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+                <input class="mdl-textfield__input"  type="number" id='rotateBoxX' onchange="rotateShape('x',this.value)" onkeyup="rotateShape('x',this.value)" value="0">
+                <label class="mdl-textfield__label" for="rotateBoxX">X Rotate</label>
+                <span class="mdl-textfield__error">Input is not a number!</span>
+            </div>
+            <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+                <input class="mdl-textfield__input"  type="number" id='rotateBoxY' onchange="rotateShape('y',this.value)" onkeyup="rotateShape('y',this.value)" value="0">
+                <label class="mdl-textfield__label" for="rotateBoxY">Y Rotate</label>
+                <span class="mdl-textfield__error">Input is not a number!</span>
+            </div>
+            <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+                <input class="mdl-textfield__input"  type="number" id='rotateBoxZ' onchange="rotateShape('z',this.value)" onkeyup="rotateShape('z',this.value)" value="0">
+                <label class="mdl-textfield__label" for="rotateBoxZ">Z Rotate</label>
+                <span class="mdl-textfield__error">Input is not a number!</span>
+            </div>
+            <!--<div class="parameterBox">X: <input type="number" id='rotateBoxX' onchange="rotateShape('x',this.value)" onkeyup="rotateShape('x',this.value)" value="0"><br></div>-->
+            <!--<div class="parameterBox">Y: <input type="number" id='rotateBoxY' onchange="rotateShape('y',this.value)" onkeyup="rotateShape('y',this.value)" value="0"><br></div>-->
+            <!--<div class="parameterBox">Z: <input type="number" id='rotateBoxZ' onchange="rotateShape('z',this.value)" onkeyup="rotateShape('z',this.value)" value="0"><br></div>-->
         </div>
 
         <div id="colorMenu">
@@ -155,9 +193,24 @@
         </div>
 
         <div id="sideBarCamera" style="display:none">
-            <div class="parameterBox">X Position: <input type="number" id='xPositionBox' onchange="xPosition = Number(this.value)" onkeyup="xPosition = Number(this.value)" value="10"><br></div>
-            <div class="parameterBox">Y Position: <input type="number" id='yPositionBox' onchange="yPosition = Number(this.value)" onkeyup="yPosition = Number(this.value)" value="10"><br></div>
-            <div class="parameterBox">Z Position: <input type="number" id='zPositionBox' onchange="zPosition = Number(this.value)" onkeyup="zPosition = Number(this.value)" value="10"><br></div>
+            <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+                <input class="mdl-textfield__input" type="number" id='xPositionBox' onchange="xPosition = Number(this.value)" onkeyup="xPosition = Number(this.value)" value="10">
+                <label class="mdl-textfield__label" for="xPositionBox">X Position</label>
+                <span class="mdl-textfield__error">Input is not a number!</span>
+            </div>
+            <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+                <input class="mdl-textfield__input" type="number" id='yPositionBox' onchange="yPosition = Number(this.value)" onkeyup="yPosition = Number(this.value)" value="10">
+                <label class="mdl-textfield__label" for="yPositionBox">Y Position</label>
+                <span class="mdl-textfield__error">Input is not a number!</span>
+            </div>
+            <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+                <input class="mdl-textfield__input" type="number" id='zPositionBox' onchange="zPosition = Number(this.value)" onkeyup="zPosition = Number(this.value)" value="10">
+                <label class="mdl-textfield__label" for="zPositionBox">Z Position</label>
+                <span class="mdl-textfield__error">Input is not a number!</span>
+            </div>
+            <!--<div class="parameterBox">X Position: <input type="number" id='xPositionBox' onchange="xPosition = Number(this.value)" onkeyup="xPosition = Number(this.value)" value="10"><br></div>-->
+            <!--<div class="parameterBox">Y Position: <input type="number" id='yPositionBox' onchange="yPosition = Number(this.value)" onkeyup="yPosition = Number(this.value)" value="10"><br></div>-->
+            <!--<div class="parameterBox">Z Position: <input type="number" id='zPositionBox' onchange="zPosition = Number(this.value)" onkeyup="zPosition = Number(this.value)" value="10"><br></div>-->
         </div>
 
         <div id="meshMenu">
@@ -182,21 +235,57 @@
             <h3>
                 Scale
             </h3>
-            <div class="parameterBox">X: <input type="number" id='sceneScaleX' onchange="sceneScale('x',this.value)" onkeyup="sceneScale('x',this.value)" value="1"><br></div>
-            <div class="parameterBox">Y: <input type="number" id='sceneScaleY' onchange="sceneScale('y',this.value)" onkeyup="sceneScale('y',this.value)" value="1"><br></div>
-            <div class="parameterBox">Z: <input type="number" id='sceneScaleZ' onchange="sceneScale('z',this.value)" onkeyup="sceneScale('z',this.value)" value="1"><br></div>
+            <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+                <input class="mdl-textfield__input" type="number" id='sceneScaleX' onchange="sceneScale('x',this.value)" onkeyup="sceneScale('x',this.value)" value="1">
+                <label class="mdl-textfield__label" for="sceneScaleX">X Scale</label>
+                <span class="mdl-textfield__error">Input is not a number!</span>
+            </div>
+            <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+                <input class="mdl-textfield__input" type="number" id='sceneScaleY' onchange="sceneScale('y',this.value)" onkeyup="sceneScale('y',this.value)" value="1">
+                <label class="mdl-textfield__label" for="sceneScaleY">Y Scale</label>
+                <span class="mdl-textfield__error">Input is not a number!</span>
+            </div>
+            <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+                <input class="mdl-textfield__input" type="number" id='sceneScaleZ' onchange="sceneScale('z',this.value)" onkeyup="sceneScale('z',this.value)" value="1">
+                <label class="mdl-textfield__label" for="sceneScaleZ">Z Scale</label>
+                <span class="mdl-textfield__error">Input is not a number!</span>
+            </div>
             <h3>
                 Position
             </h3>
-            <div class="parameterBox">X: <input type="number" id='scenePosX' onchange="scenePosition('x',this.value)" onkeyup="scenePosition('x',this.value)" value="0"><br></div>
-            <div class="parameterBox">Y: <input type="number" id='scenePosY' onchange="scenePosition('y',this.value)" onkeyup="scenePosition('y',this.value)" value="0"><br></div>
-            <div class="parameterBox">Z: <input type="number" id='scenePosZ' onchange="scenePosition('z',this.value)" onkeyup="scenePosition('z',this.value)" value="0"><br></div>
+            <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+                <input class="mdl-textfield__input" type="number" id='scenePosX' onchange="scenePosition('x',this.value)" onkeyup="scenePosition('x',this.value)" value="0">
+                <label class="mdl-textfield__label" for="scenePosX">X Position</label>
+                <span class="mdl-textfield__error">Input is not a number!</span>
+            </div>
+            <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+                <input class="mdl-textfield__input" type="number" id='scenePosY' onchange="scenePosition('y',this.value)" onkeyup="scenePosition('y',this.value)" value="0">
+                <label class="mdl-textfield__label" for="scenePosY">Y Position</label>
+                <span class="mdl-textfield__error">Input is not a number!</span>
+            </div>
+            <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+                <input class="mdl-textfield__input" type="number" id='scenePosZ' onchange="scenePosition('z',this.value)" onkeyup="scenePosition('z',this.value)" value="0">
+                <label class="mdl-textfield__label" for="scenePosZ">Z Position</label>
+                <span class="mdl-textfield__error">Input is not a number!</span>
+            </div>
             <h3>
                 Rotation (in degrees)
             </h3>
-            <div class="parameterBox">X: <input type="number" id='sceneRotX' onchange="sceneRotation('x',this.value)" onkeyup="sceneRotation('x',this.value)" value="0"><br></div>
-            <div class="parameterBox">Y: <input type="number" id='sceneRotY' onchange="sceneRotation('y',this.value)" onkeyup="sceneRotation('y',this.value)" value="0"><br></div>
-            <div class="parameterBox">Z: <input type="number" id='sceneRotZ' onchange="sceneRotation('z',this.value)" onkeyup="sceneRotation('z',this.value)" value="0"><br></div>
+            <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+                <input class="mdl-textfield__input" type="number" id='sceneRotX' onchange="sceneRotation('x',this.value)" onkeyup="sceneRotation('x',this.value)" value="0">
+                <label class="mdl-textfield__label" for="sceneRotX">X Rotation</label>
+                <span class="mdl-textfield__error">Input is not a number!</span>
+            </div>
+            <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+                <input class="mdl-textfield__input" type="number" id='sceneRotY' onchange="sceneRotation('y',this.value)" onkeyup="sceneRotation('y',this.value)" value="0">
+                <label class="mdl-textfield__label" for="sceneRotY">Y Rotation</label>
+                <span class="mdl-textfield__error">Input is not a number!</span>
+            </div>
+            <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+                <input class="mdl-textfield__input" type="number" id='sceneRotZ' onchange="sceneRotation('z',this.value)" onkeyup="sceneRotation('z',this.value)" value="0">
+                <label class="mdl-textfield__label" for="sceneRotZ">Z Rotation</label>
+                <span class="mdl-textfield__error">Input is not a number!</span>
+            </div>
             <h3>
                 Background Color
             </h3>

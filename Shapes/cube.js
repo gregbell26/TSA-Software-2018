@@ -31,6 +31,5 @@ function newCube(x, y, z, posX, posY, posZ, newColor, borderColor){
     document.getElementById('positionBoxX').value = posX;
     document.getElementById('positionBoxY').value = posY;
     document.getElementById('positionBoxZ').value = posZ;
-
 }
 

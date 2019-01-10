@@ -1,11 +1,16 @@
--//corbin wrote this method, simplified by Jordan
+
+//corbin wrote this method, simplified by Jordan
+
 function moveShape(dimension, value) {
     shapes[selectedShape].position[dimension] = Number(value);
     borders[selectedShape].position[dimension] = Number(value);
 }
 
 
-
+function postitionShape(dimension, value) {
+    shapes[selectedShape].position[dimension] = Number(value);
+    borders[selectedShape].position[dimension] = Number(value);
+}
 
 function rotateShape(dimension, value) {
     shapes[selectedShape].rotation[dimension] = Number(value)*Math.PI/180;
@@ -87,62 +92,81 @@ function processShapeData(loadedShapes,loadedScales) {
     }
 
     for(var i=0; i<loadedShapes.length; i++) {
+        console.log(i);
         newGeometry = null;
         borderGeometry = null;
 
             if (loadedShapes[i].type === "BoxGeometry") {
-                newGeometry = new THREE.BoxGeometry(1, 1, 1);
+                /*newGeometry = new THREE.BoxGeometry(1, 1, 1);
                 borderGeometry = new THREE.BoxBufferGeometry(1, 1, 1);
-                newGeometry.name = "cube"
+                newGeometry.name = "cube"*/
+                newCube(loadedScales[i].x, loadedScales[i].y, loadedScales[i].z, loadedShapes[i].positionX, loadedShapes[i].positionY, loadedShapes[i].positionZ, loadedShapes[i].color, loadedScales[i].color)
+
             }
             else if (loadedShapes[i].type === "CylinderGeometry") {
-                newGeometry = new THREE.CylinderGeometry(0.5, 0.5, 1, 100);
+                /*newGeometry = new THREE.CylinderGeometry(0.5, 0.5, 1, 100);
                 borderGeometry = new THREE.CylinderBufferGeometry(0.5, 0.5, 1, 100);
-                newGeometry.name = "cylinder"
+                newGeometry.name = "cylinder"*/
+                newCylinder(loadedScales[i].x, loadedScales[i].y, loadedScales[i].z, loadedShapes[i].positionX, loadedShapes[i].positionY, loadedShapes[i].positionZ, loadedShapes[i].color, loadedScales[i].color)
+
             }
             else if (loadedShapes[i].type === "ConeGeometry") {
-                newGeometry = new THREE.ConeGeometry(0.5, 1, 100);
+                /*newGeometry = new THREE.ConeGeometry(0.5, 1, 100);
                 borderGeometry = new THREE.ConeBufferGeometry(0.5, 1, 100);
-                newGeometry.name = "cone"
+                newGeometry.name = "cone"*/
+                newCone(loadedScales[i].x, loadedScales[i].y, loadedScales[i].z, loadedShapes[i].positionX, loadedShapes[i].positionY, loadedShapes[i].positionZ, loadedShapes[i].color, loadedScales[i].color)
+
             }
             else if (loadedShapes[i].type === "DodecahedronGeometry") {
-                newGeometry = new THREE.DodecahedronGeometry(0.5, 0);
+                /*newGeometry = new THREE.DodecahedronGeometry(0.5, 0);
                 borderGeometry = new THREE.DodecahedronBufferGeometry(0.5, 0);
-                newGeometry.name = "dodecahedron"
+                newGeometry.name = "dodecahedron"*/
+                newDodecahedron(loadedScales[i].x, loadedScales[i].y, loadedScales[i].z, loadedShapes[i].positionX, loadedShapes[i].positionY, loadedShapes[i].positionZ, loadedShapes[i].color, loadedScales[i].color)
+
             }
             else if (loadedShapes[i].type === "IcosahedronGeometry") {
-                newGeometry = new THREE.IcosahedronGeometry(0.5, 0);
+                /*newGeometry = new THREE.IcosahedronGeometry(0.5, 0);
                 borderGeometry = new THREE.IcosahedronBufferGeometry(0.5, 0);
-                newGeometry.name = "icosahedron"
+                newGeometry.name = "icosahedron"*/
+                newIcosahedron(loadedScales[i].x, loadedScales[i].y, loadedScales[i].z, loadedShapes[i].positionX, loadedShapes[i].positionY, loadedShapes[i].positionZ, loadedShapes[i].color, loadedScales[i].color)
+
             }
             else if (loadedShapes[i].type === "OctahedronGeometry") {
-                newGeometry = new THREE.OctahedronGeometry(0.5, 0);
+                /*newGeometry = new THREE.OctahedronGeometry(0.5, 0);
                 borderGeometry = new THREE.OctahedronBufferGeometry(0.5, 0);
-                newGeometry.name = "octahedron"
+                newGeometry.name = "octahedron"*/
+                newOctahedron(loadedScales[i].x, loadedScales[i].y, loadedScales[i].z, loadedShapes[i].positionX, loadedShapes[i].positionY, loadedShapes[i].positionZ, loadedShapes[i].color, loadedScales[i].color)
+
             }
             else if (loadedShapes[i].type === "TetrahedronGeometry") {
-                newGeometry = new THREE.TetrahedronGeometry(0.5, 0);
+                /*newGeometry = new THREE.TetrahedronGeometry(0.5, 0);
                 borderGeometry = new THREE.TetrahedronBufferGeometry(0.5, 0);
-                newGeometry.name = "pyramid"
+                newGeometry.name = "pyramid"*/
+                //newTetrahedron(loadedScales[i].x, loadedScales[i].y, loadedScales[i].z, loadedShapes[i].positionX, loadedShapes[i].positionY, loadedShapes[i].positionZ, loadedShapes[i].color, 0xffffff)
+
             }
             else if (loadedShapes[i].type === "TorusGeometry") {
-                newGeometry = new THREE.TorusGeometry(0.5, 0.25, 200, 200);
+                /*newGeometry = new THREE.TorusGeometry(0.5, 0.25, 200, 200);
                 borderGeometry = new THREE.TorusBufferGeometry(0.5, 0.25, 200, 200);
-                newGeometry.name = "ring"
+                newGeometry.name = "ring"*/
+                //newTorus(loadedScales[i].x, loadedScales[i].y, loadedScales[i].z, loadedShapes[i].positionX, loadedShapes[i].positionY, loadedShapes[i].positionZ, loadedShapes[i].color, 0xffffff)
+
             }
             else if (loadedShapes[i].type === "SphereGeometry") {
-                newGeometry = new THREE.SphereGeometry(0.5, 100, 100);
+                /*newGeometry = new THREE.SphereGeometry(0.5, 100, 100);
                 borderGeometry = new THREE.SphereBufferGeometry(0.5, 100, 100);
-                newGeometry.name = "sphere"
+                newGeometry.name = "sphere"*/
+                newSphere(loadedScales[i].x, loadedScales[i].y, loadedScales[i].z, loadedShapes[i].positionX, loadedShapes[i].positionY, loadedShapes[i].positionZ, loadedShapes[i].r , 0xffffff)
+
             }
             else {
                 console.log("Invalid shape at location: " + i);
             }
-            geometryToAdd = new THREE.Mesh(newGeometry, newMaterial);
+            /*geometryToAdd = new THREE.Mesh(newGeometry, newMaterial);
             edgyBoi = new THREE.EdgesGeometry(borderGeometry);
             borderToAdd  = new THREE.LineSegments(edgyBoi, new THREE.LineBasicMaterial({color: 0xffffff}));
             shapeData[0][i] = geometryToAdd;
-            shapeData[1][i] = borderToAdd;
+            shapeData[1][i] = borderToAdd;*/
             //if(loadedShapes.length !== 1)
                 //shapeData[2][i] = loadedScales[i];
 
@@ -150,7 +174,7 @@ function processShapeData(loadedShapes,loadedScales) {
         //console.log(loadedScales);
         //if (loadedShapes.length === 1)
             //shapeData[2][0] = loadedShapes;
-        return shapeData;//OMG IN FUCKING FORGOT THE RETRUN!
+        //return shapeData;
 
 
 }
