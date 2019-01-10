@@ -67,27 +67,28 @@ function start() {
     }
 
     if(saveSubSystem.openPrevious && saveSubSystem.isUsingSaves){
-        var loadedData = [[],[]];
+        //var loadedData = [[],[]];
         saveSubSystem.setFileName(saveSelector.options[saveSelector.selectedIndex].value, false);
-        loadedData = saveSubSystem.loadSave();
-        for(var i =0; i <loadedData.length; i++)
+        keyFrames = saveSubSystem.loadSave();
+
+        /*for(var i =0; i <loadedData.length; i++)
             for(var j=0; j < loadedData[i].length; j++)
                 console.log(loadedData[i][j]);
 
         if(loadedData[0][0] === 1){
             console.log("An error occured during loading");
             return;
-        }
-        for(var i =0; i < loadedData.length; i++) {
-            shapes[i] =loadedData[0][i];
-            borders[i] =loadedData[1][i];
+        }*/
+        /*for(var i =0; i < loadedData.length; i++) {
+            //shapes[i] =loadedData[0][i];
+            //borders[i] =loadedData[1][i];
             //scales.push(loadedData[2][i]);
-            scales = saveSubSystem.loadedScales;//This seems to work better
-            console.log(scales);
+            //scales = saveSubSystem.loadedScales;//This seems to work better
+            //console.log(scales);
 
 //This is throwing undefined errors for some reason-- The parameter is there its just not correct...
             //Might want to try to create a new object then just adding the parameters... But that would be extreamly taxing on the ram and the cpu as I can't delete an object that is no longer in use because javascript sucks.
-            /*shapes[i].positionX = loadedData[0][i].positionX;
+            shapes[i].positionX = loadedData[0][i].positionX;
             shapes[i].positionY = loadedData[0][i].positionY;
             shapes[i].positionZ = loadedData[0][i].positionZ;
 
@@ -105,7 +106,7 @@ function start() {
 
             borders[i].scale.x = scales[i][0];
             borders[i].scale.y = scales[i][1];
-            borders[i].scale.z = scales[i][2];*/
+            borders[i].scale.z = scales[i][2];
 
             scene.add(shapes[i]);//The issue is that 3JS isn't reconising the 3js object that is created else where as a 3js object
             //That causes the entire program to freak out
@@ -115,7 +116,7 @@ function start() {
             //scene.add(shapes[i]);
 
 
-        }
+        }*/
 
 
     }
