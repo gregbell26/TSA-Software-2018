@@ -91,6 +91,7 @@ function processShapeData(loadedShapes,loadedScales) {
     }
 
     for(var i=0; i<loadedShapes.length; i++) {
+        console.log(i);
         newGeometry = null;
         borderGeometry = null;
 
@@ -154,7 +155,7 @@ function processShapeData(loadedShapes,loadedScales) {
         //console.log(loadedScales);
         //if (loadedShapes.length === 1)
             //shapeData[2][0] = loadedShapes;
-        return shapeData;//OMG IN FUCKING FORGOT THE RETRUN!
+        return shapeData;
 
 
 }
