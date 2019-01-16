@@ -76,6 +76,9 @@ $(document).ready(function(){
         if(e.pageX>=300 && e.pageY >=50) {
             inAnimationWindow = 1;
         }
+        else{
+            inAnimationWindow = 0;
+        }
         if(mouseDown && inAnimationWindow==1){
             zoomZ = Math.pow(Math.pow(xPosition,2)+Math.pow(zPosition, 2),.5);
             zoom = Math.pow((Math.pow(zoomZ,2)+Math.pow(yPosition,2)),.5);//zoom calc here
