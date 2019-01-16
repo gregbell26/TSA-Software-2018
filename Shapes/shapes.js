@@ -80,13 +80,22 @@ function convertColor(r,g,b){
     g*=255;
     b*=255;
     var returnieBoi = "#";
-
-    returnieBoi +=r.toString(16);
-    returnieBoi+=g.toString(16);
-    returnieBoi +=b.toString(16);
-    if (returnieBoi.length % 2) {
-        returnieBoi = '0' + returnieBoi;
+    var a = r.toString(16);
+    if(a.length==1){
+        a = "0" + a;
     }
+    returnieBoi +=a;
+    a = g.toString(16);
+    if(a.length==1){
+        a = "0" + a;
+    }
+    returnieBoi +=a;
+    a = b.toString(16);
+    if(a.length==1){
+        a = "0" + a;
+    }
+    returnieBoi +=a;
+
     return returnieBoi;
 
 }
