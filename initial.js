@@ -17,6 +17,26 @@ var scales = [];
 var keyFrames = [];
 var borders = [];
 
+//more variable declarations from toBeSorted
+
+var xPosition = 10;//camera position x
+var yPosition = 10;//camera position y
+var zPosition = 10;//camera position z
+var xStart = 0;//where the mouse started clicking x
+var yStart = 0;//where the mouse started clicking y
+var xPosStart = xPosition;//the cameras start position x
+var yPosStart = yPosition;//the cameras start position y
+
+var mouseDown = false;//if the right mouse button is pressed down
+var zoomAmount = 1.5;// the zoom multiplier for one key press
+var zoomSensitivity = 1.00;//the percent sensitivity
+var mouseSensitivity = 1.00;//the percent sensitivity
+var inAnimationWindow = 0;//is the mouse in the animation window
+
+
+var zoom = 5;//the zoom on the cube
+var zoomZ = 5;//zoom with only X and Z
+
 //Stuff for saves
 
 saveSubSystem.loadSaveNames();//Loads the names of the saves into an arraylist

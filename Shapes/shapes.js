@@ -6,7 +6,6 @@ function moveShape(dimension, value) {
     borders[selectedShape].position[dimension] = Number(value);
 }
 
-
 function postitionShape(dimension, value) {
     shapes[selectedShape].position[dimension] = Number(value);
     borders[selectedShape].position[dimension] = Number(value);
@@ -37,7 +36,7 @@ function cubeDimension(dimension, value){
 function removeShape(){
     if(selectedShape >= 0){
         scene.remove(shapes[selectedShape]);
-        scene.remove(borders[selectedShape])
+        scene.remove(borders[selectedShape]);
         shapes.splice(selectedShape,1);
         scales.splice(selectedShape,1);
         borders.splice(selectedShape,1);
@@ -51,6 +50,15 @@ function borderChange(value){
 
 }
 
+function toggleColorBorder(checked){//if checked is true turns on the border, if not then turns it off
+    if(checked){
+        document.getElementById('createColorBorder').style.display = 'inherit'
+    }
+    else{
+        document.getElementById('createColorBorder').style.display = 'none'
+    }
+
+}
 
 
 //Gregory wrote this
@@ -67,10 +75,13 @@ function borderChange(value){
 //array spot 1,i will be the border geomrty for the shape
 //Array spot 2,i will be scale data for the shape
 
-function printArray(arr){
-    for(var i =0; i <arr.length; i++)
-        for(var j=0; j < arr[i].length; j++)
-            console.log(arr[i][j]);
+function convertColor(r,g,b){
+    var returnieBoi = "#";
+    returnieBoi +=r.toString(16);
+    returnieBoi+=g.toString(16);
+    returnieBoi +=b.toString(16);
+    return returnieBoi;
+
 }
 
 function processShapeData(loadedShapes,loadedScales) {
@@ -92,71 +103,72 @@ function processShapeData(loadedShapes,loadedScales) {
     }
 
     for(var i=0; i<loadedShapes.length; i++) {
-        console.log(i);
+        //console.log(i);
         newGeometry = null;
         borderGeometry = null;
+
 
             if (loadedShapes[i].type === "BoxGeometry") {
                 /*newGeometry = new THREE.BoxGeometry(1, 1, 1);
                 borderGeometry = new THREE.BoxBufferGeometry(1, 1, 1);
                 newGeometry.name = "cube"*/
-                newCube(loadedScales[i].x, loadedScales[i].y, loadedScales[i].z, loadedShapes[i].positionX, loadedShapes[i].positionY, loadedShapes[i].positionZ, loadedShapes[i].color, loadedScales[i].color)
+                newCube(loadedScales[i].x, loadedScales[i].y, loadedScales[i].z, loadedShapes[i].positionX, loadedShapes[i].positionY, loadedShapes[i].positionZ, convertColor(loadedShapes[i].r, loadedShapes[i].g, loadedShapes[i].b) , 0xffffff)
 
             }
             else if (loadedShapes[i].type === "CylinderGeometry") {
                 /*newGeometry = new THREE.CylinderGeometry(0.5, 0.5, 1, 100);
                 borderGeometry = new THREE.CylinderBufferGeometry(0.5, 0.5, 1, 100);
                 newGeometry.name = "cylinder"*/
-                newCylinder(loadedScales[i].x, loadedScales[i].y, loadedScales[i].z, loadedShapes[i].positionX, loadedShapes[i].positionY, loadedShapes[i].positionZ, loadedShapes[i].color, loadedScales[i].color)
+                newCylinder(loadedScales[i].x, loadedScales[i].y, loadedScales[i].z, loadedShapes[i].positionX, loadedShapes[i].positionY, loadedShapes[i].positionZ, convertColor(loadedShapes[i].r, loadedShapes[i].g, loadedShapes[i].b) , 0xffffff)
 
             }
             else if (loadedShapes[i].type === "ConeGeometry") {
                 /*newGeometry = new THREE.ConeGeometry(0.5, 1, 100);
                 borderGeometry = new THREE.ConeBufferGeometry(0.5, 1, 100);
                 newGeometry.name = "cone"*/
-                newCone(loadedScales[i].x, loadedScales[i].y, loadedScales[i].z, loadedShapes[i].positionX, loadedShapes[i].positionY, loadedShapes[i].positionZ, loadedShapes[i].color, loadedScales[i].color)
+                newCone(loadedScales[i].x, loadedScales[i].y, loadedScales[i].z, loadedShapes[i].positionX, loadedShapes[i].positionY, loadedShapes[i].positionZ, convertColor(loadedShapes[i].r, loadedShapes[i].g, loadedShapes[i].b) , 0xffffff)
 
             }
             else if (loadedShapes[i].type === "DodecahedronGeometry") {
                 /*newGeometry = new THREE.DodecahedronGeometry(0.5, 0);
                 borderGeometry = new THREE.DodecahedronBufferGeometry(0.5, 0);
                 newGeometry.name = "dodecahedron"*/
-                newDodecahedron(loadedScales[i].x, loadedScales[i].y, loadedScales[i].z, loadedShapes[i].positionX, loadedShapes[i].positionY, loadedShapes[i].positionZ, loadedShapes[i].color, loadedScales[i].color)
+                newDodecahedron(loadedScales[i].x, loadedScales[i].y, loadedScales[i].z, loadedShapes[i].positionX, loadedShapes[i].positionY, loadedShapes[i].positionZ, convertColor(loadedShapes[i].r, loadedShapes[i].g, loadedShapes[i].b) , 0xffffff)
 
             }
             else if (loadedShapes[i].type === "IcosahedronGeometry") {
                 /*newGeometry = new THREE.IcosahedronGeometry(0.5, 0);
                 borderGeometry = new THREE.IcosahedronBufferGeometry(0.5, 0);
                 newGeometry.name = "icosahedron"*/
-                newIcosahedron(loadedScales[i].x, loadedScales[i].y, loadedScales[i].z, loadedShapes[i].positionX, loadedShapes[i].positionY, loadedShapes[i].positionZ, loadedShapes[i].color, loadedScales[i].color)
+                newIcosahedron(loadedScales[i].x, loadedScales[i].y, loadedScales[i].z, loadedShapes[i].positionX, loadedShapes[i].positionY, loadedShapes[i].positionZ, convertColor(loadedShapes[i].r, loadedShapes[i].g, loadedShapes[i].b) , 0xffffff)
 
             }
             else if (loadedShapes[i].type === "OctahedronGeometry") {
                 /*newGeometry = new THREE.OctahedronGeometry(0.5, 0);
                 borderGeometry = new THREE.OctahedronBufferGeometry(0.5, 0);
                 newGeometry.name = "octahedron"*/
-                newOctahedron(loadedScales[i].x, loadedScales[i].y, loadedScales[i].z, loadedShapes[i].positionX, loadedShapes[i].positionY, loadedShapes[i].positionZ, loadedShapes[i].color, loadedScales[i].color)
+                newOctahedron(loadedScales[i].x, loadedScales[i].y, loadedScales[i].z, loadedShapes[i].positionX, loadedShapes[i].positionY, loadedShapes[i].positionZ, convertColor(loadedShapes[i].r, loadedShapes[i].g, loadedShapes[i].b) , 0xffffff)
 
             }
             else if (loadedShapes[i].type === "TetrahedronGeometry") {
                 /*newGeometry = new THREE.TetrahedronGeometry(0.5, 0);
                 borderGeometry = new THREE.TetrahedronBufferGeometry(0.5, 0);
                 newGeometry.name = "pyramid"*/
-                //newTetrahedron(loadedScales[i].x, loadedScales[i].y, loadedScales[i].z, loadedShapes[i].positionX, loadedShapes[i].positionY, loadedShapes[i].positionZ, loadedShapes[i].color, 0xffffff)
+                //newTetrahedron(loadedScales[i].x, loadedScales[i].y, loadedScales[i].z, loadedShapes[i].positionX, loadedShapes[i].positionY, loadedShapes[i].positionZ, convertColor(loadedShapes[i].r, loadedShapes[i].g, loadedShapes[i].b) , 0xffffff)
 
             }
             else if (loadedShapes[i].type === "TorusGeometry") {
                 /*newGeometry = new THREE.TorusGeometry(0.5, 0.25, 200, 200);
                 borderGeometry = new THREE.TorusBufferGeometry(0.5, 0.25, 200, 200);
                 newGeometry.name = "ring"*/
-                //newTorus(loadedScales[i].x, loadedScales[i].y, loadedScales[i].z, loadedShapes[i].positionX, loadedShapes[i].positionY, loadedShapes[i].positionZ, loadedShapes[i].color, 0xffffff)
+                //newTorus(loadedScales[i].x, loadedScales[i].y, loadedScales[i].z, loadedShapes[i].positionX, loadedShapes[i].positionY, loadedShapes[i].positionZ, convertColor(loadedShapes[i].r, loadedShapes[i].g, loadedShapes[i].b) , 0xffffff)
 
             }
             else if (loadedShapes[i].type === "SphereGeometry") {
                 /*newGeometry = new THREE.SphereGeometry(0.5, 100, 100);
                 borderGeometry = new THREE.SphereBufferGeometry(0.5, 100, 100);
                 newGeometry.name = "sphere"*/
-                newSphere(loadedScales[i].x, loadedScales[i].y, loadedScales[i].z, loadedShapes[i].positionX, loadedShapes[i].positionY, loadedShapes[i].positionZ, loadedShapes[i].r , 0xffffff)
+                newSphere(loadedScales[i].x, loadedScales[i].y, loadedScales[i].z, loadedShapes[i].positionX, loadedShapes[i].positionY, loadedShapes[i].positionZ, convertColor(loadedShapes[i].r, loadedShapes[i].g, loadedShapes[i].b) , 0xffffff)
 
             }
             else {
