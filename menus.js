@@ -89,7 +89,12 @@ function shapeMenu(){
     hideAll();
     document.getElementById("shapeMenu").style.display="inherit";
     if(usingTutorial){
-        tutorialMoveArrowNewShape();
+        if(confirm("Now create a shape")){
+            animateArrow(15, 75, 120, 120);
+        }
+        else{
+            usingTutorial = false;
+        }
     }
 }
 
@@ -97,7 +102,7 @@ function newShapeMenu(){
     hideAll();
     document.getElementById("addMenu").style.display="inherit";
     if(usingTutorial){
-        document.getElementById('tutorialArrow').style.display = 'none';
+        animateArrow(75, 95, 120, 90);
     }
 }
 
