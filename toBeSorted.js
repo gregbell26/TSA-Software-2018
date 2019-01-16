@@ -33,7 +33,7 @@ var inAnimationWindow = 0;//is the mouse in the animation window
 var zoom = 5;//the zoom on the cube
 var zoomZ = 5;//zoom with only X and Z
 $(document).on('mousedown',function(e){
-    if(inAnimationWindow) {
+    if(inAnimationWindow==1) {
         xStart = e.pageX;
         yStart = e.pageY;
         mouseDown = true;
@@ -45,7 +45,7 @@ $(document).on('mouseup',function(e){
     }
 });
 $(document).on('keydown',function(e) {
-    if (inAnimationWindow) {
+    if (inAnimationWindow==1) {
         zoom = Math.pow((Math.pow(xPosition, 2) + Math.pow(yPosition, 2) + Math.pow(zPosition, 2)), .5);//zoom calc here
         if (e.key == "-")
             zoom *= zoomAmount;
@@ -85,7 +85,7 @@ $(document).ready(function(){
         if(e.pageX>=300 && e.pageY >=50) {
             inAnimationWindow = 1;
         }
-        if(mouseDown && inAnimationWindow){
+        if(mouseDown && inAnimationWindow==1){
             zoomZ = Math.pow(Math.pow(xPosition,2)+Math.pow(zPosition, 2),.5);
             zoom = Math.pow((Math.pow(zoomZ,2)+Math.pow(yPosition,2)),.5);//zoom calc here
 
