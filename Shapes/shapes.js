@@ -80,9 +80,13 @@ function convertColor(r,g,b){
     g*=255;
     b*=255;
     var returnieBoi = "#";
+
     returnieBoi +=r.toString(16);
     returnieBoi+=g.toString(16);
     returnieBoi +=b.toString(16);
+    if (returnieBoi.length % 2) {
+        returnieBoi = '0' + returnieBoi;
+    }
     return returnieBoi;
 
 }
@@ -97,7 +101,7 @@ function processShapeData(loadedShapes,loadedScales) {
     var edgyBoi;
     //Creating the table of data.
 
-    const newMaterial = new THREE.MeshBasicMaterial({color: 0x00ff00});
+    //const newMaterial = new THREE.MeshBasicMaterial({color: 0x00ff00});
 
     if(loadedShapes.length !== loadedScales.length){
         console.log("Invalid data loaded.");
