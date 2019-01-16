@@ -6,7 +6,6 @@ function moveShape(dimension, value) {
     borders[selectedShape].position[dimension] = Number(value);
 }
 
-
 function postitionShape(dimension, value) {
     shapes[selectedShape].position[dimension] = Number(value);
     borders[selectedShape].position[dimension] = Number(value);
@@ -51,6 +50,15 @@ function borderChange(value){
 
 }
 
+function toggleColorBorder(checked){//if checked is true turns on the border, if not then turns it off
+    if(checked){
+        document.getElementById('createColorBorder').style.display = 'inherit'
+    }
+    else{
+        document.getElementById('createColorBorder').style.display = 'none'
+    }
+
+}
 
 
 //Gregory wrote this
