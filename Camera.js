@@ -15,6 +15,14 @@ $(document).on('mousedown',function(e){
         mouseDown = true;
     }
 });
+$(document).on('change',function(e){
+    if(isNaN(yPosition))
+        yPosition = 0;
+    if(isNaN(xPosition))
+        xPosition = 0;
+    if(isNaN(zPosition))
+        zPosition = 0;
+});
 $(document).on('mouseup',function(e){
     if(e.pageX>=300 && e.pageY >=50) {
         mouseDown = false;
@@ -51,6 +59,13 @@ $(document).on('keydown',function(e) {
         yPosition = zoom * Math.sin(cameraRy);
         xPosition = (zoom * Math.cos(Math.asin(yPosition/zoom))) * Math.cos(cameraRz);
         zPosition = (zoom * Math.cos(Math.asin(yPosition/zoom))) * Math.sin(cameraRz);
+
+        if(isNaN(yPosition))
+            yPosition = 0;
+        if(isNaN(xPosition))
+            xPosition = 0;
+        if(isNaN(zPosition))
+            zPosition = 0;
     }
 });
 $(document).on('mouseup',function(e){
@@ -96,6 +111,12 @@ $(document).ready(function(){
             xPosition = (zoom * Math.cos(Math.asin(yPosition/zoom))) * Math.cos(cameraRz);
             zPosition = (zoom * Math.cos(Math.asin(yPosition/zoom))) * Math.sin(cameraRz);
 
+            if(isNaN(yPosition))
+                yPosition = 0;
+            if(isNaN(xPosition))
+                xPosition = 0;
+            if(isNaN(zPosition))
+                zPosition = 0;
 
             if(e.pageX>=300 && e.pageY >=50) {
                 xStart = e.pageX;
