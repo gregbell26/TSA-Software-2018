@@ -76,6 +76,9 @@ function toggleColorBorder(checked){//if checked is true turns on the border, if
 //Array spot 2,i will be scale data for the shape
 
 function convertColor(r,g,b){
+    r*=255;
+    g*=255;
+    b*=255;
     var returnieBoi = "#";
     returnieBoi +=r.toString(16);
     returnieBoi+=g.toString(16);
