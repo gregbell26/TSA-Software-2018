@@ -115,42 +115,42 @@ function processShapeData(loadedShapes,loadedScales) {
                 /*newGeometry = new THREE.BoxGeometry(1, 1, 1);
                 borderGeometry = new THREE.BoxBufferGeometry(1, 1, 1);
                 newGeometry.name = "cube"*/
-                newCube(loadedScales[i].x, loadedScales[i].y, loadedScales[i].z, loadedShapes[i].positionX, loadedShapes[i].positionY, loadedShapes[i].positionZ, convertColor(loadedShapes[i].r, loadedShapes[i].g, loadedShapes[i].b) , 0xffffff)
+                newCube(loadedScales[i][0], loadedScales[i][1], loadedScales[i][2], loadedShapes[i].positionX, loadedShapes[i].positionY, loadedShapes[i].positionZ, convertColor(loadedShapes[i].r, loadedShapes[i].g, loadedShapes[i].b) , 0xffffff)
 
             }
             else if (loadedShapes[i].type === "CylinderGeometry") {
                 /*newGeometry = new THREE.CylinderGeometry(0.5, 0.5, 1, 100);
                 borderGeometry = new THREE.CylinderBufferGeometry(0.5, 0.5, 1, 100);
                 newGeometry.name = "cylinder"*/
-                newCylinder(loadedScales[i].x, loadedScales[i].y, loadedScales[i].z, loadedShapes[i].positionX, loadedShapes[i].positionY, loadedShapes[i].positionZ, convertColor(loadedShapes[i].r, loadedShapes[i].g, loadedShapes[i].b) , 0xffffff)
+                newCylinder(loadedScales[i][0], loadedScales[i][1], loadedScales[i][2], loadedShapes[i].positionX, loadedShapes[i].positionY, loadedShapes[i].positionZ, convertColor(loadedShapes[i].r, loadedShapes[i].g, loadedShapes[i].b) , 0xffffff)
 
             }
             else if (loadedShapes[i].type === "ConeGeometry") {
                 /*newGeometry = new THREE.ConeGeometry(0.5, 1, 100);
                 borderGeometry = new THREE.ConeBufferGeometry(0.5, 1, 100);
                 newGeometry.name = "cone"*/
-                newCone(loadedScales[i].x, loadedScales[i].y, loadedScales[i].z, loadedShapes[i].positionX, loadedShapes[i].positionY, loadedShapes[i].positionZ, convertColor(loadedShapes[i].r, loadedShapes[i].g, loadedShapes[i].b) , 0xffffff)
+                newCone(loadedScales[i][0], loadedScales[i][1], loadedScales[i][2], loadedShapes[i].positionX, loadedShapes[i].positionY, loadedShapes[i].positionZ, convertColor(loadedShapes[i].r, loadedShapes[i].g, loadedShapes[i].b) , 0xffffff)
 
             }
             else if (loadedShapes[i].type === "DodecahedronGeometry") {
                 /*newGeometry = new THREE.DodecahedronGeometry(0.5, 0);
                 borderGeometry = new THREE.DodecahedronBufferGeometry(0.5, 0);
                 newGeometry.name = "dodecahedron"*/
-                newDodecahedron(loadedScales[i].x, loadedScales[i].y, loadedScales[i].z, loadedShapes[i].positionX, loadedShapes[i].positionY, loadedShapes[i].positionZ, convertColor(loadedShapes[i].r, loadedShapes[i].g, loadedShapes[i].b) , 0xffffff)
+                newDodecahedron(loadedScales[i][0], loadedScales[i][1], loadedScales[i][2], loadedShapes[i].positionX, loadedShapes[i].positionY, loadedShapes[i].positionZ, convertColor(loadedShapes[i].r, loadedShapes[i].g, loadedShapes[i].b) , 0xffffff)
 
             }
             else if (loadedShapes[i].type === "IcosahedronGeometry") {
                 /*newGeometry = new THREE.IcosahedronGeometry(0.5, 0);
                 borderGeometry = new THREE.IcosahedronBufferGeometry(0.5, 0);
                 newGeometry.name = "icosahedron"*/
-                newIcosahedron(loadedScales[i].x, loadedScales[i].y, loadedScales[i].z, loadedShapes[i].positionX, loadedShapes[i].positionY, loadedShapes[i].positionZ, convertColor(loadedShapes[i].r, loadedShapes[i].g, loadedShapes[i].b) , 0xffffff)
+                newIcosahedron(loadedScales[i][0], loadedScales[i][1], loadedScales[i][2], loadedShapes[i].positionX, loadedShapes[i].positionY, loadedShapes[i].positionZ, convertColor(loadedShapes[i].r, loadedShapes[i].g, loadedShapes[i].b) , 0xffffff)
 
             }
             else if (loadedShapes[i].type === "OctahedronGeometry") {
                 /*newGeometry = new THREE.OctahedronGeometry(0.5, 0);
                 borderGeometry = new THREE.OctahedronBufferGeometry(0.5, 0);
                 newGeometry.name = "octahedron"*/
-                newOctahedron(loadedScales[i].x, loadedScales[i].y, loadedScales[i].z, loadedShapes[i].positionX, loadedShapes[i].positionY, loadedShapes[i].positionZ, convertColor(loadedShapes[i].r, loadedShapes[i].g, loadedShapes[i].b) , 0xffffff)
+                newOctahedron(loadedScales[i][0], loadedScales[i][1], loadedScales[i][2], loadedShapes[i].positionX, loadedShapes[i].positionY, loadedShapes[i].positionZ, convertColor(loadedShapes[i].r, loadedShapes[i].g, loadedShapes[i].b) , 0xffffff)
 
             }
             else if (loadedShapes[i].type === "TetrahedronGeometry") {
@@ -171,7 +171,7 @@ function processShapeData(loadedShapes,loadedScales) {
                 /*newGeometry = new THREE.SphereGeometry(0.5, 100, 100);
                 borderGeometry = new THREE.SphereBufferGeometry(0.5, 100, 100);
                 newGeometry.name = "sphere"*/
-                newSphere(loadedScales[i].x, loadedScales[i].y, loadedScales[i].z, loadedShapes[i].positionX, loadedShapes[i].positionY, loadedShapes[i].positionZ, convertColor(loadedShapes[i].r, loadedShapes[i].g, loadedShapes[i].b) , 0xffffff)
+                newSphere(loadedScales[i][0], loadedScales[i][1], loadedScales[i][2], loadedShapes[i].positionX, loadedShapes[i].positionY, loadedShapes[i].positionZ, convertColor(loadedShapes[i].r, loadedShapes[i].g, loadedShapes[i].b) , 0xffffff)
 
             }
             else {
