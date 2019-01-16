@@ -22,7 +22,7 @@
             <h3>Choose how you want to start:</h3>
             <button onclick="saveSubSystem.setIsUsingSaves(true, false); document.getElementById('welcomeScreen').style.display = 'none';  start();" class="mdl-button mdl-js-button mdl-button--raised startButton">Start from scratch</button>
             <!--<button>Upload a file</button>-->
-            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<button onclick="start(); launchTutorial()" class="mdl-button mdl-js-button mdl-button--raised startButton">View the tutorial</button>
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<button onclick="saveSubSystem.setIsUsingSaves(false, false); start(); launchTutorial()" class="mdl-button mdl-js-button mdl-button--raised startButton">View the tutorial</button>
             <br>
             <br>
             <div id="saveFileContainer">
