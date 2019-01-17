@@ -23,6 +23,16 @@ function addFrame(){
     loadKeyList();
 }
 
+function loop(){
+    if(animationRunning){
+        loopAnimation = false;
+    }
+    else{
+        loopAnimation = true;
+        playAnimation();
+    }
+}
+
 function loadKeyList(){
     document.getElementById('keyList').innerHTML = "";
     for(var i=0; i<keyFrames.length-1; i++){
@@ -127,6 +137,10 @@ function playAnimation() {
                     a++;
                     timingCounter = 0;
                     console.log(a)
+                }
+                else if (loopAnimation){
+                    a = 0;
+                    timingCounter = 0;
                 }
                 else {
                     clearInterval(animationTimer);

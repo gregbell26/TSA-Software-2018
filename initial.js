@@ -1,5 +1,6 @@
 //jordan's code
 var animationRunning = false;
+var loopAnimation = false;
 var animationTimer;
 var selectedShape = -1;
 var scene = new THREE.Scene();
