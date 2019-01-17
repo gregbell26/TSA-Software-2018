@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    <script>if (typeof module === 'object') {window.module = module; module = undefined;}</script>
     <script src="three.js"></script>
     <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
     <link rel="stylesheet" href="https://code.getmdl.io/1.3.0/material.indigo-pink.min.css">
@@ -15,6 +16,21 @@
     <title>Monarch TSA 2019</title>
 </head>
 <body>
+
+    <dialog class="mdl-dialog">
+        <h4 class="mdl-dialog__title" id="popupTitle">Allow data collection?</h4>
+        <div class="mdl-dialog__content">
+            <form action="#">
+                <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+                    <input class="mdl-textfield__input" type="text" id="popupInput">
+                </div>
+            </form>
+        </div>
+        <div class="mdl-dialog__actions">
+            <button type="button" class="mdl-button" onclick="promptResponse(document.getElementById('popupInput').value)">OK</button>
+        </div>
+    </dialog>
+
     <div id="welcomeScreen">
         <div id="welcomeScreenBody">
             <h1><strong>Welcome to Monarch Animation</strong></h1>

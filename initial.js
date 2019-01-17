@@ -59,8 +59,28 @@ div.appendChild(frag);
 //---------------------
 
 
+var dialog = document.querySelector('dialog');
 
+function showPrompt(title, defaultText){
+    document.getElementById("popupTitle").innerHTML = title;
+    document.getElementById("popupInput").innerHTML = defaultText;
+    dialog.showModal();
+}
 
+var promptResp = 0;
+
+function promptResponse(value) {
+    console.log(value);
+    if (promptResp == 1) {
+        var saveName = value;
+        if (saveName !== null) {
+            console.log("User message received.");
+            saveSubSystem.setIsUsingSaves(true);
+            saveSubSystem.setFileName(saveName, true);
+            dialog.close();
+        }
+    }
+}
 
 //Greatness by Gregory
 function start() {
@@ -74,12 +94,9 @@ function start() {
 
 
     if(saveSelector.options[saveSelector.selectedIndex].value === "GET NAME" || !saveSubSystem.openPrevious){
-        var saveName = prompt("Please enter a name for your save", "New Animation");
-        if (saveName !== null) {
-            console.log("User message received.");
-            saveSubSystem.setIsUsingSaves(true);
-            saveSubSystem.setFileName(saveName, true);
-        }
+        promptResp = 1;
+        showPrompt("Please enter a name for your save", "New Animation");
+
     }
     if(!saveSubSystem.isUsingSaves){
         console.log("Save subsystem has been disabled by the user");
