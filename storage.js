@@ -78,7 +78,7 @@ var saveSubSystem =
 
     deleteSave: function(saveToDelete){
       if(localStorage.getItem(saveToDelete) !== null) {
-          this.saveFileNamesList.delete(saveToDelete)//Removes old save from file name list
+          this.saveFileNamesList.pop(saveToDelete)//Removes old save from file name list
           localStorage.setItem("fileNames", JSON.stringify(this.saveFileNamesList));//saves that.
           //At this point the save is no longer accessible but it is still taking up space
           localStorage.removeItem("keyFrames:" + saveToDelete);

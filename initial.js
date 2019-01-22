@@ -134,7 +134,7 @@ function start() {
     borders= [];
     selectedShape = 0;
 
-    if((saveSelector.options[saveSelector.selectedIndex].value === "GET NAME" || !saveSubSystem.openPrevious) && saveSubSystem.isUsingSaves()){
+    if((saveSelector.options[saveSelector.selectedIndex].value === "GET NAME" || !saveSubSystem.openPrevious) && saveSubSystem.isUsingSaves){
         promptResp = 1;
         showPrompt("Please enter a name for your save", "New Animation");
 
