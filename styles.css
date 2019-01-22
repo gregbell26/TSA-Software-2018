@@ -25,6 +25,33 @@
 
 }
 
+#settingsBackground{
+    position:absolute;
+    top:0;
+    left:0;
+    right:0;
+    bottom:0;
+    z-index: 5;
+    background-color: #FFFFFF;
+    display: none;
+    opacity: 0.5;
+}
+
+#settingsPage{
+    position:absolute;
+    margin: 0;
+    top: 50%;
+    left: 50%;
+    width: 500px;
+    height: 500px;
+    margin-right: -50%;
+    transform: translate(-50%, -50%);
+    z-index: 6;
+    background-color: #FFFFFF;
+    opacity:1;
+    display: none;
+}
+
 html, body {
     overflow: hidden;
     font-family: 'Roboto', sans-serif

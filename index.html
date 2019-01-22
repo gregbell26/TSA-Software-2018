@@ -74,7 +74,7 @@
         <button onfocus="this.blur()" class="material-icons md-48 topButton" id="saveButton" onclick="saveSubSystem.save()">save_alt</button>
         <button onfocus="this.blur()" class="material-icons md-48 topButton" id="userButton" onclick="signInWithGoogle()">person</button>
         <button onfocus="this.blur()" class="topButton" style="font-size: 20px" id="meshButton" onclick="meshMenu()">mesh</button>
-        <button onfocus="this.blur()" class="material-icons md-48 topButton" id="settingsButton">settings</button>
+        <button onfocus="this.blur()" onclick="openSettings()" class="material-icons md-48 topButton" id="settingsButton">settings</button>
         <button onfocus="this.blur()" class="material-icons md-48 topButton" id="colorButton" onclick="colorMenu()">color_lens</button>
         <button onfocus="this.blur()" class="material-icons md-48 topButton" id="sceneButton" onclick="sceneMenu()">aspect_ratio</button>
     </div>
@@ -83,7 +83,7 @@
 
         <div id="shapeMenu" style="display: none">
             <button onfocus="this.blur()" class="objButton addButton" onclick="newShapeMenu()">New Shape</button>
-            <button onfocus="this.blur()" class="objButton removeButton" onclick="repostitionShape()">Delete Shape</button>
+            <button onfocus="this.blur()" class="objButton removeButton" onclick="removeShape()">Delete Shape</button>
         </div>
 
 
@@ -308,7 +308,12 @@
         </div>
 
     </div>
+    <div id="settingsBackground" onclick="closeSettings()">
 
+    </div>
+    <div id="settingsPage" onclick="">
+
+    </div>
     <div id="mainWindow">
     </div>
 
