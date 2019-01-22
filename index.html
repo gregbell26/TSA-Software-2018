@@ -4,7 +4,7 @@
     <script>if (typeof module === 'object') {window.module = module; module = undefined;}</script><!--This lets Electron run external script files-->
     <script src="three.js"></script>
     <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
-    <link rel="stylesheet" href="https://code.getmdl.io/1.3.0/material.indigo-pink.min.css">
+    <link rel="stylesheet" href="https://code.getmdl.io/1.3.0/material.blue-light_blue.min.css">
     <script defer src="https://code.getmdl.io/1.3.0/material.min.js"></script>
     <script src="https://www.gstatic.com/firebasejs/5.5.6/firebase.js"></script>
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
@@ -110,17 +110,17 @@
                 Dimensions
             </h3>
             <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-                <input class="mdl-textfield__input" type="number" id='dimensionX' onchange="cubeDimension('x',this.value)" onkeyup="cubeDimension('x',this.value)" value="0">
+                <input class="mdl-textfield__input" type="number" pattern="-?[0-9]*(\.[0-9]+)?" id='dimensionX' onchange="cubeDimension('x',this.value)" onkeyup="cubeDimension('x',this.value)" value="0">
                 <label class="mdl-textfield__label" for="dimensionX">X Dimension</label>
                 <span class="mdl-textfield__error">Input is not a number!</span>
             </div>
             <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-                <input class="mdl-textfield__input"  type="number" id='dimensionY' onchange="cubeDimension('y',this.value)" onkeyup="cubeDimension('y',this.value)" value="0">
+                <input class="mdl-textfield__input"  type="number" pattern="-?[0-9]*(\.[0-9]+)?" id='dimensionY' onchange="cubeDimension('y',this.value)" onkeyup="cubeDimension('y',this.value)" value="0">
                 <label class="mdl-textfield__label" for="dimensionY">Y Dimension</label>
                 <span class="mdl-textfield__error">Input is not a number!</span>
             </div>
             <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-                <input class="mdl-textfield__input" type="number" id='dimensionZ' onchange="cubeDimension('z',this.value)" onkeyup="cubeDimension('z',this.value)" value="0">
+                <input class="mdl-textfield__input" type="number" pattern="-?[0-9]*(\.[0-9]+)?" id='dimensionZ' onchange="cubeDimension('z',this.value)" onkeyup="cubeDimension('z',this.value)" value="0">
                 <label class="mdl-textfield__label" for="dimensionZ">Z Dimension</label>
                 <span class="mdl-textfield__error">Input is not a number!</span>
             </div>
@@ -131,17 +131,17 @@
                 Position
             </h3>
             <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-                <input class="mdl-textfield__input"  type="number" id='positionBoxX' onchange="moveShape('x',this.value)" onkeyup="moveShape('x',this.value)" value="0">
+                <input class="mdl-textfield__input"  type="number" pattern="-?[0-9]*(\.[0-9]+)?" id='positionBoxX' onchange="moveShape('x',this.value)" onkeyup="moveShape('x',this.value)" value="0">
                 <label class="mdl-textfield__label" for="positionBoxX">X Position</label>
                 <span class="mdl-textfield__error">Input is not a number!</span>
             </div>
             <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-                <input class="mdl-textfield__input"  type="number" id='positionBoxY' onchange="moveShape('y',this.value)" onkeyup="moveShape('y',this.value)" value="0">
+                <input class="mdl-textfield__input"  type="number" pattern="-?[0-9]*(\.[0-9]+)?" id='positionBoxY' onchange="moveShape('y',this.value)" onkeyup="moveShape('y',this.value)" value="0">
                 <label class="mdl-textfield__label" for="positionBoxY">Y Position</label>
                 <span class="mdl-textfield__error">Input is not a number!</span>
             </div>
             <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-                <input class="mdl-textfield__input"  type="number" id='positionBoxZ' onchange="moveShape('z',this.value)" onkeyup="moveShape('z',this.value)" value="0">
+                <input class="mdl-textfield__input"  type="number" pattern="-?[0-9]*(\.[0-9]+)?" id='positionBoxZ' onchange="moveShape('z',this.value)" onkeyup="moveShape('z',this.value)" value="0">
                 <label class="mdl-textfield__label" for="positionBoxZ">Z Position</label>
                 <span class="mdl-textfield__error">Input is not a number!</span>
             </div>
@@ -161,17 +161,17 @@
                 Rotations (in degrees)
             </h3>
             <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-                <input class="mdl-textfield__input"  type="number" id='rotateBoxX' onchange="rotateShape('x',this.value)" onkeyup="rotateShape('x',this.value)" value="0">
+                <input class="mdl-textfield__input"  type="number" pattern="-?[0-9]*(\.[0-9]+)?" id='rotateBoxX' onchange="rotateShape('x',this.value)" onkeyup="rotateShape('x',this.value)" value="0">
                 <label class="mdl-textfield__label" for="rotateBoxX">X Rotate</label>
                 <span class="mdl-textfield__error">Input is not a number!</span>
             </div>
             <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-                <input class="mdl-textfield__input"  type="number" id='rotateBoxY' onchange="rotateShape('y',this.value)" onkeyup="rotateShape('y',this.value)" value="0">
+                <input class="mdl-textfield__input"  type="number" pattern="-?[0-9]*(\.[0-9]+)?" id='rotateBoxY' onchange="rotateShape('y',this.value)" onkeyup="rotateShape('y',this.value)" value="0">
                 <label class="mdl-textfield__label" for="rotateBoxY">Y Rotate</label>
                 <span class="mdl-textfield__error">Input is not a number!</span>
             </div>
             <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-                <input class="mdl-textfield__input"  type="number" id='rotateBoxZ' onchange="rotateShape('z',this.value)" onkeyup="rotateShape('z',this.value)" value="0">
+                <input class="mdl-textfield__input"  type="number" pattern="-?[0-9]*(\.[0-9]+)?" id='rotateBoxZ' onchange="rotateShape('z',this.value)" onkeyup="rotateShape('z',this.value)" value="0">
                 <label class="mdl-textfield__label" for="rotateBoxZ">Z Rotate</label>
                 <span class="mdl-textfield__error">Input is not a number!</span>
             </div>
@@ -210,17 +210,17 @@
 
         <div id="sideBarCamera" style="display:none">
             <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-                <input class="mdl-textfield__input" type="number" id='xPositionBox' onchange="xPosition = Number(this.value)" onkeyup="xPosition = Number(this.value)" value="10">
+                <input class="mdl-textfield__input" type="number" pattern="-?[0-9]*(\.[0-9]+)?" id='xPositionBox' onchange="xPosition = Number(this.value)" onkeyup="xPosition = Number(this.value)" value="10">
                 <label class="mdl-textfield__label" for="xPositionBox">X Position</label>
                 <span class="mdl-textfield__error">Input is not a number!</span>
             </div>
             <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-                <input class="mdl-textfield__input" type="number" id='yPositionBox' onchange="yPosition = Number(this.value)" onkeyup="yPosition = Number(this.value)" value="10">
+                <input class="mdl-textfield__input" type="number" pattern="-?[0-9]*(\.[0-9]+)?" id='yPositionBox' onchange="yPosition = Number(this.value)" onkeyup="yPosition = Number(this.value)" value="10">
                 <label class="mdl-textfield__label" for="yPositionBox">Y Position</label>
                 <span class="mdl-textfield__error">Input is not a number!</span>
             </div>
             <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-                <input class="mdl-textfield__input" type="number" id='zPositionBox' onchange="zPosition = Number(this.value)" onkeyup="zPosition = Number(this.value)" value="10">
+                <input class="mdl-textfield__input" type="number" pattern="-?[0-9]*(\.[0-9]+)?" id='zPositionBox' onchange="zPosition = Number(this.value)" onkeyup="zPosition = Number(this.value)" value="10">
                 <label class="mdl-textfield__label" for="zPositionBox">Z Position</label>
                 <span class="mdl-textfield__error">Input is not a number!</span>
             </div>
@@ -251,17 +251,17 @@
                 Scale
             </h3>
             <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-                <input class="mdl-textfield__input" type="number" id='sceneScaleX' onchange="sceneScale('x',this.value)" onkeyup="sceneScale('x',this.value)" value="1">
+                <input class="mdl-textfield__input" type="number" pattern="-?[0-9]*(\.[0-9]+)?" id='sceneScaleX' onchange="sceneScale('x',this.value)" onkeyup="sceneScale('x',this.value)" value="1">
                 <label class="mdl-textfield__label" for="sceneScaleX">X Scale</label>
                 <span class="mdl-textfield__error">Input is not a number!</span>
             </div>
             <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-                <input class="mdl-textfield__input" type="number" id='sceneScaleY' onchange="sceneScale('y',this.value)" onkeyup="sceneScale('y',this.value)" value="1">
+                <input class="mdl-textfield__input" type="number" pattern="-?[0-9]*(\.[0-9]+)?" id='sceneScaleY' onchange="sceneScale('y',this.value)" onkeyup="sceneScale('y',this.value)" value="1">
                 <label class="mdl-textfield__label" for="sceneScaleY">Y Scale</label>
                 <span class="mdl-textfield__error">Input is not a number!</span>
             </div>
             <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-                <input class="mdl-textfield__input" type="number" id='sceneScaleZ' onchange="sceneScale('z',this.value)" onkeyup="sceneScale('z',this.value)" value="1">
+                <input class="mdl-textfield__input" type="number" pattern="-?[0-9]*(\.[0-9]+)?" id='sceneScaleZ' onchange="sceneScale('z',this.value)" onkeyup="sceneScale('z',this.value)" value="1">
                 <label class="mdl-textfield__label" for="sceneScaleZ">Z Scale</label>
                 <span class="mdl-textfield__error">Input is not a number!</span>
             </div>
@@ -269,17 +269,17 @@
                 Position
             </h3>
             <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-                <input class="mdl-textfield__input" type="number" id='scenePosX' onchange="scenePosition('x',this.value)" onkeyup="scenePosition('x',this.value)" value="0">
+                <input class="mdl-textfield__input" type="number" pattern="-?[0-9]*(\.[0-9]+)?" id='scenePosX' onchange="scenePosition('x',this.value)" onkeyup="scenePosition('x',this.value)" value="0">
                 <label class="mdl-textfield__label" for="scenePosX">X Position</label>
                 <span class="mdl-textfield__error">Input is not a number!</span>
             </div>
             <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-                <input class="mdl-textfield__input" type="number" id='scenePosY' onchange="scenePosition('y',this.value)" onkeyup="scenePosition('y',this.value)" value="0">
+                <input class="mdl-textfield__input" type="number" pattern="-?[0-9]*(\.[0-9]+)?" id='scenePosY' onchange="scenePosition('y',this.value)" onkeyup="scenePosition('y',this.value)" value="0">
                 <label class="mdl-textfield__label" for="scenePosY">Y Position</label>
                 <span class="mdl-textfield__error">Input is not a number!</span>
             </div>
             <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-                <input class="mdl-textfield__input" type="number" id='scenePosZ' onchange="scenePosition('z',this.value)" onkeyup="scenePosition('z',this.value)" value="0">
+                <input class="mdl-textfield__input" type="number" pattern="-?[0-9]*(\.[0-9]+)?" id='scenePosZ' onchange="scenePosition('z',this.value)" onkeyup="scenePosition('z',this.value)" value="0">
                 <label class="mdl-textfield__label" for="scenePosZ">Z Position</label>
                 <span class="mdl-textfield__error">Input is not a number!</span>
             </div>
@@ -287,17 +287,17 @@
                 Rotation (in degrees)
             </h3>
             <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-                <input class="mdl-textfield__input" type="number" id='sceneRotX' onchange="sceneRotation('x',this.value)" onkeyup="sceneRotation('x',this.value)" value="0">
+                <input class="mdl-textfield__input" type="number" pattern="-?[0-9]*(\.[0-9]+)?" id='sceneRotX' onchange="sceneRotation('x',this.value)" onkeyup="sceneRotation('x',this.value)" value="0">
                 <label class="mdl-textfield__label" for="sceneRotX">X Rotation</label>
                 <span class="mdl-textfield__error">Input is not a number!</span>
             </div>
             <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-                <input class="mdl-textfield__input" type="number" id='sceneRotY' onchange="sceneRotation('y',this.value)" onkeyup="sceneRotation('y',this.value)" value="0">
+                <input class="mdl-textfield__input" type="number" pattern="-?[0-9]*(\.[0-9]+)?" id='sceneRotY' onchange="sceneRotation('y',this.value)" onkeyup="sceneRotation('y',this.value)" value="0">
                 <label class="mdl-textfield__label" for="sceneRotY">Y Rotation</label>
                 <span class="mdl-textfield__error">Input is not a number!</span>
             </div>
             <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-                <input class="mdl-textfield__input" type="number" id='sceneRotZ' onchange="sceneRotation('z',this.value)" onkeyup="sceneRotation('z',this.value)" value="0">
+                <input class="mdl-textfield__input" type="number" pattern="-?[0-9]*(\.[0-9]+)?" id='sceneRotZ' onchange="sceneRotation('z',this.value)" onkeyup="sceneRotation('z',this.value)" value="0">
                 <label class="mdl-textfield__label" for="sceneRotZ">Z Rotation</label>
                 <span class="mdl-textfield__error">Input is not a number!</span>
             </div>
@@ -312,7 +312,18 @@
 
     </div>
     <div id="settingsPage" onclick="">
-
+        <h3>Settings:</h3>
+        Theme: <select onfocus="this.blur()" id="darkSelect" style="width: 100px;"><option value="0">Light</option><option value="1">Dark</option></select><br>
+        <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label" style="width: 150px">
+            <input class="mdl-textfield__input" type="text" pattern="-?[0-9]*(\.[0-9]+)?" onchange="mouseSenseSet(this.value)" id="mouseSensitivity">
+            <label class="mdl-textfield__label" for="mouseSensitivity">Mouse Sensitivity</label>
+            <span class="mdl-textfield__error">Input is not a number!</span>
+        </div><br>
+        <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label" style="width: 150px">
+            <input class="mdl-textfield__input" type="text" pattern="-?[0-9]*(\.[0-9]+)?" onchange="zoomSet(this.value)" id="zoomSensitivity">
+            <label class="mdl-textfield__label" for="zoomSensitivity">Zoom Sensitivity</label>
+            <span class="mdl-textfield__error">Input is not a number!</span>
+        </div>
     </div>
     <div id="mainWindow">
     </div>
