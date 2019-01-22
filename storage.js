@@ -6,7 +6,11 @@
  * @type {{isUsingSaves: boolean, currentVer: number, fileName: string, startSaveSubSystem: saveSubSystem.startSaveSubSystem, function: *}}
  */
 
-//$(document).on('change')Not yet
+$(document).on('change', function (e) {
+    if (saveSubSystem.isUsingSaves){
+        saveSubSystem.save();
+    }
+});
 
 
 var saveSubSystem =
@@ -44,16 +48,14 @@ var saveSubSystem =
 
 
     save: function() {
-
-        this.currentVer++;
-        localStorage.setItem(this.fileName, this.currentVer);
-        //make better
-        localStorage.setItem('keyFrames:' + this.fileName,JSON.stringify(keyFrames));
-        localStorage.setItem('shapes:' + this.fileName,JSON.stringify(this.convertShapeObjs()));
-        localStorage.setItem('scales:' + this.fileName ,JSON.stringify(scales));
-        console.log("Save of " + this.fileName + " complete.")
-        //???
-        //profit
+        if (this.isUsingSaves) {
+            this.currentVer++;
+            localStorage.setItem(this.fileName, this.currentVer);
+            localStorage.setItem('keyFrames:' + this.fileName, JSON.stringify(keyFrames));
+            localStorage.setItem('shapes:' + this.fileName, JSON.stringify(this.convertShapeObjs()));
+            localStorage.setItem('scales:' + this.fileName, JSON.stringify(scales));
+            console.log("Save of " + this.fileName + " complete.")
+        }
 
     },
 
