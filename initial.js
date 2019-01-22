@@ -35,6 +35,28 @@ window.onload = function(){
     document.getElementById("zoomSensitivity").value = settings.zoomAmount;
     if(settings.dark){
         document.getElementById("darkSelect").value = "1";
+        document.body.style.color = "#FFFFFF";
+        document.getElementById("topBar").style.backgroundColor = "#222222";
+        $(".objButton").css("background-color","#2C2C2C");
+        $(".topButton").css("background-color","#222222");
+        $(".objButton").css("color","#FFFFFF");
+        $("#sideBar").css("background-color","#222222");
+        $("#settingsPage").css("background-color","#222222");
+        $(".addButton").hover(function(){
+            $(this).css("background-color", "#228B22");
+        }, function(){
+            $(this).css("background-color", "#2C2C2C");
+        });
+        $(".removeButton").hover(function(){
+            $(this).css("background-color", "#DD0000");
+        }, function(){
+            $(this).css("background-color", "#2C2C2C");
+        });
+        $(".topButton").hover(function(){
+            $(this).css("background-color", "#363636");
+        }, function(){
+            $(this).css("background-color", "#222222");
+        });
     }
     else{
         document.getElementById("darkSelect").value = "0";

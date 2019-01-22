@@ -313,7 +313,7 @@
     </div>
     <div id="settingsPage" onclick="">
         <h3>Settings:</h3>
-        Theme: <select onfocus="this.blur()" id="darkSelect" style="width: 100px;"><option value="0">Light</option><option value="1">Dark</option></select><br>
+        Theme: <select onfocus="this.blur()" id="darkSelect" style="width: 100px;" onchange="themeSet(this.value)"><option value="0">Light</option><option value="1">Dark</option></select><br>
         <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label" style="width: 150px">
             <input class="mdl-textfield__input" type="text" pattern="-?[0-9]*(\.[0-9]+)?" onchange="mouseSenseSet(this.value)" id="mouseSensitivity">
             <label class="mdl-textfield__label" for="mouseSensitivity">Mouse Sensitivity</label>

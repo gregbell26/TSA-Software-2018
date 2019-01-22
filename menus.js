@@ -151,7 +151,63 @@ function mouseSenseSet(value){
 
 function zoomSet(value){
     if(!isNaN(Number(value))){
+        console.log("changingZoom")
         settings.zoomAmount = Number(value);
         localStorage.setItem("settings",JSON.stringify(settings));
     }
+}
+
+function themeSet(value){
+    if(value==="0"){
+        settings.dark = false;
+        document.body.style.color = "#000000";
+        document.getElementById("topBar").style.backgroundColor = "#DDDDDD";
+        $(".topButton").css("background-color","#DDDDDD");
+        $(".objButton").css("background-color","#D3D3D3");
+        $(".objButton").css("color","#000000");
+        $("#sideBar").css("background-color","#BBBBBB");
+        $("#settingsPage").css("background-color","#BBBBBB");
+        $(".addButton").hover(function(){
+            $(this).css("background-color", "#228B22");
+        }, function(){
+            $(this).css("background-color", "#D3D3D3");
+        });
+        $(".removeButton").hover(function(){
+            $(this).css("background-color", "#DD0000");
+        }, function(){
+            $(this).css("background-color", "#D3D3D3");
+        });
+        $(".topButton").hover(function(){
+            $(this).css("background-color", "#C9C9C9");
+        }, function(){
+            $(this).css("background-color", "#DDDDDD");
+        });
+    }
+    else{
+        settings.dark = true;
+        document.body.style.color = "#FFFFFF";
+        document.getElementById("topBar").style.backgroundColor = "#222222";
+        $(".objButton").css("background-color","#2C2C2C");
+        $(".topButton").css("background-color","#222222");
+        $(".objButton").css("color","#FFFFFF");
+        $("#sideBar").css("background-color","#222222");
+        $("#settingsPage").css("background-color","#222222");
+        $(".addButton").hover(function(){
+            $(this).css("background-color", "#228B22");
+        }, function(){
+            $(this).css("background-color", "#2C2C2C");
+        });
+        $(".removeButton").hover(function(){
+            $(this).css("background-color", "#DD0000");
+        }, function(){
+            $(this).css("background-color", "#2C2C2C");
+        });
+        $(".topButton").hover(function(){
+            $(this).css("background-color", "#363636");
+        }, function(){
+            $(this).css("background-color", "#222222");
+        });
+    }
+    localStorage.setItem("settings",JSON.stringify(settings));
+
 }
