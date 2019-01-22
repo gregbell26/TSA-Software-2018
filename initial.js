@@ -3,6 +3,7 @@ var animationRunning = false;
 var loopAnimation = false;
 var animationTimer;
 var selectedShape = -1;
+var settingsOpen = false;
 var scene = new THREE.Scene();
 scene.background = new THREE.Color("#000000");
 var camera = new THREE.PerspectiveCamera( 75, document.getElementById("mainWindow").offsetWidth/document.getElementById("mainWindow").offsetHeight, 0.1, 1000 );
@@ -17,6 +18,28 @@ var shapes = [];
 var scales = [];
 var keyFrames = [];
 var borders = [];
+var settings;
+window.onload = function(){
+    if(localStorage.getItem("settings")===null){
+        settings = {
+            dark : false,
+            zoomAmount : 1.5,
+            mouseSensitivity: 1
+        }
+        localStorage.setItem("settings",JSON.stringify(settings));
+    }
+    else{
+        settings = JSON.parse(localStorage.getItem("settings"));
+    }
+    document.getElementById("mouseSensitivity").value = settings.mouseSensitivity;
+    document.getElementById("zoomSensitivity").value = settings.zoomAmount;
+    if(settings.dark){
+        document.getElementById("darkSelect").value = "1";
+    }
+    else{
+        document.getElementById("darkSelect").value = "0";
+    }
+}
 
 //more variable declarations from toBeSorted
 
@@ -29,12 +52,8 @@ var xPosStart = xPosition;//the cameras start position x
 var yPosStart = yPosition;//the cameras start position y
 
 var mouseDown = false;//if the right mouse button is pressed down
-var zoomAmount = 1.5;// the zoom multiplier for one key press
-var zoomSensitivity = 1.00;//the percent sensitivity
 var mouseSensitivity = 1.00;//the percent sensitivity
 var inAnimationWindow = 0;//is the mouse in the animation window
-
-
 var zoom = 5;//the zoom on the cube
 var zoomZ = 5;//zoom with only X and Z
 
@@ -44,6 +63,7 @@ saveSubSystem.loadSaveNames();//Loads the names of the saves into an arraylist
 var div = document.querySelector("#saveFileContainer"),
     frag = document.createDocumentFragment(),
     saveSelector = document.createElement("select");
+saveSelector.id = "saveSelector"
 
 if (saveSubSystem.saveFileNamesList.length !== 0){
     for(var i =0; i < saveSubSystem.saveFileNamesList.length; i++) {

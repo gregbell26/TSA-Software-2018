@@ -134,9 +134,24 @@ function borderVisibility(){
 function openSettings(){
     document.getElementById("settingsPage").style.display = "inherit";
     document.getElementById("settingsBackground").style.display = "inherit";
+    settingsOpen = true;
 }
 function closeSettings(){
     document.getElementById("settingsPage").style.display = "none";
     document.getElementById("settingsBackground").style.display = "none";
+    settingsOpen = false;
+}
 
+function mouseSenseSet(value){
+    if(!isNaN(Number(value))){
+        settings.mouseSensitivity = Number(value);
+        localStorage.setItem("settings",JSON.stringify(settings));
+    }
+}
+
+function zoomSet(value){
+    if(!isNaN(Number(value))){
+        settings.zoomAmount = Number(value);
+        localStorage.setItem("settings",JSON.stringify(settings));
+    }
 }

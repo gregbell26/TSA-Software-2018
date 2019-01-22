@@ -29,12 +29,12 @@ $(document).on('mouseup',function(e){
     }
 });
 $(document).on('keydown',function(e) {
-    if (inAnimationWindow==1) {
+    if (inAnimationWindow==1 && !settingsOpen) {
         zoom = Math.pow((Math.pow(xPosition, 2) + Math.pow(yPosition, 2) + Math.pow(zPosition, 2)), .5);//zoom calc here
         if (e.key == "-")
-            zoom *= zoomAmount;
+            zoom *= settings.zoomAmount;
         else if (e.key == "=")
-            zoom /= zoomAmount;
+            zoom /= settings.zoomAmount;
         zoomZ = Math.cos(Math.asin(yPosition / zoom));
         var cameraRz;
         var cameraRy;
@@ -79,12 +79,12 @@ $(document).ready(function(){
         else{
             inAnimationWindow = 0;
         }
-        if(mouseDown && inAnimationWindow==1){
+        if(mouseDown && inAnimationWindow==1 && !settingsOpen){
             zoomZ = Math.pow(Math.pow(xPosition,2)+Math.pow(zPosition, 2),.5);
             zoom = Math.pow((Math.pow(zoomZ,2)+Math.pow(yPosition,2)),.5);//zoom calc here
 
-            var MvX = mouseSensitivity*(e.pageX-xStart)/100;
-            var MvY = mouseSensitivity*(e.pageY-yStart)/100;
+            var MvX = settings.mouseSensitivity*(e.pageX-xStart)/100;
+            var MvY = settings.mouseSensitivity*(e.pageY-yStart)/100;
             var cameraRz;
             var cameraRy;
             if(xPosition !== 0)
