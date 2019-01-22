@@ -1,15 +1,17 @@
-/*function save(){
-
-    console.log('saved')
-}*/
-
-
 /**
  * Wow
  * This is a special form of torture
  * Java script objects are a thing from hell
+ * This boi is incharge of making all of the saves and stuff
  * @type {{isUsingSaves: boolean, currentVer: number, fileName: string, startSaveSubSystem: saveSubSystem.startSaveSubSystem, function: *}}
  */
+
+$(document).on('change', function (e) {
+    if (saveSubSystem.isUsingSaves){
+        saveSubSystem.save();
+    }
+});
+
 
 var saveSubSystem =
 {
@@ -46,42 +48,50 @@ var saveSubSystem =
 
 
     save: function() {
-
-        this.currentVer++;
-        localStorage.setItem(this.fileName, this.currentVer);
-        //make better
-        localStorage.setItem('keyFrames:' + this.fileName,JSON.stringify(keyFrames));
-        localStorage.setItem('shapes:' + this.fileName,JSON.stringify(this.convertShapeObjs()));
-        localStorage.setItem('scales:' + this.fileName ,JSON.stringify(scales));
-        console.log("Save of " + this.fileName + " complete.")
-        //???
-        //profit
+        if (this.isUsingSaves) {
+            this.currentVer++;
+            localStorage.setItem(this.fileName, this.currentVer);
+            localStorage.setItem('keyFrames:' + this.fileName, JSON.stringify(keyFrames));
+            localStorage.setItem('shapes:' + this.fileName, JSON.stringify(this.convertShapeObjs()));
+            localStorage.setItem('scales:' + this.fileName, JSON.stringify(scales));
+            console.log("Save of " + this.fileName + " complete.")
+        }
 
     },
 
 
     loadSave: function () {
-        //var keyFrames= [[],[]];
         if(localStorage.getItem(this.fileName) !== null){
             this.currentVer = localStorage.getItem(this.fileName);
             this.loadedKeyframes = JSON.parse(localStorage.getItem("keyFrames:"+this.fileName));
             this.loadedScales = JSON.parse(localStorage.getItem("scales:"+this.fileName));
             this.loadedShapes = JSON.parse(localStorage.getItem("shapes:"+this.fileName));
-            //processedShapeData = processShapeData(this.loadedShapes, this.loadedScales);
             processShapeData(this.loadedShapes, this.loadedScales);
         }
         else{
             console.log("Save not found.");
-            //processedShapeData[0][0] = 1;
+            return;
         }
-        /*for(var i =0; i <processedShapeData.length; i++)
-            for(var j=0; j < processedShapeData[i].length; j++)
-                console.log(processedShapeData[i][j]);*/
         return this.loadedKeyframes;
 
     },
 
-//this seems to be working fine. I think we are good to go with this
+    deleteSave: function(saveToDelete){
+      if(localStorage.getItem(saveToDelete) !== null) {
+          this.saveFileNamesList.delete(saveToDelete)//Removes old save from file name list
+          localStorage.setItem("fileNames", JSON.stringify(this.saveFileNamesList));//saves that.
+          //At this point the save is no longer accessible but it is still taking up space
+          localStorage.removeItem("keyFrames:" + saveToDelete);
+          localStorage.removeItem("scales:" + saveToDelete);
+          localStorage.removeItem("shapes:" + saveToDelete);
+          //the save should now be deleted
+          if (saveToDelete === this.fileName)
+              location.reload(true);//Get a new page from the sever other wise chrome chache will make git commit die
+      }
+
+
+    },
+
     convertShapeObjs : function () {
         var arr = [];
         for (var i = 0; i < shapes.length; i++) {
@@ -98,13 +108,6 @@ var saveSubSystem =
         return arr;
     },
 
-    saveSet : function(name) {
-
-    },
-
-    loadSet: function (name) {
-
-    },
 
     loadSaveNames : function () {
         if(localStorage.getItem("fileNames") !== null) {
