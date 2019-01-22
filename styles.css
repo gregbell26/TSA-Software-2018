@@ -25,9 +25,13 @@
 
 }
 
+
+
+/*TODO CLEAN UP CSS-- GET RID OF UNNESSARY*/
+
 html, body {
     overflow: hidden;
-    font-family: 'Roboto', sans-serif
+    font-family: 'Roboto', sans-serif;
 }
 
 #welcomeScreen{
@@ -69,10 +73,11 @@ html, body {
 
 .parameterBox {
 	margin: 3px;
-	padding: 1px;
+	padding: 5px;
 
 }
 .parameterBox input {
+
 	border: none;
 	border-bottom-width: 0;
 	border-radius: 1px;
