@@ -130,3 +130,13 @@ function borderVisibility(){
         document.getElementById("borderMenu").style.display="none";
     }
 }
+
+function openSettings(){
+    document.getElementById("settingsPage").style.display = "inherit";
+    document.getElementById("settingsBackground").style.display = "inherit";
+}
+function closeSettings(){
+    document.getElementById("settingsPage").style.display = "none";
+    document.getElementById("settingsBackground").style.display = "none";
+
+}
