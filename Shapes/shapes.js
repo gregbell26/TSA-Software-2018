@@ -175,14 +175,14 @@ function processShapeData(loadedShapes,loadedScales) {
                 /*newGeometry = new THREE.TetrahedronGeometry(0.5, 0);
                 borderGeometry = new THREE.TetrahedronBufferGeometry(0.5, 0);
                 newGeometry.name = "pyramid"*/
-                //newTetrahedron(loadedScales[i].x, loadedScales[i].y, loadedScales[i].z, loadedShapes[i].positionX, loadedShapes[i].positionY, loadedShapes[i].positionZ, convertColor(loadedShapes[i].r, loadedShapes[i].g, loadedShapes[i].b) , 0xffffff)
+                newTetrahedron(loadedScales[i].x, loadedScales[i].y, loadedScales[i].z, loadedShapes[i].positionX, loadedShapes[i].positionY, loadedShapes[i].positionZ, convertColor(loadedShapes[i].r, loadedShapes[i].g, loadedShapes[i].b) , 0xffffff)
 
             }
             else if (loadedShapes[i].type === "TorusGeometry") {
                 /*newGeometry = new THREE.TorusGeometry(0.5, 0.25, 200, 200);
                 borderGeometry = new THREE.TorusBufferGeometry(0.5, 0.25, 200, 200);
                 newGeometry.name = "ring"*/
-                //newTorus(loadedScales[i].x, loadedScales[i].y, loadedScales[i].z, loadedShapes[i].positionX, loadedShapes[i].positionY, loadedShapes[i].positionZ, convertColor(loadedShapes[i].r, loadedShapes[i].g, loadedShapes[i].b) , 0xffffff)
+                newTorus(loadedScales[i].x, loadedScales[i].y, loadedScales[i].z, loadedShapes[i].positionX, loadedShapes[i].positionY, loadedShapes[i].positionZ, convertColor(loadedShapes[i].r, loadedShapes[i].g, loadedShapes[i].b) , 0xffffff)
 
             }
             else if (loadedShapes[i].type === "SphereGeometry") {
@@ -190,6 +190,13 @@ function processShapeData(loadedShapes,loadedScales) {
                 borderGeometry = new THREE.SphereBufferGeometry(0.5, 100, 100);
                 newGeometry.name = "sphere"*/
                 newSphere(loadedScales[i][0], loadedScales[i][1], loadedScales[i][2], loadedShapes[i].positionX, loadedShapes[i].positionY, loadedShapes[i].positionZ, convertColor(loadedShapes[i].r, loadedShapes[i].g, loadedShapes[i].b) , 0xffffff)
+
+            }
+            else if (loadedShapes[i].type === "RingGeometry") {
+                /*newGeometry = new THREE.SphereGeometry(0.5, 100, 100);
+                borderGeometry = new THREE.SphereBufferGeometry(0.5, 100, 100);
+                newGeometry.name = "sphere"*/
+                newRing(loadedScales[i][0], loadedScales[i][1], loadedScales[i][2], loadedShapes[i].positionX, loadedShapes[i].positionY, loadedShapes[i].positionZ, convertColor(loadedShapes[i].r, loadedShapes[i].g, loadedShapes[i].b) , 0xffffff)
 
             }
             else {

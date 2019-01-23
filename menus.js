@@ -66,7 +66,6 @@ function hideAll(){
 function editMenu() {
     hideAll();
     document.getElementById("sideBarBoxEdit").style.display = "inherit";
-    document.getElementById("meshMenu").style.display = "inherit";
     document.getElementById("positionMenu").style.display = "inherit";
     document.getElementById("colorMenu").style.display = "inherit";
     document.getElementById("rotateMenu").style.display="inherit";
