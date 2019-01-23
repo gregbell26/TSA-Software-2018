@@ -52,7 +52,6 @@ function hideAll(){
     document.getElementById("sideBarBoxEdit").style.display="none";
     document.getElementById("sideBarCamera").style.display="none";
     document.getElementById("colorMenu").style.display="none";
-    document.getElementById("meshMenu").style.display="none";
     document.getElementById("positionMenu").style.display="none";
     document.getElementById("keyMenu").style.display="none";
     document.getElementById("shapeMenu").style.display="none";
