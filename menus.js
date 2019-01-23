@@ -169,7 +169,7 @@ function mouseSenseSet(value){
 function zoomSet(value){
     if(!isNaN(Number(value))){
         console.log("changingZoom")
-        settings.zoomAmount = Number(value);
+        changeZoomSensitivity(value);
         localStorage.setItem("settings",JSON.stringify(settings));
     }
 }
