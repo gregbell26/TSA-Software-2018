@@ -110,7 +110,11 @@ function newShapeMenu(){
 function keyMenu(){
     hideAll();
     document.getElementById("keyMenu").style.display="inherit";
-    loadKeyList()
+    loadKeyList();
+    if(usingTutorial){
+        confirm("Use the \"Add keyframe\" button to mark the start of your animation")
+        animateArrow(15,75,240,250);
+    }
 }
 
 function sceneMenu() {
