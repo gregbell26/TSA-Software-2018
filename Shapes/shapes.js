@@ -15,7 +15,7 @@ function rotateShape(dimension, value) {
     shapes[selectedShape].rotation[dimension] = Number(value)*Math.PI/180;
     borders[selectedShape].rotation[dimension] = Number(value)*Math.PI/180;
 }
-
+var hasMovedZ = false;
 function cubeDimension(dimension, value){
     switch(dimension){
         case "x":
@@ -29,7 +29,8 @@ function cubeDimension(dimension, value){
         case "z":
             scales[selectedShape][2]=Number(value);
             borders[selectedShape].scale.z = Number(value);
-            if(usingTutorial){
+            if(usingTutorial && !hasMovedZ){
+                hasMovedZ = true;
                 document.getElementById("tutorialArrow").style.display="inherit";
                 animateArrow(95, 15, 120, 240);
             }
