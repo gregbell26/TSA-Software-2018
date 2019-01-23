@@ -51,15 +51,11 @@ function newCustom(x, y, z, posX, posY, posZ, newColor, borderColor){
     document.getElementById('positionBoxX').value = posX;
     document.getElementById('positionBoxY').value = posY;
     document.getElementById('positionBoxZ').value = posZ;
-}
 
-function addVertex(){
-    shapes[selectedShape].geometry.vertices.push(
-        new THREE.Vector3(0, 0, 0),
-    );
-    console.log('vector added');
-    console.log(shapes[selectedShape].geometry.vertices);
-    loadVectorList();
+    createVertices.length = 0;
+    createFaces.length = 0;
+    loadCreateFaceList();
+    loadCreateVectorList();
 }
 
 function createVertex(){
@@ -69,12 +65,6 @@ function createVertex(){
     console.log('vector added');
     console.log(createVertices);
     loadCreateVectorList();
-}
-
-function removeVector(vector){
-    shapes[selectedShape].geometry.vertices.splice(vector,1);
-    document.getElementById('vectorList').innerHTML = "";
-    loadVectorList()
 }
 
 function cancelVector(vector){
@@ -98,18 +88,6 @@ function loadCreateVectorList(){
     console.log('vector list loaded')
 }
 
-function loadVectorList(){
-    document.getElementById('vectorList').innerHTML = "";
-    for(var i=0; i < shapes[selectedShape].geometry.vertices.length; i++){
-        var add = ""
-        document.getElementById('vectorList').innerHTML+=`<input id="xCoord" type="number" value="`+Math.round(shapes[selectedShape].geometry.vertices[i].x)+`" onkeyup="setVertex('x', this.value, `+i+`)" onchange="setVertex('x', this.value, `+i+`)">X
-        <input id="yCoord" type="number" value="`+Math.round(shapes[selectedShape].geometry.vertices[i].y)+`" onkeyup="setVertex('y', this.value, `+i+`)" onchange="setVertex('y', this.value, `+i+`)">Y
-        <input id="zCoord" type="number" value="`+Math.round(shapes[selectedShape].geometry.vertices[i].z)+`" onkeyup="setVertex('z', this.value, `+i+`)" onchange="setVertex('z', this.value, `+i+`)">Z
-        <button class='material-icons' onclick='removeVector(`+i+`)'>close</button>
-        `+add+`
-        <br>`;
-    }
-}
 
 function cancelCustom(){
     createVertices.length = 0;
@@ -117,18 +95,6 @@ function cancelCustom(){
     document.getElementById('createVectorList').innerHTML = "";
     document.getElementById('createFaceList').innerHTML = "";
     shapeMenu();
-}
-
-function setVertex(corner, value, index){
-    switch (corner){
-        case 'x':
-            shapes[selectedShape].geometry.vertices[index].setX(value);
-        case 'y':
-            shapes[selectedShape].geometry.vertices[index].setY(value)
-        case 'z':
-            shapes[selectedShape].geometry.vertices[index].setZ(value);
-    }
-    shapes[selectedShape].geometry.groupsNeedUpdate = true;
 }
 
 
@@ -155,51 +121,6 @@ function loadCreateFaceList(){
         <input id="yCreatPoint" type="number" value="`+createFaces[i].b+`" onkeyup="createFaces[`+i+`].copy(new THREE.Face3(createFaces[`+i+`].a, this.value, createFaces[`+i+`].c))" onchange="createFaces[`+i+`].copy(new THREE.Face3(createFaces[`+i+`].a, this.value, createFaces[`+i+`].c))">B
         <input id="zPoint" type="number" value="`+createFaces[i].c+`" onkeyup="createFaces[`+i+`].copy(new THREE.Face3(createFaces[`+i+`].a, createFaces[`+i+`].b, this.value))" onchange="createFaces[`+i+`].copy(new THREE.Face3(createFaces[`+i+`].a, createFaces[`+i+`].b, this.value))">C
         <button class='material-icons' onclick='cancelFace(`+i+`)'>close</button>
-        `+add+`
-        <br>`;
-    }
-    console.log('face list loaded')
-}
-
-//Edit
-
-function setCorner(corner, value, index){
-    switch (corner){
-        case 'x':
-            shapes[selectedShape].geometry.faces[index].copy(new THREE.Face3(this.value, shapes[selectedShape].geometry.faces[index].b, shapes[selectedShape].geometry.faces[index].c));
-        case 'y':
-            shapes[selectedShape].geometry.faces[index].copy(new THREE.Face3(shapes[selectedShape].geometry.faces[index].a, this.value, shapes[selectedShape].geometry.faces[index].c));
-        case 'z':
-            shapes[selectedShape].geometry.faces[index].copy(new THREE.Face3(shapes[selectedShape].geometry.faces[index].a, shapes[selectedShape].geometry.faces[index].b, this.value));
-    }
-    shapes[selectedShape].geometry.groupsNeedUpdate = true;
-}
-
-function addFace(){
-    shapes[selectedShape].geometry.vertices.push(
-        new THREE.Vector3(0, 0, 0),
-    );
-    shapes[selectedShape].geometry.groupsNeedUpdate = true;
-    console.log('face added');
-    console.log(shapes[selectedShape].geometry.faces);
-    loadFaceList();
-}
-
-function removeFace(face){
-    shapes[selectedShape].geometry.faces.splice(face,1);
-    shapes[selectedShape].geometry.groupsNeedUpdate = true;
-    document.getElementById('faceList').innerHTML = "";
-    loadFaceList()
-}
-
-function loadFaceList(){
-    document.getElementById('faceList').innerHTML = "";
-    for(var i = 0; i < shapes[selectedShape].geometry.faces.length; i++){
-        var add = ""
-        document.getElementById('faceList').innerHTML+=`<input id="xPoint" type="number" value="`+shapes[selectedShape].geometry.faces[i].a+`" onkeyup="setCorner('x', this.value, `+i+`)" onchange="setCorner('x', this.value, `+i+`)">A
-        <input id="yPoint" type="number" value="`+shapes[selectedShape].geometry.faces[i].b+`" onkeyup="setCorner('y', this.value, `+i+`)" onchange="setCorner('y', this.value, `+i+`)">B
-        <input id="zPoint" type="number" value="`+shapes[selectedShape].geometry.faces[i].c+`" onkeyup="setCorner('z', this.value, `+i+`)" onchange="setCorner('z', this.value, `+i+`)">C
-        <button class='material-icons' onclick='removeFace(`+i+`)'>close</button>
         `+add+`
         <br>`;
     }

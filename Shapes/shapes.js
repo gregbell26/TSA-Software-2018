@@ -29,6 +29,10 @@ function cubeDimension(dimension, value){
         case "z":
             scales[selectedShape][2]=Number(value);
             borders[selectedShape].scale.z = Number(value);
+            if(usingTutorial){
+                document.getElementById("tutorialArrow").style.display="inherit";
+                animateArrow(95, 15, 120, 240);
+            }
             break;
     }
 }
