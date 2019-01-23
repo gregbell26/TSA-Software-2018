@@ -2,10 +2,12 @@
 
 
 function changeSensitivity(change) {//Changes sensitivity to change
-    mouseSensitivity = change;
+    settings.mouseSensitivity = change;
 }
 function changeZoomSensitivity(change) {//Changes the Zoom sensitivity to change
-    zoomAmount = 1 + change/2;
+    if(change < 0)
+        change = change * -1;
+    settings.zoomAmount = 1 + change/2;
 }
 
 $(document).on('mousedown',function(e){

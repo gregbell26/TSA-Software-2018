@@ -44,11 +44,7 @@ function cameraMenu(){
 
 }
 
-function meshMenu(){
-    hideAll();
-    document.getElementById("meshMenu").style.display="inherit";
-    console.log("Showed Mesh")
-}
+
 
 function hideAll(){
     //used to make correct menus show up, and the wrong menus don't show up. This is called every time we open a menu.
@@ -56,7 +52,6 @@ function hideAll(){
     document.getElementById("sideBarBoxEdit").style.display="none";
     document.getElementById("sideBarCamera").style.display="none";
     document.getElementById("colorMenu").style.display="none";
-    document.getElementById("meshMenu").style.display="none";
     document.getElementById("positionMenu").style.display="none";
     document.getElementById("keyMenu").style.display="none";
     document.getElementById("shapeMenu").style.display="none";
@@ -156,7 +151,7 @@ function mouseSenseSet(value){
 function zoomSet(value){
     if(!isNaN(Number(value))){
         console.log("changingZoom")
-        settings.zoomAmount = Number(value);
+        changeZoomSensitivity(value);
         localStorage.setItem("settings",JSON.stringify(settings));
     }
 }
