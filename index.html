@@ -92,6 +92,7 @@
                 <option value="cube">Cube</option>
                 <option value="cylinder">Cylinder</option>
                 <option value="cone">Cone</option>
+                <option value="custom">Custom</option>
                 <option value="dodecahedron">Dodecahedron</option>
                 <option value="icosahedron">Icosahedron</option>
                 <option value="octahedron">Octahedron</option>
@@ -145,15 +146,6 @@
                 <label class="mdl-textfield__label" for="positionBoxZ">Z Position</label>
                 <span class="mdl-textfield__error">Input is not a number!</span>
             </div>
-            <!--<div class="parameterBox">X: <input type="number" id='positionBoxX' onchange="moveShape('x',this.value)" onkeyup="moveShape('x',this.value)" value="0"><br></div>-->
-            <!--<div class="parameterBox">Y: <input type="number" id='positionBoxY' onchange="moveShape('y',this.value)" onkeyup="moveShape('y',this.value)" value="0"><br></div>-->
-            <!--<div class="parameterBox">Z: <input type="number" id='positionBoxZ' onchange="moveShape('z',this.value)" onkeyup="moveShape('z',this.value)" value="0"><br></div>-->
-            <!--<div class="parameterBox">X: <input type="number" id='positionBoxX' onchange="postitionShape('x',this.value)" onkeyup="postitionShape('x',this.value)" value="0"><br></div>-->
-            <!--<div class="parameterBox">Y: <input type="number" id='positionBoxY' onchange="postitionShape('y',this.value)" onkeyup="postitionShape('y',this.value)" value="0"><br></div>-->
-            <!--<div class="parameterBox">Z: <input type="number" id='positionBoxZ' onchange="postitionShape('z',this.value)" onkeyup="postitionShape('z',this.value)" value="0"><br></div>-->
-            <!--<div class="parameterBox">X: <input type="number" id='positionBoxX' onchange="postitionShape('x',this.value)" onkeyup="postitionShape('x',this.value)" value="0"><br></div>-->
-            <!--<div class="parameterBox">Y: <input type="number" id='positionBoxY' onchange="postitionShape('y',this.value)" onkeyup="postitionShape('y',this.value)" value="0"><br></div>-->
-            <!--<div class="parameterBox">Z: <input type="number" id='positionBoxZ' onchange="postitionShape('z',this.value)" onkeyup="postitionShape('z',this.value)" value="0"><br></div>-->
         </div>
 
         <div id="rotateMenu">
@@ -199,6 +191,38 @@
             <br>
             <button onfocus="this.blur()" class="objButton addButton" onclick="newText(0, 0, 0, 0, 0, 0, '#ff0000', '#000000')">OK</button>
             <button onfocus="this.blur()" class="objButton removeButton" onclick="shapeMenu()">Cancel</button>
+        </div>
+
+        <div id="createCustomMenu" style="display: none">
+            <button onfocus="this.blur()" class="objButton addButton" onclick="newCustom(1, 1, 1, 0, 0, 0, '#ff0000', '#000000')">OK</button>
+            <button onfocus="this.blur()" class="objButton removeButton" onclick="cancelCustom()">Cancel</button>
+
+            <h3>
+                Vertices
+            </h3>
+            <button onfocus="this.blur()" class="objButton addButton" onclick="createVertex()">Add Vertex</button>
+            <div id="createVectorList"></div>
+
+            <h3>
+                Faces
+            </h3>
+            <button onfocus="this.blur()" class="objButton addButton" onclick="createFace()">Add Face</button>
+            <div id="createFaceList"></div>
+
+        </div>
+
+        <div id="customMenu" style="display: none">
+            <h3>
+                Vertices
+            </h3>
+            <button onfocus="this.blur()" class="objButton addButton" onclick="addVertex()">Add Vertex</button>
+            <div id="vectorList"></div>
+
+            <h3>
+                Faces
+            </h3>
+            <button onfocus="this.blur()" class="objButton addButton" onclick="addFace()">Add Face</button>
+            <div id="faceList"></div>
         </div>
 
         <div id="sideBarList" style="display:none">
@@ -342,6 +366,7 @@
     <script src="Shapes/cube.js"></script>
     <script src="Shapes/cylinder.js"></script>
     <script src="Shapes/cone.js"></script>
+    <script src="Shapes/custom.js"></script>
     <script src="Shapes/dodecahedron.js"></script>
     <script src="Shapes/icosahedron.js"></script>
     <script src="Shapes/octahedron.js"></script>

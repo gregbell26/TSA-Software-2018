@@ -28,6 +28,10 @@ function addShape(){
         case "cone" :
             newCone(0, 0, 0, 0, 0, 0, "#ff0000", "#000000");
             break;
+        case "custom" :
+            hideAll();
+            document.getElementById('createCustomMenu').style.display = 'inherit';
+            break;
         case "dodecahedron" :
             newDodecahedron(0, 0, 0, 0, 0, 0, "#ff0000", "#000000");
             break;
