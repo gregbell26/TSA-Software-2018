@@ -1,4 +1,9 @@
 function addFrame(){
+    if(usingTutorial){
+        confirm("Now change some dimensions, colors, or positions, add a keyframe, then press play.")
+        usingTutorial = false;
+        document.getElementById("tutorialArrow").style.display="none";
+    }
     keyFrames.push(
         {
             duration: 5000,
