@@ -12,12 +12,6 @@ function newCustom(x, y, z, posX, posY, posZ, newColor, borderColor){
             newGeometry.faces.push(createFaces[i]);
         }
 
-    // compute Normals
-    newGeometry.computeVertexNormals();
-
-    // normalize the geometry
-    newGeometry.normalize();
-
     //Borders
     var geometry = new THREE.BufferGeometry().fromGeometry(newGeometry);
     var borderToAdd = new THREE.LineSegments( geometry, new THREE.LineBasicMaterial( { color: borderColor } ) );
