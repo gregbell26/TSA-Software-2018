@@ -27,11 +27,21 @@ function setSelectedShape(num){
     document.getElementById('rotateBoxX').value = (shapes[selectedShape].rotation.x*180/Math.PI);
     document.getElementById('rotateBoxY').value = (shapes[selectedShape].rotation.y*180/Math.PI);
     document.getElementById('rotateBoxZ').value = (shapes[selectedShape].rotation.z*180/Math.PI);
-    //This is causing the 1 at creation problem
     document.getElementById('dimensionX').value = scales[selectedShape][0];
     document.getElementById('dimensionY').value = scales[selectedShape][1];
     document.getElementById('dimensionZ').value = scales[selectedShape][2];
     editMenu();
+    if (shapes[selectedShape].geometry.name == "custom"){
+        console.log('custom shape');
+        loadVectorList();
+        loadFaceList();
+        for (var i = 0; i < shapes[selectedShape].geometry.vertices.length; i++){
+            document.getElementById('xCoord').value = shapes[selectedShape].geometry.vertices[i].x;
+            document.getElementById('yCoord').value = shapes[selectedShape].geometry.vertices[i].y;
+            document.getElementById('zCoord').value = shapes[selectedShape].geometry.vertices[i].z;
+        }
+        customMenu();
+    }
     console.log("Set Shape Num");
 }
 
@@ -65,6 +75,8 @@ function hideAll(){
     document.getElementById("rotateMenu").style.display="none";
     document.getElementById("sceneMenu").style.display='none';
     document.getElementById('createTextMenu').style.display = 'none';
+    document.getElementById('createCustomMenu').style.display = 'none';
+    document.getElementById('customMenu').style.display = 'none';
     console.log("Hide all")
 }
 
@@ -133,6 +145,11 @@ function borderVisibility(){
         borders[selectedShape].visible = false;
         document.getElementById("borderMenu").style.display="none";
     }
+}
+
+function customMenu() {
+    document.getElementById("customMenu").style.display="inherit";
+    loadVectorList();
 }
 
 function openSettings(){
