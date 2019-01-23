@@ -1,4 +1,4 @@
-//Materials
+/*//Materials
 
 var basicMesh = new THREE.MeshBasicMaterial();
 var depthMesh = new THREE.MeshDepthMaterial();
@@ -29,3 +29,5 @@ function mesh(meshType) {
     console.log("Updated Mesh");
 
 }
+
+*/

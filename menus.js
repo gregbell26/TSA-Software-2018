@@ -31,17 +31,6 @@ function setSelectedShape(num){
     document.getElementById('dimensionY').value = scales[selectedShape][1];
     document.getElementById('dimensionZ').value = scales[selectedShape][2];
     editMenu();
-    if (shapes[selectedShape].geometry.name == "custom"){
-        console.log('custom shape');
-        loadVectorList();
-        loadFaceList();
-        for (var i = 0; i < shapes[selectedShape].geometry.vertices.length; i++){
-            document.getElementById('xCoord').value = shapes[selectedShape].geometry.vertices[i].x;
-            document.getElementById('yCoord').value = shapes[selectedShape].geometry.vertices[i].y;
-            document.getElementById('zCoord').value = shapes[selectedShape].geometry.vertices[i].z;
-        }
-        customMenu();
-    }
     console.log("Set Shape Num");
 }
 
@@ -55,11 +44,7 @@ function cameraMenu(){
 
 }
 
-function meshMenu(){
-    hideAll();
-    document.getElementById("meshMenu").style.display="inherit";
-    console.log("Showed Mesh")
-}
+
 
 function hideAll(){
     //used to make correct menus show up, and the wrong menus don't show up. This is called every time we open a menu.
@@ -67,7 +52,6 @@ function hideAll(){
     document.getElementById("sideBarBoxEdit").style.display="none";
     document.getElementById("sideBarCamera").style.display="none";
     document.getElementById("colorMenu").style.display="none";
-    document.getElementById("meshMenu").style.display="none";
     document.getElementById("positionMenu").style.display="none";
     document.getElementById("keyMenu").style.display="none";
     document.getElementById("shapeMenu").style.display="none";
@@ -76,7 +60,6 @@ function hideAll(){
     document.getElementById("sceneMenu").style.display='none';
     document.getElementById('createTextMenu').style.display = 'none';
     document.getElementById('createCustomMenu').style.display = 'none';
-    document.getElementById('customMenu').style.display = 'none';
     console.log("Hide all")
 }
 
@@ -122,7 +105,11 @@ function newShapeMenu(){
 function keyMenu(){
     hideAll();
     document.getElementById("keyMenu").style.display="inherit";
-    loadKeyList()
+    loadKeyList();
+    if(usingTutorial){
+        confirm("Use the \"Add keyframe\" button to mark the start of your animation")
+        animateArrow(15,75,240,250);
+    }
 }
 
 function sceneMenu() {
@@ -141,11 +128,6 @@ function borderVisibility(){
         borders[selectedShape].visible = false;
         document.getElementById("borderMenu").style.display="none";
     }
-}
-
-function customMenu() {
-    document.getElementById("customMenu").style.display="inherit";
-    loadVectorList();
 }
 
 function openSettings(){

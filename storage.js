@@ -76,19 +76,22 @@ var saveSubSystem =
 
     },
 
-    deleteSave: function(saveToDelete){
-      if(localStorage.getItem(saveToDelete) !== null) {
-          this.saveFileNamesList.pop(saveToDelete)//Removes old save from file name list
-          localStorage.setItem("fileNames", JSON.stringify(this.saveFileNamesList));//saves that.
-          //At this point the save is no longer accessible but it is still taking up space
-          localStorage.removeItem("keyFrames:" + saveToDelete);
-          localStorage.removeItem("scales:" + saveToDelete);
-          localStorage.removeItem("shapes:" + saveToDelete);
-          //the save should now be deleted
-          if (saveToDelete === this.fileName)
-              location.reload(true);//Get a new page from the sever other wise chrome chache will make git commit die
-      }
+    deleteSave: function(saveToDelete) {
+        if (localStorage.getItem(saveToDelete) !== null) {
 
+            //At this point the save is no longer accessible but it is still taking up space
+            localStorage.removeItem("keyFrames:" + saveToDelete);
+            localStorage.removeItem("scales:" + saveToDelete);
+            localStorage.removeItem("shapes:" + saveToDelete);
+            localStorage.removeItem(saveToDelete);
+            //the save should now be deleted
+            if (saveToDelete === this.fileName)
+                location.reload(true);//Get a new page from the sever other wise chrome chache will make git commit die
+        }
+        else {
+            this.saveFileNamesList.pop(saveToDelete)//Removes old save from file name list
+            localStorage.setItem("fileNames", JSON.stringify(this.saveFileNamesList));//saves that.
+        }
 
     },
 

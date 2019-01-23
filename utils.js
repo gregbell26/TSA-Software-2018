@@ -14,7 +14,8 @@ function rgbToHex (num) {
 function addShape(){
     if(usingTutorial){
         confirm("Now define the dimensions, position, rotation, and color");
-        document.getElementById('tutorialArrow').style.display = "none";
+        confirm("When you are done, click on the key icon");
+        document.getElementById("tutorialArrow").style.display="none";
     }
     document.getElementById('createTextMenu').style.display = 'none';
     var shapeType = document.getElementById("shapeSelector").value;
