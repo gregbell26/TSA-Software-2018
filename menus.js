@@ -44,11 +44,7 @@ function cameraMenu(){
 
 }
 
-function meshMenu(){
-    hideAll();
-    document.getElementById("meshMenu").style.display="inherit";
-    console.log("Showed Mesh")
-}
+
 
 function hideAll(){
     //used to make correct menus show up, and the wrong menus don't show up. This is called every time we open a menu.
