@@ -19,6 +19,7 @@ function addShape(){
     }
     document.getElementById('createTextMenu').style.display = 'none';
     var shapeType = document.getElementById("shapeSelector").value;
+    saveSubSystem.save();
     switch(shapeType){
         case "cube" :
             newCube(0, 0, 0, 0, 0, 0, "#ff0000", "#000000");
@@ -54,9 +55,6 @@ function addShape(){
         case "text" :
             hideAll();
             document.getElementById('createTextMenu').style.display = 'inherit';
-            break;
-        case "tube" :
-            newTube(0, 0, 0, 0, 0, 0, "#ff0000", "#000000");
             break;
     }
 }

@@ -40,6 +40,9 @@ function cubeDimension(dimension, value){
 
 function removeShape(){
     if(selectedShape >= 0){
+        if(shapes[selectedShape].geometry.type=="TextGeometry"){
+            saveSubSystem.removeText(shapes[selectedShape].geometry.parameters.text);
+        }
         scene.remove(shapes[selectedShape]);
         scene.remove(borders[selectedShape]);
         shapes.splice(selectedShape,1);
@@ -47,6 +50,7 @@ function removeShape(){
         borders.splice(selectedShape,1);
         selectedShape--;
         setSelectedShape(selectedShape);
+        saveSubSystem.save();
     }
 }
 

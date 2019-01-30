@@ -1,8 +1,4 @@
 /**
- * Wow
- * This is a special form of torture
- * Java script objects are a thing from hell
- * This boi is incharge of making all of the saves and stuff
  * @type {{isUsingSaves: boolean, currentVer: number, fileName: string, startSaveSubSystem: saveSubSystem.startSaveSubSystem, function: *}}
  */
 
@@ -68,21 +64,17 @@ var saveSubSystem =
       else{
           var parsed = JSON.parse(currentText);
           parsed.push(value);
-          localStorage.setItem("text:"+this.fileName,JSON.stringify([parsed]));
+          localStorage.setItem("text:"+this.fileName,JSON.stringify(parsed));
       }
     },
 
-    removeText: function(count){
-        // var value = document.getElementById("createText").value;
-        // var currentText = localStorage.getItem("text:"+this.fileName);
-        // if(currentText==null){
-        //     localStorage.setItem("text:"+this.fileName,JSON.stringify([value]));
-        // }
-        // else{
-        //     var parsed = JSON.parse(currentText);
-        //     parsed.push(value);
-        //     localStorage.setItem("text:"+this.fileName,JSON.stringify([parsed]));
-        // }
+    removeText: function(text){
+        var parsed = JSON.parse(localStorage.getItem("text:"+this.fileName));
+        var index = parsed.indexOf(text);
+        if(index>=0){
+            parsed.splice(index,1);
+            localStorage.setItem("text:"+this.fileName,JSON.stringify(parsed));
+        }
     },
 
 
