@@ -2,14 +2,13 @@
 <html lang="en">
 <head>
     <script>if (typeof module === 'object') {window.module = module; module = undefined;}</script><!--This lets Electron run external script files-->
-    <script src="three.js"></script>
-    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
-    <link rel="stylesheet" href="https://code.getmdl.io/1.3.0/material.blue-light_blue.min.css">
-    <script defer src="https://code.getmdl.io/1.3.0/material.min.js"></script>
-    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
-    <script src="jquery-3.3.1.min.js"></script>
-    <link rel="stylesheet" href="styles.css">
+    <script src="three.js"></script><!--imports the THREE.js library-->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons"><!--imports the icons-->
+    <link rel="stylesheet" href="https://code.getmdl.io/1.3.0/material.blue-light_blue.min.css"><!--imports the Material Design Lite CSS-->
+    <script defer src="https://code.getmdl.io/1.3.0/material.min.js"></script><!--imports the Material Design Lite Javascript, for interactive elements-->
+    <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet"><!--Imports the Roboto font-->
+    <script src="jquery-3.3.1.min.js"></script><!--Imports the JQuery library, mainly used to clean up code.-->
+    <link rel="stylesheet" href="styles.css"><!--Imports the main style sheet-->
     <meta charset="UTF-8">
     <title>Monarch TSA 2019</title>
 </head>
@@ -46,7 +45,7 @@
             </div>
         </div>
     </div>
-<!--creates the wolcome screen and the buttons that will be on it. It sets up the buttons. class= is their style and on click is the action that will execute a function. at the end before </button> is the text that will be shown on the button-->
+<!--creates the welcome screen and the buttons that will be on it. It sets up the buttons. class= is their style and on click is the action that will execute a function. at the end before </button> is the text that will be shown on the button-->
     <span id='tutorialArrow' style="
         position:absolute;
         top:-60px;
@@ -188,9 +187,6 @@
                 <label class="mdl-textfield__label" for="rotateBoxZ">Z Rotate</label>
                 <span class="mdl-textfield__error">Input is not a number!</span>
             </div>
-            <!--<div class="parameterBox">X: <input type="number" id='rotateBoxX' onchange="rotateShape('x',this.value)" onkeyup="rotateShape('x',this.value)" value="0"><br></div>-->
-            <!--<div class="parameterBox">Y: <input type="number" id='rotateBoxY' onchange="rotateShape('y',this.value)" onkeyup="rotateShape('y',this.value)" value="0"><br></div>-->
-            <!--<div class="parameterBox">Z: <input type="number" id='rotateBoxZ' onchange="rotateShape('z',this.value)" onkeyup="rotateShape('z',this.value)" value="0"><br></div>-->
         </div>
 
         <div id="colorMenu">
@@ -256,9 +252,6 @@
                 <label class="mdl-textfield__label" for="zPositionBox">Z Position</label>
                 <span class="mdl-textfield__error">Input is not a number!</span>
             </div>
-            <!--<div class="parameterBox">X Position: <input type="number" id='xPositionBox' onchange="xPosition = Number(this.value)" onkeyup="xPosition = Number(this.value)" value="10"><br></div>-->
-            <!--<div class="parameterBox">Y Position: <input type="number" id='yPositionBox' onchange="yPosition = Number(this.value)" onkeyup="yPosition = Number(this.value)" value="10"><br></div>-->
-            <!--<div class="parameterBox">Z Position: <input type="number" id='zPositionBox' onchange="zPosition = Number(this.value)" onkeyup="zPosition = Number(this.value)" value="10"><br></div>-->
         </div>
         
         <div id="keyMenu">
@@ -266,6 +259,7 @@
             <button onfocus="this.blur()" class="mdl-button mdl-js-button mdl-button--fab mdl-button--colored" onclick="loop()"><i class="material-icons">autorenew</i></button>
             <button onfocus="this.blur()" class="objButton addButton"onclick="addFrame(); saveSubSystem.save()">Add Keyframe</button>
             <div id="keyList"></div>
+            <!--The menu defining all of the keyframes, including buttons to play and loop.-->
         </div>
         <div id="sceneMenu" style="display: none">
             <h3>
@@ -326,6 +320,7 @@
                 Background Color
             </h3>
             <input type="color" value="#000000" id='sceneColor' onchange="sceneBackground(this.value)">
+            <!--Allows changing of scene parameters, similar to changing shape parameters-->
         </div>
 
     </div>
@@ -345,10 +340,10 @@
             <label class="mdl-textfield__label" for="zoomSensitivity">Zoom Sensitivity</label>
             <span class="mdl-textfield__error">Input is not a number!</span>
         </div>
+        <!--Basic settings menu for things like Zoom Sensitivity, Mouse Sensitivity, and Theme-->
     </div>
     <div id="mainWindow">
     </div>
-
     <script src="utils.js"></script>
     <script src="menus.js"></script>
     <script src="keyframes.js"></script>

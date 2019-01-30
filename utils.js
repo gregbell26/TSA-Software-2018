@@ -1,9 +1,11 @@
  //jordan's code
 function changeColor(value){
+    //changes the color of the currently selected shape
     shapes[selectedShape].material.color.set(value);
 }
 
 function rgbToHex (num) {
+    //creates a hex value out of a number, used to set the html color elements, which require hex strings.
     var hex = Number(num).toString(16);
     if (hex.length < 2) {
         hex = "0" + hex;
@@ -13,6 +15,7 @@ function rgbToHex (num) {
 
 function addShape(){
     if(usingTutorial){
+        //moves the tutorial arrow around.
         confirm("Now define the dimensions, position, rotation, and color");
         confirm("When you are done, click on the key icon");
         document.getElementById("tutorialArrow").style.display="none";
@@ -20,6 +23,7 @@ function addShape(){
     document.getElementById('createTextMenu').style.display = 'none';
     var shapeType = document.getElementById("shapeSelector").value;
     saveSubSystem.save();
+    //creates a 0x0x0 shape based on the selector element, with a red color and black borders.
     switch(shapeType){
         case "cube" :
             newCube(0, 0, 0, 0, 0, 0, "#ff0000", "#000000");
