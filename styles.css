@@ -190,15 +190,8 @@ html, body {
     right:0;
 }
 
-#colorButton{
-    right:60px;
-}
-#meshButton{
-    right:120px;
-}
-
 #saveButton{
-    right:180px;
+    right:60px;
 }
 
 #userButton{
