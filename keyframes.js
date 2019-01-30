@@ -1,8 +1,7 @@
 function addFrame(){
     if(usingTutorial){
-        confirm("Now change some dimensions, colors, or positions, add a keyframe, then press play.")
-        usingTutorial = false;
-        document.getElementById("tutorialArrow").style.display="none";
+        confirm("Now change some dimensions, colors, or positions, add a keyframe, then press play.");
+        animateArrow(75,15,250,60)
     }
     keyFrames.push(
         {

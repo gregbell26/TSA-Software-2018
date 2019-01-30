@@ -10,6 +10,10 @@ function showList(){
         sideBar.innerHTML+="<button onclick='setSelectedShape("+i+")'>"+(i+1)+": "+shapes[i].geometry.name+" <div style='width: 14px; height: 14px; background-color: #"+shapes[i].material.color.getHexString()+"; display: inline-block'></div></button>";
     }
     console.log("Showed List");
+    if(usingTutorial){
+        usingTutorial = false;
+        document.getElementById("tutorialArrow").style.display="none";
+    }
 }
 
 function setSelectedShape(num){
