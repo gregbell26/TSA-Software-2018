@@ -147,8 +147,8 @@ function start() {
     if(saveSubSystem.openPrevious && saveSubSystem.isUsingSaves){
         saveSubSystem.setFileName(saveSelector.options[saveSelector.selectedIndex].value, false);
         keyFrames = saveSubSystem.loadSave();
-
     }
+    showList()
 }
 
 //
