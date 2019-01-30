@@ -1,15 +1,18 @@
 //jordan's code
+//controll variables
 var animationRunning = false;
 var loopAnimation = false;
 var animationTimer;
 var selectedShape = -1;
 var settingsOpen = false;
+
+//sets up the viewport
 var scene = new THREE.Scene();
 scene.background = new THREE.Color("#000000");
 var camera = new THREE.PerspectiveCamera( 75, document.getElementById("mainWindow").offsetWidth/document.getElementById("mainWindow").offsetHeight, 0.1, 1000 );
 var renderer = new THREE.WebGLRenderer({logarithmicDepthBuffer: true });
 
-
+//create viewport size
 renderer.setSize( document.getElementById("mainWindow").offsetWidth, document.getElementById("mainWindow").offsetHeight );
 document.getElementById("mainWindow").appendChild( renderer.domElement );
 
@@ -42,6 +45,7 @@ window.onload = function(){
         $(".objButton").css("color","#FFFFFF");
         $("#sideBar").css("background-color","#222222");
         $("#settingsPage").css("background-color","#222222");
+        //creates elements
         $(".addButton").hover(function(){
             $(this).css("background-color", "#228B22");
         }, function(){
@@ -57,6 +61,7 @@ window.onload = function(){
         }, function(){
             $(this).css("background-color", "#222222");
         });
+        //creates the colors of the buttons/menus?
     }
     else{
         document.getElementById("darkSelect").value = "0";
@@ -109,6 +114,7 @@ function showPrompt(title, defaultText){
     document.getElementById("popupInput").innerHTML = defaultText;
     dialog.showModal();
 }
+//another messagebox
 
 var promptResp = 0;
 
@@ -137,16 +143,17 @@ function start() {
     if((saveSelector.options[saveSelector.selectedIndex].value === "GET NAME" || !saveSubSystem.openPrevious) && saveSubSystem.isUsingSaves){
         promptResp = 1;
         showPrompt("Please enter a name for your save", "New Animation");
-
+    //handles savings creates a new one if there is no previous save when starting software
     }
     if(!saveSubSystem.isUsingSaves){
         console.log("Save subsystem has been disabled by the user");
-
+//debugging
     }
 
     if(saveSubSystem.openPrevious && saveSubSystem.isUsingSaves){
         saveSubSystem.setFileName(saveSelector.options[saveSelector.selectedIndex].value, false);
         keyFrames = saveSubSystem.loadSave();
+        //has saves
     }
     showList()
 }
