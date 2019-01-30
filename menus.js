@@ -1,6 +1,7 @@
 //jordan's code
 
 function showList(){
+    //Brings up a list of all of the shapes that current exist in the scene. Called when the "Show List" button is clicked.
     var sideBar=document.getElementById('listButtons');
     hideAll();
     document.getElementById("sideBarList").style.display="inherit";

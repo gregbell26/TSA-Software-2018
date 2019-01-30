@@ -1,6 +1,7 @@
 //DO NOT EDIT THIS OR THE ENTIRE APP WILL BREAK!!!!!!!!!!!!!!!
 // - Jordan
 
+//This creates builds the project as a desktop application. This is called in "package.json", when the application is started.
 const { app, BrowserWindow } = require('electron')
 let win
 

@@ -3,6 +3,7 @@
  */
 
 $(document).on('change', function (e) {
+    //Saves the file any time something is changed.
     if (saveSubSystem.isUsingSaves){
         saveSubSystem.save();
     }
@@ -44,6 +45,7 @@ var saveSubSystem =
 
 
     save: function() {
+        //saves the current file.
         if (this.isUsingSaves) {
             this.currentVer++;
             localStorage.setItem(this.fileName, this.currentVer);
@@ -56,19 +58,21 @@ var saveSubSystem =
     },
 
     addText: function(){
-      var value = document.getElementById("createText").value;
-      var currentText = localStorage.getItem("text:"+this.fileName);
-      if(currentText==null){
+        //used to track a TextGeometry so that the text can be rebuilt when the application is reloaded.
+        var value = document.getElementById("createText").value;
+        var currentText = localStorage.getItem("text:"+this.fileName);
+        if(currentText==null){
           localStorage.setItem("text:"+this.fileName,JSON.stringify([value]));
-      }
-      else{
+        }
+        else{
           var parsed = JSON.parse(currentText);
           parsed.push(value);
           localStorage.setItem("text:"+this.fileName,JSON.stringify(parsed));
-      }
+        }
     },
 
     removeText: function(text){
+        //called whenever a text object is removed from the scene.
         var parsed = JSON.parse(localStorage.getItem("text:"+this.fileName));
         var index = parsed.indexOf(text);
         if(index>=0){
@@ -79,6 +83,7 @@ var saveSubSystem =
 
 
     loadSave: function () {
+        //loads the save with the file name.
         if(localStorage.getItem(this.fileName) !== null){
             this.currentVer = localStorage.getItem(this.fileName);
             this.loadedKeyframes = JSON.parse(localStorage.getItem("keyFrames:"+this.fileName));
@@ -114,6 +119,7 @@ var saveSubSystem =
     },
 
     convertShapeObjs : function () {
+        //converts the Three.js shapes into a savable array of JSONs.
         var arr = [];
         for (var i = 0; i < shapes.length; i++) {
             arr.push({
@@ -133,6 +139,7 @@ var saveSubSystem =
     },
 
     loadSaveNames : function () {
+        //gets a list of all available saves.
         if(localStorage.getItem("fileNames") !== null) {
             this.saveFileNamesList = JSON.parse(localStorage.getItem("fileNames"));
         }
