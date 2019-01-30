@@ -29,7 +29,8 @@
         <div class="mdl-dialog__actions">
             <button type="button" class="mdl-button" onclick="promptResponse(document.getElementById('popupInput').value)">OK</button>
         </div>
-    </dialog>
+    </dialog>	
+<!-- creates the dialogue box that pops up with a message. the clickable part is the okay button which is the text of the button-->
 
     <div id="welcomeScreen">
         <div id="welcomeScreenBody">
@@ -47,7 +48,7 @@
             </div>
         </div>
     </div>
-
+<!--creates the wolcome screen and the buttons that will be on it. It sets up the buttons. class= is their style and on click is the action that will execute a function. at the end before </button> is the text that will be shown on the button-->
     <span id='tutorialArrow' style="
         position:absolute;
         top:-60px;
@@ -76,7 +77,8 @@
         <button onfocus="this.blur()" class="material-icons md-48 topButton" id="colorButton" onclick="colorMenu()">color_lens</button>
         <button onfocus="this.blur()" class="material-icons md-48 topButton" id="sceneButton" onclick="sceneMenu()">aspect_ratio</button>
     </div>
-
+<!--creates the top bar and sets up the buttons in those-->
+	
     <div id="sideBar">
 
         <div id="shapeMenu" style="display: none">
@@ -84,7 +86,7 @@
             <button onfocus="this.blur()" class="objButton removeButton" onclick="removeShape()">Delete Shape</button>
         </div>
 
-
+<!-- takes the shape name as the option value and put those in the shape menu. at the end is the text that is displayed as the option-->
         <div id="addMenu" style="display: none">
             <select id="shapeSelector">
                 <option value="cube">Cube</option>
@@ -108,11 +110,13 @@
             <h3>
                 Dimensions
             </h3>
+		<!-- sets up the options for dimentions. creates input and span classes to gather the settings-->	
             <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
                 <input class="mdl-textfield__input" type="number" step="any" id='dimensionX' onchange="cubeDimension('x',this.value)" onkeyup="cubeDimension('x',this.value)" value="0">
                 <label class="mdl-textfield__label" for="dimensionX">X Dimension</label>
                 <span class="mdl-textfield__error">Input is not a number!</span>
             </div>
+			
             <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
                 <input class="mdl-textfield__input"  type="number" step="any" id='dimensionY' onchange="cubeDimension('y',this.value)" onkeyup="cubeDimension('y',this.value)" value="0">
                 <label class="mdl-textfield__label" for="dimensionY">Y Dimension</label>
@@ -145,6 +149,7 @@
                 <span class="mdl-textfield__error">Input is not a number!</span>
             </div>
         </div>
+	    <!--creates an input area for the position of the shape-->
 
         <div id="rotateMenu">
             <h3>
@@ -176,6 +181,7 @@
             </h3>
             <input type="color" value="#FF0000" id='colorChanger' onchange="changeColor(this.value)"><br>
             <h3>
+		    <!--creates a color menu that inputs a color-->
                 Borders
             </h3>
             Visible: <input id="borderVisibility" type="checkbox" checked="true" onchange="borderVisibility()"><br>
@@ -347,6 +353,7 @@
     <script src="Shapes/ring.js"></script>
     <script src="Shapes/text.js"></script>
     <script src="Camera.js"></script>
-
+<!-- inserts all of the javascript programs to be used in the program-->
+	
 </body>
 </html>
