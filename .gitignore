@@ -17,3 +17,290 @@
 *.iml
 node_modules/electron/dist/Electron.app/Contents/Frameworks/Electron Framework.framework/Electron Framework
 node_modules/electron/dist/Electron.app/Contents/Frameworks/Electron Framework.framework/Versions/A/Electron Framework
+release-builds/tsa-software-2019-darwin-x64/version
+release-builds/tsa-software-2019-darwin-x64/MohiTSA.app/Contents/Resources/electron.icns
+release-builds/tsa-software-2019-darwin-x64/MohiTSA.app/Contents/Resources/electron.asar
+release-builds/tsa-software-2019-darwin-x64/MohiTSA.app/Contents/Resources/app/Web.config
+release-builds/tsa-software-2019-darwin-x64/MohiTSA.app/Contents/Resources/app/utils.js
+release-builds/tsa-software-2019-darwin-x64/MohiTSA.app/Contents/Resources/app/tutorial.js
+release-builds/tsa-software-2019-darwin-x64/MohiTSA.app/Contents/Resources/app/three.js
+release-builds/tsa-software-2019-darwin-x64/MohiTSA.app/Contents/Resources/app/TestS.mtl
+release-builds/tsa-software-2019-darwin-x64/MohiTSA.app/Contents/Resources/app/styles.css
+release-builds/tsa-software-2019-darwin-x64/MohiTSA.app/Contents/Resources/app/storage.js
+release-builds/tsa-software-2019-darwin-x64/MohiTSA.app/Contents/Resources/app/Shapes/text.js
+release-builds/tsa-software-2019-darwin-x64/MohiTSA.app/Contents/Resources/app/Shapes/sphere.js
+release-builds/tsa-software-2019-darwin-x64/MohiTSA.app/Contents/Resources/app/Shapes/shapes.js
+release-builds/tsa-software-2019-darwin-x64/MohiTSA.app/Contents/Resources/app/Shapes/ring.js
+release-builds/tsa-software-2019-darwin-x64/MohiTSA.app/Contents/Resources/app/Shapes/pyramid.js
+release-builds/tsa-software-2019-darwin-x64/MohiTSA.app/Contents/Resources/app/Shapes/octahedron.js
+release-builds/tsa-software-2019-darwin-x64/MohiTSA.app/Contents/Resources/app/Shapes/icosahedron.js
+release-builds/tsa-software-2019-darwin-x64/MohiTSA.app/Contents/Resources/app/Shapes/dodecahedron.js
+release-builds/tsa-software-2019-darwin-x64/MohiTSA.app/Contents/Resources/app/Shapes/cylinder.js
+release-builds/tsa-software-2019-darwin-x64/MohiTSA.app/Contents/Resources/app/Shapes/customShape.js
+release-builds/tsa-software-2019-darwin-x64/MohiTSA.app/Contents/Resources/app/Shapes/cube.js
+release-builds/tsa-software-2019-darwin-x64/MohiTSA.app/Contents/Resources/app/Shapes/cone.js
+release-builds/tsa-software-2019-darwin-x64/MohiTSA.app/Contents/Resources/app/scene.js
+release-builds/tsa-software-2019-darwin-x64/MohiTSA.app/Contents/Resources/app/roboto.css
+release-builds/tsa-software-2019-darwin-x64/MohiTSA.app/Contents/Resources/app/README.md
+release-builds/tsa-software-2019-darwin-x64/MohiTSA.app/Contents/Resources/app/package.json
+release-builds/tsa-software-2019-darwin-x64/MohiTSA.app/Contents/Resources/app/package-lock.json
+release-builds/tsa-software-2019-darwin-x64/MohiTSA.app/Contents/Resources/app/NOTICE.txt
+release-builds/tsa-software-2019-darwin-x64/MohiTSA.app/Contents/Resources/app/menus.js
+release-builds/tsa-software-2019-darwin-x64/MohiTSA.app/Contents/Resources/app/material.min.js
+release-builds/tsa-software-2019-darwin-x64/MohiTSA.app/Contents/Resources/app/material.blue-light_blue.min.css
+release-builds/tsa-software-2019-darwin-x64/MohiTSA.app/Contents/Resources/app/material-icons.woff2
+release-builds/tsa-software-2019-darwin-x64/MohiTSA.app/Contents/Resources/app/material-icons.css
+release-builds/tsa-software-2019-darwin-x64/MohiTSA.app/Contents/Resources/app/main.js
+release-builds/tsa-software-2019-darwin-x64/MohiTSA.app/Contents/Resources/app/keyframes.js
+release-builds/tsa-software-2019-darwin-x64/MohiTSA.app/Contents/Resources/app/jquery-3.3.1.min.js
+release-builds/tsa-software-2019-darwin-x64/MohiTSA.app/Contents/Resources/app/initial.js
+release-builds/tsa-software-2019-darwin-x64/MohiTSA.app/Contents/Resources/app/index.html
+release-builds/tsa-software-2019-darwin-x64/MohiTSA.app/Contents/Resources/app/fonts/helvetiker_regular.typeface.json
+release-builds/tsa-software-2019-darwin-x64/MohiTSA.app/Contents/Resources/app/Camera.js
+release-builds/tsa-software-2019-darwin-x64/MohiTSA.app/Contents/Resources/app/assets/icons/win/icon.ico
+release-builds/tsa-software-2019-darwin-x64/MohiTSA.app/Contents/Resources/app/assets/icons/png/1024x1024.png
+release-builds/tsa-software-2019-darwin-x64/MohiTSA.app/Contents/Resources/app/assets/icons/mac/icon.icns
+release-builds/tsa-software-2019-darwin-x64/MohiTSA.app/Contents/Resources/app/animate.js
+release-builds/tsa-software-2019-darwin-x64/MohiTSA.app/Contents/PkgInfo
+release-builds/tsa-software-2019-darwin-x64/MohiTSA.app/Contents/MacOS/tsa-software-2019
+release-builds/tsa-software-2019-darwin-x64/MohiTSA.app/Contents/Info.plist
+release-builds/tsa-software-2019-darwin-x64/MohiTSA.app/Contents/Frameworks/tsa-software-2019 Helper.app/Contents/PkgInfo
+release-builds/tsa-software-2019-darwin-x64/MohiTSA.app/Contents/Frameworks/tsa-software-2019 Helper.app/Contents/MacOS/tsa-software-2019 Helper
+release-builds/tsa-software-2019-darwin-x64/MohiTSA.app/Contents/Frameworks/tsa-software-2019 Helper.app/Contents/Info.plist
+release-builds/tsa-software-2019-darwin-x64/MohiTSA.app/Contents/Frameworks/Squirrel.framework/Versions/Current
+release-builds/tsa-software-2019-darwin-x64/MohiTSA.app/Contents/Frameworks/Squirrel.framework/Versions/A/Squirrel
+release-builds/tsa-software-2019-darwin-x64/MohiTSA.app/Contents/Frameworks/Squirrel.framework/Versions/A/Resources/ShipIt
+release-builds/tsa-software-2019-darwin-x64/MohiTSA.app/Contents/Frameworks/Squirrel.framework/Versions/A/Resources/Info.plist
+release-builds/tsa-software-2019-darwin-x64/MohiTSA.app/Contents/Frameworks/Squirrel.framework/Versions/A/Modules/module.modulemap
+release-builds/tsa-software-2019-darwin-x64/MohiTSA.app/Contents/Frameworks/Squirrel.framework/Versions/A/Headers/Squirrel.h
+release-builds/tsa-software-2019-darwin-x64/MohiTSA.app/Contents/Frameworks/Squirrel.framework/Versions/A/Headers/SQRLUpdater.h
+release-builds/tsa-software-2019-darwin-x64/MohiTSA.app/Contents/Frameworks/Squirrel.framework/Versions/A/Headers/SQRLUpdate.h
+release-builds/tsa-software-2019-darwin-x64/MohiTSA.app/Contents/Frameworks/Squirrel.framework/Versions/A/Headers/SQRLDownloadedUpdate.h
+release-builds/tsa-software-2019-darwin-x64/MohiTSA.app/Contents/Frameworks/Squirrel.framework/Versions/A/Headers/NSProcessInfo+SQRLVersionExtensions.h
+release-builds/tsa-software-2019-darwin-x64/MohiTSA.app/Contents/Frameworks/Squirrel.framework/Versions/A/Headers/NSBundle+SQRLVersionExtensions.h
+release-builds/tsa-software-2019-darwin-x64/MohiTSA.app/Contents/Frameworks/Squirrel.framework/Squirrel
+release-builds/tsa-software-2019-darwin-x64/MohiTSA.app/Contents/Frameworks/Squirrel.framework/Resources
+release-builds/tsa-software-2019-darwin-x64/MohiTSA.app/Contents/Frameworks/Squirrel.framework/Modules
+release-builds/tsa-software-2019-darwin-x64/MohiTSA.app/Contents/Frameworks/Squirrel.framework/Headers
+release-builds/tsa-software-2019-darwin-x64/MohiTSA.app/Contents/Frameworks/ReactiveCocoa.framework/Versions/Current
+release-builds/tsa-software-2019-darwin-x64/MohiTSA.app/Contents/Frameworks/ReactiveCocoa.framework/Versions/A/Resources/Info.plist
+release-builds/tsa-software-2019-darwin-x64/MohiTSA.app/Contents/Frameworks/ReactiveCocoa.framework/Versions/A/ReactiveCocoa
+release-builds/tsa-software-2019-darwin-x64/MohiTSA.app/Contents/Frameworks/ReactiveCocoa.framework/Versions/A/Modules/module.modulemap
+release-builds/tsa-software-2019-darwin-x64/MohiTSA.app/Contents/Frameworks/ReactiveCocoa.framework/Versions/A/Headers/ReactiveCocoa.h
+release-builds/tsa-software-2019-darwin-x64/MohiTSA.app/Contents/Frameworks/ReactiveCocoa.framework/Versions/A/Headers/RACUnit.h
+release-builds/tsa-software-2019-darwin-x64/MohiTSA.app/Contents/Frameworks/ReactiveCocoa.framework/Versions/A/Headers/RACTuple.h
+release-builds/tsa-software-2019-darwin-x64/MohiTSA.app/Contents/Frameworks/ReactiveCocoa.framework/Versions/A/Headers/RACTestScheduler.h
+release-builds/tsa-software-2019-darwin-x64/MohiTSA.app/Contents/Frameworks/ReactiveCocoa.framework/Versions/A/Headers/RACTargetQueueScheduler.h
+release-builds/tsa-software-2019-darwin-x64/MohiTSA.app/Contents/Frameworks/ReactiveCocoa.framework/Versions/A/Headers/RACSubscriptingAssignmentTrampoline.h
+release-builds/tsa-software-2019-darwin-x64/MohiTSA.app/Contents/Frameworks/ReactiveCocoa.framework/Versions/A/Headers/RACSubscriber.h
+release-builds/tsa-software-2019-darwin-x64/MohiTSA.app/Contents/Frameworks/ReactiveCocoa.framework/Versions/A/Headers/RACSubject.h
+release-builds/tsa-software-2019-darwin-x64/MohiTSA.app/Contents/Frameworks/ReactiveCocoa.framework/Versions/A/Headers/RACStream.h
+release-builds/tsa-software-2019-darwin-x64/MohiTSA.app/Contents/Frameworks/ReactiveCocoa.framework/Versions/A/Headers/RACSignal.h
+release-builds/tsa-software-2019-darwin-x64/MohiTSA.app/Contents/Frameworks/ReactiveCocoa.framework/Versions/A/Headers/RACSignal+Operations.h
+release-builds/tsa-software-2019-darwin-x64/MohiTSA.app/Contents/Frameworks/ReactiveCocoa.framework/Versions/A/Headers/RACSerialDisposable.h
+release-builds/tsa-software-2019-darwin-x64/MohiTSA.app/Contents/Frameworks/ReactiveCocoa.framework/Versions/A/Headers/RACSequence.h
+release-builds/tsa-software-2019-darwin-x64/MohiTSA.app/Contents/Frameworks/ReactiveCocoa.framework/Versions/A/Headers/RACScopedDisposable.h
+release-builds/tsa-software-2019-darwin-x64/MohiTSA.app/Contents/Frameworks/ReactiveCocoa.framework/Versions/A/Headers/RACScheduler.h
+release-builds/tsa-software-2019-darwin-x64/MohiTSA.app/Contents/Frameworks/ReactiveCocoa.framework/Versions/A/Headers/RACScheduler+Subclass.h
+release-builds/tsa-software-2019-darwin-x64/MohiTSA.app/Contents/Frameworks/ReactiveCocoa.framework/Versions/A/Headers/RACReplaySubject.h
+release-builds/tsa-software-2019-darwin-x64/MohiTSA.app/Contents/Frameworks/ReactiveCocoa.framework/Versions/A/Headers/RACQueueScheduler.h
+release-builds/tsa-software-2019-darwin-x64/MohiTSA.app/Contents/Frameworks/ReactiveCocoa.framework/Versions/A/Headers/RACQueueScheduler+Subclass.h
+release-builds/tsa-software-2019-darwin-x64/MohiTSA.app/Contents/Frameworks/ReactiveCocoa.framework/Versions/A/Headers/RACMulticastConnection.h
+release-builds/tsa-software-2019-darwin-x64/MohiTSA.app/Contents/Frameworks/ReactiveCocoa.framework/Versions/A/Headers/RACKVOChannel.h
+release-builds/tsa-software-2019-darwin-x64/MohiTSA.app/Contents/Frameworks/ReactiveCocoa.framework/Versions/A/Headers/RACGroupedSignal.h
+release-builds/tsa-software-2019-darwin-x64/MohiTSA.app/Contents/Frameworks/ReactiveCocoa.framework/Versions/A/Headers/RACEvent.h
+release-builds/tsa-software-2019-darwin-x64/MohiTSA.app/Contents/Frameworks/ReactiveCocoa.framework/Versions/A/Headers/RACDisposable.h
+release-builds/tsa-software-2019-darwin-x64/MohiTSA.app/Contents/Frameworks/ReactiveCocoa.framework/Versions/A/Headers/RACCompoundDisposable.h
+release-builds/tsa-software-2019-darwin-x64/MohiTSA.app/Contents/Frameworks/ReactiveCocoa.framework/Versions/A/Headers/RACCommand.h
+release-builds/tsa-software-2019-darwin-x64/MohiTSA.app/Contents/Frameworks/ReactiveCocoa.framework/Versions/A/Headers/RACChannel.h
+release-builds/tsa-software-2019-darwin-x64/MohiTSA.app/Contents/Frameworks/ReactiveCocoa.framework/Versions/A/Headers/RACBehaviorSubject.h
+release-builds/tsa-software-2019-darwin-x64/MohiTSA.app/Contents/Frameworks/ReactiveCocoa.framework/Versions/A/Headers/RACBacktrace.h
+release-builds/tsa-software-2019-darwin-x64/MohiTSA.app/Contents/Frameworks/ReactiveCocoa.framework/Versions/A/Headers/NSUserDefaults+RACSupport.h
+release-builds/tsa-software-2019-darwin-x64/MohiTSA.app/Contents/Frameworks/ReactiveCocoa.framework/Versions/A/Headers/NSURLConnection+RACSupport.h
+release-builds/tsa-software-2019-darwin-x64/MohiTSA.app/Contents/Frameworks/ReactiveCocoa.framework/Versions/A/Headers/NSText+RACSignalSupport.h
+release-builds/tsa-software-2019-darwin-x64/MohiTSA.app/Contents/Frameworks/ReactiveCocoa.framework/Versions/A/Headers/NSString+RACSupport.h
+release-builds/tsa-software-2019-darwin-x64/MohiTSA.app/Contents/Frameworks/ReactiveCocoa.framework/Versions/A/Headers/NSString+RACSequenceAdditions.h
+release-builds/tsa-software-2019-darwin-x64/MohiTSA.app/Contents/Frameworks/ReactiveCocoa.framework/Versions/A/Headers/NSSet+RACSequenceAdditions.h
+release-builds/tsa-software-2019-darwin-x64/MohiTSA.app/Contents/Frameworks/ReactiveCocoa.framework/Versions/A/Headers/NSOrderedSet+RACSequenceAdditions.h
+release-builds/tsa-software-2019-darwin-x64/MohiTSA.app/Contents/Frameworks/ReactiveCocoa.framework/Versions/A/Headers/NSObject+RACSelectorSignal.h
+release-builds/tsa-software-2019-darwin-x64/MohiTSA.app/Contents/Frameworks/ReactiveCocoa.framework/Versions/A/Headers/NSObject+RACPropertySubscribing.h
+release-builds/tsa-software-2019-darwin-x64/MohiTSA.app/Contents/Frameworks/ReactiveCocoa.framework/Versions/A/Headers/NSObject+RACLifting.h
+release-builds/tsa-software-2019-darwin-x64/MohiTSA.app/Contents/Frameworks/ReactiveCocoa.framework/Versions/A/Headers/NSObject+RACDeallocating.h
+release-builds/tsa-software-2019-darwin-x64/MohiTSA.app/Contents/Frameworks/ReactiveCocoa.framework/Versions/A/Headers/NSObject+RACAppKitBindings.h
+release-builds/tsa-software-2019-darwin-x64/MohiTSA.app/Contents/Frameworks/ReactiveCocoa.framework/Versions/A/Headers/NSNotificationCenter+RACSupport.h
+release-builds/tsa-software-2019-darwin-x64/MohiTSA.app/Contents/Frameworks/ReactiveCocoa.framework/Versions/A/Headers/NSIndexSet+RACSequenceAdditions.h
+release-builds/tsa-software-2019-darwin-x64/MohiTSA.app/Contents/Frameworks/ReactiveCocoa.framework/Versions/A/Headers/NSFileHandle+RACSupport.h
+release-builds/tsa-software-2019-darwin-x64/MohiTSA.app/Contents/Frameworks/ReactiveCocoa.framework/Versions/A/Headers/NSEnumerator+RACSequenceAdditions.h
+release-builds/tsa-software-2019-darwin-x64/MohiTSA.app/Contents/Frameworks/ReactiveCocoa.framework/Versions/A/Headers/NSDictionary+RACSequenceAdditions.h
+release-builds/tsa-software-2019-darwin-x64/MohiTSA.app/Contents/Frameworks/ReactiveCocoa.framework/Versions/A/Headers/NSData+RACSupport.h
+release-builds/tsa-software-2019-darwin-x64/MohiTSA.app/Contents/Frameworks/ReactiveCocoa.framework/Versions/A/Headers/NSControl+RACTextSignalSupport.h
+release-builds/tsa-software-2019-darwin-x64/MohiTSA.app/Contents/Frameworks/ReactiveCocoa.framework/Versions/A/Headers/NSControl+RACCommandSupport.h
+release-builds/tsa-software-2019-darwin-x64/MohiTSA.app/Contents/Frameworks/ReactiveCocoa.framework/Versions/A/Headers/NSArray+RACSequenceAdditions.h
+release-builds/tsa-software-2019-darwin-x64/MohiTSA.app/Contents/Frameworks/ReactiveCocoa.framework/Versions/A/Headers/metamacros.h
+release-builds/tsa-software-2019-darwin-x64/MohiTSA.app/Contents/Frameworks/ReactiveCocoa.framework/Versions/A/Headers/EXTScope.h
+release-builds/tsa-software-2019-darwin-x64/MohiTSA.app/Contents/Frameworks/ReactiveCocoa.framework/Versions/A/Headers/EXTKeyPathCoding.h
+release-builds/tsa-software-2019-darwin-x64/MohiTSA.app/Contents/Frameworks/ReactiveCocoa.framework/Resources
+release-builds/tsa-software-2019-darwin-x64/MohiTSA.app/Contents/Frameworks/ReactiveCocoa.framework/ReactiveCocoa
+release-builds/tsa-software-2019-darwin-x64/MohiTSA.app/Contents/Frameworks/ReactiveCocoa.framework/Modules
+release-builds/tsa-software-2019-darwin-x64/MohiTSA.app/Contents/Frameworks/ReactiveCocoa.framework/Headers
+release-builds/tsa-software-2019-darwin-x64/MohiTSA.app/Contents/Frameworks/Mantle.framework/Versions/Current
+release-builds/tsa-software-2019-darwin-x64/MohiTSA.app/Contents/Frameworks/Mantle.framework/Versions/A/Resources/Info.plist
+release-builds/tsa-software-2019-darwin-x64/MohiTSA.app/Contents/Frameworks/Mantle.framework/Versions/A/Modules/module.modulemap
+release-builds/tsa-software-2019-darwin-x64/MohiTSA.app/Contents/Frameworks/Mantle.framework/Versions/A/Mantle
+release-builds/tsa-software-2019-darwin-x64/MohiTSA.app/Contents/Frameworks/Mantle.framework/Versions/A/Headers/NSValueTransformer+MTLPredefinedTransformerAdditions.h
+release-builds/tsa-software-2019-darwin-x64/MohiTSA.app/Contents/Frameworks/Mantle.framework/Versions/A/Headers/NSValueTransformer+MTLInversionAdditions.h
+release-builds/tsa-software-2019-darwin-x64/MohiTSA.app/Contents/Frameworks/Mantle.framework/Versions/A/Headers/NSObject+MTLComparisonAdditions.h
+release-builds/tsa-software-2019-darwin-x64/MohiTSA.app/Contents/Frameworks/Mantle.framework/Versions/A/Headers/NSDictionary+MTLManipulationAdditions.h
+release-builds/tsa-software-2019-darwin-x64/MohiTSA.app/Contents/Frameworks/Mantle.framework/Versions/A/Headers/NSArray+MTLManipulationAdditions.h
+release-builds/tsa-software-2019-darwin-x64/MohiTSA.app/Contents/Frameworks/Mantle.framework/Versions/A/Headers/MTLValueTransformer.h
+release-builds/tsa-software-2019-darwin-x64/MohiTSA.app/Contents/Frameworks/Mantle.framework/Versions/A/Headers/MTLModel.h
+release-builds/tsa-software-2019-darwin-x64/MohiTSA.app/Contents/Frameworks/Mantle.framework/Versions/A/Headers/MTLModel+NSCoding.h
+release-builds/tsa-software-2019-darwin-x64/MohiTSA.app/Contents/Frameworks/Mantle.framework/Versions/A/Headers/MTLManagedObjectAdapter.h
+release-builds/tsa-software-2019-darwin-x64/MohiTSA.app/Contents/Frameworks/Mantle.framework/Versions/A/Headers/MTLJSONAdapter.h
+release-builds/tsa-software-2019-darwin-x64/MohiTSA.app/Contents/Frameworks/Mantle.framework/Versions/A/Headers/Mantle.h
+release-builds/tsa-software-2019-darwin-x64/MohiTSA.app/Contents/Frameworks/Mantle.framework/Resources
+release-builds/tsa-software-2019-darwin-x64/MohiTSA.app/Contents/Frameworks/Mantle.framework/Modules
+release-builds/tsa-software-2019-darwin-x64/MohiTSA.app/Contents/Frameworks/Mantle.framework/Mantle
+release-builds/tsa-software-2019-darwin-x64/MohiTSA.app/Contents/Frameworks/Mantle.framework/Headers
+release-builds/tsa-software-2019-darwin-x64/MohiTSA.app/Contents/Frameworks/Electron Framework.framework/Versions/Current
+release-builds/tsa-software-2019-darwin-x64/MohiTSA.app/Contents/Frameworks/Electron Framework.framework/Versions/A/Resources/zh_TW.lproj/locale.pak
+release-builds/tsa-software-2019-darwin-x64/MohiTSA.app/Contents/Frameworks/Electron Framework.framework/Versions/A/Resources/zh_CN.lproj/locale.pak
+release-builds/tsa-software-2019-darwin-x64/MohiTSA.app/Contents/Frameworks/Electron Framework.framework/Versions/A/Resources/vi.lproj/locale.pak
+release-builds/tsa-software-2019-darwin-x64/MohiTSA.app/Contents/Frameworks/Electron Framework.framework/Versions/A/Resources/v8_context_snapshot.bin
+release-builds/tsa-software-2019-darwin-x64/MohiTSA.app/Contents/Frameworks/Electron Framework.framework/Versions/A/Resources/uk.lproj/locale.pak
+release-builds/tsa-software-2019-darwin-x64/MohiTSA.app/Contents/Frameworks/Electron Framework.framework/Versions/A/Resources/tr.lproj/locale.pak
+release-builds/tsa-software-2019-darwin-x64/MohiTSA.app/Contents/Frameworks/Electron Framework.framework/Versions/A/Resources/th.lproj/locale.pak
+release-builds/tsa-software-2019-darwin-x64/MohiTSA.app/Contents/Frameworks/Electron Framework.framework/Versions/A/Resources/te.lproj/locale.pak
+release-builds/tsa-software-2019-darwin-x64/MohiTSA.app/Contents/Frameworks/Electron Framework.framework/Versions/A/Resources/ta.lproj/locale.pak
+release-builds/tsa-software-2019-darwin-x64/MohiTSA.app/Contents/Frameworks/Electron Framework.framework/Versions/A/Resources/sw.lproj/locale.pak
+release-builds/tsa-software-2019-darwin-x64/MohiTSA.app/Contents/Frameworks/Electron Framework.framework/Versions/A/Resources/sv.lproj/locale.pak
+release-builds/tsa-software-2019-darwin-x64/MohiTSA.app/Contents/Frameworks/Electron Framework.framework/Versions/A/Resources/sr.lproj/locale.pak
+release-builds/tsa-software-2019-darwin-x64/MohiTSA.app/Contents/Frameworks/Electron Framework.framework/Versions/A/Resources/sl.lproj/locale.pak
+release-builds/tsa-software-2019-darwin-x64/MohiTSA.app/Contents/Frameworks/Electron Framework.framework/Versions/A/Resources/sk.lproj/locale.pak
+release-builds/tsa-software-2019-darwin-x64/MohiTSA.app/Contents/Frameworks/Electron Framework.framework/Versions/A/Resources/ru.lproj/locale.pak
+release-builds/tsa-software-2019-darwin-x64/MohiTSA.app/Contents/Frameworks/Electron Framework.framework/Versions/A/Resources/ro.lproj/locale.pak
+release-builds/tsa-software-2019-darwin-x64/MohiTSA.app/Contents/Frameworks/Electron Framework.framework/Versions/A/Resources/resources.pak
+release-builds/tsa-software-2019-darwin-x64/MohiTSA.app/Contents/Frameworks/Electron Framework.framework/Versions/A/Resources/pt_PT.lproj/locale.pak
+release-builds/tsa-software-2019-darwin-x64/MohiTSA.app/Contents/Frameworks/Electron Framework.framework/Versions/A/Resources/pt_BR.lproj/locale.pak
+release-builds/tsa-software-2019-darwin-x64/MohiTSA.app/Contents/Frameworks/Electron Framework.framework/Versions/A/Resources/pl.lproj/locale.pak
+release-builds/tsa-software-2019-darwin-x64/MohiTSA.app/Contents/Frameworks/Electron Framework.framework/Versions/A/Resources/nl.lproj/locale.pak
+release-builds/tsa-software-2019-darwin-x64/MohiTSA.app/Contents/Frameworks/Electron Framework.framework/Versions/A/Resources/nb.lproj/locale.pak
+release-builds/tsa-software-2019-darwin-x64/MohiTSA.app/Contents/Frameworks/Electron Framework.framework/Versions/A/Resources/natives_blob.bin
+release-builds/tsa-software-2019-darwin-x64/MohiTSA.app/Contents/Frameworks/Electron Framework.framework/Versions/A/Resources/ms.lproj/locale.pak
+release-builds/tsa-software-2019-darwin-x64/MohiTSA.app/Contents/Frameworks/Electron Framework.framework/Versions/A/Resources/mr.lproj/locale.pak
+release-builds/tsa-software-2019-darwin-x64/MohiTSA.app/Contents/Frameworks/Electron Framework.framework/Versions/A/Resources/ml.lproj/locale.pak
+release-builds/tsa-software-2019-darwin-x64/MohiTSA.app/Contents/Frameworks/Electron Framework.framework/Versions/A/Resources/MainMenu.nib
+release-builds/tsa-software-2019-darwin-x64/MohiTSA.app/Contents/Frameworks/Electron Framework.framework/Versions/A/Resources/lv.lproj/locale.pak
+release-builds/tsa-software-2019-darwin-x64/MohiTSA.app/Contents/Frameworks/Electron Framework.framework/Versions/A/Resources/lt.lproj/locale.pak
+release-builds/tsa-software-2019-darwin-x64/MohiTSA.app/Contents/Frameworks/Electron Framework.framework/Versions/A/Resources/ko.lproj/locale.pak
+release-builds/tsa-software-2019-darwin-x64/MohiTSA.app/Contents/Frameworks/Electron Framework.framework/Versions/A/Resources/kn.lproj/locale.pak
+release-builds/tsa-software-2019-darwin-x64/MohiTSA.app/Contents/Frameworks/Electron Framework.framework/Versions/A/Resources/ja.lproj/locale.pak
+release-builds/tsa-software-2019-darwin-x64/MohiTSA.app/Contents/Frameworks/Electron Framework.framework/Versions/A/Resources/it.lproj/locale.pak
+release-builds/tsa-software-2019-darwin-x64/MohiTSA.app/Contents/Frameworks/Electron Framework.framework/Versions/A/Resources/Info.plist
+release-builds/tsa-software-2019-darwin-x64/MohiTSA.app/Contents/Frameworks/Electron Framework.framework/Versions/A/Resources/id.lproj/locale.pak
+release-builds/tsa-software-2019-darwin-x64/MohiTSA.app/Contents/Frameworks/Electron Framework.framework/Versions/A/Resources/icudtl.dat
+release-builds/tsa-software-2019-darwin-x64/MohiTSA.app/Contents/Frameworks/Electron Framework.framework/Versions/A/Resources/hu.lproj/locale.pak
+release-builds/tsa-software-2019-darwin-x64/MohiTSA.app/Contents/Frameworks/Electron Framework.framework/Versions/A/Resources/hr.lproj/locale.pak
+release-builds/tsa-software-2019-darwin-x64/MohiTSA.app/Contents/Frameworks/Electron Framework.framework/Versions/A/Resources/hi.lproj/locale.pak
+release-builds/tsa-software-2019-darwin-x64/MohiTSA.app/Contents/Frameworks/Electron Framework.framework/Versions/A/Resources/he.lproj/locale.pak
+release-builds/tsa-software-2019-darwin-x64/MohiTSA.app/Contents/Frameworks/Electron Framework.framework/Versions/A/Resources/gu.lproj/locale.pak
+release-builds/tsa-software-2019-darwin-x64/MohiTSA.app/Contents/Frameworks/Electron Framework.framework/Versions/A/Resources/fr.lproj/locale.pak
+release-builds/tsa-software-2019-darwin-x64/MohiTSA.app/Contents/Frameworks/Electron Framework.framework/Versions/A/Resources/fil.lproj/locale.pak
+release-builds/tsa-software-2019-darwin-x64/MohiTSA.app/Contents/Frameworks/Electron Framework.framework/Versions/A/Resources/fi.lproj/locale.pak
+release-builds/tsa-software-2019-darwin-x64/MohiTSA.app/Contents/Frameworks/Electron Framework.framework/Versions/A/Resources/fa.lproj/locale.pak
+release-builds/tsa-software-2019-darwin-x64/MohiTSA.app/Contents/Frameworks/Electron Framework.framework/Versions/A/Resources/et.lproj/locale.pak
+release-builds/tsa-software-2019-darwin-x64/MohiTSA.app/Contents/Frameworks/Electron Framework.framework/Versions/A/Resources/es_419.lproj/locale.pak
+release-builds/tsa-software-2019-darwin-x64/MohiTSA.app/Contents/Frameworks/Electron Framework.framework/Versions/A/Resources/es.lproj/locale.pak
+release-builds/tsa-software-2019-darwin-x64/MohiTSA.app/Contents/Frameworks/Electron Framework.framework/Versions/A/Resources/en_GB.lproj/locale.pak
+release-builds/tsa-software-2019-darwin-x64/MohiTSA.app/Contents/Frameworks/Electron Framework.framework/Versions/A/Resources/en.lproj/locale.pak
+release-builds/tsa-software-2019-darwin-x64/MohiTSA.app/Contents/Frameworks/Electron Framework.framework/Versions/A/Resources/el.lproj/locale.pak
+release-builds/tsa-software-2019-darwin-x64/MohiTSA.app/Contents/Frameworks/Electron Framework.framework/Versions/A/Resources/de.lproj/locale.pak
+release-builds/tsa-software-2019-darwin-x64/MohiTSA.app/Contents/Frameworks/Electron Framework.framework/Versions/A/Resources/da.lproj/locale.pak
+release-builds/tsa-software-2019-darwin-x64/MohiTSA.app/Contents/Frameworks/Electron Framework.framework/Versions/A/Resources/cs.lproj/locale.pak
+release-builds/tsa-software-2019-darwin-x64/MohiTSA.app/Contents/Frameworks/Electron Framework.framework/Versions/A/Resources/crashpad_handler
+release-builds/tsa-software-2019-darwin-x64/MohiTSA.app/Contents/Frameworks/Electron Framework.framework/Versions/A/Resources/chrome_200_percent.pak
+release-builds/tsa-software-2019-darwin-x64/MohiTSA.app/Contents/Frameworks/Electron Framework.framework/Versions/A/Resources/chrome_100_percent.pak
+release-builds/tsa-software-2019-darwin-x64/MohiTSA.app/Contents/Frameworks/Electron Framework.framework/Versions/A/Resources/ca.lproj/locale.pak
+release-builds/tsa-software-2019-darwin-x64/MohiTSA.app/Contents/Frameworks/Electron Framework.framework/Versions/A/Resources/bn.lproj/locale.pak
+release-builds/tsa-software-2019-darwin-x64/MohiTSA.app/Contents/Frameworks/Electron Framework.framework/Versions/A/Resources/bg.lproj/locale.pak
+release-builds/tsa-software-2019-darwin-x64/MohiTSA.app/Contents/Frameworks/Electron Framework.framework/Versions/A/Resources/ar.lproj/locale.pak
+release-builds/tsa-software-2019-darwin-x64/MohiTSA.app/Contents/Frameworks/Electron Framework.framework/Versions/A/Resources/am.lproj/locale.pak
+release-builds/tsa-software-2019-darwin-x64/MohiTSA.app/Contents/Frameworks/Electron Framework.framework/Versions/A/Libraries/libffmpeg.dylib
+release-builds/tsa-software-2019-darwin-x64/MohiTSA.app/Contents/Frameworks/Electron Framework.framework/Versions/A/Electron Framework
+release-builds/tsa-software-2019-darwin-x64/MohiTSA.app/Contents/Frameworks/Electron Framework.framework/Resources
+release-builds/tsa-software-2019-darwin-x64/MohiTSA.app/Contents/Frameworks/Electron Framework.framework/Libraries
+release-builds/tsa-software-2019-darwin-x64/MohiTSA.app/Contents/Frameworks/Electron Framework.framework/Electron Framework
+release-builds/tsa-software-2019-darwin-x64/LICENSES.chromium.html
+release-builds/tsa-software-2019-darwin-x64/LICENSE
+release-builds/electron-tutorial-app-linux-x64/version
+release-builds/electron-tutorial-app-linux-x64/v8_context_snapshot.bin
+release-builds/electron-tutorial-app-linux-x64/swiftshader/libGLESv2.so
+release-builds/electron-tutorial-app-linux-x64/swiftshader/libEGL.so
+release-builds/electron-tutorial-app-linux-x64/snapshot_blob.bin
+release-builds/electron-tutorial-app-linux-x64/resources/electron.asar
+release-builds/electron-tutorial-app-linux-x64/resources/app.asar
+release-builds/electron-tutorial-app-linux-x64/resources.pak
+release-builds/electron-tutorial-app-linux-x64/natives_blob.bin
+release-builds/electron-tutorial-app-linux-x64/locales/zh-TW.pak
+release-builds/electron-tutorial-app-linux-x64/locales/zh-CN.pak
+release-builds/electron-tutorial-app-linux-x64/locales/vi.pak
+release-builds/electron-tutorial-app-linux-x64/locales/uk.pak
+release-builds/electron-tutorial-app-linux-x64/locales/tr.pak
+release-builds/electron-tutorial-app-linux-x64/locales/th.pak
+release-builds/electron-tutorial-app-linux-x64/locales/te.pak
+release-builds/electron-tutorial-app-linux-x64/locales/ta.pak
+release-builds/electron-tutorial-app-linux-x64/locales/sw.pak
+release-builds/electron-tutorial-app-linux-x64/locales/sv.pak
+release-builds/electron-tutorial-app-linux-x64/locales/sr.pak
+release-builds/electron-tutorial-app-linux-x64/locales/sl.pak
+release-builds/electron-tutorial-app-linux-x64/locales/sk.pak
+release-builds/electron-tutorial-app-linux-x64/locales/ru.pak
+release-builds/electron-tutorial-app-linux-x64/locales/ro.pak
+release-builds/electron-tutorial-app-linux-x64/locales/pt-PT.pak
+release-builds/electron-tutorial-app-linux-x64/locales/pt-BR.pak
+release-builds/electron-tutorial-app-linux-x64/locales/pl.pak
+release-builds/electron-tutorial-app-linux-x64/locales/nl.pak
+release-builds/electron-tutorial-app-linux-x64/locales/nb.pak
+release-builds/electron-tutorial-app-linux-x64/locales/ms.pak
+release-builds/electron-tutorial-app-linux-x64/locales/mr.pak
+release-builds/electron-tutorial-app-linux-x64/locales/ml.pak
+release-builds/electron-tutorial-app-linux-x64/locales/lv.pak
+release-builds/electron-tutorial-app-linux-x64/locales/lt.pak
+release-builds/electron-tutorial-app-linux-x64/locales/ko.pak
+release-builds/electron-tutorial-app-linux-x64/locales/kn.pak
+release-builds/electron-tutorial-app-linux-x64/locales/ja.pak
+release-builds/electron-tutorial-app-linux-x64/locales/it.pak
+release-builds/electron-tutorial-app-linux-x64/locales/id.pak
+release-builds/electron-tutorial-app-linux-x64/locales/hu.pak
+release-builds/electron-tutorial-app-linux-x64/locales/hr.pak
+release-builds/electron-tutorial-app-linux-x64/locales/hi.pak
+release-builds/electron-tutorial-app-linux-x64/locales/he.pak
+release-builds/electron-tutorial-app-linux-x64/locales/gu.pak
+release-builds/electron-tutorial-app-linux-x64/locales/fr.pak
+release-builds/electron-tutorial-app-linux-x64/locales/fil.pak
+release-builds/electron-tutorial-app-linux-x64/locales/fi.pak
+release-builds/electron-tutorial-app-linux-x64/locales/fa.pak
+release-builds/electron-tutorial-app-linux-x64/locales/et.pak
+release-builds/electron-tutorial-app-linux-x64/locales/es.pak
+release-builds/electron-tutorial-app-linux-x64/locales/es-419.pak
+release-builds/electron-tutorial-app-linux-x64/locales/en-US.pak
+release-builds/electron-tutorial-app-linux-x64/locales/en-GB.pak
+release-builds/electron-tutorial-app-linux-x64/locales/el.pak
+release-builds/electron-tutorial-app-linux-x64/locales/de.pak
+release-builds/electron-tutorial-app-linux-x64/locales/da.pak
+release-builds/electron-tutorial-app-linux-x64/locales/cs.pak
+release-builds/electron-tutorial-app-linux-x64/locales/ca.pak
+release-builds/electron-tutorial-app-linux-x64/locales/bn.pak
+release-builds/electron-tutorial-app-linux-x64/locales/bg.pak
+release-builds/electron-tutorial-app-linux-x64/locales/ar.pak
+release-builds/electron-tutorial-app-linux-x64/locales/am.pak
+release-builds/electron-tutorial-app-linux-x64/LICENSES.chromium.html
+release-builds/electron-tutorial-app-linux-x64/LICENSE
+release-builds/electron-tutorial-app-linux-x64/libVkICD_mock_icd.so
+release-builds/electron-tutorial-app-linux-x64/libGLESv2.so
+release-builds/electron-tutorial-app-linux-x64/libffmpeg.so
+release-builds/electron-tutorial-app-linux-x64/libEGL.so
+release-builds/electron-tutorial-app-linux-x64/icudtl.dat
+release-builds/electron-tutorial-app-linux-x64/electron-tutorial-app
+release-builds/electron-tutorial-app-linux-x64/chrome_200_percent.pak
+release-builds/electron-tutorial-app-linux-x64/chrome_100_percent.pak
