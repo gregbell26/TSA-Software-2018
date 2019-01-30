@@ -17,6 +17,8 @@ $(document).on('mousedown',function(e){
         mouseDown = true;
     }
 });
+//triggers on the event that the mouse is down on the document. it creates a custom function that checks if it is in the animation window and creates the mouse handler. 
+
 $(document).on('change',function(e){
     if(isNaN(yPosition))
         yPosition = 0;
@@ -25,6 +27,8 @@ $(document).on('change',function(e){
     if(isNaN(zPosition))
         zPosition = 0;
 });
+
+
 $(document).on('mouseup',function(e){
     if(e.pageX>=300 && e.pageY >=50) {
         mouseDown = false;
