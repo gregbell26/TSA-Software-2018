@@ -8,7 +8,9 @@ var animate = function () {
         camera.position.y = yPosition
     if(camera.position.z!=zPosition)
         camera.position.z = zPosition
+    //handling the shapes position in animation
     camera.lookAt(scene.position);
+    //points camera to scene
     for (var i=0; i<shapes.length; i++){
         if(shapes[i].scale.x!=scales[i][0])
             shapes[i].scale.x=scales[i][0];
@@ -17,7 +19,9 @@ var animate = function () {
         if(shapes[i].scale.z!=scales[i][2])
             shapes[i].scale.z=scales[i][2];
     }
-
+//handles scaling the shapes in animation
     renderer.render( scene, camera );
+    //pushes the changes to the screen
 };
 animate();
+//makes this executed
