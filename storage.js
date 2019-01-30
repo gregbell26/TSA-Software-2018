@@ -101,12 +101,14 @@ var saveSubSystem =
 
     deleteSave: function(saveToDelete) {
         if (localStorage.getItem(saveToDelete) !== null) {
-
+            this.saveFileNamesList.splice(this.saveFileNamesList.indexOf(saveToDelete),1);
+            localStorage.setItem("filesNames", JSON.stringify(this.saveFileNamesList));
+            localStorage.removeItem(saveToDelete);
             //At this point the save is no longer accessible but it is still taking up space
             localStorage.removeItem("keyFrames:" + saveToDelete);
             localStorage.removeItem("scales:" + saveToDelete);
             localStorage.removeItem("shapes:" + saveToDelete);
-            localStorage.removeItem(saveToDelete);
+
             //the save should now be deleted
             if (saveToDelete === this.fileName)
                 location.reload(true);//Get a new page from the sever other wise chrome chache will make git commit die
