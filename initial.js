@@ -35,7 +35,7 @@ window.onload = function(){
         settings = JSON.parse(localStorage.getItem("settings"));
     }
     document.getElementById("mouseSensitivity").value = settings.mouseSensitivity;
-    document.getElementById("zoomSensitivity").value = settings.zoomAmount;
+    document.getElementById("zoomSensitivity").value = (settings.zoomAmount-1)*2;
     if(settings.dark){
         document.getElementById("darkSelect").value = "1";
         document.body.style.color = "#FFFFFF";
