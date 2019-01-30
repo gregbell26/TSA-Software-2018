@@ -102,7 +102,7 @@ var saveSubSystem =
     deleteSave: function(saveToDelete) {
         if (localStorage.getItem(saveToDelete) !== null) {
             this.saveFileNamesList.splice(this.saveFileNamesList.indexOf(saveToDelete),1);
-            localStorage.setItem("filesNames", JSON.stringify(this.saveFileNamesList));
+            localStorage.setItem("fileNames", JSON.stringify(this.saveFileNamesList));
             localStorage.removeItem(saveToDelete);
             //At this point the save is no longer accessible but it is still taking up space
             localStorage.removeItem("keyFrames:" + saveToDelete);
