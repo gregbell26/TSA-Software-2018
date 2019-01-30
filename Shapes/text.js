@@ -1,5 +1,6 @@
 function newText(x, y, z, posX, posY, posZ, newColor, borderColor){
     var myText = document.getElementById('createText').value;
+    document.getElementById('createText').value = "";
     var loader = new THREE.FontLoader();
     loader.load( 'https://threejs.org/examples/fonts/helvetiker_regular.typeface.json', function ( font ) {
 
@@ -54,4 +55,8 @@ function newText(x, y, z, posX, posY, posZ, newColor, borderColor){
         document.getElementById('positionBoxZ').value = posZ;
     } );
 
+}
+
+function makeNewText(){
+    loca
 }

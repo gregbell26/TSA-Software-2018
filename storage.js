@@ -59,6 +59,32 @@ var saveSubSystem =
 
     },
 
+    addText: function(){
+      var value = document.getElementById("createText").value;
+      var currentText = localStorage.getItem("text:"+this.fileName);
+      if(currentText==null){
+          localStorage.setItem("text:"+this.fileName,JSON.stringify([value]));
+      }
+      else{
+          var parsed = JSON.parse(currentText);
+          parsed.push(value);
+          localStorage.setItem("text:"+this.fileName,JSON.stringify([parsed]));
+      }
+    },
+
+    removeText: function(count){
+        // var value = document.getElementById("createText").value;
+        // var currentText = localStorage.getItem("text:"+this.fileName);
+        // if(currentText==null){
+        //     localStorage.setItem("text:"+this.fileName,JSON.stringify([value]));
+        // }
+        // else{
+        //     var parsed = JSON.parse(currentText);
+        //     parsed.push(value);
+        //     localStorage.setItem("text:"+this.fileName,JSON.stringify([parsed]));
+        // }
+    },
+
 
     loadSave: function () {
         if(localStorage.getItem(this.fileName) !== null){
@@ -66,7 +92,7 @@ var saveSubSystem =
             this.loadedKeyframes = JSON.parse(localStorage.getItem("keyFrames:"+this.fileName));
             this.loadedScales = JSON.parse(localStorage.getItem("scales:"+this.fileName));
             this.loadedShapes = JSON.parse(localStorage.getItem("shapes:"+this.fileName));
-            processShapeData(this.loadedShapes, this.loadedScales);
+            processShapeData(this.loadedShapes, this.loadedScales, JSON.parse(localStorage.getItem("text:"+this.fileName)));
         }
         else{
             console.log("Save not found.");
@@ -113,7 +139,6 @@ var saveSubSystem =
         }
         return arr;
     },
-
 
     loadSaveNames : function () {
         if(localStorage.getItem("fileNames") !== null) {

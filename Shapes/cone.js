@@ -10,7 +10,7 @@ function newCone(x, y, z, posX, posY, posZ, newColor, borderColor){
     scales[length][1]=y;
     scales[length][2]=z;
 
-    scene.add(shapes[shapes.length-1]); /adds the shape to the scene. 
+    scene.add(shapes[shapes.length-1]); //adds the shape to the scene.
     selectedShape = shapes.length-1; 
     var geometry = new THREE.ConeBufferGeometry( 0.5, 1, 100); //creates the borders
     var edges = new THREE.EdgesGeometry( geometry ); // finds the edges for the borders
