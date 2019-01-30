@@ -20,8 +20,10 @@ function newCube(x, y, z, posX, posY, posZ, newColor, borderColor){
     borderToAdd.scale.x = x;
     borderToAdd.scale.y = y;
     borderToAdd.scale.z = z;
+    //scales borders along with shape
     borders.push(borderToAdd);
     scene.add( borderToAdd );
+    //adds borders to scene
 
 
     setSelectedShape(selectedShape);
@@ -32,9 +34,10 @@ function newCube(x, y, z, posX, posY, posZ, newColor, borderColor){
     document.getElementById('dimensionX').value = x;
     document.getElementById('dimensionY').value = y;
     document.getElementById('dimensionZ').value = z;
-
+//gets dimention from menu and sets them
     document.getElementById('positionBoxX').value = posX;
     document.getElementById('positionBoxY').value = posY;
     document.getElementById('positionBoxZ').value = posZ;
+    //gets position from menu and sets them
 }
 
