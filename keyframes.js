@@ -5,6 +5,8 @@ function addFrame(){
     }
     keyFrames.push(
         {
+            //default settings for keyframe
+            //collects all of the current states of the items
             duration: 5000,
             shapes: getShapes(shapes),
             scales: JSON.parse(JSON.stringify(scales)),
@@ -26,7 +28,7 @@ function addFrame(){
     console.log(keyFrames);
     loadKeyList();
 }
-
+//determines whether ot not to repeat the animation
 function loop(){
     if(animationRunning){
         loopAnimation = false;
@@ -36,7 +38,7 @@ function loop(){
         playAnimation();
     }
 }
-
+//creates all of the buttons that will set the keyframes. create or remove keyframe, move them, set the speed, etc:
 function loadKeyList(){
     document.getElementById('keyList').innerHTML = "";
     for(var i=0; i<keyFrames.length-1; i++){
@@ -52,7 +54,7 @@ function loadKeyList(){
 <input type='number' value='`+keyFrames[i].duration+`' onchange='setSpeed(`+i+`,Number(this.value))' onkeyup='setSpeed(`+i+`,Number(this.value))' style='width: 50px;'>milliseconds
 <br>`;
     }
-
+//creates the add keyframe button when a new keyframe is added
     if (keyFrames.length!=0){
         var add = "";
         if(keyFrames.length!=1){
@@ -85,6 +87,8 @@ function moveDown(frame){
     loadKeyList();
 }
 
+
+//takes all of the properties of the things taken above and sets them to the current viewport. All of the properties for each time is found in each iteration of the array. this takes the values in each keyframe and makes the attributes shift from the origional values to the ones in the new frame
 function playAnimation() {
     if(!animationRunning) {
         console.log('starting');
