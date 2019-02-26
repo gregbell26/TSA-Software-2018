@@ -79,8 +79,8 @@ var xPosStart = xPosition;//the cameras start position x
 var yPosStart = yPosition;//the cameras start position y
 
 var mouseDown = false;//if the right mouse button is pressed down
-var mouseSensitivity = 1.00;//the percent sensitivity
 var inAnimationWindow = 0;//is the mouse in the animation window
+var lockCamera = true;//Whether or not the camera can free pan during animation
 var zoom = 5;//the zoom on the cube
 var zoomZ = 5;//zoom with only X and Z
 

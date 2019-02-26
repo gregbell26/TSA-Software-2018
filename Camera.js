@@ -1,6 +1,7 @@
 
-
-
+function changeCameraLock(){//Changes whether or not the camera is locked during animation to change
+    lockCamera = document.getElementById("Lock Camera").checked;
+}
 function changeSensitivity(change) {//Changes sensitivity to change
     settings.mouseSensitivity = change;
 }
@@ -28,14 +29,13 @@ $(document).on('change',function(e){
         zPosition = 0;
 });
 
-
 $(document).on('mouseup',function(e){
     if(e.pageX>=300 && e.pageY >=50) {
         mouseDown = false;
     }
 });
 $(document).on('keydown',function(e) {
-    if (inAnimationWindow==1 && !settingsOpen) {
+    if (inAnimationWindow==1 && !settingsOpen && !(animationRunning && lockCamera)) {
         zoom = Math.pow((Math.pow(xPosition, 2) + Math.pow(yPosition, 2) + Math.pow(zPosition, 2)), .5);//zoom calc here
         if (e.key == "-")
             zoom *= settings.zoomAmount;
@@ -85,7 +85,7 @@ $(document).ready(function(){
         else{
             inAnimationWindow = 0;
         }
-        if(mouseDown && inAnimationWindow==1 && !settingsOpen){
+        if(mouseDown && inAnimationWindow==1 && !settingsOpen && !(animationRunning && lockCamera)){
             zoomZ = Math.pow(Math.pow(xPosition,2)+Math.pow(zPosition, 2),.5);
             zoom = Math.pow((Math.pow(zoomZ,2)+Math.pow(yPosition,2)),.5);//zoom calc here
 

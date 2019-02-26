@@ -2,12 +2,12 @@
 //you probably don't want to change this stuff, unless were adding a new function that changes how things animate
 var animate = function () {
     requestAnimationFrame( animate );
-    if(camera.position.x!=xPosition)
-        camera.position.x = xPosition
-    if(camera.position.y!=yPosition)
-        camera.position.y = yPosition
-    if(camera.position.z!=zPosition)
-        camera.position.z = zPosition
+        if (camera.position.x != xPosition)
+            camera.position.x = xPosition;
+        if (camera.position.y != yPosition)
+            camera.position.y = yPosition;
+        if (camera.position.z != zPosition)
+            camera.position.z = zPosition;
     //handling the shapes position in animation
     camera.lookAt(scene.position);
     //points camera to scene

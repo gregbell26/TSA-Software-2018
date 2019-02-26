@@ -98,9 +98,11 @@ function playAnimation() {
         animationTimer = setInterval(function () {
             if (timingCounter < keyFrames[a].duration) {
                 timingCounter += 10;
-                xPosition = keyFrames[a].xPosition + (keyFrames[a + 1].xPosition - keyFrames[a].xPosition) / keyFrames[a].duration * timingCounter;
-                yPosition = keyFrames[a].yPosition + (keyFrames[a + 1].yPosition - keyFrames[a].yPosition) / keyFrames[a].duration * timingCounter;
-                zPosition = keyFrames[a].zPosition + (keyFrames[a + 1].zPosition - keyFrames[a].zPosition) / keyFrames[a].duration * timingCounter;
+                if(lockCamera) {
+                    xPosition = keyFrames[a].xPosition + (keyFrames[a + 1].xPosition - keyFrames[a].xPosition) / keyFrames[a].duration * timingCounter;
+                    yPosition = keyFrames[a].yPosition + (keyFrames[a + 1].yPosition - keyFrames[a].yPosition) / keyFrames[a].duration * timingCounter;
+                    zPosition = keyFrames[a].zPosition + (keyFrames[a + 1].zPosition - keyFrames[a].zPosition) / keyFrames[a].duration * timingCounter;
+                }
                 scene.background.r = keyFrames[a].scene.color[0] + (keyFrames[a + 1].scene.color[0] - keyFrames[a].scene.color[0]) / keyFrames[a].duration * timingCounter;
                 scene.background.g = keyFrames[a].scene.color[1] + (keyFrames[a + 1].scene.color[1] - keyFrames[a].scene.color[1]) / keyFrames[a].duration * timingCounter;
                 scene.background.b = keyFrames[a].scene.color[2] + (keyFrames[a + 1].scene.color[2] - keyFrames[a].scene.color[2]) / keyFrames[a].duration * timingCounter;
