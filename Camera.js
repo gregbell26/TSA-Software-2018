@@ -36,42 +36,10 @@ $(document).on('mouseup',function(e){
 });
 $(document).on('keydown',function(e) {
     if (inAnimationWindow==1 && !settingsOpen && !(animationRunning && lockCamera)) {
-        zoom = Math.pow((Math.pow(xPosition, 2) + Math.pow(yPosition, 2) + Math.pow(zPosition, 2)), .5);//zoom calc here
         if (e.key == "-")
-            zoom *= settings.zoomAmount;
+            zoomCamera(settings.zoomAmount);
         else if (e.key == "=")
-            zoom /= settings.zoomAmount;
-        zoomZ = Math.cos(Math.asin(yPosition / zoom));
-        var cameraRz;
-        var cameraRy;
-        if (xPosition !== 0)
-            cameraRz = Math.atan(zPosition / xPosition);
-        else if (zPosition > 0)
-            cameraRz = Math.PI;
-        else if (zPosition < 0)
-            cameraRz = -Math.PI;
-        if (xPosition < 0 && cameraRz > 0)
-            cameraRz += Math.PI;
-        else if (xPosition < 0 && cameraRz < 0)
-            cameraRz -= Math.PI;
-
-        if (xPosition !== 0 || zPosition !== 0)
-            cameraRy = Math.atan((yPosition) / (Math.pow(Math.pow(xPosition, 2) + Math.pow(zPosition, 2), .5)));
-        else if (yPosition > 0)
-            cameraRy = Math.PI;
-        else if (yPosition < 0)
-            cameraRy = -Math.PI;
-
-        yPosition = zoom * Math.sin(cameraRy);
-        xPosition = (zoom * Math.cos(Math.asin(yPosition/zoom))) * Math.cos(cameraRz);
-        zPosition = (zoom * Math.cos(Math.asin(yPosition/zoom))) * Math.sin(cameraRz);
-
-        if(isNaN(yPosition))
-            yPosition = 0;
-        if(isNaN(xPosition))
-            xPosition = 0;
-        if(isNaN(zPosition))
-            zPosition = 0;
+            zoomCamera(1/settings.zoomAmount);
     }
 });
 $(document).on('mouseup',function(e){
@@ -86,46 +54,11 @@ $(document).ready(function(){
             inAnimationWindow = 0;
         }
         if(mouseDown && inAnimationWindow==1 && !settingsOpen && !(animationRunning && lockCamera)){
-            zoomZ = Math.pow(Math.pow(xPosition,2)+Math.pow(zPosition, 2),.5);
-            zoom = Math.pow((Math.pow(zoomZ,2)+Math.pow(yPosition,2)),.5);//zoom calc here
 
             var MvX = settings.mouseSensitivity*(e.pageX-xStart)/100;
             var MvY = settings.mouseSensitivity*(e.pageY-yStart)/100;
-            var cameraRz;
-            var cameraRy;
-            if(xPosition !== 0)
-                cameraRz = Math.atan(zPosition/xPosition);
-            else if(zPosition > 0)
-                cameraRz = Math.PI;
-            else if(zPosition < 0)
-                cameraRz = -Math.PI;
-            if(xPosition < 0 && cameraRz > 0)
-                cameraRz += Math.PI;
-            else if(xPosition < 0 && cameraRz < 0)
-                cameraRz -= Math.PI;
+            rotateCamera(MvX,MvY);
 
-
-
-            if(xPosition !== 0 || zPosition !== 0)
-                cameraRy = Math.atan((yPosition)/zoomZ);
-            else if(yPosition > 0)
-                cameraRy = Math.PI;
-            else if(yPosition < 0)
-                cameraRy = -Math.PI;
-
-            cameraRz += MvX;
-            cameraRy += MvY;
-
-            yPosition = zoom * Math.sin(cameraRy);
-            xPosition = (zoom * Math.cos(Math.asin(yPosition/zoom))) * Math.cos(cameraRz);
-            zPosition = (zoom * Math.cos(Math.asin(yPosition/zoom))) * Math.sin(cameraRz);
-
-            if(isNaN(yPosition))
-                yPosition = 0;
-            if(isNaN(xPosition))
-                xPosition = 0;
-            if(isNaN(zPosition))
-                zPosition = 0;
 
             if(e.pageX>=300 && e.pageY >=50) {
                 xStart = e.pageX;
@@ -134,3 +67,80 @@ $(document).ready(function(){
         }
     });
 });
+
+function zoomCamera(amount) {
+    zoom = Math.pow((Math.pow(xPosition, 2) + Math.pow(yPosition, 2) + Math.pow(zPosition, 2)), .5);//zoom calc here
+    zoom*=amount;
+    zoomZ = Math.cos(Math.asin(yPosition / zoom));
+    var cameraRz;
+    var cameraRy;
+    if (xPosition !== 0)
+        cameraRz = Math.atan(zPosition / xPosition);
+    else if (zPosition > 0)
+        cameraRz = Math.PI;
+    else if (zPosition < 0)
+        cameraRz = -Math.PI;
+    if (xPosition < 0 && cameraRz > 0)
+        cameraRz += Math.PI;
+    else if (xPosition < 0 && cameraRz < 0)
+        cameraRz -= Math.PI;
+
+    if (xPosition !== 0 || zPosition !== 0)
+        cameraRy = Math.atan((yPosition) / (Math.pow(Math.pow(xPosition, 2) + Math.pow(zPosition, 2), .5)));
+    else if (yPosition > 0)
+        cameraRy = Math.PI;
+    else if (yPosition < 0)
+        cameraRy = -Math.PI;
+
+    yPosition = zoom * Math.sin(cameraRy);
+    xPosition = (zoom * Math.cos(Math.asin(yPosition/zoom))) * Math.cos(cameraRz);
+    zPosition = (zoom * Math.cos(Math.asin(yPosition/zoom))) * Math.sin(cameraRz);
+
+    if(isNaN(yPosition))
+        yPosition = 0;
+    if(isNaN(xPosition))
+        xPosition = 0;
+    if(isNaN(zPosition))
+        zPosition = 0;
+
+}
+
+function rotateCamera(MvX,MvY){
+    zoomZ = Math.pow(Math.pow(xPosition,2)+Math.pow(zPosition, 2),.5);
+    zoom = Math.pow((Math.pow(zoomZ,2)+Math.pow(yPosition,2)),.5);//zoom calc here
+    var cameraRz;
+    var cameraRy;
+    if(xPosition !== 0)
+        cameraRz = Math.atan(zPosition/xPosition);
+    else if(zPosition > 0)
+        cameraRz = Math.PI;
+    else if(zPosition < 0)
+        cameraRz = -Math.PI;
+    if(xPosition < 0 && cameraRz > 0)
+        cameraRz += Math.PI;
+    else if(xPosition < 0 && cameraRz < 0)
+        cameraRz -= Math.PI;
+
+
+
+    if(xPosition !== 0 || zPosition !== 0)
+        cameraRy = Math.atan((yPosition)/zoomZ);
+    else if(yPosition > 0)
+        cameraRy = Math.PI;
+    else if(yPosition < 0)
+        cameraRy = -Math.PI;
+
+    cameraRz += MvX;
+    cameraRy += MvY;
+
+    yPosition = zoom * Math.sin(cameraRy);
+    xPosition = (zoom * Math.cos(Math.asin(yPosition/zoom))) * Math.cos(cameraRz);
+    zPosition = (zoom * Math.cos(Math.asin(yPosition/zoom))) * Math.sin(cameraRz);
+
+    if(isNaN(yPosition))
+        yPosition = 0;
+    if(isNaN(xPosition))
+        xPosition = 0;
+    if(isNaN(zPosition))
+        zPosition = 0;
+}
