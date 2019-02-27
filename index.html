@@ -100,6 +100,7 @@
 
         <div id="shapeMenu" style="display: none">
             <button onfocus="this.blur()" class="objButton addButton" onclick="newShapeMenu()">New Shape</button>
+            <button onfocus="this.blur()" class="objButton addButton" onclick="duplicateCurrentShape()">Duplicate</button>
             <button onfocus="this.blur()" class="objButton removeButton" onclick="removeShape()">Delete Shape</button>
         </div>
 
@@ -258,7 +259,10 @@
             <button onfocus="this.blur()" class="mdl-button mdl-js-button mdl-button--fab mdl-button--colored" onclick="playAnimation()"><i class="material-icons">play_arrow</i></button>
             <button onfocus="this.blur()" class="mdl-button mdl-js-button mdl-button--fab mdl-button--colored" onclick="loop()"><i class="material-icons">autorenew</i></button>
             <button onfocus="this.blur()" class="objButton addButton"onclick="addFrame(); saveSubSystem.save()">Add Keyframe</button>
-            <input type = "checkbox" id ="Lock Camera" value="lockCamera" onchange="changeCameraLock()" checked>  Lock Camera <br>>
+            <label for="chkbox1" class="mdl-checkbox mdl-js-checkbox mdl-js-ripple-effect">
+                <input type="checkbox" id="chkbox1" class="mdl-checkbox__input">
+                <span class="mdl-checkbox__label">Lock Camera</span>
+            </label>
             <div id="keyList"></div>
             <!--The menu defining all of the keyframes, including buttons to play and loop.-->
         </div>

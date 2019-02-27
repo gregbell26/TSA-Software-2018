@@ -195,6 +195,68 @@ function processShapeData(loadedShapes,loadedScales, loadedText) {
 
 }
 
+function duplicateCurrentShape(){
+    let shape = shapes[selectedShape];
+    switch(shape.geometry.name){
+        case "cube" :
+            console.log("Start duplication");
+            newCube(scales[selectedShape][0], scales[selectedShape][1], scales[selectedShape][2], shape.position.x,
+                shape.position.y, shape.position.z, "#" + shape.material.color.getHexString(),
+                "#" + borders[selectedShape].material.color.getHexString());
+            break;
+        case "cylinder" :
+            newCylinder(scales[selectedShape][0], scales[selectedShape][1], scales[selectedShape][2], shape.position.x,
+                shape.position.y, shape.position.z, "#" + shape.material.color.getHexString(),
+                "#" + borders[selectedShape].material.color.getHexString());
+            break;
+        case "cone" :
+            newCone(scales[selectedShape][0], scales[selectedShape][1], scales[selectedShape][2], shape.position.x,
+                shape.position.y, shape.position.z, "#" + shape.material.color.getHexString(),
+                "#" + borders[selectedShape].material.color.getHexString());
+            break;
+        case "dodecahedron" :
+            newDodecahedron(scales[selectedShape][0], scales[selectedShape][1], scales[selectedShape][2], shape.position.x,
+                shape.position.y, shape.position.z, "#" + shape.material.color.getHexString(),
+                "#" + borders[selectedShape].material.color.getHexString());
+            break;
+        case "icosahedron" :
+            newIcosahedron(scales[selectedShape][0], scales[selectedShape][1], scales[selectedShape][2], shape.position.x,
+                shape.position.y, shape.position.z, "#" + shape.material.color.getHexString(),
+                "#" + borders[selectedShape].material.color.getHexString());
+            break;
+        case "octahedron" :
+            newOctahedron(scales[selectedShape][0], scales[selectedShape][1], scales[selectedShape][2], shape.position.x,
+                shape.position.y, shape.position.z, "#" + shape.material.color.getHexString(),
+                "#" + borders[selectedShape].material.color.getHexString());
+            break;
+        case "pyramid" :
+            newPyramid(scales[selectedShape][0], scales[selectedShape][1], scales[selectedShape][2], shape.position.x,
+                shape.position.y, shape.position.z, "#" + shape.material.color.getHexString(),
+                "#" + borders[selectedShape].material.color.getHexString());
+            break;
+        case "ring" :
+            newRing(scales[selectedShape][0], scales[selectedShape][1], scales[selectedShape][2], shape.position.x,
+                shape.position.y, shape.position.z, "#" + shape.material.color.getHexString(),
+                "#" + borders[selectedShape].material.color.getHexString());
+            break;
+        case "sphere" :
+            newSphere(scales[selectedShape][0], scales[selectedShape][1], scales[selectedShape][2], shape.position.x,
+                shape.position.y, shape.position.z, "#" + shape.material.color.getHexString(),
+                "#" + borders[selectedShape].material.color.getHexString());
+            break;
+        case "custom":
+            newCustom(scales[selectedShape][0], scales[selectedShape][1], scales[selectedShape][2], shape.position.x,
+                shape.position.y, shape.position.z, "#" + shape.material.color.getHexString(),
+                "#" + borders[selectedShape].material.color.getHexString(), shape.geometry.vertices, shape.geometry.faces);
+            break;
+        case "text" :
+            newText(scales[selectedShape][0], scales[selectedShape][1], scales[selectedShape][2], shape.position.x,
+                shape.position.y, shape.position.z, "#" + shape.material.color.getHexString(),
+                "#" + borders[selectedShape].material.color.getHexString(), shape.geometry.parameters["text"]);
+            break;
+    }
+}
+
 
 
 
