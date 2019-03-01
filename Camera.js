@@ -1,7 +1,12 @@
 
 function changeCameraLock(){//Changes whether or not the camera is locked during animation to change
-    lockCamera = document.getElementById("Lock Camera").checked;
+    lockCamera = document.getElementById("chkbox1").checked;
 }
+
+function changeCameraCircleRotation(){//Changes whether or not the camera moves in a circular fashion during the animation
+    circleCameraRotation = document.getElementById("chkbox2").checked;
+}
+
 function changeSensitivity(change) {//Changes sensitivity to change
     settings.mouseSensitivity = change;
 }
@@ -37,9 +42,9 @@ $(document).on('mouseup',function(e){
 $(document).on('keydown',function(e) {
     if (inAnimationWindow==1 && !settingsOpen && !(animationRunning && lockCamera)) {
         if (e.key == "-")
-            zoomCamera(settings.zoomAmount);
+            zoomCameraM(settings.zoomAmount);
         else if (e.key == "=")
-            zoomCamera(1/settings.zoomAmount);
+            zoomCameraM(1/settings.zoomAmount);
     }
 });
 $(document).on('mouseup',function(e){
@@ -68,7 +73,7 @@ $(document).ready(function(){
     });
 });
 
-function zoomCamera(amount) {
+function zoomCameraM(amount) {
     zoom = Math.pow((Math.pow(xPosition, 2) + Math.pow(yPosition, 2) + Math.pow(zPosition, 2)), .5);//zoom calc here
     zoom*=amount;
     zoomZ = Math.cos(Math.asin(yPosition / zoom));
@@ -80,6 +85,7 @@ function zoomCamera(amount) {
         cameraRz = Math.PI;
     else if (zPosition < 0)
         cameraRz = -Math.PI;
+
     if (xPosition < 0 && cameraRz > 0)
         cameraRz += Math.PI;
     else if (xPosition < 0 && cameraRz < 0)
@@ -104,6 +110,44 @@ function zoomCamera(amount) {
         zPosition = 0;
 
 }
+/**
+function zoomCameraA(amount) {
+    zoom = Math.pow((Math.pow(xPosition, 2) + Math.pow(yPosition, 2) + Math.pow(zPosition, 2)), .5);//zoom calc here
+    zoom+=amount;
+    zoomZ = Math.cos(Math.asin(yPosition / zoom));
+    var cameraRz;
+    var cameraRy;
+    if (xPosition !== 0)
+        cameraRz = Math.atan(zPosition / xPosition);
+    else if (zPosition > 0)
+        cameraRz = Math.PI;
+    else if (zPosition < 0)
+        cameraRz = -Math.PI;
+
+    if (xPosition < 0 && cameraRz > 0)
+        cameraRz += Math.PI;
+    else if (xPosition < 0 && cameraRz < 0)
+        cameraRz -= Math.PI;
+
+    if (xPosition !== 0 || zPosition !== 0)
+        cameraRy = Math.atan((yPosition) / (Math.pow(Math.pow(xPosition, 2) + Math.pow(zPosition, 2), .5)));
+    else if (yPosition > 0)
+        cameraRy = Math.PI;
+    else if (yPosition < 0)
+        cameraRy = -Math.PI;
+
+    yPosition = zoom * Math.sin(cameraRy);
+    xPosition = (zoom * Math.cos(Math.asin(yPosition/zoom))) * Math.cos(cameraRz);
+    zPosition = (zoom * Math.cos(Math.asin(yPosition/zoom))) * Math.sin(cameraRz);
+
+    if(isNaN(yPosition))
+        yPosition = 0;
+    if(isNaN(xPosition))
+        xPosition = 0;
+    if(isNaN(zPosition))
+        zPosition = 0;
+
+}*/
 
 function rotateCamera(MvX,MvY){
     zoomZ = Math.pow(Math.pow(xPosition,2)+Math.pow(zPosition, 2),.5);
@@ -116,6 +160,7 @@ function rotateCamera(MvX,MvY){
         cameraRz = Math.PI;
     else if(zPosition < 0)
         cameraRz = -Math.PI;
+
     if(xPosition < 0 && cameraRz > 0)
         cameraRz += Math.PI;
     else if(xPosition < 0 && cameraRz < 0)
