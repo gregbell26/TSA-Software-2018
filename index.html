@@ -110,6 +110,7 @@
                 <option value="cylinder">Cylinder</option>
                 <option value="cone">Cone</option>
                 <option value="custom">Custom</option>
+                <option value="custom2">Custom2</option>
                 <option value="dodecahedron">Dodecahedron</option>
                 <option value="icosahedron">Icosahedron</option>
                 <option value="octahedron">Octahedron</option>
@@ -227,6 +228,10 @@
             <button onfocus="this.blur()" class="objButton addButton" onclick="createFace()">Add Face</button>
             <div id="createFaceList"></div>
 
+        </div>
+
+        <div id="FileUpload" style="display:none">
+        <button onfocus="this.blur()" class="objButton addButton" onclick="addCustom2()">Add Custom</button>
         </div>
 
         <div id="sideBarList" style="display:none">
@@ -353,6 +358,7 @@
     <script src="utils.js"></script>
     <script src="menus.js"></script>
     <script src="keyframes.js"></script>
+    <script src="Shapes/AddFile.js"></script>
     <script src="storage.js"></script>
     <script src="scene.js"></script>
     <script src="initial.js"></script>
@@ -363,6 +369,7 @@
     <script src="Shapes/cylinder.js"></script>
     <script src="Shapes/cone.js"></script>
     <script src="Shapes/customShape.js"></script>
+    <script src="Shapes/CustomShape2.js"></script>
     <script src="Shapes/dodecahedron.js"></script>
     <script src="Shapes/icosahedron.js"></script>
     <script src="Shapes/octahedron.js"></script>

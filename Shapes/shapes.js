@@ -145,6 +145,12 @@ function processShapeData(loadedShapes,loadedScales, loadedText) {
                 newCone(loadedScales[i][0], loadedScales[i][1], loadedScales[i][2], loadedShapes[i].positionX, loadedShapes[i].positionY, loadedShapes[i].positionZ, convertColor(loadedShapes[i].r, loadedShapes[i].g, loadedShapes[i].b) , convertColor(loadedShapes[i].borderR || 0, loadedShapes[i].borderG || 0, loadedShapes[i].borderB || 0))
 
             }
+            else if (loadedShapes[i].type === "CustomGeometry2") {
+            /*newGeometry = new THREE.CylinderGeometry(0.5, 0.5, 1, 100);
+              borderGeometry = new THREE.CylinderBufferGeometry(0.5, 0.5, 1, 100);
+              newGeometry.name = "cylinder"*/
+            newCustom2()
+            }
             else if (loadedShapes[i].type === "DodecahedronGeometry") {
                 newDodecahedron(loadedScales[i][0], loadedScales[i][1], loadedScales[i][2], loadedShapes[i].positionX, loadedShapes[i].positionY, loadedShapes[i].positionZ, convertColor(loadedShapes[i].r, loadedShapes[i].g, loadedShapes[i].b) , convertColor(loadedShapes[i].borderR || 0, loadedShapes[i].borderG || 0, loadedShapes[i].borderB || 0))
 
