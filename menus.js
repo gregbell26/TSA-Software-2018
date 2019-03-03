@@ -134,6 +134,13 @@ function borderVisibility(){
     }
 }
 
+function hideShowCHK2() {
+    if(document.getElementById('chkbox1').checked)
+        document.getElementById('chkbox2').show();
+    else
+        document.getElementById('chkbox2').hide();
+}
+
 function openSettings(){
     document.getElementById("settingsPage").style.display = "inherit";
     document.getElementById("settingsBackground").style.display = "inherit";

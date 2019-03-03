@@ -81,6 +81,7 @@ var yPosStart = yPosition;//the cameras start position y
 var mouseDown = false;//if the right mouse button is pressed down
 var inAnimationWindow = 0;//is the mouse in the animation window
 var lockCamera = true;//Whether or not the camera can free pan during animation
+var circleCameraRotation = false;//Whether or not the camera rotates circularly and in and out rather than straight
 var zoom = 5;//the zoom on the cube
 var zoomZ = 5;//zoom with only X and Z
 
