@@ -1,14 +1,18 @@
 function newCustom2(x, y, z, posX, posY, posZ, newColor, borderColor, verticies, faces) {
     var newGeometry = new THREE.Geometry();
     var newMaterial = new THREE.MeshBasicMaterial({ color: newColor });
+  // console.log(verticies);
    
     for(var i=0; i<verticies.length; i++){
    newGeometry.vertices.push(new THREE.Vector3(verticies[i][0], verticies[i][1], verticies[i][2]));
+   //console.log("Added " +verticies[i]);
     }
     
     for( var i=0; i<faces.length; i++){
-        newGeometry.faces.push(new THREE.Face3(faces[i][0],faces[i][1],faces[i][2]));
+        newGeometry.faces.push(new THREE.Face3((faces[i][0]-1),(faces[i][1]-1),(faces[i][2]-1)));
+       //console.log("Added " +faces[i]);
     }
+
 
     shapes[shapes.length] = new THREE.Mesh(newGeometry, newMaterial);
 

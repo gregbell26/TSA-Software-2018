@@ -29,7 +29,7 @@ function parseFile1(strina) {
     var verticies=[];
     var faces=[];
     for (var i = 0; i < strina.length; i++) {
-        if (strina[i][0] == 'v') {
+        if (strina[i][0] == 'v' && strina[i][1] !=='n') {
             strina[i] = strina[i].slice(2);
             verticies.push(strina[i].split(" ").map(parseFloat));
         }
