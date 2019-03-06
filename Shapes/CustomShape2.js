@@ -7,12 +7,17 @@ function newCustom2(x, y, z, posX, posY, posZ, newColor, borderColor, verticies,
    newGeometry.vertices.push(new THREE.Vector3(verticies[i][0], verticies[i][1], verticies[i][2]));
    //console.log("Added " +verticies[i]);
     }
-    
+   // console.log(newGeometry.vertices[0]);
     for( var i=0; i<faces.length; i++){
         newGeometry.faces.push(new THREE.Face3((faces[i][0]-1),(faces[i][1]-1),(faces[i][2]-1)));
+        if(faces[i].length>3){
+          newGeometry.faces.push(new THREE.Face3((faces[i][0]-1),(faces[i][2]-1),(faces[i][3]-1)));
+        }
+       // console.log(faces.length);
        //console.log("Added " +faces[i]);
     }
-
+    console.log(verticies.length+" Vertices");
+console.log(faces.length+" Faces");
 
     shapes[shapes.length] = new THREE.Mesh(newGeometry, newMaterial);
 
