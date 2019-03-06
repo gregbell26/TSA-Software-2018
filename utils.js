@@ -38,6 +38,10 @@ function addShape(){
             hideAll();
             document.getElementById('createCustomMenu').style.display = 'inherit';
             break;
+        case "custom2" :
+            hideAll();
+            document.getElementById('FileUpload').style.display='inherit';
+            break;
         case "dodecahedron" :
             newDodecahedron(0, 0, 0, 0, 0, 0, "#ff0000", "#000000");
             break;

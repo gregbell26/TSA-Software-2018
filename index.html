@@ -111,6 +111,7 @@
                 <option value="cylinder">Cylinder</option>
                 <option value="cone">Cone</option>
                 <option value="custom">Custom</option>
+                <option value="custom2">Custom2</option>
                 <option value="dodecahedron">Dodecahedron</option>
                 <option value="icosahedron">Icosahedron</option>
                 <option value="octahedron">Octahedron</option>
@@ -230,6 +231,10 @@
 
         </div>
 
+        <div id="FileUpload" style="display:none">
+        <button onfocus="this.blur()" class="objButton addButton" onclick="addCustom2()">Add Custom</button>
+        </div>
+
         <div id="sideBarList" style="display:none">
             <h3>
                 Objects
@@ -260,8 +265,12 @@
             <button onfocus="this.blur()" class="mdl-button mdl-js-button mdl-button--fab mdl-button--colored" onclick="loop()"><i class="material-icons">autorenew</i></button>
             <button onfocus="this.blur()" class="objButton addButton"onclick="addFrame(); saveSubSystem.save()">Add Keyframe</button>
             <label for="chkbox1" class="mdl-checkbox mdl-js-checkbox mdl-js-ripple-effect">
-                <input type="checkbox" id="chkbox1" class="mdl-checkbox__input">
+                <input type="checkbox" id="chkbox1" class="mdl-checkbox__input" checked onchange="changeCameraLock()">
                 <span class="mdl-checkbox__label">Lock Camera</span>
+            </label>
+            <label for="chkbox2" class="mdl-checkbox mdl-js-checkbox mdl-js-ripple-effect">
+                <input type="checkbox" id="chkbox2" class="mdl-checkbox__input" onchange="changeCameraCircleRotation()">
+                <span class="mdl-checkbox__label">Change to Circular Rotation</span>
             </label>
             <div id="keyList"></div>
             <!--The menu defining all of the keyframes, including buttons to play and loop.-->
@@ -357,6 +366,7 @@
     <script src="utils.js"></script>
     <script src="menus.js"></script>
     <script src="keyframes.js"></script>
+    <script src="Shapes/AddFile.js"></script>
     <script src="storage.js"></script>
     <script src="scene.js"></script>
     <script src="initial.js"></script>
@@ -367,6 +377,7 @@
     <script src="Shapes/cylinder.js"></script>
     <script src="Shapes/cone.js"></script>
     <script src="Shapes/customShape.js"></script>
+    <script src="Shapes/CustomShape2.js"></script>
     <script src="Shapes/dodecahedron.js"></script>
     <script src="Shapes/icosahedron.js"></script>
     <script src="Shapes/octahedron.js"></script>
