@@ -174,7 +174,17 @@ function processShapeData(loadedShapes,loadedScales, loadedText) {
                 currentTextIndex++;
                 newText(loadedScales[i][0], loadedScales[i][1], loadedScales[i][2], loadedShapes[i].positionX, loadedShapes[i].positionY, loadedShapes[i].positionZ, convertColor(loadedShapes[i].r, loadedShapes[i].g, loadedShapes[i].b) , convertColor(loadedShapes[i].borderR || 0, loadedShapes[i].borderG || 0, loadedShapes[i].borderB || 0))
 
-            }
+            }/*else if (loadedShapes[i].geometry.name === "custom") {
+                 document.getElementById('xCreateCoord').value = loadedText[currentTextIndex];
+                 document.getElementById('yCreateCoord').value = loadedText[currentTextIndex];
+                 document.getElementById('zCreateCoord').value = loadedText[currentTextIndex];
+
+                 document.getElementById('xCreatePoint').value = loadedText[currentTextIndex];
+                 document.getElementById('yCreatePoint').value = loadedText[currentTextIndex];
+                 document.getElementById('zCreatePoint').value = loadedText[currentTextIndex];
+
+                 newCustom(loadedScales[i][0], loadedScales[i][1], loadedScales[i][2], loadedShapes[i].positionX, loadedShapes[i].positionY, loadedShapes[i].positionZ, convertColor(loadedShapes[i].r, loadedShapes[i].g, loadedShapes[i].b) , convertColor(loadedShapes[i].borderR || 0, loadedShapes[i].borderG || 0, loadedShapes[i].borderB || 0))
+            }*/
             else {
                 console.log("Invalid shape at location: " + i);
             }
@@ -197,6 +207,7 @@ function processShapeData(loadedShapes,loadedScales, loadedText) {
 
 function duplicateCurrentShape(){
     let shape = shapes[selectedShape];
+    saveSubSystem.save();
     switch(shape.geometry.name){
         case "cube" :
             console.log("Start duplication");
@@ -250,9 +261,12 @@ function duplicateCurrentShape(){
                 "#" + borders[selectedShape].material.color.getHexString(), shape.geometry.vertices, shape.geometry.faces);
             break;
         case "text" :
+            document.getElementById('createText').value = shape.geometry.parameters.text;
+            saveSubSystem.addText();
             newText(scales[selectedShape][0], scales[selectedShape][1], scales[selectedShape][2], shape.position.x,
                 shape.position.y, shape.position.z, "#" + shape.material.color.getHexString(),
-                "#" + borders[selectedShape].material.color.getHexString(), shape.geometry.parameters["text"]);
+                "#" + borders[selectedShape].material.color.getHexString());
+            saveSubSystem.save();
             break;
     }
 }

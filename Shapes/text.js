@@ -1,7 +1,4 @@
-function newText(x, y, z, posX, posY, posZ, newColor, borderColor, text){
-    if (text !== null){
-        document.getElementById('createText').value = text;
-    }
+function newText(x, y, z, posX, posY, posZ, newColor, borderColor){
     console.log(document.getElementById('createText').value);
     let myText = document.getElementById('createText').value;
     document.getElementById('createText').value = "";

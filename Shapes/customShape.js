@@ -5,11 +5,15 @@ function newCustom(x, y, z, posX, posY, posZ, newColor, borderColor, vertices, f
     let newGeometry = new THREE.Geometry(1, 1, 1);
 
     if (vertices.length !== 0){
-        createVertices = vertices;
+        for (let i = 0; i < vertices.length; i++){
+            createVertices.push(vertices[i])
+        }
     }
 
     if (faces.length !== 0){
-        createVertices = vertices;
+        for (let i = 0; i < vertices.length; i++) {
+            createFaces.push(faces[i]);
+        }
     }
 
     for (let i = 0; i < createVertices.length; i++){
@@ -120,8 +124,8 @@ function loadCreateFaceList(){
     for(let i = 0; i < createFaces.length; i++){
         let add = ""
         document.getElementById('createFaceList').innerHTML+=`<input id="xCreatePoint" type="number" value="`+createFaces[i].a+`" onkeyup="createFaces[`+i+`].copy(new THREE.Face3(this.value, createFaces[`+i+`].b, createFaces[`+i+`].c))" onchange="createFaces[`+i+`].copy(new THREE.Face3(this.value, createFaces[`+i+`].b, createFaces[`+i+`].c))">A
-        <input id="yCreatPoint" type="number" value="`+createFaces[i].b+`" onkeyup="createFaces[`+i+`].copy(new THREE.Face3(createFaces[`+i+`].a, this.value, createFaces[`+i+`].c))" onchange="createFaces[`+i+`].copy(new THREE.Face3(createFaces[`+i+`].a, this.value, createFaces[`+i+`].c))">B
-        <input id="zPoint" type="number" value="`+createFaces[i].c+`" onkeyup="createFaces[`+i+`].copy(new THREE.Face3(createFaces[`+i+`].a, createFaces[`+i+`].b, this.value))" onchange="createFaces[`+i+`].copy(new THREE.Face3(createFaces[`+i+`].a, createFaces[`+i+`].b, this.value))">C
+        <input id="yCreatePoint" type="number" value="`+createFaces[i].b+`" onkeyup="createFaces[`+i+`].copy(new THREE.Face3(createFaces[`+i+`].a, this.value, createFaces[`+i+`].c))" onchange="createFaces[`+i+`].copy(new THREE.Face3(createFaces[`+i+`].a, this.value, createFaces[`+i+`].c))">B
+        <input id="zCreatePoint" type="number" value="`+createFaces[i].c+`" onkeyup="createFaces[`+i+`].copy(new THREE.Face3(createFaces[`+i+`].a, createFaces[`+i+`].b, this.value))" onchange="createFaces[`+i+`].copy(new THREE.Face3(createFaces[`+i+`].a, createFaces[`+i+`].b, this.value))">C
         <button class='material-icons' onclick='cancelFace(`+i+`)'>close</button>
         `+add+`
         <br>`;
