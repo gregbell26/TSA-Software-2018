@@ -27,6 +27,19 @@ function addFrame(){
     console.log('frame added');
     console.log(keyFrames);
     loadKeyList();
+    updateTimeline();
+}
+function updateTimeline(){
+    var timeline = document.getElementById("timeline");
+    timeline.innerHTML = "";
+    var currentX = 0;
+    for(var i=0; i<keyFrames.length; i++){
+        timeline.innerHTML += ("<div style='position: absolute; left: "+currentX+"px; width: 10px; bottom: 10px; height: 50px; background-color: green;'></div>");
+        currentX+=keyFrames[i].duration/20;
+        console.log(keyFrames[i].duration/20);
+        console.log(currentX);
+    }
+    console.log("done")
 }
 //determines whether ot not to repeat the animation
 function loop(){
@@ -71,7 +84,8 @@ function keyName(name,frame){
 
 function removeFrame(frame){
     keyFrames.splice(frame,1);
-    loadKeyList()
+    loadKeyList();
+    updateTimeline();
 }
 
 function moveUp(frame){
@@ -79,12 +93,14 @@ function moveUp(frame){
     keyFrames.splice(frame,1);
     keyFrames.splice(frame-1,0,hold);
     loadKeyList();
+    updateTimeline();
 }
 function moveDown(frame){
     var hold = keyFrames[frame];
     keyFrames.splice(frame,1);
     keyFrames.splice(frame+1,0,hold);
     loadKeyList();
+    updateTimeline();
 }
 
 
@@ -254,6 +270,7 @@ function playAnimation() {
 function setSpeed(i, speed){
     console.log(i);
     keyFrames[i].duration = speed;
+    updateTimeline();
 }
 
 //used to store shape data because the library doesn't like us doing stuff.
