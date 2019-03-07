@@ -86,9 +86,9 @@ function zoomCameraM(amount) {
     else if (zPosition < 0)
         cameraRz = -Math.PI;
 
-    if (xPosition < 0 && cameraRz > 0)
+    if (xPosition < 0 && cameraRz < 0)
         cameraRz += Math.PI;
-    else if (xPosition < 0 && cameraRz < 0)
+    else if (xPosition < 0 && cameraRz > 0)
         cameraRz -= Math.PI;
 
     if (xPosition !== 0 || zPosition !== 0)
@@ -161,11 +161,10 @@ function rotateCamera(MvX,MvY){
     else if(zPosition < 0)
         cameraRz = -Math.PI;
 
-    if(xPosition < 0 && cameraRz > 0)
+    if(xPosition < 0 && cameraRz < 0)
         cameraRz += Math.PI;
-    else if(xPosition < 0 && cameraRz < 0)
+    else if(xPosition < 0 && cameraRz > 0)
         cameraRz -= Math.PI;
-
 
 
     if(xPosition !== 0 || zPosition !== 0)
