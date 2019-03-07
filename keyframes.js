@@ -151,7 +151,7 @@ function playAnimation() {
                                 cameraRy1 = -Math.PI;
 
                             zoom2Z = Math.pow(Math.pow(keyFrames[a + 1].xPosition, 2) + Math.pow(keyFrames[a + 1].zPosition, 2), .5);
-                            zoom2 = Math.pow((Math.pow(zoom1Z, 2) + Math.pow(keyFrames[a + 1].yPosition, 2)), .5);//zoom1 calc here
+                            zoom2 = Math.pow((Math.pow(zoom2Z, 2) + Math.pow(keyFrames[a+1].yPosition, 2)), .5);//zoom1 calc here
                             console.log("f2zoomZ " + zoom2Z);
                             console.log("f2zoom " + zoom2);
                             cameraRz2 = 0;
@@ -188,9 +188,9 @@ function playAnimation() {
                             console.log("moving X " + MvX/Math.PI*180+"°");
                             console.log("moving Y " + MvY/Math.PI*180+"°");
                         }
-                        yPosition = (zoom1/**  +  zoomChange/keyFrames[a].duration * timingCounter*/) * (Math.sin(cameraRy1+MvY/keyFrames[a].duration * timingCounter));
-                        xPosition = (zoom1Z/** + zoomZChange/keyFrames[a].duration * timingCounter*/) * (Math.cos(cameraRz1+MvX/keyFrames[a].duration * timingCounter));
-                        zPosition = (zoom1Z/** + zoomZChange/keyFrames[a].duration * timingCounter*/) * (Math.sin(cameraRz1+MvX/keyFrames[a].duration * timingCounter));
+                        yPosition = (zoom1  +  zoomChange/keyFrames[a].duration * timingCounter) * (Math.sin(cameraRy1+MvY/keyFrames[a].duration * timingCounter));
+                        xPosition = (zoom1Z + zoomZChange/keyFrames[a].duration * timingCounter) * (Math.cos(cameraRz1+MvX/keyFrames[a].duration * timingCounter));
+                        zPosition = (zoom1Z + zoomZChange/keyFrames[a].duration * timingCounter) * (Math.sin(cameraRz1+MvX/keyFrames[a].duration * timingCounter));
                         console.log(xPosition);
                         console.log(yPosition);
                         console.log(zPosition);
