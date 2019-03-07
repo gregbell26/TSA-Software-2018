@@ -32,12 +32,10 @@ function addFrame(){
 function updateTimeline(){
     var timeline = document.getElementById("timeline");
     timeline.innerHTML = "";
-    var currentX = 0;
+    var currentX = 5;
     for(var i=0; i<keyFrames.length; i++){
         timeline.innerHTML += ("<div style='position: absolute; left: "+currentX+"px; width: 10px; bottom: 10px; height: 50px; background-color: green;'></div>");
         currentX+=keyFrames[i].duration/20;
-        console.log(keyFrames[i].duration/20);
-        console.log(currentX);
     }
     console.log("done")
 }
