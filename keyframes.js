@@ -32,12 +32,10 @@ function addFrame(){
 function updateTimeline(){
     var timeline = document.getElementById("timeline");
     timeline.innerHTML = "";
-    var currentX = 0;
+    var currentX = 5;
     for(var i=0; i<keyFrames.length; i++){
         timeline.innerHTML += ("<div style='position: absolute; left: "+currentX+"px; width: 10px; bottom: 10px; height: 50px; background-color: green;'></div>");
         currentX+=keyFrames[i].duration/20;
-        console.log(keyFrames[i].duration/20);
-        console.log(currentX);
     }
     console.log("done")
 }
@@ -151,7 +149,7 @@ function playAnimation() {
                                 cameraRy1 = -Math.PI;
 
                             zoom2Z = Math.pow(Math.pow(keyFrames[a + 1].xPosition, 2) + Math.pow(keyFrames[a + 1].zPosition, 2), .5);
-                            zoom2 = Math.pow((Math.pow(zoom1Z, 2) + Math.pow(keyFrames[a + 1].yPosition, 2)), .5);//zoom1 calc here
+                            zoom2 = Math.pow((Math.pow(zoom2Z, 2) + Math.pow(keyFrames[a+1].yPosition, 2)), .5);//zoom1 calc here
                             console.log("f2zoomZ " + zoom2Z);
                             console.log("f2zoom " + zoom2);
                             cameraRz2 = 0;
@@ -163,36 +161,36 @@ function playAnimation() {
                             else if (keyFrames[a + 1].zPosition < 0)
                                 cameraRz2 = -Math.PI;
 
-                            if (keyFrames[a + 1].xPosition < 0 && cameraRz2 > 0)
+                            if (keyFrames[a + 1].xPosition < 0 && cameraRz2 < 0)
                                 cameraRz2 += Math.PI;
-                            else if (keyFrames[a + 1].xPosition < 0 && cameraRz2 < 0)
+                            else if (keyFrames[a + 1].xPosition < 0 && cameraRz2 > 0)
                                 cameraRz2 -= Math.PI;
 
                             if (keyFrames[a + 1].xPosition !== 0 || keyFrames[a + 1].zPosition !== 0)
-                                cameraRy2 = Math.atan((keyFrames[a + 1].yPosition) / zoom1Z);
+                                cameraRy2 = Math.atan((keyFrames[a + 1].yPosition) / zoom2Z);
                             else if (keyFrames[a + 1].yPosition > 0)
                                 cameraRy2 = Math.PI;
                             else if (keyFrames[a + 1].yPosition < 0)
                                 cameraRy2 = -Math.PI;
-                            console.log("f1RY " + cameraRy1);
-                            console.log("f2RY " + cameraRy2);
-                            console.log("f1RZ " + cameraRz1);
-                            console.log("f2RZ " + cameraRz2);
+                            console.log("f1RY " + cameraRy1/Math.PI*180+"°");
+                            console.log("f2RY " + cameraRy2/Math.PI*180+"°");
+                            console.log("f1RZ " + cameraRz1/Math.PI*180+"°");
+                            console.log("f2RZ " + cameraRz2/Math.PI*180+"°");
 
                             MvX = cameraRz2 - cameraRz1;
                             MvY = cameraRy2 - cameraRy1;
                             zoomChange = zoom2 - zoom1;
                             zoomZChange = zoom2Z - zoom1Z;
-                            console.log("moving zoom" + zoomChange);
-                            console.log("moving X " + MvX);
-                            console.log("moving Y " + MvY);
-                            console.log(zoom1Z/zoom1);
+                            console.log("moving zoom " + zoomChange);
+                            console.log("moving zoomZ " + zoomZChange);
+                            console.log("moving X " + MvX/Math.PI*180+"°");
+                            console.log("moving Y " + MvY/Math.PI*180+"°");
                         }
-                        yPosition = (zoom1 + zoomChange/keyFrames[a].duration * timingCounter) * (Math.sin(cameraRy1) + Math.sin(MvY)/keyFrames[a].duration * timingCounter);
-                        xPosition = (zoom1Z+zoomZChange/keyFrames[a].duration * timingCounter) * (Math.cos(cameraRz1) + Math.cos(MvX)/keyFrames[a].duration * timingCounter);
-                        zPosition = (zoom1Z+zoomZChange/keyFrames[a].duration * timingCounter) * (Math.sin(cameraRz1) + Math.sin(MvX)/keyFrames[a].duration * timingCounter);
-                        console.log(yPosition);
+                        yPosition = (zoom1  +  zoomChange/keyFrames[a].duration * timingCounter) * (Math.sin(cameraRy1+MvY/keyFrames[a].duration * timingCounter));
+                        xPosition = (zoom1Z + zoomZChange/keyFrames[a].duration * timingCounter) * (Math.cos(cameraRz1+MvX/keyFrames[a].duration * timingCounter));
+                        zPosition = (zoom1Z + zoomZChange/keyFrames[a].duration * timingCounter) * (Math.sin(cameraRz1+MvX/keyFrames[a].duration * timingCounter));
                         console.log(xPosition);
+                        console.log(yPosition);
                         console.log(zPosition);
                         if(isNaN(yPosition))
                             yPosition = 0;
