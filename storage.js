@@ -10,8 +10,7 @@ $(document).on('change', function (e) {
 });
 
 
-var saveSubSystem =
-{
+var saveSubSystem = {
     isUsingSaves : false,
     openPrevious : false,
     currentVer : 0,

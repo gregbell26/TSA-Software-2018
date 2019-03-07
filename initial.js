@@ -128,6 +128,7 @@ function promptResponse(value) {
             saveSubSystem.setIsUsingSaves(true);
             saveSubSystem.setFileName(saveName, true);
             dialog.close();
+            updateTimeline();
         }
     }
 }
@@ -156,7 +157,9 @@ function start() {
         keyFrames = saveSubSystem.loadSave();
         //has saves
     }
-    showList()
+    showList();
+
+    updateTimeline();
 }
 
 //
