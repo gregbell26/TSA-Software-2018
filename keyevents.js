@@ -8,10 +8,9 @@ onkeydown = function(e){
     e = e || event;
     var map = [];
     map[e.keyCode] = e.type == 'keydown';
-    console.log(map);
-    if(map[32] && mouseOnTimeline){
-        console.log("keyDown")
+    if(map[32]){
         mouseOnTimeline = false;
         playAnimation(timelinePosition);
+        console.log(timelinePosition);
     }
 }

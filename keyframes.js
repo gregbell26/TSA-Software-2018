@@ -118,13 +118,14 @@ function playAnimation(frameValue) {
             var frames = 0;
             var a;
             var timingCounter;
-            var prevDuration = 0;
+            var prevDuration=0;
             for (var i = 0; i < keyFrames.length - 1; i++) {
                 if (frameValue >= frames && frameValue < frames + keyFrames[i].duration) {
                     a = i;
                     break;
                 } else {
                     frames += keyFrames[i].duration;
+                    prevDuration+=keyFrames[i].duration;
                 }
             }
             if (a != null) {
@@ -147,7 +148,7 @@ function playAnimation(frameValue) {
                         }
                         else {
                             clearInterval(animationTimer);
-                            console.log('done')
+                            console.log('done');
                             animationRunning = false;
                             if(recording){
                                 recording = false;
