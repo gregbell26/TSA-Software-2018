@@ -5,7 +5,8 @@ var loopAnimation = false;
 var animationTimer;
 var selectedShape = -1;
 var settingsOpen = false;
-
+// var capturer = new CCapture( { format: 'webm' } );
+var capturer;
 //sets up the viewport
 var scene = new THREE.Scene();
 scene.background = new THREE.Color("#000000");

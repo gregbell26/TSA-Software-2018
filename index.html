@@ -6,6 +6,7 @@
     <link rel="stylesheet" href="material-icons.css"><!--imports the icons-->
     <link rel="stylesheet" href="material.blue-light_blue.min.css"><!--imports the Material Design Lite CSS-->
     <script defer src="material.min.js"></script><!--imports the Material Design Lite Javascript, for interactive elements-->
+    <script defer src="ccapture.js"></script>
     <link href="roboto.css" rel="stylesheet"><!--Imports the Roboto font-->
     <script src="jquery-3.3.1.min.js"></script><!--Imports the JQuery library, mainly used to clean up code.-->
     <link rel="stylesheet" href="styles.css"><!--Imports the main style sheet-->
@@ -261,8 +262,9 @@
         </div>
         
         <div id="keyMenu">
-            <button onfocus="this.blur()" class="mdl-button mdl-js-button mdl-button--fab mdl-button--colored" onclick="playAnimation()"><i class="material-icons">play_arrow</i></button>
+            <button onfocus="this.blur()" class="mdl-button mdl-js-button mdl-button--fab mdl-button--colored" onclick="playAnimation(0)"><i class="material-icons">play_arrow</i></button>
             <button onfocus="this.blur()" class="mdl-button mdl-js-button mdl-button--fab mdl-button--colored" onclick="loop()"><i class="material-icons">autorenew</i></button>
+            <button onfocus="this.blur()" class="mdl-button mdl-js-button mdl-button--fab mdl-button--colored" onclick="record()"><i class="material-icons">videocam</i></button>
             <button onfocus="this.blur()" class="objButton addButton"onclick="addFrame(); saveSubSystem.save()">Add Keyframe</button>
             <label for="chkbox1" class="mdl-checkbox mdl-js-checkbox mdl-js-ripple-effect">
                 <input type="checkbox" id="chkbox1" class="mdl-checkbox__input" checked onchange="changeCameraLock()">
@@ -389,6 +391,7 @@
     <script src="Shapes/ring.js"></script>
     <script src="Shapes/text.js"></script>
     <script src="Camera.js"></script>
+    <script src="keyevents.js"></script>
 <!-- inserts all of the javascript programs to be used in the program-->
 	
 </body>

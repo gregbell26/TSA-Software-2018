@@ -21,6 +21,9 @@ var animate = function () {
     }
 //handles scaling the shapes in animation
     renderer.render( scene, camera );
+    if(recording){
+        capturer.capture( renderer.domElement );
+    }
     //pushes the changes to the screen
 };
 animate();

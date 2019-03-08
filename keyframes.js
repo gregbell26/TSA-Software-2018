@@ -53,7 +53,7 @@ function loop(){
     }
     else{
         loopAnimation = true;
-        playAnimation();
+        playAnimation(0);
     }
 }
 //creates all of the buttons that will set the keyframes. create or remove keyframe, move them, set the speed, etc:
@@ -110,33 +110,53 @@ function moveDown(frame){
 
 
 //takes all of the properties of the things taken above and sets them to the current viewport. All of the properties for each time is found in each iteration of the array. this takes the values in each keyframe and makes the attributes shift from the origional values to the ones in the new frame
-function playAnimation() {
+function playAnimation(frameValue) {
     if(!animationRunning) {
         console.log('starting');
         animationRunning=true;
-        var a = 0;
-        var timingCounter = 0;
-        animationTimer = setInterval(function () {
-            if (timingCounter < keyFrames[a].duration) {
-                timingCounter += 10;
-                updateAnimation(timingCounter,a);
-            }
-            else {
-                if (a < keyFrames.length - 2) {
-                    a++;
-                    timingCounter = 0;
-                }
-                else if (loopAnimation){
-                    a = 0;
-                    timingCounter = 0;
-                }
-                else {
-                    clearInterval(animationTimer);
-                    console.log('done')
-                    animationRunning = false;
+        if (frameValue >= 0) {
+            var frames = 0;
+            var a;
+            var timingCounter;
+            for (var i = 0; i < keyFrames.length - 1; i++) {
+                if (frameValue >= frames && frameValue < frames + keyFrames[i].duration) {
+                    a = i;
+                    break;
+                } else {
+                    frames += keyFrames[i].duration;
                 }
             }
-        }, 10);
+            if (a != null) {
+                timingCounter = frameValue - frames;
+                animationTimer = setInterval(function () {
+                    if (timingCounter < keyFrames[a].duration) {
+                        timingCounter += 10;
+                        updateAnimation(timingCounter,a);
+                    }
+                    else {
+                        if (a < keyFrames.length - 2) {
+                            a++;
+                            timingCounter = 0;
+                        }
+                        else if (loopAnimation){
+                            a = 0;
+                            timingCounter = 0;
+                        }
+                        else {
+                            clearInterval(animationTimer);
+                            console.log('done')
+                            animationRunning = false;
+                            if(recording){
+                                recording = false;
+                                capturer.stop();
+                                capturer.save();
+                            }
+
+                        }
+                    }
+                }, 10);
+            }
+        }
     }
 }
 
@@ -171,6 +191,7 @@ function getSceneBackground(){
 
 function timelineScrub(pageX) {
     var frameValue = (pageX - 10) * timelineScale;
+    timelinePosition = frameValue;
     // console.log(frameValue);
     if (frameValue >= 0) {
         var frames = 0;
@@ -321,4 +342,11 @@ function updateAnimation(timingCounter,a){
         borders[i].material.color.g = keyFrames[a].borderColor[i][1] + (keyFrames[a + 1].borderColor[i][1] - keyFrames[a].borderColor[i][1]) / keyFrames[a].duration * timingCounter;
         borders[i].material.color.b = keyFrames[a].borderColor[i][2] + (keyFrames[a + 1].borderColor[i][2] - keyFrames[a].borderColor[i][2]) / keyFrames[a].duration * timingCounter;
     }
+}
+var recording = false;
+function record(){
+    recording = true;
+    capturer = new CCapture({ format: 'webm' });
+    capturer.start();
+    playAnimation(0);
 }
