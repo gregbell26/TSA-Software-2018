@@ -116,159 +116,28 @@ function playAnimation() {
         animationRunning=true;
         var a = 0;
         var timingCounter = 0;
-        //stuff for circular camera rotation
-        var MvX, MvY;
-        var cameraRz1, cameraRy1;
-        var cameraRz2, cameraRy2;
-        var zoom1, zoom1Z;
-        var zoom2, zoom2Z;
-        var zoomChange, zoomZChange;
         animationTimer = setInterval(function () {
             if (timingCounter < keyFrames[a].duration) {
                 timingCounter += 10;
-                if(lockCamera) {
-
-                    if(circleCameraRotation){
-                        if(timingCounter <= 10) {
-                            zoom1Z = Math.pow(Math.pow(keyFrames[a].xPosition, 2) + Math.pow(keyFrames[a].zPosition, 2), .5);
-                            zoom1 = Math.pow((Math.pow(zoom1Z, 2) + Math.pow(keyFrames[a].yPosition, 2)), .5);//zoom1 calc here
-                            console.log("f1zoomZ " + zoom1Z);
-                            console.log("f1zoom " + zoom1);
-                            cameraRz1 = 0;
-                            cameraRy1 = 0;
-                            if (keyFrames[a].xPosition !== 0)
-                                cameraRz1 = Math.atan(keyFrames[a].zPosition / keyFrames[a].xPosition);
-                            else if (keyFrames[a].zPosition > 0)
-                                cameraRz1 = Math.PI;
-                            else if (keyFrames[a].zPosition < 0)
-                                cameraRz1 = -Math.PI;
-
-                            if (keyFrames[a].xPosition < 0 && cameraRz1 > 0)
-                                cameraRz1 += Math.PI;
-                            else if (keyFrames[a].xPosition < 0 && cameraRz1 < 0)
-                                cameraRz1 -= Math.PI;
-
-                            if (keyFrames[a].xPosition !== 0 || keyFrames[a].zPosition !== 0)
-                                cameraRy1 = Math.atan((keyFrames[a].yPosition) / zoom1Z);
-                            else if (keyFrames[a].yPosition > 0)
-                                cameraRy1 = Math.PI;
-                            else if (keyFrames[a].yPosition < 0)
-                                cameraRy1 = -Math.PI;
-
-                            zoom2Z = Math.pow(Math.pow(keyFrames[a + 1].xPosition, 2) + Math.pow(keyFrames[a + 1].zPosition, 2), .5);
-                            zoom2 = Math.pow((Math.pow(zoom2Z, 2) + Math.pow(keyFrames[a+1].yPosition, 2)), .5);//zoom1 calc here
-                            console.log("f2zoomZ " + zoom2Z);
-                            console.log("f2zoom " + zoom2);
-                            cameraRz2 = 0;
-                            cameraRy2 = 0;
-                            if (keyFrames[a + 1].xPosition !== 0)
-                                cameraRz2 = Math.atan(keyFrames[a + 1].zPosition / keyFrames[a + 1].xPosition);
-                            else if (keyFrames[a + 1].zPosition > 0)
-                                cameraRz2 = Math.PI;
-                            else if (keyFrames[a + 1].zPosition < 0)
-                                cameraRz2 = -Math.PI;
-
-                            if (keyFrames[a + 1].xPosition < 0 && cameraRz2 < 0)
-                                cameraRz2 += Math.PI;
-                            else if (keyFrames[a + 1].xPosition < 0 && cameraRz2 > 0)
-                                cameraRz2 -= Math.PI;
-
-                            if (keyFrames[a + 1].xPosition !== 0 || keyFrames[a + 1].zPosition !== 0)
-                                cameraRy2 = Math.atan((keyFrames[a + 1].yPosition) / zoom2Z);
-                            else if (keyFrames[a + 1].yPosition > 0)
-                                cameraRy2 = Math.PI;
-                            else if (keyFrames[a + 1].yPosition < 0)
-                                cameraRy2 = -Math.PI;
-                            console.log("f1RY " + cameraRy1/Math.PI*180+"°");
-                            console.log("f2RY " + cameraRy2/Math.PI*180+"°");
-                            console.log("f1RZ " + cameraRz1/Math.PI*180+"°");
-                            console.log("f2RZ " + cameraRz2/Math.PI*180+"°");
-
-                            MvX = cameraRz2 - cameraRz1;
-                            MvY = cameraRy2 - cameraRy1;
-                            zoomChange = zoom2 - zoom1;
-                            zoomZChange = zoom2Z - zoom1Z;
-                            console.log("moving zoom " + zoomChange);
-                            console.log("moving zoomZ " + zoomZChange);
-                            console.log("moving X " + MvX/Math.PI*180+"°");
-                            console.log("moving Y " + MvY/Math.PI*180+"°");
-                        }
-                        yPosition = (zoom1  +  zoomChange/keyFrames[a].duration * timingCounter) * (Math.sin(cameraRy1+MvY/keyFrames[a].duration * timingCounter));
-                        xPosition = (zoom1Z + zoomZChange/keyFrames[a].duration * timingCounter) * (Math.cos(cameraRz1+MvX/keyFrames[a].duration * timingCounter));
-                        zPosition = (zoom1Z + zoomZChange/keyFrames[a].duration * timingCounter) * (Math.sin(cameraRz1+MvX/keyFrames[a].duration * timingCounter));
-                        console.log(xPosition);
-                        console.log(yPosition);
-                        console.log(zPosition);
-                        if(isNaN(yPosition))
-                            yPosition = 0;
-                        if(isNaN(xPosition))
-                            xPosition = 0;
-                        if(isNaN(zPosition))
-                            zPosition = 0;
-                    }
-                    else {
-                        xPosition = keyFrames[a].xPosition + (keyFrames[a + 1].xPosition - keyFrames[a].xPosition) / keyFrames[a].duration * timingCounter;
-                        yPosition = keyFrames[a].yPosition + (keyFrames[a + 1].yPosition - keyFrames[a].yPosition) / keyFrames[a].duration * timingCounter;
-                        zPosition = keyFrames[a].zPosition + (keyFrames[a + 1].zPosition - keyFrames[a].zPosition) / keyFrames[a].duration * timingCounter;
-                    }
-                }
-            scene.background.r = keyFrames[a].scene.color[0] + (keyFrames[a + 1].scene.color[0] - keyFrames[a].scene.color[0]) / keyFrames[a].duration * timingCounter;
-            scene.background.g = keyFrames[a].scene.color[1] + (keyFrames[a + 1].scene.color[1] - keyFrames[a].scene.color[1]) / keyFrames[a].duration * timingCounter;
-            scene.background.b = keyFrames[a].scene.color[2] + (keyFrames[a + 1].scene.color[2] - keyFrames[a].scene.color[2]) / keyFrames[a].duration * timingCounter;
-            scene.scale.x = keyFrames[a].scene.scale[0] + (keyFrames[a + 1].scene.scale[0] - keyFrames[a].scene.scale[0]) / keyFrames[a].duration * timingCounter;
-            scene.scale.y = keyFrames[a].scene.scale[1] + (keyFrames[a + 1].scene.scale[1] - keyFrames[a].scene.scale[1]) / keyFrames[a].duration * timingCounter;
-            scene.scale.z = keyFrames[a].scene.scale[2] + (keyFrames[a + 1].scene.scale[2] - keyFrames[a].scene.scale[2]) / keyFrames[a].duration * timingCounter;
-            scene.rotation.x = keyFrames[a].scene.rotation[0] + (keyFrames[a + 1].scene.rotation[0] - keyFrames[a].scene.rotation[0]) / keyFrames[a].duration * timingCounter;
-            scene.rotation.y = keyFrames[a].scene.rotation[1] + (keyFrames[a + 1].scene.rotation[1] - keyFrames[a].scene.rotation[1]) / keyFrames[a].duration * timingCounter;
-            scene.rotation.z = keyFrames[a].scene.rotation[2] + (keyFrames[a + 1].scene.rotation[2] - keyFrames[a].scene.rotation[2]) / keyFrames[a].duration * timingCounter;
-            scene.position.x = keyFrames[a].scene.position[0] + (keyFrames[a + 1].scene.position[0] - keyFrames[a].scene.position[0]) / keyFrames[a].duration * timingCounter;
-            scene.position.y = keyFrames[a].scene.position[1] + (keyFrames[a + 1].scene.position[1] - keyFrames[a].scene.position[1]) / keyFrames[a].duration * timingCounter;
-            scene.position.z = keyFrames[a].scene.position[2] + (keyFrames[a + 1].scene.position[2] - keyFrames[a].scene.position[2]) / keyFrames[a].duration * timingCounter;
-            for (var i = 0; i < keyFrames[a].scales.length; i++) {
-                scales[i][0] = keyFrames[a].scales[i][0] + (keyFrames[a + 1].scales[i][0] - keyFrames[a].scales[i][0]) / keyFrames[a].duration * timingCounter;
-                scales[i][1] = keyFrames[a].scales[i][1] + (keyFrames[a + 1].scales[i][1] - keyFrames[a].scales[i][1]) / keyFrames[a].duration * timingCounter;
-                scales[i][2] = keyFrames[a].scales[i][2] + (keyFrames[a + 1].scales[i][2] - keyFrames[a].scales[i][2]) / keyFrames[a].duration * timingCounter;
-                borders[i].scale.x = keyFrames[a].scales[i][0] + (keyFrames[a + 1].scales[i][0] - keyFrames[a].scales[i][0]) / keyFrames[a].duration * timingCounter;
-                borders[i].scale.y = keyFrames[a].scales[i][1] + (keyFrames[a + 1].scales[i][1] - keyFrames[a].scales[i][1]) / keyFrames[a].duration * timingCounter;
-                borders[i].scale.z = keyFrames[a].scales[i][2] + (keyFrames[a + 1].scales[i][2] - keyFrames[a].scales[i][2]) / keyFrames[a].duration * timingCounter;
-                shapes[i].position.x = keyFrames[a].shapes[i][0] + (keyFrames[a + 1].shapes[i][0] - keyFrames[a].shapes[i][0]) / keyFrames[a].duration * timingCounter;
-                shapes[i].position.y = keyFrames[a].shapes[i][1] + (keyFrames[a + 1].shapes[i][1] - keyFrames[a].shapes[i][1]) / keyFrames[a].duration * timingCounter;
-                shapes[i].position.z = keyFrames[a].shapes[i][2] + (keyFrames[a + 1].shapes[i][2] - keyFrames[a].shapes[i][2]) / keyFrames[a].duration * timingCounter;
-                shapes[i].rotation.x = keyFrames[a].shapes[i][3] + (keyFrames[a + 1].shapes[i][3] - keyFrames[a].shapes[i][3]) / keyFrames[a].duration * timingCounter;
-                shapes[i].rotation.y = keyFrames[a].shapes[i][4] + (keyFrames[a + 1].shapes[i][4] - keyFrames[a].shapes[i][4]) / keyFrames[a].duration * timingCounter;
-                shapes[i].rotation.z = keyFrames[a].shapes[i][5] + (keyFrames[a + 1].shapes[i][5] - keyFrames[a].shapes[i][5]) / keyFrames[a].duration * timingCounter;
-                borders[i].position.x = keyFrames[a].shapes[i][0] + (keyFrames[a + 1].shapes[i][0] - keyFrames[a].shapes[i][0]) / keyFrames[a].duration * timingCounter;
-                borders[i].position.y = keyFrames[a].shapes[i][1] + (keyFrames[a + 1].shapes[i][1] - keyFrames[a].shapes[i][1]) / keyFrames[a].duration * timingCounter;
-                borders[i].position.z = keyFrames[a].shapes[i][2] + (keyFrames[a + 1].shapes[i][2] - keyFrames[a].shapes[i][2]) / keyFrames[a].duration * timingCounter;
-                borders[i].rotation.x = keyFrames[a].shapes[i][3] + (keyFrames[a + 1].shapes[i][3] - keyFrames[a].shapes[i][3]) / keyFrames[a].duration * timingCounter;
-                borders[i].rotation.y = keyFrames[a].shapes[i][4] + (keyFrames[a + 1].shapes[i][4] - keyFrames[a].shapes[i][4]) / keyFrames[a].duration * timingCounter;
-                borders[i].rotation.z = keyFrames[a].shapes[i][5] + (keyFrames[a + 1].shapes[i][5] - keyFrames[a].shapes[i][5]) / keyFrames[a].duration * timingCounter;
-                shapes[i].material.color.r = keyFrames[a].color[i][0] + (keyFrames[a + 1].color[i][0] - keyFrames[a].color[i][0]) / keyFrames[a].duration * timingCounter;
-                shapes[i].material.color.g = keyFrames[a].color[i][1] + (keyFrames[a + 1].color[i][1] - keyFrames[a].color[i][1]) / keyFrames[a].duration * timingCounter;
-                shapes[i].material.color.b = keyFrames[a].color[i][2] + (keyFrames[a + 1].color[i][2] - keyFrames[a].color[i][2]) / keyFrames[a].duration * timingCounter;
-                borders[i].material.color.r = keyFrames[a].borderColor[i][0] + (keyFrames[a + 1].borderColor[i][0] - keyFrames[a].borderColor[i][0]) / keyFrames[a].duration * timingCounter;
-                borders[i].material.color.g = keyFrames[a].borderColor[i][1] + (keyFrames[a + 1].borderColor[i][1] - keyFrames[a].borderColor[i][1]) / keyFrames[a].duration * timingCounter;
-                borders[i].material.color.b = keyFrames[a].borderColor[i][2] + (keyFrames[a + 1].borderColor[i][2] - keyFrames[a].borderColor[i][2]) / keyFrames[a].duration * timingCounter;
-            }
-        }
-    else {
-            if (a < keyFrames.length - 2) {
-                a++;
-                timingCounter = 0;
-                console.log(a)
-            }
-            else if (loopAnimation){
-                a = 0;
-                timingCounter = 0;
+                updateAnimation(timingCounter,a);
             }
             else {
-                clearInterval(animationTimer);
-                console.log('done')
-                animationRunning = false;
+                if (a < keyFrames.length - 2) {
+                    a++;
+                    timingCounter = 0;
+                }
+                else if (loopAnimation){
+                    a = 0;
+                    timingCounter = 0;
+                }
+                else {
+                    clearInterval(animationTimer);
+                    console.log('done')
+                    animationRunning = false;
+                }
             }
-        }
-    }, 10);
-}
+        }, 10);
+    }
 }
 
 //sets speed of animation.
@@ -300,64 +169,156 @@ function getSceneBackground(){
 
 }
 
-function timelineScrub(pageX){
-    var frameValue = (pageX-10)*timelineScale;
+function timelineScrub(pageX) {
+    var frameValue = (pageX - 10) * timelineScale;
     // console.log(frameValue);
-    if(frameValue>=0){
+    if (frameValue >= 0) {
         var frames = 0;
         var a;
-        for(var i=0; i<keyFrames.length-1; i++){
-            if(frameValue>=frames && frameValue<frames+keyFrames[i].duration){
+        for (var i = 0; i < keyFrames.length - 1; i++) {
+            if (frameValue >= frames && frameValue < frames + keyFrames[i].duration) {
                 a = i;
                 break;
-            }
-            else{
-                frames+=keyFrames[i].duration;
+            } else {
+                frames += keyFrames[i].duration;
             }
         }
-        if(a!=null) {
-            var timingCounter = frameValue-frames;
+        if (a != null) {
+            var timingCounter = frameValue - frames;
+            updateAnimation(timingCounter, a);
+        }
+    }
+}
+
+function updateAnimation(timingCounter,a){
+    //stuff for circular camera rotation
+    var MvX, MvY;
+    var cameraRz1, cameraRy1;
+    var cameraRz2, cameraRy2;
+    var zoom1, zoom1Z;
+    var zoom2, zoom2Z;
+    var zoomChange, zoomZChange;
+    if(lockCamera) {
+        if(circleCameraRotation){
+            if(timingCounter <= 10) {
+                zoom1Z = Math.pow(Math.pow(keyFrames[a].xPosition, 2) + Math.pow(keyFrames[a].zPosition, 2), .5);
+                zoom1 = Math.pow((Math.pow(zoom1Z, 2) + Math.pow(keyFrames[a].yPosition, 2)), .5);//zoom1 calc here
+                console.log("f1zoomZ " + zoom1Z);
+                console.log("f1zoom " + zoom1);
+                cameraRz1 = 0;
+                cameraRy1 = 0;
+                if (keyFrames[a].xPosition !== 0)
+                    cameraRz1 = Math.atan(keyFrames[a].zPosition / keyFrames[a].xPosition);
+                else if (keyFrames[a].zPosition > 0)
+                    cameraRz1 = Math.PI;
+                else if (keyFrames[a].zPosition < 0)
+                    cameraRz1 = -Math.PI;
+
+                if (keyFrames[a].xPosition < 0 && cameraRz1 > 0)
+                    cameraRz1 += Math.PI;
+                else if (keyFrames[a].xPosition < 0 && cameraRz1 < 0)
+                    cameraRz1 -= Math.PI;
+
+                if (keyFrames[a].xPosition !== 0 || keyFrames[a].zPosition !== 0)
+                    cameraRy1 = Math.atan((keyFrames[a].yPosition) / zoom1Z);
+                else if (keyFrames[a].yPosition > 0)
+                    cameraRy1 = Math.PI;
+                else if (keyFrames[a].yPosition < 0)
+                    cameraRy1 = -Math.PI;
+
+                zoom2Z = Math.pow(Math.pow(keyFrames[a + 1].xPosition, 2) + Math.pow(keyFrames[a + 1].zPosition, 2), .5);
+                zoom2 = Math.pow((Math.pow(zoom2Z, 2) + Math.pow(keyFrames[a+1].yPosition, 2)), .5);//zoom1 calc here
+                console.log("f2zoomZ " + zoom2Z);
+                console.log("f2zoom " + zoom2);
+                cameraRz2 = 0;
+                cameraRy2 = 0;
+                if (keyFrames[a + 1].xPosition !== 0)
+                    cameraRz2 = Math.atan(keyFrames[a + 1].zPosition / keyFrames[a + 1].xPosition);
+                else if (keyFrames[a + 1].zPosition > 0)
+                    cameraRz2 = Math.PI;
+                else if (keyFrames[a + 1].zPosition < 0)
+                    cameraRz2 = -Math.PI;
+
+                if (keyFrames[a + 1].xPosition < 0 && cameraRz2 < 0)
+                    cameraRz2 += Math.PI;
+                else if (keyFrames[a + 1].xPosition < 0 && cameraRz2 > 0)
+                    cameraRz2 -= Math.PI;
+
+                if (keyFrames[a + 1].xPosition !== 0 || keyFrames[a + 1].zPosition !== 0)
+                    cameraRy2 = Math.atan((keyFrames[a + 1].yPosition) / zoom2Z);
+                else if (keyFrames[a + 1].yPosition > 0)
+                    cameraRy2 = Math.PI;
+                else if (keyFrames[a + 1].yPosition < 0)
+                    cameraRy2 = -Math.PI;
+                console.log("f1RY " + cameraRy1/Math.PI*180+"°");
+                console.log("f2RY " + cameraRy2/Math.PI*180+"°");
+                console.log("f1RZ " + cameraRz1/Math.PI*180+"°");
+                console.log("f2RZ " + cameraRz2/Math.PI*180+"°");
+
+                MvX = cameraRz2 - cameraRz1;
+                MvY = cameraRy2 - cameraRy1;
+                zoomChange = zoom2 - zoom1;
+                zoomZChange = zoom2Z - zoom1Z;
+                console.log("moving zoom " + zoomChange);
+                console.log("moving zoomZ " + zoomZChange);
+                console.log("moving X " + MvX/Math.PI*180+"°");
+                console.log("moving Y " + MvY/Math.PI*180+"°");
+            }
+            yPosition = (zoom1  +  zoomChange/keyFrames[a].duration * timingCounter) * (Math.sin(cameraRy1+MvY/keyFrames[a].duration * timingCounter));
+            xPosition = (zoom1Z + zoomZChange/keyFrames[a].duration * timingCounter) * (Math.cos(cameraRz1+MvX/keyFrames[a].duration * timingCounter));
+            zPosition = (zoom1Z + zoomZChange/keyFrames[a].duration * timingCounter) * (Math.sin(cameraRz1+MvX/keyFrames[a].duration * timingCounter));
+            console.log(xPosition);
+            console.log(yPosition);
+            console.log(zPosition);
+            if(isNaN(yPosition))
+                yPosition = 0;
+            if(isNaN(xPosition))
+                xPosition = 0;
+            if(isNaN(zPosition))
+                zPosition = 0;
+        }
+        else {
             xPosition = keyFrames[a].xPosition + (keyFrames[a + 1].xPosition - keyFrames[a].xPosition) / keyFrames[a].duration * timingCounter;
             yPosition = keyFrames[a].yPosition + (keyFrames[a + 1].yPosition - keyFrames[a].yPosition) / keyFrames[a].duration * timingCounter;
             zPosition = keyFrames[a].zPosition + (keyFrames[a + 1].zPosition - keyFrames[a].zPosition) / keyFrames[a].duration * timingCounter;
-            scene.background.r = keyFrames[a].scene.color[0] + (keyFrames[a + 1].scene.color[0] - keyFrames[a].scene.color[0]) / keyFrames[a].duration * timingCounter;
-            scene.background.g = keyFrames[a].scene.color[1] + (keyFrames[a + 1].scene.color[1] - keyFrames[a].scene.color[1]) / keyFrames[a].duration * timingCounter;
-            scene.background.b = keyFrames[a].scene.color[2] + (keyFrames[a + 1].scene.color[2] - keyFrames[a].scene.color[2]) / keyFrames[a].duration * timingCounter;
-            scene.scale.x = keyFrames[a].scene.scale[0] + (keyFrames[a + 1].scene.scale[0] - keyFrames[a].scene.scale[0]) / keyFrames[a].duration * timingCounter;
-            scene.scale.y = keyFrames[a].scene.scale[1] + (keyFrames[a + 1].scene.scale[1] - keyFrames[a].scene.scale[1]) / keyFrames[a].duration * timingCounter;
-            scene.scale.z = keyFrames[a].scene.scale[2] + (keyFrames[a + 1].scene.scale[2] - keyFrames[a].scene.scale[2]) / keyFrames[a].duration * timingCounter;
-            scene.rotation.x = keyFrames[a].scene.rotation[0] + (keyFrames[a + 1].scene.rotation[0] - keyFrames[a].scene.rotation[0]) / keyFrames[a].duration * timingCounter;
-            scene.rotation.y = keyFrames[a].scene.rotation[1] + (keyFrames[a + 1].scene.rotation[1] - keyFrames[a].scene.rotation[1]) / keyFrames[a].duration * timingCounter;
-            scene.rotation.z = keyFrames[a].scene.rotation[2] + (keyFrames[a + 1].scene.rotation[2] - keyFrames[a].scene.rotation[2]) / keyFrames[a].duration * timingCounter;
-            scene.position.x = keyFrames[a].scene.position[0] + (keyFrames[a + 1].scene.position[0] - keyFrames[a].scene.position[0]) / keyFrames[a].duration * timingCounter;
-            scene.position.y = keyFrames[a].scene.position[1] + (keyFrames[a + 1].scene.position[1] - keyFrames[a].scene.position[1]) / keyFrames[a].duration * timingCounter;
-            scene.position.z = keyFrames[a].scene.position[2] + (keyFrames[a + 1].scene.position[2] - keyFrames[a].scene.position[2]) / keyFrames[a].duration * timingCounter;
-            for (var i = 0; i < keyFrames[a].scales.length; i++) {
-                scales[i][0] = keyFrames[a].scales[i][0] + (keyFrames[a + 1].scales[i][0] - keyFrames[a].scales[i][0]) / keyFrames[a].duration * timingCounter;
-                scales[i][1] = keyFrames[a].scales[i][1] + (keyFrames[a + 1].scales[i][1] - keyFrames[a].scales[i][1]) / keyFrames[a].duration * timingCounter;
-                scales[i][2] = keyFrames[a].scales[i][2] + (keyFrames[a + 1].scales[i][2] - keyFrames[a].scales[i][2]) / keyFrames[a].duration * timingCounter;
-                borders[i].scale.x = keyFrames[a].scales[i][0] + (keyFrames[a + 1].scales[i][0] - keyFrames[a].scales[i][0]) / keyFrames[a].duration * timingCounter;
-                borders[i].scale.y = keyFrames[a].scales[i][1] + (keyFrames[a + 1].scales[i][1] - keyFrames[a].scales[i][1]) / keyFrames[a].duration * timingCounter;
-                borders[i].scale.z = keyFrames[a].scales[i][2] + (keyFrames[a + 1].scales[i][2] - keyFrames[a].scales[i][2]) / keyFrames[a].duration * timingCounter;
-                shapes[i].position.x = keyFrames[a].shapes[i][0] + (keyFrames[a + 1].shapes[i][0] - keyFrames[a].shapes[i][0]) / keyFrames[a].duration * timingCounter;
-                shapes[i].position.y = keyFrames[a].shapes[i][1] + (keyFrames[a + 1].shapes[i][1] - keyFrames[a].shapes[i][1]) / keyFrames[a].duration * timingCounter;
-                shapes[i].position.z = keyFrames[a].shapes[i][2] + (keyFrames[a + 1].shapes[i][2] - keyFrames[a].shapes[i][2]) / keyFrames[a].duration * timingCounter;
-                shapes[i].rotation.x = keyFrames[a].shapes[i][3] + (keyFrames[a + 1].shapes[i][3] - keyFrames[a].shapes[i][3]) / keyFrames[a].duration * timingCounter;
-                shapes[i].rotation.y = keyFrames[a].shapes[i][4] + (keyFrames[a + 1].shapes[i][4] - keyFrames[a].shapes[i][4]) / keyFrames[a].duration * timingCounter;
-                shapes[i].rotation.z = keyFrames[a].shapes[i][5] + (keyFrames[a + 1].shapes[i][5] - keyFrames[a].shapes[i][5]) / keyFrames[a].duration * timingCounter;
-                borders[i].position.x = keyFrames[a].shapes[i][0] + (keyFrames[a + 1].shapes[i][0] - keyFrames[a].shapes[i][0]) / keyFrames[a].duration * timingCounter;
-                borders[i].position.y = keyFrames[a].shapes[i][1] + (keyFrames[a + 1].shapes[i][1] - keyFrames[a].shapes[i][1]) / keyFrames[a].duration * timingCounter;
-                borders[i].position.z = keyFrames[a].shapes[i][2] + (keyFrames[a + 1].shapes[i][2] - keyFrames[a].shapes[i][2]) / keyFrames[a].duration * timingCounter;
-                borders[i].rotation.x = keyFrames[a].shapes[i][3] + (keyFrames[a + 1].shapes[i][3] - keyFrames[a].shapes[i][3]) / keyFrames[a].duration * timingCounter;
-                borders[i].rotation.y = keyFrames[a].shapes[i][4] + (keyFrames[a + 1].shapes[i][4] - keyFrames[a].shapes[i][4]) / keyFrames[a].duration * timingCounter;
-                borders[i].rotation.z = keyFrames[a].shapes[i][5] + (keyFrames[a + 1].shapes[i][5] - keyFrames[a].shapes[i][5]) / keyFrames[a].duration * timingCounter;
-                shapes[i].material.color.r = keyFrames[a].color[i][0] + (keyFrames[a + 1].color[i][0] - keyFrames[a].color[i][0]) / keyFrames[a].duration * timingCounter;
-                shapes[i].material.color.g = keyFrames[a].color[i][1] + (keyFrames[a + 1].color[i][1] - keyFrames[a].color[i][1]) / keyFrames[a].duration * timingCounter;
-                shapes[i].material.color.b = keyFrames[a].color[i][2] + (keyFrames[a + 1].color[i][2] - keyFrames[a].color[i][2]) / keyFrames[a].duration * timingCounter;
-                borders[i].material.color.r = keyFrames[a].borderColor[i][0] + (keyFrames[a + 1].borderColor[i][0] - keyFrames[a].borderColor[i][0]) / keyFrames[a].duration * timingCounter;
-                borders[i].material.color.g = keyFrames[a].borderColor[i][1] + (keyFrames[a + 1].borderColor[i][1] - keyFrames[a].borderColor[i][1]) / keyFrames[a].duration * timingCounter;
-                borders[i].material.color.b = keyFrames[a].borderColor[i][2] + (keyFrames[a + 1].borderColor[i][2] - keyFrames[a].borderColor[i][2]) / keyFrames[a].duration * timingCounter;
-            }
         }
+    }
+    scene.background.r = keyFrames[a].scene.color[0] + (keyFrames[a + 1].scene.color[0] - keyFrames[a].scene.color[0]) / keyFrames[a].duration * timingCounter;
+    scene.background.g = keyFrames[a].scene.color[1] + (keyFrames[a + 1].scene.color[1] - keyFrames[a].scene.color[1]) / keyFrames[a].duration * timingCounter;
+    scene.background.b = keyFrames[a].scene.color[2] + (keyFrames[a + 1].scene.color[2] - keyFrames[a].scene.color[2]) / keyFrames[a].duration * timingCounter;
+    scene.scale.x = keyFrames[a].scene.scale[0] + (keyFrames[a + 1].scene.scale[0] - keyFrames[a].scene.scale[0]) / keyFrames[a].duration * timingCounter;
+    scene.scale.y = keyFrames[a].scene.scale[1] + (keyFrames[a + 1].scene.scale[1] - keyFrames[a].scene.scale[1]) / keyFrames[a].duration * timingCounter;
+    scene.scale.z = keyFrames[a].scene.scale[2] + (keyFrames[a + 1].scene.scale[2] - keyFrames[a].scene.scale[2]) / keyFrames[a].duration * timingCounter;
+    scene.rotation.x = keyFrames[a].scene.rotation[0] + (keyFrames[a + 1].scene.rotation[0] - keyFrames[a].scene.rotation[0]) / keyFrames[a].duration * timingCounter;
+    scene.rotation.y = keyFrames[a].scene.rotation[1] + (keyFrames[a + 1].scene.rotation[1] - keyFrames[a].scene.rotation[1]) / keyFrames[a].duration * timingCounter;
+    scene.rotation.z = keyFrames[a].scene.rotation[2] + (keyFrames[a + 1].scene.rotation[2] - keyFrames[a].scene.rotation[2]) / keyFrames[a].duration * timingCounter;
+    scene.position.x = keyFrames[a].scene.position[0] + (keyFrames[a + 1].scene.position[0] - keyFrames[a].scene.position[0]) / keyFrames[a].duration * timingCounter;
+    scene.position.y = keyFrames[a].scene.position[1] + (keyFrames[a + 1].scene.position[1] - keyFrames[a].scene.position[1]) / keyFrames[a].duration * timingCounter;
+    scene.position.z = keyFrames[a].scene.position[2] + (keyFrames[a + 1].scene.position[2] - keyFrames[a].scene.position[2]) / keyFrames[a].duration * timingCounter;
+    for (var i = 0; i < keyFrames[a].scales.length; i++) {
+        scales[i][0] = keyFrames[a].scales[i][0] + (keyFrames[a + 1].scales[i][0] - keyFrames[a].scales[i][0]) / keyFrames[a].duration * timingCounter;
+        scales[i][1] = keyFrames[a].scales[i][1] + (keyFrames[a + 1].scales[i][1] - keyFrames[a].scales[i][1]) / keyFrames[a].duration * timingCounter;
+        scales[i][2] = keyFrames[a].scales[i][2] + (keyFrames[a + 1].scales[i][2] - keyFrames[a].scales[i][2]) / keyFrames[a].duration * timingCounter;
+        borders[i].scale.x = keyFrames[a].scales[i][0] + (keyFrames[a + 1].scales[i][0] - keyFrames[a].scales[i][0]) / keyFrames[a].duration * timingCounter;
+        borders[i].scale.y = keyFrames[a].scales[i][1] + (keyFrames[a + 1].scales[i][1] - keyFrames[a].scales[i][1]) / keyFrames[a].duration * timingCounter;
+        borders[i].scale.z = keyFrames[a].scales[i][2] + (keyFrames[a + 1].scales[i][2] - keyFrames[a].scales[i][2]) / keyFrames[a].duration * timingCounter;
+        shapes[i].position.x = keyFrames[a].shapes[i][0] + (keyFrames[a + 1].shapes[i][0] - keyFrames[a].shapes[i][0]) / keyFrames[a].duration * timingCounter;
+        shapes[i].position.y = keyFrames[a].shapes[i][1] + (keyFrames[a + 1].shapes[i][1] - keyFrames[a].shapes[i][1]) / keyFrames[a].duration * timingCounter;
+        shapes[i].position.z = keyFrames[a].shapes[i][2] + (keyFrames[a + 1].shapes[i][2] - keyFrames[a].shapes[i][2]) / keyFrames[a].duration * timingCounter;
+        shapes[i].rotation.x = keyFrames[a].shapes[i][3] + (keyFrames[a + 1].shapes[i][3] - keyFrames[a].shapes[i][3]) / keyFrames[a].duration * timingCounter;
+        shapes[i].rotation.y = keyFrames[a].shapes[i][4] + (keyFrames[a + 1].shapes[i][4] - keyFrames[a].shapes[i][4]) / keyFrames[a].duration * timingCounter;
+        shapes[i].rotation.z = keyFrames[a].shapes[i][5] + (keyFrames[a + 1].shapes[i][5] - keyFrames[a].shapes[i][5]) / keyFrames[a].duration * timingCounter;
+        borders[i].position.x = keyFrames[a].shapes[i][0] + (keyFrames[a + 1].shapes[i][0] - keyFrames[a].shapes[i][0]) / keyFrames[a].duration * timingCounter;
+        borders[i].position.y = keyFrames[a].shapes[i][1] + (keyFrames[a + 1].shapes[i][1] - keyFrames[a].shapes[i][1]) / keyFrames[a].duration * timingCounter;
+        borders[i].position.z = keyFrames[a].shapes[i][2] + (keyFrames[a + 1].shapes[i][2] - keyFrames[a].shapes[i][2]) / keyFrames[a].duration * timingCounter;
+        borders[i].rotation.x = keyFrames[a].shapes[i][3] + (keyFrames[a + 1].shapes[i][3] - keyFrames[a].shapes[i][3]) / keyFrames[a].duration * timingCounter;
+        borders[i].rotation.y = keyFrames[a].shapes[i][4] + (keyFrames[a + 1].shapes[i][4] - keyFrames[a].shapes[i][4]) / keyFrames[a].duration * timingCounter;
+        borders[i].rotation.z = keyFrames[a].shapes[i][5] + (keyFrames[a + 1].shapes[i][5] - keyFrames[a].shapes[i][5]) / keyFrames[a].duration * timingCounter;
+        shapes[i].material.color.r = keyFrames[a].color[i][0] + (keyFrames[a + 1].color[i][0] - keyFrames[a].color[i][0]) / keyFrames[a].duration * timingCounter;
+        shapes[i].material.color.g = keyFrames[a].color[i][1] + (keyFrames[a + 1].color[i][1] - keyFrames[a].color[i][1]) / keyFrames[a].duration * timingCounter;
+        shapes[i].material.color.b = keyFrames[a].color[i][2] + (keyFrames[a + 1].color[i][2] - keyFrames[a].color[i][2]) / keyFrames[a].duration * timingCounter;
+        borders[i].material.color.r = keyFrames[a].borderColor[i][0] + (keyFrames[a + 1].borderColor[i][0] - keyFrames[a].borderColor[i][0]) / keyFrames[a].duration * timingCounter;
+        borders[i].material.color.g = keyFrames[a].borderColor[i][1] + (keyFrames[a + 1].borderColor[i][1] - keyFrames[a].borderColor[i][1]) / keyFrames[a].duration * timingCounter;
+        borders[i].material.color.b = keyFrames[a].borderColor[i][2] + (keyFrames[a + 1].borderColor[i][2] - keyFrames[a].borderColor[i][2]) / keyFrames[a].duration * timingCounter;
     }
 }
