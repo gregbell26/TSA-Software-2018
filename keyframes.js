@@ -1,3 +1,5 @@
+var timelineScale = 0;
+
 function addFrame(){
     if(usingTutorial){
         confirm("Now change some dimensions, colors, or positions, add a keyframe, then press play.");
@@ -30,12 +32,17 @@ function addFrame(){
     updateTimeline();
 }
 function updateTimeline(){
+    var duration = 0;
+    for(var i=0; i<keyFrames.length-1; i++){
+        duration+=keyFrames[i].duration;
+    }
+    timelineScale = duration/(window.innerWidth-20);
     var timeline = document.getElementById("timeline");
     timeline.innerHTML = "";
-    var currentX = 0;
+    var currentX = 10;
     for(var i=0; i<keyFrames.length; i++){
         timeline.innerHTML += ("<div style='position: absolute; left: "+currentX+"px; width: 5px; bottom: 10px; height: 50px; background-color: #00FF00;'></div>");
-        currentX+=keyFrames[i].duration/20;
+        currentX+=keyFrames[i].duration/timelineScale;
     }
     console.log("done")
 }
@@ -294,8 +301,8 @@ function getSceneBackground(){
 }
 
 function timelineScrub(pageX){
-    var frameValue = (pageX)*20;
-    console.log(frameValue);
+    var frameValue = (pageX-10)*timelineScale;
+    // console.log(frameValue);
     if(frameValue>=0){
         var frames = 0;
         var a;
