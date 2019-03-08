@@ -32,9 +32,9 @@ function addFrame(){
 function updateTimeline(){
     var timeline = document.getElementById("timeline");
     timeline.innerHTML = "";
-    var currentX = 5;
+    var currentX = 0;
     for(var i=0; i<keyFrames.length; i++){
-        timeline.innerHTML += ("<div style='position: absolute; left: "+currentX+"px; width: 10px; bottom: 10px; height: 50px; background-color: green;'></div>");
+        timeline.innerHTML += ("<div style='position: absolute; left: "+currentX+"px; width: 5px; bottom: 10px; height: 50px; background-color: #00FF00;'></div>");
         currentX+=keyFrames[i].duration/20;
     }
     console.log("done")
@@ -291,4 +291,66 @@ function getColors(s){
 
 function getSceneBackground(){
 
+}
+
+function timelineScrub(pageX){
+    var frameValue = (pageX)*20;
+    console.log(frameValue);
+    if(frameValue>=0){
+        var frames = 0;
+        var a;
+        for(var i=0; i<keyFrames.length-1; i++){
+            if(frameValue>=frames && frameValue<frames+keyFrames[i].duration){
+                a = i;
+                break;
+            }
+            else{
+                frames+=keyFrames[i].duration;
+            }
+        }
+        if(a!=null) {
+            var timingCounter = frameValue-frames;
+            xPosition = keyFrames[a].xPosition + (keyFrames[a + 1].xPosition - keyFrames[a].xPosition) / keyFrames[a].duration * timingCounter;
+            yPosition = keyFrames[a].yPosition + (keyFrames[a + 1].yPosition - keyFrames[a].yPosition) / keyFrames[a].duration * timingCounter;
+            zPosition = keyFrames[a].zPosition + (keyFrames[a + 1].zPosition - keyFrames[a].zPosition) / keyFrames[a].duration * timingCounter;
+            scene.background.r = keyFrames[a].scene.color[0] + (keyFrames[a + 1].scene.color[0] - keyFrames[a].scene.color[0]) / keyFrames[a].duration * timingCounter;
+            scene.background.g = keyFrames[a].scene.color[1] + (keyFrames[a + 1].scene.color[1] - keyFrames[a].scene.color[1]) / keyFrames[a].duration * timingCounter;
+            scene.background.b = keyFrames[a].scene.color[2] + (keyFrames[a + 1].scene.color[2] - keyFrames[a].scene.color[2]) / keyFrames[a].duration * timingCounter;
+            scene.scale.x = keyFrames[a].scene.scale[0] + (keyFrames[a + 1].scene.scale[0] - keyFrames[a].scene.scale[0]) / keyFrames[a].duration * timingCounter;
+            scene.scale.y = keyFrames[a].scene.scale[1] + (keyFrames[a + 1].scene.scale[1] - keyFrames[a].scene.scale[1]) / keyFrames[a].duration * timingCounter;
+            scene.scale.z = keyFrames[a].scene.scale[2] + (keyFrames[a + 1].scene.scale[2] - keyFrames[a].scene.scale[2]) / keyFrames[a].duration * timingCounter;
+            scene.rotation.x = keyFrames[a].scene.rotation[0] + (keyFrames[a + 1].scene.rotation[0] - keyFrames[a].scene.rotation[0]) / keyFrames[a].duration * timingCounter;
+            scene.rotation.y = keyFrames[a].scene.rotation[1] + (keyFrames[a + 1].scene.rotation[1] - keyFrames[a].scene.rotation[1]) / keyFrames[a].duration * timingCounter;
+            scene.rotation.z = keyFrames[a].scene.rotation[2] + (keyFrames[a + 1].scene.rotation[2] - keyFrames[a].scene.rotation[2]) / keyFrames[a].duration * timingCounter;
+            scene.position.x = keyFrames[a].scene.position[0] + (keyFrames[a + 1].scene.position[0] - keyFrames[a].scene.position[0]) / keyFrames[a].duration * timingCounter;
+            scene.position.y = keyFrames[a].scene.position[1] + (keyFrames[a + 1].scene.position[1] - keyFrames[a].scene.position[1]) / keyFrames[a].duration * timingCounter;
+            scene.position.z = keyFrames[a].scene.position[2] + (keyFrames[a + 1].scene.position[2] - keyFrames[a].scene.position[2]) / keyFrames[a].duration * timingCounter;
+            for (var i = 0; i < keyFrames[a].scales.length; i++) {
+                scales[i][0] = keyFrames[a].scales[i][0] + (keyFrames[a + 1].scales[i][0] - keyFrames[a].scales[i][0]) / keyFrames[a].duration * timingCounter;
+                scales[i][1] = keyFrames[a].scales[i][1] + (keyFrames[a + 1].scales[i][1] - keyFrames[a].scales[i][1]) / keyFrames[a].duration * timingCounter;
+                scales[i][2] = keyFrames[a].scales[i][2] + (keyFrames[a + 1].scales[i][2] - keyFrames[a].scales[i][2]) / keyFrames[a].duration * timingCounter;
+                borders[i].scale.x = keyFrames[a].scales[i][0] + (keyFrames[a + 1].scales[i][0] - keyFrames[a].scales[i][0]) / keyFrames[a].duration * timingCounter;
+                borders[i].scale.y = keyFrames[a].scales[i][1] + (keyFrames[a + 1].scales[i][1] - keyFrames[a].scales[i][1]) / keyFrames[a].duration * timingCounter;
+                borders[i].scale.z = keyFrames[a].scales[i][2] + (keyFrames[a + 1].scales[i][2] - keyFrames[a].scales[i][2]) / keyFrames[a].duration * timingCounter;
+                shapes[i].position.x = keyFrames[a].shapes[i][0] + (keyFrames[a + 1].shapes[i][0] - keyFrames[a].shapes[i][0]) / keyFrames[a].duration * timingCounter;
+                shapes[i].position.y = keyFrames[a].shapes[i][1] + (keyFrames[a + 1].shapes[i][1] - keyFrames[a].shapes[i][1]) / keyFrames[a].duration * timingCounter;
+                shapes[i].position.z = keyFrames[a].shapes[i][2] + (keyFrames[a + 1].shapes[i][2] - keyFrames[a].shapes[i][2]) / keyFrames[a].duration * timingCounter;
+                shapes[i].rotation.x = keyFrames[a].shapes[i][3] + (keyFrames[a + 1].shapes[i][3] - keyFrames[a].shapes[i][3]) / keyFrames[a].duration * timingCounter;
+                shapes[i].rotation.y = keyFrames[a].shapes[i][4] + (keyFrames[a + 1].shapes[i][4] - keyFrames[a].shapes[i][4]) / keyFrames[a].duration * timingCounter;
+                shapes[i].rotation.z = keyFrames[a].shapes[i][5] + (keyFrames[a + 1].shapes[i][5] - keyFrames[a].shapes[i][5]) / keyFrames[a].duration * timingCounter;
+                borders[i].position.x = keyFrames[a].shapes[i][0] + (keyFrames[a + 1].shapes[i][0] - keyFrames[a].shapes[i][0]) / keyFrames[a].duration * timingCounter;
+                borders[i].position.y = keyFrames[a].shapes[i][1] + (keyFrames[a + 1].shapes[i][1] - keyFrames[a].shapes[i][1]) / keyFrames[a].duration * timingCounter;
+                borders[i].position.z = keyFrames[a].shapes[i][2] + (keyFrames[a + 1].shapes[i][2] - keyFrames[a].shapes[i][2]) / keyFrames[a].duration * timingCounter;
+                borders[i].rotation.x = keyFrames[a].shapes[i][3] + (keyFrames[a + 1].shapes[i][3] - keyFrames[a].shapes[i][3]) / keyFrames[a].duration * timingCounter;
+                borders[i].rotation.y = keyFrames[a].shapes[i][4] + (keyFrames[a + 1].shapes[i][4] - keyFrames[a].shapes[i][4]) / keyFrames[a].duration * timingCounter;
+                borders[i].rotation.z = keyFrames[a].shapes[i][5] + (keyFrames[a + 1].shapes[i][5] - keyFrames[a].shapes[i][5]) / keyFrames[a].duration * timingCounter;
+                shapes[i].material.color.r = keyFrames[a].color[i][0] + (keyFrames[a + 1].color[i][0] - keyFrames[a].color[i][0]) / keyFrames[a].duration * timingCounter;
+                shapes[i].material.color.g = keyFrames[a].color[i][1] + (keyFrames[a + 1].color[i][1] - keyFrames[a].color[i][1]) / keyFrames[a].duration * timingCounter;
+                shapes[i].material.color.b = keyFrames[a].color[i][2] + (keyFrames[a + 1].color[i][2] - keyFrames[a].color[i][2]) / keyFrames[a].duration * timingCounter;
+                borders[i].material.color.r = keyFrames[a].borderColor[i][0] + (keyFrames[a + 1].borderColor[i][0] - keyFrames[a].borderColor[i][0]) / keyFrames[a].duration * timingCounter;
+                borders[i].material.color.g = keyFrames[a].borderColor[i][1] + (keyFrames[a + 1].borderColor[i][1] - keyFrames[a].borderColor[i][1]) / keyFrames[a].duration * timingCounter;
+                borders[i].material.color.b = keyFrames[a].borderColor[i][2] + (keyFrames[a + 1].borderColor[i][2] - keyFrames[a].borderColor[i][2]) / keyFrames[a].duration * timingCounter;
+            }
+        }
+    }
 }
