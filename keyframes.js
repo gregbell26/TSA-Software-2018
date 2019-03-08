@@ -194,7 +194,7 @@ function updateAnimation(timingCounter,a){
     //stuff for circular camera rotation
     if(lockCamera) {
         if(circleCameraRotation){
-            if(timingCounter <= 10) {
+            if(timingCounter <= 10 || !animationRunning) {
                 zoom1Z = Math.pow(Math.pow(keyFrames[a].xPosition, 2) + Math.pow(keyFrames[a].zPosition, 2), .5);
                 zoom1 = Math.pow((Math.pow(zoom1Z, 2) + Math.pow(keyFrames[a].yPosition, 2)), .5);//zoom1 calc here
                 console.log("f1zoomZ " + zoom1Z);
