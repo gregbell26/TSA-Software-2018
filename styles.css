@@ -335,3 +335,11 @@ select{
 .startButton:hover {
     background-color: #808080;
 }
+#playhead{
+    position:absolute;
+    bottom: 10px;
+    width: 3px;
+    height: 50px;
+    background-color: blue;
+    left: 11px;
+}

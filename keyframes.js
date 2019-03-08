@@ -118,6 +118,7 @@ function playAnimation(frameValue) {
             var frames = 0;
             var a;
             var timingCounter;
+            var prevDuration = 0;
             for (var i = 0; i < keyFrames.length - 1; i++) {
                 if (frameValue >= frames && frameValue < frames + keyFrames[i].duration) {
                     a = i;
@@ -129,12 +130,14 @@ function playAnimation(frameValue) {
             if (a != null) {
                 timingCounter = frameValue - frames;
                 animationTimer = setInterval(function () {
+                    document.getElementById("playhead").style.left = (11+(timingCounter+prevDuration)/timelineScale)+"px";
                     if (timingCounter < keyFrames[a].duration) {
                         timingCounter += 10;
                         updateAnimation(timingCounter,a);
                     }
                     else {
                         if (a < keyFrames.length - 2) {
+                            prevDuration+=keyFrames[a].duration;
                             a++;
                             timingCounter = 0;
                         }
@@ -205,6 +208,7 @@ function timelineScrub(pageX) {
             }
         }
         if (a != null) {
+            document.getElementById("playhead").style.left = (11+frameValue/timelineScale)+"px";
             var timingCounter = frameValue - frames;
             updateAnimation(timingCounter, a);
         }
