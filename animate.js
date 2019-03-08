@@ -3,13 +3,13 @@
 var animate = function () {
     requestAnimationFrame( animate );
         if (camera.position.x != xPosition)
-            camera.position.x = xPosition;
+            camera.position.x = xPosition + xCCenter + scene.position.x;
         if (camera.position.y != yPosition)
-            camera.position.y = yPosition;
+            camera.position.y = yPosition + yCCenter + scene.position.y;
         if (camera.position.z != zPosition)
-            camera.position.z = zPosition;
+            camera.position.z = zPosition + zCCenter + scene.position.z;
     //handling the shapes position in animation
-    camera.lookAt(scene.position);
+    camera.lookAt((scene.position.x+xCCenter),(scene.position.y+yCCenter),(scene.position.z+zCCenter));
     //points camera to scene
     for (var i=0; i<shapes.length; i++){
         if(shapes[i].scale.x!=scales[i][0])

@@ -77,7 +77,9 @@ var xStart = 0;//where the mouse started clicking x
 var yStart = 0;//where the mouse started clicking y
 var xPosStart = xPosition;//the cameras start position x
 var yPosStart = yPosition;//the cameras start position y
-
+var xCCenter = 0;//where the camera centers on x
+var yCCenter = 0;//where the camera centers on y
+var zCCenter = 0;//where the camera centers on z
 var mouseDown = false;//if the right mouse button is pressed down
 var inAnimationWindow = 0;//is the mouse in the animation window
 var lockCamera = true;//Whether or not the camera can free pan during animation
