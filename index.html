@@ -372,8 +372,10 @@
     <div id="userPage">
         <div id="userPageTrue" style="display: none;">
             <br>
-            <button onclick="signOut();">Sign Out</button>
-            <button onclick="saveCurrentToCloud()">Save Current Save to Cloud</button>
+            <button onclick="signOut();">Sign Out</button><br>
+            <button onclick="saveCurrentToCloud()">Save Current Save to Cloud</button><br>
+            <select id="loadCloudSelect">
+            </select><button onclick="loadCloudSave()">OK</button>
         </div>
         <div id="userPageFalse">
             <h5>Sign in:</h5>

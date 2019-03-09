@@ -51,8 +51,30 @@ function cameraMenu(){
 function userMenu(){
     document.getElementById("userPage").style.display = "inherit";
     document.getElementById("settingsBackground").style.display = "inherit";
+    if(user!=null){
+        firestore.collection("lists").doc(user.uid).get().then(function(doc){
+            if(doc.exists){
+                var data = doc.data();
+                document.getElementById("loadCloudSelect").innerHTML = "";
+                for (var key in data) {
+                    if (!data.hasOwnProperty(key)) continue;
+                    document.getElementById("loadCloudSelect").innerHTML += "<option value='"+key+"'>"+key+"</option>";
+                }
+            }
+        })
+    }
 }
 
+function loadCloudSave(){
+    var file = document.getElementById("loadCloudSelect").value;
+    firebase.storage().ref().child(user.uid+"/"+file).getDownloadURL().then(function(url){
+        $.ajax({url:url, success: function(result){
+            var res = JSON.parse(result)
+            console.log(res);
+            }});
+    });
+
+}
 
 function hideAll(){
     //used to make correct menus show up, and the wrong menus don't show up. This is called every time we open a menu.
