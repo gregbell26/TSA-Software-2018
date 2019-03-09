@@ -144,7 +144,26 @@ var saveSubSystem = {
         if(localStorage.getItem("fileNames") !== null) {
             this.saveFileNamesList = JSON.parse(localStorage.getItem("fileNames"));
         }
-    }
+    },
 
+    generateFileForCurrentSave : function (){
+        var textVal;
+        if(localStorage.getItem("text:"+this.fileName)!=null){
+            textVal = JSON.parse(localStorage.getItem("text:"+this.fileName));
+        }
+        var json = {
+            edits: parseInt(localStorage.getItem(this.fileName)),
+            keyFrames: keyFrames,
+            scales: scales,
+            shapes: this.convertShapeObjs(),
+            text: textVal,
+        }
+        return this.createBlobText(JSON.stringify(json));
+    },
+
+    createBlobText : function (text) {
+            var data = new Blob([text], {type: 'text/plain'});
+            return data;
+    }
 
 };

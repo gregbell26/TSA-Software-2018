@@ -3,6 +3,11 @@
 <head>
     <script>if (typeof module === 'object') {window.module = module; module = undefined;}</script><!--This lets Electron run external script files-->
     <script src="three.js"></script><!--imports the THREE.js library-->
+    <script src="https://www.gstatic.com/firebasejs/5.8.6/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/5.8.6/firebase-auth.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/5.8.6/firebase-storage.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/5.8.6/firebase-firestore.js"></script>
+    <script src="firebase.js"></script>
     <link rel="stylesheet" href="material-icons.css"><!--imports the icons-->
     <link rel="stylesheet" href="material.blue-light_blue.min.css"><!--imports the Material Design Lite CSS-->
     <script defer src="material.min.js"></script><!--imports the Material Design Lite Javascript, for interactive elements-->
@@ -73,6 +78,7 @@
         <button onfocus="this.blur()" class="material-icons md-48 topButton" id="saveButton" onclick="saveSubSystem.save()">save_alt</button>
         <button onfocus="this.blur()" onclick="openSettings()" class="material-icons md-48 topButton" id="settingsButton">settings</button>
         <button onfocus="this.blur()" class="material-icons md-48 topButton" id="sceneButton" onclick="sceneMenu()">aspect_ratio</button>
+        <button onfocus="this.blur()" class="material-icons md-48 topButton" id="userButton" onclick="userMenu()">person</button>
         <div class="mdl-tooltip" data-mdl-for="listButton">
             Shapes List
         </div>
@@ -360,17 +366,34 @@
         <button onclick="saveSubSystem.deleteSave(saveSubSystem.fileName);" class="mdl-button mdl-js-button mdl-button--raised startButton" style="color:black !important;">Delete Active Save File</button>
         <p>Note the when you delete a save it will reload.</p>
 
-
         <!--Basic settings menu for things like Zoom Sensitivity, Mouse Sensitivity, and Theme-->
     </div>
-    <div id="mainWindow">
+    <div id="mainWindow"></div>
+    <div id="userPage">
+        <div id="userPageTrue" style="display: none;">
+            <br>
+            <button onclick="signOut();">Sign Out</button>
+            <button onclick="saveCurrentToCloud()">Save Current Save to Cloud</button>
+        </div>
+        <div id="userPageFalse">
+            <h5>Sign in:</h5>
+            Email:<br>
+            <input type="email" id="signInEmail"><br>
+            Password:<br>
+            <input type="password" id="signInPassword"><br>
+            <button onclick="signIn(document.getElementById('signInEmail').value,document.getElementById('signInPassword').value);">Sign In</button>
+            <h5>Create an account:</h5>
+            Email:<br>
+            <input type="email" id="accountEmail"><br>
+            Password:<br>
+            <input type="password" id="accountPassword"><br>
+            Confirm Password:<br>
+            <input type="password" id="accountConfirm"><br>
+            <button onclick="createAccount(document.getElementById('accountEmail').value,document.getElementById('accountPassword').value,document.getElementById('accountConfirm').value)">Create Account</button>
+        </div>
     </div>
-    <div id="timeline">
-
-    </div>
-    <div id="playhead">
-
-    </div>
+    <div id="timeline"></div>
+    <div id="playhead"></div>
     <script src="utils.js"></script>
     <script src="menus.js"></script>
     <script src="keyframes.js"></script>

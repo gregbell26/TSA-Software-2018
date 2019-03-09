@@ -48,7 +48,10 @@ function cameraMenu(){
     console.log("Showed Camera")
 
 }
-
+function userMenu(){
+    document.getElementById("userPage").style.display = "inherit";
+    document.getElementById("settingsBackground").style.display = "inherit";
+}
 
 
 function hideAll(){
@@ -149,6 +152,7 @@ function openSettings(){
 function closeSettings(){
     document.getElementById("settingsPage").style.display = "none";
     document.getElementById("settingsBackground").style.display = "none";
+    document.getElementById("userPage").style.display = "none";
     settingsOpen = false;
 }
 
