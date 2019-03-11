@@ -65,17 +65,6 @@ function userMenu(){
     }
 }
 
-function loadCloudSave(){
-    var file = document.getElementById("loadCloudSelect").value;
-    firebase.storage().ref().child(user.uid+"/"+file).getDownloadURL().then(function(url){
-        $.ajax({url:url, success: function(result){
-            var res = JSON.parse(result)
-            console.log(res);
-            }});
-    });
-
-}
-
 function hideAll(){
     //used to make correct menus show up, and the wrong menus don't show up. This is called every time we open a menu.
     document.getElementById("sideBarList").style.display="none";

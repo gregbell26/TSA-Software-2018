@@ -157,13 +157,27 @@ var saveSubSystem = {
             scales: scales,
             shapes: this.convertShapeObjs(),
             text: textVal,
-        }
+        };
         return this.createBlobText(JSON.stringify(json));
     },
 
     createBlobText : function (text) {
             var data = new Blob([text], {type: 'text/plain'});
             return data;
+    },
+
+    saveFromCloud : function(result,name){
+        localStorage.setItem(name, result.edits);
+        localStorage.setItem('keyFrames:' + name, JSON.stringify(result.keyFrames));
+        localStorage.setItem('shapes:' + name, JSON.stringify(result.shapes));
+        localStorage.setItem('scales:' + name, JSON.stringify(result.scales));
+        console.log("Save of " + name + " complete.");
+        var list = JSON.parse(localStorage.getItem("fileNames"));
+        list.push(name);
+        localStorage.setItem("fileNames",JSON.stringify(list));
+        if(name===this.fileName){
+            location.reload();
+        }
     }
 
 };

@@ -68,3 +68,13 @@ function saveCurrentToCloud(){
         firestore.collection("lists").doc(user.uid).set(json,{ merge: true });
     });
 }
+function loadCloudSave(){
+    var file = document.getElementById("loadCloudSelect").value;
+    firebase.storage().ref().child(user.uid+"/"+file).getDownloadURL().then(function(url){
+        $.ajax({url:url, success: function(result){
+                var res = JSON.parse(result);
+                saveSubSystem.saveFromCloud(res,file.split(".json")[0]);
+            }});
+    });
+
+}
