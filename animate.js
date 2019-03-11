@@ -9,7 +9,7 @@ var animate = function () {
         if (camera.position.z != zPosition)
             camera.position.z = zPosition + zCCenter + scene.position.z;
     //handling the shapes position in animation
-    camera.lookAt((scene.position.x+xCCenter),(scene.position.y+yCCenter),(scene.position.z+zCCenter));
+    camera.lookAt((scene.position.x+xCLook),(scene.position.y+yCLook),(scene.position.z+zCLook));
     //points camera to scene
     for (var i=0; i<shapes.length; i++){
         if(shapes[i].scale.x!=scales[i][0])
