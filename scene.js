@@ -23,6 +23,7 @@ function onWindowResize(){
     //This is called whenever a user resizes the window. This makes sure that the scene window stays the correct size and aspect ratio.
     camera.aspect = document.getElementById("mainWindow").offsetWidth/document.getElementById("mainWindow").offsetHeight;
     camera.updateProjectionMatrix();
+    updateTimeline();
 
     renderer.setSize( document.getElementById("mainWindow").offsetWidth, document.getElementById("mainWindow").offsetHeight );
 

@@ -202,7 +202,7 @@ html, body {
 }
 
 #userButton{
-    right:240px;
+    right:120px;
 }
 
 .topButton{
@@ -334,4 +334,27 @@ select{
 
 .startButton:hover {
     background-color: #808080;
+}
+#playhead{
+    position:absolute;
+    bottom: 10px;
+    width: 3px;
+    height: 50px;
+    background-color: blue;
+    left: 11px;
+}
+#userPage{
+    position:absolute;
+    margin: 0;
+    top: 50%;
+    left: 50%;
+    width: 500px;
+    height: 500px;
+    margin-right: -50%;
+    transform: translate(-50%, -50%);
+    z-index: 6;
+    background-color: #FFFFFF;
+    opacity:1;
+    display: none;
+    padding-left: 10px;
 }

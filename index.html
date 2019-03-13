@@ -3,9 +3,15 @@
 <head>
     <script>if (typeof module === 'object') {window.module = module; module = undefined;}</script><!--This lets Electron run external script files-->
     <script src="three.js"></script><!--imports the THREE.js library-->
+    <script src="https://www.gstatic.com/firebasejs/5.8.6/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/5.8.6/firebase-auth.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/5.8.6/firebase-storage.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/5.8.6/firebase-firestore.js"></script>
+    <script src="firebase.js"></script>
     <link rel="stylesheet" href="material-icons.css"><!--imports the icons-->
     <link rel="stylesheet" href="material.blue-light_blue.min.css"><!--imports the Material Design Lite CSS-->
     <script defer src="material.min.js"></script><!--imports the Material Design Lite Javascript, for interactive elements-->
+    <script defer src="ccapture.js"></script>
     <link href="roboto.css" rel="stylesheet"><!--Imports the Roboto font-->
     <script src="jquery-3.3.1.min.js"></script><!--Imports the JQuery library, mainly used to clean up code.-->
     <link rel="stylesheet" href="styles.css"><!--Imports the main style sheet-->
@@ -72,6 +78,7 @@
         <button onfocus="this.blur()" class="material-icons md-48 topButton" id="saveButton" onclick="saveSubSystem.save()">save_alt</button>
         <button onfocus="this.blur()" onclick="openSettings()" class="material-icons md-48 topButton" id="settingsButton">settings</button>
         <button onfocus="this.blur()" class="material-icons md-48 topButton" id="sceneButton" onclick="sceneMenu()">aspect_ratio</button>
+        <button onfocus="this.blur()" class="material-icons md-48 topButton" id="userButton" onclick="userMenu()">person</button>
         <div class="mdl-tooltip" data-mdl-for="listButton">
             Shapes List
         </div>
@@ -261,8 +268,9 @@
         </div>
         
         <div id="keyMenu">
-            <button onfocus="this.blur()" class="mdl-button mdl-js-button mdl-button--fab mdl-button--colored" onclick="playAnimation()"><i class="material-icons">play_arrow</i></button>
+            <button onfocus="this.blur()" class="mdl-button mdl-js-button mdl-button--fab mdl-button--colored" onclick="playAnimation(0)"><i class="material-icons">play_arrow</i></button>
             <button onfocus="this.blur()" class="mdl-button mdl-js-button mdl-button--fab mdl-button--colored" onclick="loop()"><i class="material-icons">autorenew</i></button>
+            <button onfocus="this.blur()" class="mdl-button mdl-js-button mdl-button--fab mdl-button--colored" onclick="record()"><i class="material-icons">videocam</i></button>
             <button onfocus="this.blur()" class="objButton addButton"onclick="addFrame(); saveSubSystem.save()">Add Keyframe</button>
             <label for="chkbox1" class="mdl-checkbox mdl-js-checkbox mdl-js-ripple-effect">
                 <input type="checkbox" id="chkbox1" class="mdl-checkbox__input" checked onchange="changeCameraLock()">
@@ -358,14 +366,36 @@
         <button onclick="saveSubSystem.deleteSave(saveSubSystem.fileName);" class="mdl-button mdl-js-button mdl-button--raised startButton" style="color:black !important;">Delete Active Save File</button>
         <p>Note the when you delete a save it will reload.</p>
 
-
         <!--Basic settings menu for things like Zoom Sensitivity, Mouse Sensitivity, and Theme-->
     </div>
-    <div id="mainWindow">
+    <div id="mainWindow"></div>
+    <div id="userPage">
+        <div id="userPageTrue" style="display: none;">
+            <br>
+            <button onclick="signOut();">Sign Out</button><br>
+            <button onclick="saveCurrentToCloud()">Save Current Save to Cloud</button><br>
+            <select id="loadCloudSelect">
+            </select><button onclick="loadCloudSave()">OK</button>
+        </div>
+        <div id="userPageFalse">
+            <h5>Sign in:</h5>
+            Email:<br>
+            <input type="email" id="signInEmail"><br>
+            Password:<br>
+            <input type="password" id="signInPassword"><br>
+            <button onclick="signIn(document.getElementById('signInEmail').value,document.getElementById('signInPassword').value);">Sign In</button>
+            <h5>Create an account:</h5>
+            Email:<br>
+            <input type="email" id="accountEmail"><br>
+            Password:<br>
+            <input type="password" id="accountPassword"><br>
+            Confirm Password:<br>
+            <input type="password" id="accountConfirm"><br>
+            <button onclick="createAccount(document.getElementById('accountEmail').value,document.getElementById('accountPassword').value,document.getElementById('accountConfirm').value)">Create Account</button>
+        </div>
     </div>
-    <div id="timeline">
-
-    </div>
+    <div id="timeline"></div>
+    <div id="playhead"></div>
     <script src="utils.js"></script>
     <script src="menus.js"></script>
     <script src="keyframes.js"></script>
@@ -389,6 +419,7 @@
     <script src="Shapes/ring.js"></script>
     <script src="Shapes/text.js"></script>
     <script src="Camera.js"></script>
+    <script src="keyevents.js"></script>
 <!-- inserts all of the javascript programs to be used in the program-->
 	
 </body>

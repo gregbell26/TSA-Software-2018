@@ -6,3 +6,12 @@
 *
 *
 * */
+
+
+
+/*
+* This will play a fancy animation as it hides the welcome screen
+* */
+function hideWelcomeScreen(){
+
+}
