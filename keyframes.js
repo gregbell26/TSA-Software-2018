@@ -15,11 +15,17 @@ function addFrame(){
             xPosition: xPosition,
             yPosition: yPosition,
             zPosition: zPosition,
+            xCCenter:xCCenter,
+            yCCenter:yCCenter,
+            zCCenter:zCCenter,
+            xCLook: xCLook,
+            yCLook: yCLook,
+            zCLook: zCLook,
             color: getColors(shapes),
             name: "Frame "+keyFrames.length.toString(),
             borderColor: getColors(borders),
             scene: {
-                color: [scene.background.r,scene.background.g,scene.background.b],
+                color: [scene.background.r, scene.background.g, scene.background.b],
                 scale: [scene.scale.x, scene.scale.y, scene.scale.z],
                 rotation: [scene.rotation.x, scene.rotation.y, scene.rotation.z],
                 position: [scene.position.x, scene.position.y, scene.position.z],
@@ -217,10 +223,19 @@ function timelineScrub(pageX) {
 }
 
 function updateAnimation(timingCounter,a){
-    //stuff for circular camera rotation
-    if(lockCamera) {
-        if(circleCameraRotation){
-            if(timingCounter <= 10 || !animationRunning) {
+
+    if(lockCamera) {//camera stuff
+        if(timingCounter <= 10 || !animationRunning) {//this stuff only executes the first iteration or through the timeline
+            xCLook = keyFrames[a].xCLook;
+            yCLook = keyFrames[a].yCLook;
+            zCLook = keyFrames[a].zCLook;
+        }
+
+        if(circleCameraRotation){//stuff for circular camera rotation
+            if(timingCounter <= 10 || !animationRunning) {//this stuff only executes the first iteration or through the timeline AND only if the Camera has circular movement
+                xCCenter = keyFrames[a].xCCenter;
+                yCCenter = keyFrames[a].yCCenter;
+                zCCenter = keyFrames[a].zCCenter;
                 zoom1Z = Math.pow(Math.pow(keyFrames[a].xPosition, 2) + Math.pow(keyFrames[a].zPosition, 2), .5);
                 zoom1 = Math.pow((Math.pow(zoom1Z, 2) + Math.pow(keyFrames[a].yPosition, 2)), .5);//zoom1 calc here
                 console.log("f1zoomZ " + zoom1Z);
@@ -283,7 +298,7 @@ function updateAnimation(timingCounter,a){
                 console.log("moving zoomZ " + zoomZChange);
                 console.log("moving X " + MvX/Math.PI*180+"°");
                 console.log("moving Y " + MvY/Math.PI*180+"°");
-            }
+            }//this stuff only executes every time
             yPosition = (zoom1  +  zoomChange/keyFrames[a].duration * timingCounter) * (Math.sin(cameraRy1+MvY/keyFrames[a].duration * timingCounter));
             xPosition = (zoom1Z + zoomZChange/keyFrames[a].duration * timingCounter) * (Math.cos(cameraRz1+MvX/keyFrames[a].duration * timingCounter));
             zPosition = (zoom1Z + zoomZChange/keyFrames[a].duration * timingCounter) * (Math.sin(cameraRz1+MvX/keyFrames[a].duration * timingCounter));
@@ -296,13 +311,14 @@ function updateAnimation(timingCounter,a){
                 xPosition = 0;
             if(isNaN(zPosition))
                 zPosition = 0;
+
         }
-        else {
+        else {//the default camera movement
             xPosition = keyFrames[a].xPosition + (keyFrames[a + 1].xPosition - keyFrames[a].xPosition) / keyFrames[a].duration * timingCounter;
             yPosition = keyFrames[a].yPosition + (keyFrames[a + 1].yPosition - keyFrames[a].yPosition) / keyFrames[a].duration * timingCounter;
             zPosition = keyFrames[a].zPosition + (keyFrames[a + 1].zPosition - keyFrames[a].zPosition) / keyFrames[a].duration * timingCounter;
         }
-    }
+    }//non camera stuff
     scene.background.r = keyFrames[a].scene.color[0] + (keyFrames[a + 1].scene.color[0] - keyFrames[a].scene.color[0]) / keyFrames[a].duration * timingCounter;
     scene.background.g = keyFrames[a].scene.color[1] + (keyFrames[a + 1].scene.color[1] - keyFrames[a].scene.color[1]) / keyFrames[a].duration * timingCounter;
     scene.background.b = keyFrames[a].scene.color[2] + (keyFrames[a + 1].scene.color[2] - keyFrames[a].scene.color[2]) / keyFrames[a].duration * timingCounter;
