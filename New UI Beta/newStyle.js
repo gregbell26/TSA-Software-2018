@@ -1,7 +1,7 @@
 /*
 *
 * This is the new style for the Animation program.
-* Will include dark Mode Detector
+* Will include dark Mode Detector, icon spacer, Suicide notes, And More!
 *
 *
 *
@@ -33,13 +33,19 @@ function loadSaveNames() {
     }
 }
 
+function navMenuIconSpacer(paddingDistance){
 
+}
+
+function showMenu(menuToShow){
+
+}
 function darkModeLoader(arg){
     var cssToLoad=document.createElement("link");
     if(arg === "DEVLOCK"){
         cssToLoad.setAttribute("rel", "stylesheet");
         cssToLoad.setAttribute("type", "text/css");
-        cssToLoad.setAttribute("href", "newStyle.css");
+        cssToLoad.setAttribute("href", "normalMode_Style.css");
         document.getElementsByTagName("head")[0].appendChild(cssToLoad);
     }
 
