@@ -6,42 +6,36 @@
 COLORS:
 Primary: #E5E5E5
 Secondary: #288945
-Accent: #00AF2D
-
-Shadows: #525252
+Accent: #00AF2D or #3877ff
 
 H1: #000
 H2: #282828
 P: #000
-.microP: #00AF2D
+.microP: #3877ff
 
  */
 
+/*
+-----------------------------------------------------------------------
+---------------------------KEYFRAMES-----------------------------------
+-----------------------------------------------------------------------
+*/
 
-/*Keyframes!*/
+/*
+------------------------WELCOME-SCREEN---------------------------------
+*/
 @keyframes ws_boxes {
     from{
         right: 0;
+        opacity: 1.0;
+    }
+    99.9%{
+        right: 100%;
+        opacity: 1.0;
     }
     to{
         right: 100%;
-    }
-}
-
-@keyframes ws_text {
-    from{
-        left: 10%;
-        top: 75%;
-    }
-    /*
-    50%{
-        top: 10%;
-
-    }
-    */
-    to{
-        left: 25%;
-        top: 10%;
+        opacity: 0.0;
     }
 }
 
@@ -57,7 +51,61 @@ P: #000
 
     }
 }
-/*General*/
+
+@keyframes ws_body_hide {
+    from {
+        opacity: 1.0;
+        top:25%;
+
+    }
+    to {
+        opacity: 0.0;
+        top: 100%
+
+    }
+}
+
+@keyframes welcomeScreen_hide {
+    0%{
+        border-radius: 0%;
+        top: 0%;
+        right:0%;
+    }
+    30%{
+        color:rgba(0,0,0,0);
+        border-radius: 150%;
+        min-height: 10%;
+        top: 50%;
+        right: 50%;
+        width: 100px;
+        height: 100px;
+    }
+    60%{
+        color:rgba(0,0,0,0);
+        border-radius: 150%;
+        min-height: 10%;
+        top: 50%;
+        right: 50%;
+        width: 100px;
+        height: 100px;
+    }
+    100%{
+        color:rgba(0,0,0,0);
+        border-radius: 150%;
+        min-height: 10%;
+        top: 50%;
+        right: 125%;
+        width: 100px;
+        height: 100px;
+    }
+
+}
+
+/*
+-----------------------------------------------------------------------
+----------------------------GENERAL------------------------------------
+-----------------------------------------------------------------------
+*/
 *{
     margin: 0;
     padding: 0;
@@ -73,7 +121,11 @@ h1{
 }
 
 
-/*Welcome Screen*/
+/*
+-----------------------------------------------------------------------
+------------------------WELCOME-SCREEN---------------------------------
+-----------------------------------------------------------------------
+*/
 #welcomeScreen {
     position: absolute;
     top:0;
@@ -83,43 +135,6 @@ h1{
     text-align: center;
     background-color: #288945;
     color: #E5E5E5;
-    /*
-    animation-delay: 8s;
-    animation-iteration-count: 1;
-    animation: wa_boxes 2s;
-    animation-fill-mode: forwards;
-    */
-
-}
-
-.ws_text{
-    animation-name: ws_text;
-    animation-delay:5s;
-    animation-duration: 1s;
-    animation-iteration-count: 1;
-    animation-fill-mode: forwards;
-    animation-timing-function: ease-in-out;
-}
-
-#ws_body{
-    display: block;
-    position: absolute;
-    /*background-color: #fff;*/
-    padding-left: 10px;
-    padding-right: 10px;
-    left: 25%;
-    top: 100%;
-    width: 35%;
-    height: 50%;
-    opacity: 0.0;
-
-    /*Animation Stuffs*/
-    animation-name: ws_body;
-    animation-delay: 5.5s;
-    animation-duration: 1s;
-    animation-iteration-count: 1;
-    animation-fill-mode: forwards;
-    animation-timing-function: ease-in-out;
 }
 
 #ws_box1{
@@ -132,7 +147,7 @@ h1{
     /*Animation Stuffs*/
     animation-name: ws_boxes;
     animation-duration: 1.3s;
-    animation-delay: 3s;
+    animation-delay: 1s;
     animation-iteration-count: 1;
     animation-fill-mode: forwards;
     animation-timing-function: ease-in-out;
@@ -144,15 +159,15 @@ h1{
     top:0;
     width: 100%;
     min-height: 100%;
-    background-color: #00AF2D;
+    background-color: #0071ce;
 
     /*Animation Stuffs*/
     animation-name: ws_boxes;
     animation-duration: 1.4s;
-    animation-delay: 3.5s;
+    animation-delay: 1.5s;
     animation-iteration-count: 1;
     animation-fill-mode: forwards;
-    animation-timing-function: ease-in;
+    animation-timing-function: ease-in-out;
 }
 
 #ws_box3 {
@@ -165,15 +180,60 @@ h1{
     /*Animation Stuffs*/
     animation-name: ws_boxes;
     animation-duration: 1.25s;
-    animation-delay: 3.51s;
+    animation-delay: 1.51s;
     animation-iteration-count: 1;
     animation-fill-mode: forwards;
-    animation-timing-function: ease-out;
+    animation-timing-function: ease-in-out;
+}
+
+#ws_body{
+    display: block;
+    position: absolute;
+    padding-left: 10px;
+    padding-right: 10px;
+    left: 25%;
+    top: 100%;
+    width: 35%;
+    height: 50%;
+    opacity: 0.0;
+
+    /*Animation Stuffs*/
+    animation-name: ws_body;
+    animation-delay: 3s;
+    animation-duration: 1s;
+    animation-iteration-count: 1;
+    animation-fill-mode: forwards;
+    animation-timing-function: ease-in-out;
 }
 
 
-/*Buttons*/
+#ws_body.ws_hide{
+    animation-name: ws_body_hide;
+    animation-delay: 10ms;
+    animation-duration: 1s;
+    animation-iteration-count: 1;
+    animation-fill-mode: forwards;
+    animation-timing-function: ease-in-out;
+}
+
+#welcomeScreen.ws_hide{
+    animation-name: welcomeScreen_hide;
+    animation-delay: 1.25s;
+    animation-duration: 1s;
+    animation-iteration-count: 1;
+    animation-fill-mode: forwards;
+    animation-timing-function: ease-in-out;
+    box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.30);
+}
+
+
+/*
+-----------------------------------------------------------------------
+----------------------------BUTTONS------------------------------------
+-----------------------------------------------------------------------
+*/
 .std_button{
+    all:initial;
     position: absolute;
     font-family: 'Roboto', sans-serif;
     font-size: 12pt;
@@ -194,11 +254,14 @@ h1{
 }
 
 .std_button.ws_color:hover{
-    background-color: #288945;
+    background-color: #0071ce;
     color: #E5E5E5;
-    box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.20);
+    box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.30);
 
 }
+
+
+
 
 
 

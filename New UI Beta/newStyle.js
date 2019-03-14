@@ -10,8 +10,37 @@
 
 
 /*
-* This will play a fancy animation as it hides the welcome screen
+* Adds class to hide the welcome screen in a cool animation
 * */
 function hideWelcomeScreen(){
+    document.getElementById("welcomeScreen").classList.add("ws_hide");
+    document.getElementById("ws_body").classList.add("ws_hide");
+}
+
+
+/*
+* Pseudo function for populating list with save names
+* Need to tie in with saveSubSystem
+* */
+function loadSaveNames() {
+    var loadSelector = document.getElementById("ws_loadMenu");
+    var options = ["3","32", "fdghjkl", "fghytfvbnm", "BULL"];
+// Populate list with options:
+    var opt;
+    for (var i = 0; i < options.length; i++) {
+        opt = options[i];
+        loadSelector.innerHTML += " <option onclick=\'saveSubSystem.setSaveToLoad = \" " + opt + " \"; hideWelcomeScreen();\' > " + opt + "</option>";
+    }
+}
+
+
+function darkModeLoader(arg){
+    var cssToLoad=document.createElement("link");
+    if(arg === "DEVLOCK"){
+        cssToLoad.setAttribute("rel", "stylesheet");
+        cssToLoad.setAttribute("type", "text/css");
+        cssToLoad.setAttribute("href", "newStyle.css");
+        document.getElementsByTagName("head")[0].appendChild(cssToLoad);
+    }
 
 }
