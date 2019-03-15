@@ -1,6 +1,7 @@
 function newCone(x, y, z, posX, posY, posZ, newColor, borderColor){
     var newGeometry = new THREE.ConeGeometry( 0.5, 1, 100); //function in three js that creates a new shape. 
-    var newMaterial = new THREE.MeshBasicMaterial({color: newColor}); 
+    var newMaterial = new THREE.MeshLambertMaterial({color: newColor});
+    newMaterial.lights = true;
     shapes[shapes.length]=new THREE.Mesh(newGeometry, newMaterial);  //merges the cone and the material into a shape
     var length = scales.length; 
     newGeometry.name = "cone"

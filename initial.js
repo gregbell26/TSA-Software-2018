@@ -12,6 +12,7 @@ scene.background = new THREE.Color("#000000");
 var camera = new THREE.PerspectiveCamera( 75, document.getElementById("mainWindow").offsetWidth/document.getElementById("mainWindow").offsetHeight, 0.1, 1000 );
 var renderer = new THREE.WebGLRenderer({logarithmicDepthBuffer: true });
 
+
 //create viewport size
 renderer.setSize( document.getElementById("mainWindow").offsetWidth, document.getElementById("mainWindow").offsetHeight );
 document.getElementById("mainWindow").appendChild( renderer.domElement );
@@ -156,6 +157,8 @@ function start() {
         keyFrames = saveSubSystem.loadSave();
         //has saves
     }
+    addLight();
+    addPointLight();
     showList()
 }
 

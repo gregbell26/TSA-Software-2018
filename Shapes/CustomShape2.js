@@ -1,6 +1,7 @@
 function newCustom2(x, y, z, posX, posY, posZ, newColor, borderColor, verticies, faces) {
     var newGeometry = new THREE.Geometry();
-    var newMaterial = new THREE.MeshBasicMaterial({ color: newColor });
+    var newMaterial = new THREE.MeshLambertMaterial({ color: newColor });
+    newMaterial.lights = true;
   // console.log(verticies);
    
     for(var i=0; i<verticies.length; i++){
