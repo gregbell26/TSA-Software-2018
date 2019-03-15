@@ -93,8 +93,8 @@ var zoom = 5;//the zoom on the cube
 var zoomZ = 5;//zoom with only X and Z
 //stuff for circular camera rotation
 var MvX, MvY;
-var cameraRz1, cameraRy1;
-var cameraRz2, cameraRy2;
+var Rz1, Ry1;
+var Rz2, Ry2;
 var zoom1, zoom1Z;
 var zoom2, zoom2Z;
 var zoomChange, zoomZChange;
