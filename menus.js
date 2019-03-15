@@ -48,8 +48,22 @@ function cameraMenu(){
     console.log("Showed Camera")
 
 }
-
-
+function userMenu(){
+    document.getElementById("userPage").style.display = "inherit";
+    document.getElementById("settingsBackground").style.display = "inherit";
+    if(user!=null){
+        firestore.collection("lists").doc(user.uid).get().then(function(doc){
+            if(doc.exists){
+                var data = doc.data();
+                document.getElementById("loadCloudSelect").innerHTML = "";
+                for (var key in data) {
+                    if (!data.hasOwnProperty(key)) continue;
+                    document.getElementById("loadCloudSelect").innerHTML += "<option value='"+key+"'>"+key+"</option>";
+                }
+            }
+        })
+    }
+}
 
 function hideAll(){
     //used to make correct menus show up, and the wrong menus don't show up. This is called every time we open a menu.
@@ -149,6 +163,7 @@ function openSettings(){
 function closeSettings(){
     document.getElementById("settingsPage").style.display = "none";
     document.getElementById("settingsBackground").style.display = "none";
+    document.getElementById("userPage").style.display = "none";
     settingsOpen = false;
 }
 

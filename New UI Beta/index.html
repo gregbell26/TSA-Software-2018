@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <script src="newStyle.js"></script>
+        <script>darkModeLoader("DEVLOCK")</script>
+        <!--<link rel="stylesheet" href="normalMode_Style.css"/>-->
+        <meta charset="UTF-8">
+        <title>-BETA-TSA 2018</title>
+    </head>
+
+    <body>
+        <div id="welcomeScreen">
+            <h1 style="left: 25%; top: 10%;">
+                Monarch Animation
+            </h1>
+            <div id="ws_box3">
+                <div id="ws_box2">
+                    <div id="ws_box1">
+                        <h1>
+                            Welcome to
+                        </h1>
+                    </div>
+                </div>
+            </div>
+            <div id="ws_body">
+                <span class="std_button ws_color" onclick="hideWelcomeScreen();" style="top:5%; left:30%;">Start from Scratch</span>
+                <select class="std_button ws_color" id="ws_loadMenu" onchange="hideWelcomeScreen()" style="top:20%; left:50%;">
+                    <option>Load Save</option>
+
+                </select>
+
+                <span class="std_button ws_color" onclick="hideWelcomeScreen();" style="top:5%; left:70%">View Torture</span>
+
+
+            </div>
+        </div>
+
+        <div id="nav_menu">
+            <span class="std_nav_button" id="nav_shapesList"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 68.35 68.35"><defs><style>.cls-1{fill:none;stroke:#000;stroke-miterlimit:10;stroke-width:3px;}</style></defs><title>nav_genericPlaceHolder</title><g id="Layer_2" data-name="Layer 2"><g id="Generic_Placeholder" data-name="Generic Placeholder"><line class="cls-1" x1="1.06" y1="1.06" x2="67.29" y2="67.29"/><line class="cls-1" x1="67.29" y1="1.06" x2="1.06" y2="67.29"/></g></g></svg></span>
+            <span class="std_nav_button" id="nav_newShape"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 68.35 68.35"><defs><style>.cls-1{fill:none;stroke:#000;stroke-miterlimit:10;stroke-width:3px;}</style></defs><title>nav_genericPlaceHolder</title><g id="Layer_2" data-name="Layer 2"><g id="Generic_Placeholder" data-name="Generic Placeholder"><line class="cls-1" x1="1.06" y1="1.06" x2="67.29" y2="67.29"/><line class="cls-1" x1="67.29" y1="1.06" x2="1.06" y2="67.29"/></g></g></svg></span>
+            <span class="std_nav_button" id="nav_camera"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 68.35 68.35"><defs><style>.cls-1{fill:none;stroke:#000;stroke-miterlimit:10;stroke-width:3px;}</style></defs><title>nav_genericPlaceHolder</title><g id="Layer_2" data-name="Layer 2"><g id="Generic_Placeholder" data-name="Generic Placeholder"><line class="cls-1" x1="1.06" y1="1.06" x2="67.29" y2="67.29"/><line class="cls-1" x1="67.29" y1="1.06" x2="1.06" y2="67.29"/></g></g></svg></span>
+            <span class="std_nav_button" id="nav_keyframes"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 68.35 68.35"><defs><style>.cls-1{fill:none;stroke:#000;stroke-miterlimit:10;stroke-width:3px;}</style></defs><title>nav_genericPlaceHolder</title><g id="Layer_2" data-name="Layer 2"><g id="Generic_Placeholder" data-name="Generic Placeholder"><line class="cls-1" x1="1.06" y1="1.06" x2="67.29" y2="67.29"/><line class="cls-1" x1="67.29" y1="1.06" x2="1.06" y2="67.29"/></g></g></svg></span>
+            <span class="std_nav_button" id="nav_seance"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 68.35 68.35"><defs><style>.cls-1{fill:none;stroke:#000;stroke-miterlimit:10;stroke-width:3px;}</style></defs><title>nav_genericPlaceHolder</title><g id="Layer_2" data-name="Layer 2"><g id="Generic_Placeholder" data-name="Generic Placeholder"><line class="cls-1" x1="1.06" y1="1.06" x2="67.29" y2="67.29"/><line class="cls-1" x1="67.29" y1="1.06" x2="1.06" y2="67.29"/></g></g></svg></span>
+        </div>
+
+        <div id="menu_container">
+            <div class="std_menu"></div>
+            <div class="std_menu"></div>
+            <div class="std_menu"></div>
+            <div class="std_menu"></div>
+            <div class="std_menu"></div>
+        </div>
+
+        <div id="3js_renderArea"></div>
+    </body>
+    <script>loadSaveNames();</script>
+</html>

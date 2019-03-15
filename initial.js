@@ -5,7 +5,8 @@ var loopAnimation = false;
 var animationTimer;
 var selectedShape = -1;
 var settingsOpen = false;
-
+// var capturer = new CCapture( { format: 'webm' } );
+var capturer;
 //sets up the viewport
 var scene = new THREE.Scene();
 scene.background = new THREE.Color("#000000");
@@ -78,13 +79,25 @@ var xStart = 0;//where the mouse started clicking x
 var yStart = 0;//where the mouse started clicking y
 var xPosStart = xPosition;//the cameras start position x
 var yPosStart = yPosition;//the cameras start position y
-
+var xCCenter = 0;//where the camera centers on x
+var yCCenter = 0;//where the camera centers on y
+var zCCenter = 0;//where the camera centers on z
+var xCLook = 0;//where the camera points to x
+var yCLook = 0;//where the camera points to y
+var zCLook = 0;//where the camera points to z
 var mouseDown = false;//if the right mouse button is pressed down
 var inAnimationWindow = 0;//is the mouse in the animation window
 var lockCamera = true;//Whether or not the camera can free pan during animation
 var circleCameraRotation = false;//Whether or not the camera rotates circularly and in and out rather than straight
 var zoom = 5;//the zoom on the cube
 var zoomZ = 5;//zoom with only X and Z
+//stuff for circular camera rotation
+var MvX, MvY;
+var cameraRz1, cameraRy1;
+var cameraRz2, cameraRy2;
+var zoom1, zoom1Z;
+var zoom2, zoom2Z;
+var zoomChange, zoomZChange;
 
 //Stuff for saves
 
@@ -129,6 +142,7 @@ function promptResponse(value) {
             saveSubSystem.setIsUsingSaves(true);
             saveSubSystem.setFileName(saveName, true);
             dialog.close();
+            updateTimeline();
         }
     }
 }
@@ -160,6 +174,8 @@ function start() {
     addLight();
     addPointLight();
     showList()
+
+    updateTimeline();
 }
 
 //

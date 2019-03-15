@@ -10,8 +10,7 @@ $(document).on('change', function (e) {
 });
 
 
-var saveSubSystem =
-{
+var saveSubSystem = {
     isUsingSaves : false,
     openPrevious : false,
     currentVer : 0,
@@ -145,7 +144,40 @@ var saveSubSystem =
         if(localStorage.getItem("fileNames") !== null) {
             this.saveFileNamesList = JSON.parse(localStorage.getItem("fileNames"));
         }
-    }
+    },
 
+    generateFileForCurrentSave : function (){
+        var textVal;
+        if(localStorage.getItem("text:"+this.fileName)!=null){
+            textVal = JSON.parse(localStorage.getItem("text:"+this.fileName));
+        }
+        var json = {
+            edits: parseInt(localStorage.getItem(this.fileName)),
+            keyFrames: keyFrames,
+            scales: scales,
+            shapes: this.convertShapeObjs(),
+            text: textVal,
+        };
+        return this.createBlobText(JSON.stringify(json));
+    },
+
+    createBlobText : function (text) {
+            var data = new Blob([text], {type: 'text/plain'});
+            return data;
+    },
+
+    saveFromCloud : function(result,name){
+        localStorage.setItem(name, result.edits);
+        localStorage.setItem('keyFrames:' + name, JSON.stringify(result.keyFrames));
+        localStorage.setItem('shapes:' + name, JSON.stringify(result.shapes));
+        localStorage.setItem('scales:' + name, JSON.stringify(result.scales));
+        console.log("Save of " + name + " complete.");
+        var list = JSON.parse(localStorage.getItem("fileNames"));
+        list.push(name);
+        localStorage.setItem("fileNames",JSON.stringify(list));
+        if(name===this.fileName){
+            location.reload();
+        }
+    }
 
 };
