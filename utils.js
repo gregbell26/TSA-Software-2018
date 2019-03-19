@@ -67,15 +67,15 @@ function addShape(){
     }
 }
 
-function addLight() {
-    let light = new THREE.AmbientLight("#ffffff", 0.3);
-    scene.add(light);
-    console.log("Light Added");
-}
-
-function addPointLight() {
-    let light = new THREE.SpotLight("#ffffff");
-    light.position.set(100, 100, 100);
-    scene.add(light);
-    console.log("Point light added")
-}
+// function addLight() {
+//     let light = new THREE.AmbientLight("#ffffff", 0.3);
+//     scene.add(light);
+//     console.log("Light Added");
+// }
+//
+// function addPointLight() {
+//     let light = new THREE.SpotLight("#ffffff");
+//     light.position.set(100, 100, 100);
+//     scene.add(light);
+//     console.log("Point light added")
+// }
