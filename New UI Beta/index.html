@@ -34,24 +34,72 @@
 
             </div>
         </div>
+        <div id="mainBody">
+            <div id="nav_menu">
+                <span class="std_nav_button" id="nav_shapesList" onclick="showMenu('menu_shapesList')">
+                    <object type="image/svg+xml" data="NOTYET.svg" class="nav_buttonIcon">NAV_GEN</object>
+                </span>
+                <span class="std_nav_button" id="nav_newShape" onclick="showMenu('menu_newShapes')"></span>
+                <span class="std_nav_button" id="nav_camera" onclick="showMenu('menu_camera')"></span>
+                <span class="std_nav_button" id="nav_keyframes" onclick="showMenu('menu_keyframes')"></span>
+                <span class="std_nav_button" id="nav_scene" onclick="showMenu('menu_scene')"></span>
+            </div>
 
-        <div id="nav_menu">
-            <span class="std_nav_button" id="nav_shapesList"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 68.35 68.35"><defs><style>.cls-1{fill:none;stroke:#000;stroke-miterlimit:10;stroke-width:3px;}</style></defs><title>nav_genericPlaceHolder</title><g id="Layer_2" data-name="Layer 2"><g id="Generic_Placeholder" data-name="Generic Placeholder"><line class="cls-1" x1="1.06" y1="1.06" x2="67.29" y2="67.29"/><line class="cls-1" x1="67.29" y1="1.06" x2="1.06" y2="67.29"/></g></g></svg></span>
-            <span class="std_nav_button" id="nav_newShape"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 68.35 68.35"><defs><style>.cls-1{fill:none;stroke:#000;stroke-miterlimit:10;stroke-width:3px;}</style></defs><title>nav_genericPlaceHolder</title><g id="Layer_2" data-name="Layer 2"><g id="Generic_Placeholder" data-name="Generic Placeholder"><line class="cls-1" x1="1.06" y1="1.06" x2="67.29" y2="67.29"/><line class="cls-1" x1="67.29" y1="1.06" x2="1.06" y2="67.29"/></g></g></svg></span>
-            <span class="std_nav_button" id="nav_camera"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 68.35 68.35"><defs><style>.cls-1{fill:none;stroke:#000;stroke-miterlimit:10;stroke-width:3px;}</style></defs><title>nav_genericPlaceHolder</title><g id="Layer_2" data-name="Layer 2"><g id="Generic_Placeholder" data-name="Generic Placeholder"><line class="cls-1" x1="1.06" y1="1.06" x2="67.29" y2="67.29"/><line class="cls-1" x1="67.29" y1="1.06" x2="1.06" y2="67.29"/></g></g></svg></span>
-            <span class="std_nav_button" id="nav_keyframes"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 68.35 68.35"><defs><style>.cls-1{fill:none;stroke:#000;stroke-miterlimit:10;stroke-width:3px;}</style></defs><title>nav_genericPlaceHolder</title><g id="Layer_2" data-name="Layer 2"><g id="Generic_Placeholder" data-name="Generic Placeholder"><line class="cls-1" x1="1.06" y1="1.06" x2="67.29" y2="67.29"/><line class="cls-1" x1="67.29" y1="1.06" x2="1.06" y2="67.29"/></g></g></svg></span>
-            <span class="std_nav_button" id="nav_seance"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 68.35 68.35"><defs><style>.cls-1{fill:none;stroke:#000;stroke-miterlimit:10;stroke-width:3px;}</style></defs><title>nav_genericPlaceHolder</title><g id="Layer_2" data-name="Layer 2"><g id="Generic_Placeholder" data-name="Generic Placeholder"><line class="cls-1" x1="1.06" y1="1.06" x2="67.29" y2="67.29"/><line class="cls-1" x1="67.29" y1="1.06" x2="1.06" y2="67.29"/></g></g></svg></span>
+            <div id="menu_container">
+                <div class="std_menu menu_hidden" id="menu_shapesList">
+                    <h2>
+                        Menu_ShapesList
+                    </h2>
+                    <div class="std_textBox">
+                        <input type="text" required>
+                        <span class="highlight"></span>
+                        <span class="bar"></span>
+                        <label>Input</label>
+                    </div>
+                    <div class="std_textBox">
+                        <input type="text" required>
+                        <span class="highlight"></span>
+                        <span class="bar"></span>
+                        <label>Input</label>
+                    </div>
+                    <div class="std_textBox">
+                        <input type="text" required>
+                        <span class="highlight"></span>
+                        <span class="bar"></span>
+                        <label>Input</label>
+                    </div>
+                    <div class="std_textBox">
+                        <input type="text" required>
+                        <span class="highlight"></span>
+                        <span class="bar"></span>
+                        <label>Input</label>
+                    </div>
+
+
+
+                </div>
+                <div class="std_menu menu_hidden" id="menu_newShapes">
+                    <h2>
+                        Menu_NewShapes
+                    </h2>
+
+                </div>
+                <div class="std_menu menu_hidden" id="menu_camera">
+
+
+                </div>
+                <div class="std_menu menu_hidden" id="menu_keyframes">
+
+
+                </div>
+                <div class="std_menu menu_hidden" id="menu_scene">
+
+
+                </div>
+            </div>
+
+            <div id="3js_renderArea"></div>
         </div>
-
-        <div id="menu_container">
-            <div class="std_menu"></div>
-            <div class="std_menu"></div>
-            <div class="std_menu"></div>
-            <div class="std_menu"></div>
-            <div class="std_menu"></div>
-        </div>
-
-        <div id="3js_renderArea"></div>
     </body>
     <script>loadSaveNames();</script>
 </html>
