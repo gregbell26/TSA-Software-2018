@@ -4,6 +4,7 @@ var animationRunning = false;
 var loopAnimation = false;
 var animationTimer;
 var selectedShape = -1;
+let selectedLight = -1;
 var settingsOpen = false;
 // var capturer = new CCapture( { format: 'webm' } );
 var capturer;
@@ -20,6 +21,7 @@ document.getElementById("mainWindow").appendChild( renderer.domElement );
 
 //lists of cool things
 var shapes = [];
+let lights = [];
 var scales = [];
 var keyFrames = [];
 var borders = [];
@@ -161,6 +163,7 @@ function start() {
     keyFrames =[];
     borders= [];
     selectedShape = 0;
+    selectedLight = 0;
 
     if((saveSelector.options[saveSelector.selectedIndex].value === "GET NAME" || !saveSubSystem.openPrevious) && saveSubSystem.isUsingSaves){
         promptResp = 1;
@@ -177,8 +180,8 @@ function start() {
         keyFrames = saveSubSystem.loadSave();
         //has saves
     }
-    addLight();
-    addPointLight();
+    // addLight();
+    // addPointLight();
     showList()
 
     updateTimeline();
