@@ -2,11 +2,12 @@
 
 function showList(){
     //Brings up a list of all of the shapes that current exist in the scene. Called when the "Show List" button is clicked.
-    var sideBar=document.getElementById('listButtons');
+    let sideBar=document.getElementById('listButtons');
     let sideBarLight = document.getElementById("lightButtons");
     hideAll();
     document.getElementById("sideBarList").style.display="inherit";
     sideBar.innerHTML="";
+    sideBarLight.innerHTML="";
     for (let i=0; i<shapes.length; i++){
         //console.log("Shape "+(i+1)+": "+shapes[i]['geometry']['type']);
         sideBar.innerHTML+="<button onclick='setSelectedShape("+i+")'>"+(i+1)+": "+shapes[i].geometry.name+" <div style='width: 14px; height: 14px; background-color: #"+shapes[i].material.color.getHexString()+"; display: inline-block'></div></button>";
@@ -24,7 +25,7 @@ function showList(){
 function setSelectedShape(num){
     selectedShape = num;
     document.getElementById('boxSelected').innerHTML="#"+(selectedShape+1);
-    var color = "#";
+    let color = "#";
     color += rgbToHex(shapes[selectedShape].material.color['r']*255)
     color += rgbToHex(shapes[selectedShape].material.color['g']*255)
     color += rgbToHex(shapes[selectedShape].material.color['b']*255)
@@ -73,9 +74,9 @@ function userMenu(){
     if(user!=null){
         firestore.collection("lists").doc(user.uid).get().then(function(doc){
             if(doc.exists){
-                var data = doc.data();
+                let data = doc.data();
                 document.getElementById("loadCloudSelect").innerHTML = "";
-                for (var key in data) {
+                for (let key in data) {
                     if (!data.hasOwnProperty(key)) continue;
                     document.getElementById("loadCloudSelect").innerHTML += "<option value='"+key+"'>"+key+"</option>";
                 }
@@ -180,7 +181,7 @@ function lightMenu() {
 
 
 function borderVisibility(){
-    var checked = document.getElementById("borderVisibility").checked;
+    let checked = document.getElementById("borderVisibility").checked;
     if(checked){
         borders[selectedShape].visible = true;
         document.getElementById("borderMenu").style.display="inherit";

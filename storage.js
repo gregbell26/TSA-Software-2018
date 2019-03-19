@@ -10,7 +10,7 @@ $(document).on('change', function (e) {
 });
 
 
-var saveSubSystem = {
+let saveSubSystem = {
     isUsingSaves : false,
     openPrevious : false,
     currentVer : 0,
@@ -58,13 +58,13 @@ var saveSubSystem = {
 
     addText: function(){
         //used to track a TextGeometry so that the text can be rebuilt when the application is reloaded.
-        var value = document.getElementById("createText").value;
-        var currentText = localStorage.getItem("text:"+this.fileName);
+        let value = document.getElementById("createText").value;
+        let currentText = localStorage.getItem("text:"+this.fileName);
         if(currentText==null){
           localStorage.setItem("text:"+this.fileName,JSON.stringify([value]));
         }
         else{
-          var parsed = JSON.parse(currentText);
+          let parsed = JSON.parse(currentText);
           parsed.push(value);
           localStorage.setItem("text:"+this.fileName,JSON.stringify(parsed));
         }
@@ -72,8 +72,8 @@ var saveSubSystem = {
 
     removeText: function(text){
         //called whenever a text object is removed from the scene.
-        var parsed = JSON.parse(localStorage.getItem("text:"+this.fileName));
-        var index = parsed.indexOf(text);
+        let parsed = JSON.parse(localStorage.getItem("text:"+this.fileName));
+        let index = parsed.indexOf(text);
         if(index>=0){
             parsed.splice(index,1);
             localStorage.setItem("text:"+this.fileName,JSON.stringify(parsed));
@@ -121,8 +121,8 @@ var saveSubSystem = {
 
     convertShapeObjs : function () {
         //converts the Three.js shapes into a savable array of JSONs.
-        var arr = [];
-        for (var i = 0; i < shapes.length; i++) {
+        let arr = [];
+        for (let i = 0; i < shapes.length; i++) {
             arr.push({
                 type: shapes[i].geometry.type,
                 positionX: shapes[i].position.x,
@@ -147,11 +147,11 @@ var saveSubSystem = {
     },
 
     generateFileForCurrentSave : function (){
-        var textVal;
+        let textVal;
         if(localStorage.getItem("text:"+this.fileName)!=null){
             textVal = JSON.parse(localStorage.getItem("text:"+this.fileName));
         }
-        var json = {
+        let json = {
             edits: parseInt(localStorage.getItem(this.fileName)),
             keyFrames: keyFrames,
             scales: scales,
@@ -162,7 +162,7 @@ var saveSubSystem = {
     },
 
     createBlobText : function (text) {
-            var data = new Blob([text], {type: 'text/plain'});
+            let data = new Blob([text], {type: 'text/plain'});
             return data;
     },
 
@@ -172,7 +172,7 @@ var saveSubSystem = {
         localStorage.setItem('shapes:' + name, JSON.stringify(result.shapes));
         localStorage.setItem('scales:' + name, JSON.stringify(result.scales));
         console.log("Save of " + name + " complete.");
-        var list = JSON.parse(localStorage.getItem("fileNames"));
+        let list = JSON.parse(localStorage.getItem("fileNames"));
         list.push(name);
         localStorage.setItem("fileNames",JSON.stringify(list));
         if(name===this.fileName){
