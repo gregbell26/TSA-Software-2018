@@ -1,23 +1,29 @@
 function newCustom2(x, y, z, posX, posY, posZ, newColor, borderColor, verticies, faces) {
     var newGeometry = new THREE.Geometry();
+    var newMaterial = new THREE.MeshLambertMaterial({ color: newColor });
+    newMaterial.lights = true;
+  // console.log(verticies);
+   
+    for(var i=0; i<verticies.length; i++){
+   newGeometry.vertices.push(new THREE.Vector3(verticies[i][0], verticies[i][1], verticies[i][2]));
     var newMaterial = new THREE.MeshBasicMaterial({ color: newColor });
-  
+
 
 //geometry.addAttribute( 'position', new THREE.BufferAttribute( verticies, 3 ) );
 //var material = new THREE.MeshBasicMaterial( { color: 0xff0000 } );
 //var mesh = new THREE.Mesh( geometry, material );
 
-  
+
   for(var i=0; i<verticies.length; i++){
 
   newGeometry.vertices.push(new THREE.Vector3(verticies[i][0], verticies[i][1], verticies[i][2]));
-   
+
    //console.log(newGeometry.vertices[i]);
    if(verticies[i].length>3){
     //alert(verticies[i]);
 }
    //console.log("Added " +verticies[i]);
-} 
+}
    // console.log(newGeometry.vertices[0]);
     for( var i=0; i<faces.length; i++){
       for(var i2=0; i2<faces[i].length; i2++){
@@ -71,7 +77,7 @@ function newCustom2(x, y, z, posX, posY, posZ, newColor, borderColor, verticies,
     //console.log( newGeometry.geometry.isBufferGeometry );
     console.log(verticies.length+" Vertices");
 console.log(faces.length+" Faces");
-  
+
     shapes[shapes.length] = new THREE.Mesh(newGeometry, newMaterial);
 
     var geometry = new THREE.BufferGeometry().fromGeometry(newGeometry); //where error is

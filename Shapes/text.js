@@ -16,7 +16,8 @@ function newText(x, y, z, posX, posY, posZ, newColor, borderColor){
             bevelSize: 0.05,
             bevelSegments: 2.5
         } );
-        let newMaterial = new THREE.MeshBasicMaterial({color: newColor});
+        let newMaterial = new THREE.MeshLambertMaterial({color: newColor});
+        newMaterial.lights = true;
         shapes[shapes.length]=new THREE.Mesh(newGeometry, newMaterial);
         let length = scales.length;
         newGeometry.name = "text";
