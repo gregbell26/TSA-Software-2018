@@ -296,12 +296,12 @@ function updateAnimation(timingCounter,a){
             console.log("moving X " + MvXv/Math.PI*180+"°");
             console.log("moving Y " + MvYv/Math.PI*180+"°");
         }
-        yCLook = (zoom1v  +  zoomChangev/keyFrames[a].duration * timingCounter) * (Math.sin(Ry1v+MvYv/keyFrames[a].duration * timingCounter));
-        xCLook = (zoom1Zv + zoomZChangev/keyFrames[a].duration * timingCounter) * (Math.cos(Rz1v+MvXv/keyFrames[a].duration * timingCounter));
-        zCLook = (zoom1Zv + zoomZChangev/keyFrames[a].duration * timingCounter) * (Math.sin(Rz1v+MvXv/keyFrames[a].duration * timingCounter));
-        console.log(xCLook);
-        console.log(yCLook);
-        console.log(zCLook);
+        //yCLook = (zoom1v  +  zoomChangev/keyFrames[a].duration * timingCounter) * (Math.sin(Ry1v+MvYv/keyFrames[a].duration * timingCounter));
+        //xCLook = (zoom1Zv + zoomZChangev/keyFrames[a].duration * timingCounter) * (Math.cos(Rz1v+MvXv/keyFrames[a].duration * timingCounter));
+        //zCLook = (zoom1Zv + zoomZChangev/keyFrames[a].duration * timingCounter) * (Math.sin(Rz1v+MvXv/keyFrames[a].duration * timingCounter));
+        //console.log(xCLook);
+        //console.log(yCLook);
+        //console.log(zCLook);
         if(circleCameraRotation){//stuff for circular camera rotation
             if(timingCounter <= 10 || !animationRunning) {//this stuff only executes the first iteration or through the timeline AND only if the Camera has circular movement
                 zoom1Z = Math.pow(Math.pow(keyFrames[a].xPosition, 2) + Math.pow(keyFrames[a].zPosition, 2), .5);
