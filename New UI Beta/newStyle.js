@@ -33,11 +33,18 @@ function loadSaveNames() {
     }
 }
 
-function navMenuIconSpacer(paddingDistance){
 
-}
-
+var activeMenu ="init";
 function showMenu(menuToShow){
+    if(activeMenu !== "init") {
+        document.getElementById(activeMenu).classList.remove("menu_show");
+        document.getElementById(activeMenu).classList.add("menu_hidden");
+    }
+
+    document.getElementById(menuToShow).classList.remove("menu_hidden");
+    document.getElementById(menuToShow).classList.add("menu_show");
+
+    activeMenu = menuToShow;
 
 }
 function darkModeLoader(arg){

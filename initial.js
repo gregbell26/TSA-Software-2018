@@ -95,12 +95,18 @@ var zoom = 5;//the zoom on the cube
 var zoomZ = 5;//zoom with only X and Z
 //stuff for circular camera rotation
 var MvX, MvY;
-var cameraRz1, cameraRy1;
-var cameraRz2, cameraRy2;
+var Rz1, Ry1;
+var Rz2, Ry2;
 var zoom1, zoom1Z;
 var zoom2, zoom2Z;
 var zoomChange, zoomZChange;
-
+//stuff for circular view rotation
+var MvXv, MvYv;
+var Rz1v, Ry1v;
+var Rz2v, Ry2v;
+var zoom1v, zoom1Zv;
+var zoom2v, zoom2Zv;
+var zoomChangev, zoomZChangev;
 //Stuff for saves
 
 saveSubSystem.loadSaveNames();//Loads the names of the saves into an arraylist
