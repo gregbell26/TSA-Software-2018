@@ -20,6 +20,7 @@ let saveSubSystem = {
     loadedKeyframes : [],
     loadedShapes : [],
     loadedScales : [],
+    loadedLights: [],
 
 
     setFileName : function(fileName, newFile) {
@@ -50,6 +51,7 @@ let saveSubSystem = {
             localStorage.setItem(this.fileName, this.currentVer);
             localStorage.setItem('keyFrames:' + this.fileName, JSON.stringify(keyFrames));
             localStorage.setItem('shapes:' + this.fileName, JSON.stringify(this.convertShapeObjs()));
+            localStorage.setItem('lights:' + this.fileName, JSON.stringify(this.convertLightObjs()));
             localStorage.setItem('scales:' + this.fileName, JSON.stringify(scales));
             console.log("Save of " + this.fileName + " complete.")
         }
@@ -88,7 +90,9 @@ let saveSubSystem = {
             this.loadedKeyframes = JSON.parse(localStorage.getItem("keyFrames:"+this.fileName));
             this.loadedScales = JSON.parse(localStorage.getItem("scales:"+this.fileName));
             this.loadedShapes = JSON.parse(localStorage.getItem("shapes:"+this.fileName));
+            this.loadedLights = JSON.parse(localStorage.getItem("lights:"+this.fileName));
             processShapeData(this.loadedShapes, this.loadedScales, JSON.parse(localStorage.getItem("text:"+this.fileName)));
+            this.loadLights();
         }
         else{
             console.log("Save not found.");
@@ -96,6 +100,37 @@ let saveSubSystem = {
         }
         return this.loadedKeyframes;
 
+    },
+
+    loadLights: function(){
+        if(this.loadedLights==null){
+            return;
+        }
+        for(var i=0; i<this.loadedLights.length; i++){
+          switch(this.loadedLights[i].type){
+              case "PointLight":
+                  newPointLight(convertColor(this.loadedLights[i].r,this.loadedLights[i].g,this.loadedLights[i].b),this.loadedLights[i].intensity*100);
+                  break;
+              case "AmbientLight":
+                  newAmbientLight(convertColor(this.loadedLights[i].r,this.loadedLights[i].g,this.loadedLights[i].b),this.loadedLights[i].intensity*100);
+                  break;
+              case "DirectionalLight":
+                  newDirectionalLight(convertColor(this.loadedLights[i].r,this.loadedLights[i].g,this.loadedLights[i].b),this.loadedLights[i].intensity*100);
+                  break;
+              case "SpotLight":
+                  newSpotLight(convertColor(this.loadedLights[i].r,this.loadedLights[i].g,this.loadedLights[i].b),this.loadedLights[i].intensity*100);
+                  break;
+              case "HemisphereLight":
+                  newHemisphereLight(convertColor(this.loadedLights[i].r,this.loadedLights[i].g,this.loadedLights[i].b),convertColor(this.loadedLights[i].r,this.loadedLights[i].g,this.loadedLights[i].b),this.loadedLights[i].intensity*100);
+                  break;
+              default:
+                  newPointLight(convertColor(this.loadedLights[i].r,this.loadedLights[i].g,this.loadedLights[i].b),this.loadedLights[i].intensity*100);
+                  break;
+          }
+          moveLight("x",this.loadedLights[i].positionX);
+          moveLight("y",this.loadedLights[i].positionY);
+          moveLight("z",this.loadedLights[i].positionZ);
+        }
     },
 
     deleteSave: function(saveToDelete) {
@@ -134,6 +169,24 @@ let saveSubSystem = {
                 borderR: borders[i].material.color.r,
                 borderG: borders[i].material.color.g,
                 borderB: borders[i].material.color.b,
+            })
+        }
+        return arr;
+    },
+
+    convertLightObjs : function () {
+        //converts the Three.js lights into a savable array of JSONs.
+        let arr = [];
+        for (let i = 0; i < lights.length; i++) {
+            arr.push({
+                type: lights[i].type,
+                positionX: lights[i].position.x,
+                positionY: lights[i].position.y,
+                positionZ: lights[i].position.z,
+                r: lights[i].color.r,
+                g: lights[i].color.g,
+                b: lights[i].color.b,
+                intensity: lights[i].intensity,
             })
         }
         return arr;
