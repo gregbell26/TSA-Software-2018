@@ -2,7 +2,7 @@
 <html lang="en">
     <head>
         <script src="newStyle.js"></script>
-        <script>darkModeLoader("DEVLOCK")</script>
+        <script>stylesheetLoader("DEVLOCK")</script>
         <!--<link rel="stylesheet" href="normalMode_Style.css"/>-->
         <meta charset="UTF-8">
         <title>-BETA-TSA 2018</title>
@@ -83,7 +83,7 @@
 
 
 
-                </div>
+                </div>x
                 <div class="std_menu menu_hidden" id="menu_newShapes">
                     <h2>
                         Menu_Buttons
@@ -117,9 +117,21 @@
                 </div>
                 <div class="std_menu menu_hidden" id="menu_scene">
 
+                </div>
+            </div>
+            <div id="std_timeline">
+                <div onmouseover="showTimeLine();" id="timeline_triggerArea"></div>
+                <div id="timeline_buttonContainer">
+                    <span class="timeLine_button" id="timeline_addKeyframe"></span>
+                    <span class="timeLine_button" id="timeline_removeKeyframe"></span>
+                    <span class="timeLine_button" id="timeline_play"></span>
+                    <span class="timeLine_button" id="timeline_repeat"></span>
+                </div>
+                <div id="timeline_body">
 
                 </div>
             </div>
+
 
             <div id="3js_renderArea"></div>
         </div>

@@ -139,6 +139,16 @@ P: #000
 }
 
 /*
+------------------------------------TIMELINE----------------------------------------
+*/
+
+@keyframes timeline_show {
+    from {
+        top:100%
+    }
+}
+
+/*
 -----------------------------------------------------------------------
 ----------------------------GENERAL------------------------------------
 -----------------------------------------------------------------------
@@ -175,7 +185,7 @@ h3{/*For Menus Mainly*/
 
 #mainBody{
     position: fixed;
-    z-index: -2;
+    z-index: 5;
     height: 100%;
     width: 100%;
 }
@@ -195,6 +205,7 @@ h3{/*For Menus Mainly*/
     text-align: center;
     background-color: #288945;
     color: #E5E5E5;
+    z-index: 10;
 }
 
 #ws_box1{
@@ -332,9 +343,6 @@ h3{/*For Menus Mainly*/
 
 }
 
-
-
-
 /*
 -------------------------------STD_BUTTON--------------------------------
 */
@@ -366,6 +374,7 @@ h3{/*For Menus Mainly*/
     display: block;
     left: 50%;
     width: 0;
+    height: 3px;
     overflow: initial;
     bottom: -5px;
 }
@@ -378,6 +387,18 @@ h3{/*For Menus Mainly*/
     position: relative;
     background: #0071ce;
     transition: 0.2s ease all;
+}
+
+
+/*
+---------------------------------TIMELINE_BUTTON-----------------------------------
+*/
+.timeLine_button{
+    display: block;
+    background-color: #288945;
+    border-radius: 100%;
+    height: 100px;
+    width: 100px;
 }
 
 /*
@@ -453,6 +474,23 @@ h3{/*For Menus Mainly*/
     animation-fill-mode: forwards;
     animation-timing-function: ease-in-out;
 }
+/*
+-----------------------------------------------------------------------
+----------------------------TIMELINE-----------------------------------
+-----------------------------------------------------------------------
+*/
+#std_timeline{
+    overflow: initial;
+    position: relative;
+    bottom:100%;
+    z-index: 6;
+}
+#std_timeline.timeline_show{
+    animation-name: timeline_show;
+    animation-duration: ;
+}
+
+
 
 /*
 -----------------------------------------------------------------------
