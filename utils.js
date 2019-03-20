@@ -6,7 +6,7 @@ function changeColor(value){
 
 function rgbToHex (num) {
     //creates a hex value out of a number, used to set the html color elements, which require hex strings.
-    var hex = Number(num).toString(16);
+    let hex = Number(num).toString(16);
     if (hex.length < 2) {
         hex = "0" + hex;
     }
@@ -21,7 +21,7 @@ function addShape(){
         document.getElementById("tutorialArrow").style.display="none";
     }
     document.getElementById('createTextMenu').style.display = 'none';
-    var shapeType = document.getElementById("shapeSelector").value;
+    let shapeType = document.getElementById("shapeSelector").value;
     saveSubSystem.save();
     //creates a 0x0x0 shape based on the selector element, with a red color and black borders.
     switch(shapeType){

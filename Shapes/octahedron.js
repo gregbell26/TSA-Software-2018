@@ -1,6 +1,7 @@
 function newOctahedron(x, y, z, posX, posY, posZ, newColor, borderColor){
     var newGeometry = new THREE.OctahedronGeometry( 0.5, 0);
-    var newMaterial = new THREE.MeshBasicMaterial({color: newColor});
+    var newMaterial = new THREE.MeshLambertMaterial({color: newColor});
+    newMaterial.lights = true;
     shapes[shapes.length]=new THREE.Mesh(newGeometry, newMaterial);
     var length = scales.length;
     newGeometry.name = "octahedron"

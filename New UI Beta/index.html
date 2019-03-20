@@ -1,14 +1,16 @@
 <!DOCTYPE html>
 <html lang="en">
     <head>
-        <link rel="stylesheet" href="newStyle.css"/>
+        <script src="newStyle.js"></script>
+        <script>stylesheetLoader("DEVLOCK")</script>
+        <!--<link rel="stylesheet" href="normalMode_Style.css"/>-->
         <meta charset="UTF-8">
         <title>-BETA-TSA 2018</title>
     </head>
 
     <body>
         <div id="welcomeScreen">
-            <h1 class="ws_text">
+            <h1 style="left: 25%; top: 10%;">
                 Monarch Animation
             </h1>
             <div id="ws_box3">
@@ -21,14 +23,118 @@
                 </div>
             </div>
             <div id="ws_body">
-                <span class="std_button ws_color" style="top:5%; left:30%;">Start from Scratch</span>
-                <span class="std_button ws_color" style="top:20%; left:50%;;">Load Save</span>
-                <span class="std_button ws_color" style="top:5%; left:70%">View Torture</span>
+                <span class="std_button ws_color" onclick="hideWelcomeScreen();" style="top:5%; left:30%;">Start from Scratch</span>
+                <select class="std_button ws_color" id="ws_loadMenu" onchange="hideWelcomeScreen()" style="top:20%; left:50%;">
+                    <option>Load Save</option>
+
+                </select>
+
+                <span class="std_button ws_color" onclick="hideWelcomeScreen();" style="top:5%; left:70%">View Torture</span>
 
 
             </div>
         </div>
+        <div id="mainBody">
+            <div id="nav_menu">
+                <span class="std_nav_button" id="nav_shapesList" onclick="showMenu('menu_shapesList')">
+                    <object type="image/svg+xml" data="NOTYET.svg" class="nav_buttonIcon">NAV_GEN</object>
+                </span>
+                <span class="std_nav_button" id="nav_newShape" onclick="showMenu('menu_newShapes')"></span>
+                <span class="std_nav_button" id="nav_camera" onclick="showMenu('menu_camera')"></span>
+                <span class="std_nav_button" id="nav_keyframes" onclick="showMenu('menu_keyframes')"></span>
+                <span class="std_nav_button" id="nav_scene" onclick="showMenu('menu_scene')"></span>
+            </div>
+
+            <div id="menu_container">
+                <div class="std_menu menu_hidden" id="menu_shapesList">
+                    <h2>
+                        Menu_Input
+                    </h2>
+                    <h3>
+                        Sub Titles
+                    </h3>
+                    <div class="std_input">
+                        <input type="text" required>
+                        <span class="input_highlight"></span>
+                        <span class="input_bar"></span>
+                        <label>std_textBox</label>
+                    </div>
+                    <div class="std_input">
+                        <input type="text" required>
+                        <span class="input_highlight"></span>
+                        <span class="input_bar"></span>
+                        <label>std_textBox</label>
+                    </div>
+                    <h3>
+                        Sub Titles
+                    </h3>
+                    <div class="std_input">
+                        <input type="text" required>
+                        <span class="input_highlight"></span>
+                        <span class="input_bar"></span>
+                        <label>std_textBox</label>
+                    </div>
+                    <div class="std_input">
+                        <input type="text" required>
+                        <span class="input_highlight"></span>
+                        <span class="input_bar"></span>
+                        <label>std_textBox</label>
+                    </div>
 
 
+
+                </div>x
+                <div class="std_menu menu_hidden" id="menu_newShapes">
+                    <h2>
+                        Menu_Buttons
+                    </h2>
+                    <h3>
+                        Sub Titles
+                    </h3>
+                    <div class="std_body_button">
+                        <span class="button_body">std_buttons</span>
+                        <span class="button_bar"></span>
+                    </div>
+                    <div class="std_body_button">
+                        <span class="button_body">std_buttons</span>
+                        <span class="button_bar"></span>
+                    </div>
+                    <h3>
+                        Sub Titles
+                    </h3>
+
+                </div>
+                <div class="std_menu menu_hidden" id="menu_camera">
+                    <h2>
+                        Menu_Lists
+                    </h2>
+
+
+                </div>
+                <div class="std_menu menu_hidden" id="menu_keyframes">
+
+
+                </div>
+                <div class="std_menu menu_hidden" id="menu_scene">
+
+                </div>
+            </div>
+            <div id="std_timeline">
+                <div onmouseover="showTimeLine();" id="timeline_triggerArea"></div>
+                <div id="timeline_buttonContainer">
+                    <span class="timeLine_button" id="timeline_addKeyframe"></span>
+                    <span class="timeLine_button" id="timeline_removeKeyframe"></span>
+                    <span class="timeLine_button" id="timeline_play"></span>
+                    <span class="timeLine_button" id="timeline_repeat"></span>
+                </div>
+                <div id="timeline_body">
+
+                </div>
+            </div>
+
+
+            <div id="3js_renderArea"></div>
+        </div>
     </body>
+    <script>loadSaveNames();</script>
 </html>

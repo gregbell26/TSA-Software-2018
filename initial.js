@@ -4,6 +4,7 @@ var animationRunning = false;
 var loopAnimation = false;
 var animationTimer;
 var selectedShape = -1;
+let selectedLight = -1;
 var settingsOpen = false;
 // var capturer = new CCapture( { format: 'webm' } );
 var capturer;
@@ -13,12 +14,14 @@ scene.background = new THREE.Color("#000000");
 var camera = new THREE.PerspectiveCamera( 75, document.getElementById("mainWindow").offsetWidth/document.getElementById("mainWindow").offsetHeight, 0.1, 1000 );
 var renderer = new THREE.WebGLRenderer({logarithmicDepthBuffer: true });
 
+
 //create viewport size
 renderer.setSize( document.getElementById("mainWindow").offsetWidth, document.getElementById("mainWindow").offsetHeight );
 document.getElementById("mainWindow").appendChild( renderer.domElement );
 
 //lists of cool things
 var shapes = [];
+let lights = [];
 var scales = [];
 var keyFrames = [];
 var borders = [];
@@ -92,12 +95,18 @@ var zoom = 5;//the zoom on the cube
 var zoomZ = 5;//zoom with only X and Z
 //stuff for circular camera rotation
 var MvX, MvY;
-var cameraRz1, cameraRy1;
-var cameraRz2, cameraRy2;
+var Rz1, Ry1;
+var Rz2, Ry2;
 var zoom1, zoom1Z;
 var zoom2, zoom2Z;
 var zoomChange, zoomZChange;
-
+//stuff for circular view rotation
+var MvXv, MvYv;
+var Rz1v, Ry1v;
+var Rz2v, Ry2v;
+var zoom1v, zoom1Zv;
+var zoom2v, zoom2Zv;
+var zoomChangev, zoomZChangev;
 //Stuff for saves
 
 saveSubSystem.loadSaveNames();//Loads the names of the saves into an arraylist
@@ -154,6 +163,7 @@ function start() {
     keyFrames =[];
     borders= [];
     selectedShape = 0;
+    selectedLight = 0;
 
     if((saveSelector.options[saveSelector.selectedIndex].value === "GET NAME" || !saveSubSystem.openPrevious) && saveSubSystem.isUsingSaves){
         promptResp = 1;
@@ -170,7 +180,9 @@ function start() {
         keyFrames = saveSubSystem.loadSave();
         //has saves
     }
-    showList();
+    // addLight();
+    // addPointLight();
+    showList()
 
     updateTimeline();
 }

@@ -18,12 +18,7 @@ function readSingleFile(evt) {
     if (f) {
         var r = new FileReader();
         r.onload = function (e) { //defines a function for when the file reader object is loaded
-            if(e.target.result.includes("\r\n")){
-            var strin = e.target.result.split("\r\n"); //splits a string at every newline character 
-            }
-            else{
-            var strin=e.target.result.split("\n");
-            }
+            var strin = e.target.result.split("\n"); //splits a string at every newline character 
             //alert(typeof strin[0]);
              //console.log(strin[0]);
             parseFile1(strin);
@@ -41,54 +36,32 @@ function parseFile1(strina) {
    // console.log("parsefile called");
     var verticies=[];
     var faces=[];
-    var group=false;
-    var object=false;
-    var name;
-    for (var i = 1; i < strina.length-1; i++) {
-       // alert(strina[i]); 
-        if(strina[i-1][0]=='o'){
-            name=strina[i-1];
-            object=true;
-        }
+    var group;
+    for (var i = 1; i < strina.length; i++) {
+       // alert(strina[i]);
         while(strina[i][0] == 'v' && strina[i][1] !=='n' && strina[i][1]!=='t') {
-            if(strina[i][2]==" "){
-                strina[i]=strina[i].slice(3);
-            }
-            else{
-                strina[i]=strina[i].slice(2);
-            }
+            strina[i] = strina[i].slice(3);
             verticies.push(strina[i].split(" ").map(parseFloat));
            // alert("SAF");
             i++;
         }
-        if(strina[i][0]=='g'){
-            group=true;
-        }
-        while(strina[i][0]=='f'||strina[i+1][0]=='f'){ //press f to pay respect
-          if(strina[i][0]!='f'){
-              i++
-          } // alert(strina[i]);
-           strina[i] = strina[i].substring(2,strina[i].length);
-           //strina[i]=strina[i].split(/[\s,\/]/);
+        while(strina[i][0]=='f'){ //press f to pay respect
+           // alert(strina[i]);
+            strina[i] = strina[i].substring(2,strina[i].length-2);
+            //strina[i]=strina[i].split(/[\s,\/]/);
            // strina[i].split(" ").map(parseFloat);  //regex for \s and / is /[\s,\/]/
-           // alert(strina[i].split);
-           //alert(strina[i].split(/[\s,\/]/));
+   // alert(strina[i].split);
           faces.push(strina[i].split(/[\s,\/]/).map(parseFloat));
-          i++
+          i++;
         }
-        
         //alert("#2"+strina[i]);
-        if(faces.length>1&&(!strina[i+1]||strina[i+1][0]==" "||strina[i+1][0]=="v")){
-            newCustom2(1, 1, 1, 0, 0, 0, getRandomColor(), '#000000', verticies, faces, i,name);
-            if(group){
-            faces=[];
-            //verticies=[];
-            group=false;
-            }
-            if(object){
-            faces=[];
-            object=false;
-            }
+        if(faces.length>1){
+            //alert("Next Shape");
+          
+            newCustom2(1, 1, 1, 0, 0, 0, getRandomColor(), '#000000', verticies, faces);
+        
+            faces= [];
+            verticies=[];
         }
        
     }

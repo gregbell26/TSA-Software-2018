@@ -1,4 +1,4 @@
-var usingTutorial = false;
+let usingTutorial = false;
 //the default of loading tutorial is false. 
 //Tutorial will load on the call of this function
 function launchTutorial(){
@@ -13,10 +13,10 @@ function launchTutorial(){
 
 }
 
-var animateArrowTime;
+let animateArrowTime;
 function animateArrow(startT, endT, startL, endL){
     animateArrowTime = 0;
-    var arrowAnimate = setInterval( function(){
+    let arrowAnimate = setInterval( function(){
         animateArrowTime+=7.5;
         if(animateArrowTime<200){
             document.getElementById('tutorialArrow').style.top = startT + (endT-startT)/200*animateArrowTime + "px";
