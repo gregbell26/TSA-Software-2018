@@ -2,13 +2,18 @@
 
 function showList(){
     //Brings up a list of all of the shapes that current exist in the scene. Called when the "Show List" button is clicked.
-    var sideBar=document.getElementById('listButtons');
+    let sideBar=document.getElementById('listButtons');
+    let sideBarLight = document.getElementById("lightButtons");
     hideAll();
     document.getElementById("sideBarList").style.display="inherit";
     sideBar.innerHTML="";
-    for (var i=0; i<shapes.length; i++){
+    sideBarLight.innerHTML="";
+    for (let i=0; i<shapes.length; i++){
         //console.log("Shape "+(i+1)+": "+shapes[i]['geometry']['type']);
         sideBar.innerHTML+="<button onclick='setSelectedShape("+i+")'>"+(i+1)+": "+shapes[i].geometry.name+" <div style='width: 14px; height: 14px; background-color: #"+shapes[i].material.color.getHexString()+"; display: inline-block'></div></button>";
+    }
+    for (let i = 0; i < lights.length; i++){
+        sideBarLight.innerHTML+="<button onclick='setSelectedLight("+i+")'>"+(i+1)+": "+lights[i].name+" <div style='width: 14px; height: 14px; background-color: #"+lights[i].color.getHexString()+"; display: inline-block'></div></button>";
     }
     console.log("Showed List");
     if(usingTutorial){
@@ -20,7 +25,7 @@ function showList(){
 function setSelectedShape(num){
     selectedShape = num;
     document.getElementById('boxSelected').innerHTML="#"+(selectedShape+1);
-    var color = "#";
+    let color = "#";
     color += rgbToHex(shapes[selectedShape].material.color['r']*255)
     color += rgbToHex(shapes[selectedShape].material.color['g']*255)
     color += rgbToHex(shapes[selectedShape].material.color['b']*255)
@@ -39,6 +44,21 @@ function setSelectedShape(num){
     console.log("Set Shape Num");
 }
 
+function setSelectedLight(num) {
+    selectedLight = num;
+    let color = "#";
+    color += rgbToHex(lights[selectedLight].color['r']*255);
+    color += rgbToHex(lights[selectedLight].color['g']*255);
+    color += rgbToHex(lights[selectedLight].color['b']*255);
+    document.getElementById("lightColorChanger").value = color;
+    document.getElementById("lPosX").value = lights[selectedLight].position.x;
+    document.getElementById("lPosY").value = lights[selectedLight].position.y;
+    document.getElementById("lPosZ").value = lights[selectedLight].position.z;
+    document.getElementById("intensityRange").value = lights[selectedLight].intensity * 100;
+    document.getElementById("intensityValue").innerHTML = lights[selectedLight].intensity * 100;
+    lightEditMenu();
+}
+
 function cameraMenu(){
     hideAll();
     document.getElementById('sideBarCamera').style.display="inherit";
@@ -54,9 +74,9 @@ function userMenu(){
     if(user!=null){
         firestore.collection("lists").doc(user.uid).get().then(function(doc){
             if(doc.exists){
-                var data = doc.data();
+                let data = doc.data();
                 document.getElementById("loadCloudSelect").innerHTML = "";
-                for (var key in data) {
+                for (let key in data) {
                     if (!data.hasOwnProperty(key)) continue;
                     document.getElementById("loadCloudSelect").innerHTML += "<option value='"+key+"'>"+key+"</option>";
                 }
@@ -79,6 +99,9 @@ function hideAll(){
     document.getElementById("sceneMenu").style.display='none';
     document.getElementById('createTextMenu').style.display = 'none';
     document.getElementById('createCustomMenu').style.display = 'none';
+    document.getElementById("lightMenu").style.display='none';
+    document.getElementById("addLightMenu").style.display="none";
+    document.getElementById("lightEditMenu").style.display="none";
     console.log("Hide all")
 }
 
@@ -119,6 +142,21 @@ function newShapeMenu(){
     }
 }
 
+function newLightMenu() {
+    hideAll();
+    document.getElementById("addLightMenu").style.display="inherit";
+}
+
+function lightEditMenu(){
+    hideAll();
+    document.getElementById("lightEditMenu").style.display="inherit";
+    if (lights[selectedLight].type == "AmbientLight" || lights[selectedLight].type == "HemisphereLight"){
+        document.getElementById("lightPositionMenu").style.display="none";
+    }else {
+        document.getElementById("lightPositionMenu").style.display="inherit";
+    }
+}
+
 
 function keyMenu(){
     hideAll();
@@ -136,9 +174,14 @@ function sceneMenu() {
 
 }
 
+function lightMenu() {
+    hideAll();
+    document.getElementById("lightMenu").style.display='inherit';
+}
+
 
 function borderVisibility(){
-    var checked = document.getElementById("borderVisibility").checked;
+    let checked = document.getElementById("borderVisibility").checked;
     if(checked){
         borders[selectedShape].visible = true;
         document.getElementById("borderMenu").style.display="inherit";

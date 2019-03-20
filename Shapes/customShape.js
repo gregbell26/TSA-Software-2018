@@ -34,7 +34,8 @@ function newCustom(x, y, z, posX, posY, posZ, newColor, borderColor, vertices, f
     scene.add( borderToAdd );
 
     // MESH with GEOMETRY, and Normal MATERIAL
-    let newMaterial = new THREE.MeshBasicMaterial({color: newColor});
+    let newMaterial = new THREE.MeshLambertMaterial({color: newColor});
+    newMaterial.lights = true;
     shapes[shapes.length] = new THREE.Mesh(newGeometry, newMaterial);
     let length = scales.length;
     newGeometry.name = "custom";

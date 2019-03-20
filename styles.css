@@ -192,6 +192,9 @@ html, body {
 #sceneButton{
     left:240px;
 }
+#lightButton{
+    left:300px;
+}
 
 #settingsButton{
     right:0;

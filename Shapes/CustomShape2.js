@@ -150,13 +150,11 @@ function newCustom2(x, y, z, posX, posY, posZ, newColor, borderColor, verticies,
     }
 //newGeometry.computeFaceNormals();
     //console.log( newGeometry.geometry.isBufferGeometry );
+  
     console.log(verticies.length+" Vertices");
 console.log(faces.length+" Faces");
 console.log("Shape Ends at "+index);
-  if(name =="o Cube.067"){
-    console.log(faces);
-    console.log("Vertices="+verticies[faces[0][0]]);
-  }
+
     shapes[shapes.length] = new THREE.Mesh(newGeometry, newMaterial);
 
     var geometry = new THREE.BufferGeometry().fromGeometry(newGeometry); //where error is

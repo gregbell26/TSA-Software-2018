@@ -79,6 +79,7 @@
         <button onfocus="this.blur()" onclick="openSettings()" class="material-icons md-48 topButton" id="settingsButton">settings</button>
         <button onfocus="this.blur()" class="material-icons md-48 topButton" id="sceneButton" onclick="sceneMenu()">aspect_ratio</button>
         <button onfocus="this.blur()" class="material-icons md-48 topButton" id="userButton" onclick="userMenu()">person</button>
+        <button onfocus="this.blur()" class="material-icons md-48 topButton" id="lightButton" onclick="lightMenu()">wb_sunny</button>
         <div class="mdl-tooltip" data-mdl-for="listButton">
             Shapes List
         </div>
@@ -99,6 +100,9 @@
         </div>
         <div class="mdl-tooltip" data-mdl-for="saveButton">
             Force Save
+        </div>
+        <div class="mdl-tooltip" data-mdl-for="lightButton">
+            Lights
         </div>
     </div>
 <!--creates the top bar and sets up the buttons in those-->
@@ -244,9 +248,13 @@
 
         <div id="sideBarList" style="display:none">
             <h3>
-                Objects
+                Shapes
             </h3>
             <div id="listButtons" class="setGroup"></div>
+            <h3>
+                Lights
+            </h3>
+            <div id="lightButtons" class="setGroup"></div>
         </div>
 
         <div id="sideBarCamera" style="display:none">
@@ -345,6 +353,60 @@
             <!--Allows changing of scene parameters, similar to changing shape parameters-->
         </div>
 
+        <div id="lightMenu" style="display: none">
+            <h3>
+                Lights
+            </h3>
+            <button onfocus="this.blur()" class="objButton addButton" onclick="newLightMenu()">New Light</button>
+            <button onfocus="this.blur()" class="objButton removeButton" onclick="removeLight()">Delete Light</button>
+        </div>
+
+        <div id="addLightMenu" style="display: none">
+            <select id="lightSelector">
+                <option value="ambient">Ambient Light</option>
+                <option value="point">Point Light</option>
+                <option value="directional">Directional Light</option>
+                <option value="spot">Spot Light</option>
+                <option value="hemisphere">Hemisphere Light</option>
+            </select><br>
+            <button onfocus="this.blur()" class="objButton addButton" onclick="newLight()">Ok</button>
+            <button onfocus="this.blur()" class="objButton removeButton" onclick="lightMenu()">Cancel</button>
+        </div>
+
+        <div id="lightEditMenu" style="display: none">
+            <div id="lightPositionMenu">
+                <h3>
+                    Position
+                </h3>
+                <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+                    <input class="mdl-textfield__input" type="number" step="any" id='lPosX' onchange="moveLight('x',this.value)" onkeyup="moveLight('x',this.value)" value="0">
+                    <label class="mdl-textfield__label" for="lPosX">X Position</label>
+                    <span class="mdl-textfield__error">Input is not a number!</span>
+                </div>
+                <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+                    <input class="mdl-textfield__input" type="number" step="any" id='lPosY' onchange="moveLight('y',this.value)" onkeyup="moveLight('y',this.value)" value="0">
+                    <label class="mdl-textfield__label" for="lPosY">Y Position</label>
+                    <span class="mdl-textfield__error">Input is not a number!</span>
+                </div>
+                <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+                    <input class="mdl-textfield__input" type="number" step="any" id='lPosZ' onchange="moveLight('z',this.value)" onkeyup="moveLight('z',this.value)" value="0">
+                    <label class="mdl-textfield__label" for="lPosZ">Z Position</label>
+                    <span class="mdl-textfield__error">Input is not a number!</span>
+                </div>
+            </div>
+
+            <h3>
+                Intensity
+            </h3>
+            <input type="range" min="0" max="100" value="50" class="mdl-slider" id="intensityRange" oninput="changeIntensity()" onchange="changeIntensity()"><br>
+            <p>Intensity: <span id="intensityValue"></span>%</p>
+
+            <h3>
+                Color
+            </h3>
+            <input type="color" value="#FF0000" id='lightColorChanger' onchange="changeLightColor(this.value)"><br>
+        </div>
+
     </div>
     <div id="settingsBackground" onclick="closeSettings()">
 
@@ -420,7 +482,13 @@
     <script src="Shapes/text.js"></script>
     <script src="Camera.js"></script>
     <script src="keyevents.js"></script>
-<!-- inserts all of the javascript programs to be used in the program-->
+    <script src="Lights/lights.js"></script>
+    <script src="Lights/hemisphereLight.js"></script>
+    <script src="Lights/spot.js"></script>
+    <script src="Lights/directional.js"></script>
+    <script src="Lights/point.js"></script>
+    <script src="Lights/ambient.js"></script>
+    <!-- inserts all of the javascript programs to be used in the program-->
 	
 </body>
 </html>

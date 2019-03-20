@@ -1,6 +1,6 @@
 //core code of movement and stuff here.
 //you probably don't want to change this stuff, unless were adding a new function that changes how things animate
-var animate = function () {
+let animate = function () {
     requestAnimationFrame( animate );
         if (camera.position.x != xPosition)
             camera.position.x = xPosition + xCCenter + scene.position.x;
@@ -11,7 +11,7 @@ var animate = function () {
     //handling the shapes position in animation
     camera.lookAt((scene.position.x+xCLook),(scene.position.y+yCLook),(scene.position.z+zCLook));
     //points camera to scene
-    for (var i=0; i<shapes.length; i++){
+    for (let i=0; i<shapes.length; i++){
         if(shapes[i].scale.x!=scales[i][0])
             shapes[i].scale.x=scales[i][0];
         if(shapes[i].scale.y!=scales[i][1])
