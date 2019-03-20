@@ -244,12 +244,12 @@ function updateAnimation(timingCounter,a){
                 Rz1v = Math.PI;
             else if (keyFrames[a].zCLook - keyFrames[a].zPosition < 0)
                 Rz1v = -Math.PI;
-
-            if (keyFrames[a].xCLook - keyFrames[a].xPosition < 0 && Rz1v > 0)
-                Rz1v += Math.PI;
-            else if (keyFrames[a].xCLook - keyFrames[a].xPosition < 0 && Rz1v < 0)
-                Rz1v -= Math.PI;
-
+            while(Rz1v < -Math.PI || Rz1v > Math.PI) {
+                if (Rz1v < Math.PI)
+                    Rz1v += 2 * Math.PI;
+                else if (Rz1v > Math.PI)
+                    Rz1v -= 2 * Math.PI;
+            }
             if (keyFrames[a].xCLook - keyFrames[a].xPosition !== 0 || keyFrames[a].zPosition -  keyFrames[a].zCLook !== 0)
                 Ry1v = Math.atan((keyFrames[a].yCLook - keyFrames[a].yPosition) / zoom1Zv);
             else if (keyFrames[a].yCLook - keyFrames[a].yPosition > 0)
@@ -269,14 +269,14 @@ function updateAnimation(timingCounter,a){
                 Rz2v = Math.PI;
             else if (keyFrames[a+1].zCLook - keyFrames[a+1].zPosition < 0)
                 Rz2v = -Math.PI;
-
-            if (keyFrames[a+1].xCLook - keyFrames[a+1].xPosition < 0 && Rz2v < 0)
-                Rz2v += Math.PI;
-            else if (keyFrames[a+1].xCLook - keyFrames[a+1].xPosition < 0 && Rz2v > 0)
-                Rz2v -= Math.PI;
-
+            while(Rz1v < -Math.PI || Rz1v > Math.PI) {
+                if (Rz1v < Math.PI)
+                    Rz2v += 2 * Math.PI;
+                else if (Rz1v > Math.PI)
+                    Rz2v -= 2 * Math.PI;
+            }
             if (keyFrames[a+1].xCLook - keyFrames[a+1].xPosition !== 0 || keyFrames[a+1].zCLook - keyFrames[a+1].zPosition !== 0)
-                Ry2v = Math.atan((keyFrames[a + 1].yCLook) / zoom2Zv);
+                Ry2v = Math.atan((keyFrames[a + 1].yCLook - keyFrames[a+1].yPosition) / zoom2Zv);
             else if (keyFrames[a+1].yCLook - keyFrames[a+1].yPosition > 0)
                 Ry2v = Math.PI;
             else if (keyFrames[a+1].yCLook - keyFrames[a+1].yPosition < 0)
@@ -296,12 +296,12 @@ function updateAnimation(timingCounter,a){
             console.log("moving X " + MvXv/Math.PI*180+"°");
             console.log("moving Y " + MvYv/Math.PI*180+"°");
         }
-        yCLook = (zoom1v  +  zoomChangev/keyFrames[a].duration * timingCounter) * (Math.sin(Ry1v+MvYv/keyFrames[a].duration * timingCounter));
-        xCLook = (zoom1Zv + zoomZChangev/keyFrames[a].duration * timingCounter) * (Math.cos(Rz1v+MvXv/keyFrames[a].duration * timingCounter));
-        zCLook = (zoom1Zv + zoomZChangev/keyFrames[a].duration * timingCounter) * (Math.sin(Rz1v+MvXv/keyFrames[a].duration * timingCounter));
-        console.log(xCLook);
-        console.log(yCLook);
-        console.log(zCLook);
+        //yCLook = (zoom1v  +  zoomChangev/keyFrames[a].duration * timingCounter) * (Math.sin(Ry1v+MvYv/keyFrames[a].duration * timingCounter));
+        //xCLook = (zoom1Zv + zoomZChangev/keyFrames[a].duration * timingCounter) * (Math.cos(Rz1v+MvXv/keyFrames[a].duration * timingCounter));
+        //zCLook = (zoom1Zv + zoomZChangev/keyFrames[a].duration * timingCounter) * (Math.sin(Rz1v+MvXv/keyFrames[a].duration * timingCounter));
+        //console.log(xCLook);
+        //console.log(yCLook);
+        //console.log(zCLook);
         if(circleCameraRotation){//stuff for circular camera rotation
             if(timingCounter <= 10 || !animationRunning) {//this stuff only executes the first iteration or through the timeline AND only if the Camera has circular movement
                 zoom1Z = Math.pow(Math.pow(keyFrames[a].xPosition, 2) + Math.pow(keyFrames[a].zPosition, 2), .5);
@@ -317,9 +317,9 @@ function updateAnimation(timingCounter,a){
                 else if (keyFrames[a].zPosition < 0)
                     Rz1 = -Math.PI;
 
-                if (keyFrames[a].xPosition < 0 && Rz1 > 0)
+                if (keyFrames[a].xPosition < 0 && Rz1 < 0)
                     Rz1 += Math.PI;
-                else if (keyFrames[a].xPosition < 0 && Rz1 < 0)
+                else if (keyFrames[a].xPosition < 0 && Rz1 > 0)
                     Rz1 -= Math.PI;
 
                 if (keyFrames[a].xPosition !== 0 || keyFrames[a].zPosition !== 0)
