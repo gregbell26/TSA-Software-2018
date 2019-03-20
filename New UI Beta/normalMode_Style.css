@@ -107,18 +107,22 @@ P: #000
 */
 @keyframes menu_hide {
     from{
+        left:2px;
         right: 2px;
     }
     to{
+        left:-100%;
         right:100%;
     }
 }
 
 @keyframes menu_show {
     from{
+        left:-100%;
         right:100%;
     }
     to{
+        left:2px;
         right: 2px;
     }
 }
@@ -292,15 +296,17 @@ h3{/*For Menus Mainly*/
 .std_button{
     all:initial;
     position: absolute;
-    font-family: 'Roboto', sans-serif;
+    font-family: 'Open Sans', sans-serif;
     font-size: 12pt;
     display: block;
     color: #000;
     padding: 10px 25px 10px 25px;
-    width: 150px;
-    height: 25px;
+    width: auto;
+    height: auto;
     text-align: center;
+    transition: 100ms;
 }
+
 .std_nav_button {
     /* margin: 0px 0px 0px 2px; */
     display: inline-block;
@@ -313,10 +319,10 @@ h3{/*For Menus Mainly*/
     font-size: 12px;
 }
 .std_button.ws_color{
+    width: 150px;
+    height: 25px;
     color: #288945;
     background-color: #E5E5E5;
-    transition: 100ms;
-
 }
 
 .std_button.ws_color:hover{
@@ -326,6 +332,53 @@ h3{/*For Menus Mainly*/
 
 }
 
+
+
+
+/*
+-------------------------------STD_BUTTON--------------------------------
+*/
+
+.std_body_button{
+    position: relative;
+    display: inline-block;
+    overflow: initial;
+    margin: 10px 5px 13px 5px;
+    max-width: 50%;
+}
+.button_body{
+    color: #288945;
+    padding: 5px 10px 5px 10px;
+    width: 100%;
+    height: 100%;
+    font-family: "Open Sans", sans-serif;
+    border: none;
+    border-bottom: 2px solid #288945;
+    transition: 0.2s ease all;
+}
+
+.button_body:hover {
+    color: #0071ce;
+}
+
+.button_bar{
+    position: relative;
+    display: block;
+    left: 50%;
+    width: 0;
+    overflow: initial;
+    bottom: -5px;
+}
+
+.button_body:hover ~ .button_bar {
+    content: '';
+    height: 3px;
+    width: 100%;
+    left: 0%;
+    position: relative;
+    background: #0071ce;
+    transition: 0.2s ease all;
+}
 
 /*
 -----------------------------------------------------------------------
@@ -363,7 +416,7 @@ h3{/*For Menus Mainly*/
     position: absolute;
     top:5.2%;
     min-height: 100%;
-    width: 25%;
+    width: 20%;
     background-color: #288945;
     padding: 2px 1px 2px 1px;
     margin-top: 2px;
@@ -374,7 +427,7 @@ h3{/*For Menus Mainly*/
     position: absolute;
     display: block;
     top: 2px;
-    left: 2px;
+    left: -100%;
     right: 100%;
     height: 93.75%;
     background-color: #E5E5E5;
@@ -451,7 +504,7 @@ input:focus ~ label, input:valid ~ label        {
     display:block;
     width:0;
 }
-input:focus ~.input_bar/*, input:valid ~.bar*/{
+input:focus ~.input_bar {
     content:'';
     height:2px;
     width:100%;
