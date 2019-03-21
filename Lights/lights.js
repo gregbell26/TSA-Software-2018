@@ -43,6 +43,16 @@ function changeLightColor(value){
     lights[selectedLight].color.set(value);
 }
 
+function changeGroundLightColor(value){
+    //changes the color ground of the currently selected light
+    if (lights[selectedLight].type == "HemisphereLight") {
+        lights[selectedLight].groundColor.set(value);
+    } else {
+        changeLightColor(value);
+    }
+
+}
+
 function changeIntensity(){
     value.innerHTML = slider.value;
     lights[selectedLight].intensity = (slider.value/100);

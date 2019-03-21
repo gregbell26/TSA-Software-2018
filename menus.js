@@ -26,9 +26,9 @@ function setSelectedShape(num){
     selectedShape = num;
     document.getElementById('boxSelected').innerHTML="#"+(selectedShape+1);
     let color = "#";
-    color += rgbToHex(shapes[selectedShape].material.color['r']*255)
-    color += rgbToHex(shapes[selectedShape].material.color['g']*255)
-    color += rgbToHex(shapes[selectedShape].material.color['b']*255)
+    color += rgbToHex(shapes[selectedShape].material.color['r']*255);
+    color += rgbToHex(shapes[selectedShape].material.color['g']*255);
+    color += rgbToHex(shapes[selectedShape].material.color['b']*255);
     document.getElementById('colorChanger').value = color;
     document.getElementById("borderColor").value = "#"+borders[selectedShape].material.color.getHexString();
     document.getElementById('positionBoxX').value = shapes[selectedShape].position.x;
@@ -150,10 +150,10 @@ function newLightMenu() {
 function lightEditMenu(){
     hideAll();
     document.getElementById("lightEditMenu").style.display="inherit";
-    if (lights[selectedLight].type == "AmbientLight" || lights[selectedLight].type == "HemisphereLight"){
-        document.getElementById("lightPositionMenu").style.display="none";
+    if (lights[selectedLight].type == "HemisphereLight"){
+        document.getElementById("hemisphereLightColor").style.display="inherit";
     }else {
-        document.getElementById("lightPositionMenu").style.display="inherit";
+        document.getElementById("hemisphereLightColor").style.display="none";
     }
 }
 
