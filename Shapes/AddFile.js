@@ -41,6 +41,8 @@ function parseFile1(strina) {
    // console.log("parsefile called");
     var verticies=[];
     var faces=[];
+    var vn=[];
+    var vt= [];
     var group=false;
     var object=false;
     var name;
@@ -50,42 +52,48 @@ function parseFile1(strina) {
             name=strina[i-1];
             object=true;
         }
-        while(strina[i][0] == 'v' && strina[i][1] !=='n' && strina[i][1]!=='t') {
+        if(strina[i][0] == 'v' && strina[i][1] ==' ') {
             if(strina[i][2]==" "){
                 strina[i]=strina[i].slice(3);
             }
             else{
                 strina[i]=strina[i].slice(2);
             }
+        
             verticies.push(strina[i].split(" ").map(parseFloat));
            // alert("SAF");
-            i++;
         }
         if(strina[i][0]=='g'){
             group=true;
         }
-        while(strina[i][0]=='f'||strina[i+1][0]=='f'){ //press f to pay respect
-          if(strina[i][0]!='f'){
-              i++
-          } // alert(strina[i]);
-           strina[i] = strina[i].substring(2,strina[i].length);
+        if(strina[i][0]=='f'){ //press f to pay respect
+            if(strina[i][2]==" "){
+                strina[i]=strina[i].slice(3);
+            }
+            else{
+                strina[i]=strina[i].slice(2);
+            }
+            
            //strina[i]=strina[i].split(/[\s,\/]/);
            // strina[i].split(" ").map(parseFloat);  //regex for \s and / is /[\s,\/]/
            // alert(strina[i].split);
            //alert(strina[i].split(/[\s,\/]/));
-          faces.push(strina[i].split(/[\s,\/]/).map(parseFloat));
-          i++
+          faces.push(strina[i].split(/[\/\s]/).map(parseFloat));
+         
         }
         
         //alert("#2"+strina[i]);
-        if(faces.length>1&&(!strina[i+1]||strina[i+1][0]==" "||strina[i+1][0]=="v")){
-            newCustom2(1, 1, 1, 0, 0, 0, getRandomColor(), '#000000', verticies, faces, i,name);
+        if(faces.length>1&&(!strina[i+1]||strina[i+1][0]=="v")){
+           
             if(group){
+                 newCustom2(1, 1, 1, 0, 0, 0, getRandomColor(), '#000000', verticies, faces, i,name);
             faces=[];
             //verticies=[];
             group=false;
             }
             if(object){
+                newCustom2(1, 1, 1, 0, 0, 0, getRandomColor(), '#000000', verticies, faces, i,name);
+
             faces=[];
             object=false;
             }
