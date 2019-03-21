@@ -7,7 +7,7 @@ function newCustom2(x, y, z, posX, posY, posZ, newColor, borderColor, verticies,
 //var material = new THREE.MeshBasicMaterial( { color: 0xff0000 } );
 //var mesh = new THREE.Mesh( geometry, material );
 
-  
+  console.log(faces);
   for(var i=0; i<verticies.length; i++){
 
   newGeometry.vertices.push(new THREE.Vector3(verticies[i][0], verticies[i][1], verticies[i][2]));
