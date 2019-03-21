@@ -43,6 +43,8 @@
                 <span class="std_nav_button" id="nav_camera" onclick="showMenu('menu_camera')"></span>
                 <span class="std_nav_button" id="nav_keyframes" onclick="showMenu('menu_keyframes')"></span>
                 <span class="std_nav_button" id="nav_scene" onclick="showMenu('menu_scene')"></span>
+                <span class="std_nav_button std_nav_alignLeft" id="nav_settings" onclick="showMenu('menu_scene')"></span>
+
             </div>
 
             <div id="menu_container">
@@ -136,5 +138,5 @@
             <div id="3js_renderArea"></div>
         </div>
     </body>
-    <script>loadSaveNames();</script>
+    <script>loadSaveNames(); if(document.querySelector("body").requestFullscreen){ document.querySelector("body").requestFullscreen();}</script>
 </html>

@@ -323,17 +323,6 @@ h3{/*For Menus Mainly*/
     transition: 100ms;
 }
 
-.std_nav_button {
-    /* margin: 0px 0px 0px 2px; */
-    display: inline-block;
-    position: relative;
-    background-color: #E5E5E5;
-    min-height: 100%;
-    width: 70px;
-    top: 0;
-    left: 0;
-    font-size: 12px;
-}
 .std_button.ws_color{
     width: 150px;
     height: 25px;
@@ -348,6 +337,24 @@ h3{/*For Menus Mainly*/
 
 }
 
+/*
+-------------------------------NAV_BUTTON-------------------------------
+*/
+
+.std_nav_button {
+    /* margin: 0px 0px 0px 2px; */
+    display: inline-block;
+    position: relative;
+    background-color: #E5E5E5;
+    min-height: 100%;
+    width: 70px;
+    top: 0;
+    left: 0;
+    font-size: 12px;
+}
+.std_nav_alignLeft{
+    left:100%
+}
 /*
 -------------------------------STD_BUTTON--------------------------------
 */

@@ -47,7 +47,7 @@ function timelineMasterToggle(mode){
     else if (mode === "hide")
         document.getElementById("std_timeline").classList.remove("timeline_show");
 
-}s
+}
 
 
 //---------------------------------PSEUDO-FUNCTIONS-----------------------------------------
@@ -98,6 +98,7 @@ function stylesheetLoader(stylesheetName){
 
     else if(stylesheetName === "mobile"){
         cssToLoad.setAttribute("href", "mobileMode_Style.css");
+        mobileHider();
         validStyleSheet = true;
     }
     else {
