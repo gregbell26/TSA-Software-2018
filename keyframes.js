@@ -29,7 +29,8 @@ function addFrame(){
                 scale: [scene.scale.x, scene.scale.y, scene.scale.z],
                 rotation: [scene.rotation.x, scene.rotation.y, scene.rotation.z],
                 position: [scene.position.x, scene.position.y, scene.position.z],
-            }
+            },
+            lights: getLights(lights)
         }
     );
     console.log('frame added');
@@ -181,6 +182,19 @@ function getShapes(s){
     var ret = [];
     for (var i=0; i<s.length; i++){
         ret.push([s[i].position.x,s[i].position.y,s[i].position.z,s[i].rotation.x,s[i].rotation.y,s[i].rotation.z]);
+    }
+    return ret;
+}
+
+function getLights(s){
+    var ret = [];
+    for(var i=0; i<s.length; i++){
+        ret.push({
+            intensity: JSON.parse(JSON.stringify(s[i].intensity)),
+            position: JSON.parse(JSON.stringify(s[i].position)),
+            color: JSON.parse(JSON.stringify(s[i].color)),
+            rotation: JSON.parse(JSON.stringify(s[i].rotation)),
+        });
     }
     return ret;
 }
@@ -437,6 +451,11 @@ function updateAnimation(timingCounter,a){
         borders[i].material.color.r = keyFrames[a].borderColor[i][0] + (keyFrames[a + 1].borderColor[i][0] - keyFrames[a].borderColor[i][0]) / keyFrames[a].duration * timingCounter;
         borders[i].material.color.g = keyFrames[a].borderColor[i][1] + (keyFrames[a + 1].borderColor[i][1] - keyFrames[a].borderColor[i][1]) / keyFrames[a].duration * timingCounter;
         borders[i].material.color.b = keyFrames[a].borderColor[i][2] + (keyFrames[a + 1].borderColor[i][2] - keyFrames[a].borderColor[i][2]) / keyFrames[a].duration * timingCounter;
+    }
+    for(var i=0; i<lights.length; i++){
+        lights[i].position.x = keyFrames[a].lights[i].position.x + (keyFrames[a + 1].lights[i].position.x - keyFrames[a].lights[i].position.x) / keyFrames[a].duration * timingCounter;
+        lights[i].position.y = keyFrames[a].lights[i].position.y + (keyFrames[a + 1].lights[i].position.y - keyFrames[a].lights[i].position.y) / keyFrames[a].duration * timingCounter;
+        lights[i].position.z = keyFrames[a].lights[i].position.z + (keyFrames[a + 1].lights[i].position.z - keyFrames[a].lights[i].position.z) / keyFrames[a].duration * timingCounter;
     }
 }
 var recording = false;

@@ -2,7 +2,7 @@
 <html lang="en">
     <head>
         <script src="newStyle.js"></script>
-        <script>darkModeLoader("DEVLOCK")</script>
+        <script>stylesheetLoader("normalMode")</script>
         <!--<link rel="stylesheet" href="normalMode_Style.css"/>-->
         <meta charset="UTF-8">
         <title>-BETA-TSA 2018</title>
@@ -86,11 +86,28 @@
                 </div>
                 <div class="std_menu menu_hidden" id="menu_newShapes">
                     <h2>
-                        Menu_NewShapes
+                        Menu_Buttons
                     </h2>
+                    <h3>
+                        Sub Titles
+                    </h3>
+                    <div class="std_body_button">
+                        <span class="button_body">std_buttons</span>
+                        <span class="button_bar"></span>
+                    </div>
+                    <div class="std_body_button">
+                        <span class="button_body">std_buttons</span>
+                        <span class="button_bar"></span>
+                    </div>
+                    <h3>
+                        Sub Titles
+                    </h3>
 
                 </div>
                 <div class="std_menu menu_hidden" id="menu_camera">
+                    <h2>
+                        Menu_Lists
+                    </h2>
 
 
                 </div>
@@ -100,9 +117,21 @@
                 </div>
                 <div class="std_menu menu_hidden" id="menu_scene">
 
-
                 </div>
             </div>
+            <div id="std_timeline">
+                <div onmouseover="timelineMasterToggle('show');" onclick="timelineMasterToggle('hide')" id="timeline_triggerArea"></div>
+                <div id="timeline_buttonContainer">
+                    <span class="timeLine_button" id="timeline_addKeyframe">+</span>
+                    <span class="timeLine_button" id="timeline_removeKeyframe">-</span>
+                    <span onclick="timelineButtonToggle('timeline_play')" class="timeLine_button" id="timeline_play">></span>
+                    <span onclick="timelineButtonToggle('timeline_repeat')" class="timeLine_button" id="timeline_repeat">()</span>
+                </div>
+                <div id="timeline_body">
+                    std_timeline
+                </div>
+            </div>
+
 
             <div id="3js_renderArea"></div>
         </div>

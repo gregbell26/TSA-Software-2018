@@ -13,7 +13,7 @@ function newSphere(x, y, z, posX, posY, posZ, newColor, borderColor){
     selectedShape = shapes.length-1;
     var geometry = new THREE.SphereBufferGeometry( 0.5, 100,100);
     var edges = new THREE.EdgesGeometry( geometry );
-    var borderToAdd = new THREE.LineSegments( edges, new THREE.LineBasicMaterial( { color: borderColor } ) );
+    var borderToAdd = new THREE.LineSegments( edges, new THREE.LineBasicMaterial( { color: borderColor, lights: true } ) );
     borderToAdd.scale.x = x;
     borderToAdd.scale.y = y;
     borderToAdd.scale.z = z;

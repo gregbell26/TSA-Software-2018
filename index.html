@@ -374,25 +374,23 @@
         </div>
 
         <div id="lightEditMenu" style="display: none">
-            <div id="lightPositionMenu">
-                <h3>
-                    Position
-                </h3>
-                <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-                    <input class="mdl-textfield__input" type="number" step="any" id='lPosX' onchange="moveLight('x',this.value)" onkeyup="moveLight('x',this.value)" value="0">
-                    <label class="mdl-textfield__label" for="lPosX">X Position</label>
-                    <span class="mdl-textfield__error">Input is not a number!</span>
-                </div>
-                <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-                    <input class="mdl-textfield__input" type="number" step="any" id='lPosY' onchange="moveLight('y',this.value)" onkeyup="moveLight('y',this.value)" value="0">
-                    <label class="mdl-textfield__label" for="lPosY">Y Position</label>
-                    <span class="mdl-textfield__error">Input is not a number!</span>
-                </div>
-                <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-                    <input class="mdl-textfield__input" type="number" step="any" id='lPosZ' onchange="moveLight('z',this.value)" onkeyup="moveLight('z',this.value)" value="0">
-                    <label class="mdl-textfield__label" for="lPosZ">Z Position</label>
-                    <span class="mdl-textfield__error">Input is not a number!</span>
-                </div>
+            <h3>
+                Position
+            </h3>
+            <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+                <input class="mdl-textfield__input" type="number" step="any" id='lPosX' onchange="moveLight('x',this.value)" onkeyup="moveLight('x',this.value)" value="0">
+                <label class="mdl-textfield__label" for="lPosX">X Position</label>
+                <span class="mdl-textfield__error">Input is not a number!</span>
+            </div>
+            <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+                <input class="mdl-textfield__input" type="number" step="any" id='lPosY' onchange="moveLight('y',this.value)" onkeyup="moveLight('y',this.value)" value="0">
+                <label class="mdl-textfield__label" for="lPosY">Y Position</label>
+                <span class="mdl-textfield__error">Input is not a number!</span>
+            </div>
+            <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+                <input class="mdl-textfield__input" type="number" step="any" id='lPosZ' onchange="moveLight('z',this.value)" onkeyup="moveLight('z',this.value)" value="0">
+                <label class="mdl-textfield__label" for="lPosZ">Z Position</label>
+                <span class="mdl-textfield__error">Input is not a number!</span>
             </div>
 
             <h3>
@@ -404,7 +402,10 @@
             <h3>
                 Color
             </h3>
-            <input type="color" value="#FF0000" id='lightColorChanger' onchange="changeLightColor(this.value)"><br>
+            <input type="color" value="#87CEEB" id='lightColorChanger' onchange="changeLightColor(this.value)"><br>
+            <div id="hemisphereLightColor" style="display: none">
+                <input type="color" value="#654321" id="groundColorChanger" onchange="changeGroundLightColor(this.value)"><br>
+            </div>
         </div>
 
     </div>
