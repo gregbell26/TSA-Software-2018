@@ -2,7 +2,7 @@
 <html lang="en">
     <head>
         <script src="newStyle.js"></script>
-        <script>stylesheetLoader("DEVLOCK")</script>
+        <script>stylesheetLoader("normalMode")</script>
         <!--<link rel="stylesheet" href="normalMode_Style.css"/>-->
         <meta charset="UTF-8">
         <title>-BETA-TSA 2018</title>
@@ -83,7 +83,6 @@
 
 
 
-                </div>x
                 <div class="std_menu menu_hidden" id="menu_newShapes">
                     <h2>
                         Menu_Buttons
@@ -120,15 +119,15 @@
                 </div>
             </div>
             <div id="std_timeline">
-                <div onmouseover="showTimeLine();" id="timeline_triggerArea"></div>
+                <div onmouseover="timelineMasterToggle('show');" onclick="timelineMasterToggle('hide')" id="timeline_triggerArea"></div>
                 <div id="timeline_buttonContainer">
-                    <span class="timeLine_button" id="timeline_addKeyframe"></span>
-                    <span class="timeLine_button" id="timeline_removeKeyframe"></span>
-                    <span class="timeLine_button" id="timeline_play"></span>
-                    <span class="timeLine_button" id="timeline_repeat"></span>
+                    <span class="timeLine_button" id="timeline_addKeyframe">+</span>
+                    <span class="timeLine_button" id="timeline_removeKeyframe">-</span>
+                    <span onclick="timelineButtonToggle('timeline_play')" class="timeLine_button" id="timeline_play">></span>
+                    <span onclick="timelineButtonToggle('timeline_repeat')" class="timeLine_button" id="timeline_repeat">()</span>
                 </div>
                 <div id="timeline_body">
-
+                    std_timeline
                 </div>
             </div>
 

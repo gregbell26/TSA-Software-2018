@@ -33,13 +33,21 @@ function showMenu(menuToShow){
     activeMenu = menuToShow;
 }
 
-var toggledButtons={};
 function timelineButtonToggle(buttonToToggle){
+    if(document.getElementById(buttonToToggle).classList.contains("timeline_buttonToggled"))
+        document.getElementById(buttonToToggle).classList.remove("timeline_buttonToggled");
+    else{
+        document.getElementById(buttonToToggle).classList.add("timeline_buttonToggled");
+    }
 }
 
-function showTimeLine(){
-    document.getElementById("std_timeline").classList.add("timeline_show");
-}
+function timelineMasterToggle(mode){
+    if(mode === "show")
+        document.getElementById("std_timeline").classList.add("timeline_show");
+    else if (mode === "hide")
+        document.getElementById("std_timeline").classList.remove("timeline_show");
+
+}s
 
 
 //---------------------------------PSEUDO-FUNCTIONS-----------------------------------------

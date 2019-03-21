@@ -143,10 +143,15 @@ P: #000
 */
 
 @keyframes timeline_show {
-    from {
-        top:100%
+    0% {
+        top:100%;
     }
+    100%{
+        top:80%;
+    }
+
 }
+
 
 /*
 -----------------------------------------------------------------------
@@ -394,12 +399,30 @@ h3{/*For Menus Mainly*/
 ---------------------------------TIMELINE_BUTTON-----------------------------------
 */
 .timeLine_button{
-    display: block;
-    background-color: #288945;
+    display: inline-block;
+    background-color: #E5E5E5;
+    border: 2px solid #288945;
     border-radius: 100%;
-    height: 100px;
-    width: 100px;
+    height: 50px;
+    width: 50px;
+    transition: 100ms ease-in-out;
+    text-align: center;
 }
+
+.timeLine_button:hover{
+    border-radius: 100%;
+    border: 2px solid #0071CE;
+    box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.30);
+}
+
+.timeline_buttonToggled{
+    border: 2px solid #0071CE;
+    background-color: #0071CE;
+    color:#E5E5E5;
+    box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.30);
+
+}
+
 
 /*
 -----------------------------------------------------------------------
@@ -482,12 +505,49 @@ h3{/*For Menus Mainly*/
 #std_timeline{
     overflow: initial;
     position: relative;
-    bottom:100%;
+    top: 100%;
+    height: 100%;
     z-index: 6;
+    /*background-color: rgba(0,0,0,0.15);*/
 }
+
 #std_timeline.timeline_show{
     animation-name: timeline_show;
-    animation-duration: ;
+    animation-duration: 250ms;
+    animation-iteration-count: 1;
+    animation-fill-mode: forwards;
+    animation-timing-function: ease-in-out;
+}
+
+#timeline_triggerArea {
+    width: 20%;
+    height: 15px;
+    position: relative;
+    top: -15px;
+    transition: 100ms ease-in-out;
+}
+#timeline_triggerArea:hover{
+    background-color: rgba(0,0,0,0.15);
+
+}
+
+#timeline_buttonContainer {
+    overflow: initial;
+    width: 20%;
+    height: 10%;
+    padding-left: 10px;
+    padding-bottom: 5px;
+    position: absolute;
+}
+
+#timeline_body {
+    position: relative;
+    height: 10%;
+    width: 100%;
+    /* margin: 60px 2px -80px 0px; */
+    top: 7.86%;
+    background-color: #E5E5E5;
+    border: 2px solid #0071ce;
 }
 
 
