@@ -21,6 +21,7 @@ function addFrame(){
             xCLook: xCLook,
             yCLook: yCLook,
             zCLook: zCLook,
+            circleCameraRotation: circleCameraRotation,
             color: getColors(shapes),
             name: "Frame "+keyFrames.length.toString(),
             borderColor: getColors(borders),
@@ -329,6 +330,7 @@ function updateAnimation(timingCounter,a){
         console.log(xCLook);
         console.log(yCLook);
         console.log(zCLook);
+        circleCameraRotation = keyFrames[a].circleCameraRotation;
         if(circleCameraRotation){//stuff for circular camera rotation
             if(timingCounter <= 10 || !animationRunning) {//this stuff only executes the first iteration or through the timeline AND only if the Camera has circular movement
                 zoom1Z = Math.pow(Math.pow(keyFrames[a].xPosition, 2) + Math.pow(keyFrames[a].zPosition, 2), .5);
