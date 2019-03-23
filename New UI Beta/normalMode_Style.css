@@ -6,12 +6,12 @@
 COLORS:
 Primary: #E5E5E5
 Secondary: #288945
-Accent: #00AF2D or #3877ff
+Accent: #0071CE
 
 H1: #000
 H2: #282828
 P: #000
-.microP: #3877ff
+small text: #0071CE
 
  */
 
@@ -90,7 +90,7 @@ P: #000
         height: 100px;
     }
     100%{
-        background-color: #3877ff;
+        background-color: var(--std_color_accent);
         color:rgba(0,0,0,0);
         border-radius: 150%;
         min-height: 10%;
@@ -131,7 +131,7 @@ P: #000
 */
 @keyframes input_highlighter {
     from  {
-        background:#0071ce;
+        background:var(--std_color_accent);
     }
     to    {
         width:0; background:transparent;
@@ -158,6 +158,16 @@ P: #000
 ----------------------------GENERAL------------------------------------
 -----------------------------------------------------------------------
 */
+
+:root{
+    /*
+    Color Vars
+    */
+    --std_color_primary: #E5E5E5;
+    --std_color_secondary: #288945;
+    --std_color_accent: #0071CE;
+}
+
 *{
     margin: 0;
     padding: 0;
@@ -208,8 +218,8 @@ h3{/*For Menus Mainly*/
     min-height: 100%;
     margin: auto;
     text-align: center;
-    background-color: #288945;
-    color: #E5E5E5;
+    background-color: var(--std_color_secondary);
+    color: var(--std_color_primary);
     z-index: 10;
 }
 
@@ -218,8 +228,8 @@ h3{/*For Menus Mainly*/
     top:0;
     width: 100%;
     min-height: 100%;
-    background-color: #E5E5E5;
-    color:#288945;
+    background-color: var(--std_color_primary);
+    color:var(--std_color_secondary);
     /*Animation Stuffs*/
     animation-name: ws_boxes;
     animation-duration: 1.3s;
@@ -235,7 +245,7 @@ h3{/*For Menus Mainly*/
     top:0;
     width: 100%;
     min-height: 100%;
-    background-color: #0071ce;
+    background-color: var(--std_color_accent);
 
     /*Animation Stuffs*/
     animation-name: ws_boxes;
@@ -251,7 +261,7 @@ h3{/*For Menus Mainly*/
     top:0;
     width: 100%;
     min-height: 100%;
-    background-color: #E5E5E5;
+    background-color: var(--std_color_primary);
 
     /*Animation Stuffs*/
     animation-name: ws_boxes;
@@ -326,13 +336,13 @@ h3{/*For Menus Mainly*/
 .std_button.ws_color{
     width: 150px;
     height: 25px;
-    color: #288945;
-    background-color: #E5E5E5;
+    color: var(--std_color_secondary);
+    background-color: var(--std_color_primary);
 }
 
 .std_button.ws_color:hover{
-    background-color: #0071ce;
-    color: #E5E5E5;
+    background-color: var(--std_color_accent);
+    color: var(--std_color_primary);
     box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.30);
 
 }
@@ -341,19 +351,15 @@ h3{/*For Menus Mainly*/
 -------------------------------NAV_BUTTON-------------------------------
 */
 
+/*
+The spacing and such are now going to be dynamically loaded when ran and when the screen resizes. This is to allow better scalling and what not.
+ */
 .std_nav_button {
-    /* margin: 0px 0px 0px 2px; */
     display: inline-block;
-    position: relative;
-    background-color: #E5E5E5;
-    min-height: 100%;
     width: 70px;
-    top: 0;
-    left: 0;
-    font-size: 12px;
-}
-.std_nav_alignLeft{
-    left:100%
+    background-color: var(--std_color_primary);
+    position: absolute;
+
 }
 /*
 -------------------------------STD_BUTTON--------------------------------
@@ -367,18 +373,18 @@ h3{/*For Menus Mainly*/
     max-width: 50%;
 }
 .button_body{
-    color: #288945;
+    color: var(--std_color_secondary);
     padding: 5px 10px 5px 10px;
     width: 100%;
     height: 100%;
     font-family: "Open Sans", sans-serif;
     border: none;
-    border-bottom: 2px solid #288945;
+    border-bottom: 2px solid var(--std_color_secondary);
     transition: 0.2s ease all;
 }
 
 .button_body:hover {
-    color: #0071ce;
+    color: var(--std_color_accent);
 }
 
 .button_bar{
@@ -397,7 +403,7 @@ h3{/*For Menus Mainly*/
     width: 100%;
     left: 0%;
     position: relative;
-    background: #0071ce;
+    background: var(--std_color_accent);
     transition: 0.2s ease all;
 }
 
@@ -407,8 +413,8 @@ h3{/*For Menus Mainly*/
 */
 .timeLine_button{
     display: inline-block;
-    background-color: #E5E5E5;
-    border: 2px solid #288945;
+    background-color: var(--std_color_primary);
+    border: 2px solid var(--std_color_secondary);
     border-radius: 100%;
     height: 50px;
     width: 50px;
@@ -418,14 +424,14 @@ h3{/*For Menus Mainly*/
 
 .timeLine_button:hover{
     border-radius: 100%;
-    border: 2px solid #0071CE;
+    border: 2px solid var(--std_color_accent);
     box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.30);
 }
 
 .timeline_buttonToggled{
-    border: 2px solid #0071CE;
-    background-color: #0071CE;
-    color:#E5E5E5;
+    border: 2px solid var(--std_color_accent);
+    background-color: var(--std_color_accent);
+    color:var(--std_color_primary);
     box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.30);
 
 }
@@ -443,17 +449,31 @@ h3{/*For Menus Mainly*/
     left: 0%;
     width: 100%;
     height: 5%;
-    padding: 2px 2px 2px 2px;
-    background-color: #288945;
+    /*padding: 2px 2px 2px 2px;*/
+    background-color: var(--std_color_secondary);
 }
 .nav_buttonIcon {
-    position: absolute;
+    position: fixed;
     width: auto;
     height: 100%;
     left: 25%;
     right: 25%;
-    fill: #288945;
-    stroke: #288945;
+    fill: var(--std_color_secondary);
+    stroke: var(--std_color_secondary);
+}
+
+/*
+-----------------------------------------------------------------------
+--------------------------STATUS-BOX-----------------------------------
+-----------------------------------------------------------------------
+*/
+
+#std_statusBox{
+    display: block;
+    width: 25%;
+    background-color: var(--std_color_primary);
+    position: absolute;
+
 }
 
 
@@ -462,14 +482,14 @@ h3{/*For Menus Mainly*/
 ------------------------------MENUS------------------------------------
 -----------------------------------------------------------------------
 */
-
+/*
+Width and top are being applied with javascript at runtime
+ */
 #menu_container{
-    position: absolute;
-    top:5.2%;
+    position: fixed;
     min-height: 100%;
-    width: 20%;
-    background-color: #288945;
-    padding: 2px 1px 2px 1px;
+    background-color: var(--std_color_secondary);
+    padding: 0px 1px 2px 1px;
     margin-top: 2px;
 
 }
@@ -477,11 +497,11 @@ h3{/*For Menus Mainly*/
 .std_menu {
     position: absolute;
     display: block;
-    top: 2px;
+    /*top: 2px;*/
     left: -100%;
     right: 100%;
-    height: 93.75%;
-    background-color: #E5E5E5;
+    height: 94.5%;
+    background-color: var(--std_color_primary);
     margin-left: auto;
     margin-right: auto;
     /* margin-top: auto; */
@@ -489,11 +509,15 @@ h3{/*For Menus Mainly*/
 }
 
 .std_menu.menu_hidden{
+    /*
     animation-name: menu_hide;
     animation-duration: 100ms;
     animation-iteration-count: 1;
     animation-fill-mode: forwards;
     animation-timing-function: ease-in-out;
+    */
+    left: -100%;
+    right: 100%;
 }
 
 .std_menu.menu_show{
@@ -504,6 +528,9 @@ h3{/*For Menus Mainly*/
     animation-fill-mode: forwards;
     animation-timing-function: ease-in-out;
 }
+
+
+
 /*
 -----------------------------------------------------------------------
 ----------------------------TIMELINE-----------------------------------
@@ -515,6 +542,7 @@ h3{/*For Menus Mainly*/
     top: 100%;
     height: 100%;
     z-index: 6;
+    margin-right: 4px;
     /*background-color: rgba(0,0,0,0.15);*/
 }
 
@@ -527,6 +555,9 @@ h3{/*For Menus Mainly*/
 }
 
 #timeline_triggerArea {
+    text-align: center;
+    font-weight: bolder;
+    vertical-align: top;
     width: 20%;
     height: 15px;
     position: relative;
@@ -553,8 +584,12 @@ h3{/*For Menus Mainly*/
     width: 100%;
     /* margin: 60px 2px -80px 0px; */
     top: 7.86%;
-    background-color: #E5E5E5;
-    border: 2px solid #0071ce;
+    background-color: var(--std_color_primary);
+    border: 2px solid var(--std_color_secondary);
+}
+
+#timeline_body.timeline_active{
+    border: 2px solid var(--std_color_accent);
 }
 
 
@@ -579,14 +614,14 @@ input {
     width:100%;
     background-color: initial;
     border:none;
-    border-bottom:2px solid #288945;
+    border-bottom:2px solid var(--std_color_secondary);
 }
 input:focus {
     outline:none;
 }
 
 label {
-    color:#288945;
+    color:var(--std_color_secondary);
     font-size:18px;
     font-weight:normal;
     position:absolute;
@@ -601,7 +636,7 @@ input:focus ~ label, input:valid ~ label        {
     font-weight: lighter;
     top:-10px;
     font-size:14px;
-    color:#0071ce;
+    color:var(--std_color_accent);
 }
 
 .input_bar {
@@ -615,7 +650,7 @@ input:focus ~.input_bar {
     width:100%;
     bottom:1px;
     position:absolute;
-    background:#0071ce;
+    background:var(--std_color_accent);
     transition:0.2s ease all;
 
 }
