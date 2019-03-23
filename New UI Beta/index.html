@@ -2,6 +2,7 @@
 <html lang="en">
     <head>
         <script src="newStyle.js"></script>
+        <script src="jquery-3.3.1.min.js"></script>
         <script>stylesheetLoader("normalMode")</script>
         <!--<link rel="stylesheet" href="normalMode_Style.css"/>-->
         <meta charset="UTF-8">
@@ -36,14 +37,39 @@
         </div>
         <div id="mainBody">
             <div id="nav_menu">
+                <!--Left Aligned Buttons-->
                 <span class="std_nav_button" id="nav_shapesList" onclick="showMenu('menu_shapesList')">
-                    <object type="image/svg+xml" data="NOTYET.svg" class="nav_buttonIcon">NAV_GEN</object>
+                    <!--<object type="image/svg+xml" data="" class="nav_buttonIcon">NAV_GEN</object>-->
                 </span>
-                <span class="std_nav_button" id="nav_newShape" onclick="showMenu('menu_newShapes')"></span>
-                <span class="std_nav_button" id="nav_camera" onclick="showMenu('menu_camera')"></span>
+                <span class="std_nav_button" id="nav_newShape" onclick="showMenu('menu_newShapes')">
+                    <!--<object type="image/svg+xml" data="" class="nav_buttonIcon">NAV_GEN</object>-->
+                </span>
+                <span class="std_nav_button" id="nav_camera" onclick="showMenu('menu_camera')">
+                    <!--<object type="image/svg+xml" data="" class="nav_buttonIcon">NAV_GEN</object>-->
+                </span>
+                <!--
+                This menu has been moved and its controls relocated to the timeline
                 <span class="std_nav_button" id="nav_keyframes" onclick="showMenu('menu_keyframes')"></span>
-                <span class="std_nav_button" id="nav_scene" onclick="showMenu('menu_scene')"></span>
-                <span class="std_nav_button std_nav_alignLeft" id="nav_settings" onclick="showMenu('menu_scene')"></span>
+                -->
+                <span class="std_nav_button" id="nav_scene" onclick="showMenu('menu_scene')">
+                    <!--<object type="image/svg+xml" data="" class="nav_buttonIcon">NAV_GEN</object>-->
+                </span>
+
+                <!--Satus Box-->
+                <div id="std_statusBox">
+                    <div id="status_body">
+                        std_status_body
+                    </div>
+                    <div id="status_ver">
+                        Monarch Animation ver 1.0 ~beta~rev 12
+                    </div>
+
+                </div>
+
+                <!--Right Aligned Buttons-->
+                <span class="std_nav_button std_nav_alignRight" id="nav_settings" onclick="">
+                    <!--<object type="image/svg+xml" data="" class="nav_buttonIcon">NAV_GEN</object>-->
+                </span>
 
             </div>
 
@@ -121,8 +147,14 @@
 
                 </div>
             </div>
+
+            <div id="std_configMenu">
+                <div class="std_configMenu config_hidden" id="config_setting">
+
+                </div>
+            </div>
             <div id="std_timeline">
-                <div onmouseover="timelineMasterToggle('show');" onclick="timelineMasterToggle('hide')" id="timeline_triggerArea"></div>
+                <div onmouseover="timelineMasterToggle('show');" onclick="timelineMasterToggle('hide')" id="timeline_triggerArea">. . . . . . </div>
                 <div id="timeline_buttonContainer">
                     <span class="timeLine_button" id="timeline_addKeyframe">+</span>
                     <span class="timeLine_button" id="timeline_removeKeyframe">-</span>

@@ -15,6 +15,7 @@
 function hideWelcomeScreen(){
     document.getElementById("welcomeScreen").classList.add("ws_hide");
     document.getElementById("ws_body").classList.add("ws_hide");
+    navBarSpacer();
 }
 
 /*
@@ -58,11 +59,11 @@ function timelineMasterToggle(mode){
 function loadSaveNames() {
     var loadSelector = document.getElementById("ws_loadMenu");
     var options = ["3","32", "fdghjkl", "fghytfvbnm", "BULL"];
-// Populate list with options:
+// Populate list with options
     var opt;
     for (var i = 0; i < options.length; i++) {
         opt = options[i];
-        loadSelector.innerHTML += " <option onclick=\'saveSubSystem.setSaveToLoad = \" " + opt + " \"; hideWelcomeScreen();\' > " + opt + "</option>";
+        loadSelector.innerHTML += " <option onclick=\'saveSubSystem.setSaveToLoad = (\" " + opt + " \"); hideWelcomeScreen();\' > " + opt + "</option>";
     }
 }
 
@@ -111,10 +112,99 @@ function stylesheetLoader(stylesheetName){
         loadedStyleTag = cssToLoad;
     }
 }
+
+/**
+ * This function will space the elements on the nav bar
+ * List of Elements:
+ * nav_shapesList button
+ * nav_newShape button
+ * nav_camera button
+ * nav_scene button
+ * std_statusBox text box
+ * nav_settings button
+ * This function is a mess and I should be able to clean it up if I put forth the effort but I really hate arrays.
+ * It will happen soon though
+ * @param paddingAmount the amount padding to apply inbetween the buttons
+ */
+function navBarSpacer(){
+    const topPadding = "2";//px
+    const bottomPadding="2";//px
+    const navHeight = (document.getElementById("nav_menu").clientHeight-4).toString();
+    var nextElementLeftPlacement = 2;//px
+    var selectedElement;
+    //This is a cheap and lazy but it should work
+    selectedElement = document.getElementById("nav_shapesList");
+
+    selectedElement.style.top = topPadding+"px";
+    selectedElement.style.bottom = bottomPadding+"px";
+    selectedElement.style.left = nextElementLeftPlacement.toString()+"px";
+    selectedElement.style.height = navHeight + "px";
+
+    nextElementLeftPlacement += selectedElement.clientWidth+2;
+    selectedElement = document.getElementById("nav_newShape");
+
+    selectedElement.style.top = topPadding+"px";
+    selectedElement.style.bottom = bottomPadding+"px";
+    selectedElement.style.left = nextElementLeftPlacement.toString()+"px";
+    selectedElement.style.height = navHeight + "px";
+
+    nextElementLeftPlacement += selectedElement.clientWidth+2;
+    selectedElement = document.getElementById("nav_camera");
+
+    selectedElement.style.top = topPadding+"px";
+    selectedElement.style.bottom = bottomPadding+"px";
+    selectedElement.style.left = nextElementLeftPlacement.toString()+"px";
+    selectedElement.style.height = navHeight + "px";
+
+    nextElementLeftPlacement += selectedElement.clientWidth+2;
+    selectedElement = document.getElementById("nav_scene");
+
+    selectedElement.style.top = topPadding+"px";
+    selectedElement.style.bottom = bottomPadding+"px";
+    selectedElement.style.left = nextElementLeftPlacement.toString()+"px";
+    selectedElement.style.height = navHeight + "px";
+
+    nextElementLeftPlacement += selectedElement.clientWidth;//This is being set now so that we can use it later in the menu container.
+
+    selectedElement = document.getElementById("std_statusBox");
+
+    selectedElement.style.top = topPadding+"px";
+    selectedElement.style.bottom = bottomPadding+"px";
+    selectedElement.style.height = navHeight + "px";
+    selectedElement.style.left =  (document.getElementById("nav_menu").clientWidth/2)-(selectedElement.clientWidth/2).toString()+"px";
+
+    selectedElement = document.getElementById("nav_settings");
+
+    selectedElement.style.top = topPadding+"px";
+    selectedElement.style.bottom = bottomPadding+"px";
+    selectedElement.style.right = "2px";
+    selectedElement.style.height = navHeight + "px";
+
+    document.getElementById("menu_container").style.width = nextElementLeftPlacement.toString()+"px";
+    document.getElementById("menu_container").style.top=(parseFloat(navHeight)+2).toString()+"px";
+
+
+}
 /*
 * Hides things for mobile users.
 * */
 function mobileHider(){
 
 }
+
+
+
+
+//------------------------------------------JQUERY----------------------------------------------------
+
+$(document).ready(function () {
+    console.log("Doc is ready");
+    $(window).resize(function () {
+        console.log("resize");
+        navBarSpacer();
+    });
+});
+
+
+
 
