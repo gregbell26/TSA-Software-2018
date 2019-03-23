@@ -1,8 +1,20 @@
 <!DOCTYPE html>
 <html lang="en">
     <head>
+        <!--
+            This is the tester HTML file for the new UI for Monarch Animation 2019 edition
+
+            This file is licensed under the Apache 2.0 license.
+            That means that you can freely use and modify this code for all uses except for
+                commercial uses provided this header is at the top of all files
+            Copyright 2018-2019 Monarch TSA
+
+            Author Gregory Bell
+            Edited 3/23/19
+            Rev 14
+        -->
+        <script src="Helper_Scripts/jquery-3.3.1.min.js"></script>
         <script src="newStyle.js"></script>
-        <script src="jquery-3.3.1.min.js"></script>
         <script>stylesheetLoader("normalMode")</script>
         <!--<link rel="stylesheet" href="normalMode_Style.css"/>-->
         <meta charset="UTF-8">
@@ -10,7 +22,7 @@
     </head>
 
     <body>
-        <div id="welcomeScreen">
+        <div id="std_ws_container">
             <h1 style="left: 25%; top: 10%;">
                 Monarch Animation
             </h1>
@@ -24,19 +36,19 @@
                 </div>
             </div>
             <div id="ws_body">
-                <span class="std_button ws_color" onclick="hideWelcomeScreen();" style="top:5%; left:30%;">Start from Scratch</span>
-                <select class="std_button ws_color" id="ws_loadMenu" onchange="hideWelcomeScreen()" style="top:20%; left:50%;">
+                <span class="std_ws_button ws_color" onclick="initMainUI();" style="top:5%; left:30%;">Start from Scratch</span>
+                <select class="std_ws_button ws_color" id="ws_loadMenu" onchange="initMainUI()" style="top:20%; left:50%;">
                     <option>Load Save</option>
 
                 </select>
 
-                <span class="std_button ws_color" onclick="hideWelcomeScreen();" style="top:5%; left:70%">View Torture</span>
+                <span class="std_ws_button ws_color" onclick="initMainUI();" style="top:5%; left:70%">View Torture</span>
 
 
             </div>
         </div>
-        <div id="mainBody">
-            <div id="nav_menu">
+        <div id="std_body">
+            <div id="std_nav_bar">
                 <!--Left Aligned Buttons-->
                 <span class="std_nav_button" id="nav_shapesList" onclick="showMenu('menu_shapesList')">
                     <!--<object type="image/svg+xml" data="" class="nav_buttonIcon">NAV_GEN</object>-->
@@ -55,25 +67,25 @@
                     <!--<object type="image/svg+xml" data="" class="nav_buttonIcon">NAV_GEN</object>-->
                 </span>
 
-                <!--Satus Box-->
+                <!--Status Box-->
                 <div id="std_statusBox">
                     <div id="status_body">
                         std_status_body
                     </div>
                     <div id="status_ver">
-                        Monarch Animation ver 1.0 ~beta~rev 12
+                        Monarch Animation ver 1.0 ~beta~rev 14
                     </div>
 
                 </div>
 
                 <!--Right Aligned Buttons-->
-                <span class="std_nav_button std_nav_alignRight" id="nav_settings" onclick="">
+                <span class="std_nav_button std_nav_alignRight" id="nav_settings" onclick="settingsToggle()">
                     <!--<object type="image/svg+xml" data="" class="nav_buttonIcon">NAV_GEN</object>-->
                 </span>
 
             </div>
 
-            <div id="menu_container">
+            <div id="std_menu_container">
                 <div class="std_menu menu_hidden" id="menu_shapesList">
                     <h2>
                         Menu_Input
@@ -83,13 +95,13 @@
                     </h3>
                     <div class="std_input">
                         <input type="text" required>
-                        <span class="input_highlight"></span>
+                        <!--<span class="input_highlight"></span>-->
                         <span class="input_bar"></span>
                         <label>std_textBox</label>
                     </div>
                     <div class="std_input">
                         <input type="text" required>
-                        <span class="input_highlight"></span>
+                        <!--<span class="input_highlight"></span>-->
                         <span class="input_bar"></span>
                         <label>std_textBox</label>
                     </div>
@@ -98,16 +110,17 @@
                     </h3>
                     <div class="std_input">
                         <input type="text" required>
-                        <span class="input_highlight"></span>
+                        <!--<span class="input_highlight"></span>-->
                         <span class="input_bar"></span>
                         <label>std_textBox</label>
                     </div>
                     <div class="std_input">
                         <input type="text" required>
-                        <span class="input_highlight"></span>
+                        <!--<span class="input_highlight"></span>-->
                         <span class="input_bar"></span>
                         <label>std_textBox</label>
                     </div>
+
 
 
 
@@ -137,12 +150,34 @@
                         Menu_Lists
                     </h2>
 
+                    <h3>
+                        Sub Titles
+                    </h3>
+
+                    <select class="std_body_list">
+                        <option class="">std_list</option>
+                        <option class="">TEST</option>
+                    </select>
+
+                    <select class="std_body_list">
+                        <option class="">std_list</option>
+                        <option class="">TEST</option>
+                    </select>
+
+                    <h3>
+                        Sub Titles
+                    </h3>
+
+                    <ul class="std_body_list">
+                        <li class="list_li">
+                            std_list
+                            <span class="list_button">X</span>
+                        </li>
+
+                    </ul>
 
                 </div>
-                <div class="std_menu menu_hidden" id="menu_keyframes">
 
-
-                </div>
                 <div class="std_menu menu_hidden" id="menu_scene">
 
                 </div>
@@ -156,14 +191,22 @@
             <div id="std_timeline">
                 <div onmouseover="timelineMasterToggle('show');" onclick="timelineMasterToggle('hide')" id="timeline_triggerArea">. . . . . . </div>
                 <div id="timeline_buttonContainer">
-                    <span class="timeLine_button" id="timeline_addKeyframe">+</span>
-                    <span class="timeLine_button" id="timeline_removeKeyframe">-</span>
-                    <span onclick="timelineButtonToggle('timeline_play')" class="timeLine_button" id="timeline_play">></span>
-                    <span onclick="timelineButtonToggle('timeline_repeat')" class="timeLine_button" id="timeline_repeat">()</span>
+                    <span class="timeline_button" id="timeline_addKeyframe">+</span>
+                    <span class="timeline_button" id="timeline_removeKeyframe">-</span>
+                    <span onclick="timelineButtonToggle('timeline_play')" class="timeline_button" id="timeline_play">></span>
+                    <span onclick="timelineButtonToggle('timeline_repeat')" class="timeline_button" id="timeline_repeat">()</span>
                 </div>
                 <div id="timeline_body">
                     std_timeline
                 </div>
+            </div>
+
+            <div id="std_settings" class="settings_hide">
+
+                <div id="settings_menu" class="settings_hide">
+
+                </div>
+
             </div>
 
 

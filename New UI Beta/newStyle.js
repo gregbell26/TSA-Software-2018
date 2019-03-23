@@ -1,27 +1,33 @@
 /*
-*
-* This is the new style for the Animation program.
-* Will include dark Mode Detector, icon spacer, Suicide notes, And More!
-*
-*
-*
-* */
+This file contains all of the javascript for the new UI for Monarch Animation 2019 Edition
+
+This file is licensed under the Apache 2.0 license.
+That means that you can freely use and modify this code for all uses except for
+    commercial uses provided this header is at the top of all files
+Copyright 2018-2019 Monarch TSA
+
+Author Gregory Bell
+Edited 3/23/19
+Rev 14
+
+ */
 
 
 //----------------------------CLASS-ADDERS-----------------------------------------
 /*
 * Adds class to hide the welcome screen in a cool animation
+* After it does that is starts all of the needed functions for the program.
 * */
-function hideWelcomeScreen(){
-    document.getElementById("welcomeScreen").classList.add("ws_hide");
+function initMainUI(){
+    document.getElementById("std_ws_container").classList.add("ws_hide");
     document.getElementById("ws_body").classList.add("ws_hide");
-    navBarSpacer();
+    UISpacer();
 }
 
 /*
 * Shows and hides menus in a more elegant fashion
 * */
-var activeMenu ="init";
+var activeMenu ="init";//init value
 function showMenu(menuToShow){
     if(activeMenu !== "init") {
         document.getElementById(activeMenu).classList.remove("menu_show");
@@ -50,6 +56,21 @@ function timelineMasterToggle(mode){
 
 }
 
+function settingsToggle(){
+    if(document.getElementById("std_settings").classList.contains("settings_hide")){
+        document.getElementById("std_settings").classList.remove("settings_hide");
+        document.getElementById("settings_menu").classList.remove("settings_hide");
+        document.getElementById("std_settings").classList.add("settings_show");
+        document.getElementById("settings_menu").classList.add("settings_show");
+    }
+    else{
+        document.getElementById("std_settings").classList.remove("settings_show");
+        document.getElementById("settings_menu").classList.remove("settings_show");
+        document.getElementById("std_settings").classList.add("settings_hide");
+        document.getElementById("settings_menu").classList.add("settings_hide");
+    }
+}
+
 
 //---------------------------------PSEUDO-FUNCTIONS-----------------------------------------
 /*
@@ -63,10 +84,16 @@ function loadSaveNames() {
     var opt;
     for (var i = 0; i < options.length; i++) {
         opt = options[i];
-        loadSelector.innerHTML += " <option onclick=\'saveSubSystem.setSaveToLoad = (\" " + opt + " \"); hideWelcomeScreen();\' > " + opt + "</option>";
+        loadSelector.innerHTML += " <option onclick=\'saveSubSystem.setSaveToLoad = (\" " + opt + " \"); initMainUI();\' > " + opt + "</option>";
     }
 }
+/*
+* This is function that will start the 3js engine's render
+* This will moved to init.js
+* */
+function startRender(){
 
+}
 
 
 //----------------------------STYLE-FUNCTIONS--------------------------------------------------
@@ -114,7 +141,7 @@ function stylesheetLoader(stylesheetName){
 }
 
 /**
- * This function will space the elements on the nav bar
+ * This function will space the elements so they look nice
  * List of Elements:
  * nav_shapesList button
  * nav_newShape button
@@ -124,12 +151,11 @@ function stylesheetLoader(stylesheetName){
  * nav_settings button
  * This function is a mess and I should be able to clean it up if I put forth the effort but I really hate arrays.
  * It will happen soon though
- * @param paddingAmount the amount padding to apply inbetween the buttons
  */
-function navBarSpacer(){
+function UISpacer(){
     const topPadding = "2";//px
     const bottomPadding="2";//px
-    const navHeight = (document.getElementById("nav_menu").clientHeight-4).toString();
+    const navHeight = (document.getElementById("std_nav_bar").clientHeight-4).toString();
     var nextElementLeftPlacement = 2;//px
     var selectedElement;
     //This is a cheap and lazy but it should work
@@ -171,7 +197,7 @@ function navBarSpacer(){
     selectedElement.style.top = topPadding+"px";
     selectedElement.style.bottom = bottomPadding+"px";
     selectedElement.style.height = navHeight + "px";
-    selectedElement.style.left =  (document.getElementById("nav_menu").clientWidth/2)-(selectedElement.clientWidth/2).toString()+"px";
+    selectedElement.style.left =  (document.getElementById("std_nav_bar").clientWidth/2)-(selectedElement.clientWidth/2).toString()+"px";
 
     selectedElement = document.getElementById("nav_settings");
 
@@ -180,8 +206,12 @@ function navBarSpacer(){
     selectedElement.style.right = "2px";
     selectedElement.style.height = navHeight + "px";
 
-    document.getElementById("menu_container").style.width = nextElementLeftPlacement.toString()+"px";
-    document.getElementById("menu_container").style.top=(parseFloat(navHeight)+2).toString()+"px";
+    document.getElementById("std_menu_container").style.width = nextElementLeftPlacement.toString()+"px";
+    document.getElementById("std_menu_container").style.top=(parseFloat(navHeight)+2).toString()+"px";
+
+    document.getElementById("std_settings").style.width = document.getElementById("std_menu_container").clientWidth.toString()+"px";
+    document.getElementById("std_settings").style.top=(parseFloat(navHeight)+2).toString()+"px";
+
 
 
 }
@@ -198,10 +228,8 @@ function mobileHider(){
 //------------------------------------------JQUERY----------------------------------------------------
 
 $(document).ready(function () {
-    console.log("Doc is ready");
     $(window).resize(function () {
-        console.log("resize");
-        navBarSpacer();
+        UISpacer();
     });
 });
 

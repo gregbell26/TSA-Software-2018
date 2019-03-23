@@ -1,6 +1,16 @@
 @charset "UTF-8";
-/*Le New Style!*/
+/*
+This file contains all of the style code for the new UI for Monarch Animation 2019 Edition
 
+This file is licensed under the Apache 2.0 license.
+That means that you can freely use and modify this code for all uses except for
+    commercial uses provided this header is at the top of all files
+Copyright 2018-2019 Monarch TSA
+
+Author Gregory Bell
+Edited 3/23/19
+Rev 14
+ */
 
 /*
 COLORS:
@@ -126,6 +136,49 @@ small text: #0071CE
         right: 2px;
     }
 }
+
+@keyframes settings_containerShow {
+    from{
+        right:auto;
+        left:100%;
+    }
+    to{
+        left:auto;
+        right: 0px;
+    }
+}
+
+@keyframes settings_show {
+    from{
+        left:100%;
+    }
+    to{
+        right: 2px;
+        left:2px;
+    }
+}
+
+@keyframes settings_containerHide {
+    from{
+        left:auto;
+        right: 0px;
+    }
+    to{
+        right:auto;
+        left:100%;
+    }
+}
+
+@keyframes settings_hide {
+    from{
+        right:2px;
+        left:2px;
+    }
+    to{
+
+        left: 100%;
+    }
+}
 /*
 ---------------------------------I/O-------------------------------------------
 */
@@ -198,7 +251,7 @@ h3{/*For Menus Mainly*/
     font-weight: lighter;
 }
 
-#mainBody{
+#std_body{
     position: fixed;
     z-index: 5;
     height: 100%;
@@ -211,7 +264,7 @@ h3{/*For Menus Mainly*/
 ------------------------WELCOME-SCREEN---------------------------------
 -----------------------------------------------------------------------
 */
-#welcomeScreen {
+#std_ws_container {
     position: absolute;
     top:0;
     width: 100%;
@@ -303,7 +356,7 @@ h3{/*For Menus Mainly*/
     animation-timing-function: ease-in-out;
 }
 
-#welcomeScreen.ws_hide{
+#std_ws_container.ws_hide{
     animation-name: welcomeScreen_hide;
     animation-delay: 1.25s;
     animation-duration: 1s;
@@ -319,7 +372,7 @@ h3{/*For Menus Mainly*/
 ----------------------------BUTTONS------------------------------------
 -----------------------------------------------------------------------
 */
-.std_button{
+.std_ws_button{
     all:initial;
     position: absolute;
     font-family: 'Open Sans', sans-serif;
@@ -333,14 +386,14 @@ h3{/*For Menus Mainly*/
     transition: 100ms;
 }
 
-.std_button.ws_color{
+.std_ws_button.ws_color{
     width: 150px;
     height: 25px;
     color: var(--std_color_secondary);
     background-color: var(--std_color_primary);
 }
 
-.std_button.ws_color:hover{
+.std_ws_button.ws_color:hover{
     background-color: var(--std_color_accent);
     color: var(--std_color_primary);
     box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.30);
@@ -359,13 +412,19 @@ The spacing and such are now going to be dynamically loaded when ran and when th
     width: 70px;
     background-color: var(--std_color_primary);
     position: absolute;
+    transition: 150ms ease-in-out;
 
+}
+
+.std_nav_button:hover{
+    background-color: var(--std_color_accent);
 }
 /*
 -------------------------------STD_BUTTON--------------------------------
 */
 
 .std_body_button{
+    all:initial;
     position: relative;
     display: inline-block;
     overflow: initial;
@@ -411,7 +470,7 @@ The spacing and such are now going to be dynamically loaded when ran and when th
 /*
 ---------------------------------TIMELINE_BUTTON-----------------------------------
 */
-.timeLine_button{
+.timeline_button{
     display: inline-block;
     background-color: var(--std_color_primary);
     border: 2px solid var(--std_color_secondary);
@@ -422,7 +481,7 @@ The spacing and such are now going to be dynamically loaded when ran and when th
     text-align: center;
 }
 
-.timeLine_button:hover{
+.timeline_button:hover{
     border-radius: 100%;
     border: 2px solid var(--std_color_accent);
     box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.30);
@@ -436,6 +495,38 @@ The spacing and such are now going to be dynamically loaded when ran and when th
 
 }
 
+/*
+-----------------------------------------------------------------------
+------------------------------LISTS------------------------------------
+-----------------------------------------------------------------------
+*/
+
+.std_body_list{
+    all: initial;
+    position: relative;
+    display: inline-block;
+    overflow: initial;
+    margin: 10px 5px 11px 5px;
+    font-family: "Open Sans", sans-serif;
+    min-width: 40%;
+    max-width: 50%;
+    border: none;
+    padding-left: 10px;
+    border-bottom: 2px solid var(--std_color_secondary);
+    color: var(--std_color_secondary);
+    transition: 100ms ease-in-out;
+}
+.std_body_list:hover, .std_body_list:focus{
+    border-bottom: 3px solid var(--std_color_accent);
+    color:var(--std_color_accent);
+    margin: 10px 5px 10px 5px;
+
+}
+
+
+
+
+
 
 /*
 -----------------------------------------------------------------------
@@ -443,7 +534,7 @@ The spacing and such are now going to be dynamically loaded when ran and when th
 -----------------------------------------------------------------------
 */
 
-#nav_menu {
+#std_nav_bar {
     position: absolute;
     top: 0%;
     left: 0%;
@@ -462,6 +553,7 @@ The spacing and such are now going to be dynamically loaded when ran and when th
     stroke: var(--std_color_secondary);
 }
 
+
 /*
 -----------------------------------------------------------------------
 --------------------------STATUS-BOX-----------------------------------
@@ -473,8 +565,36 @@ The spacing and such are now going to be dynamically loaded when ran and when th
     width: 25%;
     background-color: var(--std_color_primary);
     position: absolute;
+    padding: 0px 5px 0px 5px;
+    transition: 150ms ease-in-out;
 
 }
+
+#status_body{
+    top:-5px;
+    overflow: initial;
+    position: relative;
+    height: 80%;
+    text-align: center;
+    font-family: "Roboto Slab", serif;
+    font-size: 22pt;
+    font-weight: bold;
+    vertical-align: top;
+    display: block;
+
+}
+#status_ver{
+    position: relative;
+    height: 20%;
+    text-align: center;
+    font-family: "Roboto Slab", serif;
+    font-size: 5pt;
+    font-weight: lighter;
+    display: block;
+
+}
+
+
 
 
 /*
@@ -485,7 +605,7 @@ The spacing and such are now going to be dynamically loaded when ran and when th
 /*
 Width and top are being applied with javascript at runtime
  */
-#menu_container{
+#std_menu_container{
     position: fixed;
     min-height: 100%;
     background-color: var(--std_color_secondary);
@@ -510,6 +630,7 @@ Width and top are being applied with javascript at runtime
 
 .std_menu.menu_hidden{
     /*
+    This is commented out due to it looking like a glitch when it plays
     animation-name: menu_hide;
     animation-duration: 100ms;
     animation-iteration-count: 1;
@@ -528,6 +649,84 @@ Width and top are being applied with javascript at runtime
     animation-fill-mode: forwards;
     animation-timing-function: ease-in-out;
 }
+
+/*
+--------------------------------SETTINGS----------------------------------------------
+*/
+
+/*
+Width is determined at runtime by the spacer function
+*/
+#std_settings{
+    overflow: initial;
+    position: absolute;
+    display: block;
+    min-height: 100%;
+    padding: 0px 1px 2px 1px;
+    margin-top: 2px;
+    background-color: var(--std_color_secondary);
+}
+
+#settings_menu{
+    position: absolute;
+    display: block;
+    height: 94.5%;
+    background-color: var(--std_color_primary);
+    margin-left: auto;
+    margin-right: auto;
+}
+
+#std_settings.settings_show{
+    /*
+    Disabled because it is incredibly buggy
+    animation-name: settings_containerShow;
+    animation-duration: 500ms;
+    animation-delay: 25ms;
+    animation-iteration-count: 1;
+    animation-fill-mode: forwards;
+    animation-timing-function: ease-in-out;
+    */
+    right:0;
+    left:auto;
+}
+
+#settings_menu.settings_show{
+    animation-name: settings_show;
+    animation-duration: 250ms;
+    animation-delay: 25ms;
+    animation-iteration-count: 1;
+    animation-fill-mode: forwards;
+    animation-timing-function: ease-in-out;
+
+
+}
+
+#std_settings.settings_hide{
+    /*
+    Disabled because it is incredibly buggy
+    animation-name: settings_containerHide;
+    animation-duration: 250ms;
+    animation-delay: 300ms;
+    animation-iteration-count: 1;
+    animation-fill-mode: forwards;
+    animation-timing-function: ease-in-out;
+    */
+    right:auto;
+    left:100%;
+}
+
+#settings_menu.settings_hide{
+    animation-name: settings_hide;
+    animation-duration: 250ms;
+    animation-delay: 25ms;
+    animation-iteration-count: 1;
+    animation-fill-mode: forwards;
+    animation-timing-function: ease-in-out;
+    right:auto;
+    left:100%;
+
+}
+
 
 
 
