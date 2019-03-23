@@ -285,17 +285,17 @@ function updateAnimation(timingCounter,a){
             else if (keyFrames[a].yCLook - keyFrames[a].yPosition < 0)
                 Ry1v = -Math.PI;
 
-            zoom2Zv = Math.pow(Math.pow(keyFrames[a+1].xCLook - keyFrames[a+1].xPosition, 2) + Math.pow(keyFrames[a+1].zCLook - keyFrames[a+1].zPosition, 2), .5);
-            zoom2v = Math.pow((Math.pow(zoom2Zv, 2) + Math.pow(keyFrames[a + 1].yPosition - keyFrames[a+1].yCLook, 2)), .5);//zoom1 calc here
+            zoom2Zv = Math.pow(Math.pow(keyFrames[a+1].xCLook - keyFrames[a].xPosition, 2) + Math.pow(keyFrames[a+1].zCLook - keyFrames[a].zPosition, 2), .5);
+            zoom2v = Math.pow((Math.pow(zoom2Zv, 2) + Math.pow(keyFrames[a].yPosition - keyFrames[a+1].yCLook, 2)), .5);//zoom1 calc here
             console.log("f2zoomZ " + zoom2Zv);
             console.log("f2zoom " + zoom2v);
             Rz2v = 0;
             Ry2v = 0;
-            if (keyFrames[a+1].xCLook - keyFrames[a+1].xPosition !== 0)
-                Rz2v = Math.atan((keyFrames[a+1].zCLook - keyFrames[a+1].zPosition) / (keyFrames[a+1].xCLook - keyFrames[a+1].xPosition));
-            else if (keyFrames[a+1].zCLook - keyFrames[a+1].zPosition > 0)
+            if (keyFrames[a+1].xCLook - keyFrames[a].xPosition !== 0)
+                Rz2v = Math.atan((keyFrames[a+1].zCLook - keyFrames[a].zPosition) / (keyFrames[a+1].xCLook - keyFrames[a].xPosition));
+            else if (keyFrames[a+1].zCLook - keyFrames[a].zPosition > 0)
                 Rz2v = Math.PI;
-            else if (keyFrames[a+1].zCLook - keyFrames[a+1].zPosition < 0)
+            else if (keyFrames[a+1].zCLook - keyFrames[a].zPosition < 0)
                 Rz2v = -Math.PI;
 
             if (keyFrames[a + 1].xPosition < 0 && Rz2 < 0)
@@ -303,11 +303,11 @@ function updateAnimation(timingCounter,a){
             else if (keyFrames[a + 1].xPosition < 0 && Rz2 > 0)
                 Rz2 -= Math.PI;
 
-            if (keyFrames[a+1].xCLook - keyFrames[a+1].xPosition !== 0 || keyFrames[a+1].zCLook - keyFrames[a+1].zPosition !== 0)
-                Ry2v = Math.atan((keyFrames[a + 1].yCLook - keyFrames[a+1].yPosition) / zoom2Zv);
-            else if (keyFrames[a+1].yCLook - keyFrames[a+1].yPosition > 0)
+            if (keyFrames[a+1].xCLook - keyFrames[a].xPosition !== 0 || keyFrames[a+1].zCLook - keyFrames[a].zPosition !== 0)
+                Ry2v = Math.atan((keyFrames[a + 1].yCLook - keyFrames[a].yPosition) / zoom2Zv);
+            else if (keyFrames[a+1].yCLook - keyFrames[a].yPosition > 0)
                 Ry2v = Math.PI;
-            else if (keyFrames[a+1].yCLook - keyFrames[a+1].yPosition < 0)
+            else if (keyFrames[a+1].yCLook - keyFrames[a].yPosition < 0)
                 Ry2v = -Math.PI;
 
             console.log("f1RY " + Ry1v/Math.PI*180+"°");
@@ -330,7 +330,7 @@ function updateAnimation(timingCounter,a){
         console.log(xCLook);
         console.log(yCLook);
         console.log(zCLook);
-        circleCameraRotation = keyFrames[a].circleCameraRotation;
+        circleCameraRotation = keyFrames[a+1].circleCameraRotation;
         if(circleCameraRotation){//stuff for circular camera rotation
             if(timingCounter <= 10 || !animationRunning) {//this stuff only executes the first iteration or through the timeline AND only if the Camera has circular movement
                 zoom1Z = Math.pow(Math.pow(keyFrames[a].xPosition, 2) + Math.pow(keyFrames[a].zPosition, 2), .5);
