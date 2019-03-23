@@ -65,6 +65,12 @@ function cameraMenu(){
     document.getElementById('xPositionBox').value = xPosition;
     document.getElementById('yPositionBox').value = yPosition;
     document.getElementById('zPositionBox').value = zPosition;
+    document.getElementById('xCCenterBox').value = xCCenter;
+    document.getElementById('yCCenterBox').value = yCCenter;
+    document.getElementById('zCCenterBox').value = zCCenter;
+    document.getElementById('xCLookBox').value = xCLook;
+    document.getElementById('yCLookBox').value = yCLook;
+    document.getElementById('zCLookBox').value = zCLook;
     console.log("Showed Camera")
 
 }
