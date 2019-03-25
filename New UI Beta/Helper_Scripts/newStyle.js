@@ -22,6 +22,7 @@ function initMainUI(){
     document.getElementById("std_ws_container").classList.add("ws_hide");
     document.getElementById("ws_body").classList.add("ws_hide");
     UISpacer();
+    document.getElementById("status_body").textContent = "READY";
 }
 
 /*
@@ -115,12 +116,12 @@ function stylesheetLoader(stylesheetName){
 
     }
     if(stylesheetName === "normalMode"){
-        cssToLoad.setAttribute("href", "normalMode_Style.css");
+        cssToLoad.setAttribute("href", "./style/normalMode_Style.css");
         validStyleSheet = true;
     }
 
     else if (stylesheetName ==="darkMode"){
-        cssToLoad.setAttribute("href", "darkMode_Style.css");
+        cssToLoad.setAttribute("href", "./style/darkMode_Style.css");
         validStyleSheet =true;
     }
 

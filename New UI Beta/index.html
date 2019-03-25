@@ -10,18 +10,18 @@
             Copyright 2018-2019 Monarch TSA
 
             Author Gregory Bell
-            Edited 3/23/19
-            Rev 14
+            Edited 3/24/19
+            Rev 15
         -->
         <script src="Helper_Scripts/jquery-3.3.1.min.js"></script>
-        <script src="newStyle.js"></script>
+        <script src="Helper_Scripts/newStyle.js"></script>
         <script>stylesheetLoader("normalMode")</script>
         <!--<link rel="stylesheet" href="normalMode_Style.css"/>-->
         <meta charset="UTF-8">
         <title>-BETA-TSA 2018</title>
     </head>
 
-    <body>
+    <body style="background-color: #000;">
         <div id="std_ws_container">
             <h1 style="left: 25%; top: 10%;">
                 Monarch Animation
@@ -73,7 +73,7 @@
                         std_status_body
                     </div>
                     <div id="status_ver">
-                        Monarch Animation ver 1.0 ~beta~rev 14
+                        Monarch Animation ver 1.0 ~beta~rev 15
                     </div>
 
                 </div>
@@ -154,27 +154,37 @@
                         Sub Titles
                     </h3>
 
-                    <select class="std_body_list">
-                        <option class="">std_list</option>
-                        <option class="">TEST</option>
-                    </select>
+                    <div class="std_body_list">
+                        <select class="list_body" onchange="">
+                            <option>item1</option>
+                            <option>item2</option>
+                            <option>item3</option>
+                        </select>
+                        <span class="list_bar"></span>
+                    </div>
 
-                    <select class="std_body_list">
-                        <option class="">std_list</option>
-                        <option class="">TEST</option>
-                    </select>
-
+                    <div class="std_body_list">
+                        <select class="list_body" onchange="">
+                            <option>item1</option>
+                            <option>item2</option>
+                            <option>item3</option>
+                        </select>
+                        <span class="list_bar"></span>
+                    </div>
                     <h3>
                         Sub Titles
                     </h3>
+                    <div class="std_body_elementList">
+                        <ul>
+                            <li class="elementList_body">item
+                                <span class="elementList_delete">X</span>
+                            </li>
+                            <li class="elementList_body">item2
+                                <span class="elementList_delete">X</span>
+                            </li>
+                        </ul>
 
-                    <ul class="std_body_list">
-                        <li class="list_li">
-                            std_list
-                            <span class="list_button">X</span>
-                        </li>
-
-                    </ul>
+                    </div>
 
                 </div>
 
@@ -189,7 +199,7 @@
                 </div>
             </div>
             <div id="std_timeline">
-                <div onmouseover="timelineMasterToggle('show');" onclick="timelineMasterToggle('hide')" id="timeline_triggerArea">. . . . . . </div>
+                <div onmouseover="timelineMasterToggle('show');" onclick="timelineMasterToggle('hide')" id="timeline_triggerArea">| | | | |  </div>
                 <div id="timeline_buttonContainer">
                     <span class="timeline_button" id="timeline_addKeyframe">+</span>
                     <span class="timeline_button" id="timeline_removeKeyframe">-</span>
@@ -204,6 +214,48 @@
             <div id="std_settings" class="settings_hide">
 
                 <div id="settings_menu" class="settings_hide">
+                    <div id="settings_about">
+                        <h3>
+                            About
+                        </h3>
+                        <img src="style/assets/pngs/monarchAnimation_Icon.png" alt="monarchAnimation_icon" id="monarchAnimation_icon"/>
+                            <p id="about_ProgramName">Monarch Animation</p>
+                            <p id="about_ver">ver 1.0 ~beta~rev 15</p>
+
+                        <div style="margin-top: 10px"></div>
+                            <p class="about_developmentTeam">Animation Engine</p>
+                            <p class="development_jobs">Camera | Keyframes | Capture | WebGL/3JS Implementation</p>
+
+                        <ul class="about_credits">
+                            <li>Jesse B.</li>
+                            <li>Corbin E.</li>
+                            <li>Jordan M.</li>
+                        </ul>
+
+                            <p class="about_developmentTeam">Save Engine</p>
+                            <p class="development_jobs">Local Saves | Online Saves | OBJ Loading | Firebase Implementation</p>
+
+                        <ul class="about_credits">
+                            <li>Gregory B.</li>
+                            <li>Daniel F.</li>
+                            <li>Jordan M.</li>
+                        </ul>
+
+                            <p class="about_developmentTeam">Ports</p>
+                            <p class="development_jobs">iOS | Android | Local Windows | Local macOS | Local Debian</p>
+
+                        <ul class="about_credits">
+                            <li>Jordan M.</li>
+                        </ul>
+
+                            <p class="about_developmentTeam">User Interface</p>
+                            <p class="development_jobs">UI Design | UI Programing | UI Animations | Logo Design</p>
+
+                        <ul class="about_credits">
+                            <li>Gregory B.</li>
+                        </ul>
+
+                    </div>
 
                 </div>
 
