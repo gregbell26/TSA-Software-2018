@@ -3,7 +3,7 @@ This file contains all of the javascript for the new UI for Monarch Animation 20
 
 This file is licensed under the Apache 2.0 license.
 That means that you can freely use and modify this code for all uses except for
-    commercial uses provided this header is at the top of all files
+    commercial use provided this header is at the top of all files
 Copyright 2018-2019 Monarch TSA
 
 Author Gregory Bell
@@ -19,6 +19,9 @@ Rev 14
 * After it does that is starts all of the needed functions for the program.
 * */
 function initMainUI(){
+    if(document.querySelector("body").requestFullscreen){
+        document.querySelector("body").requestFullscreen();
+    }
     document.getElementById("std_ws_container").classList.add("ws_hide");
     document.getElementById("ws_body").classList.add("ws_hide");
     UISpacer();
@@ -143,76 +146,87 @@ function stylesheetLoader(stylesheetName){
 
 /**
  * This function will space the elements so they look nice
- * List of Elements:
- * nav_shapesList button
- * nav_newShape button
- * nav_camera button
- * nav_scene button
- * std_statusBox text box
- * nav_settings button
- * This function is a mess and I should be able to clean it up if I put forth the effort but I really hate arrays.
- * It will happen soon though
  */
 function UISpacer(){
-    const topPadding = "2";//px
-    const bottomPadding="2";//px
-    const navHeight = (document.getElementById("std_nav_bar").clientHeight-4).toString();
-    var nextElementLeftPlacement = 2;//px
-    var selectedElement;
-    //This is a cheap and lazy but it should work
-    selectedElement = document.getElementById("nav_shapesList");
+    //functions vars
+    var nextLeftElementLoc;
+    var nextRightElementLoc;
+    var statusWidthHalved;
+    //Gets all of the nav buttons by class name then stuffs them into an array
+    var elementList = document.getElementsByClassName("std_nav_button");
+    elementList = Array.from(elementList);//Converts the list into an array
 
-    selectedElement.style.top = topPadding+"px";
-    selectedElement.style.bottom = bottomPadding+"px";
-    selectedElement.style.left = nextElementLeftPlacement.toString()+"px";
-    selectedElement.style.height = navHeight + "px";
+    //Things to be reset on launch when function runs
+    //This hasn't hampered performance in my tests but who knows it might in production
+    //So I'm clearing the arrays
+    UIDiemsions.std_navBar.button_placement = [];
+    UIDiemsions.std_navBar.spacer_placement = [];
 
-    nextElementLeftPlacement += selectedElement.clientWidth+2;
-    selectedElement = document.getElementById("nav_newShape");
 
-    selectedElement.style.top = topPadding+"px";
-    selectedElement.style.bottom = bottomPadding+"px";
-    selectedElement.style.left = nextElementLeftPlacement.toString()+"px";
-    selectedElement.style.height = navHeight + "px";
+    //sets diemsions
+    //See parent class for what each of these things do.
+    UIDiemsions.std_navBar.nav_height = document.getElementById("std_nav_bar").clientHeight;
+    UIDiemsions.std_navBar.element_height = UIDiemsions.std_navBar.nav_height - (UIDiemsions.std_navBar.defaultPadding*2);
 
-    nextElementLeftPlacement += selectedElement.clientWidth+2;
-    selectedElement = document.getElementById("nav_camera");
+    UIDiemsions.std_navBar.button_width = elementList[0].clientWidth;
+    UIDiemsions.std_navBar.nav_width = document.getElementById("std_nav_bar").clientWidth;
+    UIDiemsions.std_navBar.status_width = document.getElementById("std_statusBox").clientWidth;
+    statusWidthHalved = UIDiemsions.std_navBar.status_width/2;
+    UIDiemsions.std_navBar.menuContainer_placement = UIDiemsions.std_navBar.nav_height - (UIDiemsions.std_navBar.defaultPadding) ;
 
-    selectedElement.style.top = topPadding+"px";
-    selectedElement.style.bottom = bottomPadding+"px";
-    selectedElement.style.left = nextElementLeftPlacement.toString()+"px";
-    selectedElement.style.height = navHeight + "px";
+    nextLeftElementLoc = UIDiemsions.std_navBar.defaultPadding;
+    nextRightElementLoc = UIDiemsions.std_navBar.defaultPadding;
 
-    nextElementLeftPlacement += selectedElement.clientWidth+2;
-    selectedElement = document.getElementById("nav_scene");
+    //Start of the spacing
+    //This spaces the buttons bc those are what the rest of the spacing is based off of.
+    for(i = 0; i < elementList.length; i++){
+        elementList[i].style.top = (UIDiemsions.std_navBar.defaultPadding).toString()+UIDiemsions.std_navBar.defaultUnit;
+        elementList[i].style.bottom = (UIDiemsions.std_navBar.defaultPadding).toString()+UIDiemsions.std_navBar.defaultUnit;
+        if(!elementList[i].classList.contains("std_nav_alignRight")) {
+            elementList[i].style.left = (nextLeftElementLoc).toString() + UIDiemsions.std_navBar.defaultUnit;
+            UIDiemsions.std_navBar.button_placement.push((elementList[i].style.left).toString());
+            nextLeftElementLoc += UIDiemsions.std_navBar.button_width + UIDiemsions.std_navBar.defaultPadding;
+        }
+        else {
+            elementList[i].style.right = (nextRightElementLoc).toString() + UIDiemsions.std_navBar.defaultUnit;
+            UIDiemsions.std_navBar.button_placement.push((elementList[i].style.right).toString());
+            nextRightElementLoc += UIDiemsions.std_navBar.button_width + UIDiemsions.std_navBar.defaultPadding;
+        }
+    }
 
-    selectedElement.style.top = topPadding+"px";
-    selectedElement.style.bottom = bottomPadding+"px";
-    selectedElement.style.left = nextElementLeftPlacement.toString()+"px";
-    selectedElement.style.height = navHeight + "px";
+    //Sets all of the other things based off of what the
+    UIDiemsions.std_navBar.menuContainer_width = nextLeftElementLoc-2;
+    UIDiemsions.std_navBar.leftSpacer_width = (UIDiemsions.std_navBar.nav_width/2) - nextLeftElementLoc - statusWidthHalved - UIDiemsions.std_navBar.defaultPadding;
+    UIDiemsions.std_navBar.rightSpacer_width = (UIDiemsions.std_navBar.nav_width/2) - nextRightElementLoc - statusWidthHalved - UIDiemsions.std_navBar.defaultPadding;
 
-    nextElementLeftPlacement += selectedElement.clientWidth;//This is being set now so that we can use it later in the menu container.
+    UIDiemsions.std_navBar.status_placement = (UIDiemsions.std_navBar.nav_width/2) - (statusWidthHalved);
+    UIDiemsions.std_navBar.spacer_placement.push(nextLeftElementLoc.toString() + UIDiemsions.std_navBar.defaultUnit);
+    UIDiemsions.std_navBar.spacer_placement.push(nextRightElementLoc.toString() + UIDiemsions.std_navBar.defaultUnit);
 
-    selectedElement = document.getElementById("std_statusBox");
 
-    selectedElement.style.top = topPadding+"px";
-    selectedElement.style.bottom = bottomPadding+"px";
-    selectedElement.style.height = navHeight + "px";
-    selectedElement.style.left =  (document.getElementById("std_nav_bar").clientWidth/2)-(selectedElement.clientWidth/2).toString()+"px";
 
-    selectedElement = document.getElementById("nav_settings");
 
-    selectedElement.style.top = topPadding+"px";
-    selectedElement.style.bottom = bottomPadding+"px";
-    selectedElement.style.right = "2px";
-    selectedElement.style.height = navHeight + "px";
+///This can be cleaned up a little more
+    document.getElementById("std_menu_container").style.width = UIDiemsions.std_navBar.menuContainer_width.toString()+UIDiemsions.std_navBar.defaultUnit;
+    document.getElementById("std_menu_container").style.top= UIDiemsions.std_navBar.menuContainer_placement.toString()+UIDiemsions.std_navBar.defaultUnit;
 
-    document.getElementById("std_menu_container").style.width = nextElementLeftPlacement.toString()+"px";
-    document.getElementById("std_menu_container").style.top=(parseFloat(navHeight)+2).toString()+"px";
+    document.getElementById("std_settings").style.width = UIDiemsions.std_navBar.menuContainer_width.toString()+UIDiemsions.std_navBar.defaultUnit;
+    document.getElementById("std_settings").style.top = UIDiemsions.std_navBar.menuContainer_placement.toString()+UIDiemsions.std_navBar.defaultUnit;
 
-    document.getElementById("std_settings").style.width = document.getElementById("std_menu_container").clientWidth.toString()+"px";
-    document.getElementById("std_settings").style.top=(parseFloat(navHeight)+2).toString()+"px";
+    document.getElementById("std_statusBox").style.top = UIDiemsions.std_navBar.defaultPadding.toString()+UIDiemsions.std_navBar.defaultUnit;
+    document.getElementById("std_statusBox").style.bottom = UIDiemsions.std_navBar.defaultPadding.toString()+UIDiemsions.std_navBar.defaultUnit;
+    document.getElementById("std_statusBox").style.left = UIDiemsions.std_navBar.status_placement.toString()+UIDiemsions.std_navBar.defaultUnit;
 
+    document.getElementById("nav_spacer_left").style.width = (UIDiemsions.std_navBar.leftSpacer_width).toString() +UIDiemsions.std_navBar.defaultUnit;
+    document.getElementById("nav_spacer_left").style.top = (UIDiemsions.std_navBar.defaultPadding).toString()+UIDiemsions.std_navBar.defaultUnit;
+    document.getElementById("nav_spacer_left").style.bottom = (UIDiemsions.std_navBar.defaultPadding).toString()+UIDiemsions.std_navBar.defaultUnit;
+    document.getElementById("nav_spacer_left").style.left = (UIDiemsions.std_navBar.spacer_placement[0]).toString();
+
+
+    document.getElementById("nav_spacer_right").style.width = (UIDiemsions.std_navBar.rightSpacer_width).toString() +UIDiemsions.std_navBar.defaultUnit;
+    document.getElementById("nav_spacer_right").style.top = (UIDiemsions.std_navBar.defaultPadding).toString()+UIDiemsions.std_navBar.defaultUnit;
+    document.getElementById("nav_spacer_right").style.bottom = (UIDiemsions.std_navBar.defaultPadding).toString()+UIDiemsions.std_navBar.defaultUnit;
+    document.getElementById("nav_spacer_right").style.right = (UIDiemsions.std_navBar.spacer_placement[1]).toString();
 
 
 }

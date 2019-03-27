@@ -6,14 +6,15 @@
 
             This file is licensed under the Apache 2.0 license.
             That means that you can freely use and modify this code for all uses except for
-                commercial uses provided this header is at the top of all files
+                commercial use provided this header is at the top of all files
             Copyright 2018-2019 Monarch TSA
 
             Author Gregory Bell
-            Edited 3/24/19
-            Rev 15
+            Edited 3/26/19
+            Rev 16
         -->
         <script src="Helper_Scripts/jquery-3.3.1.min.js"></script>
+        <script src="Helper_Scripts/diemsions.js"></script>
         <script src="Helper_Scripts/newStyle.js"></script>
         <script>stylesheetLoader("normalMode")</script>
         <!--<link rel="stylesheet" href="normalMode_Style.css"/>-->
@@ -67,16 +68,24 @@
                     <!--<object type="image/svg+xml" data="" class="nav_buttonIcon">NAV_GEN</object>-->
                 </span>
 
+                <!--Spacer to get rid of big bars-->
+
+                <span class="std_nav_spacer" id="nav_spacer_left"></span>
+
                 <!--Status Box-->
                 <div id="std_statusBox">
                     <div id="status_body">
                         std_status_body
                     </div>
                     <div id="status_ver">
-                        Monarch Animation ver 1.0 ~beta~rev 15
+                        Monarch Animation ver 1.0 ~beta~rev 16
                     </div>
 
                 </div>
+
+                <!--Spacer to get rid of big bars-->
+
+                <span class="std_nav_spacer" id="nav_spacer_right"></span>
 
                 <!--Right Aligned Buttons-->
                 <span class="std_nav_button std_nav_alignRight" id="nav_settings" onclick="settingsToggle()">
@@ -95,13 +104,13 @@
                     </h3>
                     <div class="std_input">
                         <input type="text" required>
-                        <!--<span class="input_highlight"></span>-->
+                        <span class="input_highlight"></span>
                         <span class="input_bar"></span>
                         <label>std_textBox</label>
                     </div>
                     <div class="std_input">
                         <input type="text" required>
-                        <!--<span class="input_highlight"></span>-->
+                        <span class="input_highlight"></span>
                         <span class="input_bar"></span>
                         <label>std_textBox</label>
                     </div>
@@ -110,13 +119,13 @@
                     </h3>
                     <div class="std_input">
                         <input type="text" required>
-                        <!--<span class="input_highlight"></span>-->
+                        <span class="input_highlight"></span>
                         <span class="input_bar"></span>
                         <label>std_textBox</label>
                     </div>
                     <div class="std_input">
                         <input type="text" required>
-                        <!--<span class="input_highlight"></span>-->
+                        <span class="input_highlight"></span>
                         <span class="input_bar"></span>
                         <label>std_textBox</label>
                     </div>
@@ -214,13 +223,30 @@
             <div id="std_settings" class="settings_hide">
 
                 <div id="settings_menu" class="settings_hide">
+                    <h2>
+                        Settings
+                    </h2>
+                    <h3>
+                        Theme
+                    </h3>
+
+                    <div class="std_body_list">
+                        <select class="list_body" id="settings_styleSheetSelector"
+                                onchange="stylesheetLoader(document.getElementById('settings_styleSheetSelector')[document.getElementById('settings_styleSheetSelector').selectedIndex].value)"
+                        >
+                            <option value="normalMode">Light Theme</option>
+                            <option value="darkMode">Dark Theme</option>
+                        </select>
+                        <span class="list_bar"></span>
+                    </div>
+
                     <div id="settings_about">
                         <h3>
                             About
                         </h3>
                         <img src="style/assets/pngs/monarchAnimation_Icon.png" alt="monarchAnimation_icon" id="monarchAnimation_icon"/>
                             <p id="about_ProgramName">Monarch Animation</p>
-                            <p id="about_ver">ver 1.0 ~beta~rev 15</p>
+                            <p id="about_ver">ver 1.0 ~beta~rev 16</p>
 
                         <div style="margin-top: 10px"></div>
                             <p class="about_developmentTeam">Animation Engine</p>
@@ -265,5 +291,5 @@
             <div id="3js_renderArea"></div>
         </div>
     </body>
-    <script>loadSaveNames(); if(document.querySelector("body").requestFullscreen){ document.querySelector("body").requestFullscreen();}</script>
+    <script>loadSaveNames(); /*if(document.querySelector("body").requestFullscreen){ document.querySelector("body").requestFullscreen();}*/</script>
 </html>
