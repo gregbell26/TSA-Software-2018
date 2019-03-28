@@ -7,8 +7,8 @@ That means that you can freely use and modify this code for all uses except for
 Copyright 2018-2019 Monarch TSA
 
 Author Gregory Bell
-Edited 3/23/19
-Rev 14
+Edited 3/28/19
+Rev 17
 
  */
 
@@ -18,14 +18,18 @@ Rev 14
 * Adds class to hide the welcome screen in a cool animation
 * After it does that is starts all of the needed functions for the program.
 * */
-function initMainUI(){
-    if(document.querySelector("body").requestFullscreen){
-        document.querySelector("body").requestFullscreen();
+async function initMainUI(){
+    if(!document.querySelector("body").requestFullscreen()){
+        //do something if we are unable to enter full screen mode
+        /*document.querySelector("body").requestFullscreen();*/
     }
     document.getElementById("std_ws_container").classList.add("ws_hide");
     document.getElementById("ws_body").classList.add("ws_hide");
     UISpacer();
     document.getElementById("status_body").textContent = "READY";
+    await new Promise(resolve => setTimeout(resolve, 2250));
+    for (let el of document.querySelectorAll('#std_ws_container')) el.hidden = true;
+    for (let el of document.querySelectorAll('#ws_body')) el.hidden = true;
 }
 
 /*
@@ -146,6 +150,8 @@ function stylesheetLoader(stylesheetName){
 
 /**
  * This function will space the elements so they look nice
+ * This function is about halfway clean. I can prolly do some more cleaning its just that I, well Dont want to
+ * This function updates diemsions in diemsions.js
  */
 function UISpacer(){
     //functions vars
@@ -234,7 +240,8 @@ function UISpacer(){
 * Hides things for mobile users.
 * */
 function mobileHider(){
-
+    //this is a lot simpler than I thought it would be
+    for (let el of document.querySelectorAll('.monarchAnimation_mobile_hidden')) el.hidden = true;
 }
 
 
@@ -243,6 +250,7 @@ function mobileHider(){
 //------------------------------------------JQUERY----------------------------------------------------
 
 $(document).ready(function () {
+    //When the user resizes the program rerun UI spacer
     $(window).resize(function () {
         UISpacer();
     });
