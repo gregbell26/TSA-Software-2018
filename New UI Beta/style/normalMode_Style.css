@@ -1009,6 +1009,37 @@ input:focus ~ .input_highlight {
     animation:input_highlighter 300ms linear;
 }
 
+#std_popUp_input {
+    position: absolute;
+    display: block;
+    top: 25%;
+    right: 25%;
+    height: 30%;
+    width: 20%;
+    overflow-y: auto;
+    background-color: var(--std_color_secondary);
+}
+
+#popUp_input_body{
+    position: absolute;
+    display: block;
+    opacity: 0.0;
+    top: 50%;
+    left:50%;
+    background-color: var(--std_color_primary);
+    width: auto;
+    height: auto;
+    transition: 200ms ease-in-out all;
+}
+
+#popUp_input_body.popUp_show{
+    top: 2px;
+    right:2px;
+    left:2px;
+    bottom:2px;
+    opacity: 1.0;
+}
+
 
 
 
