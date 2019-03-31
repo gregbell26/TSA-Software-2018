@@ -79,6 +79,19 @@ function settingsToggle(){
     }
 }
 
+var shownPopUp = "init";
+function showPopUp(popUpToShow, popUpContent){
+    document.getElementById("std_popUp").classList.add("popUp_show");
+    document.getElementById(popUpToShow).classList.add("popUp_show");
+    document.getElementById(popUpToShow).children.item(0).textContent = popUpContent;
+    shownPopUp = popUpToShow;
+}
+
+function hidePopUp() {
+    document.getElementById(shownPopUp).classList.remove("popUp_show");
+    document.getElementById("std_popUp").classList.remove("popUp_show");
+}
+
 
 //---------------------------------PSEUDO-FUNCTIONS-----------------------------------------
 /*

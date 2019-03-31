@@ -8,8 +8,8 @@ That means that you can freely use and modify this code for all uses except for
 Copyright 2018-2019 Monarch TSA
 
 Author Gregory Bell
-Edited 3/26/19
-Rev 2
+Edited 3/30/19
+Rev 3
  */
 
 /*
@@ -247,11 +247,6 @@ h3{/*For Menus Mainly*/
 }
 
 
-/*
------------------------------------------------------------------------
-------------------------WELCOME-SCREEN---------------------------------
------------------------------------------------------------------------
-*/
 #std_ws_container {
     position: absolute;
     top:0;
@@ -366,7 +361,7 @@ h3{/*For Menus Mainly*/
     font-family: 'Open Sans', sans-serif;
     font-size: 12pt;
     display: block;
-    color: #ffffff;
+    color: #000;
     padding: 10px 25px 10px 25px;
     width: auto;
     height: auto;
@@ -403,6 +398,7 @@ The spacing and such are now going to be dynamically loaded when ran and when th
     transition: 150ms ease-in-out;
 
 }
+
 .std_nav_button:after {
     content: "";
     background: var(--std_color_accent);
@@ -427,6 +423,7 @@ The spacing and such are now going to be dynamically loaded when ran and when th
     opacity: 1;
     transition: 0s;
 }
+
 
 .std_nav_button:hover{
     background-color: var(--std_color_accent);
@@ -477,16 +474,8 @@ The spacing and such are now going to be dynamically loaded when ran and when th
     bottom: -5px;
     width: 100%;
     height: 100%;
-    /*
-    padding-top: 300%;
-    padding-left: 350%;
-    */
-    /*margin-left: -20px!important;*/
-    /*
-    margin-top: -120%;
-    */
     opacity: 0;
-    transition: 300ms all;
+    transition: 300ms linear all;
 }
 
 .button_body:active:after {
@@ -495,13 +484,8 @@ The spacing and such are now going to be dynamically loaded when ran and when th
     width: 0;
     height: 0;
     bottom: -5px;
-    /*
-    padding: 0;
-    margin: 0;
-    */
     opacity: 1;
     transition: 0s;
-
 }
 
 .button_body:hover ~ .button_bar {
@@ -516,6 +500,8 @@ The spacing and such are now going to be dynamically loaded when ran and when th
 .button_body:hover {
     color: var(--std_color_accent);
 }
+
+
 
 /*
 ---------------------------------TIMELINE_BUTTON-----------------------------------
@@ -693,6 +679,7 @@ The spacing and such are now going to be dynamically loaded when ran and when th
     background-color: var(--std_color_primary);
     position: absolute;
 }
+
 
 /*
 -----------------------------------------------------------------------
@@ -940,14 +927,16 @@ Width is determined at runtime by the spacer function
 -----------------------------------------------------------------------
 */
 
-
-.std_input {
+/*
+---------------------------------TEXT-----------------------------------
+ */
+.std_input_text {
     overflow: initial;
     position:relative;
     margin-bottom:20px;
     margin-top: 20px;
 }
-input {
+input[type="text"] {
     font-size:18px;
     padding:10px 10px 10px 5px;
     display:block;
@@ -956,7 +945,7 @@ input {
     border:none;
     border-bottom:2px solid var(--std_color_secondary);
 }
-input:focus {
+input[type="text"]:focus {
     outline:none;
 }
 
@@ -971,7 +960,7 @@ label {
     transition:0.2s ease all;
 }
 
-input:focus ~ label, input:valid ~ label        {
+input[type="text"]:focus ~ label, input[type="text"]:valid ~ label        {
     font-family: "Open Sans", sans-serif;
     font-weight: lighter;
     top:-10px;
@@ -979,15 +968,14 @@ input:focus ~ label, input:valid ~ label        {
     color:var(--std_color_accent);
 }
 
-.input_bar {
+.text_bar {
     position:relative;
     display:block;
     width:0;
     height: 3px;
     bottom:0px;
 }
-
-input:focus ~.input_bar {
+input[type="text"]:focus ~.text_bar {
     content:'';
     height:3px;
     width:100%;
@@ -997,15 +985,14 @@ input:focus ~.input_bar {
     transition:0.2s ease all;
 
 }
-
-.input_bar:before {
+.text_bar:before {
     left:50%;
 }
-.input_bar:after {
+.text_bar:after {
     right:50%;
 }
 
-.input_highlight {
+.text_highlight {
     position:absolute;
     height:60%;
     width:100px;
@@ -1015,8 +1002,95 @@ input:focus ~.input_bar {
     opacity:0.25;
 }
 
-input:focus ~ .input_highlight {
+input[type="text"]:focus ~ .text_highlight {
     animation:input_highlighter 300ms linear;
+}
+
+/*
+------------------------------------CHECKBOXES----------------------------------------------
+*/
+.std_input_checkboxes{
+    display: block;
+    margin-left: 10px;
+    margin-right: 10px;
+    overflow: initial;
+
+}
+input[type="checkbox"]{
+    all: initial;
+    position: relative;
+    display: inline-block;
+    height: 18px;
+    width: 18px;
+    border: 2px solid var(--std_color_secondary);
+    background-color: initial;
+    transition: 150ms ease-in-out all;
+}
+
+input[type="checkbox"]:hover{
+    border: 2px solid var(--std_color_accent);
+    box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.30);
+}
+input[type="checkbox"]:checked {
+    border: 2px solid var(--std_color_accent);
+    background-color: var(--std_color_accent);
+    box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.30);
+}
+input[type="checkbox"]:hover ~ label{
+    color: var(--std_color_accent);
+}
+.std_input_checkboxes label{
+    position: relative;
+    display: inline-block;
+    color: var(--std_color_secondary);
+    font-size: 18px;
+    text-align: left;
+    margin-left: 5px;
+    top: 0;
+}
+
+
+
+
+/*
+------------------------------------------POPUPS----------------------------------------------
+*/
+#std_popUp {
+    position: absolute;
+    display: none;
+    top: 40%;
+    right: 45%;
+    left: 45%;
+    bottom: 40%;
+    height: 20%;
+    width: 10%;
+    background-color: var(--std_color_secondary);
+    opacity: 0.0;
+    transition: 200ms ease-in-out all;
+}
+
+.popUp_body{
+    position: absolute;
+    display: block;
+    opacity: 0.0;
+    top: 50%;
+    left:50%;
+    background-color: var(--std_color_primary);
+    width: auto;
+    height: auto;
+    transition: 200ms ease-in-out all;
+}
+
+#std_popUp.popUp_show{
+    opacity: 1.0;
+    display: block;
+}
+.popUp_body.popUp_show{
+    top: 2px;
+    right:2px;
+    left:2px;
+    bottom:2px;
+    opacity: 1.0;
 }
 
 
@@ -1060,12 +1134,12 @@ input:focus ~ .input_highlight {
     font-weight: lighter;
     font-size: 12pt;
     text-align: center;
-    color: #b5b5b5;
+    color: #999;
 }
 
 .about_developmentTeam{
     text-align: center;
-    color: #ffffff;
+    color: #fff;
     font-family: "Roboto Slab", serif;
     font-size: 16pt;
 }
@@ -1082,14 +1156,9 @@ input:focus ~ .input_highlight {
     padding-left: 5px;
     padding-right: 5px;
     list-style-type: none;
-    color: #b5b5b5;
+    color: #525252;
     font-family: "Open Sans", sans-serif;
     text-align: left;
     font-size: 12pt;
 
 }
-
-
-
-
-
