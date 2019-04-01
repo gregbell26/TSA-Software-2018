@@ -1,0 +1,11 @@
+{
+  "background_color": "#FFF",
+  "display": "standalone",
+  "name": "MonarchAnimation~BETA~",
+  "short_name": "MonarchAnimation~BETA~",
+  "version": "org.trihardstudios.MonarchAnimation",
+  "description": "Hello World sample application that responds to the deviceready event.",
+  "author": "PhoneGap Team",
+  "icons": [],
+  "start_url": "index.html"
+}
