@@ -335,8 +335,8 @@ function updateAnimation(timingCounter,a){
             if(timingCounter <= 10 || !animationRunning) {//this stuff only executes the first iteration or through the timeline AND only if the Camera has circular movement
                 zoom1Z = Math.pow(Math.pow(keyFrames[a].xPosition, 2) + Math.pow(keyFrames[a].zPosition, 2), .5);
                 zoom1 = Math.pow((Math.pow(zoom1Z, 2) + Math.pow(keyFrames[a].yPosition, 2)), .5);//zoom1 calc here
-                //console.log("f1zoomZ " + zoom1Z);
-                //console.log("f1zoom " + zoom1);
+                console.log("f1zoomZ " + zoom1Z);
+                console.log("f1zoom " + zoom1);
                 Rz1 = 0;
                 Ry1 = 0;
                 if (keyFrames[a].xPosition !== 0)
@@ -360,8 +360,8 @@ function updateAnimation(timingCounter,a){
 
                 zoom2Z = Math.pow(Math.pow(keyFrames[a + 1].xPosition, 2) + Math.pow(keyFrames[a + 1].zPosition, 2), .5);
                 zoom2 = Math.pow((Math.pow(zoom2Z, 2) + Math.pow(keyFrames[a+1].yPosition, 2)), .5);//zoom1 calc here
-                //console.log("f2zoomZ " + zoom2Z);
-                //console.log("f2zoom " + zoom2);
+                console.log("f2zoomZ " + zoom2Z);
+                console.log("f2zoom " + zoom2);
                 Rz2 = 0;
                 Ry2 = 0;
                 if (keyFrames[a + 1].xPosition !== 0)
@@ -382,26 +382,26 @@ function updateAnimation(timingCounter,a){
                     Ry2 = Math.PI;
                 else if (keyFrames[a + 1].yPosition < 0)
                     Ry2 = -Math.PI;
-                //console.log("f1RY " + Ry1/Math.PI*180+"°");
-                //console.log("f2RY " + Ry2/Math.PI*180+"°");
-                //console.log("f1RZ " + Rz1/Math.PI*180+"°");
-                //console.log("f2RZ " + Rz2/Math.PI*180+"°");
+                console.log("f1RY " + Ry1/Math.PI*180+"°");
+                console.log("f2RY " + Ry2/Math.PI*180+"°");
+                console.log("f1RZ " + Rz1/Math.PI*180+"°");
+                console.log("f2RZ " + Rz2/Math.PI*180+"°");
 
                 MvX = Rz2 - Rz1;
                 MvY = Ry2 - Ry1;
                 zoomChange = zoom2 - zoom1;
                 zoomZChange = zoom2Z - zoom1Z;
-                //console.log("moving zoom " + zoomChange);
-                //console.log("moving zoomZ " + zoomZChange);
-                //console.log("moving X " + MvX/Math.PI*180+"°");
-                //console.log("moving Y " + MvY/Math.PI*180+"°");
+                console.log("moving zoom " + zoomChange);
+                console.log("moving zoomZ " + zoomZChange);
+                console.log("moving X " + MvX/Math.PI*180+"°");
+                console.log("moving Y " + MvY/Math.PI*180+"°");
             }//this stuff only executes every time
             yPosition = (zoom1  +  zoomChange/keyFrames[a].duration * timingCounter) * (Math.sin(Ry1+MvY/keyFrames[a].duration * timingCounter));
             xPosition = (zoom1Z + zoomZChange/keyFrames[a].duration * timingCounter) * (Math.cos(Rz1+MvX/keyFrames[a].duration * timingCounter));
             zPosition = (zoom1Z + zoomZChange/keyFrames[a].duration * timingCounter) * (Math.sin(Rz1+MvX/keyFrames[a].duration * timingCounter));
-            //console.log(xPosition);
-            //console.log(yPosition);
-            //console.log(zPosition);
+            console.log(xPosition);
+            console.log(yPosition);
+            console.log(zPosition);
             if(isNaN(yPosition))
                 yPosition = 0;
             if(isNaN(xPosition))
