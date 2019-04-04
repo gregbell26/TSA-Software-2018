@@ -25,6 +25,7 @@ function showList(){
 }
 
 function setSelectedShape(num){
+
     selectedShape = num;
     document.getElementById('boxSelected').innerHTML="#"+(selectedShape+1);
     let color = "#";

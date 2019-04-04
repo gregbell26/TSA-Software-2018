@@ -145,6 +145,11 @@ function stylesheetLoader(stylesheetName){
         validStyleSheet =true;
     }
 
+    else if(stylesheetName === "amoledMode"){
+        cssToLoad.setAttribute("href", "./style/amoledMode_Style.css");
+        validStyleSheet =true;
+    }
+
     else if(stylesheetName === "mobile"){
         cssToLoad.setAttribute("href", "mobileMode_Style.css");
         mobileHider();
