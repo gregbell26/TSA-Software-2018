@@ -664,14 +664,16 @@ The spacing and such are now going to be dynamically loaded when ran and when th
     /*padding: 2px 2px 2px 2px;*/
     background-color: var(--std_color_secondary);
 }
-.nav_buttonIcon {
-    position: fixed;
+.nav_buttonIcon{
+    position: absolute;
+    left: 5%;
+    right:5%;
+    top: 5%;
+    bottom: 5%;
+    max-height: 90%;
+    max-width: 90%;
     width: auto;
-    height: 100%;
-    left: 25%;
-    right: 25%;
-    fill: var(--std_color_secondary);
-    stroke: var(--std_color_secondary);
+    height: auto;
 }
 
 .std_nav_spacer{

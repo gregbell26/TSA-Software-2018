@@ -13,9 +13,9 @@
             Edited 3/30/19
             Rev 18
         -->
-        <script src="Helper_Scripts/jquery-3.3.1.min.js"></script>
-        <script src="Helper_Scripts/diemsions.js"></script>
-        <script src="Helper_Scripts/newStyle.js"></script>
+        <script src="helper_scripts/jquery-3.3.1.min.js"></script>
+        <script src="helper_scripts/UI_Helper_Scripts/diemsions.js"></script>
+        <script src="helper_scripts/UI_Helper_Scripts/newStyle.js"></script>
         <script>stylesheetLoader("normalMode")</script>
         <meta charset="UTF-8">
         <title>-BETA-TSA 2018</title>
@@ -50,21 +50,25 @@
         <div id="std_body">
             <div id="std_nav_bar">
                 <!--Left Aligned Buttons-->
-                <span class="std_nav_button" id="nav_shapesList" onclick="showMenu('menu_shapesList')">
-                    <!--<object type="image/svg+xml" data="" class="nav_buttonIcon">NAV_GEN</object>-->
+                <span class="std_nav_button" id="nav_shapesList" >
+                    <img onclick="showMenu('menu_shapesList')" src="./style/assets/svgs/nav_icons/nav_shapes_icon.svg"
+                         class="nav_buttonIcon"/>
                 </span>
-                <span class="std_nav_button" id="nav_newShape" onclick="showMenu('menu_newShapes')">
-                    <!--<object type="image/svg+xml" data="" class="nav_buttonIcon">NAV_GEN</object>-->
+                <span class="std_nav_button" id="nav_newShape" >
+                    <img onclick="showMenu('menu_newShapes')"
+                         src="./style/assets/svgs/nav_icons/nav_animationElements_icon.svg" class="nav_buttonIcon"/>
                 </span>
-                <span class="std_nav_button" id="nav_camera" onclick="showMenu('menu_camera')">
-                    <!--<object type="image/svg+xml" data="" class="nav_buttonIcon">NAV_GEN</object>-->
+                <span class="std_nav_button" id="nav_camera">
+                    <img onclick="showMenu('menu_camera')" src="./style/assets/svgs/nav_icons/nav_camera_icon.svg"
+                         class="nav_buttonIcon"/>
                 </span>
                 <!--
                 This menu has been moved and its controls relocated to the timeline
                 <span class="std_nav_button" id="nav_keyframes" onclick="showMenu('menu_keyframes')"></span>
                 -->
-                <span class="std_nav_button" id="nav_scene" onclick="showMenu('menu_scene')">
-                    <!--<object type="image/svg+xml" data="" class="nav_buttonIcon">NAV_GEN</object>-->
+                <span class="std_nav_button" id="nav_scene">
+                    <img onclick="showMenu('menu_scene')" src="./style/assets/svgs/nav_icons/nav_scene_icon.svg"
+                         class="nav_buttonIcon"/>
                 </span>
 
                 <!--Spacer to get rid of big bars-->
@@ -87,8 +91,9 @@
                 <span class="std_nav_spacer" id="nav_spacer_right"></span>
 
                 <!--Right Aligned Buttons-->
-                <span class="std_nav_button std_nav_alignRight" id="nav_settings" onclick="settingsToggle()">
-                    <!--<object type="image/svg+xml" data="" class="nav_buttonIcon">NAV_GEN</object>-->
+                <span class="std_nav_button std_nav_alignRight" id="nav_settings">
+                    <img onclick="settingsToggle()"
+                         src="./style/assets/svgs/nav_icons/nav_settings_icon.svg" class="nav_buttonIcon"/>
                 </span>
 
             </div>

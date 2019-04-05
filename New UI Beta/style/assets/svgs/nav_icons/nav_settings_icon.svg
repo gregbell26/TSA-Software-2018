@@ -1,0 +1,26 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 63.26 62.35">
+    <defs>
+        <style>
+            .cls-1 {
+            stroke: #000;
+            stroke-miterlimit: 10;
+            stroke-width: 2px;
+            fill: #fff;
+            }
+        </style>
+    </defs>
+    <title>Settings Icon</title>
+    <g id="Settings_Icon">
+        <g id="Settings_Icon" data-name="Settings Icon">
+            <circle class="cls-1" cx="31.3" cy="31.29" r="21.47"/>
+            <rect class="cls-1" x="45.9" y="44.75" width="8.8" height="8.8" transform="translate(52.89 -21.13) rotate(47.78)"/>
+            <rect class="cls-1" x="8.61" y="8.61" width="8.8" height="8.8" transform="translate(13.91 -5.37) rotate(47.78)"/>
+            <rect class="cls-1" x="45.33" y="8.38" width="8.8" height="8.8" transform="translate(95.15 -11.18) rotate(137.78)"/>
+            <rect class="cls-1" x="8.59" y="45.35" width="8.8" height="8.8" transform="translate(56.04 77.87) rotate(137.78)"/>
+            <rect class="cls-1" x="26.29" y="1.01" width="8.8" height="8.8" transform="translate(36.03 -25.29) rotate(89.86)"/>
+            <rect class="cls-1" x="27.58" y="52.54" width="8.8" height="8.8" transform="translate(88.84 24.83) rotate(89.86)"/>
+            <rect class="cls-1" x="53.1" y="25.17" width="9.15" height="8.79" transform="translate(115.42 59) rotate(179.86)"/>
+            <rect class="cls-1" x="1.01" y="28.61" width="8.8" height="8.8" transform="translate(10.91 66.02) rotate(179.86)"/>
+        </g>
+    </g>
+</svg>
