@@ -274,9 +274,9 @@ function updateAnimation(timingCounter,a){
                 Rz1v = -Math.PI;
 
             if (keyFrames[a].xPosition < 0 && Rz1v < 0)
-                Rz1 += Math.PI;
+                Rz1v += Math.PI;
             else if (keyFrames[a].xPosition < 0 && Rz1v > 0)
-                Rz1 -= Math.PI;
+                Rz1v -= Math.PI;
 
             if (keyFrames[a].xCLook - keyFrames[a].xPosition !== 0 || keyFrames[a].zPosition -  keyFrames[a].zCLook !== 0)
                 Ry1v = Math.atan((keyFrames[a].yCLook - keyFrames[a].yPosition) / zoom1Zv);
@@ -298,10 +298,10 @@ function updateAnimation(timingCounter,a){
             else if (keyFrames[a+1].zCLook - keyFrames[a].zPosition < 0)
                 Rz2v = -Math.PI;
 
-            if (keyFrames[a + 1].xPosition < 0 && Rz2 < 0)
-                Rz2 += Math.PI;
-            else if (keyFrames[a + 1].xPosition < 0 && Rz2 > 0)
-                Rz2 -= Math.PI;
+            if (keyFrames[a + 1].xPosition < 0 && Rz2v < 0)
+                Rz2v += Math.PI;
+            else if (keyFrames[a + 1].xPosition < 0 && Rz2v > 0)
+                Rz2v -= Math.PI;
 
             if (keyFrames[a+1].xCLook - keyFrames[a].xPosition !== 0 || keyFrames[a+1].zCLook - keyFrames[a].zPosition !== 0)
                 Ry2v = Math.atan((keyFrames[a + 1].yCLook - keyFrames[a].yPosition) / zoom2Zv);
