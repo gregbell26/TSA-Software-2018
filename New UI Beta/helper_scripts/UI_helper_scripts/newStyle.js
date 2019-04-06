@@ -7,8 +7,8 @@ That means that you can freely use and modify this code for all uses except for
 Copyright 2018-2019 Monarch TSA
 
 Author Gregory Bell
-Edited 3/28/19
-Rev 17
+Edited 4/6/19
+Rev 18
 
  */
 
@@ -26,7 +26,6 @@ async function initMainUI(){
     document.getElementById("std_ws_container").classList.add("ws_hide");
     document.getElementById("ws_body").classList.add("ws_hide");
     UISpacer();
-    document.getElementById("status_body").textContent = "READY";
     await new Promise(resolve => setTimeout(resolve, 2250));
     for (let el of document.querySelectorAll('#std_ws_container')) el.hidden = true;
     for (let el of document.querySelectorAll('#ws_body')) el.hidden = true;
@@ -46,6 +45,10 @@ function showMenu(menuToShow){
     document.getElementById(menuToShow).classList.add("menu_show");
 
     activeMenu = menuToShow;
+}
+
+function showSubMenu(subMenu){
+    document.getElementById(subMenu).classList.add("subMenu_show");
 }
 
 function timelineButtonToggle(buttonToToggle){
@@ -266,14 +269,5 @@ function mobileHider(){
 
 
 //------------------------------------------JQUERY----------------------------------------------------
-
-$(document).ready(function () {
-    //When the user resizes the program rerun UI spacer
-    $(window).resize(function () {
-        UISpacer();
-    });
-});
-
-
 
 
