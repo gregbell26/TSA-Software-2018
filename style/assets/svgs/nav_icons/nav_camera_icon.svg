@@ -1,0 +1,21 @@
+<svg
+        xmlns="http://www.w3.org/2000/svg" viewBox="0 0 70.33 44.78">
+    <defs>
+        <style>
+            .cls-1 {
+            stroke: #000;
+            stroke-miterlimit: 10;
+            stroke-width: 2px;
+            fill: #fff;
+            }
+        </style>
+    </defs>
+    <title>Camera Icon</title>
+    <g id="Camera_Icon">
+        <g id="Scene">
+            <rect class="cls-1" x="1" y="7.33" width="68.33" height="36.44"/>
+            <circle class="cls-1" cx="33.79" cy="25.56" r="12.18"/>
+            <rect class="cls-1" x="5.83" y="1" width="14.8" height="6.33"/>
+        </g>
+    </g>
+</svg>

@@ -1,14 +1,4 @@
-/*
-This file contains the code for the camera's movement and stuff
 
-This file is licensed under the Apache 2.0 license.
-That means that you can freely use and modify this code for all uses except for
-    commercial use provided this header is at the top of all files
-Copyright 2018-2019 Monarch TSA
-
-Author Jesse
-
- */
 function changeCameraLock(){//Changes whether or not the camera is locked during animation to change
     lockCamera = document.getElementById("chkbox1").checked;
 }

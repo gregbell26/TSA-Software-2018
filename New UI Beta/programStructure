@@ -35,6 +35,7 @@ root:
 --util.js
 
 -animationEngine
+--three.js
 --animationElements
 ---lights
 ----*

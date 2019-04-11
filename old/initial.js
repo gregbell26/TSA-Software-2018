@@ -41,8 +41,6 @@ window.onload = function(){
     document.getElementById("mouseSensitivity").value = settings.mouseSensitivity;
     document.getElementById("zoomSensitivity").value = (settings.zoomAmount-1)*2;
     if(settings.dark){
-        /*
-        Commented out because its irrelevant
         document.getElementById("darkSelect").value = "1";
         document.body.style.color = "#FFFFFF";
         document.getElementById("topBar").style.backgroundColor = "#222222";
@@ -68,18 +66,9 @@ window.onload = function(){
             $(this).css("background-color", "#222222");
         });
         //creates the colors of the buttons/menus?
-
-         */
-        console.log("Settings.dark is a yes");
     }
     else{
-        /*
-        Same reason as above
         document.getElementById("darkSelect").value = "0";
-
-         */
-        console.log("Settings.dark is a no");
-
     }
 }
 
@@ -120,8 +109,7 @@ var zoom2v, zoom2Zv;
 var zoomChangev, zoomZChangev;
 
 
-/*
-replaced in saveSubSystem
+
 //Stuff for saves
 
 saveSubSystem.loadSaveNames();//Loads the names of the saves into an arraylist
@@ -143,8 +131,6 @@ saveSelector.options.add(new Option("New Save", "GET NAME"));
 frag.appendChild(saveSelector);
 div.appendChild(frag);
 //---------------------
-
- */
 
 
 var dialog = document.querySelector('dialog');
@@ -173,9 +159,7 @@ function promptResponse(value) {
 }
 
 //Greatness by Gregory
-
 function start() {
-    var saveSelectorElement = document.getElementById("ws_loadMenu");
     //Making sure that everything is empty
     shapes = [];
     scales =[];
@@ -184,11 +168,9 @@ function start() {
     selectedShape = 0;
     selectedLight = 0;
 
-    if((saveSelectorElement.options[saveSelectorElement.selectedIndex].value === "Load Save" || !saveSubSystem.openPrevious) && saveSubSystem.isUsingSaves){
+    if((saveSelector.options[saveSelector.selectedIndex].value === "GET NAME" || !saveSubSystem.openPrevious) && saveSubSystem.isUsingSaves){
         promptResp = 1;
-        /*showPrompt("Please enter a name for your save", "New Animation");*/
-        showPopUp("popUp_input_body", "New Save", "Enter Save Name");
-        saveSubSystem.setFileName(getPopUpInput(), true);
+        showPrompt("Please enter a name for your save", "New Animation");
     //handles savings creates a new one if there is no previous save when starting software
     }
     if(!saveSubSystem.isUsingSaves){
@@ -197,13 +179,13 @@ function start() {
     }
 
     if(saveSubSystem.openPrevious && saveSubSystem.isUsingSaves){
-        saveSubSystem.setFileName(saveSelectorElement.options[saveSelectorElement.selectedIndex].value, false);
+        saveSubSystem.setFileName(saveSelector.options[saveSelector.selectedIndex].value, false);
         keyFrames = saveSubSystem.loadSave();
         //has saves
     }
     // addLight();
     // addPointLight();
-    showList();
+    showList()
 
     updateTimeline();
 }
