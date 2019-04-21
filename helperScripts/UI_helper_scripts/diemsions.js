@@ -10,11 +10,12 @@
 *
 * list of dependent files:
 * newStyle.js
+* initial.js
 *
 *
 * Author: Gregory Bell
-* Edited 3/26/19
-* rev 1
+* Edited 4/17/19
+* Rev 2
 * */
 
 
@@ -22,7 +23,6 @@
 //in other words
 //DO NOT EDIT IT OR EVERYTHING WILL BREAK.
 
-//Yeah I like PTSD too. That's why I'm not only using javascript objects, but NESTED javascript objects!
 var UIDiemsions = {
     //Diemsions for everything in and relative to the nav bar
     std_navBar : {
@@ -44,8 +44,20 @@ var UIDiemsions = {
         spacer_placement : [],//array for the 2 spacers 0 = sp1 1 = sp2
         status_placement : 0, //the left value for the status box
         menuContainer_placement : 0,
+    },
+    //General sizes for things in the main body that don't need special parameters and math
 
+    std_body : {
+        window_height: window.innerHeight,
+        window_width: window.innerWidth,
 
+        body_height:0,
+        body_width:0,
+
+        renderer_height:0,
+        renderer_width:0,
+        renderer_left: 0,
+        renderer_top: 0,
 
     },
 

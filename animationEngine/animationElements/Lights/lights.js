@@ -1,6 +1,7 @@
+//TODO This will need to be fixed later on these elements need to be changed
 let slider = document.getElementById("intensityRange");
 let value = document.getElementById("intensityValue");
-value.innerText = slider.value;
+//value.innerText = slider.value;
 
 
 function newLight() {

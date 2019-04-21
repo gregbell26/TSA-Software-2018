@@ -942,7 +942,7 @@ Width is determined at runtime by the spacer function
     margin-bottom:20px;
     margin-top: 20px;
 }
-input[type="text"] {
+input[type="text"], input[type="password"] {
     font-size:18px;
     padding:10px 10px 10px 5px;
     display:block;
@@ -951,7 +951,7 @@ input[type="text"] {
     border:none;
     border-bottom:2px solid var(--std_color_secondary);
 }
-input[type="text"]:focus {
+input[type="text"]:focus, input[type="password"]:focus{
     outline:none;
 }
 
@@ -966,7 +966,7 @@ label {
     transition:0.2s ease all;
 }
 
-input[type="text"]:focus ~ label, input[type="text"]:valid ~ label        {
+input[type="text"]:focus ~ label, input[type="text"]:valid ~ label, input[type="password"]:focus ~ label, input[type="password"]:valid ~ label {
     font-family: "Open Sans", sans-serif;
     font-weight: lighter;
     top:-10px;
@@ -981,7 +981,7 @@ input[type="text"]:focus ~ label, input[type="text"]:valid ~ label        {
     height: 3px;
     bottom:0px;
 }
-input[type="text"]:focus ~.text_bar {
+input[type="text"]:focus ~.text_bar, input[type="password"]:focus ~.text_bar{
     content:'';
     height:3px;
     width:100%;
@@ -1008,9 +1008,10 @@ input[type="text"]:focus ~.text_bar {
     opacity:0.25;
 }
 
-input[type="text"]:focus ~ .text_highlight {
+input[type="text"]:focus ~ .text_highlight, input[type="password"]:focus ~ .text_highlight{
     animation:input_highlighter 300ms linear;
 }
+
 
 /*
 ------------------------------------CHECKBOXES----------------------------------------------

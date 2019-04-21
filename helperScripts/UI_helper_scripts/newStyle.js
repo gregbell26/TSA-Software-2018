@@ -7,8 +7,8 @@ That means that you can freely use and modify this code for all uses except for
 Copyright 2018-2019 Monarch TSA
 
 Author Gregory Bell
-Edited 4/6/19
-Rev 18
+Edited 4/17/19
+Rev 19
 
  */
 
@@ -83,11 +83,13 @@ function settingsToggle(){
 }
 
 var shownPopUp = "init";
-function showPopUp(popUpToShow, popUpContent, otherText){
+function showPopUp(popUpToShow, popUpContent, otherText, functions){
     document.getElementById("std_popUp").classList.add("popUp_show");
     document.getElementById(popUpToShow).classList.add("popUp_show");
     document.getElementById(popUpToShow).children.item(0).textContent = popUpContent;
     document.getElementById(popUpToShow).children.item(1).children.item(3).innerHTML = otherText;
+    document.getElementById(popUpToShow).children.item(2).setAttribute('onclick', functions +" hidePopUp();");
+
     shownPopUp = popUpToShow;
 }
 
@@ -228,7 +230,7 @@ function UISpacer(){
         }
     }
 
-    //Sets all of the other things based off of what the
+    //Sets all of the other things based off of what the for loop set
     UIDiemsions.std_navBar.menuContainer_width = nextLeftElementLoc-2;
     UIDiemsions.std_navBar.leftSpacer_width = (UIDiemsions.std_navBar.nav_width/2) - nextLeftElementLoc - statusWidthHalved - UIDiemsions.std_navBar.defaultPadding;
     UIDiemsions.std_navBar.rightSpacer_width = (UIDiemsions.std_navBar.nav_width/2) - nextRightElementLoc - statusWidthHalved - UIDiemsions.std_navBar.defaultPadding;
@@ -261,6 +263,18 @@ function UISpacer(){
     document.getElementById("nav_spacer_right").style.top = (UIDiemsions.std_navBar.defaultPadding).toString()+UIDiemsions.std_navBar.defaultUnit;
     document.getElementById("nav_spacer_right").style.bottom = (UIDiemsions.std_navBar.defaultPadding).toString()+UIDiemsions.std_navBar.defaultUnit;
     document.getElementById("nav_spacer_right").style.right = (UIDiemsions.std_navBar.spacer_placement[1]).toString();
+
+    UIDiemsions.std_body.body_height = document.getElementById("std_body").clientHeight;
+    UIDiemsions.std_body.body_width = document.getElementById("std_body").clientWidth;
+    UIDiemsions.std_body.renderer_top = UIDiemsions.std_navBar.nav_height;
+    UIDiemsions.std_body.renderer_left = UIDiemsions.std_navBar.menuContainer_width;
+    UIDiemsions.std_body.renderer_height = UIDiemsions.std_body.body_height- UIDiemsions.std_navBar.nav_height;
+    UIDiemsions.std_body.renderer_width = UIDiemsions.std_body.body_width - UIDiemsions.std_navBar.menuContainer_width;
+    document.getElementById("animationEngine_renderArea").style.top =(UIDiemsions.std_body.renderer_top).toString()+UIDiemsions.std_navBar.defaultUnit;
+    document.getElementById("animationEngine_renderArea").style.left =(UIDiemsions.std_body.renderer_left).toString()+UIDiemsions.std_navBar.defaultUnit;
+    document.getElementById("animationEngine_renderArea").style.height =(UIDiemsions.std_body.renderer_height).toString()+UIDiemsions.std_navBar.defaultUnit;
+    document.getElementById("animationEngine_renderArea").style.width =(UIDiemsions.std_body.renderer_width).toString()+UIDiemsions.std_navBar.defaultUnit;
+
 
 
 }

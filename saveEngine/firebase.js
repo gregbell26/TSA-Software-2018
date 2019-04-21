@@ -49,14 +49,14 @@ firebase.auth().onAuthStateChanged(function(usr) {
         user = usr;
         console.log("Signed in: "+user.email);
         console.log("UID: "+user.uid);
-        document.getElementById("userPageTrue").style.display="inherit";
-        document.getElementById("userPageFalse").style.display="none";
+        document.getElementById("account_sub_signedIn").style.display="inherit";
+        document.getElementById("account_sub_signedOut").style.display="none";
     }
     else{
         user = null;
         console.log("Sign out call");
-        document.getElementById("userPageFalse").style.display="inherit";
-        document.getElementById("userPageTrue").style.display="none";
+        document.getElementById("account_sub_signedOut").style.display="inherit";
+        document.getElementById("account_sub_signedIn").style.display="none";
     }
 });
 
@@ -69,7 +69,7 @@ function saveCurrentToCloud(){
     });
 }
 function loadCloudSave(){
-    var file = document.getElementById("loadCloudSelect").value;
+    var file = document.getElementById("signedIn_loadSelector").value;
     firebase.storage().ref().child(user.uid+"/"+file).getDownloadURL().then(function(url){
         $.ajax({url:url, success: function(result){
                 var res = JSON.parse(result);

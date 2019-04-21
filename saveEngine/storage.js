@@ -1,5 +1,9 @@
 /**
- * @type {{isUsingSaves: boolean, currentVer: number, fileName: string, startSaveSubSystem: saveSubSystem.startSaveSubSystem, function: *}}
+ * This is the save system..
+ * It used to be pretty
+ * Then new features got added
+ *
+ * TODO Clean this mess up
  */
 
 $(document).on('change', function (e) {
@@ -17,6 +21,7 @@ let saveSubSystem = {
     fileName : "",
     saveFileNamesList : [],
 
+    loadedSettings: Object,
     loadedKeyframes : [],
     loadedShapes : [],
     loadedScales : [],
@@ -45,6 +50,7 @@ let saveSubSystem = {
 
 
     save: function() {
+        this.saveSettings();
         //saves the current file.
         if (this.isUsingSaves) {
             this.currentVer++;
@@ -56,6 +62,10 @@ let saveSubSystem = {
             console.log("Save of " + this.fileName + " complete.")
         }
 
+    },
+
+    saveSettings: function(){
+        localStorage.setItem("settings", JSON.stringify(settings))
     },
 
     addText: function(){
@@ -80,6 +90,17 @@ let saveSubSystem = {
             parsed.splice(index,1);
             localStorage.setItem("text:"+this.fileName,JSON.stringify(parsed));
         }
+    },
+
+    loadSettings: function(){
+        if (localStorage.getItem("settings") === null){
+            settings.updateSettings("resetAll");
+        }
+        else {
+            this.loadedSettings = JSON.parse(localStorage.getItem("settings"));
+            settings.updateSettings(this.loadedSettings);
+        }
+        this.saveSettings();
     },
 
 
@@ -133,6 +154,7 @@ let saveSubSystem = {
         }
     },
 
+    //this code contains bugs. Runtime. My favorite.
     deleteSave: function(saveToDelete) {
         if (localStorage.getItem(saveToDelete) !== null) {
             this.saveFileNamesList.splice(this.saveFileNamesList.indexOf(saveToDelete),1);
