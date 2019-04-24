@@ -45,21 +45,23 @@ function updateTimeline(){
         duration+=keyFrames[i].duration;
     }
     timelineScale = duration/(window.innerWidth-20);
-    var timeline = document.getElementById("timeline");
+    var timeline = document.getElementById("std_timeline").children.item(2);
     timeline.innerHTML = "";
     var currentX = 10;
     for(var i=0; i<keyFrames.length; i++){
-        timeline.innerHTML += ("<div style='position: absolute; left: "+currentX+"px; width: 5px; bottom: 10px; height: 50px; background-color: #00FF00;'></div>");
+        timeline.innerHTML += ("<div class='timeline_keyframe' style='left: "+currentX+"px;'></div>");
         currentX+=keyFrames[i].duration/timelineScale;
     }
-    console.log("done")
+    console.log("Updated Time Line")
 }
 //determines whether ot not to repeat the animation
 function loop(){
     if(animationRunning){
         loopAnimation = false;
+        timelineButtonToggle('timeline_repeat');
     }
     else{
+        timelineButtonToggle('timeline_repeat');
         loopAnimation = true;
         playAnimation(0);
     }
@@ -120,6 +122,7 @@ function moveDown(frame){
 //takes all of the properties of the things taken above and sets them to the current viewport. All of the properties for each time is found in each iteration of the array. this takes the values in each keyframe and makes the attributes shift from the original values to the ones in the new frame
 function playAnimation(frameValue) {
     if(!animationRunning) {
+        timelineButtonToggle('timeline_play');
         console.log('starting');
         animationRunning=true;
         if (frameValue >= 0) {

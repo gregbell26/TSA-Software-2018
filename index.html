@@ -24,18 +24,16 @@
         <!--
         These are being included now because everything uses them
         -->
-        <!--These files are remote-->
-        <link href="style/fonts/robotoSlab.css" rel="stylesheet"><!--imports Roboto Slab with the font weights 400 and 300-->
-        <link href="style/fonts/openSans.css" rel="stylesheet"><!--imports Open Sans with the font weight 400-->
+        <link href="style/fonts/robotoSlab.css" rel="stylesheet"><!--imports Roboto Slab with the font weights 400 and 300--> <!--This file is remote-->
+        <link href="style/fonts/openSans.css" rel="stylesheet"><!--imports Open Sans with the font weight 400--> <!--This file is remote-->
 
         <!--Backend Scripts-->
         <!--Save Engine-->
         <!--FIREbase!-->
-        <!--These files are remote-->
-        <script src="https://www.gstatic.com/firebasejs/5.8.6/firebase-app.js"></script>
-        <script src="https://www.gstatic.com/firebasejs/5.8.6/firebase-auth.js"></script>
-        <script src="https://www.gstatic.com/firebasejs/5.8.6/firebase-storage.js"></script>
-        <script src="https://www.gstatic.com/firebasejs/5.8.6/firebase-firestore.js"></script>
+        <script src="https://www.gstatic.com/firebasejs/5.8.6/firebase-app.js"></script> <!--This file is remote-->
+        <script src="https://www.gstatic.com/firebasejs/5.8.6/firebase-auth.js"></script> <!--This file is remote-->
+        <script src="https://www.gstatic.com/firebasejs/5.8.6/firebase-storage.js"></script> <!--This file is remote-->
+        <script src="https://www.gstatic.com/firebasejs/5.8.6/firebase-firestore.js"></script> <!--This file is remote-->
         <script src="saveEngine/firebase.js"></script>
         <!--Not FIREbase-->
         <script src="saveEngine/storage.js"></script>
@@ -47,7 +45,6 @@
         <script defer src="helperScripts/ccapture.js"></script>
         <script src="helperScripts/keyevents.js"></script>
         <script src="menus.js"></script>
-        <script src="scene.js"></script>
         <script src="tutorial.js"></script>
         <script src="Camera.js"></script>
         <script src="settings.js"></script>
@@ -218,13 +215,13 @@
                     Camera
                 </h3>
                 <div class="std_input_text">
-                    <input type="text" id="settings_mouseSensitivity" type="number" required>
+                    <input type="text" id="settings_mouseSensitivity" type="number" onchange="changeSensitivity(this.value)" required>
                     <span class="text_highlight"></span>
                     <span class="text_bar"></span>
                     <label>Mouse Sensitivity</label>
                 </div>
                 <div class="std_input_text">
-                    <input type="text" id="settings_zoomAmount" type="number" required>
+                    <input type="text" id="settings_zoomAmount" type="number" onchange="changeZoomSensitivity(this.value)" required>
                     <span class="text_highlight"></span>
                     <span class="text_bar"></span>
                     <label>Zoom Sensitivity</label>
@@ -353,6 +350,20 @@
 
         </div>
 
+        <!--TIMELINE-->
+        <div id="std_timeline">
+            <div onmouseover="timelineMasterToggle('show');" onclick="timelineMasterToggle('hide')" id="timeline_triggerArea">| | | | |  </div>
+            <div id="timeline_buttonContainer">
+                <span class="timeline_button" id="timeline_addKeyframe" onclick="addFrame();">+</span>
+                <span class="timeline_button" id="timeline_removeKeyframe">-</span>
+                <span onclick="timelineButtonToggle('timeline_play'); playAnimation(0)" class="timeline_button" id="timeline_play">></span>
+                <span onclick="timelineButtonToggle('timeline_repeat'); loop()" class="timeline_button" id="timeline_repeat">()</span>
+            </div>
+            <div id="timeline_body">
+                std_timeline
+            </div>
+        </div>
+
 
         <!--MISC ELEMENTS-->
         <!--
@@ -411,5 +422,7 @@
 
 <!--    <script>saveSubSystem.loadSaveNames("ws_loadMenu");</script>-->
     <script src="initial.js"></script>
+    <script src="scene.js"></script>
+
 
 </html>

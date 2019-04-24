@@ -1,5 +1,15 @@
-//jordan's code
+/**
+ * This file is responseable for initilaizing all of the stuff
+ *
+ *
+ * Authors Jordan M. Gregory B.
+ * Edited 4-22-19
+ */
+
+
 //control variables
+var init;
+
 
 var animationRunning = false;
 var loopAnimation = false;
@@ -132,7 +142,7 @@ function promptResponse(value) {
 //Greatness by Gregory
 var buttonClicked = false;
 
-async function start() {
+function start() {
     var saveSelectorElement = document.getElementById("ws_loadMenu");
     //Making sure that everything is empty
     shapes = [];
@@ -174,6 +184,8 @@ async function start() {
     renderer = new THREE.WebGLRenderer({logarithmicDepthBuffer: true });
     renderer.setSize(UIDiemsions.std_body.renderer_width, UIDiemsions.std_body.renderer_height);
     document.getElementById("animationEngine_renderArea").appendChild(renderer.domElement);
+
+    init=true;
 }
 
 //

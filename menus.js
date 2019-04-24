@@ -27,22 +27,23 @@ function showList(){
 function setSelectedShape(num){
 
     selectedShape = num;
-    document.getElementById('boxSelected').innerHTML="#"+(selectedShape+1);
+    //document.getElementById('boxSelected').innerHTML="#"+(selectedShape+1);
     let color = "#";
     color += rgbToHex(shapes[selectedShape].material.color['r']*255);
     color += rgbToHex(shapes[selectedShape].material.color['g']*255);
     color += rgbToHex(shapes[selectedShape].material.color['b']*255);
-    document.getElementById('colorChanger').value = color;
-    document.getElementById("borderColor").value = "#"+borders[selectedShape].material.color.getHexString();
-    document.getElementById('positionBoxX').value = shapes[selectedShape].position.x;
-    document.getElementById('positionBoxY').value = shapes[selectedShape].position.y;
-    document.getElementById('positionBoxZ').value = shapes[selectedShape].position.z;
-    document.getElementById('rotateBoxX').value = (shapes[selectedShape].rotation.x*180/Math.PI);
-    document.getElementById('rotateBoxY').value = (shapes[selectedShape].rotation.y*180/Math.PI);
-    document.getElementById('rotateBoxZ').value = (shapes[selectedShape].rotation.z*180/Math.PI);
-    document.getElementById('dimensionX').value = scales[selectedShape][0];
-    document.getElementById('dimensionY').value = scales[selectedShape][1];
-    document.getElementById('dimensionZ').value = scales[selectedShape][2];
+    //TEMPORARY COMMENTED OUT
+    // document.getElementById('colorChanger').value = color;
+    // document.getElementById("borderColor").value = "#"+borders[selectedShape].material.color.getHexString();
+    // document.getElementById('positionBoxX').value = shapes[selectedShape].position.x;
+    // document.getElementById('positionBoxY').value = shapes[selectedShape].position.y;
+    // document.getElementById('positionBoxZ').value = shapes[selectedShape].position.z;
+    // document.getElementById('rotateBoxX').value = (shapes[selectedShape].rotation.x*180/Math.PI);
+    // document.getElementById('rotateBoxY').value = (shapes[selectedShape].rotation.y*180/Math.PI);
+    // document.getElementById('rotateBoxZ').value = (shapes[selectedShape].rotation.z*180/Math.PI);
+    // document.getElementById('dimensionX').value = scales[selectedShape][0];
+    // document.getElementById('dimensionY').value = scales[selectedShape][1];
+    // document.getElementById('dimensionZ').value = scales[selectedShape][2];
     editMenu();
     console.log("Set Shape Num");
 }
@@ -96,31 +97,31 @@ function userMenu(){
 
 function hideAll(){
     //used to make correct menus show up, and the wrong menus don't show up. This is called every time we open a menu.
-    document.getElementById("sideBarList").style.display="none";
-    document.getElementById("sideBarBoxEdit").style.display="none";
-    document.getElementById("sideBarCamera").style.display="none";
-    document.getElementById("colorMenu").style.display="none";
-    document.getElementById("positionMenu").style.display="none";
-    document.getElementById("keyMenu").style.display="none";
-    document.getElementById("shapeMenu").style.display="none";
-    document.getElementById("addMenu").style.display="none";
-    document.getElementById("rotateMenu").style.display="none";
-    document.getElementById("sceneMenu").style.display='none';
-    document.getElementById('createTextMenu').style.display = 'none';
-    document.getElementById('createCustomMenu').style.display = 'none';
-    document.getElementById("lightMenu").style.display='none';
-    document.getElementById("addLightMenu").style.display="none";
-    document.getElementById("lightEditMenu").style.display="none";
-    console.log("Hide all")
+    // document.getElementById("sideBarList").style.display="none";
+    // document.getElementById("sideBarBoxEdit").style.display="none";
+    // document.getElementById("sideBarCamera").style.display="none";
+    // document.getElementById("colorMenu").style.display="none";
+    // document.getElementById("positionMenu").style.display="none";
+    // document.getElementById("keyMenu").style.display="none";
+    // document.getElementById("shapeMenu").style.display="none";
+    // document.getElementById("addMenu").style.display="none";
+    // document.getElementById("rotateMenu").style.display="none";
+    // document.getElementById("sceneMenu").style.display='none';
+    // document.getElementById('createTextMenu').style.display = 'none';
+    // document.getElementById('createCustomMenu').style.display = 'none';
+    // document.getElementById("lightMenu").style.display='none';
+    // document.getElementById("addLightMenu").style.display="none";
+    // document.getElementById("lightEditMenu").style.display="none";
+    // console.log("Hide all")
 }
 
 function editMenu() {
-    hideAll();
-    document.getElementById("sideBarBoxEdit").style.display = "inherit";
-    document.getElementById("positionMenu").style.display = "inherit";
-    document.getElementById("colorMenu").style.display = "inherit";
-    document.getElementById("rotateMenu").style.display="inherit";
-    console.log("Showed Menu");
+    // hideAll();
+    // document.getElementById("sideBarBoxEdit").style.display = "inherit";
+    // document.getElementById("positionMenu").style.display = "inherit";
+    // document.getElementById("colorMenu").style.display = "inherit";
+    // document.getElementById("rotateMenu").style.display="inherit";
+    // console.log("Showed Menu");
 }
 
 function colorMenu(){

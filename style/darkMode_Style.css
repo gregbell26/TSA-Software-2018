@@ -921,6 +921,15 @@ Width is determined at runtime by the spacer function
     border: 2px solid var(--std_color_accent);
 }
 
+#timeline.timeline_keyframe {
+    position: absolute;
+    background-color: var(--std_color_secondary);
+    width: 5px;
+    bottom: 0;
+    height: 100%;
+}
+
+
 
 
 /*
