@@ -68,6 +68,8 @@ function loop(){
 }
 //creates all of the buttons that will set the keyframes. create or remove keyframe, move them, set the speed, etc:
 function loadKeyList(){
+    /*
+    COMMENTED OUT DUE TO BEING OBSOLETE
     document.getElementById('keyList').innerHTML = "";
     for(var i=0; i<keyFrames.length-1; i++){
         var add = "";
@@ -91,6 +93,9 @@ function loadKeyList(){
         document.getElementById('keyList').innerHTML += `<input type="text" value="`+keyFrames[i].name+`" onkeyup="keyName(this.value,`+(keyFrames.length - 1)+`)" onchange="keyName(this.value,`+(keyFrames.length - 1)+`)"><button class='material-icons' onclick='removeFrame(` + (keyFrames.length - 1) + `)'>close</button>
 `+add+`<br>`;
     }
+
+     */
+    console.log("Load Key List Called ");
 }
 
 function keyName(name,frame){
@@ -142,7 +147,7 @@ function playAnimation(frameValue) {
             if (a != null) {
                 timingCounter = frameValue - frames;
                 animationTimer = setInterval(function () {
-                    document.getElementById("playhead").style.left = (11+(timingCounter+prevDuration)/timelineScale)+"px";
+                    document.getElementById("timeline_playHead").style.left = (11+(timingCounter+prevDuration)/timelineScale)+"px";
                     if (timingCounter < keyFrames[a].duration) {
                         timingCounter += 10;
                         updateAnimation(timingCounter,a);
@@ -156,9 +161,11 @@ function playAnimation(frameValue) {
                         else if (loopAnimation){
                             a = 0;
                             timingCounter = 0;
+                            timelineButtonToggle('timeline_repeat');
                         }
                         else {
                             clearInterval(animationTimer);
+                            timelineButtonToggle('timeline_play');
                             console.log('done');
                             animationRunning = false;
                             if(recording){
@@ -232,7 +239,7 @@ function timelineScrub(pageX) {
             }
         }
         if (a != null) {
-            document.getElementById("playhead").style.left = (11+frameValue/timelineScale)+"px";
+            document.getElementById("timeline_playHead").style.left = (11+frameValue/timelineScale)+"px";
             var timingCounter = frameValue - frames;
             updateAnimation(timingCounter, a);
         }

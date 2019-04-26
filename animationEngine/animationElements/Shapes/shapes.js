@@ -16,7 +16,7 @@ function rotateShape(dimension, value) {
     borders[selectedShape].rotation[dimension] = Number(value)*Math.PI/180;
 }
 var hasMovedZ = false;
-function cubeDimension(dimension, value){
+function resizeShape(dimension, value){
     switch(dimension){
         case "x":
             scales[selectedShape][0]=Number(value);
