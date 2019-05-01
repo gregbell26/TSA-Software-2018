@@ -2,7 +2,7 @@ var timelineScale = 0;
 
 function addFrame(){
     if(usingTutorial){
-        confirm("Now change some dimensions, colors, or positions, add a keyframe, then press play.");
+        confirm("Now change some diemsions, colors, or positions, add a keyframe, then press play.");
         animateArrow(75,15,250,60)
     }
     keyFrames.push(
@@ -46,7 +46,7 @@ function updateTimeline(){
     }
     timelineScale = duration/(window.innerWidth-20);
     var timeline = document.getElementById("std_timeline").children.item(2);
-    timeline.innerHTML = "";
+    timeline.innerHTML = "<span id=\"timeline_playHead\" class=\"timeline_keyframe\"></span>";
     var currentX = 10;
     for(var i=0; i<keyFrames.length; i++){
         timeline.innerHTML += ("<div class='timeline_keyframe' style='left: "+currentX+"px;'></div>");

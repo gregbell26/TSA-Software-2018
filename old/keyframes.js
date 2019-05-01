@@ -2,7 +2,7 @@ var timelineScale = 0;
 
 function addFrame(){
     if(usingTutorial){
-        confirm("Now change some dimensions, colors, or positions, add a keyframe, then press play.");
+        confirm("Now change some diemsions, colors, or positions, add a keyframe, then press play.");
         animateArrow(75,15,250,60)
     }
     keyFrames.push(

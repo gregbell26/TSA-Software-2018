@@ -8,7 +8,7 @@
 
 
 //control variables
-var init;
+var init = false;
 
 
 var animationRunning = false;
@@ -143,6 +143,10 @@ function promptResponse(value) {
 var buttonClicked = false;
 
 function start() {
+    camera = new THREE.PerspectiveCamera(75, UIDiemsions.std_body.window_width/UIDiemsions.std_body.window_height, 0.1, 1000);
+    renderer = new THREE.WebGLRenderer({logarithmicDepthBuffer: true });
+    renderer.setSize(UIDiemsions.std_body.renderer_width, UIDiemsions.std_body.renderer_height);
+    document.getElementById("animationEngine_renderArea").appendChild(renderer.domElement);
     var saveSelectorElement = document.getElementById("ws_loadMenu");
     //Making sure that everything is empty
     shapes = [];
@@ -180,10 +184,6 @@ function start() {
 
     //updateTimeline();
 
-    camera = new THREE.PerspectiveCamera(75, UIDiemsions.std_body.window_width/UIDiemsions.std_body.window_height, 0.1, 1000);
-    renderer = new THREE.WebGLRenderer({logarithmicDepthBuffer: true });
-    renderer.setSize(UIDiemsions.std_body.renderer_width, UIDiemsions.std_body.renderer_height);
-    document.getElementById("animationEngine_renderArea").appendChild(renderer.domElement);
 
     init=true;
 }

@@ -9,8 +9,12 @@
         Copyright 2018-2019 Monarch TSA
 
         Authors Jordan, Corbin, Daniel, Gregory, Jesse
-        Edited 4/11/19
-        Rev 1
+        Edited 4/30/19
+        Rev 26
+
+
+        TODO: Add hide/show submenu class. Fix timeline button toggles. New way to create shapes. Fix lights. Add shapes list. Set sleected light is where the bugs are
+        Fix y-overflow in menus
     -->
 
     <head>
@@ -205,19 +209,19 @@
                         Diemsions
                     </h3>
                     <div class="std_input_text">
-                        <input type="text" id="diemsions_x" onchange="resizeShape('x', this.value);" onkeyup="resizeShape('x', this.value)" required>
+                        <input type="text" id="diemsions_x" onchange="resizeShape('x', this.value);" onkeyup="this.value++; resizeShape('x', this.value)" required>
                         <span class="text_highlight"></span>
                         <span class="text_bar"></span>
                         <label>X</label>
                     </div>
                     <div class="std_input_text">
-                        <input type="text" id="diemsions_y" onchange="resizeShape('y', this.value);" onkeyup="resizeShape('y', this.value)" required>
+                        <input type="text" id="diemsions_y" onchange="resizeShape('y', this.value);" onkeyup="this.value++; resizeShape('y', this.value)" required>
                         <span class="text_highlight"></span>
                         <span class="text_bar"></span>
                         <label>Y</label>
                     </div>
                     <div class="std_input_text">
-                        <input type="text" id="diemsions_z" onchange="resizeShape('z', this.value);" onkeyup="resizeShape('z', this.value)" required>
+                        <input type="text" id="diemsions_z" onchange="resizeShape('z', this.value);" onkeyup="this.value++; resizeShape('z', this.value)" required>
                         <span class="text_highlight"></span>
                         <span class="text_bar"></span>
                         <label>Z</label>

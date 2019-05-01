@@ -16,7 +16,7 @@ function rgbToHex (num) {
 function addShape(){
     if(usingTutorial){
         //moves the tutorial arrow around.
-        confirm("Now define the dimensions, position, rotation, and color");
+        confirm("Now define the diemsions, position, rotation, and color");
         confirm("When you are done, click on the key icon");
         document.getElementById("tutorialArrow").style.display="none";
     }

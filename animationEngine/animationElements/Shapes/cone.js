@@ -30,14 +30,11 @@ function newCone(x, y, z, posX, posY, posZ, newColor, borderColor){
     moveShape("y", posY);
     moveShape("z", posZ);
 
-    document.getElementById('dimensionX').value = x;
-    document.getElementById('dimensionY').value = y;
-    document.getElementById('dimensionZ').value = z;
-    //gets the dimensions from the menu and sets them
-    
-    
-    document.getElementById('positionBoxX').value = posX;
-    document.getElementById('positionBoxY').value = posY;
-    document.getElementById('positionBoxZ').value = posZ;
-    //gets the positions from the menu and sets them
+    document.getElementById('diemsions_x').value = x;
+    document.getElementById('diemsions_y').value = y;
+    document.getElementById('diemsions_z').value = z;
+
+    document.getElementById('position_x').value = posX;
+    document.getElementById('position_y').value = posY;
+    document.getElementById('position_z').value = posZ;
 }

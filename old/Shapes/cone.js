@@ -33,7 +33,7 @@ function newCone(x, y, z, posX, posY, posZ, newColor, borderColor){
     document.getElementById('dimensionX').value = x;
     document.getElementById('dimensionY').value = y;
     document.getElementById('dimensionZ').value = z;
-    //gets the dimensions from the menu and sets them
+    //gets the diemsions from the menu and sets them
     
     
     document.getElementById('positionBoxX').value = posX;

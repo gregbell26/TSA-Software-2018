@@ -2,7 +2,7 @@
 function scenePosition(dimension,value){
     scene.position[dimension]=Number(value);
 }
-//allows user to change the scale of the entire scene. This is useful if you want to change the dimensions of all of the shapes.
+//allows user to change the scale of the entire scene. This is useful if you want to change the diemsions of all of the shapes.
 function sceneScale(dimension, value){
     scene.scale[dimension]=Number(value);
 }
