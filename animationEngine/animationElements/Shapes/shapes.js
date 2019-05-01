@@ -326,7 +326,7 @@ function newShape(type,x,y,z,posX,posY,posZ,color,border){
         newMaterial.lights = true;
         shapes[shapes.length]=new THREE.Mesh(newGeometry, newMaterial);
         var length = scales.length;
-        newGeometry.name = "cube";
+        newGeometry.name = type;
         scales[length]=[];
         scales[length][0]=x;
         scales[length][1]=y;

@@ -68,33 +68,6 @@ function loop(){
 }
 //creates all of the buttons that will set the keyframes. create or remove keyframe, move them, set the speed, etc:
 function loadKeyList(){
-    /*
-    COMMENTED OUT DUE TO BEING OBSOLETE
-    document.getElementById('keyList').innerHTML = "";
-    for(var i=0; i<keyFrames.length-1; i++){
-        var add = "";
-        if(i!==0){
-            add = `<button class="material-icons" onclick="moveUp(`+i+`)">arrow_upward</button>`
-        }
-        document.getElementById('keyList').innerHTML+=`<input type="text" value="`+keyFrames[i].name+`" onkeyup="keyName(this.value,`+i+`)" onchange="keyName(this.value,`+i+`)">
-<button class='material-icons' onclick='removeFrame(`+i+`)'>close</button>
-`+add+`
-<button class="material-icons" onclick="moveDown(`+i+`)">arrow_downward</button>
-<br>
-<input type='number' value='`+keyFrames[i].duration+`' onchange='setSpeed(`+i+`,Number(this.value))' onkeyup='setSpeed(`+i+`,Number(this.value))' style='width: 50px;'>milliseconds
-<br>`;
-    }
-//creates the add keyframe button when a new keyframe is added
-    if (keyFrames.length!==0){
-        var add = "";
-        if(keyFrames.length!==1){
-            add = `<button class="material-icons" onclick="moveUp(`+(keyFrames.length - 1)+`)">arrow_upward</button>`
-        }
-        document.getElementById('keyList').innerHTML += `<input type="text" value="`+keyFrames[i].name+`" onkeyup="keyName(this.value,`+(keyFrames.length - 1)+`)" onchange="keyName(this.value,`+(keyFrames.length - 1)+`)"><button class='material-icons' onclick='removeFrame(` + (keyFrames.length - 1) + `)'>close</button>
-`+add+`<br>`;
-    }
-
-     */
     console.log("Load Key List Called ");
 }
 

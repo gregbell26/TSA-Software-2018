@@ -47,8 +47,12 @@ function showMenu(menuToShow){
     activeMenu = menuToShow;
 }
 
+function hideSubMenu(subMenu){
+    document.getElementById(subMenu).hidden =true;
+}
+
 function showSubMenu(subMenu){
-    document.getElementById(subMenu).classList.add("subMenu_show");
+    document.getElementById(subMenu).hidden = false;
 }
 
 function timelineButtonToggle(buttonToToggle){
@@ -296,5 +300,10 @@ $(document).ready(function () {
     //When the user resizes the program rerun UI spacer
     $(window).resize(function () {
         UISpacer();
+        camera.aspect = UIDiemsions.std_body.window_width / UIDiemsions.std_body.window_height;
+        camera.updateProjectionMatrix();
+        updateTimeline();
+        renderer.setSize(UIDiemsions.std_body.window_width, UIDiemsions.std_body.window_height);
+
     });
 });

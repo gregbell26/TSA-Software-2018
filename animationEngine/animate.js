@@ -12,7 +12,7 @@ Author Jordan
  */
 
 let animate = function () {
-    // if (init) {//to prevent thousands of errors when the program loads
+    if (init) {//to prevent thousands of errors when the program loads
         requestAnimationFrame(animate);
         if (camera.position.x != xPosition)
             camera.position.x = xPosition + xCCenter + scene.position.x;
@@ -37,11 +37,11 @@ let animate = function () {
             capturer.capture(renderer.domElement);
         }
         //pushes the changes to the screen
-    //     return 0;
-    // }
-    // else {
-    //     return -1;
-    // }
+        return 0;
+    }
+    else {
+        return -1;
+    }
 };
 animate();
 //makes this executed

@@ -13,7 +13,7 @@
         Rev 26
 
 
-        TODO: Add hide/show submenu class. Fix timeline button toggles. New way to create shapes. Fix lights. Add shapes list. Set sleected light is where the bugs are
+        TODO: Fix timeline button toggles. New way to create shapes. Fix lights. Add shapes list. Set sleected light is where the bugs are
         Fix y-overflow in menus
     -->
 
@@ -111,7 +111,7 @@
             This menu has been moved and its controls relocated to the timeline
             <span class="std_nav_button" id="nav_keyframes" onclick="showMenu('menu_keyframes')"></span>
             -->
-            <span class="std_nav_button" id="nav_scene">
+            <span class="std_nav_button" id="nav_scene" onclick="showMenu('menu_scene')">
                     <img onclick="showMenu('menu_scene')" src="./style/assets/svgs/nav_icons/nav_scene_icon.svg"
                          class="nav_buttonIcon"/>
                 </span>
@@ -161,70 +161,11 @@
                 </h2>
 
                 <div id="newElement_Create">
-
                     <h3>
-                        Upload OBJ
+                        New Shape
                     </h3>
-                    <div class="std_body_button" onclick="document.getElementById('newShape_OBJUploader').click();">
-                        <span class="button_body">Upload OBJ</span>
-                        <span class="button_bar"></span>
-                    </div>
-                    <!--This is a hidden element to clean up the UI a little-->
-                    <input id="newShape_OBJUploader" type="file" accept=".obj, .OBJ" style="display: none;"/>
-                    <h3>
-                        New Light
-                    </h3>
-                </div>
-
-                <div id="newElement_Information">
-                    <h3>
-                        Diemsions
-                    </h3>
-                    <div class="std_input_text">
-                        <input type="text" id="diemsions_x" onchange="/*resizeShape('x', this.value);*/" onkeyup="/*this.value++;*/ /*resizeShape('x', this.value)*/" required>
-                        <span class="text_highlight"></span>
-                        <span class="text_bar"></span>
-                        <label>X</label>
-                    </div>
-                    <div class="std_input_text">
-                        <input type="text" id="diemsions_y" onchange="/*resizeShape('y', this.value);*/" onkeyup="/*this.value++;*/ /*resizeShape('y', this.value)*/" required>
-                        <span class="text_highlight"></span>
-                        <span class="text_bar"></span>
-                        <label>Y</label>
-                    </div>
-                    <div class="std_input_text">
-                        <input type="text" id="diemsions_z" onchange="/*resizeShape('z', this.value);*/" onkeyup="/*this.value++;*/ /*resizeShape('z', this.value)*/" required>
-                        <span class="text_highlight"></span>
-                        <span class="text_bar"></span>
-                        <label>Z</label>
-                    </div>
-
-                    <h3>
-                        Position
-                    </h3>
-                    <div class="std_input_text">
-                        <input type="text" id="position_x" onchange="/*moveShape('x', this.value)*/" onkeyup="/*moveShape('x', this.value)*/" required>
-                        <span class="text_highlight"></span>
-                        <span class="text_bar"></span>
-                        <label>X</label>
-                    </div>
-                    <div class="std_input_text">
-                        <input type="text" id="position_y" onchange="/*moveShape('y', this.value);*/" onkeyup="/*moveShape('y', this.value)*/" required>
-                        <span class="text_highlight"></span>
-                        <span class="text_bar"></span>
-                        <label>Y</label>
-                    </div>
-                    <div class="std_input_text">
-                        <input type="text" id="position_z" onchange="/*moveShape('z', this.value);*/" onkeyup="/*moveShape('z', this.value)*/" required>
-                        <span class="text_highlight"></span>
-                        <span class="text_bar"></span>
-                        <label>Z</label>
-                    </div>
-                    <!--<h3>-->
-                        <!--New Shape-->
-                    <!--</h3>-->
                     <div class="std_body_list" style="max-width: initial; width: 100%;">
-                        <select class="list_body" id="_-" onchange="newShape(this.value,getId('diemsions_x').value,getId('diemsions_y').value,getId('diemsions_z').value,getId('position_x').value,getId('position_y').value,getId('position_z').value,'#FF0000','#000000');">
+                        <select class="list_body" onchange="newShape(this.value,getId('diemsions_x').value,getId('diemsions_y').value,getId('diemsions_z').value,getId('position_x').value,getId('position_y').value,getId('position_z').value,'#FF0000','#000000');">
                             <option value="newShape">Create Shape</option>
                             <option value="cube">New Cube</option>
                             <option value="cylinder">New Cylinder</option>
@@ -240,8 +181,20 @@
                         </select>
                         <span class="list_bar"></span>
                     </div>
+                    <h3>
+                        Upload OBJ
+                    </h3>
+                    <div class="std_body_button" onclick="document.getElementById('newShape_OBJUploader').click();">
+                        <span class="button_body">Upload OBJ</span>
+                        <span class="button_bar"></span>
+                    </div>
+                    <!--This is a hidden element to clean up the UI a little-->
+                    <input id="newShape_OBJUploader" type="file" accept=".obj, .OBJ" style="display: none;"/>
+                    <h3>
+                        New Light
+                    </h3>
                     <div class="std_body_list" style="max-width: initial; width: 100%;">
-                        <select class="list_body" id="_" onchange="newLight(this.value,'#FFFFFF',100,getId('position_x').value,getId('position_y').value,getId('position_z').value)">
+                        <select class="list_body"  onchange="newLight(this.value,'#FFFFFF',100,getId('position_x').value,getId('position_y').value,getId('position_z').value)">
                             <option value="newLight">Create Light</option>
                             <option value="ambient">Ambient Light</option>
                             <option value="point">Point Light</option>
@@ -252,6 +205,56 @@
                         <span class="list_bar"></span>
                     </div>
                 </div>
+
+                </div>
+
+                <div id="newElement_Information">
+                    <h3>
+                        Diemsions
+                    </h3>
+                    <div class="std_input_text">
+                        <input type="text" id="diemsions_x" onchange="resizeShape('x', this.value);" onkeyup="/*this.value++;*/ /*resizeShape('x', this.value)*/" required>
+                        <span class="text_highlight"></span>
+                        <span class="text_bar"></span>
+                        <label>X</label>
+                    </div>
+                    <div class="std_input_text">
+                        <input type="text" id="diemsions_y" onchange="resizeShape('y', this.value);" onkeyup="/*this.value++;*/ /*resizeShape('y', this.value)*/" required>
+                        <span class="text_highlight"></span>
+                        <span class="text_bar"></span>
+                        <label>Y</label>
+                    </div>
+                    <div class="std_input_text">
+                        <input type="text" id="diemsions_z" onchange="resizeShape('z', this.value);" onkeyup="/*this.value++;*/ /*resizeShape('z', this.value)*/" required>
+                        <span class="text_highlight"></span>
+                        <span class="text_bar"></span>
+                        <label>Z</label>
+                    </div>
+
+                    <h3>
+                        Position
+                    </h3>
+                    <div class="std_input_text">
+                        <input type="text" id="position_x" onchange="moveShape('x', this.value)"onkeyup="/*moveShape('x', this.value)*/" required>
+                        <span class="text_highlight"></span>
+                        <span class="text_bar"></span>
+                        <label>X</label>
+                    </div>
+                    <div class="std_input_text">
+                        <input type="text" id="position_y" onchange="moveShape('y', this.value);" onkeyup="/*moveShape('y', this.value)*/" required>
+                        <span class="text_highlight"></span>
+                        <span class="text_bar"></span>
+                        <label>Y</label>
+                    </div>
+                    <div class="std_input_text">
+                        <input type="text" id="position_z" onchange="moveShape('z', this.value);" onkeyup="/*moveShape('z', this.value)*/" required>
+                        <span class="text_highlight"></span>
+                        <span class="text_bar"></span>
+                        <label>Z</label>
+                    </div>
+
+                    <input type="color" onchange="color">
+
             </div>
             <div class="std_menu menu_hidden" id="menu_camera">
                 <h2>
@@ -480,7 +483,9 @@
 
 
         <!--RENDER AREA-->
-        <div id="animationEngine_renderArea" style="position: absolute; z-index: -10;"></div>
+        <div id="animationEngine_renderArea" style="position: absolute; z-index: -10;">
+
+        </div>
 
     </div>
     </body>

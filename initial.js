@@ -1,5 +1,5 @@
 /**
- * This file is responseable for initilaizing all of the stuff
+ * This file is responsible for iinitializingall of the stuff
  *
  *
  * Authors Jordan M. Gregory B.
@@ -22,25 +22,10 @@ var capturer;
 //sets up the viewport
 var scene = new THREE.Scene();
 scene.background = new THREE.Color("#000000");
-var camera = new THREE.PerspectiveCamera( 75, document.getElementById("animationEngine_renderArea").offsetWidth/document.getElementById("animationEngine_renderArea").offsetHeight, 0.1, 1000 );
-var renderer = new THREE.WebGLRenderer({logarithmicDepthBuffer: true });
-renderer.setSize( document.getElementById("animationEngine_renderArea").offsetWidth, document.getElementById("animationEngine_renderArea").offsetHeight );
-
-document.getElementById("animationEngine_renderArea").appendChild( renderer.domElement );
+var camera;
+var renderer;
 
 
-// function initRenderer(){
-//     camera = new THREE.PerspectiveCamera(75, UIDiemsions.std_body.window_width/UIDiemsions.std_body.window_height, 0.1, 1000);
-//     renderer = new THREE.WebGLRenderer({logarithmicDepthBuffer: true });
-//     renderer.setSize(UIDiemsions.std_body.renderer_width, UIDiemsions.std_body.renderer_height);
-//     document.getElementById("animationEngine_renderArea").appendChild(renderer.domElement);
-// }
-
-
-
-//create viewport size
-// renderer.setSize( document.getElementById("mainWindow").offsetWidth, document.getElementById("mainWindow").offsetHeight );
-// document.getElementById("mainWindow").appendChild( renderer.domElement );
 
 //lists of cool things
 var shapes = [];
