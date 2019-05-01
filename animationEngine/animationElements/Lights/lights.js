@@ -4,24 +4,41 @@ let value = document.getElementById("intensityValue");
 //value.innerText = slider.value;
 
 
-function newLight() {
-    let type = document.getElementById("lightSelector").value;
-    switch(type){
-        case "ambient":
-            newAmbientLight("#ffffff", 50);
-            break;
-        case "point":
-            newPointLight("#ffffff", 50);
-            break;
-        case "directional":
-            newDirectionalLight("#ffffff", 50);
-            break;
-        case "spot":
-            newSpotLight("#ffffff", 50);
-            break;
-        case "hemisphere":
-            newHemisphereLight("#87CEEB", "#654321", 50);
-            break;
+function newLight(type,color,intensity,positionX,positionY,positionZ) {
+    // let type = document.getElementById("lightSelector").value;
+    // switch(type){
+    //     case "ambient":
+    //         newAmbientLight("#ffffff", 50);
+    //         break;
+    //     case "point":
+    //         newPointLight("#ffffff", 50);
+    //         break;
+    //     case "directional":
+    //         newDirectionalLight("#ffffff", 50);
+    //         break;
+    //     case "spot":
+    //         newSpotLight("#ffffff", 50);
+    //         break;
+    //     case "hemisphere":
+    //         newHemisphereLight("#87CEEB", "#654321", 50);
+    //         break;
+    // }
+    const convert = {
+        "ambient":"Ambient",
+        "point":"Point",
+        "directional":"Directional",
+        "spot":"Spot",
+        "hemisphere":"Hemisphere",
+    }
+    if(type!="hemisphere"){
+        let light = new THREE[convert[type]+"Light"](color, intensity/100);
+        light.name = "Ambient light";
+        lights[lights.length] = light;
+        scene.add(light);
+        selectedLight = lights.length - 1;
+        lights[selectedLight].position.x = positionX;
+        lights[selectedLight].position.y = positionY;
+        lights[selectedLight].position.z = positionZ;
     }
 }
 

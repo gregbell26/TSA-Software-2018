@@ -29,11 +29,11 @@ function resizeShape(dimension, value){
         case "z":
             scales[selectedShape][2]=Number(value);
             borders[selectedShape].scale.z = Number(value);
-            if(usingTutorial && !hasMovedZ){
-                hasMovedZ = true;
-                document.getElementById("tutorialArrow").style.display="inherit";
-                animateArrow(95, 15, 120, 240);
-            }
+            // if(usingTutorial && !hasMovedZ){
+            //     hasMovedZ = true;
+            //     document.getElementById("tutorialArrow").style.display="inherit";
+            //     animateArrow(95, 15, 120, 240);
+            // }
             break;
     }
 }
@@ -277,8 +277,89 @@ function duplicateCurrentShape(){
     }
 }
 
+function newShape(type,x,y,z,posX,posY,posZ,color,border){
+    if(type!="custom" && type!="text"){
+        var newGeometry, geometry;
+        switch(type){
+            case "cube":
+                newGeometry = new THREE.BoxGeometry(1, 1, 1);
+                geometry = new THREE.BoxBufferGeometry( 1, 1, 1 );
+                break;
+            case "cone":
+                newGeometry = new THREE.ConeGeometry( 0.5, 1, 100);
+                geometry = new THREE.ConeBufferGeometry( 0.5, 1, 100);
+                break;
+            case "cylinder":
+                newGeometry = new THREE.CylinderGeometry( 0.5, 0.5, 1, 100);
+                geometry = new THREE.CylinderBufferGeometry( 0.5, 0.5, 1, 100);
+                break;
+            case "dodecahedron":
+                newGeometry = new THREE.DodecahedronGeometry( 0.5, 0);
+                geometry = new THREE.DodecahedronBufferGeometry( 0.5,0);
+                break;
+            case "icosahedron":
+                newGeometry = new THREE.IcosahedronGeometry( 0.5, 0);
+                geometry = new THREE.IcosahedronBufferGeometry( 0.5,0);
+                break;
+            case "octahedron":
+                newGeometry = new THREE.OctahedronGeometry( 0.5, 0);
+                geometry = new THREE.OctahedronBufferGeometry( 0.5,0);
+                break;
+            case "pyramid":
+                newGeometry = new THREE.TetrahedronGeometry( 0.5, 0);
+                geometry = new THREE.TetrahedronBufferGeometry( 0.5,0);
+                break;
+            case "ring":
+                newGeometry = new THREE.TorusGeometry( 0.5, 0.25, 200, 200);
+                geometry = new THREE.TorusBufferGeometry( 0.5, 0.25, 200, 200);
+                break;
+            case "sphere":
+                newGeometry = new THREE.SphereGeometry(0.5, 100, 100);
+                geometry = new THREE.SphereBufferGeometry(0.5, 100, 100);
+                break;
+            default:
+                newGeometry = new THREE.BoxGeometry(1, 1, 1);
+                geometry = new THREE.BoxBufferGeometry( 1, 1, 1 );
+                break;
+        }
+        var newMaterial = new THREE.MeshLambertMaterial({color: color});
+        newMaterial.lights = true;
+        shapes[shapes.length]=new THREE.Mesh(newGeometry, newMaterial);
+        var length = scales.length;
+        newGeometry.name = "cube";
+        scales[length]=[];
+        scales[length][0]=x;
+        scales[length][1]=y;
+        scales[length][2]=z;
+        scene.add(shapes[shapes.length-1]);
+        selectedShape = shapes.length-1;
 
+        //Borders
+        var edges = new THREE.EdgesGeometry( geometry );
+        var borderToAdd = new THREE.LineSegments( edges, new THREE.LineBasicMaterial( { color: border } ) );
+        borderToAdd.scale.x = x;
+        borderToAdd.scale.y = y;
+        borderToAdd.scale.z = z;
+        //scales borders along with shape
+        borders.push(borderToAdd);
+        scene.add( borderToAdd );
+        //adds borders to scene
 
+        setSelectedShape(selectedShape);
+        moveShape("x", posX);
+        moveShape("y", posY);
+        moveShape("z", posZ);
 
+        document.getElementById('diemsions_x').value = x;
+        document.getElementById('diemsions_y').value = y;
+        document.getElementById('diemsions_z').value = z;
 
+        document.getElementById('position_x').value = posX;
+        document.getElementById('position_y').value = posY;
+        document.getElementById('position_z').value = posZ;
+    }
+}
 
+function getId(str){
+    return document.getElementById(str);
+}

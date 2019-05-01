@@ -4,5 +4,5 @@ function newAmbientLight(color, intensity) {
     lights[lights.length] = light;
     scene.add(light);
     selectedLight = lights.length - 1;
-    setSelectedLight(selectedLight);
+    // setSelectedLight(selectedLight);
 }

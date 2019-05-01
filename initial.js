@@ -22,9 +22,11 @@ var capturer;
 //sets up the viewport
 var scene = new THREE.Scene();
 scene.background = new THREE.Color("#000000");
-// var camera = new THREE.PerspectiveCamera( 75, document.getElementById("mainWindow").offsetWidth/document.getElementById("mainWindow").offsetHeight, 0.1, 1000 );
-var camera;
-var renderer;
+var camera = new THREE.PerspectiveCamera( 75, document.getElementById("animationEngine_renderArea").offsetWidth/document.getElementById("animationEngine_renderArea").offsetHeight, 0.1, 1000 );
+var renderer = new THREE.WebGLRenderer({logarithmicDepthBuffer: true });
+renderer.setSize( document.getElementById("animationEngine_renderArea").offsetWidth, document.getElementById("animationEngine_renderArea").offsetHeight );
+
+document.getElementById("animationEngine_renderArea").appendChild( renderer.domElement );
 
 
 // function initRenderer(){
