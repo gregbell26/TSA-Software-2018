@@ -32,18 +32,18 @@ function setSelectedShape(num){
     color += rgbToHex(shapes[selectedShape].material.color['r']*255);
     color += rgbToHex(shapes[selectedShape].material.color['g']*255);
     color += rgbToHex(shapes[selectedShape].material.color['b']*255);
-    //TEMPORARY COMMENTED OUT
-    // document.getElementById('colorChanger').value = color;
+    // TEMPORARY COMMENTED OUT
+    document.getElementById('element_color').value = color;
     // document.getElementById("borderColor").value = "#"+borders[selectedShape].material.color.getHexString();
-    // document.getElementById('positionBoxX').value = shapes[selectedShape].position.x;
-    // document.getElementById('positionBoxY').value = shapes[selectedShape].position.y;
-    // document.getElementById('positionBoxZ').value = shapes[selectedShape].position.z;
+    document.getElementById('position_x').value = shapes[selectedShape].position.x;
+    document.getElementById('position_y').value = shapes[selectedShape].position.y;
+    document.getElementById('position_z').value = shapes[selectedShape].position.z;
     // document.getElementById('rotateBoxX').value = (shapes[selectedShape].rotation.x*180/Math.PI);
     // document.getElementById('rotateBoxY').value = (shapes[selectedShape].rotation.y*180/Math.PI);
     // document.getElementById('rotateBoxZ').value = (shapes[selectedShape].rotation.z*180/Math.PI);
-    // document.getElementById('dimensionX').value = scales[selectedShape][0];
-    // document.getElementById('dimensionY').value = scales[selectedShape][1];
-    // document.getElementById('dimensionZ').value = scales[selectedShape][2];
+    document.getElementById('diemsions_x').value = scales[selectedShape][0];
+    document.getElementById('diemsions_y').value = scales[selectedShape][1];
+    document.getElementById('diemsions_z').value = scales[selectedShape][2];
     editMenu();
     console.log("Set Shape Num");
 }
@@ -51,16 +51,16 @@ function setSelectedShape(num){
 function setSelectedLight(num) {
     selectedLight = num;
     let color = "#";
-    color += rgbToHex(lights[selectedLight].color['r']*255);
-    color += rgbToHex(lights[selectedLight].color['g']*255);
-    color += rgbToHex(lights[selectedLight].color['b']*255);
-    document.getElementById("lightColorChanger").value = color;
-    document.getElementById("lPosX").value = lights[selectedLight].position.x;
-    document.getElementById("lPosY").value = lights[selectedLight].position.y;
-    document.getElementById("lPosZ").value = lights[selectedLight].position.z;
-    document.getElementById("intensityRange").value = lights[selectedLight].intensity * 100;
-    document.getElementById("intensityValue").innerHTML = lights[selectedLight].intensity * 100;
-    lightEditMenu();
+    // color += rgbToHex(lights[selectedLight].color['r']*255);
+    // color += rgbToHex(lights[selectedLight].color['g']*255);
+    // color += rgbToHex(lights[selectedLight].color['b']*255);
+    // document.getElementById("lightColorChanger").value = color;
+    // document.getElementById("lPosX").value = lights[selectedLight].position.x;
+    // document.getElementById("lPosY").value = lights[selectedLight].position.y;
+    // document.getElementById("lPosZ").value = lights[selectedLight].position.z;
+    // document.getElementById("intensityRange").value = lights[selectedLight].intensity * 100;
+    // document.getElementById("intensityValue").innerHTML = lights[selectedLight].intensity * 100;
+    // lightEditMenu();
 }
 
 function cameraMenu(){

@@ -8,12 +8,11 @@ That means that you can freely use and modify this code for all uses except for
 Copyright 2018-2019 Monarch TSA
 
 Author Jordan
-
  */
 
 let animate = function () {
+    requestAnimationFrame(animate);
     if (init) {//to prevent thousands of errors when the program loads
-        requestAnimationFrame(animate);
         if (camera.position.x != xPosition)
             camera.position.x = xPosition + xCCenter + scene.position.x;
         if (camera.position.y != yPosition)
@@ -37,10 +36,6 @@ let animate = function () {
             capturer.capture(renderer.domElement);
         }
         //pushes the changes to the screen
-        return 0;
-    }
-    else {
-        return -1;
     }
 };
 animate();

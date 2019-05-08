@@ -143,7 +143,8 @@ function start() {
     borders= [];
     selectedShape = 0;
     selectedLight = 0;
-
+    console.log("initing");
+    init=true;
     if((saveSelectorElement.options[saveSelectorElement.selectedIndex].value === "Load Save" || !saveSubSystem.openPrevious) && saveSubSystem.isUsingSaves){
         /*promptResp = 1;*/
         /*showPrompt("Please enter a name for your save", "New Animation");*/
@@ -162,7 +163,7 @@ function start() {
     if(saveSubSystem.openPrevious && saveSubSystem.isUsingSaves){
         saveSubSystem.setFileName(saveSelectorElement.options[saveSelectorElement.selectedIndex].value, false);
         keyFrames = saveSubSystem.loadSave();
-        newLight("ambient", "#ffffff", 50);
+        // newLight("ambient", "#ffffff", 50);
         //has saves
     }
     // addLight();
@@ -172,9 +173,6 @@ function start() {
     //showList();
 
     //updateTimeline();
-
-
-    init=true;
 }
 
 //
