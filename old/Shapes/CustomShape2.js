@@ -1,7 +1,7 @@
 function newCustom2(x, y, z, posX, posY, posZ, newColor, borderColor, verticies, faces, index, name) {
     var newGeometry = new THREE.Geometry();
-    var newMaterial = new THREE.MeshBasicMaterial({ color: newColor });
-  
+    var newMaterial = new THREE.MeshLambertMaterial({ color: newColor });
+    newMaterial.lights = true;
 
 //geometry.addAttribute( 'position', new THREE.BufferAttribute( verticies, 3 ) );
 //var material = new THREE.MeshBasicMaterial( { color: 0xff0000 } );

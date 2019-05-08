@@ -101,6 +101,7 @@ var zoomChangev, zoomZChangev;
 
 
 
+
 var dialog = document.querySelector('dialog');
 
 function showPrompt(title, defaultText){
@@ -161,6 +162,7 @@ function start() {
     if(saveSubSystem.openPrevious && saveSubSystem.isUsingSaves){
         saveSubSystem.setFileName(saveSelectorElement.options[saveSelectorElement.selectedIndex].value, false);
         keyFrames = saveSubSystem.loadSave();
+        newLight("ambient", "#ffffff", 50);
         //has saves
     }
     // addLight();
