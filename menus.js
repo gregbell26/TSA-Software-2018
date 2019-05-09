@@ -2,18 +2,18 @@
 
 function showList(){
     //Brings up a list of all of the shapes that current exist in the scene. Called when the "Show List" button is clicked.
-    let sideBar=document.getElementById('listButtons');
-    let sideBarLight = document.getElementById("lightButtons");
+    let sideBar=document.getElementById('shapeList_shapes');
+    let sideBarLight = document.getElementById("shapeList_lights");
     hideAll();
-    document.getElementById("sideBarList").style.display="inherit";
+    // document.getElementById("sideBarList").style.display="inherit";
     sideBar.innerHTML="";
     sideBarLight.innerHTML="";
     for (let i=0; i<shapes.length; i++){
         //console.log("Shape "+(i+1)+": "+shapes[i]['geometry']['type']);
-        sideBar.innerHTML+="<button onclick='setSelectedShape("+i+")'>"+(i+1)+": "+shapes[i].geometry.name+" <div style='width: 14px; height: 14px; background-color: #"+shapes[i].material.color.getHexString()+"; display: inline-block'></div></button>";
+        sideBar.innerHTML+="<button onclick='setSelectedShape("+i+")'>"+(i+1)+": "+shapes[i].geometry.name+" <div style='width: 14px; height: 14px; background-color: #"+shapes[i].material.color.getHexString()+"; display: inline-block'></div></button><br>";
     }
     for (let i = 0; i < lights.length; i++){
-        sideBarLight.innerHTML+="<button onclick='setSelectedLight("+i+")'>"+(i+1)+": "+lights[i].name+" <div style='width: 14px; height: 14px; background-color: #"+lights[i].color.getHexString()+"; display: inline-block'></div></button>";
+        sideBarLight.innerHTML+="<button onclick='setSelectedLight("+i+")'>"+(i+1)+": "+lights[i].name+" <div style='width: 14px; height: 14px; background-color: #"+lights[i].color.getHexString()+"; display: inline-block'></div></button><br>";
     }
     console.log("Showed List");
     if(usingTutorial){
@@ -39,6 +39,7 @@ function setSelectedShape(num){
     document.getElementById('diemsions_x').value = scales[selectedShape][0];
     document.getElementById('diemsions_y').value = scales[selectedShape][1];
     document.getElementById('diemsions_z').value = scales[selectedShape][2];
+    showMenu("menu_newShapes");
 }
 
 function setSelectedLight(num) {
@@ -48,8 +49,9 @@ function setSelectedLight(num) {
     document.getElementById("position_x").value = lights[selectedLight].position.x;
     document.getElementById("position_y").value = lights[selectedLight].position.y;
     document.getElementById("position_z").value = lights[selectedLight].position.z;
-    // document.getElementById("intensityRange").value = lights[selectedLight].intensity * 100;
-    // document.getElementById("intensityValue").innerHTML = lights[selectedLight].intensity * 100;
+    document.getElementById("intensity_slider").value = lights[selectedLight].intensity * 100;
+    document.getElementById("intensity_value").innerHTML = lights[selectedLight].intensity * 100 + "";
+    showMenu("menu_newShapes");
     // lightEditMenu();
 }
 
@@ -230,11 +232,13 @@ function toggleEditShapeOrLight(isLight){
     if(isLight){
         getId("currentEditing_type").innerHTML = "light";
         getId("currentEditing_dimensions").style.display="none";
+        getId("currentEditing_intensity").style.display="inherit";
         getId("element_border_color").style.display="none";
     }
     else{
         getId("currentEditing_type").innerHTML = "shape";
         getId("currentEditing_dimensions").style.display="inherit";
+        getId("currentEditing_intensity").style.display="none";
         getId("element_border_color").style.display="inherit";
     }
 }

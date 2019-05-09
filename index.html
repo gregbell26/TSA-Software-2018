@@ -55,7 +55,6 @@
         <script src="helperScripts/keyevents.js"></script>
         <script src="menus.js"></script>
         <script src="tutorial.js"></script>
-        <script src="Camera.js"></script>
         <script src="settings.js"></script>
 
         <!--Frontend-->
@@ -99,8 +98,8 @@
 
         <div id="std_nav_bar">
             <!--Left Aligned Buttons-->
-            <span class="std_nav_button" id="nav_shapesList" onclick="showMenu('menu_shapesList')">
-                    <img onclick="showMenu('menu_shapesList')" src="./style/assets/svgs/nav_icons/nav_shapes_icon.svg"
+            <span class="std_nav_button" id="nav_shapesList" onclick="showMenu('menu_shapesList'); showList()">
+                    <img onclick="showMenu('menu_shapesList'); showList()" src="./style/assets/svgs/nav_icons/nav_shapes_icon.svg"
                          class="nav_buttonIcon"/>
                 </span>
             <span class="std_nav_button" id="nav_newShape" onclick="showMenu('menu_newShapes')">
@@ -262,6 +261,13 @@
                         <label>Z</label>
                     </div>
 
+                    <div id="currentEditing_intensity">
+                        <input type="range" min="0" max="100" value="100" id="intensity_slider" oninput="changeIntensity()" onchange="changeIntensity()">
+                        <p>Intensity: <span id="intensity_value"></span>%</p>
+                    </div>
+                    <h3>
+                        Color
+                    </h3>
                     <input type="color" onchange="changeColor(this.value)" id="element_color">
                     <input type="color" onchange="borderChange(this.value)" id="element_border_color">
                     <button id="element_remove" onclick="removeElement()">Remove</button>
@@ -526,6 +532,9 @@
 <!--    <script>saveSubSystem.loadSaveNames("ws_loadMenu");</script>-->
     <script src="initial.js"></script>
     <script src="scene.js"></script>
+
+    <!--Camera-->
+    <script src="Camera.js"></script>
 
     <!--Animation Engine-->
     <script src="animationEngine/utils.js"></script>

@@ -1,6 +1,6 @@
 //TODO This will need to be fixed later on these elements need to be changed
-let slider = document.getElementById("intensityRange");
-let value = document.getElementById("intensityValue");
+let slider = document.getElementById("intensity_slider");
+let value = document.getElementById("intensity_value");
 //value.innerText = slider.value;
 
 
@@ -11,7 +11,7 @@ function newLight(type,color,intensity,positionX,positionY,positionZ) {
         "directional":"Directional",
         "spot":"Spot",
         "hemisphere":"Hemisphere",
-    }
+    };
     if(type!=="hemisphere"){
         let light = new THREE[convert[type]+"Light"](color, intensity/100);
         light.name = convert[type]+" light";
@@ -21,7 +21,6 @@ function newLight(type,color,intensity,positionX,positionY,positionZ) {
         lights[selectedLight].position.x = positionX;
         lights[selectedLight].position.y = positionY;
         lights[selectedLight].position.z = positionZ;
-        getId("shapeList_lights").innerHTML+="<button onclick='setSelectedLight("+selectedShape+");showMenu(\"menu_newShapes\");' style='color:black'>"+type+"</button><br>";
         getId("newLights_select").value = "newLight";
     }
 }
