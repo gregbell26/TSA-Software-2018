@@ -19,10 +19,13 @@ Rev 19
 * After it does that is starts all of the needed functions for the program.
 * */
 async function initMainUI(){
-    // if(!document.querySelector("body").requestFullscreen()){
+
+    //Commented out so its easier to debug when not in full screen
+    // if(window.location.protocol.indexOf("file")===-1 && !document.querySelector("body").requestFullscreen()){
     //     //do something if we are unable to enter full screen mode
     //     /*document.querySelector("body").requestFullscreen();*/
     // }
+
     document.getElementById("std_ws_container").classList.add("ws_hide");
     document.getElementById("ws_body").classList.add("ws_hide");
     UISpacer();
@@ -87,20 +90,31 @@ function settingsToggle(){
 }
 
 var shownPopUp = "init";
-function showPopUp(popUpToShow, popUpContent, otherText, functions){
+function showPopUp(popUpToShow, popUpContent, otherText, mode){
     document.getElementById("std_popUp").classList.add("popUp_show");
     document.getElementById(popUpToShow).classList.add("popUp_show");
     document.getElementById(popUpToShow).children.item(0).textContent = popUpContent;
     document.getElementById(popUpToShow).children.item(1).children.item(3).innerHTML = otherText;
-    document.getElementById(popUpToShow).children.item(2).setAttribute('onclick', functions +" hidePopUp();");
+    document.getElementById(popUpToShow).children.item(2).setAttribute('onclick', "popUpAction("+mode+"); hidePopUp();");
 
     shownPopUp = popUpToShow;
+}
+function popUpAction(num){
+    if(num==0){
+        saveSubSystem.setFileName(getPopUpInput(), true);
+    }
+    else if(num==1){
+        newShape("text",0,0,0,0,0,0,'#FF0000','#000000',getPopUpInput());
+        saveSubSystem.addText(getPopUpInput());
+    }
+    document.getElementById(document.getElementById(shownPopUp).children.item(1).children.item(0).value = "");
 }
 
 function getPopUpInput() {
     if(shownPopUp !== "init" && shownPopUp.includes("input")){
         return document.getElementById(shownPopUp).children.item(1).children.item(0).value;
     }
+    return "";
 }
 
 function hidePopUp() {
@@ -303,10 +317,6 @@ $(document).ready(function () {
     //When the user resizes the program rerun UI spacer
     $(window).resize(function () {
         UISpacer();
-        camera.aspect = UIDiemsions.std_body.window_width / UIDiemsions.std_body.window_height;
-        camera.updateProjectionMatrix();
-        updateTimeline();
-        renderer.setSize(UIDiemsions.std_body.window_width, UIDiemsions.std_body.window_height);
-
+        onWindowResize();
     });
 });

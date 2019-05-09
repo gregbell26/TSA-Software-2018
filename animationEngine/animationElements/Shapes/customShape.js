@@ -35,6 +35,7 @@ function newCustom(x, y, z, posX, posY, posZ, newColor, borderColor, vertices, f
 
     // MESH with GEOMETRY, and Normal MATERIAL
     let newMaterial = new THREE.MeshLambertMaterial({color: newColor});
+    newGeometry.computeFaceNormals();
     newMaterial.lights = true;
     shapes[shapes.length] = new THREE.Mesh(newGeometry, newMaterial);
     let length = scales.length;

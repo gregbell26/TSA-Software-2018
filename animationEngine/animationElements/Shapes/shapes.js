@@ -2,8 +2,13 @@
 //corbin wrote this method, simplified by Jordan
 
 function moveShape(dimension, value) {
-    shapes[selectedShape].position[dimension] = Number(value);
-    borders[selectedShape].position[dimension] = Number(value);
+    if(showingLight){
+        lights[selectedLight].position[dimension] = Number(value);
+    }
+    else{
+        shapes[selectedShape].position[dimension] = Number(value);
+        borders[selectedShape].position[dimension] = Number(value);
+    }
 }
 
 function postitionShape(dimension, value) {
@@ -37,7 +42,10 @@ function resizeShape(dimension, value){
             break;
     }
 }
-
+function removeElement(){
+    if(showingLight){removeLight();}
+    else{removeShape();}
+}
 function removeShape(){
     if(selectedShape >= 0){
         if(shapes[selectedShape].geometry.type=="TextGeometry"){
@@ -132,68 +140,115 @@ function processShapeData(loadedShapes,loadedScales, loadedText) {
         //console.log(i);
         newGeometry = null;
         borderGeometry = null;
+        var type;
+        switch(loadedShapes[i].type){
+            case "BoxGeometry":
+                type = "cube";
+                break;
+            case "ConeGeometry":
+                type = "cone";
+                break;
+            case "CylinderGeometry":
+                type = "cylinder";
+                break;
+            case "CustomGeometry2":
+                type = "custom";
+                break;
+            case "DodecahedronGeometry":
+                type = "dodecahedron";
+                break;
+            case "IcosahedronGeometry":
+                type = "icosahedron";
+                break;
+            case "OctahedronGeometry":
+                type = "octahedron";
+                break;
+            case "TetrahedronGeometry":
+                type = "pyramid";
+                break;
+            case "SphereGeometry":
+                type = "sphere";
+                break;
+            case "TorusGeometry":
+                type = "ring";
+                break;
+            case "TextGeometry":
+                type = "text";
+                break;
+            default:
+                type = "cube";
+                break;
+        }
+        var text;
+        console.log(loadedText);
+        if(type=="text"){
+            text = loadedText[currentTextIndex];
+            currentTextIndex++;
+        }
+        newShape(type,loadedScales[i][0], loadedScales[i][1], loadedScales[i][2], loadedShapes[i].positionX, loadedShapes[i].positionY, loadedShapes[i].positionZ, convertColor(loadedShapes[i].r, loadedShapes[i].g, loadedShapes[i].b) , convertColor(loadedShapes[i].borderR || 0, loadedShapes[i].borderG || 0, loadedShapes[i].borderB || 0),text);
 
-            if (loadedShapes[i].type === "BoxGeometry") {
-                newCube(loadedScales[i][0], loadedScales[i][1], loadedScales[i][2], loadedShapes[i].positionX, loadedShapes[i].positionY, loadedShapes[i].positionZ, convertColor(loadedShapes[i].r, loadedShapes[i].g, loadedShapes[i].b) , convertColor(loadedShapes[i].borderR || 0, loadedShapes[i].borderG || 0, loadedShapes[i].borderB || 0))
 
-            }
-            else if (loadedShapes[i].type === "CylinderGeometry") {
-                newCylinder(loadedScales[i][0], loadedScales[i][1], loadedScales[i][2], loadedShapes[i].positionX, loadedShapes[i].positionY, loadedShapes[i].positionZ, convertColor(loadedShapes[i].r, loadedShapes[i].g, loadedShapes[i].b) , convertColor(loadedShapes[i].borderR || 0, loadedShapes[i].borderG || 0, loadedShapes[i].borderB || 0))
-
-            }
-            else if (loadedShapes[i].type === "ConeGeometry") {
-                newCone(loadedScales[i][0], loadedScales[i][1], loadedScales[i][2], loadedShapes[i].positionX, loadedShapes[i].positionY, loadedShapes[i].positionZ, convertColor(loadedShapes[i].r, loadedShapes[i].g, loadedShapes[i].b) , convertColor(loadedShapes[i].borderR || 0, loadedShapes[i].borderG || 0, loadedShapes[i].borderB || 0))
-
-            }
-            else if (loadedShapes[i].type === "CustomGeometry2") {
-            /*newGeometry = new THREE.CylinderGeometry(0.5, 0.5, 1, 100);
-              borderGeometry = new THREE.CylinderBufferGeometry(0.5, 0.5, 1, 100);
-              newGeometry.name = "cylinder"*/
-            newCustom2()
-            }
-            else if (loadedShapes[i].type === "DodecahedronGeometry") {
-                newDodecahedron(loadedScales[i][0], loadedScales[i][1], loadedScales[i][2], loadedShapes[i].positionX, loadedShapes[i].positionY, loadedShapes[i].positionZ, convertColor(loadedShapes[i].r, loadedShapes[i].g, loadedShapes[i].b) , convertColor(loadedShapes[i].borderR || 0, loadedShapes[i].borderG || 0, loadedShapes[i].borderB || 0))
-
-            }
-            else if (loadedShapes[i].type === "IcosahedronGeometry") {
-                newIcosahedron(loadedScales[i][0], loadedScales[i][1], loadedScales[i][2], loadedShapes[i].positionX, loadedShapes[i].positionY, loadedShapes[i].positionZ, convertColor(loadedShapes[i].r, loadedShapes[i].g, loadedShapes[i].b) , convertColor(loadedShapes[i].borderR || 0, loadedShapes[i].borderG || 0, loadedShapes[i].borderB || 0))
-
-            }
-            else if (loadedShapes[i].type === "OctahedronGeometry") {
-                newOctahedron(loadedScales[i][0], loadedScales[i][1], loadedScales[i][2], loadedShapes[i].positionX, loadedShapes[i].positionY, loadedShapes[i].positionZ, convertColor(loadedShapes[i].r, loadedShapes[i].g, loadedShapes[i].b) , convertColor(loadedShapes[i].borderR || 0, loadedShapes[i].borderG || 0, loadedShapes[i].borderB || 0))
-
-            }
-            else if (loadedShapes[i].type === "TetrahedronGeometry") {
-                newPyramid(loadedScales[i][0], loadedScales[i][1], loadedScales[i][2], loadedShapes[i].positionX, loadedShapes[i].positionY, loadedShapes[i].positionZ, convertColor(loadedShapes[i].r, loadedShapes[i].g, loadedShapes[i].b) , convertColor(loadedShapes[i].borderR || 0, loadedShapes[i].borderG || 0, loadedShapes[i].borderB || 0))
-
-            }
-            else if (loadedShapes[i].type === "TorusGeometry") {
-                newRing(loadedScales[i][0], loadedScales[i][1], loadedScales[i][2], loadedShapes[i].positionX, loadedShapes[i].positionY, loadedShapes[i].positionZ, convertColor(loadedShapes[i].r, loadedShapes[i].g, loadedShapes[i].b) , convertColor(loadedShapes[i].borderR || 0, loadedShapes[i].borderG || 0, loadedShapes[i].borderB || 0))
-
-            }
-            else if (loadedShapes[i].type === "SphereGeometry") {
-                newSphere(loadedScales[i][0], loadedScales[i][1], loadedScales[i][2], loadedShapes[i].positionX, loadedShapes[i].positionY, loadedShapes[i].positionZ, convertColor(loadedShapes[i].r, loadedShapes[i].g, loadedShapes[i].b) , convertColor(loadedShapes[i].borderR || 0, loadedShapes[i].borderG || 0, loadedShapes[i].borderB || 0))
-
-            }
-            else if (loadedShapes[i].type === "TextGeometry") {
-                document.getElementById('createText').value = loadedText[currentTextIndex];
-                currentTextIndex++;
-                newText(loadedScales[i][0], loadedScales[i][1], loadedScales[i][2], loadedShapes[i].positionX, loadedShapes[i].positionY, loadedShapes[i].positionZ, convertColor(loadedShapes[i].r, loadedShapes[i].g, loadedShapes[i].b) , convertColor(loadedShapes[i].borderR || 0, loadedShapes[i].borderG || 0, loadedShapes[i].borderB || 0))
-
-            }/*else if (loadedShapes[i].geometry.name === "custom") {
-                 document.getElementById('xCreateCoord').value = loadedText[currentTextIndex];
-                 document.getElementById('yCreateCoord').value = loadedText[currentTextIndex];
-                 document.getElementById('zCreateCoord').value = loadedText[currentTextIndex];
-
-                 document.getElementById('xCreatePoint').value = loadedText[currentTextIndex];
-                 document.getElementById('yCreatePoint').value = loadedText[currentTextIndex];
-                 document.getElementById('zCreatePoint').value = loadedText[currentTextIndex];
-
-                 newCustom(loadedScales[i][0], loadedScales[i][1], loadedScales[i][2], loadedShapes[i].positionX, loadedShapes[i].positionY, loadedShapes[i].positionZ, convertColor(loadedShapes[i].r, loadedShapes[i].g, loadedShapes[i].b) , convertColor(loadedShapes[i].borderR || 0, loadedShapes[i].borderG || 0, loadedShapes[i].borderB || 0))
-            }*/
-            else {
-                console.log("Invalid shape at location: " + i);
-            }
+        // if (loadedShapes[i].type === "BoxGeometry") {
+        //         newCube(loadedScales[i][0], loadedScales[i][1], loadedScales[i][2], loadedShapes[i].positionX, loadedShapes[i].positionY, loadedShapes[i].positionZ, convertColor(loadedShapes[i].r, loadedShapes[i].g, loadedShapes[i].b) , convertColor(loadedShapes[i].borderR || 0, loadedShapes[i].borderG || 0, loadedShapes[i].borderB || 0))
+        //
+        //     }
+        //     else if (loadedShapes[i].type === "CylinderGeometry") {
+        //         newCylinder(loadedScales[i][0], loadedScales[i][1], loadedScales[i][2], loadedShapes[i].positionX, loadedShapes[i].positionY, loadedShapes[i].positionZ, convertColor(loadedShapes[i].r, loadedShapes[i].g, loadedShapes[i].b) , convertColor(loadedShapes[i].borderR || 0, loadedShapes[i].borderG || 0, loadedShapes[i].borderB || 0))
+        //
+        //     }
+        //     else if (loadedShapes[i].type === "ConeGeometry") {
+        //         newCone(loadedScales[i][0], loadedScales[i][1], loadedScales[i][2], loadedShapes[i].positionX, loadedShapes[i].positionY, loadedShapes[i].positionZ, convertColor(loadedShapes[i].r, loadedShapes[i].g, loadedShapes[i].b) , convertColor(loadedShapes[i].borderR || 0, loadedShapes[i].borderG || 0, loadedShapes[i].borderB || 0))
+        //
+        //     }
+        //     else if (loadedShapes[i].type === "CustomGeometry2") {
+        //     /*newGeometry = new THREE.CylinderGeometry(0.5, 0.5, 1, 100);
+        //       borderGeometry = new THREE.CylinderBufferGeometry(0.5, 0.5, 1, 100);
+        //       newGeometry.name = "cylinder"*/
+        //     newCustom2()
+        //     }
+        //     else if (loadedShapes[i].type === "DodecahedronGeometry") {
+        //         newDodecahedron(loadedScales[i][0], loadedScales[i][1], loadedScales[i][2], loadedShapes[i].positionX, loadedShapes[i].positionY, loadedShapes[i].positionZ, convertColor(loadedShapes[i].r, loadedShapes[i].g, loadedShapes[i].b) , convertColor(loadedShapes[i].borderR || 0, loadedShapes[i].borderG || 0, loadedShapes[i].borderB || 0))
+        //
+        //     }
+        //     else if (loadedShapes[i].type === "IcosahedronGeometry") {
+        //         newIcosahedron(loadedScales[i][0], loadedScales[i][1], loadedScales[i][2], loadedShapes[i].positionX, loadedShapes[i].positionY, loadedShapes[i].positionZ, convertColor(loadedShapes[i].r, loadedShapes[i].g, loadedShapes[i].b) , convertColor(loadedShapes[i].borderR || 0, loadedShapes[i].borderG || 0, loadedShapes[i].borderB || 0))
+        //
+        //     }
+        //     else if (loadedShapes[i].type === "OctahedronGeometry") {
+        //         newOctahedron(loadedScales[i][0], loadedScales[i][1], loadedScales[i][2], loadedShapes[i].positionX, loadedShapes[i].positionY, loadedShapes[i].positionZ, convertColor(loadedShapes[i].r, loadedShapes[i].g, loadedShapes[i].b) , convertColor(loadedShapes[i].borderR || 0, loadedShapes[i].borderG || 0, loadedShapes[i].borderB || 0))
+        //
+        //     }
+        //     else if (loadedShapes[i].type === "TetrahedronGeometry") {
+        //         newPyramid(loadedScales[i][0], loadedScales[i][1], loadedScales[i][2], loadedShapes[i].positionX, loadedShapes[i].positionY, loadedShapes[i].positionZ, convertColor(loadedShapes[i].r, loadedShapes[i].g, loadedShapes[i].b) , convertColor(loadedShapes[i].borderR || 0, loadedShapes[i].borderG || 0, loadedShapes[i].borderB || 0))
+        //
+        //     }
+        //     else if (loadedShapes[i].type === "TorusGeometry") {
+        //         newRing(loadedScales[i][0], loadedScales[i][1], loadedScales[i][2], loadedShapes[i].positionX, loadedShapes[i].positionY, loadedShapes[i].positionZ, convertColor(loadedShapes[i].r, loadedShapes[i].g, loadedShapes[i].b) , convertColor(loadedShapes[i].borderR || 0, loadedShapes[i].borderG || 0, loadedShapes[i].borderB || 0))
+        //
+        //     }
+        //     else if (loadedShapes[i].type === "SphereGeometry") {
+        //         newSphere(loadedScales[i][0], loadedScales[i][1], loadedScales[i][2], loadedShapes[i].positionX, loadedShapes[i].positionY, loadedShapes[i].positionZ, convertColor(loadedShapes[i].r, loadedShapes[i].g, loadedShapes[i].b) , convertColor(loadedShapes[i].borderR || 0, loadedShapes[i].borderG || 0, loadedShapes[i].borderB || 0))
+        //
+        //     }
+        //     else if (loadedShapes[i].type === "TextGeometry") {
+        //         document.getElementById('createText').value = loadedText[currentTextIndex];
+        //         currentTextIndex++;
+        //         newText(loadedScales[i][0], loadedScales[i][1], loadedScales[i][2], loadedShapes[i].positionX, loadedShapes[i].positionY, loadedShapes[i].positionZ, convertColor(loadedShapes[i].r, loadedShapes[i].g, loadedShapes[i].b) , convertColor(loadedShapes[i].borderR || 0, loadedShapes[i].borderG || 0, loadedShapes[i].borderB || 0))
+        //
+        //     }/*else if (loadedShapes[i].geometry.name === "custom") {
+        //          document.getElementById('xCreateCoord').value = loadedText[currentTextIndex];
+        //          document.getElementById('yCreateCoord').value = loadedText[currentTextIndex];
+        //          document.getElementById('zCreateCoord').value = loadedText[currentTextIndex];
+        //
+        //          document.getElementById('xCreatePoint').value = loadedText[currentTextIndex];
+        //          document.getElementById('yCreatePoint').value = loadedText[currentTextIndex];
+        //          document.getElementById('zCreatePoint').value = loadedText[currentTextIndex];
+        //
+        //          newCustom(loadedScales[i][0], loadedScales[i][1], loadedScales[i][2], loadedShapes[i].positionX, loadedShapes[i].positionY, loadedShapes[i].positionZ, convertColor(loadedShapes[i].r, loadedShapes[i].g, loadedShapes[i].b) , convertColor(loadedShapes[i].borderR || 0, loadedShapes[i].borderG || 0, loadedShapes[i].borderB || 0))
+        //     }*/
+        //     else {
+        //         console.log("Invalid shape at location: " + i);
+        //     }
             /*geometryToAdd = new THREE.Mesh(newGeometry, newMaterial);
             edgyBoi = new THREE.EdgesGeometry(borderGeometry);
             borderToAdd  = new THREE.LineSegments(edgyBoi, new THREE.LineBasicMaterial({color: 0xff0000}));
@@ -203,10 +258,10 @@ function processShapeData(loadedShapes,loadedScales, loadedText) {
                 //shapeData[2][i] = loadedScales[i];
 
         }
-        //console.log(loadedScales);
-        //if (loadedShapes.length === 1)
-            //shapeData[2][0] = loadedShapes;
-        //return shapeData;
+        // console.log(loadedScales);
+        // if (loadedShapes.length === 1)
+            // shapeData[2][0] = loadedShapes;
+        return shapeData;
 
 
 }
@@ -277,8 +332,8 @@ function duplicateCurrentShape(){
     }
 }
 
-function newShape(type,x,y,z,posX,posY,posZ,color,border){
-    if(type!="custom" && type!="text"){
+function newShape(type,x,y,z,posX,posY,posZ,color,border,text){
+    if(type!="custom" && type!="text" && type!="textIn"){
         var newGeometry, geometry;
         switch(type){
             case "cube":
@@ -357,6 +412,68 @@ function newShape(type,x,y,z,posX,posY,posZ,color,border){
         document.getElementById('position_x').value = posX;
         document.getElementById('position_y').value = posY;
         document.getElementById('position_z').value = posZ;
+        getId("shapeList_shapes").innerHTML+="<button onclick='setSelectedShape("+selectedShape+");showMenu(\"menu_newShapes\");' style='color:black'>"+type+"</button><br>";
+        getId("newShapes_select").value = "newShape";
+    }
+    else if(type=="textIn"){
+        showPopUp("popUp_input_body", "New Text", "Enter Text",1);
+    }
+    else if(type=="text"){
+        let loader = new THREE.FontLoader();
+        loader.load( 'https://threejs.org/examples/fonts/helvetiker_regular.typeface.json', function ( font ) {
+            let newGeometry = new THREE.TextGeometry( text, {
+                font: font,
+                size: 1,
+                height: 0.05,
+                curveSegments: 6,
+                bevelEnabled: true,
+                bevelThickness: 0.5,
+                bevelSize: 0.05,
+                bevelSegments: 2.5
+            } );
+            let newMaterial = new THREE.MeshLambertMaterial({color: color});
+            newMaterial.lights = true;
+            shapes[shapes.length]=new THREE.Mesh(newGeometry, newMaterial);
+            let length = scales.length;
+            newGeometry.name = "text";
+            scales[length]=[];
+            scales[length][0]=x;
+            scales[length][1]=y;
+            scales[length][2]=z;
+            scene.add(shapes[shapes.length-1]);
+            selectedShape = shapes.length-1;
+            let geometry = new THREE.TextBufferGeometry( text, {
+                font: font,
+                size: 1,
+                height: 0.05,
+                curveSegments: 6,
+                bevelEnabled: true,
+                bevelThickness: 0.5,
+                bevelSize: 0.05,
+                bevelSegments: 2.5
+            } );
+            let edges = new THREE.EdgesGeometry( geometry );
+            let borderToAdd = new THREE.LineSegments( edges, new THREE.LineBasicMaterial( { color: border } ) );
+            borderToAdd.scale.x = x;
+            borderToAdd.scale.y = y;
+            borderToAdd.scale.z = z;
+            borders.push(borderToAdd);
+            scene.add(borderToAdd);
+            setSelectedShape(selectedShape);
+            moveShape("x", posX);
+            moveShape("y", posY);
+            moveShape("z", posZ);
+
+            document.getElementById('diemsions_x').value = x;
+            document.getElementById('diemsions_y').value = y;
+            document.getElementById('diemsions_z').value = z;
+
+            document.getElementById('position_x').value = posX;
+            document.getElementById('position_y').value = posY;
+            document.getElementById('position_z').value = posZ;
+            getId("shapeList_shapes").innerHTML+="<button onclick='setSelectedShape("+selectedShape+");showMenu(\"menu_newShapes\");' style='color:black'>"+type+"</button><br>";
+            getId("newShapes_select").value = "newShape";
+        } );
     }
 }
 

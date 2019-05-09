@@ -78,6 +78,12 @@ var zCCenter = 0;//where the camera centers on z
 var xCLook = 0;//where the camera points to x
 var yCLook = 0;//where the camera points to y
 var zCLook = 0;//where the camera points to z
+var shapeCenter = {
+    x:0.0,
+    y:0.0,
+    z:0.0
+};
+var shapeCenters = [];
 var mouseDown = false;//if the right mouse button is pressed down
 var inAnimationWindow = 0;//is the mouse in the animation window
 var lockCamera = true;//Whether or not the camera can free pan during animation
@@ -98,7 +104,23 @@ var Rz2v, Ry2v;
 var zoom1v, zoom1Zv;
 var zoom2v, zoom2Zv;
 var zoomChangev, zoomZChangev;
+var showingLight;
 
+
+//stuff for circular shape movement
+var tempCircleMoveShapes = {
+    MvX:0.0,
+    MvY:0.0,
+    Rz1:0.0,
+    Ry1:0.0,
+    Rz2:0.0,
+    Ry2:0.0,
+    zoom1:0.0,
+    zoom1Z:0.0,
+    zoom2:0.0,
+    zoom2Z:0.0
+};
+var shapesCmove =[];
 
 
 var dialog = document.querySelector('dialog');
@@ -129,7 +151,8 @@ function promptResponse(value) {
 //Greatness by Gregory
 var buttonClicked = false;
 
-function start() {
+
+function start(){
     camera = new THREE.PerspectiveCamera(75, UIDiemsions.std_body.window_width/UIDiemsions.std_body.window_height, 0.1, 1000);
     renderer = new THREE.WebGLRenderer({logarithmicDepthBuffer: true });
     renderer.setSize(UIDiemsions.std_body.renderer_width, UIDiemsions.std_body.renderer_height);
@@ -142,15 +165,13 @@ function start() {
     borders= [];
     selectedShape = 0;
     selectedLight = 0;
-
+    init=true;
+    toggleEditShapeOrLight(false);
     if((saveSelectorElement.options[saveSelectorElement.selectedIndex].value === "Load Save" || !saveSubSystem.openPrevious) && saveSubSystem.isUsingSaves){
         /*promptResp = 1;*/
         /*showPrompt("Please enter a name for your save", "New Animation");*/
-        showPopUp("popUp_input_body", "New Save", "Enter Save Name", "buttonClicked = true;");
-        // while(!buttonClicked){
-        //
-        // }
-        saveSubSystem.setFileName(getPopUpInput(), true);
+        showPopUp("popUp_input_body", "New Save", "Enter Save Name",0);
+
     //handles savings creates a new one if there is no previous save when starting software
     }
     if(!saveSubSystem.isUsingSaves){
@@ -161,6 +182,7 @@ function start() {
     if(saveSubSystem.openPrevious && saveSubSystem.isUsingSaves){
         saveSubSystem.setFileName(saveSelectorElement.options[saveSelectorElement.selectedIndex].value, false);
         keyFrames = saveSubSystem.loadSave();
+        // newLight("ambient", "#ffffff", 50);
         //has saves
     }
     // addLight();
@@ -170,9 +192,6 @@ function start() {
     //showList();
 
     //updateTimeline();
-
-
-    init=true;
 }
 
 //

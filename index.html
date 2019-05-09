@@ -16,11 +16,16 @@
         TODO: Fix timeline button toggles. New way to create shapes. Fix lights. Add shapes list. Set sleected light is where the bugs are
         Fix y-overflow in menus
     -->
-
     <head>
         <meta charset="UTF-8">
         <script>if (typeof module === 'object') {window.module = module; module = undefined;}</script><!--This lets Electron run external script files-->
-
+        <style>
+            input[type=number]::-webkit-inner-spin-button,
+            input[type=number]::-webkit-outer-spin-button {
+                -webkit-appearance: none;
+                margin: 0;
+            }
+        </style>
         <!--INCLUDES-->
         <script src="animationEngine/three.js"></script>
         <script src="helperScripts/jquery-3.3.1.min.js"></script>
@@ -50,7 +55,6 @@
         <script src="helperScripts/keyevents.js"></script>
         <script src="menus.js"></script>
         <script src="tutorial.js"></script>
-        <script src="Camera.js"></script>
         <script src="settings.js"></script>
 
         <!--Frontend-->
@@ -79,9 +83,8 @@
         </div>
         <div id="ws_body">
             <span class="std_ws_button ws_color" onclick="saveSubSystem.setIsUsingSaves(true, false); initMainUI(); start();" style="top:5%; left:30%;">Start from Scratch</span>
-            <select class="std_ws_button ws_color" id="ws_loadMenu" onchange="saveSubSystem.setIsUsingSaves(true, true);  initMainUI(); start();" style="top:20%; left:50%;">
+            <select class="std_ws_button ws_color" id="ws_loadMenu" onchange="saveSubSystem.setIsUsingSaves(true, true);  initMainUI(); start();" style="top:20%; left:50%;" >
                 <option>Load Save</option>
-
             </select>
             <span class="std_ws_button ws_color" onclick="saveSubSystem.setIsUsingSaves(true, false); initMainUI(); start(); launchTutorial(); " style="top:5%; left:70%">View Tutorial</span>
 
@@ -95,8 +98,8 @@
 
         <div id="std_nav_bar">
             <!--Left Aligned Buttons-->
-            <span class="std_nav_button" id="nav_shapesList" onclick="showMenu('menu_shapesList')">
-                    <img onclick="showMenu('menu_shapesList')" src="./style/assets/svgs/nav_icons/nav_shapes_icon.svg"
+            <span class="std_nav_button" id="nav_shapesList" onclick="showMenu('menu_shapesList'); showList()">
+                    <img onclick="showMenu('menu_shapesList'); showList()" src="./style/assets/svgs/nav_icons/nav_shapes_icon.svg"
                          class="nav_buttonIcon"/>
                 </span>
             <span class="std_nav_button" id="nav_newShape" onclick="showMenu('menu_newShapes')">
@@ -136,7 +139,7 @@
             <span class="std_nav_spacer" id="nav_spacer_right"></span>
 
             <!--Right Aligned Buttons-->
-            <span class="std_nav_button std_nav_alignRight" id="nav_settings">
+            <span class="std_nav_button std_nav_alignRight" id="nav_settings" onclick="settingsToggle()">
                     <img onclick="settingsToggle()"
                          src="./style/assets/svgs/nav_icons/nav_settings_icon.svg" class="nav_buttonIcon"/>
                 </span>
@@ -156,13 +159,21 @@
                     Shapes
                 </h3>
 
+                <div id="shapeList_shapes">
+
+                </div>
+
                 <h3>
                     Lights
                 </h3>
+                <div id="shapeList_lights">
+
+                </div>
+
 
 
             </div>
-            <div class="std_menu menu_hidden" id="menu_newShapes">
+            <div class="std_menu menu_hidden" id="menu_newShapes" style="overflow-y: scroll;">
                 <h2>
                     New Elements
                 </h2>
@@ -172,7 +183,7 @@
                         New Shape
                     </h3>
                     <div class="std_body_list" style="max-width: initial; width: 100%;">
-                        <select class="list_body" onchange="newShape(this.value,getId('diemsions_x').value,getId('diemsions_y').value,getId('diemsions_z').value,getId('position_x').value,getId('position_y').value,getId('position_z').value,'#FF0000','#000000');">
+                        <select class="list_body" onchange="newShape(this.value,0,0,0,0,0,0,'#FF0000','#000000');" id="newShapes_select">
                             <option value="newShape">Create Shape</option>
                             <option value="cube">New Cube</option>
                             <option value="cylinder">New Cylinder</option>
@@ -183,7 +194,7 @@
                             <option value="octahedron">New Octahedron</option>
                             <option value="sphere">New Sphere</option>
                             <option value="pyramid">New Pyramid</option>
-                            <option value="text">New Text</option>
+                            <option value="textIn">New Text</option>
                             <option value="ring">New Ring</option>
                         </select>
                         <span class="list_bar"></span>
@@ -201,7 +212,7 @@
                         New Light
                     </h3>
                     <div class="std_body_list" style="max-width: initial; width: 100%;">
-                        <select class="list_body"  onchange="newLight(this.value,'#FFFFFF',100,getId('position_x').value,getId('position_y').value,getId('position_z').value)">
+                        <select class="list_body"  onchange="newLight(this.value,'#FFFFFF',100,0,0,0)" id="newLights_select">
                             <option value="newLight">Create Light</option>
                             <option value="ambient">Ambient Light</option>
                             <option value="point">Point Light</option>
@@ -212,67 +223,183 @@
                         <span class="list_bar"></span>
                     </div>
                 </div>
-
-                </div>
-
-                <div id="newElement_Information">
-                    <h3>
-                        Diemsions
-                    </h3>
-                    <div class="std_input_text">
-                        <input type="text" id="diemsions_x" onchange="resizeShape('x', this.value);" onkeyup="/*this.value++;*/ /*resizeShape('x', this.value)*/" required>
-                        <span class="text_highlight"></span>
-                        <span class="text_bar"></span>
-                        <label>X</label>
+                <h3><strong>Edit current <span id="currentEditing_type">shape</span>:</strong></h3>
+                <div id="element_Information">
+                    <div id="currentEditing_dimensions">
+                        <h3>
+                            Dimensions
+                        </h3>
+                        <div class="std_input_text">
+                            <input type="number" step="any" id="diemsions_x" onchange="resizeShape('x', Number(this.value));" onkeyup="/*this.value++;*/ /*resizeShape('x', this.value)*/" required>
+                            <span class="text_highlight"></span>
+                            <span class="text_bar"></span>
+                            <label>X</label>
+                        </div>
+                        <div class="std_input_text">
+                            <input type="number" step="any" id="diemsions_y" onchange="resizeShape('y', Number(this.value));" onkeyup="/*this.value++;*/ /*resizeShape('y', this.value)*/" required>
+                            <span class="text_highlight"></span>
+                            <span class="text_bar"></span>
+                            <label>Y</label>
+                        </div>
+                        <div class="std_input_text">
+                            <input type="number" step="any" id="diemsions_z" onchange="resizeShape('z', Number(this.value));" onkeyup="/*this.value++;*/ /*resizeShape('z', this.value)*/" required>
+                            <span class="text_highlight"></span>
+                            <span class="text_bar"></span>
+                            <label>Z</label>
+                        </div>
                     </div>
-                    <div class="std_input_text">
-                        <input type="text" id="diemsions_y" onchange="resizeShape('y', this.value);" onkeyup="/*this.value++;*/ /*resizeShape('y', this.value)*/" required>
-                        <span class="text_highlight"></span>
-                        <span class="text_bar"></span>
-                        <label>Y</label>
-                    </div>
-                    <div class="std_input_text">
-                        <input type="text" id="diemsions_z" onchange="resizeShape('z', this.value);" onkeyup="/*this.value++;*/ /*resizeShape('z', this.value)*/" required>
-                        <span class="text_highlight"></span>
-                        <span class="text_bar"></span>
-                        <label>Z</label>
-                    </div>
-
                     <h3>
                         Position
                     </h3>
                     <div class="std_input_text">
-                        <input type="text" id="position_x" onchange="moveShape('x', this.value)"onkeyup="/*moveShape('x', this.value)*/" required>
+                        <input type="number" step="any" id="position_x" onchange="moveShape('x', Number(this.value))" onkeyup="/*moveShape('x', this.value)*/" required>
                         <span class="text_highlight"></span>
                         <span class="text_bar"></span>
                         <label>X</label>
                     </div>
                     <div class="std_input_text">
-                        <input type="text" id="position_y" onchange="moveShape('y', this.value);" onkeyup="/*moveShape('y', this.value)*/" required>
+                        <input type="number" step="any" id="position_y" onchange="moveShape('y', Number(this.value));" onkeyup="/*moveShape('y', this.value)*/" required>
                         <span class="text_highlight"></span>
                         <span class="text_bar"></span>
                         <label>Y</label>
                     </div>
                     <div class="std_input_text">
-                        <input type="text" id="position_z" onchange="moveShape('z', this.value);" onkeyup="/*moveShape('z', this.value)*/" required>
+                        <input type="number" step="any" id="position_z" onchange="moveShape('z', Number(this.value));" onkeyup="/*moveShape('z', this.value)*/" required>
                         <span class="text_highlight"></span>
                         <span class="text_bar"></span>
                         <label>Z</label>
                     </div>
-
-                    <input type="color" onchange="color">
-
+                    <div id="currentEditing_rotation">
+                        <h3>
+                            Rotation
+                        </h3>
+                        <div class="std_input_text">
+                            <input type="number" step="any" id="rotation_x" onchange="rotateShape('x', Number(this.value))" onkeyup="/*moveShape('x', this.value)*/" required>
+                            <span class="text_highlight"></span>
+                            <span class="text_bar"></span>
+                            <label>X</label>
+                        </div>
+                        <div class="std_input_text">
+                            <input type="number" step="any" id="rotation_y" onchange="rotateShape('y', Number(this.value));" onkeyup="/*moveShape('y', this.value)*/" required>
+                            <span class="text_highlight"></span>
+                            <span class="text_bar"></span>
+                            <label>Y</label>
+                        </div>
+                        <div class="std_input_text">
+                            <input type="number" step="any" id="rotation_z" onchange="rotateShape('z', Number(this.value));" onkeyup="/*moveShape('z', this.value)*/" required>
+                            <span class="text_highlight"></span>
+                            <span class="text_bar"></span>
+                            <label>Z</label>
+                        </div>
+                    </div>
+                    <div id="currentEditing_intensity">
+                        <input type="range" min="0" max="100" value="100" id="intensity_slider" oninput="changeIntensity()" onchange="changeIntensity()">
+                        <p>Intensity: <span id="intensity_value"></span>%</p>
+                    </div>
+                    <h3>
+                        Color
+                    </h3>
+                    <input type="color" onchange="changeColor(this.value)" id="element_color">
+                    <input type="color" onchange="borderChange(this.value)" id="element_border_color">
+                    <button id="element_remove" onclick="removeElement()">Remove</button>
+                </div>
             </div>
             <div class="std_menu menu_hidden" id="menu_camera">
                 <h2>
                     Camera Controls
                 </h2>
+                <h3>Camera Position:</h3>
+                <div class="std_input_text">
+                    <input type="number" step="any" id="camera_x" onchange="moveCamera('x', Number(this.value));" onkeyup="/*this.value++;*/ /*resizeShape('x', this.value)*/" required>
+                    <span class="text_highlight"></span>
+                    <span class="text_bar"></span>
+                    <label>X</label>
+                </div>
+                <div class="std_input_text">
+                    <input type="number" step="any" id="camera_y" onchange="moveCamera('y', Number(this.value));" onkeyup="/*this.value++;*/ /*resizeShape('y', this.value)*/" required>
+                    <span class="text_highlight"></span>
+                    <span class="text_bar"></span>
+                    <label>Y</label>
+                </div>
+                <div class="std_input_text">
+                    <input type="number" step="any" id="camera_z" onchange="moveCamera('z', Number(this.value));" onkeyup="/*this.value++;*/ /*resizeShape('z', this.value)*/" required>
+                    <span class="text_highlight"></span>
+                    <span class="text_bar"></span>
+                    <label>Z</label>
+                </div>
             </div>
 
-            <div class="std_menu menu_hidden" id="menu_scene">
+            <div class="std_menu menu_hidden" id="menu_scene" style="overflow-y: scroll">
                 <h2>
                     Scene Controls
                 </h2>
+                <h3>
+                    Dimensions
+                </h3>
+                <div class="std_input_text">
+                    <input type="number" step="any" id="scene_diemsions_x" onchange="sceneScale('x', Number(this.value));" onkeyup="/*this.value++;*/ /*resizeShape('x', this.value)*/" required>
+                    <span class="text_highlight"></span>
+                    <span class="text_bar"></span>
+                    <label>X</label>
+                </div>
+                <div class="std_input_text">
+                    <input type="number" step="any" id="scene_diemsions_y" onchange="sceneScale('y', Number(this.value));" onkeyup="/*this.value++;*/ /*resizeShape('y', this.value)*/" required>
+                    <span class="text_highlight"></span>
+                    <span class="text_bar"></span>
+                    <label>Y</label>
+                </div>
+                <div class="std_input_text">
+                    <input type="number" step="any" id="scene_diemsions_z" onchange="sceneScale('z', Number(this.value));" onkeyup="/*this.value++;*/ /*resizeShape('z', this.value)*/" required>
+                    <span class="text_highlight"></span>
+                    <span class="text_bar"></span>
+                    <label>Z</label>
+                </div>
+                <h3>
+                    Position
+                </h3>
+                <div class="std_input_text">
+                    <input type="number" step="any" id="scene_position_x" onchange="scenePosition('x', Number(this.value))" onkeyup="/*moveShape('x', this.value)*/" required>
+                    <span class="text_highlight"></span>
+                    <span class="text_bar"></span>
+                    <label>X</label>
+                </div>
+                <div class="std_input_text">
+                    <input type="number" step="any" id="scene_position_y" onchange="scenePosition('y', Number(this.value));" onkeyup="/*moveShape('y', this.value)*/" required>
+                    <span class="text_highlight"></span>
+                    <span class="text_bar"></span>
+                    <label>Y</label>
+                </div>
+                <div class="std_input_text">
+                    <input type="number" step="any" id="scene_position_z" onchange="scenePosition('z', Number(this.value));" onkeyup="/*moveShape('z', this.value)*/" required>
+                    <span class="text_highlight"></span>
+                    <span class="text_bar"></span>
+                    <label>Z</label>
+                </div>
+                    <h3>
+                        Rotation
+                    </h3>
+                    <div class="std_input_text">
+                        <input type="number" step="any" id="scene_rotation_x" onchange="sceneRotation('x', Number(this.value))" onkeyup="/*moveShape('x', this.value)*/" required>
+                        <span class="text_highlight"></span>
+                        <span class="text_bar"></span>
+                        <label>X</label>
+                    </div>
+                    <div class="std_input_text">
+                        <input type="number" step="any" id="scene_rotation_y" onchange="sceneRotation('y', Number(this.value));" onkeyup="/*moveShape('y', this.value)*/" required>
+                        <span class="text_highlight"></span>
+                        <span class="text_bar"></span>
+                        <label>Y</label>
+                    </div>
+                    <div class="std_input_text">
+                        <input type="number" step="any" id="scene_rotation_z" onchange="sceneRotation('z', Number(this.value));" onkeyup="/*moveShape('z', this.value)*/" required>
+                        <span class="text_highlight"></span>
+                        <span class="text_bar"></span>
+                        <label>Z</label>
+                    </div>
+                <h3>
+                    Color
+                </h3>
+                <input type="color" onchange="sceneBackground(this.value)" id="scene_color">
             </div>
         </div>
 
@@ -502,6 +629,9 @@
 <!--    <script>saveSubSystem.loadSaveNames("ws_loadMenu");</script>-->
     <script src="initial.js"></script>
     <script src="scene.js"></script>
+
+    <!--Camera-->
+    <script src="Camera.js"></script>
 
     <!--Animation Engine-->
     <script src="animationEngine/utils.js"></script>

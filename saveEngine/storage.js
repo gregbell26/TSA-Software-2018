@@ -68,9 +68,8 @@ let saveSubSystem = {
         localStorage.setItem("settings", JSON.stringify(settings))
     },
 
-    addText: function(){
+    addText: function(value){
         //used to track a TextGeometry so that the text can be rebuilt when the application is reloaded.
-        let value = document.getElementById("createText").value;
         let currentText = localStorage.getItem("text:"+this.fileName);
         if(currentText==null){
           localStorage.setItem("text:"+this.fileName,JSON.stringify([value]));
@@ -114,6 +113,18 @@ let saveSubSystem = {
             this.loadedLights = JSON.parse(localStorage.getItem("lights:"+this.fileName));
             processShapeData(this.loadedShapes, this.loadedScales, JSON.parse(localStorage.getItem("text:"+this.fileName)));
             this.loadLights();
+            moveCamera("x",10);
+            moveCamera("y",10);
+            moveCamera("z",10);
+            getId("camera_x").value = 10;
+            getId("camera_y").value = 10;
+            getId("camera_z").value = 10;
+            if(settings.mouseSensitivity==null){
+                settings.mouseSensitivity = 1;
+            }
+            if(settings.zoomAmount==null){
+                settings.zoomAmount = 1.5;
+            }
         }
         else{
             console.log("Save not found.");
@@ -128,29 +139,28 @@ let saveSubSystem = {
             return;
         }
         for(var i=0; i<this.loadedLights.length; i++){
+            var type;
           switch(this.loadedLights[i].type){
               case "PointLight":
-                  newPointLight(convertColor(this.loadedLights[i].r,this.loadedLights[i].g,this.loadedLights[i].b),this.loadedLights[i].intensity*100);
+                  type = 'point';
                   break;
               case "AmbientLight":
-                  newAmbientLight(convertColor(this.loadedLights[i].r,this.loadedLights[i].g,this.loadedLights[i].b),this.loadedLights[i].intensity*100);
+                  type = 'ambient';
                   break;
               case "DirectionalLight":
-                  newDirectionalLight(convertColor(this.loadedLights[i].r,this.loadedLights[i].g,this.loadedLights[i].b),this.loadedLights[i].intensity*100);
+                  type = 'directional';
                   break;
               case "SpotLight":
-                  newSpotLight(convertColor(this.loadedLights[i].r,this.loadedLights[i].g,this.loadedLights[i].b),this.loadedLights[i].intensity*100);
+                  type = 'spot';
                   break;
               case "HemisphereLight":
-                  newHemisphereLight(convertColor(this.loadedLights[i].r,this.loadedLights[i].g,this.loadedLights[i].b),convertColor(this.loadedLights[i].r,this.loadedLights[i].g,this.loadedLights[i].b),this.loadedLights[i].intensity*100);
+                  type = 'hemisphere';
                   break;
               default:
-                  newPointLight(convertColor(this.loadedLights[i].r,this.loadedLights[i].g,this.loadedLights[i].b),this.loadedLights[i].intensity*100);
+                  type = 'ambient';
                   break;
           }
-          moveLight("x",this.loadedLights[i].positionX);
-          moveLight("y",this.loadedLights[i].positionY);
-          moveLight("z",this.loadedLights[i].positionZ);
+            newLight(type,convertColor(this.loadedLights[i].r,this.loadedLights[i].g,this.loadedLights[i].b),this.loadedLights[i].intensity*100,this.loadedLights[i].positionX,this.loadedLights[i].positionY,this.loadedLights[i].positionZ);
         }
     },
 

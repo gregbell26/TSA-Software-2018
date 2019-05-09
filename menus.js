@@ -1,21 +1,19 @@
 //jordan's code
 
-
-
 function showList(){
     //Brings up a list of all of the shapes that current exist in the scene. Called when the "Show List" button is clicked.
-    let sideBar=document.getElementById('listButtons');
-    let sideBarLight = document.getElementById("lightButtons");
+    let sideBar=document.getElementById('shapeList_shapes');
+    let sideBarLight = document.getElementById("shapeList_lights");
     hideAll();
-    document.getElementById("sideBarList").style.display="inherit";
+    // document.getElementById("sideBarList").style.display="inherit";
     sideBar.innerHTML="";
     sideBarLight.innerHTML="";
     for (let i=0; i<shapes.length; i++){
         //console.log("Shape "+(i+1)+": "+shapes[i]['geometry']['type']);
-        sideBar.innerHTML+="<button onclick='setSelectedShape("+i+")'>"+(i+1)+": "+shapes[i].geometry.name+" <div style='width: 14px; height: 14px; background-color: #"+shapes[i].material.color.getHexString()+"; display: inline-block'></div></button>";
+        sideBar.innerHTML+="<button onclick='setSelectedShape("+i+")'>"+(i+1)+": "+shapes[i].geometry.name+" <div style='width: 14px; height: 14px; background-color: #"+shapes[i].material.color.getHexString()+"; display: inline-block'></div></button><br>";
     }
     for (let i = 0; i < lights.length; i++){
-        sideBarLight.innerHTML+="<button onclick='setSelectedLight("+i+")'>"+(i+1)+": "+lights[i].name+" <div style='width: 14px; height: 14px; background-color: #"+lights[i].color.getHexString()+"; display: inline-block'></div></button>";
+        sideBarLight.innerHTML+="<button onclick='setSelectedLight("+i+")'>"+(i+1)+": "+lights[i].name+" <div style='width: 14px; height: 14px; background-color: #"+lights[i].color.getHexString()+"; display: inline-block'></div></button><br>";
     }
     console.log("Showed List");
     if(usingTutorial){
@@ -27,40 +25,34 @@ function showList(){
 function setSelectedShape(num){
 
     selectedShape = num;
+    toggleEditShapeOrLight(false);
     //document.getElementById('boxSelected').innerHTML="#"+(selectedShape+1);
-    let color = "#";
-    color += rgbToHex(shapes[selectedShape].material.color['r']*255);
-    color += rgbToHex(shapes[selectedShape].material.color['g']*255);
-    color += rgbToHex(shapes[selectedShape].material.color['b']*255);
-    //TEMPORARY COMMENTED OUT
-    // document.getElementById('colorChanger').value = color;
-    // document.getElementById("borderColor").value = "#"+borders[selectedShape].material.color.getHexString();
-    // document.getElementById('positionBoxX').value = shapes[selectedShape].position.x;
-    // document.getElementById('positionBoxY').value = shapes[selectedShape].position.y;
-    // document.getElementById('positionBoxZ').value = shapes[selectedShape].position.z;
+    console.log(shapes[selectedShape].material.color.getHexString());
+    document.getElementById('element_color').value = "#"+shapes[selectedShape].material.color.getHexString();
+    document.getElementById("element_border_color").value = "#"+borders[selectedShape].material.color.getHexString();
+    document.getElementById('position_x').value = shapes[selectedShape].position.x;
+    document.getElementById('position_y').value = shapes[selectedShape].position.y;
+    document.getElementById('position_z').value = shapes[selectedShape].position.z;
     // document.getElementById('rotateBoxX').value = (shapes[selectedShape].rotation.x*180/Math.PI);
     // document.getElementById('rotateBoxY').value = (shapes[selectedShape].rotation.y*180/Math.PI);
     // document.getElementById('rotateBoxZ').value = (shapes[selectedShape].rotation.z*180/Math.PI);
-    // document.getElementById('dimensionX').value = scales[selectedShape][0];
-    // document.getElementById('dimensionY').value = scales[selectedShape][1];
-    // document.getElementById('dimensionZ').value = scales[selectedShape][2];
-    editMenu();
-    console.log("Set Shape Num");
+    document.getElementById('diemsions_x').value = scales[selectedShape][0];
+    document.getElementById('diemsions_y').value = scales[selectedShape][1];
+    document.getElementById('diemsions_z').value = scales[selectedShape][2];
+    showMenu("menu_newShapes");
 }
 
 function setSelectedLight(num) {
     selectedLight = num;
-    let color = "#";
-    color += rgbToHex(lights[selectedLight].color['r']*255);
-    color += rgbToHex(lights[selectedLight].color['g']*255);
-    color += rgbToHex(lights[selectedLight].color['b']*255);
-    document.getElementById("lightColorChanger").value = color;
-    document.getElementById("lPosX").value = lights[selectedLight].position.x;
-    document.getElementById("lPosY").value = lights[selectedLight].position.y;
-    document.getElementById("lPosZ").value = lights[selectedLight].position.z;
-    document.getElementById("intensityRange").value = lights[selectedLight].intensity * 100;
-    document.getElementById("intensityValue").innerHTML = lights[selectedLight].intensity * 100;
-    lightEditMenu();
+    toggleEditShapeOrLight(true);
+    document.getElementById("element_color").value = "#"+lights[selectedLight].color.getHexString();
+    document.getElementById("position_x").value = lights[selectedLight].position.x;
+    document.getElementById("position_y").value = lights[selectedLight].position.y;
+    document.getElementById("position_z").value = lights[selectedLight].position.z;
+    document.getElementById("intensity_slider").value = lights[selectedLight].intensity * 100;
+    document.getElementById("intensity_value").innerHTML = lights[selectedLight].intensity * 100 + "";
+    showMenu("menu_newShapes");
+    // lightEditMenu();
 }
 
 function cameraMenu(){
@@ -235,3 +227,20 @@ function zoomSet(value){
     }
 }
 
+function toggleEditShapeOrLight(isLight){
+    showingLight = isLight;
+    if(isLight){
+        getId("currentEditing_type").innerHTML = "light";
+        getId("currentEditing_dimensions").style.display="none";
+        getId("currentEditing_intensity").style.display="inherit";
+        getId("element_border_color").style.display="none";
+        getId("currentEditing_rotation").style.display="none";
+    }
+    else{
+        getId("currentEditing_type").innerHTML = "shape";
+        getId("currentEditing_dimensions").style.display="inherit";
+        getId("currentEditing_intensity").style.display="none";
+        getId("element_border_color").style.display="inherit";
+        getId("currentEditing_rotation").style.display="inherit";
+    }
+}

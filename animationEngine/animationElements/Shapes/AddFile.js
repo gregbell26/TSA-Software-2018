@@ -1,7 +1,7 @@
 function addCustom2() {
     var x = document.createElement("INPUT");
     x.setAttribute("type", "file");
-    document.getElementById("FileUpload").appendChild(x);
+    document.getElementById("newShape_OBJUploader").appendChild(x);
 }
 function getRandomColor() {
   var letters = '0123456789ABCDEF';
@@ -105,5 +105,5 @@ function parseFile1(strina) {
         //console.log("After newCustom2()");
 }
 //TODO change this element for now its commented out
-// document.getElementById('FileUpload').addEventListener('change', readSingleFile, false);
+document.getElementById('newShape_OBJUploader').addEventListener('change', readSingleFile, false);
 

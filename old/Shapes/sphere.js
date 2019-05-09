@@ -4,7 +4,7 @@ function newSphere(x, y, z, posX, posY, posZ, newColor, borderColor){
     newMaterial.lights = true;
     shapes[shapes.length]=new THREE.Mesh(newGeometry, newMaterial);
     var length = scales.length;
-    newGeometry.name = "sphere"
+    newGeometry.name = "sphere";
     scales[length]=[];
     scales[length][0]=x;
     scales[length][1]=y;
@@ -13,7 +13,7 @@ function newSphere(x, y, z, posX, posY, posZ, newColor, borderColor){
     selectedShape = shapes.length-1;
     var geometry = new THREE.SphereBufferGeometry( 0.5, 100,100);
     var edges = new THREE.EdgesGeometry( geometry );
-    var borderToAdd = new THREE.LineSegments( edges, new THREE.LineBasicMaterial( { color: borderColor, lights: true } ) );
+    var borderToAdd = new THREE.LineSegments( edges, new THREE.LineBasicMaterial( { color: borderColor } ) );
     borderToAdd.scale.x = x;
     borderToAdd.scale.y = y;
     borderToAdd.scale.z = z;

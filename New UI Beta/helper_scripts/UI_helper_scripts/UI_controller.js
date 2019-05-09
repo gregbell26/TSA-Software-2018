@@ -68,6 +68,7 @@ $(document).ready(function () {
     //When the user resizes the program rerun UI spacer
     $(window).resize(function () {
         UISpacer();
+        onWindowResize();
     });
 });
 
