@@ -1,21 +1,44 @@
+/*
+This file contains the code for the camera's movement and stuff
 
-function changeCameraLock(){//Changes whether or not the camera is locked during animation to change
-    lockCamera = document.getElementById("chkbox1").checked;
-}
+This file is licensed under the Apache 2.0 license.
+That means that you can freely use and modify this code for all uses except for
+    commercial use provided this header is at the top of all files
+Copyright 2018-2019 Monarch TSA
 
-function changeCameraCircleRotation(){//Changes whether or not the camera moves in a circular fashion during the animation
-    circleCameraRotation = document.getElementById("chkbox2").checked;
-}
+Author Jesse
 
-function changeSensitivity(change) {//Changes sensitivity to change
-    settings.mouseSensitivity = change;
+ */
+function moveCamera(dimension,newValue){
+    switch(dimension){
+        case "x":
+            xPosition = newValue;
+            break;
+        case "y":
+            yPosition = newValue;
+            break;
+        case "z":
+            zPosition = newValue;
+            break;
+    }
 }
-function changeZoomSensitivity(change) {//Changes the Zoom sensitivity to change
-    if(change < 0)
-        change = change * -1;
-    settings.zoomAmount = 1 + change/2;
-}
-
+// function changeCameraLock(){//Changes whether or not the camera is locked during animation to change
+//     lockCamera = document.getElementById("chkbox1").checked;
+// }
+//
+// function changeCameraCircleRotation(){//Changes whether or not the camera moves in a circular fashion during the animation
+//     circleCameraRotation = document.getElementById("chkbox2").checked;
+// }
+//
+// function changeSensitivity(change) {//Changes sensitivity to change
+//     settings.mouseSensitivity = change;
+// }
+// function changeZoomSensitivity(change) {//Changes the Zoom sensitivity to change
+//     if(change < 0)
+//         change = change * -1;
+//     settings.zoomAmount = 1 + change/2;
+// }
+//
 $(document).on('mousedown',function(e){
     if(inAnimationWindow==1) {
         xStart = e.pageX;
@@ -28,8 +51,8 @@ $(document).on('mousedown',function(e){
         timelineScrub(e.pageX);
     }
 });
-//triggers on the event that the mouse is down on the document. it creates a custom function that checks if it is in the animation window and creates the mouse handler. 
-
+// //triggers on the event that the mouse is down on the document. it creates a custom function that checks if it is in the animation window and creates the mouse handler.
+//
 $(document).on('change',function(e){
     if(isNaN(yPosition))
         yPosition = 0;
@@ -39,7 +62,7 @@ $(document).on('change',function(e){
         zPosition = 0;
 });
 var mouseOnTimeline = false;
-
+//
 $(document).on('mouseup',function(e){
     if(e.pageX>=300 && e.pageY >=50 && e.pageY<window.innerHeight-70) {
         mouseDown = false;
@@ -67,7 +90,7 @@ $(document).ready(function(){
         else{
             inAnimationWindow = 0;
         }
-        if(mouseDown && inAnimationWindow==1 && !settingsOpen && !(animationRunning && lockCamera)){
+        if(mouseDown && inAnimationWindow==1 && !settingsOpen /*&& !(animationRunning && lockCamera)*/){
 
             var MvX = settings.mouseSensitivity*(e.pageX-xStart)/100;
             var MvY = settings.mouseSensitivity*(e.pageY-yStart)/100;
@@ -113,6 +136,10 @@ function zoomCameraM(amount) {
     yPosition = zoom * Math.sin(cameraRy);
     xPosition = (zoom * Math.cos(Math.asin(yPosition/zoom))) * Math.cos(cameraRz);
     zPosition = (zoom * Math.cos(Math.asin(yPosition/zoom))) * Math.sin(cameraRz);
+    getId("camera_x").value = xPosition;
+    getId("camera_y").value = yPosition;
+    getId("camera_z").value = zPosition;
+
 
     if(isNaN(yPosition))
         yPosition = 0;
@@ -122,7 +149,7 @@ function zoomCameraM(amount) {
         zPosition = 0;
 
 }
-
+//
 function rotateCamera(MvX,MvY){
     zoomZ = Math.pow(Math.pow(xPosition,2)+Math.pow(zPosition, 2),.5);
     zoom = Math.pow((Math.pow(zoomZ,2)+Math.pow(yPosition,2)),.5);//zoom calc here
@@ -132,28 +159,26 @@ function rotateCamera(MvX,MvY){
         cameraRz = Math.atan(zPosition/xPosition);
     else if(zPosition > 0)
         cameraRz = Math.PI;
-    else if(zPosition < 0)
+    else if(zPosition <= 0)
         cameraRz = -Math.PI;
-
     if(xPosition < 0 && cameraRz < 0)
         cameraRz += Math.PI;
     else if(xPosition < 0 && cameraRz > 0)
         cameraRz -= Math.PI;
-
-
     if(xPosition !== 0 || zPosition !== 0)
         cameraRy = Math.atan((yPosition)/zoomZ);
     else if(yPosition > 0)
         cameraRy = Math.PI;
     else if(yPosition < 0)
         cameraRy = -Math.PI;
-
     cameraRz += MvX;
     cameraRy += MvY;
-
     yPosition = zoom * Math.sin(cameraRy);
     xPosition = (zoom * Math.cos(Math.asin(yPosition/zoom))) * Math.cos(cameraRz);
     zPosition = (zoom * Math.cos(Math.asin(yPosition/zoom))) * Math.sin(cameraRz);
+    getId("camera_x").value = xPosition;
+    getId("camera_y").value = yPosition;
+    getId("camera_z").value = zPosition;
 
     if(isNaN(yPosition))
         yPosition = 0;

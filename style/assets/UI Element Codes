@@ -1,0 +1,20 @@
+This file contains the element information as well as how to use and add elements
+
+This file is licensed under the Apache 2.0 license.
+That means that you can freely use and modify this code for all uses except for
+    commercial uses provided this header is at the top of all files
+Copyright 2018-2019 Monarch TSA
+
+Author Gregory Bell
+Edited 3/23/19
+Rev 1
+
+
+In general the syntax for each element is:
+    Top level: std_{elementType}_{element}
+    Low levels: {elementType}_{element}
+
+In general all of the tags are div unless its a line or button or input
+
+
+

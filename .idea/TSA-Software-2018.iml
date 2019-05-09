@@ -12,5 +12,6 @@
     <orderEntry type="library" name="firebase" level="application" />
     <orderEntry type="library" name="firebase" level="application" />
     <orderEntry type="library" name="firebase-storage" level="application" />
+    <orderEntry type="library" name="firebase-storage" level="application" />
   </component>
 </module>

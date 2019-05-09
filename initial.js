@@ -1,5 +1,16 @@
-//jordan's code
-//controll variables
+/**
+ * This file is responsible for iinitializingall of the stuff
+ *
+ *
+ * Authors Jordan M. Gregory B.
+ * Edited 4-22-19
+ */
+
+
+//control variables
+var init = false;
+
+
 var animationRunning = false;
 var loopAnimation = false;
 var animationTimer;
@@ -11,66 +22,46 @@ var capturer;
 //sets up the viewport
 var scene = new THREE.Scene();
 scene.background = new THREE.Color("#000000");
-var camera = new THREE.PerspectiveCamera( 75, document.getElementById("mainWindow").offsetWidth/document.getElementById("mainWindow").offsetHeight, 0.1, 1000 );
-var renderer = new THREE.WebGLRenderer({logarithmicDepthBuffer: true });
+var camera;
+var renderer;
 
 
-//create viewport size
-renderer.setSize( document.getElementById("mainWindow").offsetWidth, document.getElementById("mainWindow").offsetHeight );
-document.getElementById("mainWindow").appendChild( renderer.domElement );
 
 //lists of cool things
 var shapes = [];
-let lights = [];
+var lights = [];
 var scales = [];
 var keyFrames = [];
 var borders = [];
-var settings;
+// let settings;
+
+
+//This will set the boxes to what they need to be
 window.onload = function(){
-    if(localStorage.getItem("settings")===null){
-        settings = {
-            dark : false,
-            zoomAmount : 1.5,
-            mouseSensitivity: 1
-        }
-        localStorage.setItem("settings",JSON.stringify(settings));
+    saveSubSystem.loadSettings();
+    stylesheetLoader(settings.userInterface.stylesheetPref);
+    saveSubSystem.loadSaveNames("ws_loadMenu");
+
+    //Sets the HTML elements
+
+    //There is a way to do this dynamically but that is a lot more code and would slow down execution time
+    //This static way will work and is plenty fast
+    switch(settings.userInterface.stylesheetPref) {
+        case "normalMode":
+            document.getElementById("settings_styleSheetSelector").selectedIndex = 0;
+            break;
+        case "darkMode":
+            document.getElementById("settings_styleSheetSelector").selectedIndex = 1;
+            break;
+        case "amoledMode":
+            document.getElementById("settings_styleSheetSelector").selectedIndex = 2;
+            break;
     }
-    else{
-        settings = JSON.parse(localStorage.getItem("settings"));
-    }
-    document.getElementById("mouseSensitivity").value = settings.mouseSensitivity;
-    document.getElementById("zoomSensitivity").value = (settings.zoomAmount-1)*2;
-    if(settings.dark){
-        document.getElementById("darkSelect").value = "1";
-        document.body.style.color = "#FFFFFF";
-        document.getElementById("topBar").style.backgroundColor = "#222222";
-        $(".objButton").css("background-color","#2C2C2C");
-        $(".topButton").css("background-color","#222222");
-        $(".objButton").css("color","#FFFFFF");
-        $("#sideBar").css("background-color","#222222");
-        $("#settingsPage").css("background-color","#222222");
-        //creates elements
-        $(".addButton").hover(function(){
-            $(this).css("background-color", "#228B22");
-        }, function(){
-            $(this).css("background-color", "#2C2C2C");
-        });
-        $(".removeButton").hover(function(){
-            $(this).css("background-color", "#DD0000");
-        }, function(){
-            $(this).css("background-color", "#2C2C2C");
-        });
-        $(".topButton").hover(function(){
-            $(this).css("background-color", "#363636");
-        }, function(){
-            $(this).css("background-color", "#222222");
-        });
-        //creates the colors of the buttons/menus?
-    }
-    else{
-        document.getElementById("darkSelect").value = "0";
-    }
-}
+
+    document.getElementById("settings_mouseSensitivity").value = settings.camera.mouseSensitivity;
+    document.getElementById("settings_zoomAmount").value = settings.camera.zoomAmount;
+
+};
 
 //more variable declarations from toBeSorted
 
@@ -113,6 +104,7 @@ var Rz2v, Ry2v;
 var zoom1v, zoom1Zv;
 var zoom2v, zoom2Zv;
 var zoomChangev, zoomZChangev;
+var showingLight;
 
 
 //stuff for circular shape movement
@@ -129,28 +121,6 @@ var tempCircleMoveShapes = {
     zoom2Z:0.0
 };
 var shapesCmove =[];
-
-//Stuff for saves
-
-saveSubSystem.loadSaveNames();//Loads the names of the saves into an arraylist
-var div = document.querySelector("#saveFileContainer"),
-    frag = document.createDocumentFragment(),
-    saveSelector = document.createElement("select");
-saveSelector.id = "saveSelector"
-
-if (saveSubSystem.saveFileNamesList.length !== 0){
-    for(var i =0; i < saveSubSystem.saveFileNamesList.length; i++) {
-        saveSelector.options.add(new Option(saveSubSystem.saveFileNamesList[i], saveSubSystem.saveFileNamesList[i]));//parm 1 is the text displayed to the user
-        //Parm 2 is what the javascript sees
-    }
-}
-saveSelector.options.add(new Option("New Save", "GET NAME"));
-
-
-
-frag.appendChild(saveSelector);
-div.appendChild(frag);
-//---------------------
 
 
 var dialog = document.querySelector('dialog');
@@ -179,7 +149,15 @@ function promptResponse(value) {
 }
 
 //Greatness by Gregory
-function start() {
+var buttonClicked = false;
+
+
+async function start(){
+    camera = new THREE.PerspectiveCamera(75, UIDiemsions.std_body.window_width/UIDiemsions.std_body.window_height, 0.1, 1000);
+    renderer = new THREE.WebGLRenderer({logarithmicDepthBuffer: true });
+    renderer.setSize(UIDiemsions.std_body.renderer_width, UIDiemsions.std_body.renderer_height);
+    document.getElementById("animationEngine_renderArea").appendChild(renderer.domElement);
+    var saveSelectorElement = document.getElementById("ws_loadMenu");
     //Making sure that everything is empty
     shapes = [];
     scales =[];
@@ -187,10 +165,14 @@ function start() {
     borders= [];
     selectedShape = 0;
     selectedLight = 0;
-
-    if((saveSelector.options[saveSelector.selectedIndex].value === "GET NAME" || !saveSubSystem.openPrevious) && saveSubSystem.isUsingSaves){
-        promptResp = 1;
-        showPrompt("Please enter a name for your save", "New Animation");
+    console.log("initing");
+    init=true;
+    toggleEditShapeOrLight(false);
+    if((saveSelectorElement.options[saveSelectorElement.selectedIndex].value === "Load Save" || !saveSubSystem.openPrevious) && saveSubSystem.isUsingSaves){
+        /*promptResp = 1;*/
+        /*showPrompt("Please enter a name for your save", "New Animation");*/
+        showPopUp("popUp_input_body", "New Save", "Enter Save Name", "buttonClicked = true;");
+        saveSubSystem.setFileName(getPopUpInput(), true);
     //handles savings creates a new one if there is no previous save when starting software
     }
     if(!saveSubSystem.isUsingSaves){
@@ -199,15 +181,18 @@ function start() {
     }
 
     if(saveSubSystem.openPrevious && saveSubSystem.isUsingSaves){
-        saveSubSystem.setFileName(saveSelector.options[saveSelector.selectedIndex].value, false);
+        saveSubSystem.setFileName(saveSelectorElement.options[saveSelectorElement.selectedIndex].value, false);
         keyFrames = saveSubSystem.loadSave();
+        // newLight("ambient", "#ffffff", 50);
         //has saves
     }
     // addLight();
     // addPointLight();
-    showList()
 
-    updateTimeline();
+
+    //showList();
+
+    //updateTimeline();
 }
 
 //

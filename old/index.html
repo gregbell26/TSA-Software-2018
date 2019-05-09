@@ -1,0 +1,525 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <script>if (typeof module === 'object') {window.module = module; module = undefined;}</script><!--This lets Electron run external script files-->
+    <script src="three.js"></script><!--imports the THREE.js library-->
+    <script src="https://www.gstatic.com/firebasejs/5.8.6/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/5.8.6/firebase-auth.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/5.8.6/firebase-storage.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/5.8.6/firebase-firestore.js"></script>
+    <script src="firebase.js"></script>
+    <link rel="stylesheet" href="material-icons.css"><!--imports the icons-->
+    <link rel="stylesheet" href="material.blue-light_blue.min.css"><!--imports the Material Design Lite CSS-->
+    <script defer src="material.min.js"></script><!--imports the Material Design Lite Javascript, for interactive elements-->
+    <script defer src="ccapture.js"></script>
+    <link href="roboto.css" rel="stylesheet"><!--Imports the Roboto font-->
+    <script src="jquery-3.3.1.min.js"></script><!--Imports the JQuery library, mainly used to clean up code.-->
+    <link rel="stylesheet" href="styles.css"><!--Imports the main style sheet-->
+    <meta charset="UTF-8">
+    <title>Monarch TSA 2019</title>
+</head>
+<body>
+
+    <dialog class="mdl-dialog">
+        <h4 class="mdl-dialog__title" id="popupTitle"></h4>
+        <div class="mdl-dialog__content">
+            <form action="#" onsubmit="return false;">
+                <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+                    <input class="mdl-textfield__input" type="text" id="popupInput">
+                </div>
+            </form>
+        </div>
+        <div class="mdl-dialog__actions">
+            <button type="button" class="mdl-button" onclick="promptResponse(document.getElementById('popupInput').value)">OK</button>
+        </div>
+    </dialog>	
+<!-- creates the dialogue box that pops up with a message. the clickable part is the okay button which is the text of the button-->
+
+    <div id="welcomeScreen">
+        <div id="welcomeScreenBody">
+            <h1><strong>Welcome to Monarch Animation</strong></h1>
+            <!--<h2>2019 TSA Project</h2>-->
+            <h3>Choose how you want to start:</h3>
+            <button onclick="saveSubSystem.setIsUsingSaves(true, false); document.getElementById('welcomeScreen').style.display = 'none';  start();" class="mdl-button mdl-js-button mdl-button--raised startButton">Start from scratch</button>
+            <!--<button>Upload a file</button>-->
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<button onclick="saveSubSystem.setIsUsingSaves(true, false); start(); launchTutorial()" class="mdl-button mdl-js-button mdl-button--raised startButton">View the tutorial</button>
+            <br>
+            <br>
+            <div id="saveFileContainer">
+                <button onclick="saveSubSystem.setIsUsingSaves(true, true); document.getElementById('welcomeScreen').style.display = 'none';  start(); " class="mdl-button mdl-js-button mdl-button--raised startButton">Load Save</button>
+
+            </div>
+        </div>
+    </div>
+<!--creates the welcome screen and the buttons that will be on it. It sets up the buttons. class= is their style and on click is the action that will execute a function. at the end before </button> is the text that will be shown on the button-->
+    <span id='tutorialArrow' style="
+        position:absolute;
+        top:-60px;
+        left: 106px;
+        font-size: 150px;
+        color: red;
+        z-index: 2;
+        display: none;
+    ">&larr;</span>
+
+    <div id="topBar">
+        <button onfocus="this.blur()" id="listButton" onclick="showList()" class="md-48 material-icons topButton">list</button>
+        <button onfocus="this.blur()" id="shapeButton" class="topButton" onclick="shapeMenu()">
+            <svg width="40" height="40" viewBox="-0.9 -0.9 1.8 1.8">
+                <g xmlns="http://www.w3.org/2000/svg" style="stroke-width:0.1;stroke-linejoin:round;opacity:1">
+                    <polygon fill="#000000" stroke="#FFFFFF" points="-4.9165444345E-17,-0.717341709543 0.704050371456,-0.412727063605 6.3108540578E-17,-0.0217250905725 -0.704050371456,-0.412727063605"></polygon>
+                    <polygon fill="#000000" stroke="#FFFFFF" points="6.3108540578E-17,-0.0217250905725 0.704050371456,-0.412727063605 0.629480283571,0.369012729157 5.55894689594E-17,0.811070564442"></polygon>
+                    <polygon fill="#000000" stroke="#FFFFFF" points="-0.704050371456,-0.412727063605 6.3108540578E-17,-0.0217250905725 5.55894689594E-17,0.811070564442 -0.629480283571,0.369012729157"></polygon>
+                </g>
+            </svg><span id="boxSelected" style="position: absolute;bottom: 2px;right: 2px;">#0</span>
+        </button>
+        <button onfocus="this.blur()" class="material-icons md-48 topButton" id="cameraButton" onclick="cameraMenu()">camera_alt</button>
+        <button onfocus="this.blur()" class="material-icons md-48 topButton" id="keyButton" onclick="keyMenu()">vpn_key</button>
+        <button onfocus="this.blur()" class="material-icons md-48 topButton" id="saveButton" onclick="saveSubSystem.save()">save_alt</button>
+        <button onfocus="this.blur()" onclick="openSettings()" class="material-icons md-48 topButton" id="settingsButton">settings</button>
+        <button onfocus="this.blur()" class="material-icons md-48 topButton" id="sceneButton" onclick="sceneMenu()">aspect_ratio</button>
+        <button onfocus="this.blur()" class="material-icons md-48 topButton" id="userButton" onclick="userMenu()">person</button>
+        <button onfocus="this.blur()" class="material-icons md-48 topButton" id="lightButton" onclick="lightMenu()">wb_sunny</button>
+        <div class="mdl-tooltip" data-mdl-for="listButton">
+            Shapes List
+        </div>
+        <div class="mdl-tooltip" data-mdl-for="shapeButton">
+            Shape Editor
+        </div>
+        <div class="mdl-tooltip" data-mdl-for="cameraButton">
+            Camera
+        </div>
+        <div class="mdl-tooltip" data-mdl-for="keyButton">
+            Key Frames
+        </div>
+        <div class="mdl-tooltip" data-mdl-for="settingsButton">
+            Settings
+        </div>
+        <div class="mdl-tooltip" data-mdl-for="sceneButton">
+            Scene
+        </div>
+        <div class="mdl-tooltip" data-mdl-for="saveButton">
+            Force Save
+        </div>
+        <div class="mdl-tooltip" data-mdl-for="lightButton">
+            Lights
+        </div>
+    </div>
+<!--creates the top bar and sets up the buttons in those-->
+	
+    <div id="sideBar">
+
+        <div id="shapeMenu" style="display: none">
+            <button onfocus="this.blur()" class="objButton addButton" onclick="newShapeMenu()">New Shape</button>
+            <button onfocus="this.blur()" class="objButton addButton" onclick="duplicateCurrentShape()">Duplicate</button>
+            <button onfocus="this.blur()" class="objButton removeButton" onclick="removeShape()">Delete Shape</button>
+        </div>
+
+<!-- takes the shape name as the option value and put those in the shape menu. at the end is the text that is displayed as the option-->
+        <div id="addMenu" style="display: none">
+            <select id="shapeSelector">
+                <option value="cube">Cube</option>
+                <option value="cylinder">Cylinder</option>
+                <option value="cone">Cone</option>
+                <option value="custom">Custom</option>
+                <option value="custom2">Custom2</option>
+                <option value="dodecahedron">Dodecahedron</option>
+                <option value="icosahedron">Icosahedron</option>
+                <option value="octahedron">Octahedron</option>
+                <option value="sphere">Sphere</option>
+                <option value="pyramid">Pyramid</option>
+                <option value="text">Text</option>
+                <option value="ring">Ring</option>
+            </select>
+            <br>
+            <button onfocus="this.blur()" class="objButton addButton" onclick="addShape()">OK</button>
+            <button onfocus="this.blur()" class="objButton removeButton" onclick="shapeMenu()">Cancel</button>
+        </div>
+
+		<div id="sideBarBoxEdit">
+            <h3>
+                diemsions
+            </h3>
+		<!-- sets up the options for dimentions. creates input and span classes to gather the settings-->	
+            <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+                <input class="mdl-textfield__input" type="number" step="any" id='dimensionX' onchange="cubeDimension('x',this.value)" onkeyup="cubeDimension('x',this.value)" value="0">
+                <label class="mdl-textfield__label" for="dimensionX">X Dimension</label>
+                <span class="mdl-textfield__error">Input is not a number!</span>
+            </div>
+			
+            <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+                <input class="mdl-textfield__input"  type="number" step="any" id='dimensionY' onchange="cubeDimension('y',this.value)" onkeyup="cubeDimension('y',this.value)" value="0">
+                <label class="mdl-textfield__label" for="dimensionY">Y Dimension</label>
+                <span class="mdl-textfield__error">Input is not a number!</span>
+            </div>
+            <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+                <input class="mdl-textfield__input" type="number" step="any" id='dimensionZ' onchange="cubeDimension('z',this.value)" onkeyup="cubeDimension('z',this.value)" value="0">
+                <label class="mdl-textfield__label" for="dimensionZ">Z Dimension</label>
+                <span class="mdl-textfield__error">Input is not a number!</span>
+            </div>
+        </div>
+
+        <div id="positionMenu">
+            <h3>
+                Position
+            </h3>
+            <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+                <input class="mdl-textfield__input"  type="number" step="any" id='positionBoxX' onchange="moveShape('x',this.value)" onkeyup="moveShape('x',this.value)" value="0">
+                <label class="mdl-textfield__label" for="positionBoxX">X Position</label>
+                <span class="mdl-textfield__error">Input is not a number!</span>
+            </div>
+            <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+                <input class="mdl-textfield__input"  type="number" step="any" id='positionBoxY' onchange="moveShape('y',this.value)" onkeyup="moveShape('y',this.value)" value="0">
+                <label class="mdl-textfield__label" for="positionBoxY">Y Position</label>
+                <span class="mdl-textfield__error">Input is not a number!</span>
+            </div>
+            <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+                <input class="mdl-textfield__input"  type="number" step="any" id='positionBoxZ' onchange="moveShape('z',this.value)" onkeyup="moveShape('z',this.value)" value="0">
+                <label class="mdl-textfield__label" for="positionBoxZ">Z Position</label>
+                <span class="mdl-textfield__error">Input is not a number!</span>
+            </div>
+        </div>
+	    <!--creates an input area for the position of the shape-->
+
+        <div id="rotateMenu">
+            <h3>
+                Rotations (degrees)
+            </h3>
+            <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+                <input class="mdl-textfield__input"  type="number" step="any" id='rotateBoxX' onchange="rotateShape('x',this.value)" onkeyup="rotateShape('x',this.value)" value="0">
+                <label class="mdl-textfield__label" for="rotateBoxX">X Rotate</label>
+                <span class="mdl-textfield__error">Input is not a number!</span>
+            </div>
+            <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+                <input class="mdl-textfield__input"  type="number" step="any" id='rotateBoxY' onchange="rotateShape('y',this.value)" onkeyup="rotateShape('y',this.value)" value="0">
+                <label class="mdl-textfield__label" for="rotateBoxY">Y Rotate</label>
+                <span class="mdl-textfield__error">Input is not a number!</span>
+            </div>
+            <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+                <input class="mdl-textfield__input"  type="number" step="any" id='rotateBoxZ' onchange="rotateShape('z',this.value)" onkeyup="rotateShape('z',this.value)" value="0">
+                <label class="mdl-textfield__label" for="rotateBoxZ">Z Rotate</label>
+                <span class="mdl-textfield__error">Input is not a number!</span>
+            </div>
+        </div>
+
+        <div id="colorMenu">
+            <h3>
+                Color
+            </h3>
+            <input type="color" value="#FF0000" id='colorChanger' onchange="changeColor(this.value)"><br>
+            <h3>
+		    <!--creates a color menu that inputs a color-->
+                Borders
+            </h3>
+            Visible: <input id="borderVisibility" type="checkbox" checked="true" onchange="borderVisibility()"><br>
+            <div id="borderMenu">
+                Border Color: <input type="color" id='borderColor' onchange="borderChange(this.value)">
+            </div>
+        </div>
+
+        <div id="createTextMenu" style="display: none;">
+            <input type="text" placeholder="Enter your text here..." id="createText">
+            <br>
+            <button onfocus="this.blur()" class="objButton addButton" onclick="saveSubSystem.addText(); newText(0, 0, 0, 0, 0, 0, '#ff0000', '#000000')">OK</button>
+            <button onfocus="this.blur()" class="objButton removeButton" onclick="shapeMenu()">Cancel</button>
+        </div>
+
+        <div id="createCustomMenu" style="display: none">
+            <button onfocus="this.blur()" class="objButton addButton" onclick="newCustom(1, 1, 1, 0, 0, 0, '#ff0000', '#000000', [], [])">OK</button>
+            <button onfocus="this.blur()" class="objButton removeButton" onclick="cancelCustom()">Cancel</button>
+
+            <h3>
+                Vertices
+            </h3>
+            <button onfocus="this.blur()" class="objButton addButton" onclick="createVertex()">Add Vertex</button>
+            <div id="createVectorList"></div>
+
+            <h3>
+                Faces
+            </h3>
+            <button onfocus="this.blur()" class="objButton addButton" onclick="createFace()">Add Face</button>
+            <div id="createFaceList"></div>
+
+        </div>
+
+        <div id="FileUpload" style="display:none">
+        <button onfocus="this.blur()" class="objButton addButton" onclick="addCustom2()">Add Custom</button>
+        </div>
+
+        <div id="sideBarList" style="display:none">
+            <h3>
+                Shapes
+            </h3>
+            <div id="listButtons" class="setGroup"></div>
+            <h3>
+                Lights
+            </h3>
+            <div id="lightButtons" class="setGroup"></div>
+        </div>
+
+        <div id="sideBarCamera" style="display:none">
+            <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+                <input class="mdl-textfield__input" type="number" step="any" id='xPositionBox' onchange="xPosition = Number(this.value)" onkeyup="xPosition = Number(this.value)" value="10">
+                <label class="mdl-textfield__label" for="xPositionBox">X Position</label>
+                <span class="mdl-textfield__error">Input is not a number!</span>
+            </div>
+            <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+                <input class="mdl-textfield__input" type="number" step="any" id='yPositionBox' onchange="yPosition = Number(this.value)" onkeyup="yPosition = Number(this.value)" value="10">
+                <label class="mdl-textfield__label" for="yPositionBox">Y Position</label>
+                <span class="mdl-textfield__error">Input is not a number!</span>
+            </div>
+            <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+                <input class="mdl-textfield__input" type="number" step="any" id='zPositionBox' onchange="zPosition = Number(this.value)" onkeyup="zPosition = Number(this.value)" value="10">
+                <label class="mdl-textfield__label" for="zPositionBox">Z Position</label>
+                <span class="mdl-textfield__error">Input is not a number!</span>
+            </div>
+            <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+                <input class="mdl-textfield__input" type="number" step="any" id='xCCenterBox' onchange="xCCenter = Number(this.value)" onkeyup="xCCenter = Number(this.value)" value="0">
+                <label class="mdl-textfield__label" for="xCCenterBox">X Camera Rotation Center</label>
+                <span class="mdl-textfield__error">Input is not a number!</span>
+            </div>
+            <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+                <input class="mdl-textfield__input" type="number" step="any" id='yCCenterBox' onchange="yCCenter = Number(this.value)" onkeyup="yCCenter = Number(this.value)" value="0">
+                <label class="mdl-textfield__label" for="yCCenterBox">Y Camera Rotation Center</label>
+                <span class="mdl-textfield__error">Input is not a number!</span>
+            </div>
+            <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+                <input class="mdl-textfield__input" type="number" step="any" id='zCCenterBox' onchange="zCCenter = Number(this.value)" onkeyup="zCCenter = Number(this.value)" value="0">
+                <label class="mdl-textfield__label" for="zCCenterBox">Z Camera Rotation Center</label>
+                <span class="mdl-textfield__error">Input is not a number!</span>
+            </div>
+            <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+                <input class="mdl-textfield__input" type="number" step="any" id='xCLookBox' onchange="xCLook = Number(this.value)" onkeyup="xCLook = Number(this.value)" value="0">
+                <label class="mdl-textfield__label" for="xCCenterBox">X Camera Focus</label>
+                <span class="mdl-textfield__error">Input is not a number!</span>
+            </div>
+            <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+                <input class="mdl-textfield__input" type="number" step="any" id='yCLookBox' onchange="yCLook = Number(this.value)" onkeyup="yCLook = Number(this.value)" value="0">
+                <label class="mdl-textfield__label" for="yCCenterBox">Y Camera Focus</label>
+                <span class="mdl-textfield__error">Input is not a number!</span>
+            </div>
+            <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+                <input class="mdl-textfield__input" type="number" step="any" id='zCLookBox' onchange="zCLook = Number(this.value)" onkeyup="zCLook = Number(this.value)" value="0">
+                <label class="mdl-textfield__label" for="zCCenterBox">Z Camera Focus</label>
+                <span class="mdl-textfield__error">Input is not a number!</span>
+            </div>
+        </div>
+        
+        <div id="keyMenu">
+            <button onfocus="this.blur()" class="mdl-button mdl-js-button mdl-button--fab mdl-button--colored" onclick="playAnimation(0)"><i class="material-icons">play_arrow</i></button>
+            <button onfocus="this.blur()" class="mdl-button mdl-js-button mdl-button--fab mdl-button--colored" onclick="loop()"><i class="material-icons">autorenew</i></button>
+            <button onfocus="this.blur()" class="mdl-button mdl-js-button mdl-button--fab mdl-button--colored" onclick="record()"><i class="material-icons">videocam</i></button>
+            <button onfocus="this.blur()" class="objButton addButton"onclick="addFrame(); saveSubSystem.save()">Add Keyframe</button>
+            <label for="chkbox1" class="mdl-checkbox mdl-js-checkbox mdl-js-ripple-effect">
+                <input type="checkbox" id="chkbox1" class="mdl-checkbox__input" checked onchange="changeCameraLock()">
+                <span class="mdl-checkbox__label">Lock Camera</span>
+            </label>
+            <label for="chkbox2" class="mdl-checkbox mdl-js-checkbox mdl-js-ripple-effect">
+                <input type="checkbox" id="chkbox2" class="mdl-checkbox__input" onchange="changeCameraCircleRotation()">
+                <span class="mdl-checkbox__label">Change to Circular Rotation</span>
+            </label>
+            <div id="keyList"></div>
+            <!--The menu defining all of the keyframes, including buttons to play and loop.-->
+        </div>
+        <div id="sceneMenu" style="display: none">
+            <h3>
+                Scale
+            </h3>
+            <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+                <input class="mdl-textfield__input" type="number" step="any" id='sceneScaleX' onchange="sceneScale('x',this.value)" onkeyup="sceneScale('x',this.value)" value="1">
+                <label class="mdl-textfield__label" for="sceneScaleX">X Scale</label>
+                <span class="mdl-textfield__error">Input is not a number!</span>
+            </div>
+            <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+                <input class="mdl-textfield__input" type="number" step="any" id='sceneScaleY' onchange="sceneScale('y',this.value)" onkeyup="sceneScale('y',this.value)" value="1">
+                <label class="mdl-textfield__label" for="sceneScaleY">Y Scale</label>
+                <span class="mdl-textfield__error">Input is not a number!</span>
+            </div>
+            <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+                <input class="mdl-textfield__input" type="number" step="any" id='sceneScaleZ' onchange="sceneScale('z',this.value)" onkeyup="sceneScale('z',this.value)" value="1">
+                <label class="mdl-textfield__label" for="sceneScaleZ">Z Scale</label>
+                <span class="mdl-textfield__error">Input is not a number!</span>
+            </div>
+            <h3>
+                Position
+            </h3>
+            <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+                <input class="mdl-textfield__input" type="number" step="any" id='scenePosX' onchange="scenePosition('x',this.value)" onkeyup="scenePosition('x',this.value)" value="0">
+                <label class="mdl-textfield__label" for="scenePosX">X Position</label>
+                <span class="mdl-textfield__error">Input is not a number!</span>
+            </div>
+            <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+                <input class="mdl-textfield__input" type="number" step="any" id='scenePosY' onchange="scenePosition('y',this.value)" onkeyup="scenePosition('y',this.value)" value="0">
+                <label class="mdl-textfield__label" for="scenePosY">Y Position</label>
+                <span class="mdl-textfield__error">Input is not a number!</span>
+            </div>
+            <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+                <input class="mdl-textfield__input" type="number" step="any" id='scenePosZ' onchange="scenePosition('z',this.value)" onkeyup="scenePosition('z',this.value)" value="0">
+                <label class="mdl-textfield__label" for="scenePosZ">Z Position</label>
+                <span class="mdl-textfield__error">Input is not a number!</span>
+            </div>
+            <h3>
+                Rotation (degrees)
+            </h3>
+            <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+                <input class="mdl-textfield__input" type="number" step="any" id='sceneRotX' onchange="sceneRotation('x',this.value)" onkeyup="sceneRotation('x',this.value)" value="0">
+                <label class="mdl-textfield__label" for="sceneRotX">X Rotation</label>
+                <span class="mdl-textfield__error">Input is not a number!</span>
+            </div>
+            <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+                <input class="mdl-textfield__input" type="number" step="any" id='sceneRotY' onchange="sceneRotation('y',this.value)" onkeyup="sceneRotation('y',this.value)" value="0">
+                <label class="mdl-textfield__label" for="sceneRotY">Y Rotation</label>
+                <span class="mdl-textfield__error">Input is not a number!</span>
+            </div>
+            <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+                <input class="mdl-textfield__input" type="number" step="any" id='sceneRotZ' onchange="sceneRotation('z',this.value)" onkeyup="sceneRotation('z',this.value)" value="0">
+                <label class="mdl-textfield__label" for="sceneRotZ">Z Rotation</label>
+                <span class="mdl-textfield__error">Input is not a number!</span>
+            </div>
+            <h3>
+                Background Color
+            </h3>
+            <input type="color" value="#000000" id='sceneColor' onchange="sceneBackground(this.value)">
+            <!--Allows changing of scene parameters, similar to changing shape parameters-->
+        </div>
+
+        <div id="lightMenu" style="display: none">
+            <h3>
+                Lights
+            </h3>
+            <button onfocus="this.blur()" class="objButton addButton" onclick="newLightMenu()">New Light</button>
+            <button onfocus="this.blur()" class="objButton removeButton" onclick="removeLight()">Delete Light</button>
+        </div>
+
+        <div id="addLightMenu" style="display: none">
+            <select id="lightSelector">
+                <option value="ambient">Ambient Light</option>
+                <option value="point">Point Light</option>
+                <option value="directional">Directional Light</option>
+                <option value="spot">Spot Light</option>
+                <option value="hemisphere">Hemisphere Light</option>
+            </select><br>
+            <button onfocus="this.blur()" class="objButton addButton" onclick="newLight()">Ok</button>
+            <button onfocus="this.blur()" class="objButton removeButton" onclick="lightMenu()">Cancel</button>
+        </div>
+
+        <div id="lightEditMenu" style="display: none">
+            <h3>
+                Position
+            </h3>
+            <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+                <input class="mdl-textfield__input" type="number" step="any" id='lPosX' onchange="moveLight('x',this.value)" onkeyup="moveLight('x',this.value)" value="0">
+                <label class="mdl-textfield__label" for="lPosX">X Position</label>
+                <span class="mdl-textfield__error">Input is not a number!</span>
+            </div>
+            <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+                <input class="mdl-textfield__input" type="number" step="any" id='lPosY' onchange="moveLight('y',this.value)" onkeyup="moveLight('y',this.value)" value="0">
+                <label class="mdl-textfield__label" for="lPosY">Y Position</label>
+                <span class="mdl-textfield__error">Input is not a number!</span>
+            </div>
+            <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+                <input class="mdl-textfield__input" type="number" step="any" id='lPosZ' onchange="moveLight('z',this.value)" onkeyup="moveLight('z',this.value)" value="0">
+                <label class="mdl-textfield__label" for="lPosZ">Z Position</label>
+                <span class="mdl-textfield__error">Input is not a number!</span>
+            </div>
+
+            <h3>
+                Intensity
+            </h3>
+            <input type="range" min="0" max="100" value="50" class="mdl-slider" id="intensityRange" oninput="changeIntensity()" onchange="changeIntensity()"><br>
+            <p>Intensity: <span id="intensityValue"></span>%</p>
+
+            <h3>
+                Color
+            </h3>
+            <input type="color" value="#87CEEB" id='lightColorChanger' onchange="changeLightColor(this.value)"><br>
+            <div id="hemisphereLightColor" style="display: none">
+                <input type="color" value="#654321" id="groundColorChanger" onchange="changeGroundLightColor(this.value)"><br>
+            </div>
+        </div>
+
+    </div>
+    <div id="settingsBackground" onclick="closeSettings()">
+
+    </div>
+    <div id="settingsPage" onclick="">
+        <h3>Settings:</h3>
+        Theme: <select onfocus="this.blur()" id="darkSelect" style="width: 100px;" onchange="themeSet(this.value)"><option value="0">Light</option><option value="1">Dark</option></select><br>
+        <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label" style="width: 150px">
+            <input class="mdl-textfield__input" type="number" step="any" onchange="mouseSenseSet(this.value)" id="mouseSensitivity">
+            <label class="mdl-textfield__label" for="mouseSensitivity">Mouse Sensitivity</label>
+            <span class="mdl-textfield__error">Input is not a number!</span>
+        </div><br>
+        <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label" style="width: 150px">
+            <input class="mdl-textfield__input" type="number" step="any" `onchange="zoomSet(this.value)"` id="zoomSensitivity">
+            <label class="mdl-textfield__label" for="zoomSensitivity">Zoom Sensitivity</label>
+            <span class="mdl-textfield__error">Input is not a number!</span>
+        </div>
+
+        <button onclick="saveSubSystem.deleteSave(saveSubSystem.fileName);" class="mdl-button mdl-js-button mdl-button--raised startButton" style="color:black !important;">Delete Active Save File</button>
+        <p>Note the when you delete a save it will reload.</p>
+
+        <!--Basic settings menu for things like Zoom Sensitivity, Mouse Sensitivity, and Theme-->
+    </div>
+    <div id="mainWindow"></div>
+    <div id="userPage">
+        <div id="userPageTrue" style="display: none;">
+            <br>
+            <button onclick="signOut();">Sign Out</button><br>
+            <button onclick="saveCurrentToCloud()">Save Current Save to Cloud</button><br>
+            <select id="loadCloudSelect">
+            </select><button onclick="loadCloudSave()">OK</button>
+        </div>
+        <div id="userPageFalse">
+            <h5>Sign in:</h5>
+            Email:<br>
+            <input type="email" id="signInEmail"><br>
+            Password:<br>
+            <input type="password" id="signInPassword"><br>
+            <button onclick="signIn(document.getElementById('signInEmail').value,document.getElementById('signInPassword').value);">Sign In</button>
+            <h5>Create an account:</h5>
+            Email:<br>
+            <input type="email" id="accountEmail"><br>
+            Password:<br>
+            <input type="password" id="accountPassword"><br>
+            Confirm Password:<br>
+            <input type="password" id="accountConfirm"><br>
+            <button onclick="createAccount(document.getElementById('accountEmail').value,document.getElementById('accountPassword').value,document.getElementById('accountConfirm').value)">Create Account</button>
+        </div>
+    </div>
+    <div id="timeline"></div>
+    <div id="playhead"></div>
+    <script src="utils.js"></script>
+    <script src="menus.js"></script>
+    <script src="keyframes.js"></script>
+    <script src="Shapes/AddFile.js"></script>
+    <script src="storage.js"></script>
+    <script src="scene.js"></script>
+    <script src="initial.js"></script>
+    <script src="animate.js"></script>
+    <script src="tutorial.js"></script>
+    <script src="Shapes/shapes.js"></script>
+    <script src="Shapes/cube.js"></script>
+    <script src="Shapes/cylinder.js"></script>
+    <script src="Shapes/cone.js"></script>
+    <script src="Shapes/customShape.js"></script>
+    <script src="Shapes/CustomShape2.js"></script>
+    <script src="Shapes/dodecahedron.js"></script>
+    <script src="Shapes/icosahedron.js"></script>
+    <script src="Shapes/octahedron.js"></script>
+    <script src="Shapes/sphere.js"></script>
+    <script src="Shapes/pyramid.js"></script>
+    <script src="Shapes/ring.js"></script>
+    <script src="Shapes/text.js"></script>
+    <script src="Camera.js"></script>
+    <script src="keyevents.js"></script>
+    <script src="Lights/lights.js"></script>
+    <script src="Lights/hemisphereLight.js"></script>
+    <script src="Lights/spot.js"></script>
+    <script src="Lights/directional.js"></script>
+    <script src="Lights/point.js"></script>
+    <script src="Lights/ambient.js"></script>
+    <!-- inserts all of the javascript programs to be used in the program-->
+	
+</body>
+</html>

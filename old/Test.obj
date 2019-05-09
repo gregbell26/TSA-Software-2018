@@ -1,0 +1,34 @@
+# Blender v2.78 (sub 0) OBJ File: ''
+# www.blender.org
+#This comment is made from TuxOS
+# Acessing material library test.mtl
+mtllib Test.mtl
+# Object is named Cube
+o Cube
+#  co-ordinates of the vertices
+v -0.150182 0.000013 3.340590
+v -0.150182 2.000013 3.340590
+v -0.150182 0.000013 -3.183640
+v -0.150182 2.000013 -3.183640
+v 1.849818 0.000013 3.340590
+v 1.849818 2.000013 3.340590
+v 1.849818 0.000013 -3.183640
+v 1.849818 2.000013 -3.183640
+# vectors of the sides
+vn -1.0000 0.0000 0.0000
+vn 0.0000 0.0000 -1.0000
+vn 1.0000 0.0000 0.0000
+vn 0.0000 0.0000 1.0000
+vn 0.0000 -1.0000 0.0000
+vn 0.0000 1.0000 0.0000
+# Not using any external textures
+usemtl None
+# smooth shading is off
+s off
+# Face data (v number - the number of co-ordinate i.e. 1 would be the first v in sequence / vt number - the number of the texture co-ordinate / vn number - the number of the vector)
+f 1//1 2//1 4//1 3//1
+f 3//2 4//2 8//2 7//2
+f 7//3 8//3 6//3 5//3
+f 5//4 6//4 2//4 1//4
+f 3//5 7//5 5//5 1//5
+f 8//6 4//6 2//6 6//6
