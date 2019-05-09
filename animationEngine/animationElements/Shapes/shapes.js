@@ -48,7 +48,7 @@ function removeElement(){
 }
 function removeShape(){
     if(selectedShape >= 0){
-        if(shapes[selectedShape].geometry.type=="TextGeometry"){
+        if(shapes[selectedShape].geometry.type==="TextGeometry"){
             saveSubSystem.removeText(shapes[selectedShape].geometry.parameters.text);
         }
         scene.remove(shapes[selectedShape]);
@@ -56,15 +56,20 @@ function removeShape(){
         shapes.splice(selectedShape,1);
         scales.splice(selectedShape,1);
         borders.splice(selectedShape,1);
-        selectedShape--;
+        if (selectedShape === 0){selectedShape++}
+        else{selectedShape--;}
         setSelectedShape(selectedShape);
         saveSubSystem.save();
     }
 }
 
 function borderChange(value){
-    borders[selectedShape].material.color.set(value);
-
+    if(showingLight){
+        changeGroundLightColor(value);
+    }
+    else{
+        borders[selectedShape].material.color.set(value);
+    }
 }
 
 function toggleColorBorder(checked){//if checked is true turns on the border, if not then turns it off
@@ -268,7 +273,6 @@ function processShapeData(loadedShapes,loadedScales, loadedText) {
 
 function duplicateCurrentShape(){
     let shape = shapes[selectedShape];
-    saveSubSystem.save();
     switch(shape.geometry.name){
         case "cube" :
             console.log("Start duplication");
@@ -330,10 +334,11 @@ function duplicateCurrentShape(){
             saveSubSystem.save();
             break;
     }
+    saveSubSystem.save();
 }
 
 function newShape(type,x,y,z,posX,posY,posZ,color,border,text){
-    if(type!="custom" && type!="text" && type!="textIn"){
+    if(type!=="custom" && type!=="text" && type!=="textIn"){
         var newGeometry, geometry;
         switch(type){
             case "cube":
@@ -415,10 +420,10 @@ function newShape(type,x,y,z,posX,posY,posZ,color,border,text){
         getId("shapeList_shapes").innerHTML+="<button onclick='setSelectedShape("+selectedShape+");showMenu(\"menu_newShapes\");' style='color:black'>"+type+"</button><br>";
         getId("newShapes_select").value = "newShape";
     }
-    else if(type=="textIn"){
+    else if(type==="textIn"){
         showPopUp("popUp_input_body", "New Text", "Enter Text",1);
     }
-    else if(type=="text"){
+    else if(type==="text"){
         let loader = new THREE.FontLoader();
         loader.load( 'https://threejs.org/examples/fonts/helvetiker_regular.typeface.json', function ( font ) {
             let newGeometry = new THREE.TextGeometry( text, {
