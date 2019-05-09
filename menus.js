@@ -234,11 +234,13 @@ function toggleEditShapeOrLight(isLight){
         getId("currentEditing_dimensions").style.display="none";
         getId("currentEditing_intensity").style.display="inherit";
         getId("element_border_color").style.display="none";
+        getId("currentEditing_rotation").style.display="none";
     }
     else{
         getId("currentEditing_type").innerHTML = "shape";
         getId("currentEditing_dimensions").style.display="inherit";
         getId("currentEditing_intensity").style.display="none";
         getId("element_border_color").style.display="inherit";
+        getId("currentEditing_rotation").style.display="inherit";
     }
 }
