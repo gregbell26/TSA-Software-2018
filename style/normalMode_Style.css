@@ -1074,12 +1074,12 @@ input[type="checkbox"]:hover ~ label{
 #std_popUp {
     position: absolute;
     display: none;
-    top: 40%;
-    right: 45%;
-    left: 45%;
-    bottom: 40%;
-    height: 20%;
-    width: 10%;
+    width: 200px;
+    height: 190px;
+    margin: 0;
+    top: calc(50% - 95px);
+    left: calc(50% - 100px);
+    margin-right: -50%;
     background-color: var(--std_color_secondary);
     opacity: 0.0;
     transition: 200ms ease-in-out all;

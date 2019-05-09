@@ -60,6 +60,8 @@ function removeShape(){
         else{selectedShape--;}
         setSelectedShape(selectedShape);
         saveSubSystem.save();
+        //it's so you can't press remove again, feel free to remove to improve
+        showMenu("menu_newShapes");
     }
 }
 
@@ -482,6 +484,6 @@ function newShape(type,x,y,z,posX,posY,posZ,color,border,text){
     }
 }
 
-function getId(str){
-    return document.getElementById(str);
+function getId(id){
+    return document.getElementById(id);
 }

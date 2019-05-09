@@ -21,7 +21,6 @@ window.addEventListener( 'resize', onWindowResize, false );
 
 function onWindowResize(){
     if (init) {
-        console.log(getId("animationEngine_renderArea").offsetWidth / getId("animationEngine_renderArea").offsetHeight);
         //This is called whenever a user resizes the window. This makes sure that the scene window stays the correct size and aspect ratio.
         camera.aspect = getId("animationEngine_renderArea").offsetWidth / getId("animationEngine_renderArea").offsetHeight;
         camera.updateProjectionMatrix();

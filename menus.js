@@ -27,7 +27,7 @@ function setSelectedShape(num){
     selectedShape = num;
     toggleEditShapeOrLight(false);
     //document.getElementById('boxSelected').innerHTML="#"+(selectedShape+1);
-    console.log(shapes[selectedShape].material.color.getHexString());
+    //console.log(shapes[selectedShape].material.color.getHexString());
     document.getElementById('element_color').value = "#"+shapes[selectedShape].material.color.getHexString();
     document.getElementById("element_border_color").value = "#"+borders[selectedShape].material.color.getHexString();
     document.getElementById('position_x').value = shapes[selectedShape].position.x;
@@ -236,6 +236,7 @@ function toggleEditShapeOrLight(isLight){
         getId("currentEditing_type").innerHTML = "light";
         getId("currentEditing_dimensions").style.display="none";
         getId("currentEditing_intensity").style.display="inherit";
+        getId("currentEditing_rotation").style.display="none";
         if (lights[selectedLight].name === "Hemisphere light"){
             getId("element_border_color").style.display="inherit";
         } else {
@@ -247,5 +248,6 @@ function toggleEditShapeOrLight(isLight){
         getId("currentEditing_dimensions").style.display="inherit";
         getId("currentEditing_intensity").style.display="none";
         getId("element_border_color").style.display="inherit";
+        getId("currentEditing_rotation").style.display="inherit";
     }
 }
