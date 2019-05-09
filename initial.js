@@ -98,6 +98,7 @@ var Rz2v, Ry2v;
 var zoom1v, zoom1Zv;
 var zoom2v, zoom2Zv;
 var zoomChangev, zoomZChangev;
+var showingLight;
 
 
 
@@ -145,6 +146,7 @@ function start() {
     selectedLight = 0;
     console.log("initing");
     init=true;
+    toggleEditShapeOrLight(false);
     if((saveSelectorElement.options[saveSelectorElement.selectedIndex].value === "Load Save" || !saveSubSystem.openPrevious) && saveSubSystem.isUsingSaves){
         /*promptResp = 1;*/
         /*showPrompt("Please enter a name for your save", "New Animation");*/

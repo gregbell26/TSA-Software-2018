@@ -20,7 +20,13 @@
     <head>
         <meta charset="UTF-8">
         <script>if (typeof module === 'object') {window.module = module; module = undefined;}</script><!--This lets Electron run external script files-->
-
+        <style>
+            input[type=number]::-webkit-inner-spin-button,
+            input[type=number]::-webkit-outer-spin-button {
+                -webkit-appearance: none;
+                margin: 0;
+            }
+        </style>
         <!--INCLUDES-->
         <script src="animationEngine/three.js"></script>
         <script src="helperScripts/jquery-3.3.1.min.js"></script>
@@ -136,7 +142,7 @@
             <span class="std_nav_spacer" id="nav_spacer_right"></span>
 
             <!--Right Aligned Buttons-->
-            <span class="std_nav_button std_nav_alignRight" id="nav_settings">
+            <span class="std_nav_button std_nav_alignRight" id="nav_settings" onclick="settingsToggle()">
                     <img onclick="settingsToggle()"
                          src="./style/assets/svgs/nav_icons/nav_settings_icon.svg" class="nav_buttonIcon"/>
                 </span>
@@ -211,47 +217,48 @@
                         <span class="list_bar"></span>
                     </div>
                 </div>
-                <h3>Edit current shape:</h3>
+                <h3><strong>Edit current <span id="currentEditing_type">shape</span>:</strong></h3>
                 <div id="element_Information">
-                    <h3>
-                        Dimensions
-                    </h3>
-                    <div class="std_input_text">
-                        <input type="text" id="diemsions_x" onchange="resizeShape('x', this.value);" onkeyup="/*this.value++;*/ /*resizeShape('x', this.value)*/" required>
-                        <span class="text_highlight"></span>
-                        <span class="text_bar"></span>
-                        <label>X</label>
+                    <div id="currentEditing_dimensions">
+                        <h3>
+                            Dimensions
+                        </h3>
+                        <div class="std_input_text">
+                            <input type="number" id="diemsions_x" onchange="resizeShape('x', Number(this.value));" onkeyup="/*this.value++;*/ /*resizeShape('x', this.value)*/" required>
+                            <span class="text_highlight"></span>
+                            <span class="text_bar"></span>
+                            <label>X</label>
+                        </div>
+                        <div class="std_input_text">
+                            <input type="number" id="diemsions_y" onchange="resizeShape('y', Number(this.value));" onkeyup="/*this.value++;*/ /*resizeShape('y', this.value)*/" required>
+                            <span class="text_highlight"></span>
+                            <span class="text_bar"></span>
+                            <label>Y</label>
+                        </div>
+                        <div class="std_input_text">
+                            <input type="number" id="diemsions_z" onchange="resizeShape('z', Number(this.value));" onkeyup="/*this.value++;*/ /*resizeShape('z', this.value)*/" required>
+                            <span class="text_highlight"></span>
+                            <span class="text_bar"></span>
+                            <label>Z</label>
+                        </div>
                     </div>
-                    <div class="std_input_text">
-                        <input type="text" id="diemsions_y" onchange="resizeShape('y', this.value);" onkeyup="/*this.value++;*/ /*resizeShape('y', this.value)*/" required>
-                        <span class="text_highlight"></span>
-                        <span class="text_bar"></span>
-                        <label>Y</label>
-                    </div>
-                    <div class="std_input_text">
-                        <input type="text" id="diemsions_z" onchange="resizeShape('z', this.value);" onkeyup="/*this.value++;*/ /*resizeShape('z', this.value)*/" required>
-                        <span class="text_highlight"></span>
-                        <span class="text_bar"></span>
-                        <label>Z</label>
-                    </div>
-
                     <h3>
                         Position
                     </h3>
                     <div class="std_input_text">
-                        <input type="text" id="position_x" onchange="moveShape('x', this.value)" onkeyup="/*moveShape('x', this.value)*/" required>
+                        <input type="number" id="position_x" onchange="moveShape('x', Number(this.value))" onkeyup="/*moveShape('x', this.value)*/" required>
                         <span class="text_highlight"></span>
                         <span class="text_bar"></span>
                         <label>X</label>
                     </div>
                     <div class="std_input_text">
-                        <input type="text" id="position_y" onchange="moveShape('y', this.value);" onkeyup="/*moveShape('y', this.value)*/" required>
+                        <input type="number" id="position_y" onchange="moveShape('y', Number(this.value));" onkeyup="/*moveShape('y', this.value)*/" required>
                         <span class="text_highlight"></span>
                         <span class="text_bar"></span>
                         <label>Y</label>
                     </div>
                     <div class="std_input_text">
-                        <input type="text" id="position_z" onchange="moveShape('z', this.value);" onkeyup="/*moveShape('z', this.value)*/" required>
+                        <input type="number" id="position_z" onchange="moveShape('z', Number(this.value));" onkeyup="/*moveShape('z', this.value)*/" required>
                         <span class="text_highlight"></span>
                         <span class="text_bar"></span>
                         <label>Z</label>
@@ -266,6 +273,25 @@
                 <h2>
                     Camera Controls
                 </h2>
+                <h3>Camera Position:</h3>
+                <div class="std_input_text">
+                    <input type="number" id="camera_x" onchange="moveCamera('x', Number(this.value));" onkeyup="/*this.value++;*/ /*resizeShape('x', this.value)*/" required>
+                    <span class="text_highlight"></span>
+                    <span class="text_bar"></span>
+                    <label>X</label>
+                </div>
+                <div class="std_input_text">
+                    <input type="number" id="camera_y" onchange="moveCamera('y', Number(this.value));" onkeyup="/*this.value++;*/ /*resizeShape('y', this.value)*/" required>
+                    <span class="text_highlight"></span>
+                    <span class="text_bar"></span>
+                    <label>Y</label>
+                </div>
+                <div class="std_input_text">
+                    <input type="number" id="camera_z" onchange="moveCamera('z', Number(this.value));" onkeyup="/*this.value++;*/ /*resizeShape('z', this.value)*/" required>
+                    <span class="text_highlight"></span>
+                    <span class="text_bar"></span>
+                    <label>Z</label>
+                </div>
             </div>
 
             <div class="std_menu menu_hidden" id="menu_scene">

@@ -114,6 +114,18 @@ let saveSubSystem = {
             this.loadedLights = JSON.parse(localStorage.getItem("lights:"+this.fileName));
             processShapeData(this.loadedShapes, this.loadedScales, JSON.parse(localStorage.getItem("text:"+this.fileName)));
             this.loadLights();
+            moveCamera("x",10);
+            moveCamera("y",10);
+            moveCamera("z",10);
+            getId("camera_x").value = 10;
+            getId("camera_y").value = 10;
+            getId("camera_z").value = 10;
+            if(settings.mouseSensitivity==null){
+                settings.mouseSensitivity = 1;
+            }
+            if(settings.zoomAmount==null){
+                settings.zoomAmount = 1.5;
+            }
         }
         else{
             console.log("Save not found.");
@@ -149,7 +161,6 @@ let saveSubSystem = {
                   type = 'ambient';
                   break;
           }
-            console.log(type,convertColor(this.loadedLights[i].r,this.loadedLights[i].g,this.loadedLights[i].b),this.loadedLights[i].positionX,this.loadedLights[i].positionY,this.loadedLights[i].positionZ,this.loadedLights[i].intensity*100);
             newLight(type,convertColor(this.loadedLights[i].r,this.loadedLights[i].g,this.loadedLights[i].b),this.loadedLights[i].intensity*100,this.loadedLights[i].positionX,this.loadedLights[i].positionY,this.loadedLights[i].positionZ);
         }
     },

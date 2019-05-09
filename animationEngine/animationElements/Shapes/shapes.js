@@ -2,8 +2,13 @@
 //corbin wrote this method, simplified by Jordan
 
 function moveShape(dimension, value) {
-    shapes[selectedShape].position[dimension] = Number(value);
-    borders[selectedShape].position[dimension] = Number(value);
+    if(showingLight){
+        lights[selectedLight].position[dimension] = Number(value);
+    }
+    else{
+        shapes[selectedShape].position[dimension] = Number(value);
+        borders[selectedShape].position[dimension] = Number(value);
+    }
 }
 
 function postitionShape(dimension, value) {
@@ -243,7 +248,7 @@ function processShapeData(loadedShapes,loadedScales, loadedText) {
                 //shapeData[2][i] = loadedScales[i];
 
         }
-        console.log(loadedScales);
+        // console.log(loadedScales);
         // if (loadedShapes.length === 1)
             // shapeData[2][0] = loadedShapes;
         return shapeData;

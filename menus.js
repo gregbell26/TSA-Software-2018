@@ -1,7 +1,5 @@
 //jordan's code
 
-
-
 function showList(){
     //Brings up a list of all of the shapes that current exist in the scene. Called when the "Show List" button is clicked.
     let sideBar=document.getElementById('listButtons');
@@ -27,6 +25,7 @@ function showList(){
 function setSelectedShape(num){
 
     selectedShape = num;
+    toggleEditShapeOrLight(false);
     //document.getElementById('boxSelected').innerHTML="#"+(selectedShape+1);
     let color = "#";
     color += rgbToHex(shapes[selectedShape].material.color['r']*255);
@@ -45,20 +44,16 @@ function setSelectedShape(num){
     document.getElementById('diemsions_x').value = scales[selectedShape][0];
     document.getElementById('diemsions_y').value = scales[selectedShape][1];
     document.getElementById('diemsions_z').value = scales[selectedShape][2];
-    editMenu();
-    console.log("Set Shape Num");
 }
 
 function setSelectedLight(num) {
     selectedLight = num;
+    toggleEditShapeOrLight(true);
     let color = "#";
-    // color += rgbToHex(lights[selectedLight].color['r']*255);
-    // color += rgbToHex(lights[selectedLight].color['g']*255);
-    // color += rgbToHex(lights[selectedLight].color['b']*255);
-    // document.getElementById("lightColorChanger").value = color;
-    // document.getElementById("lPosX").value = lights[selectedLight].position.x;
-    // document.getElementById("lPosY").value = lights[selectedLight].position.y;
-    // document.getElementById("lPosZ").value = lights[selectedLight].position.z;
+    document.getElementById("lightColorChanger").value = "#"+lights['selectedLight'].color.getHexString();
+    document.getElementById("position_x").value = lights[selectedLight].position.x;
+    document.getElementById("position_y").value = lights[selectedLight].position.y;
+    document.getElementById("position_z").value = lights[selectedLight].position.z;
     // document.getElementById("intensityRange").value = lights[selectedLight].intensity * 100;
     // document.getElementById("intensityValue").innerHTML = lights[selectedLight].intensity * 100;
     // lightEditMenu();
@@ -236,3 +231,16 @@ function zoomSet(value){
     }
 }
 
+function toggleEditShapeOrLight(isLight){
+    showingLight = isLight;
+    if(isLight){
+        getId("currentEditing_type").innerHTML = "light";
+        getId("currentEditing_dimensions").style.display="none";
+        getId("element_border_color").style.display="none";
+    }
+    else{
+        getId("currentEditing_type").innerHTML = "shape";
+        getId("currentEditing_dimensions").style.display="inherit";
+        getId("element_border_color").style.display="inherit";
+    }
+}
