@@ -300,10 +300,6 @@ $(document).ready(function () {
     //When the user resizes the program rerun UI spacer
     $(window).resize(function () {
         UISpacer();
-        camera.aspect = UIDiemsions.std_body.window_width / UIDiemsions.std_body.window_height;
-        camera.updateProjectionMatrix();
-        updateTimeline();
-        renderer.setSize(UIDiemsions.std_body.window_width, UIDiemsions.std_body.window_height);
-
+        onWindowResize();
     });
 });
