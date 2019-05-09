@@ -19,10 +19,13 @@ Rev 19
 * After it does that is starts all of the needed functions for the program.
 * */
 async function initMainUI(){
-    if(window.location.protocol.indexOf("file")===-1 && !document.querySelector("body").requestFullscreen()){
-        //do something if we are unable to enter full screen mode
-        /*document.querySelector("body").requestFullscreen();*/
-    }
+
+    //Commented out so its easier to debug when not in full screen
+    // if(window.location.protocol.indexOf("file")===-1 && !document.querySelector("body").requestFullscreen()){
+    //     //do something if we are unable to enter full screen mode
+    //     /*document.querySelector("body").requestFullscreen();*/
+    // }
+
     document.getElementById("std_ws_container").classList.add("ws_hide");
     document.getElementById("ws_body").classList.add("ws_hide");
     UISpacer();
@@ -315,6 +318,9 @@ function mobileHider(){
 -------------------------------JQUERY---------------------------------------------------
  */
 $(document).ready(function () {
+    document.getElementById("std_statusBox").children[0].innerHTML = "READY";
+    document.getElementById("std_statusBox").children[1].innerHTML = settings.version;
+
     //When the user resizes the program rerun UI spacer
     $(window).resize(function () {
         UISpacer();
