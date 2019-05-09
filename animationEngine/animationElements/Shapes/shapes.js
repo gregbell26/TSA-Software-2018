@@ -59,6 +59,8 @@ function removeShape(){
         selectedShape--;
         setSelectedShape(selectedShape);
         saveSubSystem.save();
+        //it's so you can't press remove again, feel free to remove to improve
+        showMenu("menu_newShapes");
     }
 }
 
