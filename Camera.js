@@ -22,23 +22,23 @@ function moveCamera(dimension,newValue){
             break;
     }
 }
-// function changeCameraLock(){//Changes whether or not the camera is locked during animation to change
-//     lockCamera = document.getElementById("chkbox1").checked;
-// }
-//
-// function changeCameraCircleRotation(){//Changes whether or not the camera moves in a circular fashion during the animation
-//     circleCameraRotation = document.getElementById("chkbox2").checked;
-// }
-//
-// function changeSensitivity(change) {//Changes sensitivity to change
-//     settings.mouseSensitivity = change;
-// }
-// function changeZoomSensitivity(change) {//Changes the Zoom sensitivity to change
-//     if(change < 0)
-//         change = change * -1;
-//     settings.zoomAmount = 1 + change/2;
-// }
-//
+function changeCameraLock(){//Changes whether or not the camera is locked during animation to change
+    lockCamera = document.getElementById("chkbox1").checked;
+}
+
+function changeCameraCircleRotation(){//Changes whether or not the camera moves in a circular fashion during the animation
+    circleCameraRotation = document.getElementById("chkbox2").checked;
+}
+
+function changeSensitivity(change) {//Changes sensitivity to change
+    settings.mouseSensitivity = change;
+}
+function changeZoomSensitivity(change) {//Changes the Zoom sensitivity to change
+    if(change < 0)
+        change = change * -1;
+    settings.zoomAmount = 1 + change/2;
+}
+
 $(document).on('mousedown',function(e){
     if(inAnimationWindow==1) {
         xStart = e.pageX;
