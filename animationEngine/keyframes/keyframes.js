@@ -223,9 +223,9 @@ function updateAnimation(timingCounter,a){
 
     if(lockCamera) {//camera stuff
 
-        //xCLook = keyFrames[a].xCLook + (keyFrames[a+1].xCLook - keyFrames[a].xCLook) / keyFrames[a].duration * timingCounter;
-        //yCLook = keyFrames[a].yCLook + (keyFrames[a+1].yCLook - keyFrames[a].yCLook) / keyFrames[a].duration * timingCounter;
-        //zCLook = keyFrames[a].zCLook + (keyFrames[a+1].zCLook - keyFrames[a].zCLook) / keyFrames[a].duration * timingCounter;
+        // xCLook = keyFrames[a].xCLook + (keyFrames[a+1].xCLook - keyFrames[a].xCLook) / keyFrames[a].duration * timingCounter;
+        // yCLook = keyFrames[a].yCLook + (keyFrames[a+1].yCLook - keyFrames[a].yCLook) / keyFrames[a].duration * timingCounter;
+        // zCLook = keyFrames[a].zCLook + (keyFrames[a+1].zCLook - keyFrames[a].zCLook) / keyFrames[a].duration * timingCounter;
         // xCCenter = keyFrames[a].xCCenter + (keyFrames[a+1].xCCenter - keyFrames[a].xCCenter) / keyFrames[a].duration * timingCounter;
         // yCCenter = keyFrames[a].yCCenter + (keyFrames[a+1].yCCenter - keyFrames[a].yCCenter) / keyFrames[a].duration * timingCounter;
         // zCCenter = keyFrames[a].zCCenter + (keyFrames[a+1].zCCenter - keyFrames[a].zCCenter) / keyFrames[a].duration * timingCounter;
@@ -314,90 +314,90 @@ function updateAnimation(timingCounter,a){
         // console.log(yCLook);
         // console.log(zCLook);
         // circleCameraRotation = keyFrames[a+1].circleCameraRotation;
-        // if(circleCameraRotation){//stuff for circular camera rotation
-        //     if(timingCounter <= 10 || !animationRunning) {//this stuff only executes the first iteration or through the timeline AND only if the Camera has circular movement
-        //         zoom1Z = Math.pow(Math.pow(keyFrames[a].xPosition, 2) + Math.pow(keyFrames[a].zPosition, 2), .5);
-        //         zoom1 = Math.pow((Math.pow(zoom1Z, 2) + Math.pow(keyFrames[a].yPosition, 2)), .5);//zoom1 calc here
-        //         console.log("f1zoomZ " + zoom1Z);
-        //         console.log("f1zoom " + zoom1);
-        //         Rz1 = 0;
-        //         Ry1 = 0;
-        //         if (keyFrames[a].xPosition !== 0)
-        //             Rz1 = Math.atan(keyFrames[a].zPosition / keyFrames[a].xPosition);
-        //         else if (keyFrames[a].zPosition > 0)
-        //             Rz1 = Math.PI;
-        //         else if (keyFrames[a].zPosition < 0)
-        //             Rz1 = -Math.PI;
-        //
-        //         if (keyFrames[a].xPosition < 0 && Rz1 < 0)
-        //             Rz1 += Math.PI;
-        //         else if (keyFrames[a].xPosition < 0 && Rz1 > 0)
-        //             Rz1 -= Math.PI;
-        //
-        //         if (keyFrames[a].xPosition !== 0 || keyFrames[a].zPosition !== 0)
-        //             Ry1 = Math.atan((keyFrames[a].yPosition) / zoom1Z);
-        //         else if (keyFrames[a].yPosition > 0)
-        //             Ry1 = Math.PI;
-        //         else if (keyFrames[a].yPosition < 0)
-        //             Ry1 = -Math.PI;
-        //
-        //         zoom2Z = Math.pow(Math.pow(keyFrames[a + 1].xPosition, 2) + Math.pow(keyFrames[a + 1].zPosition, 2), .5);
-        //         zoom2 = Math.pow((Math.pow(zoom2Z, 2) + Math.pow(keyFrames[a+1].yPosition, 2)), .5);//zoom1 calc here
-        //         console.log("f2zoomZ " + zoom2Z);
-        //         console.log("f2zoom " + zoom2);
-        //         Rz2 = 0;
-        //         Ry2 = 0;
-        //         if (keyFrames[a + 1].xPosition !== 0)
-        //             Rz2 = Math.atan(keyFrames[a + 1].zPosition / keyFrames[a + 1].xPosition);
-        //         else if (keyFrames[a + 1].zPosition > 0)
-        //             Rz2 = Math.PI;
-        //         else if (keyFrames[a + 1].zPosition < 0)
-        //             Rz2 = -Math.PI;
-        //
-        //         if (keyFrames[a + 1].xPosition < 0 && Rz2 < 0)
-        //             Rz2 += Math.PI;
-        //         else if (keyFrames[a + 1].xPosition < 0 && Rz2 > 0)
-        //             Rz2 -= Math.PI;
-        //
-        //         if (keyFrames[a + 1].xPosition !== 0 || keyFrames[a + 1].zPosition !== 0)
-        //             Ry2 = Math.atan((keyFrames[a + 1].yPosition) / zoom2Z);
-        //         else if (keyFrames[a + 1].yPosition > 0)
-        //             Ry2 = Math.PI;
-        //         else if (keyFrames[a + 1].yPosition < 0)
-        //             Ry2 = -Math.PI;
-        //         console.log("f1RY " + Ry1/Math.PI*180+"°");
-        //         console.log("f2RY " + Ry2/Math.PI*180+"°");
-        //         console.log("f1RZ " + Rz1/Math.PI*180+"°");
-        //         console.log("f2RZ " + Rz2/Math.PI*180+"°");
-        //
-        //         MvX = Rz2 - Rz1;
-        //         MvY = Ry2 - Ry1;
-        //         zoomChange = zoom2 - zoom1;
-        //         zoomZChange = zoom2Z - zoom1Z;
-        //         console.log("moving zoom " + zoomChange);
-        //         console.log("moving zoomZ " + zoomZChange);
-        //         console.log("moving X " + MvX/Math.PI*180+"°");
-        //         console.log("moving Y " + MvY/Math.PI*180+"°");
-        //     }//this stuff only executes every time
-        //     yPosition = (zoom1  +  zoomChange/keyFrames[a].duration * timingCounter) * (Math.sin(Ry1+MvY/keyFrames[a].duration * timingCounter));
-        //     xPosition = (zoom1Z + zoomZChange/keyFrames[a].duration * timingCounter) * (Math.cos(Rz1+MvX/keyFrames[a].duration * timingCounter));
-        //     zPosition = (zoom1Z + zoomZChange/keyFrames[a].duration * timingCounter) * (Math.sin(Rz1+MvX/keyFrames[a].duration * timingCounter));
-        //     console.log(xPosition);
-        //     console.log(yPosition);
-        //     console.log(zPosition);
-        //     if(isNaN(yPosition))
-        //         yPosition = 0;
-        //     if(isNaN(xPosition))
-        //         xPosition = 0;
-        //     if(isNaN(zPosition))
-        //         zPosition = 0;
-        //
-        // }
-        // else {//the default camera movement
+        if(circleCameraRotation){//stuff for circular camera rotation
+            if(timingCounter <= 10 || !animationRunning) {//this stuff only executes the first iteration or through the timeline AND only if the Camera has circular movement
+                zoom1Z = Math.pow(Math.pow(keyFrames[a].xPosition, 2) + Math.pow(keyFrames[a].zPosition, 2), .5);
+                zoom1 = Math.pow((Math.pow(zoom1Z, 2) + Math.pow(keyFrames[a].yPosition, 2)), .5);//zoom1 calc here
+                console.log("f1zoomZ " + zoom1Z);
+                console.log("f1zoom " + zoom1);
+                Rz1 = 0;
+                Ry1 = 0;
+                if (keyFrames[a].xPosition !== 0)
+                    Rz1 = Math.atan(keyFrames[a].zPosition / keyFrames[a].xPosition);
+                else if (keyFrames[a].zPosition > 0)
+                    Rz1 = Math.PI;
+                else if (keyFrames[a].zPosition < 0)
+                    Rz1 = -Math.PI;
+
+                if (keyFrames[a].xPosition < 0 && Rz1 < 0)
+                    Rz1 += Math.PI;
+                else if (keyFrames[a].xPosition < 0 && Rz1 > 0)
+                    Rz1 -= Math.PI;
+
+                if (keyFrames[a].xPosition !== 0 || keyFrames[a].zPosition !== 0)
+                    Ry1 = Math.atan((keyFrames[a].yPosition) / zoom1Z);
+                else if (keyFrames[a].yPosition > 0)
+                    Ry1 = Math.PI;
+                else if (keyFrames[a].yPosition < 0)
+                    Ry1 = -Math.PI;
+
+                zoom2Z = Math.pow(Math.pow(keyFrames[a + 1].xPosition, 2) + Math.pow(keyFrames[a + 1].zPosition, 2), .5);
+                zoom2 = Math.pow((Math.pow(zoom2Z, 2) + Math.pow(keyFrames[a+1].yPosition, 2)), .5);//zoom1 calc here
+                console.log("f2zoomZ " + zoom2Z);
+                console.log("f2zoom " + zoom2);
+                Rz2 = 0;
+                Ry2 = 0;
+                if (keyFrames[a + 1].xPosition !== 0)
+                    Rz2 = Math.atan(keyFrames[a + 1].zPosition / keyFrames[a + 1].xPosition);
+                else if (keyFrames[a + 1].zPosition > 0)
+                    Rz2 = Math.PI;
+                else if (keyFrames[a + 1].zPosition < 0)
+                    Rz2 = -Math.PI;
+
+                if (keyFrames[a + 1].xPosition < 0 && Rz2 < 0)
+                    Rz2 += Math.PI;
+                else if (keyFrames[a + 1].xPosition < 0 && Rz2 > 0)
+                    Rz2 -= Math.PI;
+
+                if (keyFrames[a + 1].xPosition !== 0 || keyFrames[a + 1].zPosition !== 0)
+                    Ry2 = Math.atan((keyFrames[a + 1].yPosition) / zoom2Z);
+                else if (keyFrames[a + 1].yPosition > 0)
+                    Ry2 = Math.PI;
+                else if (keyFrames[a + 1].yPosition < 0)
+                    Ry2 = -Math.PI;
+                console.log("f1RY " + Ry1/Math.PI*180+"°");
+                console.log("f2RY " + Ry2/Math.PI*180+"°");
+                console.log("f1RZ " + Rz1/Math.PI*180+"°");
+                console.log("f2RZ " + Rz2/Math.PI*180+"°");
+
+                MvX = Rz2 - Rz1;
+                MvY = Ry2 - Ry1;
+                zoomChange = zoom2 - zoom1;
+                zoomZChange = zoom2Z - zoom1Z;
+                console.log("moving zoom " + zoomChange);
+                console.log("moving zoomZ " + zoomZChange);
+                console.log("moving X " + MvX/Math.PI*180+"°");
+                console.log("moving Y " + MvY/Math.PI*180+"°");
+            }//this stuff only executes every time
+            yPosition = (zoom1  +  zoomChange/keyFrames[a].duration * timingCounter) * (Math.sin(Ry1+MvY/keyFrames[a].duration * timingCounter));
+            xPosition = (zoom1Z + zoomZChange/keyFrames[a].duration * timingCounter) * (Math.cos(Rz1+MvX/keyFrames[a].duration * timingCounter));
+            zPosition = (zoom1Z + zoomZChange/keyFrames[a].duration * timingCounter) * (Math.sin(Rz1+MvX/keyFrames[a].duration * timingCounter));
+            console.log(xPosition);
+            console.log(yPosition);
+            console.log(zPosition);
+            if(isNaN(yPosition))
+                yPosition = 0;
+            if(isNaN(xPosition))
+                xPosition = 0;
+            if(isNaN(zPosition))
+                zPosition = 0;
+
+        }
+        else {//the default camera movement
             xPosition = keyFrames[a].xPosition + (keyFrames[a + 1].xPosition - keyFrames[a].xPosition) / keyFrames[a].duration * timingCounter;
             yPosition = keyFrames[a].yPosition + (keyFrames[a + 1].yPosition - keyFrames[a].yPosition) / keyFrames[a].duration * timingCounter;
             zPosition = keyFrames[a].zPosition + (keyFrames[a + 1].zPosition - keyFrames[a].zPosition) / keyFrames[a].duration * timingCounter;
-        // }
+        }
     }//non camera stuff
     scene.background.r = keyFrames[a].scene.color[0] + (keyFrames[a + 1].scene.color[0] - keyFrames[a].scene.color[0]) / keyFrames[a].duration * timingCounter;
     scene.background.g = keyFrames[a].scene.color[1] + (keyFrames[a + 1].scene.color[1] - keyFrames[a].scene.color[1]) / keyFrames[a].duration * timingCounter;

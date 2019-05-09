@@ -25,6 +25,11 @@
                 -webkit-appearance: none;
                 margin: 0;
             }
+            @media screen and (min-width: 900px) {
+                #monarchAnimation_title {
+                    font-size: 60pt !important;
+                }
+            }
         </style>
         <!--INCLUDES-->
         <script src="animationEngine/three.js"></script>
@@ -69,7 +74,7 @@
     </head>
     <body>
     <div id="std_ws_container">
-        <h1 style="left: 25%; top: 10%;">
+        <h1 style="text-align: center; top: 10%; font-size: 9vw;" id="monarchAnimation_title">
             Monarch Animation
         </h1>
         <div id="ws_box3"  >
@@ -82,13 +87,11 @@
             </div>
         </div>
         <div id="ws_body">
-            <span class="std_ws_button ws_color" onclick="saveSubSystem.setIsUsingSaves(true, false); initMainUI(); start();" style="top:5%; left:30%;">Start from Scratch</span>
+            <span class="std_ws_button ws_color" onclick="saveSubSystem.setIsUsingSaves(true, false); initMainUI(); start();" style="top:5%; margin-right:70%;">Start from Scratch</span>
             <select class="std_ws_button ws_color" id="ws_loadMenu" onchange="saveSubSystem.setIsUsingSaves(true, true);  initMainUI(); start();" style="top:20%; left:50%;" >
                 <option>Load Save</option>
             </select>
             <span class="std_ws_button ws_color" onclick="saveSubSystem.setIsUsingSaves(true, false); initMainUI(); start(); launchTutorial(); " style="top:5%; left:70%">View Tutorial</span>
-
-
         </div>
     </div>
     <div id="std_body">
@@ -142,6 +145,9 @@
             <span class="std_nav_button std_nav_alignRight" id="nav_settings" onclick="settingsToggle()">
                     <img onclick="settingsToggle()"
                          src="./style/assets/svgs/nav_icons/nav_settings_icon.svg" class="nav_buttonIcon"/>
+                </span>
+            <span class="std_nav_button std_nav_alignRight" id="nav_mobile_hide" onclick="mobileHideSideBar()">
+                    X
                 </span>
 
         </div>
@@ -608,7 +614,7 @@
 
 
         <!--RENDER AREA-->
-        <div id="animationEngine_renderArea" style="position: absolute; z-index: -10;">
+        <div id="animationEngine_renderArea" style="position: absolute; z-index: -10; right:0; bottom:0;">
 
         </div>
 

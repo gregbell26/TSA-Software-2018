@@ -477,6 +477,6 @@ function newShape(type,x,y,z,posX,posY,posZ,color,border,text){
     }
 }
 
-function getId(str){
-    return document.getElementById(str);
+function getId(id){
+    return document.getElementById(id);
 }
