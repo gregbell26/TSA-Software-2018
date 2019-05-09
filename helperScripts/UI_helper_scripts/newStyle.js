@@ -19,7 +19,7 @@ Rev 19
 * After it does that is starts all of the needed functions for the program.
 * */
 async function initMainUI(){
-    if(!document.querySelector("body").requestFullscreen()){
+    if(window.location.protocol.indexOf("file")===-1 && !document.querySelector("body").requestFullscreen()){
         //do something if we are unable to enter full screen mode
         /*document.querySelector("body").requestFullscreen();*/
     }

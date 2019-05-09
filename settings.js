@@ -45,10 +45,22 @@ var settings = {
             this.setToDefault();
             return;
         }
-
+        if(loadedSettings.camera==null){
+            loadedSettings.camera = {
+                mouseSensitivity: loadedSettings.mouseSensitivity,
+                zoomAmount: loadedSettings.zoomAmount,
+            };
+        }
         this.camera.mouseSensitivity = loadedSettings.camera.mouseSensitivity;
         this.camera.zoomAmount = loadedSettings.camera.zoomAmount;
-
+        if(loadedSettings.userInterface==null){
+            loadedSettings.userInterface = {
+                stylesheetPref: "darkMode",
+                usingCustomStyle: false,
+                customJSPath: "",
+                customCSSPath: "",
+            }
+        }
         this.userInterface.stylesheetPref = loadedSettings.userInterface.stylesheetPref;
         if(loadedSettings.userInterface.usingCustomStyle){
             this.userInterface.customJSPath = loadedSettings.userInterface.customJSPath;
