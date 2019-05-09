@@ -140,7 +140,7 @@ let saveSubSystem = {
         }
         for(var i=0; i<this.loadedLights.length; i++){
             var type;
-          switch(this.loadedLights[i].type){
+            switch(this.loadedLights[i].type){
               case "PointLight":
                   type = 'point';
                   break;
@@ -159,8 +159,12 @@ let saveSubSystem = {
               default:
                   type = 'ambient';
                   break;
-          }
-            newLight(type,convertColor(this.loadedLights[i].r,this.loadedLights[i].g,this.loadedLights[i].b),this.loadedLights[i].intensity*100,this.loadedLights[i].positionX,this.loadedLights[i].positionY,this.loadedLights[i].positionZ);
+            }
+            if (type === "hemisphere"){
+                newLight(type,convertColor(this.loadedLights[i].r,this.loadedLights[i].g,this.loadedLights[i].b),this.loadedLights[i].intensity*100,this.loadedLights[i].positionX,this.loadedLights[i].positionY,this.loadedLights[i].positionZ,convertColor(this.loadedLights[i].r2,this.loadedLights[i].g2,this.loadedLights[i].b2));
+            }else{
+                newLight(type,convertColor(this.loadedLights[i].r,this.loadedLights[i].g,this.loadedLights[i].b),this.loadedLights[i].intensity*100,this.loadedLights[i].positionX,this.loadedLights[i].positionY,this.loadedLights[i].positionZ);
+            }
         }
     },
 
@@ -210,16 +214,32 @@ let saveSubSystem = {
         //converts the Three.js lights into a savable array of JSONs.
         let arr = [];
         for (let i = 0; i < lights.length; i++) {
-            arr.push({
-                type: lights[i].type,
-                positionX: lights[i].position.x,
-                positionY: lights[i].position.y,
-                positionZ: lights[i].position.z,
-                r: lights[i].color.r,
-                g: lights[i].color.g,
-                b: lights[i].color.b,
-                intensity: lights[i].intensity,
-            })
+            if (lights[i].name === "Hemisphere light"){
+                arr.push({
+                    type: lights[i].type,
+                    positionX: lights[i].position.x,
+                    positionY: lights[i].position.y,
+                    positionZ: lights[i].position.z,
+                    r: lights[i].color.r,
+                    g: lights[i].color.g,
+                    b: lights[i].color.b,
+                    r2: lights[i].groundColor.r,
+                    g2: lights[i].groundColor.g,
+                    b2: lights[i].groundColor.b,
+                    intensity: lights[i].intensity,
+                })
+            } else {
+                arr.push({
+                    type: lights[i].type,
+                    positionX: lights[i].position.x,
+                    positionY: lights[i].position.y,
+                    positionZ: lights[i].position.z,
+                    r: lights[i].color.r,
+                    g: lights[i].color.g,
+                    b: lights[i].color.b,
+                    intensity: lights[i].intensity,
+                })
+            }
         }
         return arr;
     },
