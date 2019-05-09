@@ -19,10 +19,13 @@ Rev 19
 * After it does that is starts all of the needed functions for the program.
 * */
 async function initMainUI(){
-    if(window.location.protocol.indexOf("file")===-1 && !document.querySelector("body").requestFullscreen()){
-        //do something if we are unable to enter full screen mode
-        /*document.querySelector("body").requestFullscreen();*/
-    }
+
+    //Commented out so its easier to debug when not in full screen
+    // if(window.location.protocol.indexOf("file")===-1 && !document.querySelector("body").requestFullscreen()){
+    //     //do something if we are unable to enter full screen mode
+    //     /*document.querySelector("body").requestFullscreen();*/
+    // }
+
     document.getElementById("std_ws_container").classList.add("ws_hide");
     document.getElementById("ws_body").classList.add("ws_hide");
     UISpacer();
@@ -36,6 +39,7 @@ async function initMainUI(){
 * */
 var activeMenu ="init";//init value
 function showMenu(menuToShow){
+    getId("std_menu_container").style.display = "inherit";
     if(activeMenu !== "init") {
         document.getElementById(activeMenu).classList.remove("menu_show");
         document.getElementById(activeMenu).classList.add("menu_hidden");
@@ -255,8 +259,13 @@ function UISpacer(){
     UIDiemsions.std_navBar.spacer_placement.push(nextRightElementLoc.toString() + UIDiemsions.std_navBar.defaultUnit);
 
 
-
-
+    if(window.innerWidth<=500){
+        UIDiemsions.std_navBar.menuContainer_width = window.innerWidth;
+        getId("std_statusBox").style.display = "none";
+    }
+    else{
+        getId("std_statusBox").style.display = "inherit";
+    }
 ///This can be cleaned up a little more
     document.getElementById("std_menu_container").style.width = UIDiemsions.std_navBar.menuContainer_width.toString()+UIDiemsions.std_navBar.defaultUnit;
     document.getElementById("std_menu_container").style.top= UIDiemsions.std_navBar.menuContainer_placement.toString()+UIDiemsions.std_navBar.defaultUnit;
@@ -278,17 +287,20 @@ function UISpacer(){
     document.getElementById("nav_spacer_right").style.top = (UIDiemsions.std_navBar.defaultPadding).toString()+UIDiemsions.std_navBar.defaultUnit;
     document.getElementById("nav_spacer_right").style.bottom = (UIDiemsions.std_navBar.defaultPadding).toString()+UIDiemsions.std_navBar.defaultUnit;
     document.getElementById("nav_spacer_right").style.right = (UIDiemsions.std_navBar.spacer_placement[1]).toString();
-
     UIDiemsions.std_body.body_height = document.getElementById("std_body").clientHeight;
     UIDiemsions.std_body.body_width = document.getElementById("std_body").clientWidth;
     UIDiemsions.std_body.renderer_top = UIDiemsions.std_navBar.nav_height;
     UIDiemsions.std_body.renderer_left = UIDiemsions.std_navBar.menuContainer_width;
+    if(window.innerWidth<=500){
+        UIDiemsions.std_body.renderer_left = 0;
+    }
     UIDiemsions.std_body.renderer_height = UIDiemsions.std_body.body_height- UIDiemsions.std_navBar.nav_height;
     UIDiemsions.std_body.renderer_width = UIDiemsions.std_body.body_width - UIDiemsions.std_navBar.menuContainer_width;
+
     document.getElementById("animationEngine_renderArea").style.top =(UIDiemsions.std_body.renderer_top).toString()+UIDiemsions.std_navBar.defaultUnit;
     document.getElementById("animationEngine_renderArea").style.left =(UIDiemsions.std_body.renderer_left).toString()+UIDiemsions.std_navBar.defaultUnit;
-    document.getElementById("animationEngine_renderArea").style.height =(UIDiemsions.std_body.renderer_height).toString()+UIDiemsions.std_navBar.defaultUnit;
-    document.getElementById("animationEngine_renderArea").style.width =(UIDiemsions.std_body.renderer_width).toString()+UIDiemsions.std_navBar.defaultUnit;
+    // document.getElementById("animationEngine_renderArea").style.height =(UIDiemsions.std_body.renderer_height).toString()+UIDiemsions.std_navBar.defaultUnit;
+    // document.getElementById("animationEngine_renderArea").style.width =(UIDiemsions.std_body.renderer_width).toString()+UIDiemsions.std_navBar.defaultUnit;
 
 
 
@@ -302,15 +314,20 @@ function mobileHider(){
 }
 
 
-
-
 /*
 -------------------------------JQUERY---------------------------------------------------
  */
 $(document).ready(function () {
+    document.getElementById("std_statusBox").children[0].innerHTML = "READY";
+    document.getElementById("std_statusBox").children[1].innerHTML = settings.version;
+
     //When the user resizes the program rerun UI spacer
     $(window).resize(function () {
         UISpacer();
         onWindowResize();
     });
 });
+
+function mobileHideSideBar(){
+    getId("std_menu_container").style.display = "none";
+}
