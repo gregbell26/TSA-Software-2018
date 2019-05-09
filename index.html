@@ -152,8 +152,14 @@
                 <h2>
                     Shapes List
                 </h2>
+                <h3>Shapes:</h3>
+                <div id="shapeList_shapes">
 
+                </div>
+                <h3>Lights:</h3>
+                <div id="shapeList_lights">
 
+                </div>
             </div>
             <div class="std_menu menu_hidden" id="menu_newShapes" style="overflow-y: scroll;">
                 <h2>
@@ -165,7 +171,7 @@
                         New Shape
                     </h3>
                     <div class="std_body_list" style="max-width: initial; width: 100%;">
-                        <select class="list_body" onchange="newShape(this.value,0,0,0,0,0,0,'#FF0000','#000000');">
+                        <select class="list_body" onchange="newShape(this.value,0,0,0,0,0,0,'#FF0000','#000000');" id="newShapes_select">
                             <option value="newShape">Create Shape</option>
                             <option value="cube">New Cube</option>
                             <option value="cylinder">New Cylinder</option>
@@ -194,7 +200,7 @@
                         New Light
                     </h3>
                     <div class="std_body_list" style="max-width: initial; width: 100%;">
-                        <select class="list_body"  onchange="newLight(this.value,'#FFFFFF',100,0,0,0)">
+                        <select class="list_body"  onchange="newLight(this.value,'#FFFFFF',100,0,0,0)" id="newLights_select">
                             <option value="newLight">Create Light</option>
                             <option value="ambient">Ambient Light</option>
                             <option value="point">Point Light</option>
@@ -252,6 +258,7 @@
                     </div>
 
                     <input type="color" onchange="changeColor(this.value)" id="element_color">
+                    <input type="color" onchange="borderChange(this.value)" id="element_border_color">
 
                 </div>
             </div>

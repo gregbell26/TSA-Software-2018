@@ -5,24 +5,6 @@ let value = document.getElementById("intensityValue");
 
 
 function newLight(type,color,intensity,positionX,positionY,positionZ) {
-    // let type = document.getElementById("lightSelector").value;
-    // switch(type){
-    //     case "ambient":
-    //         newAmbientLight("#ffffff", 50);
-    //         break;
-    //     case "point":
-    //         newPointLight("#ffffff", 50);
-    //         break;
-    //     case "directional":
-    //         newDirectionalLight("#ffffff", 50);
-    //         break;
-    //     case "spot":
-    //         newSpotLight("#ffffff", 50);
-    //         break;
-    //     case "hemisphere":
-    //         newHemisphereLight("#87CEEB", "#654321", 50);
-    //         break;
-    // }
     const convert = {
         "ambient":"Ambient",
         "point":"Point",
@@ -30,7 +12,7 @@ function newLight(type,color,intensity,positionX,positionY,positionZ) {
         "spot":"Spot",
         "hemisphere":"Hemisphere",
     }
-    if(type!="hemisphere"){
+    if(type!=="hemisphere"){
         let light = new THREE[convert[type]+"Light"](color, intensity/100);
         light.name = "Ambient light";
         lights[lights.length] = light;
@@ -39,6 +21,8 @@ function newLight(type,color,intensity,positionX,positionY,positionZ) {
         lights[selectedLight].position.x = positionX;
         lights[selectedLight].position.y = positionY;
         lights[selectedLight].position.z = positionZ;
+        getId("shapeList_lights").innerHTML+="<button onclick='setSelectedLight("+selectedShape+");showMenu(\"menu_newShapes\");' style='color:black'>"+type+"</button><br>";
+        getId("newLights_select").value = "newLight";
     }
 }
 

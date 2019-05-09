@@ -33,8 +33,9 @@ function setSelectedShape(num){
     color += rgbToHex(shapes[selectedShape].material.color['g']*255);
     color += rgbToHex(shapes[selectedShape].material.color['b']*255);
     // TEMPORARY COMMENTED OUT
-    document.getElementById('element_color').value = color;
-    // document.getElementById("borderColor").value = "#"+borders[selectedShape].material.color.getHexString();
+    console.log(shapes[selectedShape].material.color.getHexString());
+    document.getElementById('element_color').value = "#"+shapes[selectedShape].material.color.getHexString();
+    document.getElementById("element_border_color").value = "#"+borders[selectedShape].material.color.getHexString();
     document.getElementById('position_x').value = shapes[selectedShape].position.x;
     document.getElementById('position_y').value = shapes[selectedShape].position.y;
     document.getElementById('position_z').value = shapes[selectedShape].position.z;

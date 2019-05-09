@@ -128,29 +128,29 @@ let saveSubSystem = {
             return;
         }
         for(var i=0; i<this.loadedLights.length; i++){
+            var type;
           switch(this.loadedLights[i].type){
               case "PointLight":
-                  newPointLight(convertColor(this.loadedLights[i].r,this.loadedLights[i].g,this.loadedLights[i].b),this.loadedLights[i].intensity*100);
+                  type = 'point';
                   break;
               case "AmbientLight":
-                  newAmbientLight(convertColor(this.loadedLights[i].r,this.loadedLights[i].g,this.loadedLights[i].b),this.loadedLights[i].intensity*100);
+                  type = 'ambient';
                   break;
               case "DirectionalLight":
-                  newDirectionalLight(convertColor(this.loadedLights[i].r,this.loadedLights[i].g,this.loadedLights[i].b),this.loadedLights[i].intensity*100);
+                  type = 'directional';
                   break;
               case "SpotLight":
-                  newSpotLight(convertColor(this.loadedLights[i].r,this.loadedLights[i].g,this.loadedLights[i].b),this.loadedLights[i].intensity*100);
+                  type = 'spot';
                   break;
               case "HemisphereLight":
-                  newHemisphereLight(convertColor(this.loadedLights[i].r,this.loadedLights[i].g,this.loadedLights[i].b),convertColor(this.loadedLights[i].r,this.loadedLights[i].g,this.loadedLights[i].b),this.loadedLights[i].intensity*100);
+                  type = 'hemisphere';
                   break;
               default:
-                  newPointLight(convertColor(this.loadedLights[i].r,this.loadedLights[i].g,this.loadedLights[i].b),this.loadedLights[i].intensity*100);
+                  type = 'ambient';
                   break;
           }
-          moveLight("x",this.loadedLights[i].positionX);
-          moveLight("y",this.loadedLights[i].positionY);
-          moveLight("z",this.loadedLights[i].positionZ);
+            console.log(type,convertColor(this.loadedLights[i].r,this.loadedLights[i].g,this.loadedLights[i].b),this.loadedLights[i].positionX,this.loadedLights[i].positionY,this.loadedLights[i].positionZ,this.loadedLights[i].intensity*100);
+            newLight(type,convertColor(this.loadedLights[i].r,this.loadedLights[i].g,this.loadedLights[i].b),this.loadedLights[i].intensity*100,this.loadedLights[i].positionX,this.loadedLights[i].positionY,this.loadedLights[i].positionZ);
         }
     },
 

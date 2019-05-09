@@ -12,7 +12,7 @@ Author Jordan
 
 function changeColor(value){
     //changes the color of the currently selected shape
-    console.log(shapes[selectedShape].material.color.set(value));
+    shapes[selectedShape].material.color.set(value)
     shapes[selectedShape].material.needsUpdate = true;
 }
 
