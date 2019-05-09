@@ -14,7 +14,7 @@ function newLight(type,color,intensity,positionX,positionY,positionZ) {
     }
     if(type!=="hemisphere"){
         let light = new THREE[convert[type]+"Light"](color, intensity/100);
-        light.name = "Ambient light";
+        light.name = convert[type]+" light";
         lights[lights.length] = light;
         scene.add(light);
         selectedLight = lights.length - 1;

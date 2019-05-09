@@ -132,7 +132,7 @@ function promptResponse(value) {
 var buttonClicked = false;
 
 
-async function start(){
+function start(){
     camera = new THREE.PerspectiveCamera(75, UIDiemsions.std_body.window_width/UIDiemsions.std_body.window_height, 0.1, 1000);
     renderer = new THREE.WebGLRenderer({logarithmicDepthBuffer: true });
     renderer.setSize(UIDiemsions.std_body.renderer_width, UIDiemsions.std_body.renderer_height);
@@ -145,14 +145,13 @@ async function start(){
     borders= [];
     selectedShape = 0;
     selectedLight = 0;
-    console.log("initing");
     init=true;
     toggleEditShapeOrLight(false);
     if((saveSelectorElement.options[saveSelectorElement.selectedIndex].value === "Load Save" || !saveSubSystem.openPrevious) && saveSubSystem.isUsingSaves){
         /*promptResp = 1;*/
         /*showPrompt("Please enter a name for your save", "New Animation");*/
-        showPopUp("popUp_input_body", "New Save", "Enter Save Name", "buttonClicked = true;");
-        saveSubSystem.setFileName(getPopUpInput(), true);
+        showPopUp("popUp_input_body", "New Save", "Enter Save Name",0);
+
     //handles savings creates a new one if there is no previous save when starting software
     }
     if(!saveSubSystem.isUsingSaves){

@@ -68,9 +68,8 @@ let saveSubSystem = {
         localStorage.setItem("settings", JSON.stringify(settings))
     },
 
-    addText: function(){
+    addText: function(value){
         //used to track a TextGeometry so that the text can be rebuilt when the application is reloaded.
-        let value = document.getElementById("createText").value;
         let currentText = localStorage.getItem("text:"+this.fileName);
         if(currentText==null){
           localStorage.setItem("text:"+this.fileName,JSON.stringify([value]));

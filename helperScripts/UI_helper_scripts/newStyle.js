@@ -87,20 +87,31 @@ function settingsToggle(){
 }
 
 var shownPopUp = "init";
-function showPopUp(popUpToShow, popUpContent, otherText, functions){
+function showPopUp(popUpToShow, popUpContent, otherText, mode){
     document.getElementById("std_popUp").classList.add("popUp_show");
     document.getElementById(popUpToShow).classList.add("popUp_show");
     document.getElementById(popUpToShow).children.item(0).textContent = popUpContent;
     document.getElementById(popUpToShow).children.item(1).children.item(3).innerHTML = otherText;
-    document.getElementById(popUpToShow).children.item(2).setAttribute('onclick', functions +" hidePopUp();");
+    document.getElementById(popUpToShow).children.item(2).setAttribute('onclick', "popUpAction("+mode+"); hidePopUp();");
 
     shownPopUp = popUpToShow;
+}
+function popUpAction(num){
+    if(num==0){
+        saveSubSystem.setFileName(getPopUpInput(), true);
+    }
+    else if(num==1){
+        newShape("text",0,0,0,0,0,0,'#FF0000','#000000',getPopUpInput());
+        saveSubSystem.addText(getPopUpInput());
+    }
+    document.getElementById(document.getElementById(shownPopUp).children.item(1).children.item(0).value = "");
 }
 
 function getPopUpInput() {
     if(shownPopUp !== "init" && shownPopUp.includes("input")){
         return document.getElementById(shownPopUp).children.item(1).children.item(0).value;
     }
+    return "";
 }
 
 function hidePopUp() {

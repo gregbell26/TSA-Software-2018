@@ -72,9 +72,9 @@ $(document).on('mouseup',function(e){
 $(document).on('keydown',function(e) {
     if (inAnimationWindow==1 && !settingsOpen && !(animationRunning && lockCamera)) {
         if (e.key == "-")
-            zoomCameraM(settings.zoomAmount);
+            zoomCameraM(settings.camera.zoomAmount);
         else if (e.key == "=")
-            zoomCameraM(1/settings.zoomAmount);
+            zoomCameraM(1/settings.camera.zoomAmount);
     }
 });
 $(document).on('mouseup',function(e){
@@ -92,8 +92,8 @@ $(document).ready(function(){
         }
         if(mouseDown && inAnimationWindow==1 && !settingsOpen /*&& !(animationRunning && lockCamera)*/){
 
-            var MvX = settings.mouseSensitivity*(e.pageX-xStart)/100;
-            var MvY = settings.mouseSensitivity*(e.pageY-yStart)/100;
+            var MvX = settings.camera.mouseSensitivity*(e.pageX-xStart)/100;
+            var MvY = settings.camera.mouseSensitivity*(e.pageY-yStart)/100;
             rotateCamera(MvX,MvY);
 
 
