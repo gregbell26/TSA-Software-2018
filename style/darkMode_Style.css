@@ -187,7 +187,7 @@ Rev 3
         top:100%;
     }
     100%{
-        top:80%;
+        top:calc(100% - 750px);
     }
 
 }
@@ -314,10 +314,8 @@ h3{/*For Menus Mainly*/
     position: absolute;
     padding-left: 10px;
     padding-right: 10px;
-    left: 25%;
+    width:100%;
     top: 100%;
-    width: 35%;
-    height: 50%;
     opacity: 0.0;
 
     /*Animation Stuffs*/
@@ -736,7 +734,7 @@ Width and top are being applied with javascript at runtime
  */
 #std_menu_container{
     position: fixed;
-    min-height: 100%;
+    min-height: calc(100% - 104px);
     background-color: var(--std_color_secondary);
     padding: 0px 1px 2px 1px;
     margin-top: 2px;
@@ -868,19 +866,19 @@ Width is determined at runtime by the spacer function
 #std_timeline{
     overflow: initial;
     position: relative;
-    top: 100%;
-    height: 100%;
+    bottom: calc(-100vh + 160px);
+    height: 750px;
     z-index: 6;
     margin-right: 4px;
     /*background-color: rgba(0,0,0,0.15);*/
 }
 
 #std_timeline.timeline_show{
-    animation-name: timeline_show;
-    animation-duration: 250ms;
-    animation-iteration-count: 1;
-    animation-fill-mode: forwards;
-    animation-timing-function: ease-in-out;
+    /*animation-name: timeline_show;*/
+    /*animation-duration: 250ms;*/
+    /*animation-iteration-count: 1;*/
+    /*animation-fill-mode: forwards;*/
+    /*animation-timing-function: ease-in-out;*/
 }
 
 #timeline_triggerArea {
@@ -900,7 +898,7 @@ Width is determined at runtime by the spacer function
 
 #timeline_buttonContainer {
     overflow: initial;
-    width: 20%;
+    width: 230px;
     height: 10%;
     padding-left: 10px;
     padding-bottom: 5px;
@@ -909,7 +907,7 @@ Width is determined at runtime by the spacer function
 
 #timeline_body {
     position: relative;
-    height: 10%;
+    height: 100px;
     width: 100%;
     /* margin: 60px 2px -80px 0px; */
     top: 7.86%;
