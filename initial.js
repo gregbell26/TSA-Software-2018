@@ -78,6 +78,12 @@ var zCCenter = 0;//where the camera centers on z
 var xCLook = 0;//where the camera points to x
 var yCLook = 0;//where the camera points to y
 var zCLook = 0;//where the camera points to z
+var shapeCenter = {
+    x:0.0,
+    y:0.0,
+    z:0.0
+};
+var shapeCenters = [];
 var mouseDown = false;//if the right mouse button is pressed down
 var inAnimationWindow = 0;//is the mouse in the animation window
 var lockCamera = true;//Whether or not the camera can free pan during animation
@@ -101,6 +107,20 @@ var zoomChangev, zoomZChangev;
 var showingLight;
 
 
+//stuff for circular shape movement
+var tempCircleMoveShapes = {
+    MvX:0.0,
+    MvY:0.0,
+    Rz1:0.0,
+    Ry1:0.0,
+    Rz2:0.0,
+    Ry2:0.0,
+    zoom1:0.0,
+    zoom1Z:0.0,
+    zoom2:0.0,
+    zoom2Z:0.0
+};
+var shapesCmove =[];
 
 
 var dialog = document.querySelector('dialog');
