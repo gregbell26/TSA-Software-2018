@@ -186,14 +186,16 @@ console.log("Shape Ends at "+index);
     //alert("Called");
     setSelectedShape(selectedShape);
     moveShape("x", posX);
-    moveShape('y', posY);
-    moveShape('z', posZ);
+    moveShape("y", posY);
+    moveShape("z", posZ);
 
-    document.getElementById('dimensionX').value = x;
-    document.getElementById('dimensionY').value = y;
-    document.getElementById('dimensionZ').value = z;
+    document.getElementById('diemsions_x').value = x;
+    document.getElementById('diemsions_y').value = y;
+    document.getElementById('diemsions_z').value = z;
 
-    document.getElementById('positionBoxX').value = posX;
-    document.getElementById('positionBoxY').value = posY;
-    document.getElementById('positionBoxZ').value = posZ;
+    document.getElementById('position_x').value = posX;
+    document.getElementById('position_y').value = posY;
+    document.getElementById('position_z').value = posZ;
+    getId("shapeList_shapes").innerHTML+="<button onclick='setSelectedShape("+selectedShape+");showMenu(\"menu_newShapes\");' style='color:black'>"+type+"</button><br>";
+    getId("newShapes_select").value = "newShape";
 }
