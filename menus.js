@@ -27,11 +27,6 @@ function setSelectedShape(num){
     selectedShape = num;
     toggleEditShapeOrLight(false);
     //document.getElementById('boxSelected').innerHTML="#"+(selectedShape+1);
-    let color = "#";
-    color += rgbToHex(shapes[selectedShape].material.color['r']*255);
-    color += rgbToHex(shapes[selectedShape].material.color['g']*255);
-    color += rgbToHex(shapes[selectedShape].material.color['b']*255);
-    // TEMPORARY COMMENTED OUT
     console.log(shapes[selectedShape].material.color.getHexString());
     document.getElementById('element_color').value = "#"+shapes[selectedShape].material.color.getHexString();
     document.getElementById("element_border_color").value = "#"+borders[selectedShape].material.color.getHexString();
@@ -49,8 +44,7 @@ function setSelectedShape(num){
 function setSelectedLight(num) {
     selectedLight = num;
     toggleEditShapeOrLight(true);
-    let color = "#";
-    document.getElementById("lightColorChanger").value = "#"+lights['selectedLight'].color.getHexString();
+    document.getElementById("element_color").value = "#"+lights[selectedLight].color.getHexString();
     document.getElementById("position_x").value = lights[selectedLight].position.x;
     document.getElementById("position_y").value = lights[selectedLight].position.y;
     document.getElementById("position_z").value = lights[selectedLight].position.z;

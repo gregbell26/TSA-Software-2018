@@ -85,9 +85,8 @@
         </div>
         <div id="ws_body">
             <span class="std_ws_button ws_color" onclick="saveSubSystem.setIsUsingSaves(true, false); initMainUI(); start();" style="top:5%; left:30%;">Start from Scratch</span>
-            <select class="std_ws_button ws_color" id="ws_loadMenu" onchange="saveSubSystem.setIsUsingSaves(true, true);  initMainUI(); start();" style="top:20%; left:50%;">
+            <select class="std_ws_button ws_color" id="ws_loadMenu" onchange="saveSubSystem.setIsUsingSaves(true, true);  initMainUI(); start();" style="top:20%; left:50%;" >
                 <option>Load Save</option>
-
             </select>
             <span class="std_ws_button ws_color" onclick="saveSubSystem.setIsUsingSaves(true, false); initMainUI(); start(); launchTutorial(); " style="top:5%; left:70%">View Tutorial</span>
 
@@ -266,6 +265,7 @@
 
                     <input type="color" onchange="changeColor(this.value)" id="element_color">
                     <input type="color" onchange="borderChange(this.value)" id="element_border_color">
+                    <button id="element_remove" onclick="removeElement()">Remove</button>
 
                 </div>
             </div>

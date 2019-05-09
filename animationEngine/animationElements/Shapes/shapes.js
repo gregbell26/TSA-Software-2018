@@ -42,7 +42,10 @@ function resizeShape(dimension, value){
             break;
     }
 }
-
+function removeElement(){
+    if(showingLight){removeLight();}
+    else{removeShape();}
+}
 function removeShape(){
     if(selectedShape >= 0){
         if(shapes[selectedShape].geometry.type=="TextGeometry"){
