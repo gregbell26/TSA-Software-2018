@@ -255,26 +255,28 @@
                             <label>Z</label>
                         </div>
                     </div>
-                    <h3>
-                        Position
-                    </h3>
-                    <div class="std_input_text">
-                        <input type="number" step="any" id="position_x" onchange="moveShape('x', Number(this.value))" onkeyup="/*moveShape('x', this.value)*/" required>
-                        <span class="text_highlight"></span>
-                        <span class="text_bar"></span>
-                        <label>X</label>
-                    </div>
-                    <div class="std_input_text">
-                        <input type="number" step="any" id="position_y" onchange="moveShape('y', Number(this.value));" onkeyup="/*moveShape('y', this.value)*/" required>
-                        <span class="text_highlight"></span>
-                        <span class="text_bar"></span>
-                        <label>Y</label>
-                    </div>
-                    <div class="std_input_text">
-                        <input type="number" step="any" id="position_z" onchange="moveShape('z', Number(this.value));" onkeyup="/*moveShape('z', this.value)*/" required>
-                        <span class="text_highlight"></span>
-                        <span class="text_bar"></span>
-                        <label>Z</label>
+                    <div id="currentEditing_positions">
+                        <h3>
+                            Position
+                        </h3>
+                        <div class="std_input_text">
+                            <input type="number" step="any" id="position_x" onchange="moveShape('x', Number(this.value))" onkeyup="/*moveShape('x', this.value)*/" required>
+                            <span class="text_highlight"></span>
+                            <span class="text_bar"></span>
+                            <label>X</label>
+                        </div>
+                        <div class="std_input_text">
+                            <input type="number" step="any" id="position_y" onchange="moveShape('y', Number(this.value));" onkeyup="/*moveShape('y', this.value)*/" required>
+                            <span class="text_highlight"></span>
+                            <span class="text_bar"></span>
+                            <label>Y</label>
+                        </div>
+                        <div class="std_input_text">
+                            <input type="number" step="any" id="position_z" onchange="moveShape('z', Number(this.value));" onkeyup="/*moveShape('z', this.value)*/" required>
+                            <span class="text_highlight"></span>
+                            <span class="text_bar"></span>
+                            <label>Z</label>
+                        </div>
                     </div>
                     <div id="currentEditing_rotation">
                         <h3>

@@ -239,7 +239,12 @@ function toggleEditShapeOrLight(isLight){
         getId("currentEditing_rotation").style.display="none";
         if (lights[selectedLight].name === "Hemisphere light"){
             getId("element_border_color").style.display="inherit";
+            getId("currentEditing_positions").style.display="inherit";
+        } else if (lights[selectedLight].name === "Ambient light") {
+            getId("currentEditing_positions").style.display="none";
+            getId("element_border_color").style.display="none";
         } else {
+            getId("currentEditing_positions").style.display="inherit";
             getId("element_border_color").style.display="none";
         }
     }
@@ -249,5 +254,6 @@ function toggleEditShapeOrLight(isLight){
         getId("currentEditing_intensity").style.display="none";
         getId("element_border_color").style.display="inherit";
         getId("currentEditing_rotation").style.display="inherit";
+        getId("currentEditing_positions").style.display="inherit";
     }
 }
