@@ -40,8 +40,8 @@ function removeLight(){
         scene.remove(lights[selectedLight]);
         lights.splice(selectedLight,1);
 
-        if(selectedLight === 0){selectedLight++;}
-        else{selectedLight--;}
+
+        selectedLight = -1;
 
         setSelectedLight(selectedLight);
         saveSubSystem.save();

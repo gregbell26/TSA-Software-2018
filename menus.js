@@ -23,19 +23,28 @@ function showList(){
 }
 
 function setSelectedShape(num){
-
     selectedShape = num;
     toggleEditShapeOrLight(false);
+    if(num == -1){
+        showMenu("menu_newShapes");
+        document.getElementById("element_Information").style.display = 'none';
+        document.getElementById('currentEditing_type').style.display = 'none';
+        return;
+    }
+    else{
+        document.getElementById("element_Information").style.display = 'initial';
+        document.getElementById('currentEditing_type').style.display = 'initial';
+    }
     //document.getElementById('boxSelected').innerHTML="#"+(selectedShape+1);
-    //console.log(shapes[selectedShape].material.color.getHexString());
+    console.log(shapes[selectedShape].material.color.getHexString());
     document.getElementById('element_color').value = "#"+shapes[selectedShape].material.color.getHexString();
     document.getElementById("element_border_color").value = "#"+borders[selectedShape].material.color.getHexString();
     document.getElementById('position_x').value = shapes[selectedShape].position.x;
     document.getElementById('position_y').value = shapes[selectedShape].position.y;
     document.getElementById('position_z').value = shapes[selectedShape].position.z;
-    // document.getElementById('rotateBoxX').value = (shapes[selectedShape].rotation.x*180/Math.PI);
-    // document.getElementById('rotateBoxY').value = (shapes[selectedShape].rotation.y*180/Math.PI);
-    // document.getElementById('rotateBoxZ').value = (shapes[selectedShape].rotation.z*180/Math.PI);
+    document.getElementById('rotation_x').value = (shapes[selectedShape].rotation.x*180/Math.PI);
+    document.getElementById('rotation_y').value = (shapes[selectedShape].rotation.y*180/Math.PI);
+    document.getElementById('rotation_z').value = (shapes[selectedShape].rotation.z*180/Math.PI);
     document.getElementById('diemsions_x').value = scales[selectedShape][0];
     document.getElementById('diemsions_y').value = scales[selectedShape][1];
     document.getElementById('diemsions_z').value = scales[selectedShape][2];
@@ -44,6 +53,16 @@ function setSelectedShape(num){
 
 function setSelectedLight(num) {
     selectedLight = num;
+    if(num == -1){
+        showMenu("menu_newShapes");
+        document.getElementById("element_Information").style.display = 'none';
+        document.getElementById('currentEditing_type').style.display = 'none';
+        return;
+    }
+    else{
+        document.getElementById("element_Information").style.display = 'initial';
+        document.getElementById('currentEditing_type').style.display = 'initial';
+    }
     if (lights[selectedLight].name === "Hemisphere light"){
         document.getElementById("element_border_color").value = "#"+lights[selectedLight].groundColor.getHexString();
     }

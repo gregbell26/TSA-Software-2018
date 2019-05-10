@@ -106,7 +106,13 @@
                     <img onclick="showMenu('menu_shapesList'); showList()" src="./style/assets/svgs/nav_icons/nav_shapes_icon.svg"
                          class="nav_buttonIcon"/>
                 </span>
-            <span class="std_nav_button" id="nav_newShape" onclick="showMenu('menu_newShapes')">
+            <span class="std_nav_button" id="nav_newShape" onclick="showMenu('menu_newShapes');
+                            if(selectedShape === -1 && selectedLight === -1){ document.getElementById('element_Information').style.display = 'none';
+                                document.getElementById('currentEditing_type').style.display = 'none';}
+                            else{ document.getElementById('element_Information').style.display = 'initial';
+                                document.getElementById('currentEditing_type').style.display = 'initial';
+                                if(selectedLight === -1){ toggleEditShapeOrLight(false); setSelectedShape(selectedShape);}
+                                if(selectedShape === -1){ toggleEditShapeOrLight(true); setSelectedLight(selectedLight);}}">
                     <img onclick="showMenu('menu_newShapes')"
                          src="./style/assets/svgs/nav_icons/nav_animationElements_icon.svg" class="nav_buttonIcon"/>
                 </span>
@@ -183,7 +189,7 @@
                 <h2>
                     New Elements
                 </h2>
-
+                <!-- Whole create / edit menu -->
                 <div id="newElement_Create">
                     <h3>
                         New Shape

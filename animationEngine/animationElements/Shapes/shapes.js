@@ -56,12 +56,10 @@ function removeShape(){
         shapes.splice(selectedShape,1);
         scales.splice(selectedShape,1);
         borders.splice(selectedShape,1);
-        if (selectedShape === 0){selectedShape++}
-        else{selectedShape--;}
+        selectedShape = -1;
         setSelectedShape(selectedShape);
         saveSubSystem.save();
         //it's so you can't press remove again, feel free to remove to improve
-        showMenu("menu_newShapes");
     }
 }
 

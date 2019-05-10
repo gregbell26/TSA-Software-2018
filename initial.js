@@ -163,8 +163,8 @@ function start(){
     scales =[];
     keyFrames =[];
     borders= [];
-    selectedShape = 0;
-    selectedLight = 0;
+    selectedShape = -1;
+    selectedLight = -1;
     init=true;
     toggleEditShapeOrLight(false);
     if((saveSelectorElement.options[saveSelectorElement.selectedIndex].value === "Load Save" || !saveSubSystem.openPrevious) && saveSubSystem.isUsingSaves){
