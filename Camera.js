@@ -84,7 +84,7 @@ $(document).on('mouseup',function(e){
 var timelinePosition = 0;
 $(document).ready(function(){
     $(document).on('mousemove', function(e){
-        if(e.pageX>=300 && e.pageY >=50 && e.pageY<window.innerHeight-70) {
+        if(e.pageX>=300 && e.pageY >=50 && e.pageY<window.innerHeight-100) {
             inAnimationWindow = 1;
         }
         else{

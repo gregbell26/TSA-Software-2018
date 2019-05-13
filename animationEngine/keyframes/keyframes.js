@@ -245,8 +245,8 @@ function updateAnimation(timingCounter,a){
 
             zoom1Zv = Math.pow(Math.pow(keyFrames[a].xCLook - xPosition, 2) + Math.pow(keyFrames[a].zCLook - zPosition, 2), .5);
             zoom1v = Math.pow((Math.pow(zoom1Zv, 2) + Math.pow(keyFrames[a].yCLook - yPosition, 2)), .5);//zoom1 calc here
-            console.log("f1zoomZ " + zoom1Zv);
-            console.log("f1zoom " + zoom1v);
+            // console.log("f1zoomZ " + zoom1Zv);
+            // console.log("f1zoom " + zoom1v);
             Rz1v = 0;
             Ry1v = 0;
             if (keyFrames[a].xCLook - xPosition !== 0)
