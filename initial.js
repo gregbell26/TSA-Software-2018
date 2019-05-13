@@ -185,6 +185,7 @@ function start(){
         // newLight("ambient", "#ffffff", 50);
         //has saves
     }
+    onWindowResize();
     // addLight();
     // addPointLight();
 
