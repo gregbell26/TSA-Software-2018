@@ -190,13 +190,13 @@ function lightMenu() {
 
 
 function borderVisibility(){
-    let checked = document.getElementById("borderVisibility").checked;
+    let checked = document.getElementById("borders").checked;
     if(checked){
         borders[selectedShape].visible = true;
-        document.getElementById("borderMenu").style.display="inherit";
+        document.getElementById("element_border_color").style.display="inherit";
     }else{
         borders[selectedShape].visible = false;
-        document.getElementById("borderMenu").style.display="none";
+        document.getElementById("element_border_color").style.display="none";
     }
 }
 
