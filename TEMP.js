@@ -63,6 +63,6 @@ console.log("moving X " + shapesCmove[i].MvX/Math.PI*180+"°");
 console.log("moving Y " + shapesCmove[i].MvY/Math.PI*180+"°");
 
 
-shapes.position.y = (shapesCmove[i].zoom1  +  shapesCmove[i].zoomChange/keyFrames[a].duration * timingCounter) * (Math.sin(shapesCmove[i].Ry1+shapesCmove[i].MvY/keyFrames[a].duration * timingCounter))+;
+shapes.position.y = (shapesCmove[i].zoom1  +  shapesCmove[i].zoomChange/keyFrames[a].duration * timingCounter) * (Math.sin(shapesCmove[i].Ry1+shapesCmove[i].MvY/keyFrames[a].duration * timingCounter));
 shapes.position.x = (shapesCmove[i].zoom1Z + shapesCmove[i].zoomZChange/keyFrames[a].duration * timingCounter) * (Math.cos(shapesCmove[i].Rz1+shapesCmove[i].MvX/keyFrames[a].duration * timingCounter));
 shapes.position.z = (shapesCmove[i].zoom1Z + shapesCmove[i].zoomZChange/keyFrames[a].duration * timingCounter) * (Math.sin(shapesCmove[i].Rz1+shapesCmove[i].MvX/keyFrames[a].duration * timingCounter));
