@@ -26,6 +26,20 @@ function changeCameraLock(){//Changes whether or not the camera is locked during
     lockCamera = document.getElementById("chkbox1").checked;
 }
 
+function changeCameraCenter(dimension,newValue){
+    switch(dimension){
+        case "x":
+            xCCenter = newValue;
+            break;
+        case "y":
+            yCCenter = newValue;
+            break;
+        case "z":
+            zCCenter = newValue;
+            break;
+    }
+}
+
 function changeCameraCircleRotation(){//Changes whether or not the camera moves in a circular fashion during the animation
     circleCameraRotation = document.getElementById("chkbox2").checked;
 }
