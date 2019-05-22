@@ -202,6 +202,7 @@ let saveSubSystem = {
                 r: shapes[i].material.color.r,
                 g: shapes[i].material.color.g,
                 b: shapes[i].material.color.b,
+                borders: borders[i].visible,
                 borderR: borders[i].material.color.r,
                 borderG: borders[i].material.color.g,
                 borderB: borders[i].material.color.b,

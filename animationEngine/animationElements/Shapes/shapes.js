@@ -186,12 +186,14 @@ function processShapeData(loadedShapes,loadedScales, loadedText) {
         }
         var text;
         console.log(loadedText);
-        if(type=="text"){
+        if(type==="text"){
             text = loadedText[currentTextIndex];
             currentTextIndex++;
         }
         newShape(type,loadedScales[i][0], loadedScales[i][1], loadedScales[i][2], loadedShapes[i].positionX, loadedShapes[i].positionY, loadedShapes[i].positionZ, convertColor(loadedShapes[i].r, loadedShapes[i].g, loadedShapes[i].b) , convertColor(loadedShapes[i].borderR || 0, loadedShapes[i].borderG || 0, loadedShapes[i].borderB || 0),text);
-
+        if (!loadedShapes[i].borders){
+            borders[i].visible = false;
+        }
 
         // if (loadedShapes[i].type === "BoxGeometry") {
         //         newCube(loadedScales[i][0], loadedScales[i][1], loadedScales[i][2], loadedShapes[i].positionX, loadedShapes[i].positionY, loadedShapes[i].positionZ, convertColor(loadedShapes[i].r, loadedShapes[i].g, loadedShapes[i].b) , convertColor(loadedShapes[i].borderR || 0, loadedShapes[i].borderG || 0, loadedShapes[i].borderB || 0))
