@@ -10,7 +10,7 @@ Edited 4/12/18
 
 var settings = {
 
-    version: "1.3.0 rev 0b",
+    version: "1.4.0 rev 0b",
 
     camera : {
         mouseSensitivity: 0,

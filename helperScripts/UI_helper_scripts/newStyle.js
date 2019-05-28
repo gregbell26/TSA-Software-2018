@@ -8,7 +8,7 @@ Copyright 2018-2019 Monarch TSA
 
 Author Gregory Bell
 Edited 4/17/19
-Rev 19
+Rev 20
 
  */
 
@@ -139,13 +139,7 @@ function loadSaveNames() {
         loadSelector.innerHTML += " <option onclick=\'saveSubSystem.setSaveToLoad = (\" " + opt + " \"); initMainUI();\' > " + opt + "</option>";
     }
 }
-/*
-* This is function that will start the 3js engine's render
-* This will moved to init.js
-* */
-function startRender(){
 
-}
 
 
 //----------------------------STYLE-FUNCTIONS--------------------------------------------------
@@ -153,6 +147,7 @@ function startRender(){
 * Dynamically loads style sheets and allows for different themes to be easily created
 * */
 var stylesheetLoaded = false;
+var defautStyle = true;
 var loadedStyleTag= "";
 function stylesheetLoader(stylesheetName){
     var validStyleSheet=false;

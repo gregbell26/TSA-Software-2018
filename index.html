@@ -74,8 +74,9 @@
         <title>Monarch Animation</title>
     </head>
     <body>
+    <link rel="stylesheet" type="text/css" href="style/default_Style.css"/>
     <div id="std_ws_container">
-        <h1 style="text-align: center; top: 10%; font-size: 9vw;" id="monarchAnimation_title">
+        <h1 style="min-width: 100%; text-align: center; top: 10%; left: initial; font-size: 9vw;" id="monarchAnimation_title">
             Monarch Animation
         </h1>
         <div id="ws_box3"  >
@@ -153,9 +154,11 @@
                     <img onclick="settingsToggle()"
                          src="./style/assets/svgs/nav_icons/nav_settings_icon.svg" class="nav_buttonIcon"/>
                 </span>
-            <span class="std_nav_button std_nav_alignRight" id="nav_mobile_hide" onclick="mobileHideSideBar()">
-                    X
-                </span>
+
+
+<!--            <span class="std_nav_button std_nav_alignRight" id="nav_mobile_hide" onclick="mobileHideSideBar()">-->
+<!--                    X-->
+<!--                </span>-->
 
         </div>
 
@@ -236,7 +239,7 @@
                     </div>
                 </div>
                 <!-- Editing selected shape -->
-                <h3><strong>Edit current <span id="currentEditing_type">shape</span>:</strong></h3>
+                <h3>Edit Current <span id="currentEditing_type">shape</span></h3>
                 <div id="element_Information">
                     <div id="currentEditing_dimensions">
                         <h3>
@@ -320,9 +323,14 @@
                     <h3>
                         Color
                     </h3>
+
                     <input type="color" onchange="changeColor(this.value)" id="element_color"><br>
                     <input type="color" onchange="borderChange(this.value)" id="element_border_color"><br>
-                    <button id="element_remove" onclick="removeElement()">Remove</button>
+
+                    <div id="element_remove" class="std_body_button" onclick="removeElement()">
+                        <span class="button_body">Remove Element</span>
+                        <span class="button_bar"></span>
+                    </div>
                 </div>
                 <div class="bottom_menu_spacer">
                 </div>
