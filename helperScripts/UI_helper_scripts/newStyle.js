@@ -19,13 +19,6 @@ Rev 20
 * After it does that is starts all of the needed functions for the program.
 * */
 async function initMainUI(){
-
-    //Commented out so its easier to debug when not in full screen
-    // if(window.location.protocol.indexOf("file")===-1 && !document.querySelector("body").requestFullscreen()){
-    //     //do something if we are unable to enter full screen mode
-    //     /*document.querySelector("body").requestFullscreen();*/
-    // }
-
     getId("std_ws_container").classList.add("ws_hide");
     getId("ws_body").classList.add("ws_hide");
     UISpacer();
@@ -143,6 +136,25 @@ function loadSaveNames() {
 
 
 //----------------------------STYLE-FUNCTIONS--------------------------------------------------
+function iconSwapper(target, mode){
+    // if(mode !== "darkMode" || mode !=="normalMode")//early break case
+    //     return -1;
+
+    if(target ==="all"){
+        if(mode === "darkMode"){
+            for (let el of document.querySelectorAll('.std_icon_normal')) el.style.display = "none";
+            for (let el of document.querySelectorAll('.std_icon_dark')) el.style.display = "block";
+            return 1;
+        }
+        else {
+            for (let el of document.querySelectorAll('.std_icon_dark')) el.style.display = "none";
+            for (let el of document.querySelectorAll('.std_icon_normal')) el.style.display = "block";
+            return 2;
+        }
+    }
+
+}
+
 /*
 * Dynamically loads style sheets and allows for different themes to be easily created
 * */
@@ -164,16 +176,19 @@ function stylesheetLoader(stylesheetName){
     if(stylesheetName === "normalMode"){
         cssToLoad.setAttribute("href", "./style/normalMode_Style.css");
         validStyleSheet = true;
+        iconSwapper("all", "normalMode")
     }
 
     else if (stylesheetName ==="darkMode"){
         cssToLoad.setAttribute("href", "./style/darkMode_Style.css");
         validStyleSheet =true;
+        iconSwapper("all", "darkMode")
     }
 
     else if(stylesheetName === "amoledMode"){
         cssToLoad.setAttribute("href", "./style/amoledMode_Style.css");
         validStyleSheet =true;
+        iconSwapper("all", "darkMode")
     }
 
     else if(stylesheetName === "mobile"){
@@ -191,6 +206,8 @@ function stylesheetLoader(stylesheetName){
         loadedStyleTag = cssToLoad;
     }
 }
+
+
 
 /**
  * This function will space the elements so they look nice
@@ -305,7 +322,7 @@ function UISpacer(){
 * */
 function mobileHider(){
     //this is a lot simpler than I thought it would be
-    for (let el of document.querySelectorAll('.monarchAnimation_mobile_hidden')) el.hidden = true;
+    for (let el of document.querySelectorAll('.std_mobile_hidden')) el.hidden = true;
 }
 
 

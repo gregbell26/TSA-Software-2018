@@ -93,22 +93,6 @@ function cameraMenu(){
     console.log("Showed Camera")
 
 }
-function userMenu(){
-    document.getElementById("userPage").style.display = "inherit";
-    document.getElementById("settingsBackground").style.display = "inherit";
-    if(user!=null){
-        firestore.collection("lists").doc(user.uid).get().then(function(doc){
-            if(doc.exists){
-                let data = doc.data();
-                document.getElementById("loadCloudSelect").innerHTML = "";
-                for (let key in data) {
-                    if (!data.hasOwnProperty(key)) continue;
-                    document.getElementById("loadCloudSelect").innerHTML += "<option value='"+key+"'>"+key+"</option>";
-                }
-            }
-        })
-    }
-}
 
 function hideAll(){
     //used to make correct menus show up, and the wrong menus don't show up. This is called every time we open a menu.
@@ -140,14 +124,14 @@ function editMenu() {
 }
 
 function colorMenu(){
-    hideAll();
+    // hideAll();
     document.getElementById("colorMenu").style.display="inherit";
     console.log("COLOR")
 
 }
 
 function shapeMenu(){
-    hideAll();
+    // hideAll();
     document.getElementById("shapeMenu").style.display="inherit";
     if(usingTutorial){
         if(confirm("Now create a shape")){
@@ -160,7 +144,7 @@ function shapeMenu(){
 }
 
 function newShapeMenu(){
-    hideAll();
+    // hideAll();
     document.getElementById("addMenu").style.display="inherit";
     if(usingTutorial){
         animateArrow(75, 95, 120, 90);
@@ -168,12 +152,12 @@ function newShapeMenu(){
 }
 
 function newLightMenu() {
-    hideAll();
+    // hideAll();
     document.getElementById("addLightMenu").style.display="inherit";
 }
 
 function lightEditMenu(){
-    hideAll();
+    // hideAll();
     document.getElementById("lightEditMenu").style.display="inherit";
     if (lights[selectedLight].type == "HemisphereLight"){
         document.getElementById("hemisphereLightColor").style.display="inherit";
@@ -184,7 +168,7 @@ function lightEditMenu(){
 
 
 function keyMenu(){
-    hideAll();
+    // hideAll();
     document.getElementById("keyMenu").style.display="inherit";
     loadKeyList();
     if(usingTutorial){
@@ -194,13 +178,13 @@ function keyMenu(){
 }
 
 function sceneMenu() {
-    hideAll();
+    // // // hideall();
     document.getElementById("sceneMenu").style.display='inherit';
 
 }
 
 function lightMenu() {
-    hideAll();
+// hideAll();
     document.getElementById("lightMenu").style.display='inherit';
 }
 

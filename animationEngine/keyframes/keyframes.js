@@ -45,7 +45,7 @@ function updateTimeline(){
         duration+=keyFrames[i].duration;
     }
     timelineScale = duration/(window.innerWidth-20);
-    var timeline = document.getElementById("std_timeline").children.item(2);
+    var timeline = document.getElementById("std_timeline").children.item(1);
     timeline.innerHTML = "<span id=\"timeline_playHead\" class=\"timeline_keyframe\"></span>";
     var currentX = 10;
     for(var i=0; i<keyFrames.length; i++){

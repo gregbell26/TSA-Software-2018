@@ -68,6 +68,23 @@ function saveCurrentToCloud(){
         firestore.collection("lists").doc(user.uid).set(json,{ merge: true });
     });
 }
+
+function updateCloudSaveList(){
+    if(user!=null){
+        firestore.collection("lists").doc(user.uid).get().then(function(doc){
+            if(doc.exists){
+                let data = doc.data();
+                document.getElementById("signedIn_loadSelector").innerHTML = "<option>Load Cloud Save</option>";
+                for (let key in data) {
+                    if (!data.hasOwnProperty(key)) continue;
+                    document.getElementById("signedIn_loadSelector").innerHTML += "<option value='" + key + "'>" + key + "</option>";
+                }
+            }
+        })
+    }
+}
+
+
 function loadCloudSave(){
     var file = document.getElementById("signedIn_loadSelector").value;
     firebase.storage().ref().child(user.uid+"/"+file).getDownloadURL().then(function(url){
