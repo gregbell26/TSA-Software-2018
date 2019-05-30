@@ -223,8 +223,7 @@ function timelineScrub(pageX) {
     }
 }
 
-function updateAnimation(timingCounter,a){
-
+function updateCamera() {
     if(lockCamera) {//camera stuff
 
         //xCLook = keyFrames[a].xCLook + (keyFrames[a+1].xCLook - keyFrames[a].xCLook) / keyFrames[a].duration * timingCounter;
@@ -485,6 +484,11 @@ function updateAnimation(timingCounter,a){
             zPosition = keyFrames[a].zPosition + (keyFrames[a + 1].zPosition - keyFrames[a].zPosition) / keyFrames[a].duration * timingCounter;
         }
     }//non camera stuff
+}
+
+function updateAnimation(timingCounter,a){
+    updateCamera();
+
     keyFrames[a].scene.color[0] + (keyFrames[a + 1].scene.color[0] - keyFrames[a].scene.color[0]) / keyFrames[a].duration * timingCounter;
     scene.background.g = keyFrames[a].scene.color[1] + (keyFrames[a + 1].scene.color[1] - keyFrames[a].scene.color[1]) / keyFrames[a].duration * timingCounter;
     scene.background.b = keyFrames[a].scene.color[2] + (keyFrames[a + 1].scene.color[2] - keyFrames[a].scene.color[2]) / keyFrames[a].duration * timingCounter;
