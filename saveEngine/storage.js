@@ -50,9 +50,9 @@ let saveSubSystem = {
 
 
     save: function() {
-        this.saveSettings();
         //saves the current file.
         if (this.isUsingSaves) {
+            this.saveSettings();
             this.currentVer++;
             localStorage.setItem(this.fileName, this.currentVer);
             localStorage.setItem('keyFrames:' + this.fileName, JSON.stringify(keyFrames));
@@ -182,6 +182,11 @@ let saveSubSystem = {
             //the save should now be deleted
             if (saveToDelete === this.fileName)
                 location.reload(true);//Get a new page from the sever other wise chrome chache will make git commit die
+        }
+        else if (saveToDelete ==="purge"){
+            localStorage.clear();
+            showPopUp("popUp_error_body", "Warning", "All local saves have been purged",100);
+
         }
         else {
             this.saveFileNamesList.pop(saveToDelete)//Removes old save from file name list

@@ -606,7 +606,7 @@ The spacing and such are now going to be dynamically loaded when ran and when th
     display: block;
     width: 90%;
     height: 20px;
-    color: #000;
+    color: var(--std_color_text_primary);
     background-color: var(--std_color_primary);
     transition: 150ms ease-in-out all;
     padding-top: 5px;
@@ -753,6 +753,7 @@ Width and top are being applied with javascript at runtime
     background-color: var(--std_color_primary);
     margin-left: auto;
     margin-right: auto;
+    overflow-y: auto;
     /* margin-top: auto; */
     /* margin-bottom: auto; */
 }
@@ -891,7 +892,7 @@ Width is determined at runtime by the spacer function
     padding-bottom: 5px;
     position: absolute;
     bottom: 81%;
-    z-index: 10;
+    z-index: 7;
 }
 
 #timeline_body {
@@ -1057,15 +1058,16 @@ input[type="checkbox"]:hover ~ label{
     position: absolute;
     display: none;
     width: 200px;
-    height: 190px;
+    height: 270px;
     margin: 0;
-    top: calc(50% - 95px);
+    top: calc(50% - 135px);
     left: calc(50% - 100px);
-    margin-right: -50%;
+    /* margin-right: -50%; */
     background-color: var(--std_color_secondary);
     opacity: 0.0;
     transition: 200ms ease-in-out all;
 }
+
 
 .popUp_body{
     position: absolute;

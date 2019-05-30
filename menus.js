@@ -2,20 +2,23 @@
 
 function showList(){
     //Brings up a list of all of the shapes that current exist in the scene. Called when the "Show List" button is clicked.
-    let sideBar=document.getElementById('shapeList_shapes');
-    let sideBarLight = document.getElementById("shapeList_lights");
-    hideAll();
-    // document.getElementById("sideBarList").style.display="inherit";
-    sideBar.innerHTML="";
-    sideBarLight.innerHTML="";
+    let shapesList=document.getElementById('shapesList_shapes').children[0];
+    let lightsList = document.getElementById("shapesList_lights").children[0];
+    shapesList.innerHTML="";
+    lightsList.innerHTML="";
+
     for (let i=0; i<shapes.length; i++){
         //console.log("Shape "+(i+1)+": "+shapes[i]['geometry']['type']);
-        sideBar.innerHTML+="<button onclick='setSelectedShape("+i+")'>"+(i+1)+": "+shapes[i].geometry.name+" <div style='width: 14px; height: 14px; background-color: #"+shapes[i].material.color.getHexString()+"; display: inline-block'></div></button><br>";
+        //sideBar.innerHTML+="<button onclick='setSelectedShape("+i+")'>"+(i+1)+": "+shapes[i].geometry.name+" <div style='width: 14px; height: 14px; background-color: #"+shapes[i].material.color.getHexString()+"; display: inline-block'></div></button><br>";
+
+        shapesList.innerHTML+="<li class='elementList_body' onclick='setSelectedShape("+i+")'>" + shapes[i].geometry.name +
+            "<div style='display: block;margin-left: 5px;width: 20px; float: left;height: 20px;background-color: #"+shapes[i].material.color.getHexString()+";'</li>"
     }
     for (let i = 0; i < lights.length; i++){
-        sideBarLight.innerHTML+="<button onclick='setSelectedLight("+i+")'>"+(i+1)+": "+lights[i].name+" <div style='width: 14px; height: 14px; background-color: #"+lights[i].color.getHexString()+"; display: inline-block'></div></button><br>";
+        lightsList.innerHTML+="<li class='elementList_body' onclick='setSelectedLight("+i+")'>" + lights[i].name +
+            "<div style='display: block;margin-left: 5px;width: 20px; float: left;height: 20px;background-color: #"+lights[i].color.getHexString()+";'</li>"
     }
-    console.log("Showed List");
+    //console.log("Showed List");
     if(usingTutorial){
         usingTutorial = false;
         document.getElementById("tutorialArrow").style.display="none";

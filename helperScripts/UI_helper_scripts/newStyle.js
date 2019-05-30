@@ -88,7 +88,10 @@ function showPopUp(popUpToShow, popUpContent, otherText, mode){
     getId("std_popUp").classList.add("popUp_show");
     getId(popUpToShow).classList.add("popUp_show");
     getId(popUpToShow).children.item(0).textContent = popUpContent;
-    getId(popUpToShow).children.item(1).children.item(3).innerHTML = otherText;
+    if(getId(popUpToShow).children.item(1).classList.contains("std_input_text"))
+        getId(popUpToShow).children.item(1).children.item(3).innerHTML = otherText;
+    else
+        getId(popUpToShow).children.item(1).innerHTML = otherText;
     getId(popUpToShow).children.item(2).setAttribute('onclick', "popUpAction("+mode+"); hidePopUp();");
 
     shownPopUp = popUpToShow;
@@ -101,6 +104,13 @@ function popUpAction(num){
         newShape("text",0,0,0,0,0,0,'#FF0000','#000000',getPopUpInput());
         saveSubSystem.addText(getPopUpInput());
     }
+    else if (num==100){
+        location.reload();
+    }
+    else{
+        return;
+    }
+
     getId(getId(shownPopUp).children.item(1).children.item(0).value = "");
 }
 

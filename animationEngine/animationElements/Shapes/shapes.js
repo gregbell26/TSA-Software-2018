@@ -419,8 +419,8 @@ function newShape(type,x,y,z,posX,posY,posZ,color,border,text){
         document.getElementById('position_x').value = posX;
         document.getElementById('position_y').value = posY;
         document.getElementById('position_z').value = posZ;
-        getId("shapeList_shapes").innerHTML+="<button onclick='setSelectedShape("+selectedShape+");showMenu(\"menu_newShapes\");' style='color:black'>"+type+"</button><br>";
-        getId("newShapes_select").value = "newShape";
+        // getId("shapeList_shapes").innerHTML+="<button onclick='setSelectedShape("+selectedShape+");showMenu(\"menu_newShapes\");' style='color:black'>"+type+"</button><br>";
+        // getId("newShapes_select").value = "newShape";
     }
     else if(type==="textIn"){
         showPopUp("popUp_input_body", "New Text", "Enter Text",1);

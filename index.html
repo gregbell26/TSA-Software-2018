@@ -41,8 +41,8 @@
         <!--
         These are being included now because everything uses them
         -->
-        <link href="style/fonts/robotoSlab.css" rel="stylesheet"><!--imports Roboto Slab with the font weights 400 and 300--> <!--This file is remote-->
-        <link href="style/fonts/openSans.css" rel="stylesheet"><!--imports Open Sans with the font weight 400--> <!--This file is remote-->
+        <link href="style/fonts/robotoSlab.css" rel="stylesheet"><!--imports Roboto Slab with the font weights 400 and 300-->
+        <link href="style/fonts/openSans.css" rel="stylesheet"><!--imports Open Sans with the font weight 400-->
 
         <!--Backend Scripts-->
         <!--Save Engine-->
@@ -189,26 +189,31 @@
         <div id="std_menu_container">
             <div class="std_menu menu_hidden" id="menu_shapesList">
                 <h2>
-                    Shapes List
+                    Elements
                 </h2>
                 <h3>
                     Shapes
                 </h3>
 
-                <div id="shapeList_shapes">
+                <div class="std_body_elementList" id="shapesList_shapes">
+                    <ul>
+
+                    </ul>
 
                 </div>
 
                 <h3>
                     Lights
                 </h3>
-                <div id="shapeList_lights">
+                <div class="std_body_elementList" id="shapesList_lights">
+                    <ul>
+
+                    </ul>
 
                 </div>
-                <div class="bottom_menu_spacer">
-                </div>
             </div>
-            <div class="std_menu menu_hidden" id="menu_newShapes" style="overflow-y: scroll;">
+
+            <div class="std_menu menu_hidden" id="menu_newShapes">
                 <h2>
                     New Elements
                 </h2>
@@ -223,7 +228,7 @@
                             <option value="cube">New Cube</option>
                             <option value="cylinder">New Cylinder</option>
                             <option value="cone">New Cone</option>
-                            <option value="custom">New Custom Shape</option>
+<!--                            <option value="custom">New Custom Shape</option>-->
                             <option value="dodecahedron">New Dodecahedron</option>
                             <option value="icosahedron">New Icosahedron</option>
                             <option value="octahedron">New Octahedron</option>
@@ -264,23 +269,24 @@
                 <h3>Edit Current <h3 id="currentEditing_type">shape</h3></h3>
                 <div id="element_Information">
                     <div id="currentEditing_dimensions">
+
                         <h3>
                             Dimensions
                         </h3>
                         <div class="std_input_text">
-                            <input type="number" step="any" id="diemsions_x" onchange="resizeShape('x', Number(this.value));" onkeyup="/*this.value++;*/ /*resizeShape('x', this.value)*/" required>
+                            <input type="number" step="any" id="diemsions_x" onchange="resizeShape('x', Number(this.value));"  required>
                             <span class="text_highlight"></span>
                             <span class="text_bar"></span>
                             <label>X</label>
                         </div>
                         <div class="std_input_text">
-                            <input type="number" step="any" id="diemsions_y" onchange="resizeShape('y', Number(this.value));" onkeyup="/*this.value++;*/ /*resizeShape('y', this.value)*/" required>
+                            <input type="number" step="any" id="diemsions_y" onchange="resizeShape('y', Number(this.value));"  required>
                             <span class="text_highlight"></span>
                             <span class="text_bar"></span>
                             <label>Y</label>
                         </div>
                         <div class="std_input_text">
-                            <input type="number" step="any" id="diemsions_z" onchange="resizeShape('z', Number(this.value));" onkeyup="/*this.value++;*/ /*resizeShape('z', this.value)*/" required>
+                            <input type="number" step="any" id="diemsions_z" onchange="resizeShape('z', Number(this.value));"  required>
                             <span class="text_highlight"></span>
                             <span class="text_bar"></span>
                             <label>Z</label>
@@ -291,19 +297,19 @@
                             Position
                         </h3>
                         <div class="std_input_text">
-                            <input type="number" step="any" id="position_x" onchange="moveShape('x', Number(this.value))" onkeyup="/*moveShape('x', this.value)*/" required>
+                            <input type="number" step="any" id="position_x" onchange="moveShape('x', Number(this.value))" required>
                             <span class="text_highlight"></span>
                             <span class="text_bar"></span>
                             <label>X</label>
                         </div>
                         <div class="std_input_text">
-                            <input type="number" step="any" id="position_y" onchange="moveShape('y', Number(this.value));" onkeyup="/*moveShape('y', this.value)*/" required>
+                            <input type="number" step="any" id="position_y" onchange="moveShape('y', Number(this.value));" required>
                             <span class="text_highlight"></span>
                             <span class="text_bar"></span>
                             <label>Y</label>
                         </div>
                         <div class="std_input_text">
-                            <input type="number" step="any" id="position_z" onchange="moveShape('z', Number(this.value));" onkeyup="/*moveShape('z', this.value)*/" required>
+                            <input type="number" step="any" id="position_z" onchange="moveShape('z', Number(this.value));" required>
                             <span class="text_highlight"></span>
                             <span class="text_bar"></span>
                             <label>Z</label>
@@ -314,19 +320,19 @@
                             Rotation
                         </h3>
                         <div class="std_input_text">
-                            <input type="number" step="any" id="rotation_x" onchange="rotateShape('x', Number(this.value))" onkeyup="/*moveShape('x', this.value)*/" required>
+                            <input type="number" step="any" id="rotation_x" onchange="rotateShape('x', Number(this.value))" required>
                             <span class="text_highlight"></span>
                             <span class="text_bar"></span>
                             <label>X</label>
                         </div>
                         <div class="std_input_text">
-                            <input type="number" step="any" id="rotation_y" onchange="rotateShape('y', Number(this.value));" onkeyup="/*moveShape('y', this.value)*/" required>
+                            <input type="number" step="any" id="rotation_y" onchange="rotateShape('y', Number(this.value));" required>
                             <span class="text_highlight"></span>
                             <span class="text_bar"></span>
                             <label>Y</label>
                         </div>
                         <div class="std_input_text">
-                            <input type="number" step="any" id="rotation_z" onchange="rotateShape('z', Number(this.value));" onkeyup="/*moveShape('z', this.value)*/" required>
+                            <input type="number" step="any" id="rotation_z" onchange="rotateShape('z', Number(this.value));" required>
                             <span class="text_highlight"></span>
                             <span class="text_bar"></span>
                             <label>Z</label>
@@ -362,7 +368,7 @@
                 <h2>
                     Camera Controls
                 </h2>
-                <h3>Camera Position:</h3>
+                <h3>Camera Position</h3>
                 <div class="std_input_text">
                     <input type="number" step="any" id="camera_x" onchange="moveCamera('x', Number(this.value));" onkeyup="/*this.value++;*/ /*resizeShape('x', this.value)*/" required>
                     <span class="text_highlight"></span>
@@ -383,28 +389,28 @@
                 </div>
                 <div class="bottom_menu_spacer">
                 </div>
-                <div id = "advanced_camera_options">
-                    <h3>Camera Rotation Center</h3>
-                    <div class="std_input_text">
-                        <input type="number" step="any" id="camera_center_x" onchange="changeCameraCenter('x', Number(this.value));" onkeyup="/*this.value++;*/ /*resizeShape('x', this.value)*/">
-                        <span class="text_highlight"></span>
-                        <span class="text_bar"></span>
-                        <label>X</label>
-                    </div>
-                    <div class="std_input_text">
-                        <input type="number" step="any" id="camera_center_y" onchange="changeCameraCenter('y', Number(this.value));" onkeyup="/*this.value++;*/ /*resizeShape('y', this.value)*/">
-                        <span class="text_highlight"></span>
-                        <span class="text_bar"></span>
-                        <label>Y</label>
-                    </div>
-                    <div class="std_input_text">
-                        <input type="number" step="any" id="camera_center_z" onchange="changeCameraCenter('z', Number(this.value));" onkeyup="/*this.value++;*/ /*resizeShape('z', this.value)*/">
-                        <span class="text_highlight"></span>
-                        <span class="text_bar"></span>
-                        <label>Z</label>
-                    </div>
+<!--                <div id = "advanced_camera_options">-->
+<!--                    <h3>Camera Rotation Center</h3>-->
+<!--                    <div class="std_input_text">-->
+<!--                        <input type="number" step="any" id="camera_center_x" onchange="changeCameraCenter('x', Number(this.value));" onkeyup="/*this.value++;*/ /*resizeShape('x', this.value)*/">-->
+<!--                        <span class="text_highlight"></span>-->
+<!--                        <span class="text_bar"></span>-->
+<!--                        <label>X</label>-->
+<!--                    </div>-->
+<!--                    <div class="std_input_text">-->
+<!--                        <input type="number" step="any" id="camera_center_y" onchange="changeCameraCenter('y', Number(this.value));" onkeyup="/*this.value++;*/ /*resizeShape('y', this.value)*/">-->
+<!--                        <span class="text_highlight"></span>-->
+<!--                        <span class="text_bar"></span>-->
+<!--                        <label>Y</label>-->
+<!--                    </div>-->
+<!--                    <div class="std_input_text">-->
+<!--                        <input type="number" step="any" id="camera_center_z" onchange="changeCameraCenter('z', Number(this.value));" onkeyup="/*this.value++;*/ /*resizeShape('z', this.value)*/">-->
+<!--                        <span class="text_highlight"></span>-->
+<!--                        <span class="text_bar"></span>-->
+<!--                        <label>Z</label>-->
+<!--                    </div>-->
 
-                </div>
+<!--                </div>-->
 
             </div>
 
@@ -513,8 +519,11 @@
                 </div>
 
                 <h2>
-                    Account
+                    Storage
                 </h2>
+                <h3>
+                    Cloud Storage
+                </h3>
                 <div id="account_sub_signedIn">
                     <div class="std_body_button" onclick="signOut()">
                         <span class="button_body">Sign Out</span>
@@ -522,7 +531,7 @@
                     </div>
 
                     <div class="std_body_button" onclick="saveCurrentToCloud()" >
-                        <span class="button_body">Cloud Save</span>
+                        <span class="button_body">Save to Cloud</span>
                         <span class="button_bar"></span>
                     </div>
 
@@ -559,7 +568,7 @@
                         <span class="button_bar"></span>
                     </div>
 
-                    <div class="std_body_button" onclick="
+                    <div class="std_body_button"  style="max-width: initial" onclick="
                         createAccount(document.getElementById('signedOut_email').value, document.getElementById('signedOut_password').value, document.getElementById('signedOut_password').value);
                     " >
                         <span class="button_body">Create Account</span>
@@ -567,6 +576,34 @@
                     </div>
 
                 </div>
+
+                <h3>
+                    Local Storage
+                </h3>
+                <div class="std_body_list" style="max-width: initial; width: 100%;">
+                    <select class="list_body" id="localStorage_saveSelector"
+                            onchange="">
+
+                    </select>
+                    <span class="list_bar"></span>
+                </div>
+
+                <div class="std_body_button"
+                     onclick="" >
+                    <span class="button_body">Load Save</span>
+                    <span class="button_bar"></span>
+                </div>
+                <div class="std_body_button"
+                     onclick="" >
+                    <span class="button_body">Delete Save</span>
+                    <span class="button_bar"></span>
+                </div>
+                <div class="std_body_button"
+                     onclick="saveSubSystem.isUsingSaves = false, saveSubSystem.deleteSave('purge')" >
+                    <span class="button_body">Purge All Saves</span>
+                    <span class="button_bar"></span>
+                </div>
+
 
                 <h2>
                     User Interface
@@ -641,7 +678,7 @@
                         <li>Gregory B.</li>
                     </ul>
 
-                    <div style="margin-bottom: 110%;"></div>
+                    <div style="margin-bottom: 100%;"></div>
                 </div>
 
             </div>
@@ -652,14 +689,14 @@
         <div id="std_timeline">
             <div id="timeline_buttonContainer">
                 <span class="timeline_button" id="timeline_addKeyframe" onclick="addFrame();">
-                    <img onclick="addFrame();" class="std_icon_normal"
+                    <img  class="std_icon_normal"
                          src="./style/assets/svgs/timeline_icons/timeline_addKeyframe_icon.svg"
                          />
-                    <img onclick="addFrame();" class="std_icon_dark"
+                    <img  class="std_icon_dark"
                          src="./style/assets/svgs/timeline_icons/timeline_addKeyframe_dark_icon.svg"
                          />
                 </span>
-                <span class="timeline_button" id="timeline_removeKeyframe">
+                <span class="timeline_button" id="timeline_removeKeyframe" onclick="removeFrame(keyFrames.length-1)">
                     <img class="std_icon_normal"
                          src="./style/assets/svgs/timeline_icons/timeline_deleteKeyframe_icon.svg"
                          />
@@ -668,18 +705,18 @@
                          />
                 </span>
                 <span onclick="playAnimation(0)" class="timeline_button" id="timeline_play">
-                    <img onclick="playAnimation(0)" class="std_icon_normal"
+                    <img class="std_icon_normal"
                          src="./style/assets/svgs/timeline_icons/timeline_play_icon.svg"
                          />
-                    <img onclick="playAnimation(0)" class="std_icon_dark"
+                    <img class="std_icon_dark"
                          src="./style/assets/svgs/timeline_icons/timeline_play_dark_icon.svg"
                          />
                 </span>
                 <span onclick="loop()" class="timeline_button" id="timeline_repeat">
-                    <img onclick="loop()" class="std_icon_normal"
+                    <img  class="std_icon_normal"
                          src="./style/assets/svgs/timeline_icons/timeline_loop_icon.svg"
                          />
-                    <img onclick="loop()" class="std_icon_dark"
+                    <img  class="std_icon_dark"
                          src="./style/assets/svgs/timeline_icons/timeline_loop_dark_icon.svg"
                          />
                 </span>
@@ -703,6 +740,7 @@
             z-index: 2;
             display: none;
         ">&larr;</span> <!--The arrow that points things out for the user-->
+
         <div id="std_popUp">
         <div class="popUp_body" id="popUp_input_body">
             <h3>
@@ -716,7 +754,7 @@
                 <label>Enter</label>
             </div>
 
-            <div class="std_body_button" onclick="hidePopUp()" style="bottom: 0;left: 30%;/* margin-right: auto; */">
+            <div class="std_body_button" onclick="hidePopUp()" style="bottom: -90px;left: calc(50% - 22.578px);/* margin-right: auto; */">
                 <span class="button_body">ok</span>
                 <span class="button_bar"></span>
             </div>
@@ -726,10 +764,10 @@
             <h3>
                 std_popUp_error
             </h3>
-            <p>
+            <p style="padding: 10px; text-align: center; font-size: 12pt;">
                 std_popUp_error_context
             </p>
-            <div class="std_body_button" onclick="hidePopUp()" style="bottom: 0;left: 30%;/* margin-right: auto; */">
+            <div class="std_body_button" onclick="hidePopUp()" style="bottom: -90px;left: calc(50% - 22.578px);/* margin-right: auto; *//">
                 <span class="button_body">ok</span>
                 <span class="button_bar"></span>
             </div>
@@ -757,7 +795,6 @@
     <!--Animation Engine-->
     <script src="animationEngine/utils.js"></script>
     <script src="animationEngine/keyframes/keyframes.js"></script>
-    <!--        TEMPORARY DISABLED-->
     <script src="animationEngine/animate.js"></script>
 
 

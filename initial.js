@@ -123,33 +123,10 @@ var tempCircleMoveShapes = {
 var shapesCmove =[];
 
 
-var dialog = document.querySelector('dialog');
 
-function showPrompt(title, defaultText){
-    document.getElementById("popupTitle").innerHTML = title;
-    document.getElementById("popupInput").innerHTML = defaultText;
-    dialog.showModal();
-}
-//another messagebox
 
-var promptResp = 0;
-
-function promptResponse(value) {
-    console.log(value);
-    if (promptResp == 1) {
-        var saveName = value;
-        if (saveName !== null) {
-            console.log("User message received.");
-            saveSubSystem.setIsUsingSaves(true);
-            saveSubSystem.setFileName(saveName, true);
-            dialog.close();
-            updateTimeline();
-        }
-    }
-}
 
 //Greatness by Gregory
-var buttonClicked = false;
 
 
 function start(){
@@ -168,14 +145,12 @@ function start(){
     init=true;
     toggleEditShapeOrLight(false);
     if((saveSelectorElement.options[saveSelectorElement.selectedIndex].value === "Load Save" || !saveSubSystem.openPrevious) && saveSubSystem.isUsingSaves){
-        /*promptResp = 1;*/
-        /*showPrompt("Please enter a name for your save", "New Animation");*/
         showPopUp("popUp_input_body", "New Save", "Enter Save Name",0);
 
     //handles savings creates a new one if there is no previous save when starting software
     }
     if(!saveSubSystem.isUsingSaves){
-        console.log("Save subsystem has been disabled by the user");
+        showPopUp("popUp_error_body", "Warning", "The local save engine has been disabled",-1);
 //debugging
     }
 
@@ -186,13 +161,6 @@ function start(){
         //has saves
     }
     onWindowResize();
-    // addLight();
-    // addPointLight();
-
-
-    //showList();
-
-    //updateTimeline();
 }
 
 //
