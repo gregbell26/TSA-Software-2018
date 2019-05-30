@@ -106,7 +106,7 @@ var zoom2v, zoom2Zv;
 var zoomChangev, zoomZChangev;
 var showingLight;
 
-
+var cameraDebug = false;
 //stuff for circular shape movement
 var tempCircleMoveShapes = {
     MvX:0.0,
