@@ -370,47 +370,89 @@
                 </h2>
                 <h3>Camera Position</h3>
                 <div class="std_input_text">
-                    <input type="number" step="any" id="camera_x" onchange="moveCamera('x', Number(this.value));" onkeyup="/*this.value++;*/ /*resizeShape('x', this.value)*/" required>
+                    <input type="number" step="any" id="camera_x" onchange="moveCamera('x', Number(this.value));" required>
                     <span class="text_highlight"></span>
                     <span class="text_bar"></span>
                     <label>X</label>
                 </div>
                 <div class="std_input_text">
-                    <input type="number" step="any" id="camera_y" onchange="moveCamera('y', Number(this.value));" onkeyup="/*this.value++;*/ /*resizeShape('y', this.value)*/" required>
+                    <input type="number" step="any" id="camera_y" onchange="moveCamera('y', Number(this.value));"  required>
                     <span class="text_highlight"></span>
                     <span class="text_bar"></span>
                     <label>Y</label>
                 </div>
                 <div class="std_input_text">
-                    <input type="number" step="any" id="camera_z" onchange="moveCamera('z', Number(this.value));" onkeyup="/*this.value++;*/ /*resizeShape('z', this.value)*/" required>
+                    <input type="number" step="any" id="camera_z" onchange="moveCamera('z', Number(this.value));"  required>
                     <span class="text_highlight"></span>
                     <span class="text_bar"></span>
                     <label>Z</label>
                 </div>
+                    <div class="std_input_checkboxes">
+                        <input type="checkbox"
+                               onchange="if(this.checked){document.getElementById('advanced_camera_options').style.display='inherit';}else{document.getElementById('advanced_camera_options').style.display='none'}"
+                               required>
+                        <label>Show Advance Options</label>
+                    </div>
+                <div id="advanced_camera_options" style="display: none">
+                    <h3>
+                        Advanced Camera Options
+                    </h3>
+
+                    <div class="std_input_checkboxes">
+                        <input type="checkbox" id="advCamera_lockToggle" onchange="changeCameraLock()" checked required>
+                        <label style="font-size: 11pt;">Lock Camera During Animation</label>
+                    </div>
+
+                    <div class="std_input_checkboxes">
+                        <input type="checkbox" id="advCamera_circleToggle" onchange="changeCameraCircleRotation()" required>
+                        <label style="font-size: 11pt;">Use Circular Camera Movement</label>
+                    </div>
+
+                    <h3>Camera Center</h3>
+                    <div class="std_input_text">
+                        <input type="number" step="any" id="camera_center_x" onchange="changeCameraCenter('x', Number(this.value));" required>
+                        <span class="text_highlight"></span>
+                        <span class="text_bar"></span>
+                        <label>X</label>
+                    </div>
+                    <div class="std_input_text">
+                        <input type="number" step="any" id="camera_center_y" onchange="changeCameraCenter('y', Number(this.value));" required>
+                        <span class="text_highlight"></span>
+                        <span class="text_bar"></span>
+                        <label>Y</label>
+                    </div>
+                    <div class="std_input_text">
+                        <input type="number" step="any" id="camera_center_z" onchange="changeCameraCenter('z', Number(this.value));" required>
+                        <span class="text_highlight"></span>
+                        <span class="text_bar"></span>
+                        <label>Z</label>
+                    </div>
+
+                    <h3>Camera Focus</h3>
+                    <div class="std_input_text">
+                        <input type="number" step="any" id="camera_focus_x" onchange="changeCameraFocus('x', Number(this.value));" required>
+                        <span class="text_highlight"></span>
+                        <span class="text_bar"></span>
+                        <label>X</label>
+                    </div>
+                    <div class="std_input_text">
+                        <input type="number" step="any" id="camera_focus_y" onchange="changeCameraFocus('y', Number(this.value));" required>
+                        <span class="text_highlight"></span>
+                        <span class="text_bar"></span>
+                        <label>Y</label>
+                    </div>
+                    <div class="std_input_text">
+                        <input type="number" step="any" id="camera_focus_z" onchange="changeCameraFocus('z', Number(this.value));" required>
+                        <span class="text_highlight"></span>
+                        <span class="text_bar"></span>
+                        <label>Z</label>
+                    </div>
+
+
+
+                </div>
                 <div class="bottom_menu_spacer">
                 </div>
-<!--                <div id = "advanced_camera_options">-->
-<!--                    <h3>Camera Rotation Center</h3>-->
-<!--                    <div class="std_input_text">-->
-<!--                        <input type="number" step="any" id="camera_center_x" onchange="changeCameraCenter('x', Number(this.value));" onkeyup="/*this.value++;*/ /*resizeShape('x', this.value)*/">-->
-<!--                        <span class="text_highlight"></span>-->
-<!--                        <span class="text_bar"></span>-->
-<!--                        <label>X</label>-->
-<!--                    </div>-->
-<!--                    <div class="std_input_text">-->
-<!--                        <input type="number" step="any" id="camera_center_y" onchange="changeCameraCenter('y', Number(this.value));" onkeyup="/*this.value++;*/ /*resizeShape('y', this.value)*/">-->
-<!--                        <span class="text_highlight"></span>-->
-<!--                        <span class="text_bar"></span>-->
-<!--                        <label>Y</label>-->
-<!--                    </div>-->
-<!--                    <div class="std_input_text">-->
-<!--                        <input type="number" step="any" id="camera_center_z" onchange="changeCameraCenter('z', Number(this.value));" onkeyup="/*this.value++;*/ /*resizeShape('z', this.value)*/">-->
-<!--                        <span class="text_highlight"></span>-->
-<!--                        <span class="text_bar"></span>-->
-<!--                        <label>Z</label>-->
-<!--                    </div>-->
-
-<!--                </div>-->
 
             </div>
 
