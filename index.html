@@ -599,7 +599,7 @@
                     <span class="button_bar"></span>
                 </div>
                 <div class="std_body_button"
-                     onclick="saveSubSystem.isUsingSaves = false, saveSubSystem.deleteSave('purge')" >
+                     onclick="saveSubSystem.isUsingSaves = false, saveSubSystem.deleteSave('purge')" style="max-width: initial">
                     <span class="button_body">Purge All Saves</span>
                     <span class="button_bar"></span>
                 </div>
@@ -688,7 +688,7 @@
         <!--TIMELINE-->
         <div id="std_timeline">
             <div id="timeline_buttonContainer">
-                <span class="timeline_button" id="timeline_addKeyframe" onclick="addFrame();">
+                <span class="timeline_button" id="timeline_addKeyframe" onclick="addFrame(); saveSubSystem.save();">
                     <img  class="std_icon_normal"
                          src="./style/assets/svgs/timeline_icons/timeline_addKeyframe_icon.svg"
                          />
@@ -696,7 +696,7 @@
                          src="./style/assets/svgs/timeline_icons/timeline_addKeyframe_dark_icon.svg"
                          />
                 </span>
-                <span class="timeline_button" id="timeline_removeKeyframe" onclick="removeFrame(keyFrames.length-1)">
+                <span class="timeline_button" id="timeline_removeKeyframe" onclick="removeFrame(keyFrames.length-1); saveSubSystem.save();">
                     <img class="std_icon_normal"
                          src="./style/assets/svgs/timeline_icons/timeline_deleteKeyframe_icon.svg"
                          />
