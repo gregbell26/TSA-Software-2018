@@ -316,9 +316,9 @@ function updateAnimation(timingCounter,a){
             console.log("moving X " + MvXv/Math.PI*180+"°");
             console.log("moving Y " + MvYv/Math.PI*180+"°");
         }
-        yCLook = (zoom1v  +  zoomChangev/keyFrames[a].duration * timingCounter) * (Math.sin(Ry1v+MvYv/keyFrames[a].duration * timingCounter))+yPosition;
-        xCLook = -((zoom1Zv + zoomZChangev/keyFrames[a].duration * timingCounter) * (Math.cos(Rz1v+MvXv/keyFrames[a].duration * timingCounter))-xPosition);
-        zCLook = -((zoom1Zv + zoomZChangev/keyFrames[a].duration * timingCounter) * (Math.sin(Rz1v+MvXv/keyFrames[a].duration * timingCounter))-zPosition);
+        //yCLook = (zoom1v  +  zoomChangev/keyFrames[a].duration * timingCounter) * (Math.sin(Ry1v+MvYv/keyFrames[a].duration * timingCounter))+yPosition;
+        //xCLook = -((zoom1Zv + zoomZChangev/keyFrames[a].duration * timingCounter) * (Math.cos(Rz1v+MvXv/keyFrames[a].duration * timingCounter))-xPosition);
+        //zCLook = -((zoom1Zv + zoomZChangev/keyFrames[a].duration * timingCounter) * (Math.sin(Rz1v+MvXv/keyFrames[a].duration * timingCounter))-zPosition);
         if(cameraDebug) {
             console.log(xCLook);
             console.log(yCLook);

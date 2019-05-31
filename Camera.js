@@ -22,9 +22,6 @@ function moveCamera(dimension,newValue){
             break;
     }
 }
-function changeCameraLock(){//Changes whether or not the camera is locked during animation to change
-    lockCamera = document.getElementById("chkbox1").checked;
-}
 
 function changeCameraCenter(dimension,newValue){
     switch(dimension){
@@ -40,8 +37,27 @@ function changeCameraCenter(dimension,newValue){
     }
 }
 
+function changeCameraFocus(dimension,newValue){
+    switch(dimension){
+        case "x":
+            xCLook = newValue;
+            break;
+        case "y":
+            yCLook = newValue;
+            break;
+        case "z":
+            zCLook = newValue;
+            break;
+    }
+}
+
+
 function changeCameraCircleRotation(){//Changes whether or not the camera moves in a circular fashion during the animation
-    circleCameraRotation = document.getElementById("chkbox2").checked;
+    circleCameraRotation = document.getElementById("advCamera_circleToggle").checked;
+}
+
+function changeCameraLock(){//Changes whether or not the camera is locked during animation to change
+    lockCamera = document.getElementById("advCamera_lockToggle").checked;
 }
 
 function changeSensitivity(change) {//Changes sensitivity to change
