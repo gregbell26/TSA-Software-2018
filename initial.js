@@ -42,6 +42,7 @@ window.onload = function(){
     saveSubSystem.loadSettings();
     stylesheetLoader(settings.userInterface.stylesheetPref);
     saveSubSystem.loadSaveNames("ws_loadMenu");
+    saveSubSystem.loadSaveNames("localStorage_saveSelector");
 
     //Sets the HTML elements
 
@@ -49,19 +50,26 @@ window.onload = function(){
     //This static way will work and is plenty fast
     switch(settings.userInterface.stylesheetPref) {
         case "normalMode":
-            document.getElementById("settings_styleSheetSelector").selectedIndex = 0;
+            getId("settings_styleSheetSelector").selectedIndex = 0;
             break;
         case "darkMode":
-            document.getElementById("settings_styleSheetSelector").selectedIndex = 1;
+            getId("settings_styleSheetSelector").selectedIndex = 1;
             break;
         case "amoledMode":
-            document.getElementById("settings_styleSheetSelector").selectedIndex = 2;
+            getId("settings_styleSheetSelector").selectedIndex = 2;
             break;
     }
 
-    document.getElementById("settings_mouseSensitivity").value = settings.camera.mouseSensitivity;
-    document.getElementById("settings_zoomAmount").value = settings.camera.zoomAmount;
+    getId("settings_mouseSensitivity").value = settings.camera.mouseSensitivity;
+    getId("settings_zoomAmount").value = settings.camera.zoomAmount;
 
+    getId("advCamera_centerX").value = settings.camera.centerPos[0];
+    getId("advCamera_centerY").value = settings.camera.centerPos[1];
+    getId("advCamera_centerZ").value = settings.camera.centerPos[2];
+
+    getId("advCamera_focusX").value = settings.camera.focusPos[0];
+    getId("advCamera_focusY").value = settings.camera.focusPos[1];
+    getId("advCamera_focusZ").value = settings.camera.focusPos[2];
 };
 
 //more variable declarations from toBeSorted

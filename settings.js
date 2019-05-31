@@ -4,7 +4,7 @@ This file is replacing the incredibly segmented settings. This is gonna be simil
 This file will also contain global config data
 
 Author Jordan M. Gregory B.
-Edited 4/12/18
+Edited 5/30/19
 
  */
 
@@ -14,7 +14,9 @@ var settings = {
 
     camera : {
         mouseSensitivity: 0,
-        zoomAmount: 0
+        zoomAmount: 0,
+        centerPos: [0,0,0],
+        focusPos: [0,0,0]
 
 
     },
@@ -34,6 +36,8 @@ var settings = {
     setToDefault: function(){
         this.camera.mouseSensitivity = 1;
         this.camera.zoomAmount = 1.5;
+        this.camera.centerPos = [0,0,0];
+        this.camera.focusPos = [0,0,0];
 
         this.userInterface.stylesheetPref = "darkMode";
 
@@ -47,12 +51,18 @@ var settings = {
         }
         if(loadedSettings.camera==null){
             loadedSettings.camera = {
-                mouseSensitivity: loadedSettings.mouseSensitivity,
-                zoomAmount: loadedSettings.zoomAmount,
+                mouseSensitivity: loadedSettings.mouseSensitivity,//this is just for backwards compatibility this will load the old version of mouse sensitivty into its new place
+                zoomAmount: loadedSettings.zoomAmount,//ditto
+                centerPos: [0,0,0],
+                focusPos: [0,0,0],
+
             };
         }
         this.camera.mouseSensitivity = loadedSettings.camera.mouseSensitivity;
         this.camera.zoomAmount = loadedSettings.camera.zoomAmount;
+        this.camera.centerPos = loadedSettings.camera.centerPos;
+        this.camera.focusPos = loadedSettings.camera.focusPos;
+
         if(loadedSettings.userInterface==null){
             loadedSettings.userInterface = {
                 stylesheetPref: "darkMode",
