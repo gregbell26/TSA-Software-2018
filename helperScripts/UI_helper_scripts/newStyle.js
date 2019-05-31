@@ -32,11 +32,16 @@ async function initMainUI(){
 * */
 var activeMenu ="init";//init value
 function showMenu(menuToShow){
-    getId("std_menu_container").style.display = "inherit";
+    //getId("std_menu_container").style.display = "inherit";
     if(activeMenu !== "init") {
         getId(activeMenu).classList.remove("menu_show");
         getId(activeMenu).classList.add("menu_hidden");
     }
+
+    // if(activeMenu ==="menu_newShapes"){
+    //     getId("element_Information").style.display = 'none';
+    //     getId('currentEditing_type').style.display = 'none';
+    // }
 
     getId(menuToShow).classList.remove("menu_hidden");
     getId(menuToShow).classList.add("menu_show");
@@ -131,19 +136,14 @@ function loadSaveNames() {
 
 //----------------------------STYLE-FUNCTIONS--------------------------------------------------
 function iconSwapper(target, mode){
-    // if(mode !== "darkMode" || mode !=="normalMode")//early break case
-    //     return -1;
-
     if(target ==="all"){
         if(mode === "darkMode"){
             for (let el of document.querySelectorAll('.std_icon_normal')) el.style.display = "none";
             for (let el of document.querySelectorAll('.std_icon_dark')) el.style.display = "block";
-            return 1;
         }
         else {
             for (let el of document.querySelectorAll('.std_icon_dark')) el.style.display = "none";
             for (let el of document.querySelectorAll('.std_icon_normal')) el.style.display = "block";
-            return 2;
         }
     }
 

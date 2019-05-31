@@ -3,7 +3,7 @@ This file is replacing the incredibly segmented settings. This is gonna be simil
     as that file does what is supposed to without any fuss
 This file will also contain global config data
 
-Author Jordan M. Gregory B.
+Author Gregory B.
 Edited 5/30/19
 
  */
@@ -51,7 +51,8 @@ var settings = {
         }
         if(loadedSettings.camera==null){
             loadedSettings.camera = {
-                mouseSensitivity: loadedSettings.mouseSensitivity,//this is just for backwards compatibility this will load the old version of mouse sensitivty into its new place
+                mouseSensitivity: loadedSettings.mouseSensitivity,//this is just for backwards compatibility this will load the old version of
+                // mouse sensitivity into its new place
                 zoomAmount: loadedSettings.zoomAmount,//ditto
                 centerPos: [0,0,0],
                 focusPos: [0,0,0],

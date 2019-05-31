@@ -8,9 +8,6 @@ function showList(){
     lightsList.innerHTML="";
 
     for (let i=0; i<shapes.length; i++){
-        //console.log("Shape "+(i+1)+": "+shapes[i]['geometry']['type']);
-        //sideBar.innerHTML+="<button onclick='setSelectedShape("+i+")'>"+(i+1)+": "+shapes[i].geometry.name+" <div style='width: 14px; height: 14px; background-color: #"+shapes[i].material.color.getHexString()+"; display: inline-block'></div></button><br>";
-
         shapesList.innerHTML+="<li class='elementList_body' onclick='setSelectedShape("+i+")'>" + shapes[i].geometry.name +
             "<div style='display: block;margin-left: 5px;width: 20px; float: left;height: 20px;background-color: #"+shapes[i].material.color.getHexString()+";'</li>"
     }
@@ -29,7 +26,7 @@ function setSelectedShape(num){
     selectedShape = num;
     toggleEditShapeOrLight(false);
     if(num === -1){
-        showMenu("menu_newShapes");
+        //showMenu("menu_newShapes");
         document.getElementById("element_Information").style.display = 'none';
         document.getElementById('currentEditing_type').style.display = 'none';
         return;
@@ -58,7 +55,7 @@ function setSelectedShape(num){
 function setSelectedLight(num) {
     selectedLight = num;
     if(num === -1){
-        showMenu("menu_newShapes");
+        //howMenu("menu_newShapes");
         document.getElementById("element_Information").style.display = 'none';
         document.getElementById('currentEditing_type').style.display = 'none';
         return;
@@ -82,7 +79,7 @@ function setSelectedLight(num) {
 }
 
 function cameraMenu(){
-    hideAll();
+    //hideAll();
     document.getElementById('sideBarCamera').style.display="inherit";
     document.getElementById('xPositionBox').value = xPosition;
     document.getElementById('yPositionBox').value = yPosition;

@@ -166,9 +166,14 @@ function start(){
     if(saveSubSystem.openPrevious && saveSubSystem.isUsingSaves){
         saveSubSystem.setFileName(saveSelectorElement.options[saveSelectorElement.selectedIndex].value, false);
         keyFrames = saveSubSystem.loadSave();
+        getId("element_Information").style.display = 'none';
+        getId('currentEditing_type').style.display = 'none';
         // newLight("ambient", "#ffffff", 50);
         //has saves
     }
+    getId("localStorage_saveSelector").value = saveSubSystem.fileName;
+
+
     onWindowResize();
 }
 

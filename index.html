@@ -165,11 +165,13 @@
             <span class="std_nav_spacer" id="nav_spacer_right"></span>
 
             <!--Right Aligned Buttons-->
-            <span class="std_nav_button std_nav_alignRight" id="nav_settings" onclick="settingsToggle(); updateCloudSaveList();">
-                    <img onclick="settingsToggle(); updateCloudSaveList();"
+            <span class="std_nav_button std_nav_alignRight" id="nav_settings"
+                  onclick="settingsToggle(); updateCloudSaveList(); getId('localStorage_saveSelector').innerHTML=''; saveSubSystem.loadSaveNames('localStorage_saveSelector');">
+
+                    <img onclick="settingsToggle(); updateCloudSaveList(); getId('localStorage_saveSelector').innerHTML=''; saveSubSystem.loadSaveNames('localStorage_saveSelector');"
                          src="./style/assets/svgs/nav_icons/nav_settings_icon.svg" class="nav_buttonIcon std_icon_normal"/>
 
-                <img onclick="settingsToggle(); updateCloudSaveList();"
+                <img onclick="settingsToggle(); updateCloudSaveList(); getId('localStorage_saveSelector').innerHTML=''; saveSubSystem.loadSaveNames('localStorage_saveSelector');"
                          src="./style/assets/svgs/nav_icons/nav_settings_dark_icon.svg" class="nav_buttonIcon std_icon_dark"/>
 
             </span>
@@ -222,7 +224,9 @@
                         New Shape
                     </h3>
                     <div class="std_body_list" style="max-width: initial; width: 100%;">
-                        <select class="list_body" onchange="newShape(this.value,0,0,0,0,0,0,'#FF0000','#000000');" id="newShapes_select">
+                        <select class="list_body"
+                                onchange="if(this.value!== 'newShape'){console.log(this.value);newShape(this.value,0,0,0,0,0,0,'#FF0000','#000000');} this.selectedIndex = 0;"
+                                id="newShapes_select">
                             <option value="newShape">Create Shape</option>
                             <option value="cube">New Cube</option>
                             <option value="cylinder">New Cylinder</option>
@@ -251,7 +255,9 @@
                         New Light
                     </h3>
                     <div class="std_body_list" style="max-width: initial; width: 100%;">
-                        <select class="list_body"  onchange="newLight(this.value,'#FFFFFF',100,0,0,0,'#FF0000')" id="newLights_select">
+                        <select class="list_body"
+                                onchange="if(this.value !== 'newLight'){newLight(this.value,'#FFFFFF',100,0,0,0,'#FF0000');} this.selectedIndex = 0;"
+                                id="newLights_select">
                             <option value="newLight">Create Light</option>
                             <option value="ambient">Ambient Light</option>
                             <option value="point">Point Light</option>
@@ -466,19 +472,19 @@
                     Dimensions
                 </h3>
                 <div class="std_input_text">
-                    <input type="number" step="any" id="scene_diemsions_x" onchange="sceneScale('x', Number(this.value));" onkeyup="/*this.value++;*/ /*resizeShape('x', this.value)*/" required>
+                    <input type="number" step="any" id="scene_diemsions_x" onchange="sceneScale('x', Number(this.value));" required>
                     <span class="text_highlight"></span>
                     <span class="text_bar"></span>
                     <label>X</label>
                 </div>
                 <div class="std_input_text">
-                    <input type="number" step="any" id="scene_diemsions_y" onchange="sceneScale('y', Number(this.value));" onkeyup="/*this.value++;*/ /*resizeShape('y', this.value)*/" required>
+                    <input type="number" step="any" id="scene_diemsions_y" onchange="sceneScale('y', Number(this.value));" required>
                     <span class="text_highlight"></span>
                     <span class="text_bar"></span>
                     <label>Y</label>
                 </div>
                 <div class="std_input_text">
-                    <input type="number" step="any" id="scene_diemsions_z" onchange="sceneScale('z', Number(this.value));" onkeyup="/*this.value++;*/ /*resizeShape('z', this.value)*/" required>
+                    <input type="number" step="any" id="scene_diemsions_z" onchange="sceneScale('z', Number(this.value));" required>
                     <span class="text_highlight"></span>
                     <span class="text_bar"></span>
                     <label>Z</label>
@@ -487,19 +493,19 @@
                     Position
                 </h3>
                 <div class="std_input_text">
-                    <input type="number" step="any" id="scene_position_x" onchange="scenePosition('x', Number(this.value))" onkeyup="/*moveShape('x', this.value)*/" required>
+                    <input type="number" step="any" id="scene_position_x" onchange="scenePosition('x', Number(this.value))" required>
                     <span class="text_highlight"></span>
                     <span class="text_bar"></span>
                     <label>X</label>
                 </div>
                 <div class="std_input_text">
-                    <input type="number" step="any" id="scene_position_y" onchange="scenePosition('y', Number(this.value));" onkeyup="/*moveShape('y', this.value)*/" required>
+                    <input type="number" step="any" id="scene_position_y" onchange="scenePosition('y', Number(this.value));" required>
                     <span class="text_highlight"></span>
                     <span class="text_bar"></span>
                     <label>Y</label>
                 </div>
                 <div class="std_input_text">
-                    <input type="number" step="any" id="scene_position_z" onchange="scenePosition('z', Number(this.value));" onkeyup="/*moveShape('z', this.value)*/" required>
+                    <input type="number" step="any" id="scene_position_z" onchange="scenePosition('z', Number(this.value));" required>
                     <span class="text_highlight"></span>
                     <span class="text_bar"></span>
                     <label>Z</label>
@@ -508,19 +514,19 @@
                         Rotation
                     </h3>
                     <div class="std_input_text">
-                        <input type="number" step="any" id="scene_rotation_x" onchange="sceneRotation('x', Number(this.value))" onkeyup="/*moveShape('x', this.value)*/" required>
+                        <input type="number" step="any" id="scene_rotation_x" onchange="sceneRotation('x', Number(this.value))" required>
                         <span class="text_highlight"></span>
                         <span class="text_bar"></span>
                         <label>X</label>
                     </div>
                     <div class="std_input_text">
-                        <input type="number" step="any" id="scene_rotation_y" onchange="sceneRotation('y', Number(this.value));" onkeyup="/*moveShape('y', this.value)*/" required>
+                        <input type="number" step="any" id="scene_rotation_y" onchange="sceneRotation('y', Number(this.value));" required>
                         <span class="text_highlight"></span>
                         <span class="text_bar"></span>
                         <label>Y</label>
                     </div>
                     <div class="std_input_text">
-                        <input type="number" step="any" id="scene_rotation_z" onchange="sceneRotation('z', Number(this.value));" onkeyup="/*moveShape('z', this.value)*/" required>
+                        <input type="number" step="any" id="scene_rotation_z" onchange="sceneRotation('z', Number(this.value));" required>
                         <span class="text_highlight"></span>
                         <span class="text_bar"></span>
                         <label>Z</label>
@@ -625,6 +631,12 @@
                     Local Storage
                 </h3>
 
+                <div class="std_body_button"
+                     onclick="saveSubSystem.save();" >
+                    <span class="button_body">Force Save</span>
+                    <span class="button_bar"></span>
+                </div>
+
                 <div class="std_body_list" style="max-width: initial; width: 100%;">
                     <select class="list_body" id="localStorage_saveSelector"
                             onchange="">
@@ -639,7 +651,7 @@
                     <span class="button_bar"></span>
                 </div>
                 <div class="std_body_button"
-                     onclick="" >
+                     onclick="saveSubSystem.deleteSave(getId('localStorage_saveSelector').value)">
                     <span class="button_body">Delete Save</span>
                     <span class="button_bar"></span>
                 </div>
