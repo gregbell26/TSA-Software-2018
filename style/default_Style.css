@@ -339,6 +339,19 @@ h3{/*For Menus Mainly*/
     box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.30);
 }
 
+/*Gets rid of ugly scroll bars*/
+::-webkit-scrollbar {
+    display: none;
+}
+
+::-webkit-scrollbar-track {
+    display: none;
+}
+
+::-webkit-scrollbar-thumb {
+    display: none;
+}
+
 
 /*
 -----------------------------------------------------------------------
@@ -541,6 +554,7 @@ The spacing and such are now going to be dynamically loaded when ran and when th
     position: relative;
     display: inline-block;
     overflow: initial;
+    color: var(--std_color_text_primary);
     margin: 10px 5px 10px 5px;
     min-width: 25%;
     max-width: 50%;
