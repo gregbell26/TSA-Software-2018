@@ -30,6 +30,7 @@ var UIDiemsions = {
         defaultUnit : "px",
         nav_height : 0,//the height of the navigation bar
         element_height : 0,//the height of all of the elements on the navigation bar
+        menuContainer_height:0,//The height of the menus
 
         button_width : 0,//the width of the button
         status_width : 0,//the width of the status box
@@ -60,6 +61,14 @@ var UIDiemsions = {
         renderer_top: 0,
 
     },
+
+    std_timeline :{
+        timeline_height:150,
+        timeline_width:0,
+
+
+
+    }
 
 
 

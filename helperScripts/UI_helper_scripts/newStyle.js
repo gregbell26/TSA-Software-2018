@@ -44,28 +44,12 @@ function showMenu(menuToShow){
     activeMenu = menuToShow;
 }
 
-function hideSubMenu(subMenu){
-    getId(subMenu).hidden =true;
-}
-
-function showSubMenu(subMenu){
-    getId(subMenu).hidden = false;
-}
-
 function timelineButtonToggle(buttonToToggle){
     if(getId(buttonToToggle).classList.contains("timeline_buttonToggled"))
         getId(buttonToToggle).classList.remove("timeline_buttonToggled");
     else{
         getId(buttonToToggle).classList.add("timeline_buttonToggled");
     }
-}
-
-function timelineMasterToggle(mode){
-    if(mode === "show")
-        getId("std_timeline").classList.add("timeline_show");
-    else if (mode === "hide")
-        getId("std_timeline").classList.remove("timeline_show");
-
 }
 
 function settingsToggle(){
@@ -251,6 +235,7 @@ function UISpacer(){
     statusWidthHalved = UIDiemsions.std_navBar.status_width/2;
     UIDiemsions.std_navBar.menuContainer_placement = UIDiemsions.std_navBar.nav_height - (UIDiemsions.std_navBar.defaultPadding) ;
 
+
     nextLeftElementLoc = UIDiemsions.std_navBar.defaultPadding;
     nextRightElementLoc = UIDiemsions.std_navBar.defaultPadding;
 
@@ -292,8 +277,8 @@ function UISpacer(){
     getId("std_menu_container").style.width = UIDiemsions.std_navBar.menuContainer_width.toString()+UIDiemsions.std_navBar.defaultUnit;
     getId("std_menu_container").style.top= UIDiemsions.std_navBar.menuContainer_placement.toString()+UIDiemsions.std_navBar.defaultUnit;
 
-    getId("std_settings").style.width = UIDiemsions.std_navBar.menuContainer_width.toString()+UIDiemsions.std_navBar.defaultUnit;
-    getId("std_settings").style.top = UIDiemsions.std_navBar.menuContainer_placement.toString()+UIDiemsions.std_navBar.defaultUnit;
+    getId("std_settings").style.width = getId("std_menu_container").style.width;
+    getId("std_settings").style.top = getId("std_menu_container").style.top;
 
     getId("std_statusBox").style.top = UIDiemsions.std_navBar.defaultPadding.toString()+UIDiemsions.std_navBar.defaultUnit;
     getId("std_statusBox").style.bottom = UIDiemsions.std_navBar.defaultPadding.toString()+UIDiemsions.std_navBar.defaultUnit;
@@ -316,15 +301,16 @@ function UISpacer(){
     if(window.innerWidth<=500 || isMobile()){
         UIDiemsions.std_body.renderer_left = 0;
     }
-    UIDiemsions.std_body.renderer_height = UIDiemsions.std_body.body_height- UIDiemsions.std_navBar.nav_height;
+    UIDiemsions.std_body.renderer_height = UIDiemsions.std_body.body_height- UIDiemsions.std_navBar.nav_height - UIDiemsions.std_timeline.timeline_height;
     UIDiemsions.std_body.renderer_width = UIDiemsions.std_body.body_width - UIDiemsions.std_navBar.menuContainer_width;
 
     getId("animationEngine_renderArea").style.top =(UIDiemsions.std_body.renderer_top).toString()+UIDiemsions.std_navBar.defaultUnit;
     getId("animationEngine_renderArea").style.left =(UIDiemsions.std_body.renderer_left).toString()+UIDiemsions.std_navBar.defaultUnit;
-    // getId("animationEngine_renderArea").style.height =(UIDiemsions.std_body.renderer_height).toString()+UIDiemsions.std_navBar.defaultUnit;
-    // getId("animationEngine_renderArea").style.width =(UIDiemsions.std_body.renderer_width).toString()+UIDiemsions.std_navBar.defaultUnit;
 
+    getId("std_menu_container").style.height =
+        (UIDiemsions.std_body.body_height - UIDiemsions.std_navBar.nav_height - UIDiemsions.std_timeline.timeline_height).toString() + UIDiemsions.std_navBar.defaultUnit;
 
+    getId("std_settings").style.height = getId("std_menu_container").style.height;
 
 }
 /*
