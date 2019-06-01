@@ -178,6 +178,8 @@ let saveSubSystem = {
             localStorage.removeItem("keyFrames:" + saveToDelete);
             localStorage.removeItem("scales:" + saveToDelete);
             localStorage.removeItem("shapes:" + saveToDelete);
+            localStorage.removeItem("lights:" + saveToDelete);
+
 
             //the save should now be deleted
             if (saveToDelete === this.fileName) {
@@ -193,7 +195,7 @@ let saveSubSystem = {
 
         }
         else {
-            this.saveFileNamesList.pop(saveToDelete)//Removes old save from file name list
+            this.saveFileNamesList.pop(saveToDelete);//Removes old save from file name list
             localStorage.setItem("fileNames", JSON.stringify(this.saveFileNamesList));//saves that.
         }
 
