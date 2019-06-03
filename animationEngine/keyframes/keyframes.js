@@ -111,7 +111,7 @@ function playAnimation(frameValue) {
         animationRunning=true;
         if (frameValue >= 0) {
             var frames = 0;
-            var a;
+            var a; //current keyframe
             var timingCounter;
             var prevDuration=0;
             for (var i = 0; i < keyFrames.length - 1; i++) {
@@ -139,6 +139,7 @@ function playAnimation(frameValue) {
                         }
                         else if (loopAnimation){
                             a = 0;
+                            prevDuration=0;
                             timingCounter = 0;
                             timelineButtonToggle('timeline_repeat');
                         }
@@ -157,6 +158,7 @@ function playAnimation(frameValue) {
                 }, 10);
             }
         }
+        
     }
 }
 
@@ -196,10 +198,6 @@ function getColors(s){
         ret.push([s[i].material.color.r,s[i].material.color.g,s[i].material.color.b]);
     }
     return ret;
-}
-
-function getSceneBackground(){
-
 }
 
 function timelineScrub(pageX) {
@@ -264,6 +262,7 @@ function moveKeyframe(frameNumber, amount) {
         console.log("shifting up");
         var i = 0;
         var move = amount;
+        console.log("keyFrames")
         while(move > keyFrames[frameNumber+i].duration){
             move -= keyFrames[frameNumber+i].duration;
             i++;
