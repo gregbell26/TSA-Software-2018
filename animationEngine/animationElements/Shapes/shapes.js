@@ -146,7 +146,7 @@ function processShapeData(loadedShapes,loadedScales, loadedText) {
         newGeometry = null;
         borderGeometry = null;
         var type;
-        switch(loadedShapes[i].type){
+        switch (loadedShapes[i].type) {
             case "BoxGeometry":
                 type = "cube";
                 break;
@@ -186,88 +186,16 @@ function processShapeData(loadedShapes,loadedScales, loadedText) {
         }
         var text;
         console.log(loadedText);
-        if(type==="text"){
+        if (type === "text") {
             text = loadedText[currentTextIndex];
             currentTextIndex++;
         }
-        newShape(type,loadedScales[i][0], loadedScales[i][1], loadedScales[i][2], loadedShapes[i].positionX, loadedShapes[i].positionY, loadedShapes[i].positionZ, convertColor(loadedShapes[i].r, loadedShapes[i].g, loadedShapes[i].b) , convertColor(loadedShapes[i].borderR || 0, loadedShapes[i].borderG || 0, loadedShapes[i].borderB || 0),text);
-        if (!loadedShapes[i].borders){
+        newShape(type, loadedScales[i][0], loadedScales[i][1], loadedScales[i][2], loadedShapes[i].positionX, loadedShapes[i].positionY, loadedShapes[i].positionZ, convertColor(loadedShapes[i].r, loadedShapes[i].g, loadedShapes[i].b), convertColor(loadedShapes[i].borderR || 0, loadedShapes[i].borderG || 0, loadedShapes[i].borderB || 0), text);
+        if (!loadedShapes[i].borders) {
             borders[i].visible = false;
         }
 
-        // if (loadedShapes[i].type === "BoxGeometry") {
-        //         newCube(loadedScales[i][0], loadedScales[i][1], loadedScales[i][2], loadedShapes[i].positionX, loadedShapes[i].positionY, loadedShapes[i].positionZ, convertColor(loadedShapes[i].r, loadedShapes[i].g, loadedShapes[i].b) , convertColor(loadedShapes[i].borderR || 0, loadedShapes[i].borderG || 0, loadedShapes[i].borderB || 0))
-        //
-        //     }
-        //     else if (loadedShapes[i].type === "CylinderGeometry") {
-        //         newCylinder(loadedScales[i][0], loadedScales[i][1], loadedScales[i][2], loadedShapes[i].positionX, loadedShapes[i].positionY, loadedShapes[i].positionZ, convertColor(loadedShapes[i].r, loadedShapes[i].g, loadedShapes[i].b) , convertColor(loadedShapes[i].borderR || 0, loadedShapes[i].borderG || 0, loadedShapes[i].borderB || 0))
-        //
-        //     }
-        //     else if (loadedShapes[i].type === "ConeGeometry") {
-        //         newCone(loadedScales[i][0], loadedScales[i][1], loadedScales[i][2], loadedShapes[i].positionX, loadedShapes[i].positionY, loadedShapes[i].positionZ, convertColor(loadedShapes[i].r, loadedShapes[i].g, loadedShapes[i].b) , convertColor(loadedShapes[i].borderR || 0, loadedShapes[i].borderG || 0, loadedShapes[i].borderB || 0))
-        //
-        //     }
-        //     else if (loadedShapes[i].type === "CustomGeometry2") {
-        //     /*newGeometry = new THREE.CylinderGeometry(0.5, 0.5, 1, 100);
-        //       borderGeometry = new THREE.CylinderBufferGeometry(0.5, 0.5, 1, 100);
-        //       newGeometry.name = "cylinder"*/
-        //     newCustom2()
-        //     }
-        //     else if (loadedShapes[i].type === "DodecahedronGeometry") {
-        //         newDodecahedron(loadedScales[i][0], loadedScales[i][1], loadedScales[i][2], loadedShapes[i].positionX, loadedShapes[i].positionY, loadedShapes[i].positionZ, convertColor(loadedShapes[i].r, loadedShapes[i].g, loadedShapes[i].b) , convertColor(loadedShapes[i].borderR || 0, loadedShapes[i].borderG || 0, loadedShapes[i].borderB || 0))
-        //
-        //     }
-        //     else if (loadedShapes[i].type === "IcosahedronGeometry") {
-        //         newIcosahedron(loadedScales[i][0], loadedScales[i][1], loadedScales[i][2], loadedShapes[i].positionX, loadedShapes[i].positionY, loadedShapes[i].positionZ, convertColor(loadedShapes[i].r, loadedShapes[i].g, loadedShapes[i].b) , convertColor(loadedShapes[i].borderR || 0, loadedShapes[i].borderG || 0, loadedShapes[i].borderB || 0))
-        //
-        //     }
-        //     else if (loadedShapes[i].type === "OctahedronGeometry") {
-        //         newOctahedron(loadedScales[i][0], loadedScales[i][1], loadedScales[i][2], loadedShapes[i].positionX, loadedShapes[i].positionY, loadedShapes[i].positionZ, convertColor(loadedShapes[i].r, loadedShapes[i].g, loadedShapes[i].b) , convertColor(loadedShapes[i].borderR || 0, loadedShapes[i].borderG || 0, loadedShapes[i].borderB || 0))
-        //
-        //     }
-        //     else if (loadedShapes[i].type === "TetrahedronGeometry") {
-        //         newPyramid(loadedScales[i][0], loadedScales[i][1], loadedScales[i][2], loadedShapes[i].positionX, loadedShapes[i].positionY, loadedShapes[i].positionZ, convertColor(loadedShapes[i].r, loadedShapes[i].g, loadedShapes[i].b) , convertColor(loadedShapes[i].borderR || 0, loadedShapes[i].borderG || 0, loadedShapes[i].borderB || 0))
-        //
-        //     }
-        //     else if (loadedShapes[i].type === "TorusGeometry") {
-        //         newRing(loadedScales[i][0], loadedScales[i][1], loadedScales[i][2], loadedShapes[i].positionX, loadedShapes[i].positionY, loadedShapes[i].positionZ, convertColor(loadedShapes[i].r, loadedShapes[i].g, loadedShapes[i].b) , convertColor(loadedShapes[i].borderR || 0, loadedShapes[i].borderG || 0, loadedShapes[i].borderB || 0))
-        //
-        //     }
-        //     else if (loadedShapes[i].type === "SphereGeometry") {
-        //         newSphere(loadedScales[i][0], loadedScales[i][1], loadedScales[i][2], loadedShapes[i].positionX, loadedShapes[i].positionY, loadedShapes[i].positionZ, convertColor(loadedShapes[i].r, loadedShapes[i].g, loadedShapes[i].b) , convertColor(loadedShapes[i].borderR || 0, loadedShapes[i].borderG || 0, loadedShapes[i].borderB || 0))
-        //
-        //     }
-        //     else if (loadedShapes[i].type === "TextGeometry") {
-        //         document.getElementById('createText').value = loadedText[currentTextIndex];
-        //         currentTextIndex++;
-        //         newText(loadedScales[i][0], loadedScales[i][1], loadedScales[i][2], loadedShapes[i].positionX, loadedShapes[i].positionY, loadedShapes[i].positionZ, convertColor(loadedShapes[i].r, loadedShapes[i].g, loadedShapes[i].b) , convertColor(loadedShapes[i].borderR || 0, loadedShapes[i].borderG || 0, loadedShapes[i].borderB || 0))
-        //
-        //     }/*else if (loadedShapes[i].geometry.name === "custom") {
-        //          document.getElementById('xCreateCoord').value = loadedText[currentTextIndex];
-        //          document.getElementById('yCreateCoord').value = loadedText[currentTextIndex];
-        //          document.getElementById('zCreateCoord').value = loadedText[currentTextIndex];
-        //
-        //          document.getElementById('xCreatePoint').value = loadedText[currentTextIndex];
-        //          document.getElementById('yCreatePoint').value = loadedText[currentTextIndex];
-        //          document.getElementById('zCreatePoint').value = loadedText[currentTextIndex];
-        //
-        //          newCustom(loadedScales[i][0], loadedScales[i][1], loadedScales[i][2], loadedShapes[i].positionX, loadedShapes[i].positionY, loadedShapes[i].positionZ, convertColor(loadedShapes[i].r, loadedShapes[i].g, loadedShapes[i].b) , convertColor(loadedShapes[i].borderR || 0, loadedShapes[i].borderG || 0, loadedShapes[i].borderB || 0))
-        //     }*/
-        //     else {
-        //         console.log("Invalid shape at location: " + i);
-        //     }
-            /*geometryToAdd = new THREE.Mesh(newGeometry, newMaterial);
-            edgyBoi = new THREE.EdgesGeometry(borderGeometry);
-            borderToAdd  = new THREE.LineSegments(edgyBoi, new THREE.LineBasicMaterial({color: 0xff0000}));
-            shapeData[0][i] = geometryToAdd;
-            shapeData[1][i] = borderToAdd;*/
-            //if(loadedShapes.length !== 1)
-                //shapeData[2][i] = loadedScales[i];
-
-        }
-        // console.log(loadedScales);
-        // if (loadedShapes.length === 1)
-            // shapeData[2][0] = loadedShapes;
+    }
         return shapeData;
 
 
@@ -420,7 +348,7 @@ function newShape(type,x,y,z,posX,posY,posZ,color,border,text){
         document.getElementById('position_y').value = posY;
         document.getElementById('position_z').value = posZ;
         // getId("shapeList_shapes").innerHTML+="<button onclick='setSelectedShape("+selectedShape+");showMenu(\"menu_newShapes\");' style='color:black'>"+type+"</button><br>";
-        // getId("newShapes_select").value = "newShape";
+        getId("newShapes_select").selectedIndex = 0;
     }
     else if(type==="textIn"){
         showPopUp("popUp_input_body", "New Text", "Enter Text",1);
@@ -478,8 +406,8 @@ function newShape(type,x,y,z,posX,posY,posZ,color,border,text){
             document.getElementById('position_x').value = posX;
             document.getElementById('position_y').value = posY;
             document.getElementById('position_z').value = posZ;
-            getId("shapeList_shapes").innerHTML+="<button onclick='setSelectedShape("+selectedShape+");showMenu(\"menu_newShapes\");' style='color:black'>"+type+"</button><br>";
-            getId("newShapes_select").value = "newShape";
+            //getId("shapeList_shapes").innerHTML+="<button onclick='setSelectedShape("+selectedShape+");showMenu(\"menu_newShapes\");' style='color:black'>"+type+"</button><br>";
+            getId("newShapes_select").selectedIndex = 0;
         } );
     }
 }

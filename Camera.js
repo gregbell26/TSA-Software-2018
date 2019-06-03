@@ -22,26 +22,48 @@ function moveCamera(dimension,newValue){
             break;
     }
 }
-function changeCameraLock(){//Changes whether or not the camera is locked during animation to change
-    lockCamera = document.getElementById("chkbox1").checked;
-}
 
 function changeCameraCenter(dimension,newValue){
     switch(dimension){
         case "x":
             xCCenter = newValue;
+            settings.camera.centerPos[0]=newValue;
             break;
         case "y":
             yCCenter = newValue;
+            settings.camera.centerPos[1]=newValue;
             break;
         case "z":
             zCCenter = newValue;
+            settings.camera.centerPos[2]=newValue;
             break;
     }
 }
 
+function changeCameraFocus(dimension,newValue){
+    switch(dimension){
+        case "x":
+            xCLook = newValue;
+            settings.camera.focusPos[0]=newValue;
+            break;
+        case "y":
+            yCLook = newValue;
+            settings.camera.focusPos[1]=newValue;
+            break;
+        case "z":
+            zCLook = newValue;
+            settings.camera.focusPos[2]=newValue;
+            break;
+    }
+}
+
+
 function changeCameraCircleRotation(){//Changes whether or not the camera moves in a circular fashion during the animation
-    circleCameraRotation = document.getElementById("chkbox2").checked;
+    circleCameraRotation = document.getElementById("advCamera_circleToggle").checked;
+}
+
+function changeCameraLock(){//Changes whether or not the camera is locked during animation to change
+    lockCamera = document.getElementById("advCamera_lockToggle").checked;
 }
 
 function changeSensitivity(change) {//Changes sensitivity to change
@@ -193,7 +215,13 @@ function rotateCamera(MvX,MvY){
     getId("camera_x").value = xPosition;
     getId("camera_y").value = yPosition;
     getId("camera_z").value = zPosition;
+    getId("advCamera_centerX").value = xCCenter;
+    getId("advCamera_centerY").value = yCCenter;
+    getId("advCamera_centerZ").value = zCCenter;
 
+    getId("advCamera_focusX").value = xCLook;
+    getId("advCamera_focusY").value = yCLook;
+    getId("advCamera_focusZ").value = zCLook;
     if(isNaN(yPosition))
         yPosition = 0;
     if(isNaN(xPosition))

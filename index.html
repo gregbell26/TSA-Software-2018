@@ -16,6 +16,7 @@
         TODO: Fix timeline button toggles. New way to create shapes. Fix lights. Add shapes list. Set sleected light is where the bugs are
         Fix y-overflow in menus
     -->
+
     <head>
         <meta charset="UTF-8">
         <script>if (typeof module === 'object') {window.module = module; module = undefined;}</script><!--This lets Electron run external script files-->
@@ -25,14 +26,6 @@
                 -webkit-appearance: none;
                 margin: 0;
             }
-            @media screen and (min-width: 900px) {
-                #monarchAnimation_title {
-                    font-size: 60pt !important;
-                }
-            }
-            .bottom_menu_spacer{
-                height: 65px;
-            }
         </style>
         <!--INCLUDES-->
         <script src="animationEngine/three.js"></script>
@@ -41,8 +34,8 @@
         <!--
         These are being included now because everything uses them
         -->
-        <link href="style/fonts/robotoSlab.css" rel="stylesheet"><!--imports Roboto Slab with the font weights 400 and 300-->
-        <link href="style/fonts/openSans.css" rel="stylesheet"><!--imports Open Sans with the font weight 400-->
+        <link href="style/fonts/robotoSlab.css" rel="stylesheet"><!--imports Roboto Slab with the font weights 400 and 300--> <!--This file is remote-->
+        <link href="style/fonts/openSans.css" rel="stylesheet"><!--imports Open Sans with the font weight 400--> <!--This file is remote-->
 
         <!--Backend Scripts-->
         <!--Save Engine-->
@@ -71,12 +64,13 @@
         -->
         <script src="helperScripts/UI_helper_scripts/diemsions.js"></script>
         <script src="helperScripts/UI_helper_scripts/newStyle.js"></script>
+<!--        <script>stylesheetLoader("darkMode")</script>&lt;!&ndash;Your welcome jordan.. darkMode is the default&ndash;&gt;-->
+
         <title>Monarch Animation</title>
     </head>
-    <link rel="stylesheet" type="text/css" href="style/default_Style.css"/>
     <body>
     <div id="std_ws_container">
-        <h1 style="min-width: 100%; text-align: center; top: 10%; left: initial; font-size: 9vw;" id="monarchAnimation_title">
+        <h1 style="left: 25%; top: 10%;">
             Monarch Animation
         </h1>
         <div id="ws_box3"  >
@@ -89,11 +83,14 @@
             </div>
         </div>
         <div id="ws_body">
-            <span class="std_ws_button ws_color" onclick="saveSubSystem.setIsUsingSaves(true, false); initMainUI(); start();" style="top:5%; left: calc(50% - 225px);">Start from Scratch</span>
-            <select class="std_ws_button ws_color" id="ws_loadMenu" onchange="saveSubSystem.setIsUsingSaves(true, true);  initMainUI(); start();" style="top:65px; left:calc(50% - 100px)" >
+            <span class="std_ws_button ws_color" onclick="saveSubSystem.setIsUsingSaves(true, false); initMainUI(); start();" style="top:5%; left:30%;">Start from Scratch</span>
+            <select class="std_ws_button ws_color" id="ws_loadMenu" onchange="saveSubSystem.setIsUsingSaves(true, true);  initMainUI(); start();" style="top:20%; left:50%;">
                 <option>Load Save</option>
+
             </select>
-            <span class="std_ws_button ws_color" onclick="saveSubSystem.setIsUsingSaves(true, false); initMainUI(); start(); launchTutorial(); " style="top:5%; left:calc(50% + 25px); ">View Tutorial</span>
+            <span class="std_ws_button ws_color" onclick="saveSubSystem.setIsUsingSaves(true, false); initMainUI(); start(); launchTutorial(); " style="top:5%; left:70%">View Tutorial</span>
+
+
         </div>
     </div>
     <div id="std_body">
@@ -102,49 +99,27 @@
         -->
 
         <div id="std_nav_bar">
-             <!---Left Aligned Buttons-->
-            <span class="std_nav_button" id="nav_shapesList" onclick="showMenu('menu_shapesList'); showList()">
-                <img onclick="showMenu('menu_shapesList'); showList()" src="./style/assets/svgs/nav_icons/nav_shapes_icon.svg"
-                         class="nav_buttonIcon std_icon_normal"/>
-
-                <img onclick="showMenu('menu_shapesList'); showList()" src="./style/assets/svgs/nav_icons/nav_shapes_dark_icon.svg"
-                         class="nav_buttonIcon std_icon_dark"/>
-
-            </span>
-            <span class="std_nav_button" id="nav_newShape" onclick="showMenu('menu_newShapes');
-                            //if(selectedShape === -1 && selectedLight === -1){ document.getElementById('element_Information').style.display = 'none';
-                                //document.getElementById('currentEditing_type').style.display = 'none';}
-                            //else{ document.getElementById('element_Information').style.display = 'initial';
-                                //document.getElementById('currentEditing_type').style.display = 'initial';
-                                //if(selectedLight === -1){ toggleEditShapeOrLight(false); setSelectedShape(selectedShape);}
-                                //if(selectedShape === -1){ toggleEditShapeOrLight(true); setSelectedLight(selectedLight);}}">
+            <!--Left Aligned Buttons-->
+            <span class="std_nav_button" id="nav_shapesList" onclick="showMenu('menu_shapesList')">
+                    <img onclick="showMenu('menu_shapesList')" src="./style/assets/svgs/nav_icons/nav_shapes_icon.svg"
+                         class="nav_buttonIcon"/>
+                </span>
+            <span class="std_nav_button" id="nav_newShape" onclick="showMenu('menu_newShapes')">
                     <img onclick="showMenu('menu_newShapes')"
-                         src="./style/assets/svgs/nav_icons/nav_animationElements_icon.svg" class="nav_buttonIcon std_icon_normal"/>
-
-                <img onclick="showMenu('menu_newShapes')"
-                         src="./style/assets/svgs/nav_icons/nav_animationElements_dark_icon.svg" class="nav_buttonIcon std_icon_dark"/>
-
-            </span>
+                         src="./style/assets/svgs/nav_icons/nav_animationElements_icon.svg" class="nav_buttonIcon"/>
+                </span>
             <span class="std_nav_button" id="nav_camera" onclick="showMenu('menu_camera')">
                     <img onclick="showMenu('menu_camera')" src="./style/assets/svgs/nav_icons/nav_camera_icon.svg"
-                         class="nav_buttonIcon std_icon_normal"/>
-
-                <img onclick="showMenu('menu_camera')" src="./style/assets/svgs/nav_icons/nav_camera_dark_icon.svg"
-                         class="nav_buttonIcon std_icon_dark"/>
-
-            </span>
+                         class="nav_buttonIcon"/>
+                </span>
             <!--
             This menu has been moved and its controls relocated to the timeline
             <span class="std_nav_button" id="nav_keyframes" onclick="showMenu('menu_keyframes')"></span>
             -->
             <span class="std_nav_button" id="nav_scene" onclick="showMenu('menu_scene')">
                     <img onclick="showMenu('menu_scene')" src="./style/assets/svgs/nav_icons/nav_scene_icon.svg"
-                         class="nav_buttonIcon std_icon_normal"/>
-
-                <img onclick="showMenu('menu_scene')" src="./style/assets/svgs/nav_icons/nav_scene_dark_icon.svg"
-                         class="nav_buttonIcon std_icon_dark"/>
-
-            </span>
+                         class="nav_buttonIcon"/>
+                </span>
 
             <!--Spacer to get rid of big bars-->
 
@@ -153,10 +128,10 @@
             <!--Status Box-->
             <div id="std_statusBox">
                 <div id="status_body">
-
+                    std_status_body
                 </div>
                 <div id="status_ver">
-
+                    Monarch Animation ver 1.0 ~beta~rev 17
                 </div>
 
             </div>
@@ -166,19 +141,10 @@
             <span class="std_nav_spacer" id="nav_spacer_right"></span>
 
             <!--Right Aligned Buttons-->
-            <span class="std_nav_button std_nav_alignRight" id="nav_settings" onclick="settingsToggle(); updateCloudSaveList();">
-                    <img onclick="settingsToggle(); updateCloudSaveList();"
-                         src="./style/assets/svgs/nav_icons/nav_settings_icon.svg" class="nav_buttonIcon std_icon_normal"/>
-
-                <img onclick="settingsToggle(); updateCloudSaveList();"
-                         src="./style/assets/svgs/nav_icons/nav_settings_dark_icon.svg" class="nav_buttonIcon std_icon_dark"/>
-
-            </span>
-
-
-<!--            <span class="std_nav_button std_nav_alignRight" id="nav_mobile_hide" onclick="mobileHideSideBar()">-->
-<!--                    X-->
-<!--                </span>-->
+            <span class="std_nav_button std_nav_alignRight" id="nav_settings" onclick="settingsToggle()">
+                    <img onclick="settingsToggle()"
+                         src="./style/assets/svgs/nav_icons/nav_settings_icon.svg" class="nav_buttonIcon"/>
+                </span>
 
         </div>
 
@@ -189,35 +155,22 @@
         <div id="std_menu_container">
             <div class="std_menu menu_hidden" id="menu_shapesList">
                 <h2>
-                    Elements
+                    Shapes List
                 </h2>
-                <h3>
-                    Shapes
-                </h3>
-
-                <div class="std_body_elementList" id="shapesList_shapes">
-                    <ul>
-
-                    </ul>
+                <h3>Shapes:</h3>
+                <div id="shapeList_shapes">
 
                 </div>
-
-                <h3>
-                    Lights
-                </h3>
-                <div class="std_body_elementList" id="shapesList_lights">
-                    <ul>
-
-                    </ul>
+                <h3>Lights:</h3>
+                <div id="shapeList_lights">
 
                 </div>
             </div>
-
-            <div class="std_menu menu_hidden" id="menu_newShapes">
+            <div class="std_menu menu_hidden" id="menu_newShapes" style="overflow-y: scroll;">
                 <h2>
                     New Elements
                 </h2>
-                <!-- Whole create / edit menu -->
+
                 <div id="newElement_Create">
                     <h3>
                         New Shape
@@ -228,13 +181,13 @@
                             <option value="cube">New Cube</option>
                             <option value="cylinder">New Cylinder</option>
                             <option value="cone">New Cone</option>
-<!--                            <option value="custom">New Custom Shape</option>-->
+                            <option value="custom">New Custom Shape</option>
                             <option value="dodecahedron">New Dodecahedron</option>
                             <option value="icosahedron">New Icosahedron</option>
                             <option value="octahedron">New Octahedron</option>
                             <option value="sphere">New Sphere</option>
                             <option value="pyramid">New Pyramid</option>
-                            <option value="textIn">New Text</option>
+                            <option value="text">New Text</option>
                             <option value="ring">New Ring</option>
                         </select>
                         <span class="list_bar"></span>
@@ -252,7 +205,7 @@
                         New Light
                     </h3>
                     <div class="std_body_list" style="max-width: initial; width: 100%;">
-                        <select class="list_body"  onchange="newLight(this.value,'#FFFFFF',100,0,0,0,'#FF0000')" id="newLights_select">
+                        <select class="list_body"  onchange="newLight(this.value,'#FFFFFF',100,0,0,0)" id="newLights_select">
                             <option value="newLight">Create Light</option>
                             <option value="ambient">Ambient Light</option>
                             <option value="point">Point Light</option>
@@ -263,230 +216,94 @@
                         <span class="list_bar"></span>
                     </div>
                 </div>
-
-
-                <!-- Editing selected shape -->
-                <h3>Edit Current <h3 id="currentEditing_type">shape</h3></h3>
+                <h3><strong>Edit current <span id="currentEditing_type">shape</span>:</strong></h3>
                 <div id="element_Information">
                     <div id="currentEditing_dimensions">
-
                         <h3>
                             Dimensions
                         </h3>
                         <div class="std_input_text">
-                            <input type="number" step="any" id="diemsions_x" onchange="resizeShape('x', Number(this.value));"  required>
+                            <input type="number" id="diemsions_x" onchange="resizeShape('x', Number(this.value));" onkeyup="/*this.value++;*/ /*resizeShape('x', this.value)*/" required>
                             <span class="text_highlight"></span>
                             <span class="text_bar"></span>
                             <label>X</label>
                         </div>
                         <div class="std_input_text">
-                            <input type="number" step="any" id="diemsions_y" onchange="resizeShape('y', Number(this.value));"  required>
+                            <input type="number" id="diemsions_y" onchange="resizeShape('y', Number(this.value));" onkeyup="/*this.value++;*/ /*resizeShape('y', this.value)*/" required>
                             <span class="text_highlight"></span>
                             <span class="text_bar"></span>
                             <label>Y</label>
                         </div>
                         <div class="std_input_text">
-                            <input type="number" step="any" id="diemsions_z" onchange="resizeShape('z', Number(this.value));"  required>
+                            <input type="number" id="diemsions_z" onchange="resizeShape('z', Number(this.value));" onkeyup="/*this.value++;*/ /*resizeShape('z', this.value)*/" required>
                             <span class="text_highlight"></span>
                             <span class="text_bar"></span>
                             <label>Z</label>
                         </div>
-                    </div>
-                    <div id="currentEditing_positions">
-                        <h3>
-                            Position
-                        </h3>
-                        <div class="std_input_text">
-                            <input type="number" step="any" id="position_x" onchange="moveShape('x', Number(this.value))" required>
-                            <span class="text_highlight"></span>
-                            <span class="text_bar"></span>
-                            <label>X</label>
-                        </div>
-                        <div class="std_input_text">
-                            <input type="number" step="any" id="position_y" onchange="moveShape('y', Number(this.value));" required>
-                            <span class="text_highlight"></span>
-                            <span class="text_bar"></span>
-                            <label>Y</label>
-                        </div>
-                        <div class="std_input_text">
-                            <input type="number" step="any" id="position_z" onchange="moveShape('z', Number(this.value));" required>
-                            <span class="text_highlight"></span>
-                            <span class="text_bar"></span>
-                            <label>Z</label>
-                        </div>
-                    </div>
-                    <div id="currentEditing_rotation">
-                        <h3>
-                            Rotation
-                        </h3>
-                        <div class="std_input_text">
-                            <input type="number" step="any" id="rotation_x" onchange="rotateShape('x', Number(this.value))" required>
-                            <span class="text_highlight"></span>
-                            <span class="text_bar"></span>
-                            <label>X</label>
-                        </div>
-                        <div class="std_input_text">
-                            <input type="number" step="any" id="rotation_y" onchange="rotateShape('y', Number(this.value));" required>
-                            <span class="text_highlight"></span>
-                            <span class="text_bar"></span>
-                            <label>Y</label>
-                        </div>
-                        <div class="std_input_text">
-                            <input type="number" step="any" id="rotation_z" onchange="rotateShape('z', Number(this.value));" required>
-                            <span class="text_highlight"></span>
-                            <span class="text_bar"></span>
-                            <label>Z</label>
-                        </div>
-                    </div>
-                    <div id="currentEditing_intensity">
-                        <input type="range" min="0" max="100" value="100" id="intensity_slider" oninput="changeIntensity()" onchange="changeIntensity()">
-                        <p>Intensity: <span id="intensity_value"></span>%</p>
-                    </div>
-                    <div id="currentEditing_borders">
-                        <h3>
-                            Borders
-                        </h3>
-                        <input type="checkbox" id="borders" value="borders" onchange="borderVisibility()" checked>
                     </div>
                     <h3>
-                        Color
-                    </h3>
-
-                    <input type="color" onchange="changeColor(this.value)" id="element_color"><br>
-                    <input type="color" onchange="borderChange(this.value)" id="element_border_color"><br>
-
-                    <div id="element_remove" class="std_body_button" onclick="removeElement()" style="max-width: initial;">
-                        <span class="button_body">Remove Element</span>
-                        <span class="button_bar"></span>
-                    </div>
-                </div>
-                <div class="bottom_menu_spacer">
-                </div>
-            </div>
-             <!-- camera menu -->
-            <div class="std_menu menu_hidden" id="menu_camera">
-                <h2>
-                    Camera Controls
-                </h2>
-                <h3>Camera Position</h3>
-                <div class="std_input_text">
-                    <input type="number" step="any" id="camera_x" onchange="moveCamera('x', Number(this.value));" onkeyup="/*this.value++;*/ /*resizeShape('x', this.value)*/" required>
-                    <span class="text_highlight"></span>
-                    <span class="text_bar"></span>
-                    <label>X</label>
-                </div>
-                <div class="std_input_text">
-                    <input type="number" step="any" id="camera_y" onchange="moveCamera('y', Number(this.value));" onkeyup="/*this.value++;*/ /*resizeShape('y', this.value)*/" required>
-                    <span class="text_highlight"></span>
-                    <span class="text_bar"></span>
-                    <label>Y</label>
-                </div>
-                <div class="std_input_text">
-                    <input type="number" step="any" id="camera_z" onchange="moveCamera('z', Number(this.value));" onkeyup="/*this.value++;*/ /*resizeShape('z', this.value)*/" required>
-                    <span class="text_highlight"></span>
-                    <span class="text_bar"></span>
-                    <label>Z</label>
-                </div>
-                <div class="bottom_menu_spacer">
-                </div>
-<!--                <div id = "advanced_camera_options">-->
-<!--                    <h3>Camera Rotation Center</h3>-->
-<!--                    <div class="std_input_text">-->
-<!--                        <input type="number" step="any" id="camera_center_x" onchange="changeCameraCenter('x', Number(this.value));" onkeyup="/*this.value++;*/ /*resizeShape('x', this.value)*/">-->
-<!--                        <span class="text_highlight"></span>-->
-<!--                        <span class="text_bar"></span>-->
-<!--                        <label>X</label>-->
-<!--                    </div>-->
-<!--                    <div class="std_input_text">-->
-<!--                        <input type="number" step="any" id="camera_center_y" onchange="changeCameraCenter('y', Number(this.value));" onkeyup="/*this.value++;*/ /*resizeShape('y', this.value)*/">-->
-<!--                        <span class="text_highlight"></span>-->
-<!--                        <span class="text_bar"></span>-->
-<!--                        <label>Y</label>-->
-<!--                    </div>-->
-<!--                    <div class="std_input_text">-->
-<!--                        <input type="number" step="any" id="camera_center_z" onchange="changeCameraCenter('z', Number(this.value));" onkeyup="/*this.value++;*/ /*resizeShape('z', this.value)*/">-->
-<!--                        <span class="text_highlight"></span>-->
-<!--                        <span class="text_bar"></span>-->
-<!--                        <label>Z</label>-->
-<!--                    </div>-->
-
-<!--                </div>-->
-
-            </div>
-
-            <div class="std_menu menu_hidden" id="menu_scene" style="overflow-y: scroll">
-                <h2>
-                    Scene Controls
-                </h2>
-                <h3>
-                    Dimensions
-                </h3>
-                <div class="std_input_text">
-                    <input type="number" step="any" id="scene_diemsions_x" onchange="sceneScale('x', Number(this.value));" onkeyup="/*this.value++;*/ /*resizeShape('x', this.value)*/" required>
-                    <span class="text_highlight"></span>
-                    <span class="text_bar"></span>
-                    <label>X</label>
-                </div>
-                <div class="std_input_text">
-                    <input type="number" step="any" id="scene_diemsions_y" onchange="sceneScale('y', Number(this.value));" onkeyup="/*this.value++;*/ /*resizeShape('y', this.value)*/" required>
-                    <span class="text_highlight"></span>
-                    <span class="text_bar"></span>
-                    <label>Y</label>
-                </div>
-                <div class="std_input_text">
-                    <input type="number" step="any" id="scene_diemsions_z" onchange="sceneScale('z', Number(this.value));" onkeyup="/*this.value++;*/ /*resizeShape('z', this.value)*/" required>
-                    <span class="text_highlight"></span>
-                    <span class="text_bar"></span>
-                    <label>Z</label>
-                </div>
-                <h3>
-                    Position
-                </h3>
-                <div class="std_input_text">
-                    <input type="number" step="any" id="scene_position_x" onchange="scenePosition('x', Number(this.value))" onkeyup="/*moveShape('x', this.value)*/" required>
-                    <span class="text_highlight"></span>
-                    <span class="text_bar"></span>
-                    <label>X</label>
-                </div>
-                <div class="std_input_text">
-                    <input type="number" step="any" id="scene_position_y" onchange="scenePosition('y', Number(this.value));" onkeyup="/*moveShape('y', this.value)*/" required>
-                    <span class="text_highlight"></span>
-                    <span class="text_bar"></span>
-                    <label>Y</label>
-                </div>
-                <div class="std_input_text">
-                    <input type="number" step="any" id="scene_position_z" onchange="scenePosition('z', Number(this.value));" onkeyup="/*moveShape('z', this.value)*/" required>
-                    <span class="text_highlight"></span>
-                    <span class="text_bar"></span>
-                    <label>Z</label>
-                </div>
-                    <h3>
-                        Rotation
+                        Position
                     </h3>
                     <div class="std_input_text">
-                        <input type="number" step="any" id="scene_rotation_x" onchange="sceneRotation('x', Number(this.value))" onkeyup="/*moveShape('x', this.value)*/" required>
+                        <input type="number" id="position_x" onchange="moveShape('x', Number(this.value))" onkeyup="/*moveShape('x', this.value)*/" required>
                         <span class="text_highlight"></span>
                         <span class="text_bar"></span>
                         <label>X</label>
                     </div>
                     <div class="std_input_text">
-                        <input type="number" step="any" id="scene_rotation_y" onchange="sceneRotation('y', Number(this.value));" onkeyup="/*moveShape('y', this.value)*/" required>
+                        <input type="number" id="position_y" onchange="moveShape('y', Number(this.value));" onkeyup="/*moveShape('y', this.value)*/" required>
                         <span class="text_highlight"></span>
                         <span class="text_bar"></span>
                         <label>Y</label>
                     </div>
                     <div class="std_input_text">
-                        <input type="number" step="any" id="scene_rotation_z" onchange="sceneRotation('z', Number(this.value));" onkeyup="/*moveShape('z', this.value)*/" required>
+                        <input type="number" id="position_z" onchange="moveShape('z', Number(this.value));" onkeyup="/*moveShape('z', this.value)*/" required>
                         <span class="text_highlight"></span>
                         <span class="text_bar"></span>
                         <label>Z</label>
                     </div>
-                <h3>
-                    Color
-                </h3>
-                <input type="color" onchange="sceneBackground(this.value)" id="scene_color">
-                <div class="bottom_menu_spacer">
+
+                    <div id="currentEditing_intensity">
+                        <input type="range" min="0" max="100" value="100" id="intensity_slider" oninput="changeIntensity()" onchange="changeIntensity()">
+                        <p>Intensity: <span id="intensity_value"></span>%</p>
+                    </div>
+                    <h3>
+                        Color
+                    </h3>
+                    <input type="color" onchange="changeColor(this.value)" id="element_color">
+                    <input type="color" onchange="borderChange(this.value)" id="element_border_color">
+
                 </div>
+            </div>
+            <div class="std_menu menu_hidden" id="menu_camera">
+                <h2>
+                    Camera Controls
+                </h2>
+                <h3>Camera Position:</h3>
+                <div class="std_input_text">
+                    <input type="number" id="camera_x" onchange="moveCamera('x', Number(this.value));" onkeyup="/*this.value++;*/ /*resizeShape('x', this.value)*/" required>
+                    <span class="text_highlight"></span>
+                    <span class="text_bar"></span>
+                    <label>X</label>
+                </div>
+                <div class="std_input_text">
+                    <input type="number" id="camera_y" onchange="moveCamera('y', Number(this.value));" onkeyup="/*this.value++;*/ /*resizeShape('y', this.value)*/" required>
+                    <span class="text_highlight"></span>
+                    <span class="text_bar"></span>
+                    <label>Y</label>
+                </div>
+                <div class="std_input_text">
+                    <input type="number" id="camera_z" onchange="moveCamera('z', Number(this.value));" onkeyup="/*this.value++;*/ /*resizeShape('z', this.value)*/" required>
+                    <span class="text_highlight"></span>
+                    <span class="text_bar"></span>
+                    <label>Z</label>
+                </div>
+            </div>
+
+            <div class="std_menu menu_hidden" id="menu_scene">
+                <h2>
+                    Scene Controls
+                </h2>
             </div>
         </div>
 
@@ -502,27 +319,24 @@
                     Settings
                 </h2>
 
-                <h2>
+                <h3>
                     Camera
-                </h2>
+                </h3>
                 <div class="std_input_text">
-                    <input type="text" id="settings_mouseSensitivity" step="any" type="number" onchange="changeSensitivity(this.value)" required>
+                    <input type="text" id="settings_mouseSensitivity" type="number" onchange="changeSensitivity(this.value)" required>
                     <span class="text_highlight"></span>
                     <span class="text_bar"></span>
                     <label>Mouse Sensitivity</label>
                 </div>
                 <div class="std_input_text">
-                    <input type="text" id="settings_zoomAmount" step="any" type="number" onchange="changeZoomSensitivity(this.value)" required>
+                    <input type="text" id="settings_zoomAmount" type="number" onchange="changeZoomSensitivity(this.value)" required>
                     <span class="text_highlight"></span>
                     <span class="text_bar"></span>
                     <label>Zoom Sensitivity</label>
                 </div>
 
-                <h2>
-                    Storage
-                </h2>
                 <h3>
-                    Cloud Storage
+                    Account
                 </h3>
                 <div id="account_sub_signedIn">
                     <div class="std_body_button" onclick="signOut()">
@@ -531,7 +345,7 @@
                     </div>
 
                     <div class="std_body_button" onclick="saveCurrentToCloud()" >
-                        <span class="button_body">Save to Cloud</span>
+                        <span class="button_body">Cloud Save</span>
                         <span class="button_bar"></span>
                     </div>
 
@@ -568,56 +382,13 @@
                         <span class="button_bar"></span>
                     </div>
 
-                    <div class="std_body_button"  style="max-width: initial" onclick="
+                    <div class="std_body_button" onclick="
                         createAccount(document.getElementById('signedOut_email').value, document.getElementById('signedOut_password').value, document.getElementById('signedOut_password').value);
                     " >
                         <span class="button_body">Create Account</span>
                         <span class="button_bar"></span>
                     </div>
 
-                </div>
-
-                <h3>
-                    Local Storage
-                </h3>
-                <div class="std_body_list" style="max-width: initial; width: 100%;">
-                    <select class="list_body" id="localStorage_saveSelector"
-                            onchange="">
-
-                    </select>
-                    <span class="list_bar"></span>
-                </div>
-
-                <div class="std_body_button"
-                     onclick="" >
-                    <span class="button_body">Load Save</span>
-                    <span class="button_bar"></span>
-                </div>
-                <div class="std_body_button"
-                     onclick="" >
-                    <span class="button_body">Delete Save</span>
-                    <span class="button_bar"></span>
-                </div>
-                <div class="std_body_button"
-                     onclick="saveSubSystem.isUsingSaves = false, saveSubSystem.deleteSave('purge')" style="max-width: initial">
-                    <span class="button_body">Purge All Saves</span>
-                    <span class="button_bar"></span>
-                </div>
-
-
-                <h2>
-                    User Interface
-                </h2>
-                <div class="std_body_button" style="max-width: initial;" onclick="
-                    if(window.location.protocol.indexOf('file')===-1 && !document.querySelector('body').requestFullscreen()){
-                        document.querySelector('body').requestFullscreen();
-                    }
-                    else{
-                        document.exitFullscreen();
-                    }
-                    " >
-                    <span class="button_body">Toggle Full Screen</span>
-                    <span class="button_bar"></span>
                 </div>
 
 
@@ -639,8 +410,10 @@
                     <span class="list_bar"></span>
                 </div>
 
-                <div id="settings_about" style="margin-top: 250%;">
-
+                <div id="settings_about" style="margin-top: 300%;">
+                    <h3>
+                        About
+                    </h3>
                     <img src="style/assets/pngs/monarchAnimation_Icon.png" alt="monarchAnimation_icon" id="monarchAnimation_icon"/>
                     <p id="about_ProgramName">Monarch Animation</p>
                     <p id="about_ver">ver 1.0 ~beta~rev 17</p>
@@ -678,7 +451,7 @@
                         <li>Gregory B.</li>
                     </ul>
 
-                    <div style="margin-bottom: 100%;"></div>
+                    <div style="margin-bottom: 110%;"></div>
                 </div>
 
             </div>
@@ -687,39 +460,12 @@
 
         <!--TIMELINE-->
         <div id="std_timeline">
+            <div onmouseover="timelineMasterToggle('show');" onclick="timelineMasterToggle('hide')" id="timeline_triggerArea">| | | | |  </div>
             <div id="timeline_buttonContainer">
-                <span class="timeline_button" id="timeline_addKeyframe" onclick="addFrame(); saveSubSystem.save();">
-                    <img  class="std_icon_normal"
-                         src="./style/assets/svgs/timeline_icons/timeline_addKeyframe_icon.svg"
-                         />
-                    <img  class="std_icon_dark"
-                         src="./style/assets/svgs/timeline_icons/timeline_addKeyframe_dark_icon.svg"
-                         />
-                </span>
-                <span class="timeline_button" id="timeline_removeKeyframe" onclick="removeFrame(keyFrames.length-1); saveSubSystem.save();">
-                    <img class="std_icon_normal"
-                         src="./style/assets/svgs/timeline_icons/timeline_deleteKeyframe_icon.svg"
-                         />
-                    <img class="std_icon_dark"
-                         src="./style/assets/svgs/timeline_icons/timeline_deleteKeyframe_dark_icon.svg"
-                         />
-                </span>
-                <span onclick="playAnimation(0)" class="timeline_button" id="timeline_play">
-                    <img class="std_icon_normal"
-                         src="./style/assets/svgs/timeline_icons/timeline_play_icon.svg"
-                         />
-                    <img class="std_icon_dark"
-                         src="./style/assets/svgs/timeline_icons/timeline_play_dark_icon.svg"
-                         />
-                </span>
-                <span onclick="loop()" class="timeline_button" id="timeline_repeat">
-                    <img  class="std_icon_normal"
-                         src="./style/assets/svgs/timeline_icons/timeline_loop_icon.svg"
-                         />
-                    <img  class="std_icon_dark"
-                         src="./style/assets/svgs/timeline_icons/timeline_loop_dark_icon.svg"
-                         />
-                </span>
+                <span class="timeline_button" id="timeline_addKeyframe" onclick="addFrame();">+</span>
+                <span class="timeline_button" id="timeline_removeKeyframe">-</span>
+                <span onclick="playAnimation(0)" class="timeline_button" id="timeline_play">></span>
+                <span onclick="loop()" class="timeline_button" id="timeline_repeat">()</span>
             </div>
             <div id="timeline_body">
                 <span id="timeline_playHead" class="timeline_keyframe"></span>
@@ -733,12 +479,13 @@
         -->
         <span id='tutorialArrow' style="
             position:absolute;
+            top:-60px;
+            left: 106px;
             font-size: 150px;
             color: red;
             z-index: 2;
             display: none;
         ">&larr;</span> <!--The arrow that points things out for the user-->
-
         <div id="std_popUp">
         <div class="popUp_body" id="popUp_input_body">
             <h3>
@@ -752,7 +499,7 @@
                 <label>Enter</label>
             </div>
 
-            <div class="std_body_button" onclick="hidePopUp()" style="bottom: -90px;left: calc(50% - 22.578px);/* margin-right: auto; */">
+            <div class="std_body_button" onclick="hidePopUp()" style="bottom: 0;left: 30%;/* margin-right: auto; */">
                 <span class="button_body">ok</span>
                 <span class="button_bar"></span>
             </div>
@@ -762,10 +509,10 @@
             <h3>
                 std_popUp_error
             </h3>
-            <p style="padding: 10px; text-align: center; font-size: 12pt;">
+            <p>
                 std_popUp_error_context
             </p>
-            <div class="std_body_button" onclick="hidePopUp()" style="bottom: -90px;left: calc(50% - 22.578px);/* margin-right: auto; */">
+            <div class="std_body_button" onclick="hidePopUp()" style="bottom: 0;left: 30%;/* margin-right: auto; */">
                 <span class="button_body">ok</span>
                 <span class="button_bar"></span>
             </div>
@@ -774,7 +521,7 @@
 
 
         <!--RENDER AREA-->
-        <div id="animationEngine_renderArea" style="position: absolute; z-index: -10; right:0; bottom:0;">
+        <div id="animationEngine_renderArea" style="position: absolute; z-index: -10;">
 
         </div>
 
@@ -793,6 +540,7 @@
     <!--Animation Engine-->
     <script src="animationEngine/utils.js"></script>
     <script src="animationEngine/keyframes/keyframes.js"></script>
+    <!--        TEMPORARY DISABLED-->
     <script src="animationEngine/animate.js"></script>
 
 

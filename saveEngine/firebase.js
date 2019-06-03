@@ -8,6 +8,7 @@ var config = {
     storageBucket: "tsa-2019.appspot.com",
     messagingSenderId: "796284394275"
 };
+
 firebase.initializeApp(config);
 const firestore = firebase.firestore();
 

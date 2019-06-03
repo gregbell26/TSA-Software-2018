@@ -97,7 +97,9 @@ function moveDown(frame){
 }
 
 
-//takes all of the properties of the things taken above and sets them to the current viewport. All of the properties for each time is found in each iteration of the array. this takes the values in each keyframe and makes the attributes shift from the original values to the ones in the new frame
+//takes all of the properties of the things taken above and sets them to the current viewport.
+// All of the properties for each time is found in each iteration of the array. this takes the values
+// in each keyframe and makes the attributes shift from the original values to the ones in the new frame
 function playAnimation(frameValue) {
     var dontRun = false;
     if (keyFrames.length === 0){
@@ -223,6 +225,73 @@ function timelineScrub(pageX) {
     }
 }
 
+function moveKeyframeto(frameNumber, point) {
+    var durationToFrame = 0;
+    for (var i = 0; i < frameNumber; i++){
+        durationToFrame += keyFrames[i].duration;
+    }
+    console.log("duration to frame: " + durationToFrame);
+    var totalDuration = 0;
+    for (var i = 0; i < keyFrames.length; i++){
+        totalDuration += keyFrames[i];
+    }
+    if(point < 0 || point > totalDuration){
+        console.log("point out of bounds");
+        return;
+    }
+    moveKeyframe(frameNumber,point-durationToFrame);
+}
+
+function moveKeyframe(frameNumber, amount) {
+    if(frameNumber < 0 || frameNumber >= keyFrames.length){
+        console.log("Frame out of bounds");
+        return;
+    }
+    console.log("moving: " + amount);
+    if (amount < -keyFrames[frameNumber-1].length) {
+        var i = 0;
+        var move = amount;
+        while(move < -keyFrames[frameNumber-1 + i].length){
+            move += keyFrames[frameNumber-1].length;
+            i--;
+        }
+        changeKeyframePosition(frameNumber,frameNumber+i);
+        keyFrames[frameNumber].duration += keyFrames[frameNumber+i].duration;
+        keyFrames[frameNumber+i-1].duration += move;
+        keyFrames[frameNumber+i].duration = -move;
+    } else if (amount > keyFrames[frameNumber].length) {
+        var i = 0;
+        var move = amount;
+        while(move > keyFrames[frameNumber+i].length){
+            move -= keyFrames[frameNumber+i].length;
+            i++;
+        }
+        changeKeyframePosition(frameNumber,frameNumber+i);
+        keyFrames[frameNumber].duration += keyFrames[frameNumber+i].duration;
+        keyFrames[frameNumber+i-1].duration -= move;
+        keyFrames[frameNumber+i].duration = move;
+    } else {
+        keyFrames[frameNumber-1].duration += amount;
+        keyFrames[frameNumber].duration -= amount;
+    }
+}
+
+function changeKeyframePosition(frameNumber, targetNumber){
+    var temp = keyFrames[targetNumber];
+    keyFrames[targetNumber] = keyFrames[frameNumber];
+    if(targetNumber < frameNumber){
+        for(var i = frameNumber; i > targetNumber+1; i--){
+            keyFrames[i] = keyFrames[i-1];
+        }
+        keyFrames[targetNumber+1] = temp;
+    }else{
+        for(var i = frameNumber; i < targetNumber-1; i++){
+            keyFrames[i] = keyFrames[i+1];
+        }
+        keyFrames[targetNumber-1] = temp;
+    }
+}
+
 function updateAnimation(timingCounter,a){
 
     if(lockCamera) {//camera stuff
@@ -316,9 +385,9 @@ function updateAnimation(timingCounter,a){
             console.log("moving X " + MvXv/Math.PI*180+"°");
             console.log("moving Y " + MvYv/Math.PI*180+"°");
         }
-        yCLook = (zoom1v  +  zoomChangev/keyFrames[a].duration * timingCounter) * (Math.sin(Ry1v+MvYv/keyFrames[a].duration * timingCounter))+yPosition;
-        xCLook = -((zoom1Zv + zoomZChangev/keyFrames[a].duration * timingCounter) * (Math.cos(Rz1v+MvXv/keyFrames[a].duration * timingCounter))-xPosition);
-        zCLook = -((zoom1Zv + zoomZChangev/keyFrames[a].duration * timingCounter) * (Math.sin(Rz1v+MvXv/keyFrames[a].duration * timingCounter))-zPosition);
+        //yCLook = (zoom1v  +  zoomChangev/keyFrames[a].duration * timingCounter) * (Math.sin(Ry1v+MvYv/keyFrames[a].duration * timingCounter))+yPosition;
+        //xCLook = -((zoom1Zv + zoomZChangev/keyFrames[a].duration * timingCounter) * (Math.cos(Rz1v+MvXv/keyFrames[a].duration * timingCounter))-xPosition);
+        //zCLook = -((zoom1Zv + zoomZChangev/keyFrames[a].duration * timingCounter) * (Math.sin(Rz1v+MvXv/keyFrames[a].duration * timingCounter))-zPosition);
         if(cameraDebug) {
             console.log(xCLook);
             console.log(yCLook);
@@ -459,9 +528,9 @@ function updateAnimation(timingCounter,a){
     }
     for(var i=0; i<lights.length; i++){
         if(keyFrames[a].lights[i]!=null && keyFrames[a+1].lights[i]!=null){
-        lights[i].position.x = keyFrames[a].lights[i].position.x + (keyFrames[a + 1].lights[i].position.x - keyFrames[a].lights[i].position.x) / keyFrames[a].duration * timingCounter;
-        lights[i].position.y = keyFrames[a].lights[i].position.y + (keyFrames[a + 1].lights[i].position.y - keyFrames[a].lights[i].position.y) / keyFrames[a].duration * timingCounter;
-        lights[i].position.z = keyFrames[a].lights[i].position.z + (keyFrames[a + 1].lights[i].position.z - keyFrames[a].lights[i].position.z) / keyFrames[a].duration * timingCounter;
+            lights[i].position.x = keyFrames[a].lights[i].position.x + (keyFrames[a + 1].lights[i].position.x - keyFrames[a].lights[i].position.x) / keyFrames[a].duration * timingCounter;
+            lights[i].position.y = keyFrames[a].lights[i].position.y + (keyFrames[a + 1].lights[i].position.y - keyFrames[a].lights[i].position.y) / keyFrames[a].duration * timingCounter;
+            lights[i].position.z = keyFrames[a].lights[i].position.z + (keyFrames[a + 1].lights[i].position.z - keyFrames[a].lights[i].position.z) / keyFrames[a].duration * timingCounter;
         }
     }
 }
@@ -472,3 +541,4 @@ function record(){
     capturer.start();
     playAnimation(0);
 }
+

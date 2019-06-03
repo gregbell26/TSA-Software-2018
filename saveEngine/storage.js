@@ -178,18 +178,24 @@ let saveSubSystem = {
             localStorage.removeItem("keyFrames:" + saveToDelete);
             localStorage.removeItem("scales:" + saveToDelete);
             localStorage.removeItem("shapes:" + saveToDelete);
+            localStorage.removeItem("lights:" + saveToDelete);
+
 
             //the save should now be deleted
-            if (saveToDelete === this.fileName)
-                location.reload(true);//Get a new page from the sever other wise chrome chache will make git commit die
+            if (saveToDelete === this.fileName) {
+                showPopUp("popUp_error_body", "Warning", "Active save file has been delete. \nMonarch Animation will now reload", 100);
+            }
+
         }
         else if (saveToDelete ==="purge"){
             localStorage.clear();
-            showPopUp("popUp_error_body", "Warning", "All local saves have been purged",100);
+            settings.setToDefault();
+            this.save();
+            showPopUp("popUp_error_body", "Warning", "All local saves have been purged. \nMonarch Animation will now reload",100);
 
         }
         else {
-            this.saveFileNamesList.pop(saveToDelete)//Removes old save from file name list
+            this.saveFileNamesList.pop(saveToDelete);//Removes old save from file name list
             localStorage.setItem("fileNames", JSON.stringify(this.saveFileNamesList));//saves that.
         }
 
@@ -269,11 +275,14 @@ let saveSubSystem = {
         let textVal;
         if(localStorage.getItem("text:"+this.fileName)!=null){
             textVal = JSON.parse(localStorage.getItem("text:"+this.fileName));
+        }else{
+            showPopUp("popUp_error_body", "Warning", "No valid text data found", -1);
         }
         let json = {
             edits: parseInt(localStorage.getItem(this.fileName)),
             keyFrames: keyFrames,
-            scales: scales,
+            scales: this.scales,
+            lights: this.convertLightObjs(),
             shapes: this.convertShapeObjs(),
             text: textVal,
         };
@@ -290,10 +299,17 @@ let saveSubSystem = {
         localStorage.setItem('keyFrames:' + name, JSON.stringify(result.keyFrames));
         localStorage.setItem('shapes:' + name, JSON.stringify(result.shapes));
         localStorage.setItem('scales:' + name, JSON.stringify(result.scales));
+        if(JSON.stringify(result.lights) !== undefined)
+            localStorage.setItem('lights:' + name, JSON.stringify(result.lights));
+        else
+            localStorage.setItem('lights:' + name, []);
         console.log("Save of " + name + " complete.");
-        let list = JSON.parse(localStorage.getItem("fileNames"));
+        let list =[];
+        if(localStorage.getItem("fileNames")!== null)
+            list = JSON.parse(localStorage.getItem("fileNames"));
         list.push(name);
-        localStorage.setItem("fileNames",JSON.stringify(list));
+        if(name !== this.fileName)//don't add another save if it will just corrupt the file
+            localStorage.setItem("fileNames",JSON.stringify(list));
         if(name===this.fileName){
             location.reload();
         }
