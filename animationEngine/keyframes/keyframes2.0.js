@@ -84,6 +84,17 @@ class Keyframe {
     updateScene() {
 
     }
+
+    moveKeyframe(amount){
+        if(amount < 0){
+
+        }else if(amount){
+
+        }else{
+
+        }
+
+    }
 }
 
 class Timeline{
