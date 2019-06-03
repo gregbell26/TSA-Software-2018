@@ -270,13 +270,14 @@ function moveKeyframe(frameNumber, amount) {
         }
         changeKeyframePosition(frameNumber,frameNumber+i);
         keyFrames[frameNumber].duration += keyFrames[frameNumber+i].duration;
-        keyFrames[frameNumber+i-1].duration -= move;
-        keyFrames[frameNumber+i].duration = move;
+        keyFrames[frameNumber+i-1].duration = move;
+        keyFrames[frameNumber+i].duration -= move;
     } else {
         console.log("within bounds");
         keyFrames[frameNumber-1].duration += amount;
         keyFrames[frameNumber].duration -= amount;
     }
+    updateTimeline();
 }
 
 function changeKeyframePosition(frameNumber, targetNumber){
