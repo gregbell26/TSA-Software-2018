@@ -30,7 +30,26 @@ class curruption {
 
     //This will check if the
     validData(){
-        
+        if((this.IP_shapes && this.IP_keyframes) === undefined || (this.IP_shapes && this.IP_keyframes) == null){
+            //this is unrecoverable
+            return -100;
+        }
+        if(this.IP_scales === undefined || this.IP_scales === null){
+            if(this.IP_keyframes === null || this.IP_keyframes === undefined){
+                for(let i =0; i < this.IP_shapes.length; i++){
+                    this.IP_scales.push([1,1,1]);
+                }
+            }
+            else {
+                for(let i =0; i < this.IP_shapes; i++){
+                    this.IP_scales.push(
+                        this.IP_keyframes
+                    );
+                }
+            }
+        }
+
+
 
     }
 
@@ -40,6 +59,9 @@ class curruption {
 
 
     checkData(){
+        //Validates the save info
+        this.validData();
+
 
 
     }

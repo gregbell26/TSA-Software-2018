@@ -110,8 +110,7 @@ class saveEngine {
             //Todo corruption detection
 
 
-            //lights =this.stagedLights;
-            //shapes =this.stagedShapes;
+
             keyFrames = this.stagedKeyframes;
             scales = this.stagedScales;
         }
