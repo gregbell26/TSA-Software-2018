@@ -29,8 +29,12 @@ class curruption {
     }
 
     //This will check if the
-    validData(){
+    validData(){//These varaables will change when keyframes 2.0 is implemented
         if((this.IP_shapes && this.IP_keyframes) === undefined || (this.IP_shapes && this.IP_keyframes) == null){
+            //this is unrecoverable
+            return -100;
+        }
+        if((this.IP_lights && this.IP_keyframes) === undefined || (this.IP_lights && this.IP_keyframes) == null){
             //this is unrecoverable
             return -100;
         }
@@ -42,11 +46,14 @@ class curruption {
             }
             else {
                 for(let i =0; i < this.IP_shapes; i++){
-                    this.IP_scales.push(
-                        this.IP_keyframes
-                    );
+                    this.IP_scales.push([
+                        this.IP_keyframes.scales[i][0],
+                        this.IP_keyframes.scales[i][1],
+                        this.IP_keyframes.scales[i][2],
+                    ]);
                 }
             }
+
         }
 
 
@@ -61,8 +68,15 @@ class curruption {
     checkData(){
         //Validates the save info
         this.validData();
+        this.consistentData();
 
+        this.compiledData.push(this.CP_lights);
+        this.compiledData.push(this.CP_shapes);
+        this.compiledData.push(this.CP_keyframes);
+        this.compiledData.push(this.CP_scales);
+        this.compiledData.push(this.CP_boarders);
 
+        return this.compiledData;
 
     }
 

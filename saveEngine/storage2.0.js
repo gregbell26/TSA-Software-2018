@@ -106,9 +106,9 @@ class saveEngine {
             if(this.legacySupport)
                 this.stagedScales = localStore.getFromStorage(this.getKeyName("scales"));
 
+            let curruption = new curruption(this.stagedShapes, this.stagedLights, this.stagedKeyframes, this.stagedBorders, this.stagedScales);
 
-            //Todo corruption detection
-
+            let decurupted = curruption.checkData();
 
 
             keyFrames = this.stagedKeyframes;
