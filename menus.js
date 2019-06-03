@@ -2,20 +2,20 @@
 
 function showList(){
     //Brings up a list of all of the shapes that current exist in the scene. Called when the "Show List" button is clicked.
-    let sideBar=document.getElementById('shapeList_shapes');
-    let sideBarLight = document.getElementById("shapeList_lights");
-    hideAll();
-    document.getElementById("sideBarList").style.display="inherit";
-    sideBar.innerHTML="";
-    sideBarLight.innerHTML="";
+    let shapesList=document.getElementById('shapesList_shapes').children[0];
+    let lightsList = document.getElementById("shapesList_lights").children[0];
+    shapesList.innerHTML="";
+    lightsList.innerHTML="";
+
     for (let i=0; i<shapes.length; i++){
-        //console.log("Shape "+(i+1)+": "+shapes[i]['geometry']['type']);
-        sideBar.innerHTML+="<button onclick='setSelectedShape("+i+")'>"+(i+1)+": "+shapes[i].geometry.name+" <div style='width: 14px; height: 14px; background-color: #"+shapes[i].material.color.getHexString()+"; display: inline-block'></div></button>";
+        shapesList.innerHTML+="<li class='elementList_body' onclick='setSelectedShape("+i+")'>" + shapes[i].geometry.name +
+            "<div style='display: block;margin-left: 5px;width: 20px; float: left;height: 20px;background-color: #"+shapes[i].material.color.getHexString()+";'</li>"
     }
     for (let i = 0; i < lights.length; i++){
-        sideBarLight.innerHTML+="<button onclick='setSelectedLight("+i+")'>"+(i+1)+": "+lights[i].name+" <div style='width: 14px; height: 14px; background-color: #"+lights[i].color.getHexString()+"; display: inline-block'></div></button>";
+        lightsList.innerHTML+="<li class='elementList_body' onclick='setSelectedLight("+i+")'>" + lights[i].name +
+            "<div style='display: block;margin-left: 5px;width: 20px; float: left;height: 20px;background-color: #"+lights[i].color.getHexString()+";'</li>"
     }
-    console.log("Showed List");
+    //console.log("Showed List");
     if(usingTutorial){
         usingTutorial = false;
         document.getElementById("tutorialArrow").style.display="none";
@@ -23,44 +23,63 @@ function showList(){
 }
 
 function setSelectedShape(num){
-
     selectedShape = num;
     toggleEditShapeOrLight(false);
+    if(num === -1){
+        //showMenu("menu_newShapes");
+        document.getElementById("element_Information").style.display = 'none';
+        document.getElementById('currentEditing_type').style.display = 'none';
+        return;
+    }
+    else{
+        document.getElementById("element_Information").style.display = 'initial';
+        document.getElementById('currentEditing_type').style.display = 'initial';
+    }
     //document.getElementById('boxSelected').innerHTML="#"+(selectedShape+1);
-    let color = "#";
-    color += rgbToHex(shapes[selectedShape].material.color['r']*255);
-    color += rgbToHex(shapes[selectedShape].material.color['g']*255);
-    color += rgbToHex(shapes[selectedShape].material.color['b']*255);
-    // TEMPORARY COMMENTED OUT
     console.log(shapes[selectedShape].material.color.getHexString());
     document.getElementById('element_color').value = "#"+shapes[selectedShape].material.color.getHexString();
     document.getElementById("element_border_color").value = "#"+borders[selectedShape].material.color.getHexString();
     document.getElementById('position_x').value = shapes[selectedShape].position.x;
     document.getElementById('position_y').value = shapes[selectedShape].position.y;
     document.getElementById('position_z').value = shapes[selectedShape].position.z;
-    // document.getElementById('rotateBoxX').value = (shapes[selectedShape].rotation.x*180/Math.PI);
-    // document.getElementById('rotateBoxY').value = (shapes[selectedShape].rotation.y*180/Math.PI);
-    // document.getElementById('rotateBoxZ').value = (shapes[selectedShape].rotation.z*180/Math.PI);
+    document.getElementById('rotation_x').value = (shapes[selectedShape].rotation.x*180/Math.PI);
+    document.getElementById('rotation_y').value = (shapes[selectedShape].rotation.y*180/Math.PI);
+    document.getElementById('rotation_z').value = (shapes[selectedShape].rotation.z*180/Math.PI);
     document.getElementById('diemsions_x').value = scales[selectedShape][0];
     document.getElementById('diemsions_y').value = scales[selectedShape][1];
     document.getElementById('diemsions_z').value = scales[selectedShape][2];
+    document.getElementById('borders').checked = borders[selectedShape].visible;
+    showMenu("menu_newShapes");
 }
 
 function setSelectedLight(num) {
     selectedLight = num;
+    if(num === -1){
+        //howMenu("menu_newShapes");
+        document.getElementById("element_Information").style.display = 'none';
+        document.getElementById('currentEditing_type').style.display = 'none';
+        return;
+    }
+    else{
+        document.getElementById("element_Information").style.display = 'initial';
+        document.getElementById('currentEditing_type').style.display = 'initial';
+    }
+    if (lights[selectedLight].name === "Hemisphere light"){
+        document.getElementById("element_border_color").value = "#"+lights[selectedLight].groundColor.getHexString();
+    }
     toggleEditShapeOrLight(true);
-    let color = "#";
     document.getElementById("element_color").value = "#"+lights[selectedLight].color.getHexString();
     document.getElementById("position_x").value = lights[selectedLight].position.x;
     document.getElementById("position_y").value = lights[selectedLight].position.y;
     document.getElementById("position_z").value = lights[selectedLight].position.z;
     document.getElementById("intensity_slider").value = lights[selectedLight].intensity * 100;
     document.getElementById("intensity_value").innerHTML = lights[selectedLight].intensity * 100 + "";
+    showMenu("menu_newShapes");
     // lightEditMenu();
 }
 
 function cameraMenu(){
-    hideAll();
+    //hideAll();
     document.getElementById('sideBarCamera').style.display="inherit";
     document.getElementById('xPositionBox').value = xPosition;
     document.getElementById('yPositionBox').value = yPosition;
@@ -73,22 +92,6 @@ function cameraMenu(){
     document.getElementById('zCLookBox').value = zCLook;
     console.log("Showed Camera")
 
-}
-function userMenu(){
-    document.getElementById("userPage").style.display = "inherit";
-    document.getElementById("settingsBackground").style.display = "inherit";
-    if(user!=null){
-        firestore.collection("lists").doc(user.uid).get().then(function(doc){
-            if(doc.exists){
-                let data = doc.data();
-                document.getElementById("loadCloudSelect").innerHTML = "";
-                for (let key in data) {
-                    if (!data.hasOwnProperty(key)) continue;
-                    document.getElementById("loadCloudSelect").innerHTML += "<option value='"+key+"'>"+key+"</option>";
-                }
-            }
-        })
-    }
 }
 
 function hideAll(){
@@ -121,14 +124,14 @@ function editMenu() {
 }
 
 function colorMenu(){
-    hideAll();
+    // hideAll();
     document.getElementById("colorMenu").style.display="inherit";
     console.log("COLOR")
 
 }
 
 function shapeMenu(){
-    hideAll();
+    // hideAll();
     document.getElementById("shapeMenu").style.display="inherit";
     if(usingTutorial){
         if(confirm("Now create a shape")){
@@ -141,7 +144,7 @@ function shapeMenu(){
 }
 
 function newShapeMenu(){
-    hideAll();
+    // hideAll();
     document.getElementById("addMenu").style.display="inherit";
     if(usingTutorial){
         animateArrow(75, 95, 120, 90);
@@ -149,12 +152,12 @@ function newShapeMenu(){
 }
 
 function newLightMenu() {
-    hideAll();
+    // hideAll();
     document.getElementById("addLightMenu").style.display="inherit";
 }
 
 function lightEditMenu(){
-    hideAll();
+    // hideAll();
     document.getElementById("lightEditMenu").style.display="inherit";
     if (lights[selectedLight].type == "HemisphereLight"){
         document.getElementById("hemisphereLightColor").style.display="inherit";
@@ -165,7 +168,7 @@ function lightEditMenu(){
 
 
 function keyMenu(){
-    hideAll();
+    // hideAll();
     document.getElementById("keyMenu").style.display="inherit";
     loadKeyList();
     if(usingTutorial){
@@ -175,25 +178,25 @@ function keyMenu(){
 }
 
 function sceneMenu() {
-    hideAll();
+    // // // hideall();
     document.getElementById("sceneMenu").style.display='inherit';
 
 }
 
 function lightMenu() {
-    hideAll();
+// hideAll();
     document.getElementById("lightMenu").style.display='inherit';
 }
 
 
 function borderVisibility(){
-    let checked = document.getElementById("borderVisibility").checked;
+    let checked = document.getElementById("borders").checked;
     if(checked){
         borders[selectedShape].visible = true;
-        document.getElementById("borderMenu").style.display="inherit";
+        document.getElementById("element_border_color").style.display="inherit";
     }else{
         borders[selectedShape].visible = false;
-        document.getElementById("borderMenu").style.display="none";
+        document.getElementById("element_border_color").style.display="none";
     }
 }
 
@@ -237,12 +240,34 @@ function toggleEditShapeOrLight(isLight){
         getId("currentEditing_type").innerHTML = "light";
         getId("currentEditing_dimensions").style.display="none";
         getId("currentEditing_intensity").style.display="inherit";
-        getId("element_border_color").style.display="none";
+        getId("currentEditing_rotation").style.display="none";
+        getId("currentEditing_borders").style.display="none";
+        if (lights[selectedLight].name === "Hemisphere light"){
+            getId("element_border_color").style.display="inherit";
+            getId("currentEditing_positions").style.display="inherit";
+        } else if (lights[selectedLight].name === "Ambient light") {
+            getId("currentEditing_positions").style.display="none";
+            getId("element_border_color").style.display="none";
+        } else {
+            getId("currentEditing_positions").style.display="inherit";
+            getId("element_border_color").style.display="none";
+        }
     }
     else{
         getId("currentEditing_type").innerHTML = "shape";
         getId("currentEditing_dimensions").style.display="inherit";
         getId("currentEditing_intensity").style.display="none";
-        getId("element_border_color").style.display="inherit";
+        getId("currentEditing_rotation").style.display="inherit";
+        getId("currentEditing_positions").style.display="inherit";
+        getId("currentEditing_borders").style.display="inherit";
+        if (borders.length > 0){
+            if (document.getElementById('borders').checked === true){
+                getId("element_border_color").style.display="inherit";
+            } else {
+                getId("element_border_color").style.display="none";
+            }
+        }else {
+            getId("element_border_color").style.display="inherit";
+        }
     }
 }
