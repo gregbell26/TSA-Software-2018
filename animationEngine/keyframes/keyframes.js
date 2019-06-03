@@ -97,7 +97,9 @@ function moveDown(frame){
 }
 
 
-//takes all of the properties of the things taken above and sets them to the current viewport. All of the properties for each time is found in each iteration of the array. this takes the values in each keyframe and makes the attributes shift from the original values to the ones in the new frame
+//takes all of the properties of the things taken above and sets them to the current viewport.
+// All of the properties for each time is found in each iteration of the array. this takes the values
+// in each keyframe and makes the attributes shift from the original values to the ones in the new frame
 function playAnimation(frameValue) {
     var dontRun = false;
     if (keyFrames.length === 0){

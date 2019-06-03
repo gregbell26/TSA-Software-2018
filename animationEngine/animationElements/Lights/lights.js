@@ -4,7 +4,7 @@ let value = document.getElementById("intensity_value");
 //value.innerText = slider.value;
 
 
-function newLight(type,color,intensity,positionX,positionY,positionZ,color2) {
+function newLight(type,color,intensity,positionX,positionY,positionZ) {
     const convert = {
         "ambient":"Ambient",
         "point":"Point",
@@ -14,37 +14,26 @@ function newLight(type,color,intensity,positionX,positionY,positionZ,color2) {
     };
     if(type!=="hemisphere"){
         let light = new THREE[convert[type]+"Light"](color, intensity/100);
-        light.name = convert[type]+" light";
+        console.log(light);
+        light.name = convert[type] + " light";
         lights[lights.length] = light;
         scene.add(light);
         selectedLight = lights.length - 1;
         lights[selectedLight].position.x = positionX;
         lights[selectedLight].position.y = positionY;
         lights[selectedLight].position.z = positionZ;
+        getId("shapeList_lights").innerHTML+="<button onclick='setSelectedLight("+selectedLight+");showMenu(\"menu_newShapes\");' style='color:black'>"+type+"</button><br>";
         getId("newLights_select").value = "newLight";
-    }else if (type === "hemisphere"){
-        let light = new THREE[convert[type]+"Light"](color, color2, intensity/100);
-        light.name = convert[type]+" light";
-        lights[lights.length] = light;
-        scene.add(light);
-        selectedLight = lights.length - 1;
-        lights[selectedLight].position.x = positionX;
-        lights[selectedLight].position.y = positionY;
-        lights[selectedLight].position.z = positionZ;
     }
-    setSelectedLight(selectedLight);
 }
 
 function removeLight(){
-    if (selectedLight >= 0) {
+    if(selectedLight >= 0){
         scene.remove(lights[selectedLight]);
         lights.splice(selectedLight,1);
-
-
-        selectedLight = -1;
-
+        selectedLight--;
         setSelectedLight(selectedLight);
-        saveSubSystem.save();
+        // saveSubSystem.save();
     }
 }
 
@@ -59,7 +48,7 @@ function changeLightColor(value){
 
 function changeGroundLightColor(value){
     //changes the color ground of the currently selected light
-    if (lights[selectedLight].type === "HemisphereLight") {
+    if (lights[selectedLight].type == "HemisphereLight") {
         lights[selectedLight].groundColor.set(value);
     } else {
         changeLightColor(value);
