@@ -13,11 +13,11 @@ Author Jordan
 let animate = function () {
     requestAnimationFrame(animate);
     if (init) {//to prevent thousands of errors when the program loads
-        if (camera.position.x !== xPosition)
+        if (camera.position.x !== xPosition + xCCenter + scene.position.x)
             camera.position.x = xPosition + xCCenter + scene.position.x;
-        if (camera.position.y !== yPosition)
+        if (camera.position.y !== yPosition + yCCenter + scene.position.y)
             camera.position.y = yPosition + yCCenter + scene.position.y;
-        if (camera.position.z !== zPosition)
+        if (camera.position.z !== zPosition + zCCenter + scene.position.z)
             camera.position.z = zPosition + zCCenter + scene.position.z;
         //handling the shapes position in animation
         camera.lookAt((scene.position.x + xCLook), (scene.position.y + yCLook), (scene.position.z + zCLook));
