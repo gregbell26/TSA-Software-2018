@@ -138,7 +138,7 @@ function shapeMenu(){
     document.getElementById("shapeMenu").style.display="inherit";
     if(usingTutorial){
         if(confirm("Now create a shape")){
-            animateArrow(15, 75, 120, 120);
+           // animateArrow(15, 75, 120, 120);
         }
         else{
             usingTutorial = false;
@@ -150,7 +150,7 @@ function newShapeMenu(){
     // hideAll();
     document.getElementById("addMenu").style.display="inherit";
     if(usingTutorial){
-        animateArrow(75, 95, 120, 90);
+       // animateArrow(75, 95, 120, 90);
     }
 }
 
@@ -176,7 +176,7 @@ function keyMenu(){
     loadKeyList();
     if(usingTutorial){
         confirm("Use the \"Add keyframe\" button to mark the start of your animation")
-        animateArrow(15,75,240,250);
+        //animateArrow(15,75,240,250);
     }
 }
 
