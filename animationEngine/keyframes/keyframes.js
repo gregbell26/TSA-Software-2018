@@ -248,22 +248,24 @@ function moveKeyframe(frameNumber, amount) {
         return;
     }
     console.log("moving: " + amount);
-    if (amount < -keyFrames[frameNumber-1].length) {
+    if (amount < -keyFrames[frameNumber-1].duration) {
+        console.log("shifting down");
         var i = 0;
         var move = amount;
-        while(move < -keyFrames[frameNumber-1 + i].length){
-            move += keyFrames[frameNumber-1].length;
+        while(move < -keyFrames[frameNumber-1 + i].duration){
+            move += keyFrames[frameNumber-1].duration;
             i--;
         }
         changeKeyframePosition(frameNumber,frameNumber+i);
         keyFrames[frameNumber].duration += keyFrames[frameNumber+i].duration;
         keyFrames[frameNumber+i-1].duration += move;
         keyFrames[frameNumber+i].duration = -move;
-    } else if (amount > keyFrames[frameNumber].length) {
+    } else if (amount > keyFrames[frameNumber].duration) {
+        console.log("shifting up");
         var i = 0;
         var move = amount;
-        while(move > keyFrames[frameNumber+i].length){
-            move -= keyFrames[frameNumber+i].length;
+        while(move > keyFrames[frameNumber+i].duration){
+            move -= keyFrames[frameNumber+i].duration;
             i++;
         }
         changeKeyframePosition(frameNumber,frameNumber+i);
@@ -271,6 +273,7 @@ function moveKeyframe(frameNumber, amount) {
         keyFrames[frameNumber+i-1].duration -= move;
         keyFrames[frameNumber+i].duration = move;
     } else {
+        console.log("within bounds");
         keyFrames[frameNumber-1].duration += amount;
         keyFrames[frameNumber].duration -= amount;
     }
