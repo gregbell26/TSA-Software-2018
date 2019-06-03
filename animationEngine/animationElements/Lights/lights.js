@@ -28,6 +28,7 @@ function newLight(type,color,intensity,positionX,positionY,positionZ,color2) {
         lights[lights.length] = light;
         scene.add(light);
         selectedLight = lights.length - 1;
+        positionY = -1;
         lights[selectedLight].position.x = positionX;
         lights[selectedLight].position.y = positionY;
         lights[selectedLight].position.z = positionZ;
