@@ -1,4 +1,3 @@
-
 class saveEngine {
     localStorageEnable;
 
@@ -23,6 +22,7 @@ class saveEngine {
     stagedShapes = [];
     stagedKeyframes = [];
     stagedScales = [];
+    stagedBorders = [];
     stagedSettings;
 
 
@@ -91,7 +91,7 @@ class saveEngine {
             localStore.saveToStorage(settings.sessionId, this.localSaveIdList);
     }
 
-    loadLocalSave(fileID, hotLoad){
+    loadLocalSave(fileID){
         if(this.localStorageEnable && localStore.exists(fileID)){
             this.localFileID = fileID;
             this.localFileName = localStore.getFromStorage(fileID);
@@ -101,14 +101,17 @@ class saveEngine {
             this.stagedLights =  localStore.getFromStorage(this.getKeyName("lights"));
             this.stagedShapes =  localStore.getFromStorage(this.getKeyName("shapes"));
             this.stagedKeyframes =  localStore.getFromStorage(this.getKeyName("keyframes"));
-            this.stagedScales =  localStore.getFromStorage(this.getKeyName("scales"));
+            this.stagedBorders = conversion.breakoutShapes(this.stagedShapes, "borders");
+            this.stagedScales = conversion.breakoutShapes(this.stagedShapes, "scales");
+            if(this.legacySupport)
+                this.stagedScales = localStore.getFromStorage(this.getKeyName("scales"));
 
 
             //Todo corruption detection
 
 
-            lights =this.stagedShapes;
-            shapes =this.stagedShapes;
+            //lights =this.stagedLights;
+            //shapes =this.stagedShapes;
             keyFrames = this.stagedKeyframes;
             scales = this.stagedScales;
         }
@@ -116,7 +119,7 @@ class saveEngine {
     }
 
 
-    createNewLocalSave(newFileName, hotLoad){
+    createNewLocalSave(newFileName){
         if (this.localStorageEnable && this.localNewSave) {
             this.localFileName = newFileName;
             if(this.legacySupport){
@@ -136,24 +139,11 @@ class saveEngine {
 
             this.addNewSave(this.localFileID);
             this.localNewSave = false;
-            this.loadLocalSave(this.localFileID, hotLoad);
+            this.loadLocalSave(this.localFileID);
         }
 
     }
 
-    _hotLoad(){
-        //Clear renderer of all elements
-        //push keyframes and scales
-        //run create light routines
-
-        lights =this.stagedShapes;
-        shapes =this.stagedShapes;
-        keyFrames = this.stagedKeyframes;
-        scales = this.stagedScales;
-
-        //settings.updateSettings(this.stagedSettings);
-
-    }
 
     //Savers
     save(localStorage, cloudStorage){
@@ -166,6 +156,26 @@ class saveEngine {
                 this.stagedSettings = keyFrames;
                 localStorage.saveToStorage(this.getKeyName("keyFrames"), this.stagedSettings);
             }
+            if(shapes !== this.stagedShapes){
+                let combinedArrays = [];
+                this.stagedShapes = shapes;
+                this.stagedBorders = borders;
+                this.stagedScales = scales;
+                combinedArrays.push(this.stagedShapes);
+                combinedArrays.push(conversion.toOneDArr(this.stagedScales, "scales"));
+                combinedArrays.push(this.stagedBorders);
+                localStorage.saveToStorage(this.getKeyName("shapes"),conversion.toSavableArr(combinedArrays, "shapes"));
+                if(this.legacySupport){
+                    localStorage.saveToStorage(this.getKeyName("scales"), this.stagedScales);
+                }
+            }
+            if(lights !== this.stagedLights){
+                this.stagedLights = lights;
+                localStorage.saveToStorage(this.getKeyName("lights"), conversion.toSavableArr(this.stagedLights, "lights"));
+            }
+        }
+        if(cloudStorage && this.cloudStorageEnable){
+
         }
     }
 
