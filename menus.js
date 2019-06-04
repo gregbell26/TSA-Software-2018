@@ -49,6 +49,8 @@ function setSelectedShape(num){
     document.getElementById('diemsions_y').value = scales[selectedShape][1];
     document.getElementById('diemsions_z').value = scales[selectedShape][2];
     document.getElementById('borders').checked = borders[selectedShape].visible;
+    document.getElementById("shape_castShadow").checked = shapes[selectedShape].castShadow;
+    document.getElementById("shape_receiveShadow").checked = shapes[selectedShape].receiveShadow;
     showMenu("menu_newShapes");
 }
 
@@ -74,6 +76,7 @@ function setSelectedLight(num) {
     document.getElementById("position_z").value = lights[selectedLight].position.z;
     document.getElementById("intensity_slider").value = lights[selectedLight].intensity * 100;
     document.getElementById("intensity_value").innerHTML = lights[selectedLight].intensity * 100 + "";
+    document.getElementById("light_castShadow").checked = lights[selectedLight].castShadow;
     showMenu("menu_newShapes");
     // lightEditMenu();
 }
@@ -242,15 +245,25 @@ function toggleEditShapeOrLight(isLight){
         getId("currentEditing_intensity").style.display="inherit";
         getId("currentEditing_rotation").style.display="none";
         getId("currentEditing_borders").style.display="none";
+        getId("currentEditing_shape_shadows").style.display="none";
+        getId("default_target_position").style.display = "none";
         if (lights[selectedLight].name === "Hemisphere light"){
             getId("element_border_color").style.display="inherit";
             getId("currentEditing_positions").style.display="inherit";
+            getId("currentEditing_spotlight_parameters").style.display="none";
         } else if (lights[selectedLight].name === "Ambient light") {
             getId("currentEditing_positions").style.display="none";
             getId("element_border_color").style.display="none";
-        } else {
+            getId("currentEditing_spotlight_parameters").style.display="none";
+        } else if (lights[selectedLight].name === "Spot light") {
             getId("currentEditing_positions").style.display="inherit";
             getId("element_border_color").style.display="none";
+            getId("currentEditing_spotlight_parameters").style.display="inherit";
+            setTargetList();
+        }else {
+            getId("currentEditing_positions").style.display="inherit";
+            getId("element_border_color").style.display="none";
+            getId("currentEditing_spotlight_parameters").style.display="none";
         }
     }
     else{
@@ -260,6 +273,9 @@ function toggleEditShapeOrLight(isLight){
         getId("currentEditing_rotation").style.display="inherit";
         getId("currentEditing_positions").style.display="inherit";
         getId("currentEditing_borders").style.display="inherit";
+        getId("currentEditing_spotlight_parameters").style.display="none";
+        getId("currentEditing_shape_shadows").style.display="inherit";
+        getId("default_target_position").style.display = "none";
         if (borders.length > 0){
             if (document.getElementById('borders').checked === true){
                 getId("element_border_color").style.display="inherit";

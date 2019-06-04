@@ -47,9 +47,9 @@ function newCustom(x, y, z, posX, posY, posZ, newColor, borderColor, vertices, f
     selectedShape = shapes.length-1;
 
     setSelectedShape(selectedShape);
-    moveShape("x", posX);
-    moveShape('y', posY);
-    moveShape('z', posZ);
+    moveElement("x", posX);
+    moveElement('y', posY);
+    moveElement('z', posZ);
 
     document.getElementById('dimensionX').value = x;
     document.getElementById('dimensionY').value = y;

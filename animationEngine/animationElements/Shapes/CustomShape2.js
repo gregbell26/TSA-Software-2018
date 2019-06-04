@@ -185,9 +185,9 @@ console.log("Shape Ends at "+index);
 
     //alert("Called");
     setSelectedShape(selectedShape);
-    moveShape("x", posX);
-    moveShape('y', posY);
-    moveShape('z', posZ);
+    moveElement("x", posX);
+    moveElement('y', posY);
+    moveElement('z', posZ);
 
     document.getElementById('diemsions_x').value = x;
     document.getElementById('diemsions_y').value = y;
