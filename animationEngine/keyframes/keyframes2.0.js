@@ -466,3 +466,7 @@ function record(){
     capturer.start();
     playAnimation(0);
 }
+
+class timeline{
+    keyframes = [];
+}

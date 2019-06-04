@@ -12,7 +12,6 @@
         Edited 4/30/19
         Rev 26
 
-
         TODO: Fix timeline button toggles. New way to create shapes. Fix lights. Add shapes list. Set selected light is where the bugs are
     -->
     <head>
@@ -750,43 +749,47 @@
 
         <!--TIMELINE-->
         <div id="std_timeline">
-            <div id="timeline_buttonContainer">
-                <span class="timeline_button" id="timeline_addKeyframe" onclick="addFrame(); saveSubSystem.save();">
-                    <img  class="std_icon_normal"
-                         src="./style/assets/svgs/timeline_icons/timeline_addKeyframe_icon.svg"
-                         />
-                    <img  class="std_icon_dark"
-                         src="./style/assets/svgs/timeline_icons/timeline_addKeyframe_dark_icon.svg"
-                         />
-                </span>
-                <span class="timeline_button" id="timeline_removeKeyframe" onclick="removeFrame(keyFrames.length-1); saveSubSystem.save();">
-                    <img class="std_icon_normal"
-                         src="./style/assets/svgs/timeline_icons/timeline_deleteKeyframe_icon.svg"
-                         />
-                    <img class="std_icon_dark"
-                         src="./style/assets/svgs/timeline_icons/timeline_deleteKeyframe_dark_icon.svg"
-                         />
-                </span>
-                <span onclick="playAnimation(0)" class="timeline_button" id="timeline_play">
-                    <img class="std_icon_normal"
-                         src="./style/assets/svgs/timeline_icons/timeline_play_icon.svg"
-                         />
-                    <img class="std_icon_dark"
-                         src="./style/assets/svgs/timeline_icons/timeline_play_dark_icon.svg"
-                         />
-                </span>
-                <span onclick="loop()" class="timeline_button" id="timeline_repeat">
-                    <img  class="std_icon_normal"
-                         src="./style/assets/svgs/timeline_icons/timeline_loop_icon.svg"
-                         />
-                    <img  class="std_icon_dark"
-                         src="./style/assets/svgs/timeline_icons/timeline_loop_dark_icon.svg"
-                         />
-                </span>
+            <div id="std_timeline_navbar">
+                <div id="timeline_buttonContainer">
+                    <span class="timeline_button" id="timeline_addKeyframe" onclick="addFrame(); saveSubSystem.save();">
+                        <img  class="std_icon_normal"
+                            src="./style/assets/svgs/timeline_icons/timeline_addKeyframe_icon.svg"
+                            />
+                        <img  class="std_icon_dark"
+                            src="./style/assets/svgs/timeline_icons/timeline_addKeyframe_dark_icon.svg"
+                            />
+                    </span>
+                    <span class="timeline_button" id="timeline_removeKeyframe" onclick="removeFrame(keyFrames.length-1); saveSubSystem.save();">
+                        <img class="std_icon_normal"
+                            src="./style/assets/svgs/timeline_icons/timeline_deleteKeyframe_icon.svg"
+                            />
+                        <img class="std_icon_dark"
+                            src="./style/assets/svgs/timeline_icons/timeline_deleteKeyframe_dark_icon.svg"
+                            />
+                    </span>
+                    <span onclick="playAnimation(0)" class="timeline_button" id="timeline_play">
+                        <img class="std_icon_normal"
+                            src="./style/assets/svgs/timeline_icons/timeline_play_icon.svg"
+                            />
+                        <img class="std_icon_dark"
+                             src="./style/assets/svgs/timeline_icons/timeline_play_dark_icon.svg"
+                            />
+                    </span>
+                    <span onclick="loop()" class="timeline_button" id="timeline_repeat">
+                        <img  class="std_icon_normal"
+                            src="./style/assets/svgs/timeline_icons/timeline_loop_icon.svg"
+                            />
+                        <img  class="std_icon_dark"
+                            src="./style/assets/svgs/timeline_icons/timeline_loop_dark_icon.svg"
+                            />
+                    </span>
+                </div>
+
             </div>
             <div id="timeline_body">
                 <span id="timeline_playHead" class="timeline_keyframe"></span>
             </div>
+
         </div>
 
 
