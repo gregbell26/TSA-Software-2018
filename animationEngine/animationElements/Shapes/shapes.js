@@ -51,6 +51,14 @@ function removeShape(){
         if(shapes[selectedShape].geometry.type==="TextGeometry"){
             saveSubSystem.removeText(shapes[selectedShape].geometry.parameters.text);
         }
+        // For keyFrames2.0
+        // for (let i = 0; i < keyFrames.length; i++){
+        //     for (let j = 0; j < keyFrames[i].frameShapes; j++){
+        //         if (keyFrames[i].frameShapes[j].uuid === shapes[selectedShape].uuid){
+        //             keyFrames.splice(i,1);
+        //         }
+        //     }
+        // }
         scene.remove(shapes[selectedShape]);
         scene.remove(borders[selectedShape]);
         shapes.splice(selectedShape,1);
@@ -60,6 +68,30 @@ function removeShape(){
         setSelectedShape(selectedShape);
         saveSubSystem.save();
         //it's so you can't press remove again, feel free to remove to improve
+    }
+}
+
+function toggleVisibility() {
+    let buttonText = getId("element_visibility_button");
+    let visible;
+    if (showingLight) {
+        visible = lights[selectedLight].visible;
+        if (visible){
+            lights[selectedLight].visible = false;
+            buttonText.innerHTML = "<span class='button_body' id='element_visibility_button'>Hide Element</span>"
+        }else {
+            lights[selectedLight].visible = true;
+            buttonText.innerHTML = "<span class='button_body' id='element_visibility_button'>Hide Element</span>"
+        }
+    } else {
+        visible = shapes[selectedShape].visible;
+        if (visible){
+            shapes[selectedShape].visible = false;
+            buttonText.innerHTML = "<span class='button_body'>Show Element</span>"
+        }else {
+            shapes[selectedShape].visible = true;
+            buttonText.innerHTML = "<span class='button_body'>Hide Element</span>"
+        }
     }
 }
 

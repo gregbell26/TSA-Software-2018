@@ -83,9 +83,14 @@ function setTarget(value) {
     let shape;
     if (value === 'defaultTarget') {
         let target = new THREE.Object3D();
-        scene.add(target);
+        console.log(target);
+        scene.remove(lights[selectedLight]);
         lights[selectedLight].target = target;
+        console.log(lights[selectedLight].target);
+        scene.add(lights[selectedLight].target);
+        scene.add(lights[selectedLight]);
         getId("default_target_position").style.display = "inherit";
+        console.log(lights[selectedLight].target)
     } else {
         getId("default_target_position").style.display = "none";
     }

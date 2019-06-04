@@ -37,7 +37,7 @@ class Keyframe {
         keyFrames.push(this);
     }
 
-//setters
+    //setters
     set frameShapes(value) {
         this.frameShapes = value;
     }

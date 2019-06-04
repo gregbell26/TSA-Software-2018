@@ -51,6 +51,11 @@ function setSelectedShape(num){
     document.getElementById('borders').checked = borders[selectedShape].visible;
     document.getElementById("shape_castShadow").checked = shapes[selectedShape].castShadow;
     document.getElementById("shape_receiveShadow").checked = shapes[selectedShape].receiveShadow;
+    if (shapes[selectedShape].visible){
+        getId("element_visibility_button").innerHTML = "<span class='button_body' id='element_visibility_button'>Hide Element</span>"
+    } else {
+        getId("element_visibility_button").innerHTML = "<span class='button_body' id='element_visibility_button'>Show Element</span>"
+    }
     showMenu("menu_newShapes");
 }
 
@@ -77,6 +82,11 @@ function setSelectedLight(num) {
     document.getElementById("intensity_slider").value = lights[selectedLight].intensity * 100;
     document.getElementById("intensity_value").innerHTML = lights[selectedLight].intensity * 100 + "";
     document.getElementById("light_castShadow").checked = lights[selectedLight].castShadow;
+    if (lights[selectedLight].visible){
+        getId("element_visibility_button").innerHTML = "<span class='button_body' id='element_visibility_button'>Hide Element</span>"
+    } else {
+        getId("element_visibility_button").innerHTML = "<span class='button_body' id='element_visibility_button'>Show Element</span>"
+    }
     showMenu("menu_newShapes");
     // lightEditMenu();
 }
