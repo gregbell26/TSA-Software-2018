@@ -28,9 +28,9 @@ function newCube(x, y, z, posX, posY, posZ, newColor, borderColor){
 
 
     setSelectedShape(selectedShape);
-    moveShape("x", posX);
-    moveShape("y", posY);
-    moveShape("z", posZ);
+    moveElement("x", posX);
+    moveElement("y", posY);
+    moveElement("z", posZ);
 
     document.getElementById('diemsions_x').value = x;
     document.getElementById('diemsions_y').value = y;

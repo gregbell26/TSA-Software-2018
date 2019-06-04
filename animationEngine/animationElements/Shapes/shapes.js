@@ -1,7 +1,7 @@
 
 //corbin wrote this method, simplified by Jordan
 
-function moveShape(dimension, value) {
+function moveElement(dimension, value) {
     if(showingLight){
         lights[selectedLight].position[dimension] = Number(value);
     }
@@ -336,9 +336,9 @@ function newShape(type,x,y,z,posX,posY,posZ,color,border,text){
         //adds borders to scene
 
         setSelectedShape(selectedShape);
-        moveShape("x", posX);
-        moveShape("y", posY);
-        moveShape("z", posZ);
+        moveElement("x", posX);
+        moveElement("y", posY);
+        moveElement("z", posZ);
 
         document.getElementById('diemsions_x').value = x;
         document.getElementById('diemsions_y').value = y;
@@ -395,9 +395,9 @@ function newShape(type,x,y,z,posX,posY,posZ,color,border,text){
             borders.push(borderToAdd);
             scene.add(borderToAdd);
             setSelectedShape(selectedShape);
-            moveShape("x", posX);
-            moveShape("y", posY);
-            moveShape("z", posZ);
+            moveElement("x", posX);
+            moveElement("y", posY);
+            moveElement("z", posZ);
 
             document.getElementById('diemsions_x').value = x;
             document.getElementById('diemsions_y').value = y;

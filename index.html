@@ -308,19 +308,19 @@
                             Position
                         </h3>
                         <div class="std_input_text">
-                            <input type="number" step="any" id="position_x" onchange="moveShape('x', Number(this.value))" required>
+                            <input type="number" step="any" id="position_x" onchange="moveElement('x', Number(this.value))" required>
                             <span class="text_highlight"></span>
                             <span class="text_bar"></span>
                             <label>X</label>
                         </div>
                         <div class="std_input_text">
-                            <input type="number" step="any" id="position_y" onchange="moveShape('y', Number(this.value));" required>
+                            <input type="number" step="any" id="position_y" onchange="moveElement('y', Number(this.value));" required>
                             <span class="text_highlight"></span>
                             <span class="text_bar"></span>
                             <label>Y</label>
                         </div>
                         <div class="std_input_text">
-                            <input type="number" step="any" id="position_z" onchange="moveShape('z', Number(this.value));" required>
+                            <input type="number" step="any" id="position_z" onchange="moveElement('z', Number(this.value));" required>
                             <span class="text_highlight"></span>
                             <span class="text_bar"></span>
                             <label>Z</label>
@@ -353,13 +353,67 @@
                         <input type="range" min="0" max="100" value="100" id="intensity_slider" oninput="changeIntensity()" onchange="changeIntensity()">
                         <p>Intensity: <span id="intensity_value"></span>%</p>
                     </div>
+                    <div id="currentEditing_spotlight_parameters">
+                        <h3>
+                            Target
+                        </h3>
+                        <div class="std_body_list" style="max-width: initial; width: 100%;">
+                            <select class="list_body"
+                                    onchange="setTarget(this.value)"
+                                    id="target_select">
+                                <option value="defaultTarget">Default Target</option>
+                            </select>
+                            <span class="list_bar"></span>
+                        </div>
+                        <div id="default_target_position" style="display: none">
+                            <div class="std_input_text">
+                                <input type="number" step="any" id="target_x" onchange="moveTarget('x', Number(this.value))" required>
+                                <span class="text_highlight"></span>
+                                <span class="text_bar"></span>
+                                <label>X</label>
+                            </div>
+                            <div class="std_input_text">
+                                <input type="number" step="any" id="target_y" onchange="moveTarget('y', Number(this.value));" required>
+                                <span class="text_highlight"></span>
+                                <span class="text_bar"></span>
+                                <label>Y</label>
+                            </div>
+                            <div class="std_input_text">
+                                <input type="number" step="any" id="target_z" onchange="moveTarget('z', Number(this.value));" required>
+                                <span class="text_highlight"></span>
+                                <span class="text_bar"></span>
+                                <label>Z</label>
+                            </div>
+                        </div>
+
+                        <h3>
+                            Shadows
+                        </h3>
+                        <div class="std_input_checkboxes">
+                            <input type="checkbox" id="light_castShadow" onchange="toggleCastShadow()" required>
+                            <label>Casts Shadows</label>
+                        </div>
+                    </div>
+                    <div id="currentEditing_shape_shadows">
+                        <h3>
+                            Shadows
+                        </h3>
+                        <div class="std_input_checkboxes">
+                            <input type="checkbox" id="shape_castShadow" onchange="toggleCastShadow()" required>
+                            <label>Casts Shadows</label>
+                        </div>
+                        <div class="std_input_checkboxes">
+                            <input type="checkbox" id="shape_receiveShadow" onchange="toggleReceiveShadow()" required>
+                            <label>Receives Shadows</label>
+                        </div>
+                    </div>
                     <div id="currentEditing_borders">
                         <h3>
                             Borders
                         </h3>
                         <div class="std_input_checkboxes">
                             <input type="checkbox" id="borders" value="borders" onchange="borderVisibility()" checked required>
-                            <label>View Boarders</label>
+                            <label>View Borders</label>
                         </div>
                     </div>
                     <h3>
@@ -864,7 +918,6 @@
     <script src="animationEngine/animationElements/Shapes/cube.js"></script>
     <script src="animationEngine/animationElements/Shapes/cylinder.js"></script>
     <script src="animationEngine/animationElements/Shapes/cone.js"></script>
-    <script src="animationEngine/animationElements/Shapes/customShape.js"></script>
     <script src="animationEngine/animationElements/Shapes/CustomShape2.js"></script>
     <script src="animationEngine/animationElements/Shapes/dodecahedron.js"></script>
     <script src="animationEngine/animationElements/Shapes/icosahedron.js"></script>

@@ -20,9 +20,9 @@ function newOctahedron(x, y, z, posX, posY, posZ, newColor, borderColor){
     borders.push(borderToAdd);
     scene.add( borderToAdd );
     setSelectedShape(selectedShape);
-    moveShape("x", posX);
-    moveShape("y", posY);
-    moveShape("z", posZ);
+    moveElement("x", posX);
+    moveElement("y", posY);
+    moveElement("z", posZ);
 
     document.getElementById('dimensionX').value = x;
     document.getElementById('dimensionY').value = y;
