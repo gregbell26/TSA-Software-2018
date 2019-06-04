@@ -362,111 +362,125 @@ class Keyframe {
         }
     }
 
-    moveKeyframe(amount){
-        if(amount < 0){
 
-        }else if(amount){
-
-        }else{
-
-        }
-
-    }
 }
 
-function playAnimation(timeStartMS) {
-    if (!(this === keyFrames[keyFrames.length - 1]) && !animationRunning && keyFrames.length !== 0){
-        timelineButtonToggle('timeline_play');
-        console.log('starting');
-        animationRunning=true;
-        var frames = 0;
-        var timingCounter;
-        var prevDuration=0;
-        var a;
-        for (var i = 0; i < keyFrames.length - 1; i++) {
-            if (timeStartMS >= frames && timeStartMS < frames + keyFrames[i].duration) {
-                a = i;
-                break;
-            } else {
-                frames += keyFrames[i].duration;
-                prevDuration+=keyFrames[i].duration;
-            }
-        }
-        if (a != null) {
-            timingCounter = timeStartMS - frames;
-            animationTimer = setInterval(function () {
-                document.getElementById("timeline_playHead").style.left = (11+(timingCounter+prevDuration)/timelineScale)+"px";
-                if (timingCounter < keyFrames[a].duration) {
-                    timingCounter += 10;
-                    keyFrames[a].updateScene(timingCounter);
-                }
-                else {
-                    if (a < keyFrames.length - 2) {
-                        prevDuration+=keyFrames[a].duration;
-                        a++;
-                        timingCounter = 0;
-                    }
-                    else if (loopAnimation){
-                        a = 0;
-                        timingCounter = 0;
-                        timelineButtonToggle('timeline_repeat');
-                    }
-                    else {
-                        clearInterval(animationTimer);
-                        timelineButtonToggle('timeline_play');
-                        console.log('done');
-                        animationRunning = false;
-                        if(recording){
-                            recording = false;
-                            capturer.stop();
-                            capturer.save();
-                        }
-                    }
-                }
-            }, 10);
-        }
-    }
-}
 
-function addFrame() {
-    if(usingTutorial){
-        confirm("Now change some diemsions, colors, or positions, add a keyframe, then press play.");
-        animateArrow(75,15,250,60)
-    }
-    var frame = new Keyframe(shapes, lights, borders, scales, 5000, {
-        color: [scene.background.r, scene.background.g, scene.background.b],
-        scale: [scene.scale.x, scene.scale.y, scene.scale.z],
-        rotation: [scene.rotation.x, scene.rotation.y, scene.rotation.z],
-        position: [scene.position.x, scene.position.y, scene.position.z],
-    });
-    keyFrames.push(frame);
-    console.log('frame added');
-    console.log(keyFrames);
-    loadKeyList();
-    updateTimeline();
-}
 
-function loop(){
-    if(animationRunning){
-        loopAnimation = false;
-        timelineButtonToggle('timeline_repeat');
-    }
-    else{
-        timelineButtonToggle('timeline_repeat');
-        loopAnimation = true;
-        playAnimation(0);
-    }
-}
+
+
 
 
 var recording = false;
-function record(){
-    recording = true;
-    capturer = new CCapture({ format: 'webm' });
-    capturer.start();
-    playAnimation(0);
-}
+
 
 class timeline{
     keyframes = [];
+    updateTimeline(){
+        var duration = 0;
+        for(var i=0; i<keyFrames.length-1; i++){
+            duration+=keyFrames[i].duration;
+        }
+        timelineScale = duration/(window.innerWidth-20);
+        var timeline = document.getElementById("std_timeline").children.item(1);
+        timeline.innerHTML = "<span id=\"timeline_playHead\" class=\"timeline_keyframe\"></span>";
+        var currentX = 10;
+        for(var i=0; i<keyFrames.length; i++){
+            timeline.innerHTML += ("<div class='timeline_keyframe' style='left: "+currentX+"px;'></div>");
+            currentX+=keyFrames[i].duration/timelineScale;
+        }
+        console.log("Updated Time Line")
+    }
+
+    addFrame() {
+        if(usingTutorial){
+            confirm("Now change some diemsions, colors, or positions, add a keyframe, then press play.");
+            animateArrow(75,15,250,60)
+        }
+        var frame = new Keyframe(shapes, lights, borders, scales, 5000, {
+            color: [scene.background.r, scene.background.g, scene.background.b],
+            scale: [scene.scale.x, scene.scale.y, scene.scale.z],
+            rotation: [scene.rotation.x, scene.rotation.y, scene.rotation.z],
+            position: [scene.position.x, scene.position.y, scene.position.z],
+        });
+        keyFrames.push(frame);
+        console.log('frame added');
+        console.log(keyFrames);
+        loadKeyList();
+        updateTimeline();
+    }
+
+    playAnimation(timeStartMS) {
+        if (!(this === keyFrames[keyFrames.length - 1]) && !animationRunning && keyFrames.length !== 0){
+            timelineButtonToggle('timeline_play');
+            console.log('starting');
+            animationRunning=true;
+            var frames = 0;
+            var timingCounter;
+            var prevDuration=0;
+            var a;
+            for (var i = 0; i < keyFrames.length - 1; i++) {
+                if (timeStartMS >= frames && timeStartMS < frames + keyFrames[i].duration) {
+                    a = i;
+                    break;
+                } else {
+                    frames += keyFrames[i].duration;
+                    prevDuration+=keyFrames[i].duration;
+                }
+            }
+            if (a != null) {
+                timingCounter = timeStartMS - frames;
+                animationTimer = setInterval(function () {
+                    document.getElementById("timeline_playHead").style.left = (11+(timingCounter+prevDuration)/timelineScale)+"px";
+                    if (timingCounter < keyFrames[a].duration) {
+                        timingCounter += 10;
+                        keyFrames[a].updateScene(timingCounter);
+                    }
+                    else {
+                        if (a < keyFrames.length - 2) {
+                            prevDuration+=keyFrames[a].duration;
+                            a++;
+                            timingCounter = 0;
+                        }
+                        else if (loopAnimation){
+                            a = 0;
+                            timingCounter = 0;
+                            timelineButtonToggle('timeline_repeat');
+                        }
+                        else {
+                            clearInterval(animationTimer);
+                            timelineButtonToggle('timeline_play');
+                            console.log('done');
+                            animationRunning = false;
+                            if(recording){
+                                recording = false;
+                                capturer.stop();
+                                capturer.save();
+                            }
+                        }
+                    }
+                }, 10);
+            }
+        }
+    }
+    loop(){
+        if(animationRunning){
+            loopAnimation = false;
+            timelineButtonToggle('timeline_repeat');
+        }
+        else{
+            timelineButtonToggle('timeline_repeat');
+            loopAnimation = true;
+            playAnimation(0);
+        }
+    }
+    record(){
+        recording = true;
+        capturer = new CCapture({ format: 'webm' });
+        capturer.start();
+        playAnimation(0);
+    }
+
+
+
 }
