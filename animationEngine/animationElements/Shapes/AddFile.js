@@ -17,17 +17,12 @@ function readSingleFile(evt) {
 // creates a new file reader
     if (f) {
         var r = new FileReader();
-        r.onload = function (e) { //defines a function for when the file reader object is loaded
-            if(e.target.result.includes("\r\n")){
-            var strin = e.target.result.split("\r\n"); //splits a string at every newline character 
-            }
-            else{
-            var strin=e.target.result.split("\n");
-            }
-            //alert(typeof strin[0]);
+        r.onload = function (e) { //defines a function for when the file reader object is loaded 
+            strin=e.target.result.replace( /\r\n/g, '\n' );
+            strin=strin.split("\n");
+            //alert(typeof strin[0]);\
              //console.log(strin[0]);
             parseFile1(strin);
-          
             //console.log("Parsed file");
         }
         r.readAsText(f);
@@ -38,7 +33,7 @@ function readSingleFile(evt) {
 }
 
 function parseFile1(strina) {
-   // console.log("parsefile called");
+   //console.log("parsefile called");
     var verticies=[];
     var faces=[];
     var vn=[];
@@ -47,7 +42,6 @@ function parseFile1(strina) {
     var object=false;
     var name;
     for (var i = 1; i < strina.length-1; i++) {
-       // alert(strina[i]); 
         if(strina[i-1][0]=='o'){
             name=strina[i-1];
             object=true;
