@@ -7,12 +7,12 @@ That means that you can freely use and modify this code for all uses except for
     commercial uses provided this header is at the top of all files
 Copyright 2018-2019 Monarch TSA
 
-Author Jordan
+Author Jordan M.,  Gregory B., Jesse B.,
  */
 
 let animate = function () {
-    requestAnimationFrame(animate);
     if (init) {//to prevent thousands of errors when the program loads
+
         if (camera.position.x !== xPosition + xCCenter + scene.position.x)
             camera.position.x = xPosition + xCCenter + scene.position.x;
         if (camera.position.y !== yPosition + yCCenter + scene.position.y)

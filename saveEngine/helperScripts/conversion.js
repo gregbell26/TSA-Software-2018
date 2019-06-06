@@ -1,53 +1,80 @@
 class conversion {
 
+
+    static isShape(tst){
+        try {
+            if (tst.geometry.type === "BoxGeometry"
+                || tst.geometry.type === "ConeGeometry"
+                || tst.geometry.type === "CylinderGeometry"
+                || tst.geometry.type === "Geometry"//this is for OBJs
+                || tst.geometry.type === "DodecahedronGeometry"
+                || tst.geometry.type === "IcosahedronGeometry"
+                || tst.geometry.type === "OctahedronGeometry"
+                || tst.geometry.type === "TetrahedronGeometry"
+                || tst.geometry.type === "SphereGeometry"
+                || tst.geometry.type === "TorusGeometry"
+                || tst.geometry.type === "TextGeometry")
+                return true;
+            return false;
+        } catch (TypeError) {
+            return false;
+            //Because apparently if (tst === undefined) doesn't work
+        }
+
+    }
+
+    static isLight(tst){
+        try {
+            if(tst.type === "PointLight"
+                || tst.type === "AmbientLight"
+                || tst.type === "DirectionalLight"
+                || tst.type === "SpotLight"
+                || tst.type === "HemisphereLight")
+                return true;
+            return false;
+        }catch (TypeError) {
+            return false
+        }
+
+
+    }
+
+    static isBoarder(tst){
+        try{
+            if(tst.type === "LineSegments")
+                return true;
+            return false;
+        }catch (TypeError) {
+            return false;
+        }
+
+
+
+    }
+
     static toRenderableArr(stagedArray, arrayType, creationFunct){
 
 
     }
 
-    static toOneDArr(stagedArray, arrayType){
-        let oneDArray = [];
-        if (arrayType === "scales"){
-            for(let i =0; i < stagedArray.length; i++){
-                oneDArray.push({
-                    x: stagedArray[i][0],
-                    y: stagedArray[i][1],
-                    z: stagedArray[i][2],
-                });
-            }
-        }
-        return oneDArray;
-    }
+    static breakoutScene(stagedScene){
+        let extractedArray = [[],[],[], []];
+        if(stagedScene.children !== undefined) {
+            for (let i = 0; i < stagedScene.children.length; i++) {
+                console.log(i);
+                if (this.isShape(stagedScene.children[i])) {
+                    extractedArray[0].push(stagedScene.children[i]);
+                    extractedArray[1].push(stagedScene.children[i].scale);
 
-    static breakoutShapes(stagedShapes, arrayToExtract){
-        let extractedArray = [];
-        let currentShape = [];
-        if(arrayToExtract === "scales"){
-            for(let i =0; i < stagedShapes.length; i++){
-                currentShape.push(stagedShapes[i].scaleX);
-                currentShape.push(stagedShapes[i].scaleY);
-                currentShape.push(stagedShapes[i].scaleZ);
-                extractedArray.push(currentShape);
-                currentShape.length = 0;
-            }
-        }
-        if(arrayToExtract === "borders"){
-            for(let i = 0; i <stagedShapes.length; i++){
-                extractedArray.push({
-                    visible: stagedShapes[i].borders,
-                    material: {
-                        color: {
-                            r: stagedShapes[i].borderR,
-                            g: stagedShapes[i].borderG,
-                            b: stagedShapes[i].borderB,
+                } else if (this.isBoarder(stagedScene.children[i]))
+                    extractedArray[2].push(stagedScene.children[i]);
+                else if (this.isLight(stagedScene.children[i]))//this might break things as im assuming that only lights are the extra element so we are pushing this to lights
+                    extractedArray[3].push(stagedScene.children[i]);
 
-                        },
-                    },
-                });
             }
         }
+        console.log(extractedArray);
         return extractedArray;
-
 
     }
 
@@ -89,13 +116,10 @@ class conversion {
                     r: stagedArray[0][i].material.color.r,
                     g: stagedArray[0][i].material.color.g,
                     b: stagedArray[0][i].material.color.b,
-                    scaleX: stagedArray[1][i].x,
-                    scaleY: stagedArray[1][i].y,
-                    scaleZ: stagedArray[1][i].z,
-                    borders: stagedArray[2][i].visible,
-                    borderR: stagedArray[2][i].material.color.r,
-                    borderG: stagedArray[2][i].material.color.g,
-                    borderB: stagedArray[2][i].material.color.b,
+                    borders: stagedArray[1][i].visible,
+                    borderR: stagedArray[1][i].material.color.r,
+                    borderG: stagedArray[1][i].material.color.g,
+                    borderB: stagedArray[1][i].material.color.b,
                 });
 
             }

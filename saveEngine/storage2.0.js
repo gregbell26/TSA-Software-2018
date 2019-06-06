@@ -23,6 +23,10 @@ class saveEngine {
     stagedKeyframes = [];
     stagedScales = [];
     stagedBorders = [];
+    //This is for the new engine
+    stagedScene = [];
+
+
     stagedSettings;
 
 
@@ -93,26 +97,41 @@ class saveEngine {
 
     loadLocalSave(fileID){
         if(this.localStorageEnable && localStore.exists(fileID)){
+            console.log("Load Started");
             this.localFileID = fileID;
             this.localFileName = localStore.getFromStorage(fileID);
-            if(this.legacySupport){
-                this.localFileName = fileID;
-            }
-            this.stagedLights =  localStore.getFromStorage(this.getKeyName("lights"));
-            this.stagedShapes =  localStore.getFromStorage(this.getKeyName("shapes"));
-            this.stagedKeyframes =  localStore.getFromStorage(this.getKeyName("keyframes"));
-            this.stagedBorders = conversion.breakoutShapes(this.stagedShapes, "borders");
-            this.stagedScales = conversion.breakoutShapes(this.stagedShapes, "scales");
+            if(localStore.getFromStorage(fileID) === "Legacy Mode Save")
+                this.legacySupport = true;
+
             if(this.legacySupport)
+                this.localFileName = fileID;
+
+            if(this.legacySupport) {
                 this.stagedScales = localStore.getFromStorage(this.getKeyName("scales"));
-
-            let curruption = new curruption(this.stagedShapes, this.stagedLights, this.stagedKeyframes, this.stagedBorders, this.stagedScales);
-
-            let decurupted = curruption.checkData();
-
+                this.stagedLights =  localStore.getFromStorage(this.getKeyName("lights"));
+                this.stagedShapes =  localStore.getFromStorage(this.getKeyName("shapes"));
+                this.stagedScene = new THREE.Scene();
+            }
+            else{
+                console.log("SCENE");
+                this.stagedScene = localStore.loadScene(this.getKeyName("scene"));
+                let brokenOutScene = conversion.breakoutScene(this.stagedScene);
+                console.log(this.stagedScene);
+                this.stagedShapes = brokenOutScene[0];
+                this.stagedScales = brokenOutScene[1];
+                this.stagedBorders = brokenOutScene[2];
+                this.stagedLights = brokenOutScene[3];
+            }
+            this.stagedKeyframes =  localStore.getFromStorage(this.getKeyName("keyframes"));
 
             keyFrames = this.stagedKeyframes;
+            shapes = this.stagedShapes;
             scales = this.stagedScales;
+            lights = this.stagedLights;
+            borders = this.stagedBorders;
+            return this.stagedScene;
+
+
         }
 
     }
@@ -124,21 +143,26 @@ class saveEngine {
             if(this.legacySupport){
                 this.localFileID = newFileName;
                 localStore.saveToStorage(this.localFileID, "Legacy Mode Save");
+                localStore.saveToStorage(this.getKeyName("lights"), this.stagedLights);
+                localStore.saveToStorage(this.getKeyName("shapes"), this.stagedShapes);
+                localStore.saveToStorage(this.getKeyName("scales"), this.stagedScales);
             }
             else {
                 this._generateFileId();
                 localStore.saveToStorage(this.localFileID, this.localFileName);
                 this.constructor.incrementSaveNumber();
+                this.stagedScene = new THREE.Scene();
+                localStore.saveToStorage(this.getKeyName("scene"), this.stagedScene)
             }
 
-            localStore.saveToStorage(this.getKeyName("lights"), this.stagedLights);
-            localStore.saveToStorage(this.getKeyName("shapes"), this.stagedShapes);
             localStore.saveToStorage(this.getKeyName("keyframes"), this.stagedKeyframes);
-            localStore.saveToStorage(this.getKeyName("scales"), this.stagedScales);
+
+
+
 
             this.addNewSave(this.localFileID);
             this.localNewSave = false;
-            this.loadLocalSave(this.localFileID);
+            return this.loadLocalSave(this.localFileID);
         }
 
     }
@@ -151,26 +175,34 @@ class saveEngine {
                 this.stagedSettings = settings;
                 localStore.saveToStorage("settings", this.stagedSettings)
             }
-            if (keyFrames !== this.stagedKeyframes){
-                this.stagedSettings = keyFrames;
-                localStorage.saveToStorage(this.getKeyName("keyFrames"), this.stagedSettings);
-            }
-            if(shapes !== this.stagedShapes){
-                let combinedArrays = [];
-                this.stagedShapes = shapes;
-                this.stagedBorders = borders;
-                this.stagedScales = scales;
-                combinedArrays.push(this.stagedShapes);
-                combinedArrays.push(conversion.toOneDArr(this.stagedScales, "scales"));
-                combinedArrays.push(this.stagedBorders);
-                localStorage.saveToStorage(this.getKeyName("shapes"),conversion.toSavableArr(combinedArrays, "shapes"));
-                if(this.legacySupport){
-                    localStorage.saveToStorage(this.getKeyName("scales"), this.stagedScales);
+            if(this.legacySupport) {
+                if (shapes !== this.stagedShapes) {
+                    let combinedArrays = [];
+                    this.stagedShapes = shapes;
+                    this.stagedBorders = borders;
+                    this.stagedScales = scales;
+                    combinedArrays.push(this.stagedShapes);
+                    combinedArrays.push(this.stagedBorders);
+                    localStore.saveToStorage(this.getKeyName("shapes"), conversion.toSavableArr(combinedArrays, "shapes"));
+
+                    localStore.saveToStorage(this.getKeyName("scales"), this.stagedScales);
+
+                }
+                if (lights !== this.stagedLights) {
+                    this.stagedLights = lights;
+                    localStore.saveToStorage(this.getKeyName("lights"), conversion.toSavableArr(this.stagedLights, "lights"));
                 }
             }
-            if(lights !== this.stagedLights){
-                this.stagedLights = lights;
-                localStorage.saveToStorage(this.getKeyName("lights"), conversion.toSavableArr(this.stagedLights, "lights"));
+            else {
+                if(scene.children !== this.stagedScene.children){
+                    this.stagedScene = scene;
+                    localStore.saveToStorage(this.getKeyName("scene"), this.stagedScene);
+                }
+            }
+
+            if (keyFrames !== this.stagedKeyframes){
+                this.stagedSettings = keyFrames;
+                localStore.saveToStorage(this.getKeyName("keyFrames"), this.stagedKeyframes);
             }
         }
         if(cloudStorage && this.cloudStorageEnable){
