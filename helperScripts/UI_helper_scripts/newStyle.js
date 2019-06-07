@@ -87,11 +87,13 @@ function showPopUp(popUpToShow, popUpContent, otherText, mode){
 }
 function popUpAction(num){
     if(num==0){
-        saveSubSystem.setFileName(getPopUpInput(), true);
+        // saveSubSystem.setFileName(getPopUpInput(), true);
+        saveEngine.createNewLocalSave(getPopUpInput());
+        scene.background = new THREE.Color("#000000");
     }
     else if(num==1){
         newShape("text",0,0,0,0,0,0,'#FF0000','#000000',getPopUpInput());
-        saveSubSystem.addText(getPopUpInput());
+        //saveSubSystem.addText(getPopUpInput());
     }
     else if (num==100){
         location.reload();

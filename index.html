@@ -49,15 +49,14 @@
         <script src="./saveEngine/firebaseAPI/firebase-auth.js"></script> <!--This file is remote-->
         <script src="./saveEngine/firebaseAPI/firebase-firestore.js"></script> <!--This file is remote-->
         <script src="./saveEngine/firebaseAPI/firebase-storage.js"></script> <!--This file is remote-->
-        <script src="saveEngine/firebase.js"></script>
+<!--        <script src="saveEngine/firebase.js"></script>-->
         <!--Not FIREbase-->
         <script src="./saveEngine/helperScripts/base64.js"></script>
         <script src="./saveEngine/helperScripts/localStorage.js"></script>
         <script src="./saveEngine/helperScripts/conversion.js"></script>
-        <script src="./saveEngine/helperScripts/curruption.js"></script>
         <script src="./saveEngine/helperScripts/cloudStorage.js"></script>
         <script src="./saveEngine/storage2.0.js"></script>
-        <script src="saveEngine/storage.js"></script>
+<!--        <script src="saveEngine/storage.js"></script>-->
 
         <!--MISC-->
         <!--
@@ -93,11 +92,15 @@
             </div>
         </div>
         <div id="ws_body">
-            <span class="std_ws_button ws_color" onclick="saveSubSystem.setIsUsingSaves(true, false); initMainUI(); start();" style="top:5%; left: calc(50% - 225px);">Start from Scratch</span>
-            <select class="std_ws_button ws_color" id="ws_loadMenu" onchange="saveSubSystem.setIsUsingSaves(true, true);  initMainUI(); start();" style="top:65px; left:calc(50% - 100px)" >
+            <span class="std_ws_button ws_color" style="top:5%; left: calc(50% - 225px);"
+                  onclick="saveEngine.localNewSave = true; initMainUI(); start();"
+            >Start from Scratch</span>
+            <select class="std_ws_button ws_color" id="ws_loadMenu" style="top:65px; left:calc(50% - 100px)"
+                    onchange="saveEngine.localNewSave = false;  initMainUI(); start();" >
                 <option>Load Save</option>
             </select>
-            <span class="std_ws_button ws_color" onclick="saveSubSystem.setIsUsingSaves(true, false); initMainUI(); start(); launchTutorial(); " style="top:5%; left:calc(50% + 25px); ">View Tutorial</span>
+            <span class="std_ws_button ws_color" style="top:5%; left:calc(50% + 25px); "
+                  onclick="saveEngine.localNewSave = true; initMainUI(); start(); launchTutorial(); " >View Tutorial</span>
         </div>
     </div>
     <div id="std_body">

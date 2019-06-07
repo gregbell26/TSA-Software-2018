@@ -8,16 +8,16 @@
 
 
 //control variables
-var init = false;
+let init = false;
+let saveEngine;
 
-
-var animationRunning = false;
-var loopAnimation = false;
-var animationTimer;
-var selectedShape = -1;
+let animationRunning = false;
+let loopAnimation = false;
+let animationTimer;
+let selectedShape = -1;
 let selectedLight = -1;
-var settingsOpen = false;
-var usingTutorial = false;
+let settingsOpen = false;
+let usingTutorial = false;
 // var capturer = new CCapture( { format: 'webm' } );
 var capturer;
 //sets up the viewport
@@ -38,10 +38,13 @@ var borders = [];
 
 //This will set the boxes to what they need to be
 window.onload = function(){
-    saveSubSystem.loadSettings();
+    //saveSubSystem.loadSettings();
+    saveEngine = new SaveEngine(true, false);
     stylesheetLoader(settings.userInterface.stylesheetPref);
-    saveSubSystem.loadSaveNames("ws_loadMenu");
-    saveSubSystem.loadSaveNames("localStorage_saveSelector");
+    saveEngine.setLocalStorageSelectorElement("ws_loadMenu", "Load Save", false);
+    saveEngine.setLocalStorageSelectorElement("localStorage_saveSelector", "none", true);
+    // saveSubSystem.loadSaveNames("ws_loadMenu");
+    // saveSubSystem.loadSaveNames("localStorage_saveSelector");
 
     //Sets the HTML elements
 
@@ -142,9 +145,9 @@ function start(){
     renderer = new THREE.WebGLRenderer({logarithmicDepthBuffer: true, antialias: true });
     renderer.setSize(UIDiemsions.std_body.renderer_width, UIDiemsions.std_body.renderer_height);
     renderer.shadowMap.enabled = true;
-    //renderer.shadowMap = THREE.PCFSoftShadowMap;
+    renderer.shadowMap = THREE.PCFSoftShadowMap;
     document.getElementById("animationEngine_renderArea").appendChild(renderer.domElement);
-    var saveSelectorElement = document.getElementById("ws_loadMenu");
+    let selectedSaveId = document.getElementById("ws_loadMenu").options[document.getElementById("ws_loadMenu").selectedIndex].value;
     //Making sure that everything is empty
     shapes = [];
     scales =[];
@@ -152,29 +155,28 @@ function start(){
     borders= [];
     selectedShape = -1;
     selectedLight = -1;
-    init=true;
     toggleEditShapeOrLight(false);
-    if((saveSelectorElement.options[saveSelectorElement.selectedIndex].value === "Load Save" || !saveSubSystem.openPrevious) && saveSubSystem.isUsingSaves){
+    if(saveEngine.localNewSave){
+        //handles savings creates a new one if there is no previous save when starting software
         showPopUp("popUp_input_body", "New Save", "Enter Save Name",0);
-
-    //handles savings creates a new one if there is no previous save when starting software
     }
-    if(!saveSubSystem.isUsingSaves){
+    if(!saveEngine.localStorageEnable){
         showPopUp("popUp_error_body", "Warning", "The local save engine has been disabled",-1);
 //debugging
     }
 
-    if(saveSubSystem.openPrevious && saveSubSystem.isUsingSaves){
-        saveSubSystem.setFileName(saveSelectorElement.options[saveSelectorElement.selectedIndex].value, false);
-        keyFrames = saveSubSystem.loadSave();
+    if(!saveEngine.localNewSave){
+        scene = saveEngine.loadLocalSave(selectedSaveId);
+        // saveSubSystem.setFileName(saveSelectorElement.options[saveSelectorElement.selectedIndex].value, false);
+        // keyFrames = saveSubSystem.loadSave();
         getId("element_Information").style.display = 'none';
         getId('currentEditing_type').style.display = 'none';
         // newLight("ambient", "#ffffff", 50);
         //has saves
     }
-    getId("localStorage_saveSelector").value = saveSubSystem.fileName;
+    getId("localStorage_saveSelector").value = saveEngine.localFileIndex;
 
-
+    init = true;
     onWindowResize();
 }
 

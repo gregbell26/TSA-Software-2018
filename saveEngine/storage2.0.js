@@ -1,4 +1,5 @@
-class saveEngine {
+class SaveEngine {
+    localStore;
     localStorageEnable;
 
     cloudStorageEnable;
@@ -11,6 +12,11 @@ class saveEngine {
 
     localFileName = "";
     localFileID = "init";//will be unique to each save
+    localFileIndex = 0;
+
+    localStorageUpdateList=[[], []];
+    cloudStorageUpdateList=[[], []];
+
 
     //List of local names
     localSaveIdList = [];
@@ -33,11 +39,12 @@ class saveEngine {
     constructor(localEnable, cloudEnable){
         this.localStorageEnable = localEnable;
         this.cloudStorageEnable = cloudEnable;
+        this.localStore = new localStore();
         this.loadSettings();
         if(this.firstRun){
             this._generateSessionId();
-            localStore.saveToStorage(settings.sessionId, this.localSaveIdList);
-            localStore.saveToStorage("settings", this.stagedSettings);
+            this.localStore.saveToStorage(settings.sessionId, this.localSaveIdList);
+            this.localStore.saveToStorage("settings", this.stagedSettings);
         }
         this.loadSaveList();
     }
@@ -52,8 +59,8 @@ class saveEngine {
 
     //Loaders
     loadSettings(){
-        if(localStore.exists("settings")){
-            this.stagedSettings = localStore.getFromStorage("settings");
+        if(this.localStore.exists("settings")){
+            this.stagedSettings = this.localStore.getFromStorage("settings");
         }
         else {
             this.firstRun = true;
@@ -68,60 +75,66 @@ class saveEngine {
 
     loadSaveList(){
         var elementRemoved;
-        if(localStore.exists(settings.sessionId))
-            this.localSaveIdList = localStore.getFromStorage(settings.sessionId);
+        if(this.localStore.exists(settings.sessionId))
+            this.localSaveIdList = this.localStore.getFromStorage(settings.sessionId);
         else{
-            this.localSaveIdList = localStore.getFromStorage("fileNames");//This is for legacy support
+            this.localSaveIdList = this.localStore.getFromStorage("fileNames");//This is for legacy support
             this.legacySupport = true;
         }
         //Verifying the IDs exist and if they don't remove them
         for(let i =0; i < this.localSaveIdList.length; i++){
             elementRemoved = false;
-            if(!localStore.exists(this.localSaveIdList[i])){
+            if(!this.localStore.exists(this.localSaveIdList[i])){
                 this.localSaveIdList.splice(i, 1);
                 i--;//Make sure that everything will get tested.
                 elementRemoved = true;
             }
             if(!elementRemoved) {
                 if (!this.legacySupport)
-                    this.localSaveFriendlyNamesList.push(localStore.getFromStorage(this.localSaveIdList[i]));
+                    this.localSaveFriendlyNamesList.push(this.localStore.getFromStorage(this.localSaveIdList[i]));
                 else
                     this.localSaveFriendlyNamesList.push(this.localSaveIdList[i]);
             }
         }
         if(this.legacySupport)
-            localStore.saveToStorage("fileNames", this.localSaveIdList);
+            this.localStore.saveToStorage("fileNames", this.localSaveIdList);
         else
-            localStore.saveToStorage(settings.sessionId, this.localSaveIdList);
+            this.localStore.saveToStorage(settings.sessionId, this.localSaveIdList);
     }
 
     loadLocalSave(fileID){
-        if(this.localStorageEnable && localStore.exists(fileID)){
+        if(this.localStorageEnable && this.localStore.exists(fileID)){
             console.log("Load Started");
             this.localFileID = fileID;
-            this.localFileName = localStore.getFromStorage(fileID);
-            if(localStore.getFromStorage(fileID) === "Legacy Mode Save")
+            this.localFileName = this.localStore.getFromStorage(fileID);
+            console.log(this.localFileID);
+            //Allows us to set the index of selectors
+            for(let i = 0; i < this.localSaveIdList.length; i++)
+                if(this.localSaveIdList[i] === this.localFileID)
+                    this.localFileIndex = i;
+
+            if(this.localStore.getFromStorage(fileID) === "Legacy Mode Save")
                 this.legacySupport = true;
 
-            if(this.legacySupport)
-                this.localFileName = fileID;
-
             if(this.legacySupport) {
-                this.stagedScales = localStore.getFromStorage(this.getKeyName("scales"));
-                this.stagedLights =  localStore.getFromStorage(this.getKeyName("lights"));
-                this.stagedShapes =  localStore.getFromStorage(this.getKeyName("shapes"));
+                this.localFileName = fileID;
+                this.stagedScales = this.localStore.getFromStorage(this.getKeyName("scales"));
+                this.stagedLights =  this.localStore.getFromStorage(this.getKeyName("lights"));
+                this.stagedShapes =  this.localStore.getFromStorage(this.getKeyName("shapes"));
                 this.stagedScene = new THREE.Scene();
             }
             else{
-                this.stagedScene = localStore.loadScene(this.getKeyName("scene"));
+                console.log(this.localStore.exists(this.getKeyName("scene")));
+                this.stagedScene = this.localStore.loadScene(this.getKeyName("scene"));
                 let brokenOutScene = conversion.breakoutScene(this.stagedScene);
-                // console.log(this.stagedScene);
+                console.log(this.stagedScene);
                 this.stagedShapes = brokenOutScene[0];
                 this.stagedScales = brokenOutScene[1];
                 this.stagedBorders = brokenOutScene[2];
                 this.stagedLights = brokenOutScene[3];
+                this.stagedScene = brokenOutScene[4];
             }
-            this.stagedKeyframes =  localStore.getFromStorage(this.getKeyName("keyframes"));
+            this.stagedKeyframes =  this.localStore.getFromStorage(this.getKeyName("keyframes"));
 
             keyFrames = this.stagedKeyframes;
             shapes = this.stagedShapes;
@@ -141,23 +154,25 @@ class saveEngine {
             this.localFileName = newFileName;
             if(this.legacySupport){
                 this.localFileID = newFileName;
-                localStore.saveToStorage(this.localFileID, "Legacy Mode Save");
-                localStore.saveToStorage(this.getKeyName("lights"), this.stagedLights);
-                localStore.saveToStorage(this.getKeyName("shapes"), this.stagedShapes);
-                localStore.saveToStorage(this.getKeyName("scales"), this.stagedScales);
+                this.localStore.saveToStorage(this.localFileID, "Legacy Mode Save");
+                this.localStore.saveToStorage(this.getKeyName("lights"), this.stagedLights);
+                this.localStore.saveToStorage(this.getKeyName("shapes"), this.stagedShapes);
+                this.localStore.saveToStorage(this.getKeyName("scales"), this.stagedScales);
             }
             else {
                 this._generateFileId();
-                localStore.saveToStorage(this.localFileID, this.localFileName);
-                this.constructor.incrementSaveNumber();
+                this.localStore.saveToStorage(this.localFileID, this.localFileName);
+                this.incrementSaveNumber();
                 this.stagedScene = new THREE.Scene();
-                localStore.saveToStorage(this.getKeyName("scene"), this.stagedScene)
+                this.localStore.saveToStorage(this.getKeyName("scene"), this.stagedScene)
             }
 
-            localStore.saveToStorage(this.getKeyName("keyframes"), this.stagedKeyframes);
+            this.localStore.saveToStorage(this.getKeyName("keyframes"), this.stagedKeyframes);
 
 
 
+            for(let i = 0; i < this.localStorageUpdateList[0].length; i++)
+                this.setLocalStorageSelectorElement(this.localStorageUpdateList[0][i], this.localStorageUpdateList[1][i], false);
 
             this.addNewSave(this.localFileID);
             this.localNewSave = false;
@@ -172,7 +187,7 @@ class saveEngine {
         if(localStorage && this.localStorageEnable){
             if(settings !== this.stagedSettings){
                 this.stagedSettings = settings;
-                localStore.saveToStorage("settings", this.stagedSettings)
+                this.localStore.saveToStorage("settings", this.stagedSettings)
             }
             if(this.legacySupport) {
                 if (shapes !== this.stagedShapes) {
@@ -182,25 +197,25 @@ class saveEngine {
                     this.stagedScales = scales;
                     combinedArrays.push(this.stagedShapes);
                     combinedArrays.push(this.stagedBorders);
-                    localStore.saveToStorage(this.getKeyName("shapes"), conversion.toSavableArr(combinedArrays, "shapes"));
+                    this.localStore.saveToStorage(this.getKeyName("shapes"), conversion.toSavableArr(combinedArrays, "shapes"));
 
-                    localStore.saveToStorage(this.getKeyName("scales"), this.stagedScales);
+                    this.localStore.saveToStorage(this.getKeyName("scales"), this.stagedScales);
 
                 }
                 if (lights !== this.stagedLights) {
                     this.stagedLights = lights;
-                    localStore.saveToStorage(this.getKeyName("lights"), conversion.toSavableArr(this.stagedLights, "lights"));
+                    this.localStore.saveToStorage(this.getKeyName("lights"), conversion.toSavableArr(this.stagedLights, "lights"));
                 }
             }
             else {
                 //there is no point in that if statement as something is always changed in the scene
                 this.stagedScene = scene;
-                localStore.saveToStorage(this.getKeyName("scene"), this.stagedScene);
+                this.localStore.saveToStorage(this.getKeyName("scene"), this.stagedScene);
             }
 
             if (keyFrames !== this.stagedKeyframes){
-                this.stagedSettings = keyFrames;
-                localStore.saveToStorage(this.getKeyName("keyFrames"), this.stagedKeyframes);
+                this.stagedKeyframes = keyFrames;
+                this.localStore.saveToStorage(this.getKeyName("keyFrames"), this.stagedKeyframes);
             }
         }
         if(cloudStorage && this.cloudStorageEnable){
@@ -212,6 +227,37 @@ class saveEngine {
 
 
     //Deleters
+    deleteLocalSave(idToDelete){
+        if(this.localStorageEnable) {
+            let oldID = this.localFileID;
+            this.localFileID = idToDelete;
+            let indexToDelete = this.localSaveIdList.findIndex(idToDelete);
+            this.localSaveIdList.splice(indexToDelete, 1);
+            this.localSaveFriendlyNamesList.splice(indexToDelete, 1);
+            this.localStore.saveToStorage(settings.sessionId, this.localSaveIdList);
+            if (this.legacySupport) {
+                this.localStore.deleteFromStorage(this.getKeyName("shapes"));
+                this.localStore.deleteFromStorage(this.getKeyName("scales"));
+                this.localStore.deleteFromStorage(this.getKeyName("lights"));
+            } else
+                this.localStore.deleteFromStorage(this.getKeyName(scene));
+            this.localStore.deleteFromStorage(this.getKeyName(keyFrames));
+            if (oldID === idToDelete) {
+                location.reload();
+                return;
+            }
+            this.localFileID = oldID;
+            for(let i = 0; i < this.localStorageUpdateList[0].length; i++)
+                this.setLocalStorageSelectorElement(this.localStorageUpdateList[0][i], this.localStorageUpdateList[1][i], false);
+        }
+    }
+
+    deleteCloudSave(idToDelete){
+        if(this.cloudStorageEnable){
+
+        }
+    }
+
 
 
 
@@ -223,8 +269,34 @@ class saveEngine {
     }
 
     set cloudStorageEnable(value){
-        this.cloudStorageEnable =value;
+        this.cloudStorageEnable = value;
     }
+
+    setLocalStorageSelectorElement(domSelectElement, defaultValue, updateNeeded){
+        let saveId;
+        let saveFriendlyName;
+        let selectorElement =  document.getElementById(domSelectElement);
+        selectorElement.innerHTML = "";
+        if(defaultValue !== "none"){
+            selectorElement.innerHTML += " <option> " + defaultValue + "</option>";
+        }
+        for (var i = 0; i < this.localSaveIdList.length; i++) {
+            saveId = this.localSaveIdList[i];
+            saveFriendlyName = this.localSaveFriendlyNamesList[i];
+            selectorElement.innerHTML += " <option value=" + saveId + "> " + saveFriendlyName + "</option>";
+        }
+        if(updateNeeded){
+            this.localStorageUpdateList[0].push(domSelectElement);
+            this.localStorageUpdateList[1].push(defaultValue);
+        }
+    }
+
+    setCloudStorageSelectorElement(domSelect, defaultValue, updateNeeded){
+
+    }
+
+
+
 
 
 
@@ -256,17 +328,17 @@ class saveEngine {
         this.localSaveIdList.push(saveId);
         if(this.legacySupport) {
             this.localSaveFriendlyNamesList.push(saveId);
-            localStore.saveToStorage("fileNames", this.localSaveIdList);
+            this.localStore.saveToStorage("fileNames", this.localSaveIdList);
 
         }
         else {
-            this.localSaveFriendlyNamesList.push(localStore.getFromStorage(saveId));
-            localStore.saveToStorage(settings.sessionId, this.localSaveIdList);
+            this.localSaveFriendlyNamesList.push(this.localStore.getFromStorage(saveId));
+            this.localStore.saveToStorage(settings.sessionId, this.localSaveIdList);
         }
     }
 
 
-    static incrementSaveNumber(){
+    incrementSaveNumber(){
         var workingSaveNumber = parseInt(settings.saveNumber);
         workingSaveNumber++;
         //for some reason the switch statement didn't work.
@@ -278,7 +350,7 @@ class saveEngine {
             settings.saveNumber = "00" + workingSaveNumber.toString();
         else if(workingSaveNumber >=1)
             settings.saveNumber = "000" +workingSaveNumber.toString();
-        localStore.saveToStorage("settings", settings);
+        this.localStore.saveToStorage("settings", settings);
 
     }
 

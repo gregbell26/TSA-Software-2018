@@ -13,7 +13,8 @@ class conversion {
                 || tst.geometry.type === "TetrahedronGeometry"
                 || tst.geometry.type === "SphereGeometry"
                 || tst.geometry.type === "TorusGeometry"
-                || tst.geometry.type === "TextGeometry")
+                || tst.geometry.type === "TextGeometry"
+            )
                 return true;
             return false;
         } catch (TypeError) {
@@ -57,22 +58,33 @@ class conversion {
 
     }
 
+
     static breakoutScene(stagedScene){
-        let extractedArray = [[],[],[], []];
+        let extractedArray = [[],[],[], [], Object];
         if(stagedScene.children !== undefined) {
             for (let i = 0; i < stagedScene.children.length; i++) {
                 console.log(i);
                 if (this.isShape(stagedScene.children[i])) {
+                    // Object.defineProperty(stagedScene.children[i], 'scale', {
+                    //     value: extractedArray[1][i],
+                    // });
+                    //stagedScene.children[i].scale = extractedArray[1][i];
                     extractedArray[0].push(stagedScene.children[i]);
-                    extractedArray[1].push(stagedScene.children[i].scale);
+                    extractedArray[1].push([stagedScene.children[i].scale.x, stagedScene.children[i].scale.y, stagedScene.children[i].scale.z]);
 
-                } else if (this.isBoarder(stagedScene.children[i]))
+                } else if (this.isBoarder(stagedScene.children[i])) {
+                    // Object.defineProperty(stagedScene.children[i], 'scale', {
+                    //     value: [stagedScene.children[i].scale.x, stagedScene.children[i].scale.y, stagedScene.children[i].scale.z]
+                    // });
+                    //stagedScene.children[i].scale = [stagedScene.children[i].x, stagedScene.children[i].y, stagedScene.children[i].z];
                     extractedArray[2].push(stagedScene.children[i]);
+                }
                 else if (this.isLight(stagedScene.children[i]))//this might break things as im assuming that only lights are the extra element so we are pushing this to lights
                     extractedArray[3].push(stagedScene.children[i]);
 
             }
         }
+        extractedArray[4] = stagedScene;
         console.log(extractedArray);
         return extractedArray;
 
