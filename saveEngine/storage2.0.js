@@ -113,10 +113,9 @@ class saveEngine {
                 this.stagedScene = new THREE.Scene();
             }
             else{
-                console.log("SCENE");
                 this.stagedScene = localStore.loadScene(this.getKeyName("scene"));
                 let brokenOutScene = conversion.breakoutScene(this.stagedScene);
-                console.log(this.stagedScene);
+                // console.log(this.stagedScene);
                 this.stagedShapes = brokenOutScene[0];
                 this.stagedScales = brokenOutScene[1];
                 this.stagedBorders = brokenOutScene[2];
@@ -194,10 +193,9 @@ class saveEngine {
                 }
             }
             else {
-                if(scene.children !== this.stagedScene.children){
-                    this.stagedScene = scene;
-                    localStore.saveToStorage(this.getKeyName("scene"), this.stagedScene);
-                }
+                //there is no point in that if statement as something is always changed in the scene
+                this.stagedScene = scene;
+                localStore.saveToStorage(this.getKeyName("scene"), this.stagedScene);
             }
 
             if (keyFrames !== this.stagedKeyframes){
