@@ -53,6 +53,34 @@ class conversion {
 
     }
 
+    static convertJSONToScene(JSONString){
+        if(JSONString.object.type !== "Scene")
+            return;
+        let JSONLoader = new THREE.ObjectLoader();
+        // JSONLoader.load(
+        //     JSONString,
+        //     function (obj) {
+        //         return obj;
+        //     },
+        //     function (progress){
+        //         console.log(progress.loaded / progress.total * 100 + "% loaded");
+        //     },
+        //     function (error) {
+        //         console.error("Load Failed due to ");
+        //         console.error(error);
+        //     }
+        // );
+
+        JSONLoader.parse(
+            JSONString,
+            function (parsedJSON) {
+                return parsedJSON;
+            },
+
+            );
+
+    }
+
     static toRenderableArr(stagedArray, arrayType, creationFunct){
 
 

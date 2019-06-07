@@ -14,7 +14,6 @@ class localStore{
 
     getFromStorage(key){
         let gotten = JSON.parse(localStorage.getItem(key));
-        // console.log(gotten);
         return gotten;
     }
 

@@ -1,10 +1,10 @@
 class SaveEngine {
-    localStore;
-    localStorageEnable;
+    localStore = new localStore();
+    localStorageEnable = false;
 
-    cloudStorageEnable;
+    cloudStorageEnable = false;
 
-    localNewSave;
+    localNewSave = false;
 
     firstRun = false;
 
@@ -33,13 +33,12 @@ class SaveEngine {
     stagedScene = [];
 
 
-    stagedSettings;
+    stagedSettings = [];
 
 
     constructor(localEnable, cloudEnable){
         this.localStorageEnable = localEnable;
         this.cloudStorageEnable = cloudEnable;
-        this.localStore = new localStore();
         this.loadSettings();
         if(this.firstRun){
             this._generateSessionId();
@@ -124,8 +123,9 @@ class SaveEngine {
                 this.stagedScene = new THREE.Scene();
             }
             else{
-                console.log(this.localStore.exists(this.getKeyName("scene")));
-                this.stagedScene = this.localStore.loadScene(this.getKeyName("scene"));
+                //this.stagedScene = this.localStore.loadScene(this.getKeyName("scene"));
+                this.stagedScene = this.localStore.getFromStorage(this.getKeyName("scene"));
+                this.stagedScene = conversion.convertJSONToScene(this.stagedScene);
                 let brokenOutScene = conversion.breakoutScene(this.stagedScene);
                 console.log(this.stagedScene);
                 this.stagedShapes = brokenOutScene[0];
