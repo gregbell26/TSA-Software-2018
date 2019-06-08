@@ -174,12 +174,12 @@
 
             <!--Right Aligned Buttons-->
             <span class="std_nav_button std_nav_alignRight" id="nav_settings"
-                  onclick="settingsToggle(); updateCloudSaveList(); getId('localStorage_saveSelector').innerHTML=''; saveSubSystem.loadSaveNames('localStorage_saveSelector');">
+                  onclick="settingsToggle();">
 
-                    <img onclick="settingsToggle(); updateCloudSaveList(); getId('localStorage_saveSelector').innerHTML=''; saveSubSystem.loadSaveNames('localStorage_saveSelector');"
+                    <img onclick="settingsToggle();"
                          src="./style/assets/svgs/nav_icons/nav_settings_icon.svg" class="nav_buttonIcon std_icon_normal"/>
 
-                <img onclick="settingsToggle(); updateCloudSaveList(); getId('localStorage_saveSelector').innerHTML=''; saveSubSystem.loadSaveNames('localStorage_saveSelector');"
+                <img onclick="settingsToggle();"
                          src="./style/assets/svgs/nav_icons/nav_settings_dark_icon.svg" class="nav_buttonIcon std_icon_dark"/>
 
             </span>
@@ -233,7 +233,7 @@
                     </h3>
                     <div class="std_body_list" style="max-width: initial; width: 100%;">
                         <select class="list_body"
-                                onchange="if(this.value!== 'newShape'){console.log(this.value);newShape(this.value,0,0,0,0,0,0,'#FF0000','#000000');} this.selectedIndex = 0;"
+                                onchange="if(this.value !== 'newShape'){console.log(this.value);newShape(this.value,0,0,0,0,0,0,'#FF0000','#000000');} this.selectedIndex = 0;"
                                 id="newShapes_select">
                             <option value="newShape">Create Shape</option>
                             <option value="cube">New Cube</option>
@@ -637,29 +637,32 @@
                 <h2>
                     Storage
                 </h2>
-                <h3>
-                    Cloud Storage
-                </h3>
-                <div id="account_sub_signedIn">
-                    <div class="std_body_button" onclick="signOut()">
+                <div id="account_sub_signedIn" style="display: none">
+                    <h3>
+                        Cloud Storage
+                    </h3>
+                    <div class="std_body_button" onclick="">
                         <span class="button_body">Sign Out</span>
                         <span class="button_bar"></span>
                     </div>
 
-                    <div class="std_body_button" onclick="saveCurrentToCloud()" >
+                    <div class="std_body_button" onclick="" >
                         <span class="button_body">Save to Cloud</span>
                         <span class="button_bar"></span>
                     </div>
 
                     <div class="std_body_list" style="max-width: initial; width: auto">
-                        <select class="list_body" id="signedIn_loadSelector" onchange="loadCloudSave()">
+                        <select class="list_body" id="signedIn_loadSelector" onchange="">
                             <option>Load Cloud Save</option>
                         </select>
                         <span class="list_bar"></span>
                     </div>
                 </div>
 
-                <div id="account_sub_signedOut">
+                <div id="account_sub_signedOut" style="display: none;">
+                    <h3>
+                        Cloud Storage
+                    </h3>
                     <div class="std_input_text">
                         <input type="text" id="signedOut_email" autocomplete="false" required>
                         <span class="text_highlight"></span>
@@ -678,14 +681,13 @@
                     </div>
 
                     <div class="std_body_button" onclick="
-                        signIn(document.getElementById('signedOut_email').value, document.getElementById('signedOut_password').value);
+
                      " >
                         <span class="button_body">Log In</span>
                         <span class="button_bar"></span>
                     </div>
 
                     <div class="std_body_button"  style="max-width: initial" onclick="
-                        createAccount(document.getElementById('signedOut_email').value, document.getElementById('signedOut_password').value, document.getElementById('signedOut_password').value);
                     " >
                         <span class="button_body">Create Account</span>
                         <span class="button_bar"></span>
@@ -698,7 +700,7 @@
                 </h3>
 
                 <div class="std_body_button"
-                     onclick="saveSubSystem.save();" >
+                     onclick="saveEngine.save(true, false)" >
                     <span class="button_body">Force Save</span>
                     <span class="button_bar"></span>
                 </div>
@@ -712,17 +714,17 @@
                 </div>
 
                 <div class="std_body_button"
-                     onclick="" >
+                     onclick="scene = saveEngine.loadLocalSave(getId('localStorage_saveSelector').value)" >
                     <span class="button_body">Load Save</span>
                     <span class="button_bar"></span>
                 </div>
                 <div class="std_body_button"
-                     onclick="saveSubSystem.deleteSave(getId('localStorage_saveSelector').value)">
+                     onclick="saveEngine.deleteSave(getId('localStorage_saveSelector').value)">
                     <span class="button_body">Delete Save</span>
                     <span class="button_bar"></span>
                 </div>
                 <div class="std_body_button"
-                     onclick="saveSubSystem.isUsingSaves = false; saveSubSystem.deleteSave('purge')" style="max-width: initial">
+                     onclick="" style="max-width: initial">
                     <span class="button_body">Purge All Saves</span>
                     <span class="button_bar"></span>
                 </div>
@@ -812,7 +814,7 @@
         <div id="std_timeline">
             <div id="std_timeline_navbar">
                 <div id="timeline_buttonContainer">
-                    <span class="timeline_button" id="timeline_addKeyframe" onclick="addFrame(); saveSubSystem.save();">
+                    <span class="timeline_button" id="timeline_addKeyframe" onclick="addFrame(); ">
                         <img  class="std_icon_normal"
                             src="./style/assets/svgs/timeline_icons/timeline_addKeyframe_icon.svg"
                             />
@@ -820,7 +822,7 @@
                             src="./style/assets/svgs/timeline_icons/timeline_addKeyframe_dark_icon.svg"
                             />
                     </span>
-                    <span class="timeline_button" id="timeline_removeKeyframe" onclick="removeFrame(keyFrames.length-1); saveSubSystem.save();">
+                    <span class="timeline_button" id="timeline_removeKeyframe" onclick="removeFrame(keyFrames.length-1);">
                         <img class="std_icon_normal"
                             src="./style/assets/svgs/timeline_icons/timeline_deleteKeyframe_icon.svg"
                             />

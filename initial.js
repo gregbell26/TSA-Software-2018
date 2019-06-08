@@ -174,7 +174,7 @@ function start(){
         // newLight("ambient", "#ffffff", 50);
         //has saves
     }
-    getId("localStorage_saveSelector").value = saveEngine.localFileIndex;
+    getId("localStorage_saveSelector").selectedIndex = saveEngine.localFileIndex;
 
     init = true;
     onWindowResize();
