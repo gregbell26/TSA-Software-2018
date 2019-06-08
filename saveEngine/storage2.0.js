@@ -213,7 +213,9 @@ class SaveEngine {
                 this.localStore.saveToStorage(this.getKeyName("scene"), this.stagedScene);
             }
 
-            if (keyFrames !== this.stagedKeyframes){
+            //if (keyFrames !== this.stagedKeyframes){
+            if(true){//FUCK YOU
+                console.log("WOW SOMETHINGS DIFFERENT");
                 this.stagedKeyframes = keyFrames;
                 this.localStore.saveToStorage(this.getKeyName("keyFrames"), this.stagedKeyframes);
             }

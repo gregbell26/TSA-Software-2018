@@ -36,7 +36,6 @@ function addFrame(){
     );
     console.log('frame added');
     console.log(keyFrames);
-    loadKeyList();
     updateTimeline();
 }
 function updateTimeline(){
@@ -77,7 +76,6 @@ function keyName(name,frame){
 
 function removeFrame(frame){
     keyFrames.splice(frame,1);
-    loadKeyList();
     updateTimeline();
 }
 
@@ -85,14 +83,12 @@ function moveUp(frame){
     var hold = keyFrames[frame];
     keyFrames.splice(frame,1);
     keyFrames.splice(frame-1,0,hold);
-    loadKeyList();
     updateTimeline();
 }
 function moveDown(frame){
     var hold = keyFrames[frame];
     keyFrames.splice(frame,1);
     keyFrames.splice(frame+1,0,hold);
-    loadKeyList();
     updateTimeline();
 }
 

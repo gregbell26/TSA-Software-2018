@@ -71,13 +71,7 @@ class conversion {
         //     }
         // );
 
-        JSONLoader.parse(
-            JSONString,
-            function (parsedJSON) {
-                return parsedJSON;
-            },
-
-            );
+        return JSONLoader.parse(JSONString);
 
     }
 
