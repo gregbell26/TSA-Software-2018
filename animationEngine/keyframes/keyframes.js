@@ -88,6 +88,7 @@ function moveUp(frame){
     loadKeyList();
     updateTimeline();
 }
+
 function moveDown(frame){
     var hold = keyFrames[frame];
     keyFrames.splice(frame,1);
