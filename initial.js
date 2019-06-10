@@ -60,6 +60,9 @@ window.onload = function(){
         case "amoledMode":
             getId("settings_styleSheetSelector").selectedIndex = 2;
             break;
+        case "memeMode":
+            getId("settings_styleSheetSelector").selectedIndex = 3;
+            break;
     }
 
     getId("settings_mouseSensitivity").value = settings.camera.mouseSensitivity;

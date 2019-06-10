@@ -46,6 +46,11 @@ class SaveEngine {
             this.localStore.saveToStorage("settings", this.stagedSettings);
         }
         this.loadSaveList();
+
+        if(this.localStorageEnable)
+            getId("settings_localStorage").style.display = "inherit";
+        if(this.cloudStorageEnable)
+            getId("settings_cloudStorage").style.display="inherit";
     }
     //Generators
     _generateFileId(){
@@ -134,6 +139,7 @@ class SaveEngine {
                 this.stagedLights = brokenOutScene[3];
                 this.stagedScene = brokenOutScene[4];
             }
+
             this.stagedKeyframes =  this.localStore.getFromStorage(this.getKeyName("keyframes"));
 
             keyFrames = this.stagedKeyframes;
@@ -214,10 +220,9 @@ class SaveEngine {
             }
 
             //if (keyFrames !== this.stagedKeyframes){
-            if(true){//FUCK YOU
-                console.log("WOW SOMETHINGS DIFFERENT");
+            if(true){//TEMP
                 this.stagedKeyframes = keyFrames;
-                this.localStore.saveToStorage(this.getKeyName("keyFrames"), this.stagedKeyframes);
+                this.localStore.saveToStorage(this.getKeyName("keyframes"), this.stagedKeyframes);
             }
         }
         if(cloudStorage && this.cloudStorageEnable){

@@ -1,0 +1,10 @@
+:root{
+    /*
+Color Vars
+*/
+    --std_color_primary: #ff3c00;
+    --std_color_secondary: #ffea00;
+    --std_color_accent: #00ff1e;
+
+    --std_color_text_primary: #000bff;
+}
