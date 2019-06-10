@@ -637,99 +637,99 @@
                 <h2>
                     Storage
                 </h2>
-                <div id="account_sub_signedIn" style="display: none">
+                <div id="settings_cloudStorage" style="display:none;">
                     <h3>
                         Cloud Storage
                     </h3>
-                    <div class="std_body_button" onclick="">
-                        <span class="button_body">Sign Out</span>
+                    <div id="account_sub_signedIn" style="display: none">
+                        <div class="std_body_button" onclick="">
+                            <span class="button_body">Sign Out</span>
+                            <span class="button_bar"></span>
+                        </div>
+
+                        <div class="std_body_button" onclick="" >
+                            <span class="button_body">Save to Cloud</span>
+                            <span class="button_bar"></span>
+                        </div>
+
+                        <div class="std_body_list" style="max-width: initial; width: auto">
+                            <select class="list_body" id="signedIn_loadSelector" onchange="">
+                                <option>Load Cloud Save</option>
+                            </select>
+                            <span class="list_bar"></span>
+                        </div>
+                    </div>
+
+                    <div id="account_sub_signedOut" style="display: none;">
+                        <div class="std_input_text">
+                            <input type="text" id="signedOut_email" autocomplete="false" required>
+                            <span class="text_highlight"></span>
+                            <span class="text_bar"></span>
+                            <label>Email</label>
+                        </div>
+
+                        <div class="std_input_text">
+                            <input type="password" id="signedOut_password" readonly type="email" onfocus="if (this.hasAttribute('readonly')) {
+                                this.removeAttribute('readonly'); this.blur();
+                                this.focus();  }
+                            " required>
+                            <span class="text_highlight"></span>
+                            <span class="text_bar"></span>
+                            <label>Password</label>
+                        </div>
+
+                        <div class="std_body_button" onclick="
+
+                         " >
+                            <span class="button_body">Log In</span>
+                            <span class="button_bar"></span>
+                        </div>
+
+                        <div class="std_body_button"  style="max-width: initial" onclick="
+                        " >
+                            <span class="button_body">Create Account</span>
+                            <span class="button_bar"></span>
+                        </div>
+
+                    </div>
+                </div>
+
+                <div id="settings_localStorage" style="display: none;">
+                    <h3>
+                        Local Storage
+                    </h3>
+
+                    <div class="std_body_button"
+                            onclick="saveEngine.save(true, false)" >
+                        <span class="button_body">Force Save</span>
                         <span class="button_bar"></span>
                     </div>
 
-                    <div class="std_body_button" onclick="" >
-                        <span class="button_body">Save to Cloud</span>
-                        <span class="button_bar"></span>
-                    </div>
+                    <div class="std_body_list" style="max-width: initial; width: 100%;">
+                        <select class="list_body" id="localStorage_saveSelector"
+                                onchange="">
 
-                    <div class="std_body_list" style="max-width: initial; width: auto">
-                        <select class="list_body" id="signedIn_loadSelector" onchange="">
-                            <option>Load Cloud Save</option>
                         </select>
                         <span class="list_bar"></span>
                     </div>
-                </div>
 
-                <div id="account_sub_signedOut" style="display: none;">
-                    <h3>
-                        Cloud Storage
-                    </h3>
-                    <div class="std_input_text">
-                        <input type="text" id="signedOut_email" autocomplete="false" required>
-                        <span class="text_highlight"></span>
-                        <span class="text_bar"></span>
-                        <label>Email</label>
-                    </div>
-
-                    <div class="std_input_text">
-                        <input type="password" id="signedOut_password" readonly type="email" onfocus="if (this.hasAttribute('readonly')) {
-                            this.removeAttribute('readonly'); this.blur();
-                            this.focus();  }
-                        " required>
-                        <span class="text_highlight"></span>
-                        <span class="text_bar"></span>
-                        <label>Password</label>
-                    </div>
-
-                    <div class="std_body_button" onclick="
-
-                     " >
-                        <span class="button_body">Log In</span>
+                    <div class="std_body_button"
+                        onclick="scene = saveEngine.loadLocalSave(getId('localStorage_saveSelector').value)" >
+                        <span class="button_body">Load Save</span>
                         <span class="button_bar"></span>
                     </div>
-
-                    <div class="std_body_button"  style="max-width: initial" onclick="
-                    " >
-                        <span class="button_body">Create Account</span>
+                    <div class="std_body_button"
+                        onclick="saveEngine.deleteSave(getId('localStorage_saveSelector').value)">
+                        <span class="button_body">Delete Save</span>
+                        <span class="button_bar"></span>
+                    </div>
+                    <div class="std_body_button"
+                        onclick="" style="max-width: initial">
+                        <span class="button_body">Purge All Saves</span>
                         <span class="button_bar"></span>
                     </div>
 
                 </div>
-
-                <h3>
-                    Local Storage
-                </h3>
-
-                <div class="std_body_button"
-                     onclick="saveEngine.save(true, false)" >
-                    <span class="button_body">Force Save</span>
-                    <span class="button_bar"></span>
-                </div>
-
-                <div class="std_body_list" style="max-width: initial; width: 100%;">
-                    <select class="list_body" id="localStorage_saveSelector"
-                            onchange="">
-
-                    </select>
-                    <span class="list_bar"></span>
-                </div>
-
-                <div class="std_body_button"
-                     onclick="scene = saveEngine.loadLocalSave(getId('localStorage_saveSelector').value)" >
-                    <span class="button_body">Load Save</span>
-                    <span class="button_bar"></span>
-                </div>
-                <div class="std_body_button"
-                     onclick="saveEngine.deleteSave(getId('localStorage_saveSelector').value)">
-                    <span class="button_body">Delete Save</span>
-                    <span class="button_bar"></span>
-                </div>
-                <div class="std_body_button"
-                     onclick="" style="max-width: initial">
-                    <span class="button_body">Purge All Saves</span>
-                    <span class="button_bar"></span>
-                </div>
-
-
                 <h2>
                     User Interface
                 </h2>
@@ -760,6 +760,7 @@
                         <option value="normalMode">Light Theme</option>
                         <option value="darkMode">Dark Theme</option>
                         <option value="amoledMode">AMOLED Theme</option>
+                        <option value="memeMode">Meme Theme</option>
                     </select>
                     <span class="list_bar"></span>
                 </div>
@@ -812,8 +813,12 @@
 
         <!--TIMELINE-->
         <div id="std_timeline">
-            <div id="std_timeline_navbar">
-                <div id="timeline_buttonContainer">
+            <div id="timeline_navbar">
+                <span id="timeLine_animationStart" class="timeline_text">
+                    0 ms
+                </span>
+
+                <div id="timelineNavbar_buttonContainer">
                     <span class="timeline_button" id="timeline_addKeyframe" onclick="addFrame(); ">
                         <img  class="std_icon_normal"
                             src="./style/assets/svgs/timeline_icons/timeline_addKeyframe_icon.svg"
@@ -829,6 +834,14 @@
                         <img class="std_icon_dark"
                             src="./style/assets/svgs/timeline_icons/timeline_deleteKeyframe_dark_icon.svg"
                             />
+                    </span>
+                    <span class="timeline_button" id="timeline_record" onclick="">
+                        <img  class="std_icon_normal"
+                              src="./style/assets/svgs/timeline_icons/timeline_record_icon.svg"
+                        />
+                        <img  class="std_icon_dark"
+                              src="./style/assets/svgs/timeline_icons/timeline_record_dark_icon.svg"
+                        />
                     </span>
                     <span onclick="playAnimation(0)" class="timeline_button" id="timeline_play">
                         <img class="std_icon_normal"
@@ -847,10 +860,17 @@
                             />
                     </span>
                 </div>
-
+                <span id="timeLine_animationFinish" class="timeline_text" style="float: right" onclick="this.contentEditable = true;" onchange="">
+                    5 s
+                </span>
             </div>
+
             <div id="timeline_body">
-                <span id="timeline_playHead" class="timeline_keyframe"></span>
+                <span id="timeline_playHead"></span>
+            </div>
+
+            <div id="timeline_keyframeTimes">
+
             </div>
 
         </div>

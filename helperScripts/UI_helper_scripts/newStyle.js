@@ -186,6 +186,11 @@ function stylesheetLoader(stylesheetName){
         validStyleSheet =true;
         iconSwapper("all", "darkMode")
     }
+    else if(stylesheetName ==="memeMode"){
+        cssToLoad.setAttribute("href", "./style/memeMode_style.css");
+        validStyleSheet =true;
+        iconSwapper("all", "normalMode")
+    }
 
     else if(stylesheetName === "mobile"){
         cssToLoad.setAttribute("href", "mobileMode_Style.css");
