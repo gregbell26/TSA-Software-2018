@@ -837,10 +837,10 @@
                     </span>
                     <span class="timeline_button" id="timeline_record" onclick="">
                         <img  class="std_icon_normal"
-                              src="./style/assets/svgs/timeline_icons/timeline_"
+                              src="./style/assets/svgs/timeline_icons/timeline_record_icon.svg"
                         />
                         <img  class="std_icon_dark"
-                              src="./style/assets/svgs/timeline_icons/timeline_"
+                              src="./style/assets/svgs/timeline_icons/timeline_record_dark_icon.svg"
                         />
                     </span>
                     <span onclick="playAnimation(0)" class="timeline_button" id="timeline_play">
@@ -860,7 +860,7 @@
                             />
                     </span>
                 </div>
-                <span id="timeLine_animationFinish" class="timeline_text" style="float: right">
+                <span id="timeLine_animationFinish" class="timeline_text" style="float: right" onclick="this.contentEditable = true;" onchange="">
                     5 s
                 </span>
             </div>
@@ -870,7 +870,7 @@
             </div>
 
             <div id="timeline_keyframeTimes">
-                PLACEHOLDER
+
             </div>
 
         </div>
