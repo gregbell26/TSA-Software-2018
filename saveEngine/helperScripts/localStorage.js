@@ -4,19 +4,33 @@
  */
 
 class localStore{
+    constructor(){
 
-    static exists(key){
-        if(localStorage.getItem(key) !== null)
-            return true;
-        return false;
     }
 
-    static getFromStorage(key){
-        return JSON.parse(localStorage.getItem(key));
+    exists(key){
+        return localStorage.getItem(key) !== null;
     }
 
-    static saveToStorage(key,data){
+    getFromStorage(key){
+        let gotten = JSON.parse(localStorage.getItem(key));
+        return gotten;
+    }
+
+    loadScene(key){
+        let JSONLoader = new THREE.ObjectLoader();
+        let processed = this.getFromStorage(key);
+        processed = JSONLoader.parse(processed);
+        return processed;
+    }
+
+    deleteFromStorage(key){
+        localStorage.removeItem(key);
+    }
+
+    saveToStorage(key,data){
         //If we have time add check to verify that we are saving valid JSON data
         localStorage.setItem(key, JSON.stringify(data));
+        console.log("Saved: " +key);
     }
 }
