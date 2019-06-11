@@ -269,6 +269,10 @@ function moveKeyframe(frameNumber, amount) {
         console.log("Frame out of bounds");
         return;
     }
+    if(frameNumber === 0){
+        keyFrames[frameNumber].duration-=amount;
+        return;
+    }
     console.log("moving: " + amount);
     if (amount < -keyFrames[frameNumber-1].duration) {
         console.log("shifting down");
