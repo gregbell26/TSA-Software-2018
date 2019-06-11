@@ -102,6 +102,7 @@ function moveUp(frame){
     keyFrames.splice(frame-1,0,hold);
     updateTimeline();
 }
+
 function moveDown(frame){
     var hold = keyFrames[frame];
     keyFrames.splice(frame,1);

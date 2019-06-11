@@ -1,7 +1,7 @@
 function newCustom2(x, y, z, posX, posY, posZ, newColor, borderColor, verticies, faces, index, name) {
     var newGeometry = new THREE.Geometry();
-    var newMaterial = new THREE.MeshBasicMaterial({ color: newColor });
-  
+    var newMaterial = new THREE.MeshLambertMaterial({ color: newColor });
+  newMaterial.lights=true;
 
 //geometry.addAttribute( 'position', new THREE.BufferAttribute( verticies, 3 ) );
 //var material = new THREE.MeshBasicMaterial( { color: 0xff0000 } );
@@ -155,10 +155,10 @@ function newCustom2(x, y, z, posX, posY, posZ, newColor, borderColor, verticies,
 console.log(faces.length+" Faces");
 console.log("Shape Ends at "+index);
 
-    shapes[shapes.length] = new THREE.Mesh(newGeometry, newMaterial);
+   
 
     var geometry = new THREE.BufferGeometry().fromGeometry(newGeometry); //where error is
-
+    shapes[shapes.length] = new THREE.Mesh(geometry, newMaterial);
     var borderToAdd = new THREE.LineSegments( geometry, new THREE.LineBasicMaterial( { color: borderColor } ) );
     if(name != null){
       newGeometry.name=name;
@@ -169,7 +169,7 @@ console.log("Shape Ends at "+index);
 
     scene.add(shapes[shapes.length - 1]);
     selectedShape = shapes.length - 1;
-    
+    geometry.computeVertexNormals()
     borderToAdd.scale.x = x;
     borderToAdd.scale.y = y;
     borderToAdd.scale.z = z;
