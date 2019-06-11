@@ -81,7 +81,7 @@ $(document).on('mousedown',function(e){
         yStart = e.pageY;
         mouseDown = true;
     }
-    else if(e.pageY>=window.innerHeight-70){
+    else if(e.pageY >= window.innerHeight-100 && e.pageY<=window.innerHeight-25){
         // console.log("Mouse scrub enabled");
         mouseOnTimeline = true;
         timelineScrub(e.pageX);
@@ -120,7 +120,7 @@ $(document).on('mouseup',function(e){
 var timelinePosition = 0;
 $(document).ready(function(){
     $(document).on('mousemove', function(e){
-        if(e.pageX>=300 && e.pageY >=50 && e.pageY<window.innerHeight-100) {
+        if(e.pageX>=300 && e.pageY >=50 && e.pageY<window.innerHeight-150) {
             inAnimationWindow = 1;
         }
         else{
