@@ -22,3 +22,11 @@ onkeydown = function(e){
         console.log(timelinePosition);
     }
 }
+
+
+/*
+Shortcuts to add
+im thinking {shift} + {key) for the syntax
+
+
+ */

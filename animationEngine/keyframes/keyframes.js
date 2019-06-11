@@ -9,7 +9,7 @@ function addFrame(){
         {
             //default settings for keyframe
             //collects all of the current states of the items
-            duration: 5000,
+            duration: 2000,
             shapes: getShapes(shapes),
             scales: JSON.parse(JSON.stringify(scales)),
             xPosition: xPosition,
@@ -565,6 +565,7 @@ function record(){
     capturer = new CCapture({
         format: 'webm',
         frameRate: 60,
+        name: saveEngine.localFileName(),
     });
     timelineButtonToggle("timeline_record");
     capturer.start();

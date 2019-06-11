@@ -177,10 +177,11 @@ class SaveEngine {
 
 
 
+            this.addNewSave(this.localFileID);
+            
             for(let i = 0; i < this.localStorageUpdateList[0].length; i++)
                 this.setLocalStorageSelectorElement(this.localStorageUpdateList[0][i], this.localStorageUpdateList[1][i], false);
 
-            this.addNewSave(this.localFileID);
             this.localNewSave = false;
             return this.loadLocalSave(this.localFileID);
         }
@@ -238,7 +239,7 @@ class SaveEngine {
         if(this.localStorageEnable) {
             let oldID = this.localFileID;
             this.localFileID = idToDelete;
-            let indexToDelete = this.localSaveIdList.findIndex(idToDelete);
+            let indexToDelete = this.localSaveIdList.findIndex(saves => saves === idToDelete);
             this.localSaveIdList.splice(indexToDelete, 1);
             this.localSaveFriendlyNamesList.splice(indexToDelete, 1);
             this.localStore.saveToStorage(settings.sessionId, this.localSaveIdList);
@@ -266,7 +267,11 @@ class SaveEngine {
     }
 
 
+    //getters
 
+    get localFileName(){
+        return this.localFileName;
+    }
 
 
 
