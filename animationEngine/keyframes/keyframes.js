@@ -239,6 +239,14 @@ function timelineScrub(pageX) {
     }
 }
 
+function changeTimelineDuration(value){
+    while(value > -keyFrames[keyFrames.length-2].duration){
+        keyFrames.splice(keyFrames.length-1,1);
+        value+=keyFrames[keyFrames.length-1].duration;
+    }
+    keyFrames[keyFrames.length-2] += value;
+}
+
 function moveKeyframeto(frameNumber, point) {
     var durationToFrame = 0;
     for (var i = 0; i < frameNumber; i++){
@@ -259,6 +267,10 @@ function moveKeyframeto(frameNumber, point) {
 function moveKeyframe(frameNumber, amount) {
     if(frameNumber < 0 || frameNumber >= keyFrames.length){
         console.log("Frame out of bounds");
+        return;
+    }
+    if(frameNumber === 0){
+        keyFrames[frameNumber].duration-=amount;
         return;
     }
     console.log("moving: " + amount);
