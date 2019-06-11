@@ -220,6 +220,14 @@ function timelineScrub(pageX) {
     }
 }
 
+function changeTimelineDuration(value){
+    while(value > -keyFrames[keyFrames.length-2].duration){
+        keyFrames.splice(keyFrames.length-1,1);
+        value+=keyFrames[keyFrames.length-1].duration;
+    }
+    keyFrames[keyFrames.length-2] += value;
+}
+
 function moveKeyframeto(frameNumber, point) {
     var durationToFrame = 0;
     for (var i = 0; i < frameNumber; i++){
