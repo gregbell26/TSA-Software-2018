@@ -1,5 +1,5 @@
 var timelineScale = 0;
-
+let toggleCheck = [];
 function addFrame(){
     if(usingTutorial){
         confirm("Now change some diemsions, colors, or positions, add a keyframe, then press play.");
@@ -43,16 +43,33 @@ function updateTimeline(){
     for(var i=0; i<keyFrames.length-1; i++){
         duration+=keyFrames[i].duration;
     }
-    timelineScale = duration/(window.innerWidth-20);
-    var timeline = document.getElementById("std_timeline").children.item(1);
-    timeline.innerHTML = "<span id=\"timeline_playHead\" class=\"timeline_keyframe\"></span>";
-    var currentX = 10;
+    timelineScale = duration/(window.innerWidth-50);
+    var timeline = getId("std_timeline").children.item(1);
+    var durArea = getId("std_timeline").children.item(2);
+    timeline.innerHTML = "<span id=\"timeline_playHead\" ></span>";
+    durArea.innerHTML = "";
+    var currentX = 5;
     for(var i=0; i<keyFrames.length; i++){
         timeline.innerHTML += ("<div class='timeline_keyframe' style='left: "+currentX+"px;'></div>");
+        toggleCheck.push(0)
+        durArea.innerHTML += ("<div class='timeline_text' style='position: absolute; left: "+ currentX + "px;'> <div onclick='let id =" + i + "; timesCheck(id, this)'>" + keyFrames[i].duration +"</div> ms</div>");
         currentX+=keyFrames[i].duration/timelineScale;
     }
     console.log("Updated Time Line")
 }
+
+function timesCheck(id, domElement){
+    if(toggleCheck[id] <3){
+        toggleCheck[id]++;
+        domElement.contentEditable = true;
+    }
+    else {
+        setSpeed(id, parseInt(domElement.innerHTML.split(" ms")));
+        toggleCheck[id] = 0;
+    }
+
+}
+
 //determines whether ot not to repeat the animation
 function loop(){
     if(animationRunning){
@@ -137,7 +154,8 @@ function playAnimation(frameValue) {
                             a = 0;
                             prevDuration=0;
                             timingCounter = 0;
-                            timelineButtonToggle('timeline_repeat');
+                            document.getElementById("timeline_playHead").style.left = (1)+"px";
+                            //timelineButtonToggle('timeline_repeat');
                         }
                         else {
                             clearInterval(animationTimer);
@@ -145,6 +163,7 @@ function playAnimation(frameValue) {
                             console.log('done');
                             animationRunning = false;
                             if(recording){
+                                timelineButtonToggle("timeline_record");
                                 recording = false;
                                 capturer.stop();
                                 capturer.save();
@@ -160,7 +179,7 @@ function playAnimation(frameValue) {
 
 //sets speed of animation.
 function setSpeed(i, speed){
-    console.log(i);
+    console.log(speed);
     keyFrames[i].duration = speed;
     updateTimeline();
 }
@@ -212,7 +231,7 @@ function timelineScrub(pageX) {
             }
         }
         if (a != null) {
-            document.getElementById("timeline_playHead").style.left = (11+frameValue/timelineScale)+"px";
+            document.getElementById("timeline_playHead").style.left = (1+frameValue/timelineScale)+"px";
             var timingCounter = frameValue - frames;
             updateAnimation(timingCounter, a);
         }
@@ -542,8 +561,13 @@ function updateAnimation(timingCounter,a){
 var recording = false;
 function record(){
     recording = true;
-    capturer = new CCapture({ format: 'webm' });
+    capturer = new CCapture({
+        format: 'webm',
+        frameRate: 60,
+    });
+    timelineButtonToggle("timeline_record");
     capturer.start();
     playAnimation(0);
+    //timelineButtonToggle("timeline_record");
 }
 
