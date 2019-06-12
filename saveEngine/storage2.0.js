@@ -178,7 +178,7 @@ class SaveEngine {
 
 
             this.addNewSave(this.localFileID);
-            
+
             for(let i = 0; i < this.localStorageUpdateList[0].length; i++)
                 this.setLocalStorageSelectorElement(this.localStorageUpdateList[0][i], this.localStorageUpdateList[1][i], false);
 
@@ -278,10 +278,20 @@ class SaveEngine {
     //setters
     set localStorageEnable(value){
         this.localStorageEnable = value;
+        if(!this.localStorageEnable)
+            getId("settings_localStorage").style.display = "none";
+
+        else
+            getId("settings_localStorage").style.display = "inherit";
+
     }
 
     set cloudStorageEnable(value){
         this.cloudStorageEnable = value;
+        if(!this.cloudStorageEnable)
+            getId("settings_cloudStorage").style.display="none";
+        else
+            getId("settings_cloudStorage").style.display="inherit";
     }
 
     setLocalStorageSelectorElement(domSelectElement, defaultValue, updateNeeded){
@@ -363,6 +373,13 @@ class SaveEngine {
         else if(workingSaveNumber >=1)
             settings.saveNumber = "000" +workingSaveNumber.toString();
         this.localStore.saveToStorage("settings", settings);
+
+    }
+
+
+    //true: we are connected
+    //false: we are disconnected
+    static connectionStateChanged(connected){
 
     }
 

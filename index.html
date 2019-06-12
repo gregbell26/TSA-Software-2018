@@ -45,10 +45,10 @@
         <!--Backend Scripts-->
         <!--Save Engine-->
         <!--FIREbase!-->
-        <script src="./saveEngine/firebaseAPI/firebase-app.js"></script> <!--This file is remote-->
-        <script src="./saveEngine/firebaseAPI/firebase-auth.js"></script> <!--This file is remote-->
-        <script src="./saveEngine/firebaseAPI/firebase-firestore.js"></script> <!--This file is remote-->
-        <script src="./saveEngine/firebaseAPI/firebase-storage.js"></script> <!--This file is remote-->
+        <script src="https://www.gstatic.com/firebasejs/6.1.1/firebase-app.js"></script>
+        <script src="https://www.gstatic.com/firebasejs/6.1.1/firebase-auth.js"></script>
+        <script src="https://www.gstatic.com/firebasejs/6.1.1/firebase-firestore.js"></script>
+        <script src="https://www.gstatic.com/firebasejs/6.1.1/firebase-database.js"></script>
 <!--        <script src="saveEngine/firebase.js"></script>-->
         <!--Not FIREbase-->
         <script src="./saveEngine/helperScripts/base64.js"></script>
@@ -72,6 +72,7 @@
         <!--
         it is very important that these are called in this order.
         -->
+        <script src="helperScripts/UI_helper_scripts/popUpControls.js"></script>
         <script src="helperScripts/UI_helper_scripts/diemsions.js"></script>
         <script src="helperScripts/UI_helper_scripts/newStyle.js"></script>
         <title>Monarch Animation</title>
@@ -769,7 +770,7 @@
 
                     <img src="style/assets/pngs/monarchAnimation_Icon.png" alt="monarchAnimation_icon" id="monarchAnimation_icon"/>
                     <p id="about_ProgramName">Monarch Animation</p>
-                    <p id="about_ver">ver 1.0 ~beta~rev 17</p>
+                    <p id="about_ver"><script>document.getElementById("about_ver").innerHTML = settings.version</script></p>
 
                     <div style="margin-top: 10px"></div>
                     <p class="about_developmentTeam">Animation Engine</p>
@@ -889,36 +890,53 @@
         ">&larr;</span> <!--The arrow that points things out for the user-->
 
         <div id="std_popUp">
-        <div class="popUp_body" id="popUp_input_body">
-            <h3>
-                std_popUp_input
-            </h3>
+            <div class="popUp_body" id="popUp_input_body">
+                <h3>
+                    std_popUp_input
+                </h3>
 
-            <div class="std_input_text">
-                <input type="text" autocomplete="off" required>
-                <span class="text_highlight"></span>
-                <span class="text_bar"></span>
-                <label>Enter</label>
+                <div class="std_input_text">
+                    <input type="text" autocomplete="off" required>
+                    <span class="text_highlight"></span>
+                    <span class="text_bar"></span>
+                    <label>Enter</label>
+                </div>
+
+                <div class="std_body_button" onclick="hidePopUp()" style="position: absolute; bottom: 0;left: calc(50% - 22.578px);/* margin-right: auto; */">
+                    <span class="button_body">ok</span>
+                    <span class="button_bar"></span>
+                </div>
             </div>
 
-            <div class="std_body_button" onclick="hidePopUp()" style="bottom: -90px;left: calc(50% - 22.578px);/* margin-right: auto; */">
-                <span class="button_body">ok</span>
-                <span class="button_bar"></span>
+            <div class="popUp_body" id="popUp_error_body">
+                <h3>
+                    std_popUp_error
+                </h3>
+                <p style="padding: 5px 10px; text-align: center; font-size: 12pt;">
+                    std_popUp_error_context
+                </p>
+                <div class="std_body_button" onclick="hidePopUp()" style="position: absolute; bottom: 0;left: calc(50% - 22.578px);/* margin-right: auto; */">
+                    <span class="button_body">ok</span>
+                    <span class="button_bar"></span>
+                </div>
             </div>
-        </div>
 
-        <div class="popUp_body" id="popUp_error_body">
-            <h3>
-                std_popUp_error
-            </h3>
-            <p style="padding: 10px; text-align: center; font-size: 12pt;">
-                std_popUp_error_context
-            </p>
-            <div class="std_body_button" onclick="hidePopUp()" style="bottom: -90px;left: calc(50% - 22.578px);/* margin-right: auto; */">
-                <span class="button_body">ok</span>
-                <span class="button_bar"></span>
+            <div class="popUp_body" id="popUp_confirm_body">
+                <h3>
+                    std_popUp_confirm
+                </h3>
+                <p style="padding: 5px 10px; text-align: center; font-size: 12pt;">
+                    std_popUp_confirm_context
+                </p>
+                <div class="std_body_button" onclick="hidePopUp()" style="position: absolute;bottom: 0;left: calc(35% - 22.578px);/* margin-right: auto; */">
+                    <span class="button_body">ok</span>
+                    <span class="button_bar"></span>
+                </div>
+                <div class="std_body_button" onclick="hidePopUp()" style="position: absolute;bottom: 0;left: calc(75% - 58.734px);/* margin-right: auto; */">
+                    <span class="button_body">cancel</span>
+                    <span class="button_bar"></span>
+                </div>
             </div>
-        </div>
         </div>
 
 
