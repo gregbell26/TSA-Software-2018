@@ -14,7 +14,7 @@ function showPopUp(popUpToShow, popUpContent, otherText, mode){
 function popUpAction(action){
     if(action===0){
         saveEngine.createNewLocalSave(getPopUpInput());
-        scene.background = new THREE.Color("#000000");
+        // scene.background = new THREE.Color("#000000");
     }
     else if(action===1){
         newShape("text",1,1,1,0,0,0,'#FF0000','#000000',getPopUpInput());
@@ -24,7 +24,10 @@ function popUpAction(action){
         //tutorial
     }
     else if(action === 3){
-        //new user
+        firebase.auth().createUserWithEmailAndPassword(saveEngine.cloudStorage.userName, Base64.decode(saveEngine.cloudStorage.userUID)).catch(function(error){
+            //handle errors
+            //display message to user
+        });
     }
     else if (action===100){
         location.reload();
@@ -32,8 +35,9 @@ function popUpAction(action){
     else{
         return;
     }
-
-    getId(getId(shownPopUp).children.item(1).children.item(0).value = "");
+    if(action !== (3||100)) {
+        getId(getId(shownPopUp).children.item(1).children.item(0).value = "");
+    }
 }
 
 function getPopUpInput() {

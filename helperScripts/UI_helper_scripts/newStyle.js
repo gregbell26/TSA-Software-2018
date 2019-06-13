@@ -50,11 +50,14 @@ function showMenu(menuToShow){
 }
 
 function timelineButtonToggle(buttonToToggle){
-    if(getId(buttonToToggle).classList.contains("timeline_buttonToggled"))
+    if(getId(buttonToToggle).classList.contains("timeline_buttonToggled")) {
         getId(buttonToToggle).classList.remove("timeline_buttonToggled");
+
+    }
     else{
         getId(buttonToToggle).classList.add("timeline_buttonToggled");
     }
+    iconSwapper(buttonToToggle, "swap");
 }
 
 function settingsToggle(){
@@ -77,7 +80,6 @@ function settingsToggle(){
 
 
 
-
 //----------------------------STYLE-FUNCTIONS--------------------------------------------------
 function iconSwapper(target, mode){
     if(target ==="all"){
@@ -88,6 +90,21 @@ function iconSwapper(target, mode){
         else {
             for (let el of document.querySelectorAll('.std_icon_dark')) el.style.display = "none";
             for (let el of document.querySelectorAll('.std_icon_normal')) el.style.display = "block";
+        }
+    }
+    //if we are swapping a specific one do this
+    else{
+        if(mode === "swap"){
+            if(getId(target).children[0].style.display === "block"){
+                getId(target).children[0].style.display = "none";
+                getId(target).children[1].style.display = "block";
+
+            }
+            else if (getId(target).children[1].style.display === "block"){
+                getId(target).children[1].style.display = "none";
+                getId(target).children[0].style.display = "block";
+
+            }
         }
     }
 

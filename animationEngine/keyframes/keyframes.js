@@ -577,7 +577,7 @@ function record(){
     capturer = new CCapture({
         format: 'webm',
         frameRate: 60,
-        name: saveEngine.localFileName(),
+        name: saveEngine.localFileName,
     });
     timelineButtonToggle("timeline_record");
     capturer.start();

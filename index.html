@@ -642,6 +642,7 @@
                     <h3>
                         Cloud Storage
                     </h3>
+
                     <div id="account_sub_signedIn" style="display: none">
                         <div class="std_body_button" onclick="">
                             <span class="button_body">Sign Out</span>
@@ -670,7 +671,7 @@
                         </div>
 
                         <div class="std_input_text">
-                            <input type="password" id="signedOut_password" readonly type="email" onfocus="if (this.hasAttribute('readonly')) {
+                            <input type="password" id="signedOut_password" readonly onfocus="if (this.hasAttribute('readonly')) {
                                 this.removeAttribute('readonly'); this.blur();
                                 this.focus();  }
                             " required>
@@ -679,14 +680,19 @@
                             <label>Password</label>
                         </div>
 
-                        <div class="std_body_button" onclick="
-
-                         " >
+                        <div class="std_body_button" onclick="saveEngine.cloudStorage.signIn(
+                            document.getElementById('signedOut_email').value,
+                            document.getElementById('signedOut_password').value
+                        );
+                        " >
                             <span class="button_body">Log In</span>
                             <span class="button_bar"></span>
                         </div>
 
-                        <div class="std_body_button"  style="max-width: initial" onclick="
+                        <div class="std_body_button"  style="max-width: initial" onclick="saveEngine.cloudStorage.createNewUser(
+                            document.getElementById('signedOut_email').value,
+                            document.getElementById('signedOut_password').value
+                        );
                         " >
                             <span class="button_body">Create Account</span>
                             <span class="button_bar"></span>

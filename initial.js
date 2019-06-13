@@ -22,7 +22,7 @@ let usingTutorial = false;
 var capturer;
 //sets up the viewport
 var scene = new THREE.Scene();
-scene.background = new THREE.Color("#000000");
+// scene.background = new THREE.Color("#000000");
 var camera;
 var renderer;
 
@@ -39,7 +39,7 @@ var borders = [];
 //This will set the boxes to what they need to be
 window.onload = function(){
     //saveSubSystem.loadSettings();
-    saveEngine = new SaveEngine(true, false);
+    saveEngine = new SaveEngine(true, true);
     stylesheetLoader(settings.userInterface.stylesheetPref);
     saveEngine.setLocalStorageSelectorElement("ws_loadMenu", "Load Save", false);
     saveEngine.setLocalStorageSelectorElement("localStorage_saveSelector", "none", true);
