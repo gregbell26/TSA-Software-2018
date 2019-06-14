@@ -1,5 +1,5 @@
 class conversion {
-
+    static lastLoadedShape;
 
     static isShape(tst){
         try {
@@ -14,14 +14,34 @@ class conversion {
                 || tst.geometry.type === "SphereGeometry"
                 || tst.geometry.type === "TorusGeometry"
                 || tst.geometry.type === "TextGeometry"
-            )
+            ) {
+                this.lastLoadedShape = tst;
                 return true;
+            }
             return false;
         } catch (TypeError) {
             return false;
             //Because apparently if (tst === undefined) doesn't work
         }
 
+    }
+
+    static addBorder(badBorder){
+        let createdEdges = new THREE.EdgesGeometry(this.lastLoadedShape.geometry);
+        let createdGeometry = new THREE.LineSegments(createdEdges, new THREE.LineBasicMaterial( {color: badBorder.material.color} ));
+        createdGeometry.visible = badBorder.visible;
+        createdGeometry.position.x = this.lastLoadedShape.position.x;
+        createdGeometry.position.y = this.lastLoadedShape.position.y;
+        createdGeometry.position.z = this.lastLoadedShape.position.z;
+        createdGeometry.scale.x = this.lastLoadedShape.scale.x;
+        createdGeometry.scale.y = this.lastLoadedShape.scale.y;
+        createdGeometry.scale.z = this.lastLoadedShape.scale.z;
+        createdGeometry.rotation.x = this.lastLoadedShape.rotation.x;
+        createdGeometry.rotation.y = this.lastLoadedShape.rotation.y;
+        createdGeometry.rotation.z = this.lastLoadedShape.rotation.z;
+
+        this.lastLoadedShape =null;
+        return createdGeometry;
     }
 
     static isLight(tst){
@@ -57,19 +77,6 @@ class conversion {
         if(JSONString.object.type !== "Scene")
             return;
         let JSONLoader = new THREE.ObjectLoader();
-        // JSONLoader.load(
-        //     JSONString,
-        //     function (obj) {
-        //         return obj;
-        //     },
-        //     function (progress){
-        //         console.log(progress.loaded / progress.total * 100 + "% loaded");
-        //     },
-        //     function (error) {
-        //         console.error("Load Failed due to ");
-        //         console.error(error);
-        //     }
-        // );
 
         return JSONLoader.parse(JSONString);
 
@@ -85,8 +92,14 @@ class conversion {
         let extractedArray = [[],[],[], [], Object];
         if(stagedScene.children !== undefined) {
             for (let i = 0; i < stagedScene.children.length; i++) {
-                console.log(i);
+                // console.log(stagedScene.children[i]);
                 if (this.isShape(stagedScene.children[i])) {
+                    if(isNaN(stagedScene.children[i].rotation._x) ||  isNaN(stagedScene.children[i].rotation._y) || isNaN(stagedScene.children[i].rotation._z)){
+                        stagedScene.children[i].rotation.x = 0;
+                        stagedScene.children[i].rotation.y = 0;
+                        stagedScene.children[i].rotation.z = 0;
+
+                    }
                     // Object.defineProperty(stagedScene.children[i], 'scale', {
                     //     value: extractedArray[1][i],
                     // });
@@ -95,6 +108,8 @@ class conversion {
                     extractedArray[1].push([stagedScene.children[i].scale.x, stagedScene.children[i].scale.y, stagedScene.children[i].scale.z]);
 
                 } else if (this.isBoarder(stagedScene.children[i])) {
+                    stagedScene.children[i]= this.addBorder(stagedScene.children[i]);
+                    // console.log(saveEngine.children[i]);
                     // Object.defineProperty(stagedScene.children[i], 'scale', {
                     //     value: [stagedScene.children[i].scale.x, stagedScene.children[i].scale.y, stagedScene.children[i].scale.z]
                     // });
