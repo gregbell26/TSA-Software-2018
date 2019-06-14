@@ -423,8 +423,15 @@
                         Color
                     </h3>
 
-                    <input type="color" onchange="changeColor(this.value)" id="element_color"><br>
-                    <input type="color" onchange="borderChange(this.value)" id="element_border_color"><br>
+                    <div class="std_input_color" id="element_color">
+                        <input type="color" onchange="changeColor(this.value)">
+                        Element Color
+                    </div>
+
+                    <div class="std_input_color" id="element_border_color">
+                        <input type="color" onchange="borderChange(this.value)">
+                        Border Color
+                    </div>
 
                     <div id="element_visibility" class="std_body_button" onclick="toggleVisibility()" style="max-width: initial;">
                         <span class="button_body" id="element_visibility_button">Hide Element</span>

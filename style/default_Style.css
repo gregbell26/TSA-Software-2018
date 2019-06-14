@@ -554,7 +554,7 @@ The spacing and such are now going to be dynamically loaded when ran and when th
     position: relative;
     display: inline-block;
     overflow: initial;
-    color: var(--std_color_text_primary);
+    color: #000;/*this might fix that one error*/
     margin: 10px 5px 10px 5px;
     min-width: 25%;
     max-width: 50%;
@@ -1100,9 +1100,41 @@ input[type="checkbox"]:hover ~ label{
 /*
 ------------------------------------------COLOR----------------------------------------------
  */
+.std_input_color{
+    margin-left: 10px;
+    margin-right: 10px;
+    margin-bottom: 10px;
+    height: 30px;
+    /*padding: 5px;*/
+    color: var(--std_color_text_primary);
+    vertical-align: middle;
+    font-size: 15px;
+    /*border: 2px solid var(--std_color_secondary);*/
+}
+
+input[type="color"]{
+    padding: initial;
+    -webkit-appearance: none;
+    display: inline-block;
+    position: relative;
+    border: none;
+    height: 30px;
+    width: 50px;
+    margin-right: 10px;
+}
+
+input[type="color"]::-webkit-color-swatch-wrapper {
+	padding: 0;
+}
+
+input[type="color"]::-webkit-color-swatch {
+	border: none;
+}
+
 
 /*
 ------------------------------------------SLIDER----------------------------------------------
+
  */
 
 input[type="range"] {
@@ -1116,6 +1148,7 @@ input[type="range"] {
     outline: none;
     overflow: initial;
     background-color: var(--std_color_secondary);
+
     transition: 200ms ease all;
 }
 
