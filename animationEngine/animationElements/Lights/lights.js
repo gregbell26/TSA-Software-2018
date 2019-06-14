@@ -44,6 +44,13 @@ function newLight(type,color,intensity,positionX,positionY,positionZ,color2) {
         getId("newLights_select").value = "newLight";
     }
     setSelectedLight(selectedLight);
+    for(var i = 0; i < keyFrames.length; i++){
+        keyFrames[i].lights.push({intensity: JSON.parse(JSON.stringify(lights[selectedLight].intensity)),
+                                  position: JSON.parse(JSON.stringify(lights[selectedLight].position)),
+                                  color: JSON.parse(JSON.stringify(lights[selectedLight].color)),
+                                  rotation: JSON.parse(JSON.stringify(lights[selectedLight].rotation)),
+                                  visible: lights[selectedLight].visible});
+    }
 }
 
 function moveTarget(dimension, value){
@@ -127,7 +134,10 @@ function removeLight(){
         selectedLight = -1;
 
         setSelectedLight(selectedLight);
-        saveSubSystem.save();
+        for(var i; i < keyFrames.length; i++){
+            keyFrames[i].lights.splice(selectedLight,1);
+        }
+        saveEngine.save(true,true);
     }
 }
 

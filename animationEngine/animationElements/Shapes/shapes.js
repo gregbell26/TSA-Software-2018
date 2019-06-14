@@ -66,7 +66,11 @@ function removeShape(){
         borders.splice(selectedShape,1);
         selectedShape = -1;
         setSelectedShape(selectedShape);
-        saveSubSystem.save();
+
+        for(var i; i < keyFrames.length; i++){
+            keyFrames[i].shapes.splice(selectedShape,1);
+        }
+        saveEngine.save(true,true);
         //it's so you can't press remove again, feel free to remove to improve
     }
 }
@@ -293,10 +297,10 @@ function duplicateCurrentShape(){
             newText(scales[selectedShape][0], scales[selectedShape][1], scales[selectedShape][2], shape.position.x,
                 shape.position.y, shape.position.z, "#" + shape.material.color.getHexString(),
                 "#" + borders[selectedShape].material.color.getHexString());
-            saveSubSystem.save();
+            saveEngine.save(true,true);
             break;
     }
-    saveSubSystem.save();
+    saveEngine.save(true,true);
 }
 
 function newShape(type,x,y,z,posX,posY,posZ,color,border,text){
@@ -441,6 +445,9 @@ function newShape(type,x,y,z,posX,posY,posZ,color,border,text){
             //getId("shapeList_shapes").innerHTML+="<button onclick='setSelectedShape("+selectedShape+");showMenu(\"menu_newShapes\");' style='color:black'>"+type+"</button><br>";
             getId("newShapes_select").selectedIndex = 0;
         } );
+    }
+    for(var i = 0; i < keyFrames.length; i++){
+        keyFrames[i].shapes.push([0,0,0,0,0,0,false])
     }
 }
 
