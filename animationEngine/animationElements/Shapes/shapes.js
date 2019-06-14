@@ -289,7 +289,7 @@ function duplicateCurrentShape(){
             break;
         case "text" :
             document.getElementById('createText').value = shape.geometry.parameters.text;
-            saveSubSystem.addText();
+            // saveSubSystem.addText();
             newText(scales[selectedShape][0], scales[selectedShape][1], scales[selectedShape][2], shape.position.x,
                 shape.position.y, shape.position.z, "#" + shape.material.color.getHexString(),
                 "#" + borders[selectedShape].material.color.getHexString());

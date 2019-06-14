@@ -5,6 +5,10 @@ function addFrame(){
         confirm("Now change some diemsions, colors, or positions, add a keyframe, then press play.");
         animateArrow(75,15,250,60)
     }
+    if(!scene.background){
+        scene.background = new THREE.color("#000000");
+    }
+
     keyFrames.push(
         {
             //default settings for keyframe

@@ -180,7 +180,7 @@ class SaveEngine {
                 this.incrementSaveNumber();
                 this.stagedScene = new THREE.Scene();
                 this.stagedScene.background = new THREE.Color("#000000");
-                this.localStore.saveToStorage(this.getKeyName("scene"), this.stagedScene)
+                this.localStore.saveToStorage(this.getKeyName("scene"), this.stagedScene);
             // }
 
             this.localStore.saveToStorage(this.getKeyName("keyframes"), this.stagedKeyframes);
