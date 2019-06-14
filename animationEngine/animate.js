@@ -22,7 +22,7 @@ let animate = function () {
             camera.position.z = zPosition + zCCenter + scene.position.z;
         //points camera to scene
         camera.lookAt((scene.position.x + xCLook), (scene.position.y + yCLook), (scene.position.z + zCLook));
-        //handles scaling the shapes in animationa
+        //handles scaling the shapes in animation
         for (let i = 0; i < shapes.length; i++) {
             if (shapes[i].scale.x !== scales[i][0])
                 shapes[i].scale.x = scales[i][0];
