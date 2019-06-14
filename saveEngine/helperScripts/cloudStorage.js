@@ -136,6 +136,10 @@ class CloudStorage{
         });
     }
 
+    signOut(){
+        showPopUp("popUp_confirm_body", "Confirm", "Do you want to sign out?", 4);
+    }
+
     saveToCloud(saveName, saveID, keyframes, scene, settings ){
         if(saveEngine.cloudStorage.userSignedIn){
             let combinedSaveData = {
@@ -160,15 +164,15 @@ class CloudStorage{
         }
     }
 
+    downloadData;
     downloadSave(saveIDtoGet){
-        let gotten = "ERR";
         this.saveDataRef.doc(saveIDtoGet).get().then(function (data) {
             if(data.exists) {
-                gotten = data.data();
-                console.log(gotten)
+                saveEngine.cloudStorage = data.data();
+                // console.log(gotten)
             }
         });
-        return gotten;
+        return this.downloadData;
     }
 
     deleteCloudSave(saveIDtoDelete){

@@ -29,6 +29,9 @@ function popUpAction(action){
             //display message to user
         });
     }
+    else if (action === 4){
+        firebase.auth().signOut();
+    }
     else if (action===100){
         location.reload();
     }
