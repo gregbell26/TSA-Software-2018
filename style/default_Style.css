@@ -574,6 +574,11 @@ The spacing and such are now going to be dynamically loaded when ran and when th
     transition: 0.2s ease all;
 }
 
+.list_body option{
+    color: #000;
+
+}
+
 
 .list_body:hover {
     color: var(--std_color_accent);
