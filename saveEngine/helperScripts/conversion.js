@@ -92,7 +92,6 @@ class conversion {
         let extractedArray = [[],[],[], [], Object];
         if(stagedScene.children !== undefined) {
             for (let i = 0; i < stagedScene.children.length; i++) {
-                // console.log(stagedScene.children[i]);
                 if (this.isShape(stagedScene.children[i])) {
                     if(isNaN(stagedScene.children[i].rotation._x) ||  isNaN(stagedScene.children[i].rotation._y) || isNaN(stagedScene.children[i].rotation._z)){
                         stagedScene.children[i].rotation.x = 0;
@@ -100,20 +99,11 @@ class conversion {
                         stagedScene.children[i].rotation.z = 0;
 
                     }
-                    // Object.defineProperty(stagedScene.children[i], 'scale', {
-                    //     value: extractedArray[1][i],
-                    // });
-                    //stagedScene.children[i].scale = extractedArray[1][i];
                     extractedArray[0].push(stagedScene.children[i]);
                     extractedArray[1].push([stagedScene.children[i].scale.x, stagedScene.children[i].scale.y, stagedScene.children[i].scale.z]);
 
                 } else if (this.isBoarder(stagedScene.children[i])) {
                     stagedScene.children[i]= this.addBorder(stagedScene.children[i]);
-                    // console.log(saveEngine.children[i]);
-                    // Object.defineProperty(stagedScene.children[i], 'scale', {
-                    //     value: [stagedScene.children[i].scale.x, stagedScene.children[i].scale.y, stagedScene.children[i].scale.z]
-                    // });
-                    //stagedScene.children[i].scale = [stagedScene.children[i].x, stagedScene.children[i].y, stagedScene.children[i].z];
                     extractedArray[2].push(stagedScene.children[i]);
                 }
                 else if (this.isLight(stagedScene.children[i]))//this might break things as im assuming that only lights are the extra element so we are pushing this to lights

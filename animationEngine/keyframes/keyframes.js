@@ -6,7 +6,7 @@ function addFrame(){
         animateArrow(75,15,250,60)
     }
     if(!scene.background){
-        scene.background = new THREE.color("#000000");
+        scene.background = new THREE.Color("#000000");
     }
 
     keyFrames.push(

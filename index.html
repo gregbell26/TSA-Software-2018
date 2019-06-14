@@ -774,7 +774,7 @@
                         <option value="normalMode">Light Theme</option>
                         <option value="darkMode">Dark Theme</option>
                         <option value="amoledMode">AMOLED Theme</option>
-                        <option value="memeMode">Meme Theme</option>
+<!--                        <option value="memeMode">Meme Theme</option>-->
                     </select>
                     <span class="list_bar"></span>
                 </div>
@@ -825,8 +825,20 @@
 
         </div>
 
+        <div id="timeline_popUp">
+            <h2>
+                timeline_popUp
+            </h2>
+            <div class="std_body_button"
+                 onclick="saveEngine.deleteLocalSave(getId('localStorage_saveSelector').value)">
+                <span class="button_body">Delete Save</span>
+                <span class="button_bar"></span>
+            </div>
+
+        </div>
         <!--TIMELINE-->
         <div id="std_timeline">
+
             <div id="timeline_navbar">
                 <span id="timeLine_animationStart" class="timeline_text">
                     0 ms
