@@ -450,6 +450,7 @@ function newShape(type,x,y,z,posX,posY,posZ,color,border,text){
     for(var i = 0; i < keyFrames.length; i++){
         keyFrames[i].shapes.push([0,0,0,0,0,0,false]);
         keyFrames[i].scales.push([0,0,0]);
+        keyFrames[i].color.push([0,0,0]);
     }
 }
 
