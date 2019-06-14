@@ -69,6 +69,7 @@ function removeShape(){
 
         for(var i; i < keyFrames.length; i++){
             keyFrames[i].shapes.splice(selectedShape,1);
+            keyFrames[i].scales.splice(selectedShape,1);
         }
         saveEngine.save(true,true);
         //it's so you can't press remove again, feel free to remove to improve
@@ -447,7 +448,8 @@ function newShape(type,x,y,z,posX,posY,posZ,color,border,text){
         } );
     }
     for(var i = 0; i < keyFrames.length; i++){
-        keyFrames[i].shapes.push([0,0,0,0,0,0,false])
+        keyFrames[i].shapes.push([0,0,0,0,0,0,false]);
+        keyFrames[i].scales.push([0,0,0]);
     }
 }
 
