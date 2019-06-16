@@ -27,6 +27,7 @@ function addFrame(){
             color: getColors(shapes),
             name: "Frame "+keyFrames.length.toString(),
             borderColor: getColors(borders),
+            borderVisible: borders.visible;
             scene: {
                 color: [scene.background.r, scene.background.g, scene.background.b],
                 scale: [scene.scale.x, scene.scale.y, scene.scale.z],
@@ -359,7 +360,7 @@ function updateAnimation(timingCounter,a){
     scene.position.z = keyFrames[a].scene.position[2] + (keyFrames[a + 1].scene.position[2] - keyFrames[a].scene.position[2]) / keyFrames[a].duration * timingCounter;
     for (var i = 0; i < keyFrames[a].scales.length; i++) {//individual stuff for shapes
         shapes[i].visible = keyFrames[a+1].shapes[i][6];
-        borders[i].visible = keyFrames[a+1].shapes[i][6];
+        borders[i].visible = keyFrames[a+1].shapes[i][6] && keyFrames[a+1].borderVisible;
         scales[i][0] = keyFrames[a].scales[i][0] + (keyFrames[a + 1].scales[i][0] - keyFrames[a].scales[i][0]) / keyFrames[a].duration * timingCounter;
         scales[i][1] = keyFrames[a].scales[i][1] + (keyFrames[a + 1].scales[i][1] - keyFrames[a].scales[i][1]) / keyFrames[a].duration * timingCounter;
         scales[i][2] = keyFrames[a].scales[i][2] + (keyFrames[a + 1].scales[i][2] - keyFrames[a].scales[i][2]) / keyFrames[a].duration * timingCounter;
