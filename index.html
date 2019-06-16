@@ -758,6 +758,17 @@
                     <span class="button_body">Toggle Full Screen</span>
                     <span class="button_bar"></span>
                 </div>
+<!--                <div class="std_body_button" style="max-width: initial;" onclick="-->
+<!--                    if(window.location.protocol.indexOf('file')===-1 && !document.querySelector('body').requestFullscreen()){-->
+<!--                        document.querySelector('canvas').requestFullscreen();-->
+<!--                    }-->
+<!--                    else{-->
+<!--                        document.exitFullscreen();-->
+<!--                    }-->
+<!--                    " >-->
+<!--                    <span class="button_body">Renderer Full Screen</span>-->
+<!--                    <span class="button_bar"></span>-->
+<!--                </div>-->
 
 
                 <h3>
@@ -792,6 +803,7 @@
                     <ul class="about_credits">
                         <li>Jesse B.</li>
                         <li>Corbin E.</li>
+                        <li>Daniel F.</li>
                         <li>Jordan M.</li>
                     </ul>
 
@@ -801,21 +813,21 @@
                     <ul class="about_credits">
                         <li>Gregory B.</li>
                         <li>Daniel F.</li>
-                        <li>Jordan M.</li>
                     </ul>
 
                     <p class="about_developmentTeam">Ports</p>
                     <p class="development_jobs">iOS | Android | Local Windows | Local macOS | Local Debian</p>
 
                     <ul class="about_credits">
-                        <li>Jordan M.</li>
+                        <li>Gregory B.</li>
                     </ul>
 
                     <p class="about_developmentTeam">User Interface</p>
-                    <p class="development_jobs">UI Design | UI Programing | UI Animations | Logo Design</p>
+                    <p class="development_jobs">UI Design | UI Programing | Logo Design | Icon Design</p>
 
                     <ul class="about_credits">
                         <li>Gregory B.</li>
+                        <li>Sam S.</li>
                     </ul>
 
                     <div style="margin-bottom: 100%;"></div>
@@ -825,17 +837,74 @@
 
         </div>
 
-<!--        <div id="timeline_popUp">-->
-<!--            <h2>-->
-<!--                timeline_popUp-->
-<!--            </h2>-->
-<!--            <div class="std_body_button"-->
-<!--                 onclick="saveEngine.deleteLocalSave(getId('localStorage_saveSelector').value)">-->
-<!--                <span class="button_body">Delete Save</span>-->
-<!--                <span class="button_bar"></span>-->
-<!--            </div>-->
+        <div id="std_timeline_popUp" style="display: none">
+            <div id="timeline_popUp_body">
 
-<!--        </div>-->
+                <h2 id="timeline_keyframeName">
+                    timeline_popUp
+                </h2>
+                <div class="std_input_text">
+                    <input id="timeline_keyframePlacement" step="any" type="number" onchange="" required>
+                    <span class="text_highlight"></span>
+                    <span class="text_bar"></span>
+                    <label></label>
+                </div>
+                <div class="std_input_text">
+                    <input id="timeline_keyframeDuration" step="any" type="number" onchange="" required>
+                    <span class="text_highlight"></span>
+                    <span class="text_bar"></span>
+                    <label></label>
+                </div>
+                <div class="std_input_text">
+                    <input id="timeline_totalAnimationTime" step="any" type="number" onchange="" required>
+                    <span class="text_highlight"></span>
+                    <span class="text_bar"></span>
+                    <label>Adjust Total Animation Time</label>
+                </div>
+<!--                <div class="std_input_text">-->
+<!--                    <input id="" step="any" type="number" onchange="" required>-->
+<!--                    <span class="text_highlight"></span>-->
+<!--                    <span class="text_bar"></span>-->
+<!--                    <label></label>-->
+<!--                </div>-->
+
+                <div class="std_body_button"
+                     onclick="">
+                    <span class="button_body">Commit Changes</span>
+                    <span class="button_bar"></span>
+                </div>
+                <div class="std_body_button"
+                     onclick="">
+                    <span class="button_body">Cancel Changes</span>
+                    <span class="button_bar"></span>
+                </div>
+            </div>
+
+        </div>
+
+        <div id="std_tutorial_popUp" style="display: none;">
+
+            <h2 style="text-align: center">
+                Tutorial
+            </h2>
+
+            <p style="padding: 10px;">
+                BODY TEXT
+            </p>
+            <div style="position: absolute; bottom: 18px; height: auto; width: 220px; margin-left: calc(50% - 110px);">
+                <div class="std_body_button" onclick="" style="max-width: 85px">
+                    <span class="button_body">Continue</span>
+                    <span class="button_bar"></span>
+                </div>
+
+                <div class="std_body_button" onclick="usingTutorial = false; hideTutorialPopup()" style="max-width: 111px">
+                    <span class="button_body">Exit Tutorial</span>
+                    <span class="button_bar"></span>
+                </div>
+            </div>
+
+        </div>
+
         <!--TIMELINE-->
         <div id="std_timeline">
 
@@ -906,12 +975,13 @@
         <!--
             These are elements that are only visible in certain situations
         -->
-        <span id='tutorialArrow' style="
+        <span id='tutorial_arrow' style="
             position:absolute;
             font-size: 150px;
             color: red;
             z-index: 2;
             display: none;
+            transition: 250ms ease all;
         ">&larr;</span> <!--The arrow that points things out for the user-->
 
         <div id="std_popUp">
@@ -973,7 +1043,6 @@
     </div>
     </body>
 
-<!--    <script>saveSubSystem.loadSaveNames("ws_loadMenu");</script>-->
     <script src="initial.js"></script>
     <script src="scene.js"></script>
 
@@ -982,6 +1051,7 @@
 
     <!--Animation Engine-->
     <script src="animationEngine/utils.js"></script>
+    <script src="animationEngine/keyframes/timeline.js"></script>
     <script src="animationEngine/keyframes/keyframes.js"></script>
     <script src="animationEngine/animate.js"></script>
 

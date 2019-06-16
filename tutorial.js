@@ -1,20 +1,62 @@
 //the default of loading tutorial is false.
 //Tutorial will load on the call of this function
+
+let usingTutorial = false;
+let tutorialPopUp = document.getElementById("std_tutorial_popUp");
+
 function launchTutorial(){
-    showPopUp("popUp_error_body","Tutorial","To begin, click on the shapes box",-1);
+    if (!tutorialPopUp)
+        tutorialPopUp = document.getElementById("std_tutorial_popUp");
+    // showPopUp("popUp_error_body","Tutorial","To begin, click on the shapes box",-1);
+    usingTutorial = true;
 
-    document.getElementById('tutorialArrow').style.display = "block"; //launches tutorial arrow in the current scene
+    document.getElementById('tutorial_arrow').style.display = "block"; //launches tutorial arrow in the current scene
 
-    animateArrow(120, 120);
+    moveArrow(120, 120);
 
 }
 
-function animateArrow(x, y){
-    document.getElementById("tutorialArrow").style.left=x.toString()+"px";
-    document.getElementById("tutorialArrow").style.top=y.toString()+"px";
+function moveArrow(x, y){
+    document.getElementById("tutorial_arrow").style.left=x.toString()+"px";
+    document.getElementById("tutorial_arrow").style.top=y.toString()+"px";
+}
 
 
-  
+function tutorialMovement(arrowX, arrowY, promptText, isFinal){
+    if(usingTutorial) {
+        if (isFinal) {
+            tutorialPopUp.children[2].children[0].setAttribute("onclick", "" +
+                "usingTutorial = false; " +
+                "hideTutorialPopup(); " +
+                "document.getElementById('tutorial_arrow').style.display = 'none';")
+        } else {
+            tutorialPopUp.children[2].children[0].setAttribute("onclick", "" +
+                "moveArrow(" + arrowX + ", " + arrowY + "); " +
+                "hideTutorialPopup();" );
+        }
+        showTutorialPopup(promptText);
+    }
 
+}
+
+function showTutorialPopup(bodyText) {
+    if(usingTutorial){
+        if (!tutorialPopUp)
+            tutorialPopUp = document.getElementById("std_tutorial_popUp");
+
+        tutorialPopUp.style.display = "block";
+        tutorialPopUp.classList.add("tutorial_popUp_show");
+        tutorialPopUp.children[1].innerHTML = bodyText;
+
+    }
+}
+
+function hideTutorialPopup(){
+    if(!tutorialPopUp)
+        tutorialPopUp = document.getElementById("std_tutorial_popUp");
+
+    tutorialPopUp.style.display = "none";
+    tutorialPopUp.classList.remove("tutorial_popUp_show");
+    tutorialPopUp.children[2].children[0].setAttribute("onclick", "");
 }
 

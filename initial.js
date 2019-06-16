@@ -17,7 +17,7 @@ let animationTimer;
 let selectedShape = -1;
 let selectedLight = -1;
 let settingsOpen = false;
-let usingTutorial = false;
+// let usingTutorial = false;
 // var capturer = new CCapture( { format: 'webm' } );
 var capturer;
 //sets up the viewport

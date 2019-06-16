@@ -182,14 +182,25 @@ Rev 3
 ------------------------------------TIMELINE----------------------------------------
 */
 
-@keyframes timeline_show {
-    0% {
-        top:100%;
-    }
-    100%{
-        top:calc(100% - 750px);
-    }
+/*
+REMOVED
+ */
 
+/*
+------------------------------------TUTORIAL-POPUP-----------------------------------
+ */
+
+@keyframes tutorialShow {
+    from {
+        height: 0;
+        width: 0;
+        opacity: 0.0;
+    }
+    to {
+        height: 40%;
+        width: 20%;
+        opacity: 1.0;
+    }
 }
 
 
@@ -868,7 +879,7 @@ Width is determined at runtime by the spacer function
 #settings_menu.settings_hide{
     animation-name: settings_hide;
     animation-duration: 250ms;
-    animation-delay: 25ms;
+    /*animation-delay: 25ms;*/
     animation-iteration-count: 1;
     animation-fill-mode: forwards;
     animation-timing-function: ease-in-out;
@@ -1183,6 +1194,11 @@ input[type="range"]::-webkit-slider-thumb:hover, input[type="range"]::-webkit-sl
 ------------------------------------------POPUPS----------------------------------------------
 ----------------------------------------------------------------------------------------------
 */
+
+
+/*
+---------------------------------------------STD-POPUP------------------------------------------
+ */
 #std_popUp {
     position: absolute;
     display: none;
@@ -1221,6 +1237,37 @@ input[type="range"]::-webkit-slider-thumb:hover, input[type="range"]::-webkit-sl
     bottom:2px;
     opacity: 1.0;
 }
+
+/*
+-----------------------------------------TUTORIAL-POPUP-------------------------------------------
+ */
+
+#std_tutorial_popUp{
+    position: absolute;
+    /*height: 50%;*/
+    /*width: 35%;*/
+    height: 0;
+    width: 0;
+    top: 30%;
+    left: 40%;
+    color: var(--std_color_text_primary);
+    background-color: var(--std_color_primary);
+    border: 2px solid var(--std_color_secondary);
+    opacity: 0.0;
+
+}
+
+.tutorial_popUp_show{
+    animation-name: tutorialShow;
+    animation-duration: 250ms;
+    animation-fill-mode: forwards;
+    animation-iteration-count: 1;
+    animation-timing-function: ease-in-out;
+}
+
+
+
+
 
 
 
