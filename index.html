@@ -838,29 +838,41 @@
         </div>
 
         <div id="std_timeline_popUp" style="display: none">
-            <div id="timeline_popUp_body">
 
-                <h2 id="timeline_keyframeName">
-                    timeline_popUp
-                </h2>
-                <div class="std_input_text">
-                    <input id="timeline_keyframePlacement" step="any" type="number" onchange="" required>
-                    <span class="text_highlight"></span>
-                    <span class="text_bar"></span>
-                    <label></label>
-                </div>
-                <div class="std_input_text">
-                    <input id="timeline_keyframeDuration" step="any" type="number" onchange="" required>
-                    <span class="text_highlight"></span>
-                    <span class="text_bar"></span>
-                    <label></label>
-                </div>
-                <div class="std_input_text">
-                    <input id="timeline_totalAnimationTime" step="any" type="number" onchange="" required>
-                    <span class="text_highlight"></span>
-                    <span class="text_bar"></span>
-                    <label>Adjust Total Animation Time</label>
-                </div>
+            <h2 id="timeline_keyframeName">
+                timeline_popUp
+            </h2>
+
+            <div class="std_input_text">
+                <input id="timeline_keyframePlacement" step="any" type="number" onchange="" required>
+                <span class="text_highlight"></span>
+                <span class="text_bar"></span>
+                <label>Keyframe Placement</label>
+            </div>
+            <p class="timelinePopupMicroText">The above text box allows you to swap the location of a keyframe with another keyframe</p>
+
+            <div class="std_input_text">
+                <input id="timeline_keyframeDurPlacement" step="any" type="number" onchange="" required>
+                <span class="text_highlight"></span>
+                <span class="text_bar"></span>
+                <label>Keyframe Duration Placement</label>
+            </div>
+            <p class="timelinePopupMicroText">The above text box allows you to set the location of a keyframe to a specific time on the timeline</p>
+
+
+            <div class="std_input_text">
+                <input id="timeline_keyframeDuration" step="any" type="number" onchange="" required>
+                <span class="text_highlight"></span>
+                <span class="text_bar"></span>
+                <label>Keyframe Duration</label>
+            </div>
+            <div class="std_input_text">
+                <input id="timeline_totalAnimationTime" step="any" type="number" onchange="" required>
+                <span class="text_highlight"></span>
+                <span class="text_bar"></span>
+                <label>Adjust Total Animation Time</label>
+            </div>
+
 <!--                <div class="std_input_text">-->
 <!--                    <input id="" step="any" type="number" onchange="" required>-->
 <!--                    <span class="text_highlight"></span>-->
@@ -868,42 +880,21 @@
 <!--                    <label></label>-->
 <!--                </div>-->
 
+
+            <div style="position: absolute; bottom: 18px; height: auto; width: 335px; margin-left: calc(50% - 167.5px);">
                 <div class="std_body_button"
-                     onclick="">
+                     onclick="applyChanges(); hideKeyframePopup();">
                     <span class="button_body">Commit Changes</span>
                     <span class="button_bar"></span>
                 </div>
                 <div class="std_body_button"
-                     onclick="">
+                     onclick="hideKeyframePopup();">
                     <span class="button_body">Cancel Changes</span>
                     <span class="button_bar"></span>
                 </div>
             </div>
-
         </div>
 
-        <div id="std_tutorial_popUp" style="display: none;">
-
-            <h2 style="text-align: center">
-                Tutorial
-            </h2>
-
-            <p style="padding: 10px;">
-                BODY TEXT
-            </p>
-            <div style="position: absolute; bottom: 18px; height: auto; width: 220px; margin-left: calc(50% - 110px);">
-                <div class="std_body_button" onclick="" style="max-width: 85px">
-                    <span class="button_body">Continue</span>
-                    <span class="button_bar"></span>
-                </div>
-
-                <div class="std_body_button" onclick="usingTutorial = false; hideTutorialPopup()" style="max-width: 111px">
-                    <span class="button_body">Exit Tutorial</span>
-                    <span class="button_bar"></span>
-                </div>
-            </div>
-
-        </div>
 
         <!--TIMELINE-->
         <div id="std_timeline">
@@ -955,8 +946,8 @@
                             />
                     </span>
                 </div>
-                <span id="timeLine_animationFinish" class="timeline_text" style="float: right" onclick="this.contentEditable = true;" onchange="">
-                    5 s
+                <span id="timeLine_animationFinish" class="timeline_text" style="float: right" >
+
                 </span>
             </div>
 
@@ -964,9 +955,9 @@
                 <span id="timeline_playHead"></span>
             </div>
 
-            <div id="timeline_keyframeTimes">
+<!--            <div id="timeline_keyframeTimes">-->
 
-            </div>
+<!--            </div>-->
 
         </div>
 
@@ -975,6 +966,33 @@
         <!--
             These are elements that are only visible in certain situations
         -->
+        <!--
+            TUTORIAL STUFF
+        -->
+        <div id="std_tutorial_popUp" style="display: none;">
+
+            <h2 style="text-align: center">
+                Tutorial
+            </h2>
+
+            <p style="padding: 10px;">
+                BODY TEXT
+            </p>
+            <div style="position: absolute; bottom: 18px; height: auto; width: 220px; margin-left: calc(50% - 110px);">
+                <div class="std_body_button" onclick="" style="max-width: 85px">
+                    <span class="button_body">Continue</span>
+                    <span class="button_bar"></span>
+                </div>
+
+                <div class="std_body_button" onclick="usingTutorial = false; hideTutorialPopup()" style="max-width: 111px">
+                    <span class="button_body">Exit Tutorial</span>
+                    <span class="button_bar"></span>
+                </div>
+            </div>
+
+        </div>
+
+
         <span id='tutorial_arrow' style="
             position:absolute;
             font-size: 150px;

@@ -41,12 +41,14 @@ function tutorialMovement(arrowX, arrowY, promptText, isFinal){
 
 function showTutorialPopup(bodyText) {
     if(usingTutorial){
-        if (!tutorialPopUp)
+        if (!tutorialPopUp) {
             tutorialPopUp = document.getElementById("std_tutorial_popUp");
+        }
+
+        tutorialPopUp.children[1].innerHTML = bodyText;
 
         tutorialPopUp.style.display = "block";
         tutorialPopUp.classList.add("tutorial_popUp_show");
-        tutorialPopUp.children[1].innerHTML = bodyText;
 
     }
 }

@@ -19,29 +19,46 @@ function updateTimeline(){
     }
     timelineScale = duration/(window.innerWidth-50);
     var timeline = getId("std_timeline").children.item(1);
-    var durArea = getId("std_timeline").children.item(2);
+    // var durArea = getId("std_timeline").children.item(2);
     timeline.innerHTML = "<span id=\"timeline_playHead\" ></span>";
-    durArea.innerHTML = "";
+    // durArea.innerHTML = "";
+    getId("timeLine_animationFinish").innerHTML = (getTotalAnimationTime()/1000).toString() + " s";
     var currentX = 5;
     for(var i=0; i<keyFrames.length; i++){
-        timeline.innerHTML += ("<div class='timeline_keyframe' style='left: "+currentX+"px;'></div>");
+        timeline.innerHTML += ("<div class='timeline_keyframe' onclick='showKeyframePopup(" + i + ")' style='left: "+currentX+"px;'></div>");
         toggleCheck.push(0)
-        durArea.innerHTML += ("<div class='timeline_text' style='position: absolute; left: "+ currentX + "px;'> <div onclick='let id =" + i + "; timesCheck(id, this)'>" + keyFrames[i].duration +"</div> ms</div>");
+        // durArea.innerHTML += ("<div class='timeline_text' style='position: absolute; left: "+ currentX + "px;'> <div onclick='let id =" + i + "; timesCheck(id, this)'>" + keyFrames[i].duration +"</div> ms</div>");
         currentX+=keyFrames[i].duration/timelineScale;
     }
     console.log("Updated Time Line")
 }
 
-function timesCheck(id, domElement){
-    if(toggleCheck[id] <3){
-        toggleCheck[id]++;
-        domElement.contentEditable = true;
-    }
-    else {
-        setSpeed(id, parseInt(domElement.innerHTML.split(" ms")));
-        toggleCheck[id] = 0;
-    }
+// function timesCheck(id, domElement){
+//     if(toggleCheck[id] <3){
+//         toggleCheck[id]++;
+//         domElement.contentEditable = true;
+//     }
+//     else {
+//         setSpeed(id, parseInt(domElement.innerHTML.split(" ms")));
+//         toggleCheck[id] = 0;
+//     }
+//
+// }
 
+function getAnimationTimeUpToIndex(index){
+    let totalTime = 0;
+    for(let i =0; i < index; i++)
+        totalTime += parseInt(keyFrames[i].duration);
+    return totalTime;
+}
+
+function getTotalAnimationTime(){
+    let totalTime = 0;
+    for(let i =0; i< keyFrames.length; i++) {
+        totalTime += parseInt(keyFrames[i].duration);
+        console.log(keyFrames.duration)
+    }
+    return totalTime;
 }
 
 //determines whether ot not to repeat the animation
@@ -203,4 +220,54 @@ function changeKeyframePosition(frameNumber, targetNumber){
 
 //Time line popup code
 //when the user clicks on the keyframe then this poup will popup!
+let activeKeyframeIndex = 0;
+let keyframePopup = document.getElementById("std_timeline_popUp");
 
+function showKeyframePopup(index){
+    if(!keyframePopup)
+        keyframePopup = document.getElementById("std_timeline_popUp");
+    activeKeyframeIndex = index;
+    setKeyframePopupData();
+
+    keyframePopup.style.display = "block";
+    keyframePopup.classList.add("timeline_popUp_show");
+}
+
+function setKeyframePopupData(){
+    keyframePopup.children[0].innerHTML = "Editing Keyframe " + (activeKeyframeIndex+1).toString();
+
+    keyframePopup.children[1].children[0].value = (activeKeyframeIndex+1).toString();
+    keyframePopup.children[3].children[0].value = getAnimationTimeUpToIndex(activeKeyframeIndex).toString();
+
+
+    keyframePopup.children[5].children[0].value = keyFrames[activeKeyframeIndex].duration;
+    keyframePopup.children[6].children[0].value = getTotalAnimationTime().toString();
+
+}
+
+function applyChanges(){
+    changeKeyframePosition(activeKeyframeIndex, (parseInt(keyframePopup.children[1].children[0].value) - 1));
+    moveKeyframeto(activeKeyframeIndex, parseInt(keyframePopup.children[3].children[0].value));
+    
+    keyFrames[activeKeyframeIndex].duration = keyframePopup.children[5].children[0].value;
+
+    if(getTotalAnimationTime() !== parseInt(keyframePopup.children[6].children[0].value))
+        changeTimelineDuration(parseInt(keyframePopup.children[6].children[0].value));
+
+
+}
+
+function hideKeyframePopup(){
+    keyframePopup.style.display = "none";
+    keyframePopup.classList.remove("timeline_popUp_show");
+
+    keyframePopup.children[0].innerHTML = "";
+
+    keyframePopup.children[1].children[0].value = "";
+    keyframePopup.children[3].children[0].value = "";
+
+
+    keyframePopup.children[5].children[0].value = "";
+    keyframePopup.children[6].children[0].value = "";
+
+}

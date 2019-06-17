@@ -187,6 +187,24 @@ REMOVED
  */
 
 /*
+------------------------------------TIMELINE-POPUP-----------------------------------
+ */
+
+@keyframes timelinePopupShow {
+    from {
+        height: 0;
+        width: 0;
+        opacity: 0.0;
+    }
+    to {
+        height: 60%;
+        width: 40%;
+        opacity: 1.0;
+    }
+}
+
+
+/*
 ------------------------------------TUTORIAL-POPUP-----------------------------------
  */
 
@@ -934,27 +952,27 @@ Width is determined at runtime by the spacer function
 
 #timeline_body {
     position: relative;
-    height: 73px;
+    height: 96px;
     width: 100%;
     /*top:50px;*/
     /* margin: 60px 2px -80px 0px; */
     /* top: 0.86%; */
     background-color: var(--std_color_primary);
     border: 2px solid var(--std_color_secondary);
-    border-bottom: none;
+    /*border-bottom: none;*/
 }
 
-#timeline_keyframeTimes{
-    position: relative;
-    height: 21px;
-    /*width: calc(100% - 4px);*/
-    width: 100%;
-    /*top:125px;*/
-    background-color: var(--std_color_primary);
-    border: 2px solid var(--std_color_secondary);
+/*#timeline_keyframeTimes{*/
+/*    position: relative;*/
+/*    height: 21px;*/
+/*    !*width: calc(100% - 4px);*!*/
+/*    width: 100%;*/
+/*    !*top:125px;*!*/
+/*    background-color: var(--std_color_primary);*/
+/*    border: 2px solid var(--std_color_secondary);*/
 
 
-}
+/*}*/
 
 #timeline_body.timeline_active{
     border: 2px solid var(--std_color_accent);
@@ -1264,6 +1282,45 @@ input[type="range"]::-webkit-slider-thumb:hover, input[type="range"]::-webkit-sl
     animation-iteration-count: 1;
     animation-timing-function: ease-in-out;
 }
+
+/*
+-----------------------------------------TIMELINE-POPUP-------------------------------------------
+
+ */
+
+#std_timeline_popUp{
+    position: absolute;
+    /*height: 50%;*/
+    /*width: 35%;*/
+    height: 0;
+    width: 0;
+    max-height: 538px;
+    max-width: 437px;
+    top: 15%;
+    left: 30%;
+    color: var(--std_color_text_primary);
+    background-color: var(--std_color_primary);
+    border: 2px solid var(--std_color_secondary);
+    opacity: 0.0;
+
+}
+
+.timelinePopupMicroText {
+    font-size: calc(0.50vw + .5vh + 0vmin);
+    color: var(--std_color_secondary);
+    /*opacity: 0.8;*/
+    margin-left: 5px;
+    margin-right: 5px;
+}
+
+.timeline_popUp_show{
+    animation-name: timelinePopupShow;
+    animation-duration: 250ms;
+    animation-fill-mode: forwards;
+    animation-iteration-count: 1;
+    animation-timing-function: ease-in-out;
+}
+
 
 
 
