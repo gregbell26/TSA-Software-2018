@@ -13,11 +13,10 @@
 var timelineScale = 0;
 let toggleCheck = [];
 function updateTimeline(){
-    var duration = 0;
-    for(var i=0; i<keyFrames.length-1; i++){
-        duration+=keyFrames[i].duration;
-    }
+    var duration = getTotalAnimationTime();
+
     timelineScale = duration/(window.innerWidth-50);
+
     var timeline = getId("std_timeline").children.item(1);
     // var durArea = getId("std_timeline").children.item(2);
     timeline.innerHTML = "<span id=\"timeline_playHead\" ></span>";
@@ -26,7 +25,6 @@ function updateTimeline(){
     var currentX = 5;
     for(var i=0; i<keyFrames.length; i++){
         timeline.innerHTML += ("<div class='timeline_keyframe' onclick='showKeyframePopup(" + i + ")' style='left: "+currentX+"px;'></div>");
-        toggleCheck.push(0)
         // durArea.innerHTML += ("<div class='timeline_text' style='position: absolute; left: "+ currentX + "px;'> <div onclick='let id =" + i + "; timesCheck(id, this)'>" + keyFrames[i].duration +"</div> ms</div>");
         currentX+=keyFrames[i].duration/timelineScale;
     }
@@ -54,7 +52,7 @@ function getAnimationTimeUpToIndex(index){
 
 function getTotalAnimationTime(){
     let totalTime = 0;
-    for(let i =0; i< keyFrames.length; i++) {
+    for(let i =0; i< keyFrames.length-1; i++) {
         totalTime += parseInt(keyFrames[i].duration);
         console.log(keyFrames.duration)
     }
@@ -246,14 +244,15 @@ function setKeyframePopupData(){
 }
 
 function applyChanges(){
-    changeKeyframePosition(activeKeyframeIndex, (parseInt(keyframePopup.children[1].children[0].value) - 1));
-    moveKeyframeto(activeKeyframeIndex, parseInt(keyframePopup.children[3].children[0].value));
 
-    keyFrames[activeKeyframeIndex].duration = keyframePopup.children[5].children[0].value;
+    keyFrames[activeKeyframeIndex].duration = parseInt(keyframePopup.children[5].children[0].value);
 
-    if(getTotalAnimationTime() !== parseInt(keyframePopup.children[6].children[0].value))
+    if(!(keyFrames.length >= 1)) {
+        changeKeyframePosition(activeKeyframeIndex, (parseInt(keyframePopup.children[1].children[0].value) - 1));
+
+        moveKeyframeto(activeKeyframeIndex, parseInt(keyframePopup.children[3].children[0].value));
         changeTimelineDuration(parseInt(keyframePopup.children[6].children[0].value));
-
+    }
 
 }
 

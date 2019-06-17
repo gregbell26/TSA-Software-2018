@@ -16,10 +16,12 @@ function showList(){
             "<div style='display: block;margin-left: 5px;width: 20px; float: left;height: 20px;background-color: #"+lights[i].color.getHexString()+";'</li>"
     }
     //console.log("Showed List");
-    if(usingTutorial){
-        usingTutorial = false;
-        document.getElementById("tutorialArrow").style.display="none";
-    }
+    // if(usingTutorial){
+    //     usingTutorial = false;
+    //     document.getElementById("tutorialArrow").style.display="none";
+    // }
+
+    tutorialMovement(0,0,"That concludes the tutorial", true);
 }
 
 function setSelectedShape(num){
@@ -114,14 +116,15 @@ function hideAll(){
 function shapeMenu(){
     // hideAll();
     document.getElementById("shapeMenu").style.display="inherit";
-    if(usingTutorial){
-        if(confirm("Now create a shape")){
-           // animateArrow(15, 75, 120, 120);
-        }
-        else{
-            usingTutorial = false;
-        }
-    }
+    // if(usingTutorial){
+    //     if(confirm("Now create a shape")){
+    //        // animateArrow(15, 75, 120, 120);
+    //     }
+    //     else{
+    //         usingTutorial = false;
+    //     }
+    // }
+    tutorialMovement(15, 75, "Now create a shape", false);
 }
 
 function borderVisibility(){

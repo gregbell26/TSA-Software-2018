@@ -1,8 +1,9 @@
 function addFrame(){
-    if(usingTutorial){
-        confirm("Now change some diemsions, colors, or positions, add a keyframe, then press play.");
-        animateArrow(75,15,250,60)
-    }
+    // if(usingTutorial){
+    //     confirm("Now change some diemsions, colors, or positions, add a keyframe, then press play.");
+    //     animateArrow(75,15,250,60)
+    // }
+    tutorialMovement(75, 15, "Now change some diemsions, colors, or positions, add a keyframe, then press play.", false)
     if(!scene.background){
         scene.background = new THREE.Color("#000000");
     }

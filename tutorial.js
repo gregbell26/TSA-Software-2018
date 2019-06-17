@@ -10,7 +10,7 @@ function launchTutorial(){
     // showPopUp("popUp_error_body","Tutorial","To begin, click on the shapes box",-1);
     usingTutorial = true;
 
-    document.getElementById('tutorial_arrow').style.display = "block"; //launches tutorial arrow in the current scene
+    // document.getElementById('tutorial_arrow').style.display = "block"; //launches tutorial arrow in the current scene
 
     // moveArrow(120, 120);
 
@@ -24,11 +24,10 @@ function moveArrow(x, y){
 
 function tutorialMovement(arrowX, arrowY, promptText, isFinal){
     if(usingTutorial) {
+        document.getElementById('tutorial_arrow').style.display = "block"; //launches tutorial arrow in the current scene
         if (isFinal) {
             tutorialPopUp.children[2].children[0].setAttribute("onclick", "" +
-                "usingTutorial = false; " +
-                "hideTutorialPopup(); " +
-                "document.getElementById('tutorial_arrow').style.display = 'none';")
+                "exitTutorial();")
         } else {
             tutorialPopUp.children[2].children[0].setAttribute("onclick", "" +
                 "moveArrow(" + arrowX + ", " + arrowY + "); " +
@@ -51,6 +50,13 @@ function showTutorialPopup(bodyText) {
         tutorialPopUp.classList.add("tutorial_popUp_show");
 
     }
+}
+
+function exitTutorial(){
+    usingTutorial = false;
+    moveArrow(0,0);
+    document.getElementById('tutorial_arrow').style.display = "none";
+    hideTutorialPopup()
 }
 
 function hideTutorialPopup(){
