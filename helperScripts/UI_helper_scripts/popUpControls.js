@@ -21,7 +21,8 @@ function popUpAction(action){
         //saveSubSystem.addText(getPopUpInput());
     }
     else if(action===2){
-        //tutorial
+        saveEngine.createNewLocalSave(getPopUpInput());
+        launchTutorial();
     }
     else if(action === 3){
         firebase.auth().createUserWithEmailAndPassword(saveEngine.cloudStorage.userName, Base64.decode(saveEngine.cloudStorage.userUID)).catch(function(error){

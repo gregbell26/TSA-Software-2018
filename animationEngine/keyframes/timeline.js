@@ -248,7 +248,7 @@ function setKeyframePopupData(){
 function applyChanges(){
     changeKeyframePosition(activeKeyframeIndex, (parseInt(keyframePopup.children[1].children[0].value) - 1));
     moveKeyframeto(activeKeyframeIndex, parseInt(keyframePopup.children[3].children[0].value));
-    
+
     keyFrames[activeKeyframeIndex].duration = keyframePopup.children[5].children[0].value;
 
     if(getTotalAnimationTime() !== parseInt(keyframePopup.children[6].children[0].value))

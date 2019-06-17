@@ -17,7 +17,7 @@ let animationTimer;
 let selectedShape = -1;
 let selectedLight = -1;
 let settingsOpen = false;
-// let usingTutorial = false;
+let prepTutorial = false;
 // var capturer = new CCapture( { format: 'webm' } );
 var capturer;
 //sets up the viewport
@@ -159,16 +159,22 @@ function start(){
     selectedShape = -1;
     selectedLight = -1;
     toggleEditShapeOrLight(false);
-    if(saveEngine.localNewSave){
-        //handles savings creates a new one if there is no previous save when starting software
-        showPopUp("popUp_input_body", "New Save", "Enter Save Name",0);
-    }
     if(!saveEngine.localStorageEnable){
         showPopUp("popUp_error_body", "Warning", "The local save engine has been disabled",-1);
 //debugging
     }
 
-    if(!saveEngine.localNewSave){
+    else if(saveEngine.localNewSave && !prepTutorial){
+        //handles savings creates a new one if there is no previous save when starting software
+        showPopUp("popUp_input_body", "New Save", "Enter Save Name",0);
+    }
+
+    else if(saveEngine.localNewSave && prepTutorial){
+        showPopUp("popUp_input_body", "New Save", "Enter Save Name",2);
+        prepTutorial = false;
+    }
+
+    else if(!saveEngine.localNewSave){
         scene = saveEngine.loadLocalSave(selectedSaveId);
         // saveSubSystem.setFileName(saveSelectorElement.options[saveSelectorElement.selectedIndex].value, false);
         // keyFrames = saveSubSystem.loadSave();

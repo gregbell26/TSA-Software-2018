@@ -12,7 +12,7 @@ function launchTutorial(){
 
     document.getElementById('tutorial_arrow').style.display = "block"; //launches tutorial arrow in the current scene
 
-    moveArrow(120, 120);
+    // moveArrow(120, 120);
 
 }
 
