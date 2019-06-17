@@ -144,7 +144,7 @@ function getLights(s){
 function getBorderVisbility(s){
     var ret = [];
     for(var i = 0; i < s.length; i++){
-        ret.push(s.visible)
+        ret.push(s[i].visible)
     }
     return ret;
 }
