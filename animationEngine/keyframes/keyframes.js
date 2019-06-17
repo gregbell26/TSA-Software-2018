@@ -27,7 +27,7 @@ function addFrame(){
             color: getColors(shapes),
             name: "Frame "+keyFrames.length.toString(),
             borderColor: getColors(borders),
-            borderVisible: borders.visible;
+            borderVisible: borders.visible,
             scene: {
                 color: [scene.background.r, scene.background.g, scene.background.b],
                 scale: [scene.scale.x, scene.scale.y, scene.scale.z],
