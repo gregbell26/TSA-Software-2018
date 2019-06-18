@@ -41,6 +41,7 @@ function addFrame(){
     console.log('frame added');
     console.log(keyFrames);
     updateTimeline();
+    saveEngine.save(true,true);
 }
 
 //creates all of the buttons that will set the keyframes. create or remove keyframe, move them, set the speed, etc:

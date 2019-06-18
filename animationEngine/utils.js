@@ -42,7 +42,7 @@ function addShape(){
     tutorialMovement(0,0, "When you are done do stuff", true);
     document.getElementById('createTextMenu').style.display = 'none';
     let shapeType = document.getElementById("shapeSelector").value;
-    saveEngine.save(true,true);
+    saveEngine.save(true,false);
     //creates a 0x0x0 shape based on the selector element, with a red color and black borders.
     switch(shapeType){
         case "cube" :

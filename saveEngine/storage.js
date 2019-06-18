@@ -9,7 +9,7 @@
 $(document).on('change', function (e) {
     //Saves the file any time something is changed.
     if (saveSubSystem.isUsingSaves){
-        saveEngine.save(true,true);
+        saveEngine.save(true,false);
     }
 });
 

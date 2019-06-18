@@ -134,7 +134,7 @@ function removeLight(){
         for(var i; i < keyFrames.length; i++){
             keyFrames[i].lights.splice(selectedLight,1);
         }
-        saveEngine.save(true,true);
+        saveEngine.save(true,false);
     }
 }
 
