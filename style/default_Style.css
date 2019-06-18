@@ -1296,6 +1296,7 @@ input[type="range"]::-webkit-slider-thumb:hover, input[type="range"]::-webkit-sl
     width: 0;
     max-height: 538px;
     max-width: 437px;
+    min-height:  538px;
     top: 15%;
     left: 30%;
     color: var(--std_color_text_primary);
