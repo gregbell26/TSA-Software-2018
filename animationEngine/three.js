@@ -30413,6 +30413,7 @@
             text: text,
             parameters: parameters
         };
+        console.log(this.parameters)
 
         this.fromBufferGeometry( new TextBufferGeometry( text, parameters ) );
         this.mergeVertices();
@@ -30433,7 +30434,10 @@
         var font = parameters.font;
 console.log(font);
         if ( ! ( font && font.isFont ) ) {
-
+            // let loader = new THREE.FontLoader();
+            // font = loader.load('https://threejs.org/examples/fonts/helvetiker_regular.typeface.json');
+            font = new THREE.Font(parameters.font.data);
+            console.log(font);
             // console.error( 'THREE.TextGeometry: font parameter is not an instance of THREE.Font.' );
             // return new Geometry();
 
