@@ -148,7 +148,8 @@ function start(){
     renderer = new THREE.WebGLRenderer({logarithmicDepthBuffer: true, antialias: true });
     renderer.setSize(UIDiemsions.std_body.renderer_width, UIDiemsions.std_body.renderer_height);
     renderer.shadowMap.enabled = true;
-    renderer.shadowMap = THREE.PCFSoftShadowMap;
+    renderer.shadowMapSoft = true;
+    renderer.shadowMapType = THREE.PCFSoftShadowMap;
     document.getElementById("animationEngine_renderArea").appendChild(renderer.domElement);
     let selectedSaveId = document.getElementById("ws_loadMenu").options[document.getElementById("ws_loadMenu").selectedIndex].value;
     //Making sure that everything is empty
