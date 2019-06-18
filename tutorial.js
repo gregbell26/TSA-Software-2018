@@ -4,16 +4,17 @@
 let usingTutorial = false;
 let tutorialPopUp = document.getElementById("std_tutorial_popUp");
 
+
 function launchTutorial(){
     if (!tutorialPopUp)
         tutorialPopUp = document.getElementById("std_tutorial_popUp");
     // showPopUp("popUp_error_body","Tutorial","To begin, click on the shapes box",-1);
     usingTutorial = true;
+    tutorialMovement(120,120,"0", 0);
 
     document.getElementById('tutorial_arrow').style.display = "block"; //launches tutorial arrow in the current scene
 
     // moveArrow(120, 120);
-
 }
 
 function moveArrow(x, y){

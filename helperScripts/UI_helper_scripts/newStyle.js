@@ -32,7 +32,16 @@ async function initMainUI(){
 * */
 var activeMenu ="init";//init value
 function showMenu(menuToShow){
+  
     //getId("std_menu_container").style.display = "inherit";
+    if(menuToShow=='menu_newShapes'&& selectedShape!=-1 && showingLight){
+        tutorialMovement(10,10,"10", 0);
+    }
+
+    if(menuToShow=='menu_newShapes'&& selectedShape!=-1 && !showingLight){
+        alert("Menu Shapes Called");
+        tutorialMovement(10,10,"11", false);
+    }
     if(activeMenu !== "init") {
         getId(activeMenu).classList.remove("menu_show");
         getId(activeMenu).classList.add("menu_hidden");

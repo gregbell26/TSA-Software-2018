@@ -15,11 +15,6 @@ function showList(){
         lightsList.innerHTML+="<li class='elementList_body' onclick='setSelectedLight("+i+")'>" + lights[i].name +
             "<div style='display: block;margin-left: 5px;width: 20px; float: left;height: 20px;background-color: #"+lights[i].color.getHexString()+";'</li>"
     }
-    //console.log("Showed List");
-    if(usingTutorial){
-        usingTutorial = false;
-        document.getElementById("tutorialArrow").style.display="none";
-    }
 }
 
 function setSelectedShape(num){
@@ -165,6 +160,7 @@ function toggleEditShapeOrLight(isLight){
         }
     }
     else{
+        tutorialMovement(100,120,"13", 0);
         getId("currentEditing_type").innerHTML = "shape";
         getId("currentEditing_dimensions").style.display="inherit";
         getId("currentEditing_intensity").style.display="none";
