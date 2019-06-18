@@ -54,7 +54,7 @@ function getTotalAnimationTime(){
     let totalTime = 0;
     for(let i =0; i< keyFrames.length-1; i++) {
         totalTime += parseInt(keyFrames[i].duration);
-        console.log(keyFrames.duration)
+        console.log(keyFrames[i].duration)
     }
     return totalTime;
 }
