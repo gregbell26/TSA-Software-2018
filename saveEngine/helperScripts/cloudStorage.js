@@ -14,7 +14,7 @@ firebase.initializeApp(firebaseConfig);
 
 
 firebase.auth().onAuthStateChanged(function (user) {
-    if(saveEngine.cloudStorage) {
+    if(saveEngine) {
         if (user) {
             saveEngine.cloudStorage.userSignedIn = true;
             saveEngine.cloudStorage.userName = user.email;
