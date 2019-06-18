@@ -99,7 +99,7 @@ function moveDown(frame){
 function setSpeed(i, speed){
     console.log(speed);
     keyFrames[i].duration = speed;
-    updateTimeline();
+    // updateTimeline();
 }
 
 function timelineScrub(pageX) {
@@ -195,7 +195,7 @@ function moveKeyframe(frameNumber, amount) {
         keyFrames[frameNumber-1].duration += amount;
         keyFrames[frameNumber].duration -= amount;
     }
-    updateTimeline();
+    // updateTimeline();
 }
 
 function changeKeyframePosition(frameNumber, targetNumber){
@@ -253,6 +253,7 @@ function applyChanges(){
         moveKeyframeto(activeKeyframeIndex, parseInt(keyframePopup.children[3].children[0].value));
         changeTimelineDuration(parseInt(keyframePopup.children[6].children[0].value));
     }
+    updateTimeline();
 
 }
 
