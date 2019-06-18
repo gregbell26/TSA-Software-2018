@@ -17,6 +17,7 @@ function newLight(type,color,intensity,positionX,positionY,positionZ,color2) {
         lights[lights.length] = light;
         scene.add(light);
         selectedLight = lights.length - 1;
+        defaultTargets[selectedLight] = null;
         lights[selectedLight].position.x = positionX;
         lights[selectedLight].position.y = positionY;
         lights[selectedLight].position.z = positionZ;
@@ -28,6 +29,7 @@ function newLight(type,color,intensity,positionX,positionY,positionZ,color2) {
         scene.add(light);
         selectedLight = lights.length - 1;
         positionY = -1;
+        defaultTargets[selectedLight] = null;
         lights[selectedLight].position.x = positionX;
         lights[selectedLight].position.y = positionY;
         lights[selectedLight].position.z = positionZ;
@@ -38,6 +40,7 @@ function newLight(type,color,intensity,positionX,positionY,positionZ,color2) {
         scene.add(light);
         scene.add(light.target);
         selectedLight = lights.length - 1;
+        defaultTargets[selectedLight] = lights[selectedLight].target;
         lights[selectedLight].position.x = positionX;
         lights[selectedLight].position.y = positionY;
         lights[selectedLight].position.z = positionZ;
@@ -89,27 +92,21 @@ function setTargetList() {
 function setTarget(value) {
     let shape;
     if (value === 'defaultTarget') {
-        let target = new THREE.Object3D();
-        console.log(target);
-        scene.remove(lights[selectedLight]);
-        lights[selectedLight].target = target;
-        console.log(lights[selectedLight].target);
-        scene.add(lights[selectedLight].target);
-        scene.add(lights[selectedLight]);
+        lights[selectedLight].target = defaultTargets[selectedLight];
+        console.log(lights[selectedLight].target.position);
         getId("default_target_position").style.display = "inherit";
-        console.log(lights[selectedLight].target)
     } else {
         getId("default_target_position").style.display = "none";
-    }
-    for (let i = 0; i < shapes.length; i++){
-        if (shapes[i].uuid === value){
-            shape = shapes[i];
+        for (let i = 0; i < shapes.length; i++){
+            if (shapes[i].uuid === value){
+                shape = shapes[i];
+            }
         }
-    }
-    if (shape !== null){
-        lights[selectedLight].target = shape;
-    } else {
-        console.log("No shape with that id exists")
+        if (shape !== null){
+            lights[selectedLight].target = shape;
+        } else {
+            console.log("No shape with that id exists")
+        }
     }
 }
 
