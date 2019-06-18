@@ -33,6 +33,7 @@ class SaveEngine {
     stagedKeyframes = [];
     stagedScales = [];
     stagedBorders = [];
+    stagedDefaultTargets = [];
     //This is for the new engine
     stagedScene = [];
 
