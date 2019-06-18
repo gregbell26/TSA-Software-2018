@@ -108,6 +108,13 @@ class SaveEngine {
         //     this.localStore.saveToStorage("fileNames", this.localSaveIdList);
         // else
             this.localStore.saveToStorage(settings.sessionId, this.localSaveIdList);
+
+
+        if(this.cloudStorageEnable && saveEngine.cloudStorage.userSignedIn){
+            this.cloudStorage.getUserData();
+            this.cloudSaveIdList = this.cloudStorage.downloadedFileIDs;
+            this.cloudSaveFriendlyNamesList = this.cloudStorage.
+        }
     }
 
     loadLocalSave(fileID){
@@ -238,7 +245,7 @@ class SaveEngine {
             // }
         }
         if(cloudStorage && this.cloudStorageEnable){
-
+            this.cloudStorage.saveToCloud(this.localFileName, this.localFileID, this.stagedKeyframes, this.stagedScene, this.stagedSettings);
         }
     }
 
