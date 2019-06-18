@@ -111,11 +111,11 @@ class SaveEngine {
             this.localStore.saveToStorage(settings.sessionId, this.localSaveIdList);
 
 
-        if(this.cloudStorageEnable && saveEngine.cloudStorage.userSignedIn){
-            this.cloudStorage.getUserData();
-            this.cloudSaveIdList = this.cloudStorage.downloadedFileIDs;
-            this.cloudSaveFriendlyNamesList = this.cloudStorage.
-        }
+        // if(this.cloudStorageEnable && saveEngine.cloudStorage.userSignedIn){
+        //     this.cloudStorage.getUserData();
+        //     this.cloudSaveIdList = this.cloudStorage.downloadedFileIDs;
+        //     // this.cloudSaveFriendlyNamesList = this.cloudStorage.
+        // }
     }
 
     loadLocalSave(fileID){
@@ -171,6 +171,16 @@ class SaveEngine {
 
     }
 
+    downloadCloudSave(idToDownload){
+        if(this.cloudStorageEnable){
+            let downloadedData = this.cloudStorage.downloadSave(idToDownload);
+            this.stagedScene = downloadedData.scene;
+            this.stagedKeyframes = downloadedData.keyframes;
+            this.localFileName = downloadedData.name;
+            this.localFileID = idToDownload;
+        }
+    }
+
 
     createNewLocalSave(newFileName){
         if (this.localStorageEnable && this.localNewSave) {
@@ -199,8 +209,18 @@ class SaveEngine {
 
             for(let i = 0; i < this.localStorageUpdateList[0].length; i++)
                 this.setLocalStorageSelectorElement(this.localStorageUpdateList[0][i], this.localStorageUpdateList[1][i], false);
+            for(let i = 0; i < this.localStorageUpdateList[0].length; i++)
+                this.setCloudStorageSelectorElement(this.localStorageUpdateList[0][i], this.localStorageUpdateList[1][i], false);
+
+
 
             this.localNewSave = false;
+
+            for(let i = 0; i < this.localStorageUpdateList[0].length; i++)
+                this.setLocalStorageSelectorElement(this.localStorageUpdateList[0][i], this.localStorageUpdateList[1][i], false);
+            for(let i = 0; i < this.localStorageUpdateList[0].length; i++)
+                this.setCloudStorageSelectorElement(this.localStorageUpdateList[0][i], this.localStorageUpdateList[1][i], false);
+
             return this.loadLocalSave(this.localFileID);
         }
 
@@ -278,12 +298,14 @@ class SaveEngine {
             this.localFileID = oldID;
             for(let i = 0; i < this.localStorageUpdateList[0].length; i++)
                 this.setLocalStorageSelectorElement(this.localStorageUpdateList[0][i], this.localStorageUpdateList[1][i], false);
+            for(let i = 0; i < this.localStorageUpdateList[0].length; i++)
+                this.setCloudStorageSelectorElement(this.localStorageUpdateList[0][i], this.localStorageUpdateList[1][i], false);
         }
     }
 
     deleteCloudSave(idToDelete){
         if(this.cloudStorageEnable){
-
+            this.cloudStorage.deleteCloudSave(idToDelete);
         }
     }
 
@@ -335,7 +357,24 @@ class SaveEngine {
     }
 
     setCloudStorageSelectorElement(domSelect, defaultValue, updateNeeded){
-
+        if(this.cloudStorageEnable) {
+            let saveId;
+            let saveFriendlyName;
+            let selectorElement = document.getElementById(domSelectElement);
+            selectorElement.innerHTML = "";
+            if (defaultValue !== "none") {
+                selectorElement.innerHTML += " <option> " + defaultValue + "</option>";
+            }
+            for (var i = 0; i < this.cloudSaveIdList.length; i++) {
+                saveId = this.cloudSaveIdList[i];
+                saveFriendlyName = this.cloudSaveFriendlyNamesList[i];
+                selectorElement.innerHTML += " <option value=" + saveId + "> " + saveFriendlyName + "</option>";
+            }
+            if (updateNeeded) {
+                this.cloudStorageUpdateList[0].push(domSelectElement);
+                this.cloudStorageUpdateList[1].push(defaultValue);
+            }
+        }
     }
 
 

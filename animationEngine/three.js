@@ -30428,16 +30428,16 @@
     function TextBufferGeometry( text, parameters ) {
 
         parameters = parameters || {};
-        console.log(parameters);
+        // console.log(parameters);
 
 
         var font = parameters.font;
-console.log(font);
+// console.log(font);
         if ( ! ( font && font.isFont ) ) {
             // let loader = new THREE.FontLoader();
             // font = loader.load('https://threejs.org/examples/fonts/helvetiker_regular.typeface.json');
             font = new THREE.Font(parameters.font.data);
-            console.log(font);
+            // console.log(font);
             // console.error( 'THREE.TextGeometry: font parameter is not an instance of THREE.Font.' );
             // return new Geometry();
 

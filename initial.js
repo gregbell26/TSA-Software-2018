@@ -44,6 +44,8 @@ window.onload = function(){
     stylesheetLoader(settings.userInterface.stylesheetPref);
     saveEngine.setLocalStorageSelectorElement("ws_loadMenu", "Load Save", false);
     saveEngine.setLocalStorageSelectorElement("localStorage_saveSelector", "none", true);
+    saveEngine.setCloudStorageSelectorElement("localStorage_saveSelector", "none", true);
+
     // saveSubSystem.loadSaveNames("ws_loadMenu");
     // saveSubSystem.loadSaveNames("localStorage_saveSelector");
 
@@ -142,7 +144,6 @@ var lastTickAnimated = 0;
 
 
 //Greatness by Gregory
-
 
 function start(){
     camera = new THREE.PerspectiveCamera(75, UIDiemsions.std_body.window_width/UIDiemsions.std_body.window_height, 0.1, 1000);
