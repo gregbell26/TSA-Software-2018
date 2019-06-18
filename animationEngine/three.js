@@ -10453,7 +10453,7 @@
 
             }
 
-            // morph targets
+            // morph defaultTargets
 
             var morphTargets = source.morphTargets;
 
@@ -13321,7 +13321,7 @@
         this.clipping = false; // set to use user-defined clipping planes
 
         this.skinning = false; // set to use skinning attribute streams
-        this.morphTargets = false; // set to use morph targets
+        this.morphTargets = false; // set to use morph defaultTargets
         this.morphNormals = false; // set to use morph normals
 
         this.extensions = {
@@ -13616,7 +13616,7 @@
                 // from http://www.geometrictools.com/GTEngine/Include/Mathematics/GteDistRaySegment.h
                 // It returns the min distance between the ray and the segment
                 // defined by v0 and v1
-                // It can also set two optional targets :
+                // It can also set two optional defaultTargets :
                 // - The closest point on the ray
                 // - The closest point on the segment
 
@@ -15646,7 +15646,7 @@
 
             }
 
-            // morph targets
+            // morph defaultTargets
 
             var morphAttributes = geometry.morphAttributes;
 
@@ -17851,7 +17851,7 @@
 
             } else if ( map.isWebGLRenderTarget ) {
 
-                console.warn( "THREE.WebGLPrograms.getTextureEncodingFromMap: don't use render targets as textures. Use their .texture property instead." );
+                console.warn( "THREE.WebGLPrograms.getTextureEncodingFromMap: don't use render defaultTargets as textures. Use their .texture property instead." );
                 encoding = map.texture.encoding;
 
             }
@@ -21104,7 +21104,7 @@
 
         }
 
-        // Render targets
+        // Render defaultTargets
 
         // Setup storage for target texture and bind it to correct framebuffer
         function setupFrameBufferTexture( framebuffer, renderTarget, attachment, textureTarget ) {
@@ -21185,7 +21185,7 @@
         function setupDepthTexture( framebuffer, renderTarget ) {
 
             var isCube = ( renderTarget && renderTarget.isWebGLRenderTargetCube );
-            if ( isCube ) throw new Error( 'Depth Texture with cube render targets is not supported' );
+            if ( isCube ) throw new Error( 'Depth Texture with cube render defaultTargets is not supported' );
 
             _gl.bindFramebuffer( 36160, framebuffer );
 
@@ -21235,7 +21235,7 @@
 
             if ( renderTarget.depthTexture ) {
 
-                if ( isCube ) throw new Error( 'target.depthTexture not supported in Cube render targets' );
+                if ( isCube ) throw new Error( 'target.depthTexture not supported in Cube render defaultTargets' );
 
                 setupDepthTexture( renderTargetProperties.__webglFramebuffer, renderTarget );
 
@@ -21466,7 +21466,7 @@
 
                 if ( warnedTexture2D === false ) {
 
-                    console.warn( "THREE.WebGLTextures.safeSetTexture2D: don't use render targets as textures. Use their .texture property instead." );
+                    console.warn( "THREE.WebGLTextures.safeSetTexture2D: don't use render defaultTargets as textures. Use their .texture property instead." );
                     warnedTexture2D = true;
 
                 }
@@ -21485,7 +21485,7 @@
 
                 if ( warnedTextureCube === false ) {
 
-                    console.warn( "THREE.WebGLTextures.safeSetTextureCube: don't use cube render targets as textures. Use their .texture property instead." );
+                    console.warn( "THREE.WebGLTextures.safeSetTextureCube: don't use cube render defaultTargets as textures. Use their .texture property instead." );
                     warnedTextureCube = true;
 
                 }
@@ -34258,10 +34258,10 @@
                 // skip empty tracks
                 if ( ! animationKeys || animationKeys.length === 0 ) continue;
 
-                // process morph targets
+                // process morph defaultTargets
                 if ( animationKeys[ 0 ].morphTargets ) {
 
-                    // figure out all morph targets used in this track
+                    // figure out all morph defaultTargets used in this track
                     var morphTargetNames = {};
 
                     for ( var k = 0; k < animationKeys.length; k ++ ) {

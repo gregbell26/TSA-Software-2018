@@ -31,6 +31,7 @@ var renderer;
 var shapes = [];
 var lights = [];
 var scales = [];
+let defaultTargets = [];
 var keyFrames = [];
 var borders = [];
 // let settings;
