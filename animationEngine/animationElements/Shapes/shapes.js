@@ -52,13 +52,9 @@ function removeShape(){
             saveSubSystem.removeText(shapes[selectedShape].geometry.parameters.text);
         }
         // For keyFrames2.0
-        // for (let i = 0; i < keyFrames.length; i++){
-        //     for (let j = 0; j < keyFrames[i].frameShapes; j++){
-        //         if (keyFrames[i].frameShapes[j].uuid === shapes[selectedShape].uuid){
-        //             keyFrames.splice(i,1);
-        //         }
-        //     }
-        // }
+        for (let i = 0; i < keyFrames.length; i++){
+            keyFrames[i].removeFrameShape(shapes[selectedShape].uuid);
+        }
         scene.remove(shapes[selectedShape]);
         scene.remove(borders[selectedShape]);
         shapes.splice(selectedShape,1);
@@ -71,7 +67,7 @@ function removeShape(){
             keyFrames[i].shapes.splice(selectedShape,1);
             keyFrames[i].scales.splice(selectedShape,1);
         }
-        saveEngine.save(true,true);
+        saveEngine.save(true,false);
         //it's so you can't press remove again, feel free to remove to improve
     }
 }
@@ -298,10 +294,10 @@ function duplicateCurrentShape(){
             newText(scales[selectedShape][0], scales[selectedShape][1], scales[selectedShape][2], shape.position.x,
                 shape.position.y, shape.position.z, "#" + shape.material.color.getHexString(),
                 "#" + borders[selectedShape].material.color.getHexString());
-            saveEngine.save(true,true);
+            saveEngine.save(true,false);
             break;
     }
-    saveEngine.save(true,true);
+    saveEngine.save(true,false);
 }
 
 function newShape(type,x,y,z,posX,posY,posZ,color,border,text){

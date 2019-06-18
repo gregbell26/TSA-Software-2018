@@ -32,15 +32,17 @@ function rgbToHex (num) {
 };
 
 function addShape(){
-    if(usingTutorial){
-        //moves the tutorial arrow around.
-        confirm("Now define the diemsions, position, rotation, and color");
-        confirm("When you are done, click on the key icon");
-        document.getElementById("tutorialArrow").style.display="none";
-    }
+    // if(usingTutorial){
+    //     //moves the tutorial arrow around.
+    //     confirm("Now define the diemsions, position, rotation, and color");
+    //     confirm("When you are done, click on the key icon");
+    //     document.getElementById("tutorialArrow").style.display="none";
+    // }
+
+    tutorialMovement(0,0, "When you are done do stuff", true);
     document.getElementById('createTextMenu').style.display = 'none';
     let shapeType = document.getElementById("shapeSelector").value;
-    saveEngine.save(true,true);
+    saveEngine.save(true,false);
     //creates a 0x0x0 shape based on the selector element, with a red color and black borders.
     switch(shapeType){
         case "cube" :

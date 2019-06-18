@@ -77,6 +77,9 @@ function setSelectedLight(num) {
     document.getElementById("intensity_slider").value = lights[selectedLight].intensity * 100;
     document.getElementById("intensity_value").innerHTML = lights[selectedLight].intensity * 100 + "";
     document.getElementById("light_castShadow").checked = lights[selectedLight].castShadow;
+    document.getElementById("target_x").value = defaultTargets[selectedLight].position.x;
+    document.getElementById("target_y").value = defaultTargets[selectedLight].position.y;
+    document.getElementById("target_z").value = defaultTargets[selectedLight].position.z;
     if (lights[selectedLight].visible){
         getId("element_visibility_button").innerHTML = "<span class='button_body' id='element_visibility_button'>Hide Element</span>"
     } else {
@@ -109,14 +112,15 @@ function hideAll(){
 function shapeMenu(){
     // hideAll();
     document.getElementById("shapeMenu").style.display="inherit";
-    if(usingTutorial){
-        if(confirm("Now create a shape")){
-           // animateArrow(15, 75, 120, 120);
-        }
-        else{
-            usingTutorial = false;
-        }
-    }
+    // if(usingTutorial){
+    //     if(confirm("Now create a shape")){
+    //        // animateArrow(15, 75, 120, 120);
+    //     }
+    //     else{
+    //         usingTutorial = false;
+    //     }
+    // }
+    tutorialMovement(15, 75, "Now create a shape", false);
 }
 
 function borderVisibility(){
@@ -152,6 +156,9 @@ function toggleEditShapeOrLight(isLight){
             getId("currentEditing_positions").style.display="inherit";
             getId("element_border_color").style.display="none";
             getId("currentEditing_spotlight_parameters").style.display="inherit";
+            if (lights[selectedLight].target.type === "Object3D"){
+                getId("default_target_position").style.display = "inherit";
+            }
             setTargetList();
         }else {
             getId("currentEditing_positions").style.display="inherit";

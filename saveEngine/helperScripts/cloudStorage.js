@@ -14,21 +14,23 @@ firebase.initializeApp(firebaseConfig);
 
 
 firebase.auth().onAuthStateChanged(function (user) {
-    if(user){
-        saveEngine.cloudStorage.userSignedIn = true;
-        saveEngine.cloudStorage.userName = user.email;
-        saveEngine.cloudStorage.userUID = user.uid;
-        saveEngine.cloudStorage.generateUserData();//this will only run if a new user signed in.
-        saveEngine.cloudStorage.getUserData();//this will download the user's saveIDs
-        document.getElementById("account_sub_signedIn").style.display="inherit";
-        document.getElementById("account_sub_signedOut").style.display="none";
-    }
-    else{
-        saveEngine.cloudStorage.userSignedIn = false;
-        // saveEngine.cloudStorage.userName = false;
-        // saveEngine.cloudStorage.userUID = false;
-        document.getElementById("account_sub_signedOut").style.display="inherit";
-        document.getElementById("account_sub_signedIn").style.display="none";
+    if(saveEngine) {
+        if (user) {
+            saveEngine.cloudStorage.userSignedIn = true;
+            saveEngine.cloudStorage.userName = user.email;
+            saveEngine.cloudStorage.userUID = user.uid;
+            saveEngine.cloudStorage.generateUserData();//this will only run if a new user signed in.
+            saveEngine.cloudStorage.getUserData();//this will download the user's saveIDs
+            saveEngine.cloudSaveIdList = this.downloadedFileIDs;
+            document.getElementById("account_sub_signedIn").style.display = "inherit";
+            document.getElementById("account_sub_signedOut").style.display = "none";
+        } else {
+            saveEngine.cloudStorage.userSignedIn = false;
+            // saveEngine.cloudStorage.userName = false;
+            // saveEngine.cloudStorage.userUID = false;
+            document.getElementById("account_sub_signedOut").style.display = "inherit";
+            document.getElementById("account_sub_signedIn").style.display = "none";
+        }
     }
 });
 
@@ -169,7 +171,7 @@ class CloudStorage{
         this.saveDataRef.doc(saveIDtoGet).get().then(function (data) {
             if(data.exists) {
                 saveEngine.cloudStorage = data.data();
-                // console.log(gotten)
+                //console.log(gotten)
             }
         });
         return this.downloadData;

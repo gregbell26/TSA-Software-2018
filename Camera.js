@@ -88,6 +88,18 @@ $(document).on('mousedown',function(e){
         timelineScrub(e.pageX);
     }
 });
+$(document).on('touchstart',function(e){
+    if(inAnimationWindow==1) {
+        xStart = e.pageX;
+        yStart = e.pageY;
+        mouseDown = true;
+    }
+    else if(e.pageY >= window.innerHeight-100 && e.pageY<=window.innerHeight-25){
+        // console.log("Mouse scrub enabled");
+        mouseOnTimeline = true;
+        timelineScrub(e.pageX);
+    }
+});
 // //triggers on the event that the mouse is down on the document. it creates a custom function that checks if it is in the animation window and creates the mouse handler.
 //
 $(document).on('change',function(e){
@@ -101,6 +113,12 @@ $(document).on('change',function(e){
 var mouseOnTimeline = false;
 //
 $(document).on('mouseup',function(e){
+    if(e.pageX>=300 && e.pageY >=50 && e.pageY<window.innerHeight-70) {
+        mouseDown = false;
+    }
+    mouseOnTimeline = false;
+});
+$(document).on('touchend',function(e){
     if(e.pageX>=300 && e.pageY >=50 && e.pageY<window.innerHeight-70) {
         mouseDown = false;
     }
@@ -121,6 +139,32 @@ $(document).on('mouseup',function(e){
 var timelinePosition = 0;
 $(document).ready(function(){
     $(document).on('mousemove', function(e){
+        if(e.pageX>=300 && e.pageY >=50 && e.pageY<window.innerHeight-150) {
+            inAnimationWindow = 1;
+        }
+        else{
+            inAnimationWindow = 0;
+        }
+        if(mouseDown && inAnimationWindow==1 && !settingsOpen /*&& !(animationRunning && lockCamera)*/){
+
+            var MvX = settings.camera.mouseSensitivity*(e.pageX-xStart)/100;
+            var MvY = settings.camera.mouseSensitivity*(e.pageY-yStart)/100;
+            rotateCamera(MvX,MvY);
+
+
+            if(e.pageX>=300 && e.pageY >=50 && e.pageY<window.innerHeight-70) {
+                xStart = e.pageX;
+                yStart = e.pageY;
+            }
+        }
+        if(mouseOnTimeline){
+            timelineScrub(e.pageX);
+        }
+    });
+});
+
+$(document).ready(function(){
+    $(document).on('touchmove', function(e){
         if(e.pageX>=300 && e.pageY >=50 && e.pageY<window.innerHeight-150) {
             inAnimationWindow = 1;
         }

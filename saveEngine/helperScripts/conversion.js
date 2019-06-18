@@ -105,9 +105,13 @@ class conversion {
                 } else if (this.isBoarder(stagedScene.children[i])) {
                     stagedScene.children[i]= this.addBorder(stagedScene.children[i]);
                     extractedArray[2].push(stagedScene.children[i]);
-                }
-                else if (this.isLight(stagedScene.children[i]))//this might break things as im assuming that only lights are the extra element so we are pushing this to lights
+                } else if (this.isLight(stagedScene.children[i])){
+                    //this might break things as im assuming that only lights are the extra element so we are pushing this to lights
                     extractedArray[3].push(stagedScene.children[i]);
+                } else if (stagedScene.children[i].isObject3D){
+                    extractedArray[5].push(stagedScene.children[i]);
+                }
+
 
             }
         }

@@ -11,7 +11,7 @@ onkeyup = function(e){
     var map = [];
     map[e.keyCode] = e.type == 'keyup';
 
-}
+};
 onkeydown = function(e){
     e = e || event;
     var map = [];
@@ -21,7 +21,11 @@ onkeydown = function(e){
         playAnimation(timelinePosition);
         console.log(timelinePosition);
     }
-}
+};
+
+onchange = function() {
+    saveEngine.save(true,false);
+};
 
 
 /*

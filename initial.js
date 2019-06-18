@@ -31,6 +31,7 @@ var renderer;
 var shapes = [];
 var lights = [];
 var scales = [];
+let defaultTargets = [];
 var keyFrames = [];
 var borders = [];
 // let settings;
@@ -43,6 +44,8 @@ window.onload = function(){
     stylesheetLoader(settings.userInterface.stylesheetPref);
     saveEngine.setLocalStorageSelectorElement("ws_loadMenu", "Load Save", false);
     saveEngine.setLocalStorageSelectorElement("localStorage_saveSelector", "none", true);
+    saveEngine.setCloudStorageSelectorElement("localStorage_saveSelector", "none", true);
+
     // saveSubSystem.loadSaveNames("ws_loadMenu");
     // saveSubSystem.loadSaveNames("localStorage_saveSelector");
 
@@ -136,19 +139,19 @@ var tempCircleMoveShapes = {
 };
 var shapesCmove =[];
 
-
+var lastTickAnimated = 0;
 
 
 
 //Greatness by Gregory
-
 
 function start(){
     camera = new THREE.PerspectiveCamera(75, UIDiemsions.std_body.window_width/UIDiemsions.std_body.window_height, 0.1, 1000);
     renderer = new THREE.WebGLRenderer({logarithmicDepthBuffer: true, antialias: true });
     renderer.setSize(UIDiemsions.std_body.renderer_width, UIDiemsions.std_body.renderer_height);
     renderer.shadowMap.enabled = true;
-    renderer.shadowMap = THREE.PCFSoftShadowMap;
+    renderer.shadowMapSoft = true;
+    renderer.shadowMap.type = THREE.PCFSoftShadowMap;
     document.getElementById("animationEngine_renderArea").appendChild(renderer.domElement);
     let selectedSaveId = document.getElementById("ws_loadMenu").options[document.getElementById("ws_loadMenu").selectedIndex].value;
     //Making sure that everything is empty
