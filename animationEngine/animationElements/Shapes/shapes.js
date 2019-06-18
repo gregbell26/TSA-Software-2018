@@ -67,7 +67,7 @@ function removeShape(){
             keyFrames[i].shapes.splice(selectedShape,1);
             keyFrames[i].scales.splice(selectedShape,1);
         }
-        saveEngine.save(true,true);
+        saveEngine.save(true,false);
         //it's so you can't press remove again, feel free to remove to improve
     }
 }
@@ -294,10 +294,10 @@ function duplicateCurrentShape(){
             newText(scales[selectedShape][0], scales[selectedShape][1], scales[selectedShape][2], shape.position.x,
                 shape.position.y, shape.position.z, "#" + shape.material.color.getHexString(),
                 "#" + borders[selectedShape].material.color.getHexString());
-            saveEngine.save(true,true);
+            saveEngine.save(true,false);
             break;
     }
-    saveEngine.save(true,true);
+    saveEngine.save(true,false);
 }
 
 function newShape(type,x,y,z,posX,posY,posZ,color,border,text){
