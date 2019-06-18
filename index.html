@@ -368,7 +368,7 @@
                             </select>
                             <span class="list_bar"></span>
                         </div>
-                        <div id="default_target_position" style="display: none">
+                        <div id="default_target_position">
                             <div class="std_input_text">
                                 <input type="number" step="any" id="target_x" onchange="moveTarget('x', Number(this.value))" required>
                                 <span class="text_highlight"></span>
@@ -929,7 +929,7 @@
                               src="./style/assets/svgs/timeline_icons/timeline_record_dark_icon.svg"
                         />
                     </span>
-                    <span onclick="playAnimation(0)" class="timeline_button" id="timeline_play">
+                    <span onclick="playAnimation(lastTickAnimated)" class="timeline_button" id="timeline_play">
                         <img class="std_icon_normal"
                             src="./style/assets/svgs/timeline_icons/timeline_play_icon.svg"
                             />

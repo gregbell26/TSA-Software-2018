@@ -52,13 +52,9 @@ function removeShape(){
             saveSubSystem.removeText(shapes[selectedShape].geometry.parameters.text);
         }
         // For keyFrames2.0
-        // for (let i = 0; i < keyFrames.length; i++){
-        //     for (let j = 0; j < keyFrames[i].frameShapes; j++){
-        //         if (keyFrames[i].frameShapes[j].uuid === shapes[selectedShape].uuid){
-        //             keyFrames.splice(i,1);
-        //         }
-        //     }
-        // }
+        for (let i = 0; i < keyFrames.length; i++){
+            keyFrames[i].removeFrameShape(shapes[selectedShape].uuid);
+        }
         scene.remove(shapes[selectedShape]);
         scene.remove(borders[selectedShape]);
         shapes.splice(selectedShape,1);
