@@ -136,7 +136,7 @@ var tempCircleMoveShapes = {
 };
 var shapesCmove =[];
 
-
+var lastTickAnimated = 0;
 
 
 

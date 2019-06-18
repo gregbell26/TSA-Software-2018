@@ -51,67 +51,78 @@ function loadKeyList(){
 //takes all of the properties of the things taken above and sets them to the current viewport.
 // All of the properties for each time is found in each iteration of the array. this takes the values
 // in each keyframe and makes the attributes shift from the original values to the ones in the new frame
-function playAnimation(frameValue) {
+function playAnimation(frameValue/*starting position*/) {
     var dontRun = false;
     if (keyFrames.length === 0){
         dontRun = true;
     }
-    if(!animationRunning && !dontRun) {
-        timelineButtonToggle('timeline_play');
-        console.log('starting');
-        animationRunning=true;
-        if (frameValue >= 0) {
-            var frames = 0;
-            var a; //current keyframe
-            var timingCounter;
-            var prevDuration=0;
-            for (var i = 0; i < keyFrames.length - 1; i++) {
-                if (frameValue >= frames && frameValue < frames + keyFrames[i].duration) {
-                    a = i;
-                    break;
-                } else {
-                    frames += keyFrames[i].duration;
-                    prevDuration+=keyFrames[i].duration;
-                }
-            }
-            if (a != null) {
-                timingCounter = frameValue - frames;
-                animationTimer = setInterval(function () {
-                    document.getElementById("timeline_playHead").style.left = (11+(timingCounter+prevDuration)/timelineScale)+"px";
-                    if (timingCounter < keyFrames[a].duration) {
-                        timingCounter += 10;
-                        updateAnimation(timingCounter,a);
+    if(!dontRun) {
+        if(!animationRunning) {
+            timelineButtonToggle('timeline_play');
+            console.log('starting');
+            animationRunning = true;
+            if (frameValue >= 0 && frameValue < getTotalAnimationTime()) {
+                var frames = 0;
+                var a; //current keyframe
+                var timingCounter;
+                var prevDuration = 0;
+                for (var i = 0; i < keyFrames.length - 1; i++) {
+                    if (frameValue >= frames && frameValue < frames + keyFrames[i].duration) {
+                        a = i;
+                        break;
+                    } else {
+                        frames += keyFrames[i].duration;
+                        prevDuration += keyFrames[i].duration;
                     }
-                    else {
-                        if (a < keyFrames.length - 2) {
-                            prevDuration+=keyFrames[a].duration;
-                            a++;
-                            timingCounter = 0;
-                        }
-                        else if (loopAnimation){
-                            a = 0;
-                            prevDuration=0;
-                            timingCounter = 0;
-                            document.getElementById("timeline_playHead").style.left = (1)+"px";
-                            //timelineButtonToggle('timeline_repeat');
-                        }
-                        else {
-                            clearInterval(animationTimer);
-                            timelineButtonToggle('timeline_play');
-                            console.log('done');
-                            animationRunning = false;
-                            if(recording){
-                                timelineButtonToggle("timeline_record");
-                                recording = false;
-                                capturer.stop();
-                                capturer.save();
+                }
+                if (a != null) {
+                    timingCounter = frameValue - frames;
+                    animationTimer = setInterval(function () {
+                        document.getElementById("timeline_playHead").style.left = (11 + (timingCounter + prevDuration) / timelineScale) + "px";
+                        if (timingCounter < keyFrames[a].duration) {
+                            timingCounter += 10;
+                            updateAnimation(timingCounter, a);
+                        } else {
+                            if (a < keyFrames.length - 2) {
+                                prevDuration += keyFrames[a].duration;
+                                a++;
+                                timingCounter = 0;
+                            } else if (loopAnimation) {
+                                a = 0;
+                                prevDuration = 0;
+                                timingCounter = 0;
+                                document.getElementById("timeline_playHead").style.left = (1) + "px";
+                                //timelineButtonToggle('timeline_repeat');
+                            } else {
+                                clearInterval(animationTimer);
+                                timelineButtonToggle('timeline_play');
+                                console.log('done');
+                                animationRunning = false;
+                                if (recording) {
+                                    timelineButtonToggle("timeline_record");
+                                    recording = false;
+                                    capturer.stop();
+                                    capturer.save();
+                                }
+                                lastTickAnimated = 0;
                             }
                         }
-                    }
-                }, 10);
+                    }, 10);
+                }
             }
         }
-        
+        else{
+            clearInterval(animationTimer);
+            timelineButtonToggle('timeline_play');
+            console.log('stopped');
+            animationRunning = false;
+            if (recording) {
+                timelineButtonToggle("timeline_record");
+                recording = false;
+                capturer.stop();
+                capturer.save();
+            }
+        }
     }
 }
 
@@ -403,6 +414,11 @@ function updateAnimation(timingCounter,a){
             lights[i].position.z = keyFrames[a].lights[i].position.z + (keyFrames[a + 1].lights[i].position.z - keyFrames[a].lights[i].position.z) / keyFrames[a].duration * timingCounter;
         }
     }
+    lastTickAnimated = 0;
+    for(var i = 0; i < a; i ++){
+        lastTickAnimated += keyFrames[i].duration;
+    }
+    lastTickAnimated += timingCounter;
 }
 var recording = false;
 function record(){

@@ -59,7 +59,7 @@ function getTotalAnimationTime(){
     return totalTime;
 }
 
-//determines whether ot not to repeat the animation
+//determines whether or not to repeat the animation
 function loop(){
     if(animationRunning){
         loopAnimation = false;
@@ -121,6 +121,9 @@ function timelineScrub(pageX) {
             document.getElementById("timeline_playHead").style.left = (1+frameValue/timelineScale)+"px";
             var timingCounter = frameValue - frames;
             updateAnimation(timingCounter, a);
+            if(animationRunning) {
+                playAnimation()
+            }
         }
     }
 }
