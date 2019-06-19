@@ -127,6 +127,7 @@ class CloudStorage{
             else {
                 // cont = false;
             }
+            saveEngine.forceLoadSelectUpdate();
         });
 
 
@@ -158,13 +159,19 @@ class CloudStorage{
                 keyframes: JSON.stringify(keyframes),
                 scene: JSON.stringify(scene),
             };
-            this.downloadedFileIDs.push(saveID);
+            let newCloudSave = false;
+            for(let i = 0; i < this.downloadedFileIDs.length; i++){
+                if(this.downloadedFileIDs[i]===saveID)
+                    newCloudSave = true;
+            }
+            if(newCloudSave)
+                this.downloadedFileIDs.push(saveID);
 
             //the saves
             this.userDataRef.set({
                 fileIDs: JSON.stringify(this.downloadedFileIDs),
                 settings: JSON.stringify(settings),
-            },{merge: true});
+            }, {merge: true});
 
             this.saveDataRef.doc(saveID).set(combinedSaveData, {merge: true});
 
