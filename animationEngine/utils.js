@@ -32,14 +32,7 @@ function rgbToHex (num) {
 };
 
 function addShape(){
-    // if(usingTutorial){
-    //     //moves the tutorial arrow around.
-    //     confirm("Now define the diemsions, position, rotation, and color");
-    //     confirm("When you are done, click on the key icon");
-    //     document.getElementById("tutorialArrow").style.display="none";
-    // }
-
-    tutorialMovement(0,0, "When you are done do stuff", true);
+    //tutorialMovement(0,0, "When you are done do stuff", true);
     document.getElementById('createTextMenu').style.display = 'none';
     let shapeType = document.getElementById("shapeSelector").value;
     saveEngine.save(true,false);

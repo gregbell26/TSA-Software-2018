@@ -34,12 +34,11 @@ var activeMenu ="init";//init value
 function showMenu(menuToShow){
   
     //getId("std_menu_container").style.display = "inherit";
-    if(menuToShow=='menu_newShapes'&& selectedShape!=-1 && showingLight){
+    if(menuToShow=='menu_newShapes' && selectedShape!=-1 && showingLight){
         tutorialMovement(10,10,"10", 0);
     }
 
-    if(menuToShow=='menu_newShapes'&& selectedShape!=-1 && !showingLight){
-        alert("Menu Shapes Called");
+    if(menuToShow=='menu_newShapes' && selectedShape!=-1 && !showingLight){
         tutorialMovement(10,10,"11", false);
     }
     if(activeMenu !== "init") {
@@ -264,7 +263,7 @@ function UISpacer(){
     getId("nav_spacer_left").style.bottom = (UIDiemsions.std_navBar.defaultPadding).toString()+UIDiemsions.std_navBar.defaultUnit;
     getId("nav_spacer_left").style.left = (UIDiemsions.std_navBar.spacer_placement[0]).toString();
 
-
+    
     getId("nav_spacer_right").style.width = (UIDiemsions.std_navBar.rightSpacer_width).toString() +UIDiemsions.std_navBar.defaultUnit;
     getId("nav_spacer_right").style.top = (UIDiemsions.std_navBar.defaultPadding).toString()+UIDiemsions.std_navBar.defaultUnit;
     getId("nav_spacer_right").style.bottom = (UIDiemsions.std_navBar.defaultPadding).toString()+UIDiemsions.std_navBar.defaultUnit;
