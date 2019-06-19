@@ -1,9 +1,5 @@
 function addFrame(){
-    // if(usingTutorial){
-    //     confirm("Now change some diemsions, colors, or positions, add a keyframe, then press play.");
-    //     animateArrow(75,15,250,60)
-    // }
-    tutorialMovement(75, 15, "Now change some diemsions, colors, or positions, add a keyframe, then press play.", false)
+    tutorialMovement(120,120,'4', 0);
     if(!scene.background){
         scene.background = new THREE.Color("#000000");
     }
@@ -52,7 +48,8 @@ function loadKeyList(){
 //takes all of the properties of the things taken above and sets them to the current viewport.
 // All of the properties for each time is found in each iteration of the array. this takes the values
 // in each keyframe and makes the attributes shift from the original values to the ones in the new frame
-function playAnimation(frameValue/*starting position*/) {
+function playAnimation(frameValue) {
+    tutorialMovement(120,120,'8', 0);
     var dontRun = false;
     if (keyFrames.length === 0){
         dontRun = true;

@@ -111,25 +111,25 @@
 
         <div id="std_nav_bar">
              <!---Left Aligned Buttons-->
-            <span class="std_nav_button" id="nav_shapesList" onclick="showMenu('menu_shapesList'); showList()">
-                <img onclick="showMenu('menu_shapesList'); showList()" src="./style/assets/svgs/nav_icons/nav_shapes_icon.svg"
+            <span class="std_nav_button" id="nav_shapesList" onclick="showMenu('menu_shapesList'); tutorialMovement(120,120,'9', 0); showList(); ">
+                <img onclick="showMenu('menu_shapesList'); tutorialMovement(120,120,'9', 0);showList(); " src="./style/assets/svgs/nav_icons/nav_shapes_icon.svg"
                          class="nav_buttonIcon std_icon_normal"/>
 
-                <img onclick="showMenu('menu_shapesList'); showList()" src="./style/assets/svgs/nav_icons/nav_shapes_dark_icon.svg"
+                <img onclick="showMenu('menu_shapesList'); tutorialMovement(120,120,'9', 0);showList(); " src="./style/assets/svgs/nav_icons/nav_shapes_dark_icon.svg"
                          class="nav_buttonIcon std_icon_dark"/>
 
             </span>
-            <span class="std_nav_button" id="nav_newShape" onclick="showMenu('menu_newShapes');
+            <span class="std_nav_button" id="nav_newShape" onclick="showMenu('menu_newShapes'); {tutorialMovement(120,120,'1', 0);}"
                             //if(selectedShape === -1 && selectedLight === -1){ document.getElementById('element_Information').style.display = 'none';
-                                //document.getElementById('currentEditing_type').style.display = 'none';}
+                            //document.getElementById('currentEditing_type').style.display = 'none';}
                             //else{ document.getElementById('element_Information').style.display = 'initial';
-                                //document.getElementById('currentEditing_type').style.display = 'initial';
-                                //if(selectedLight === -1){ toggleEditShapeOrLight(false); setSelectedShape(selectedShape);}
-                                //if(selectedShape === -1){ toggleEditShapeOrLight(true); setSelectedLight(selectedLight);}}">
-                    <img onclick="showMenu('menu_newShapes')"
+                            //document.getElementById('currentEditing_type').style.display = 'initial';
+                            //if(selectedLight === -1){ toggleEditShapeOrLight(false); setSelectedShape(selectedShape);}
+                            //if(selectedShape === -1){ toggleEditShapeOrLight(true); setSelectedLight(selectedLight);}}">
+                    <img onclick="showMenu('menu_newShapes'); {tutorialMovement(120,120,'1', 0);}""
                          src="./style/assets/svgs/nav_icons/nav_animationElements_icon.svg" class="nav_buttonIcon std_icon_normal"/>
 
-                <img onclick="showMenu('menu_newShapes')"
+                <img onclick="showMenu('menu_newShapes'); {tutorialMovement(120,120,'1', 0);}""
                          src="./style/assets/svgs/nav_icons/nav_animationElements_dark_icon.svg" class="nav_buttonIcon std_icon_dark"/>
 
             </span>
@@ -154,7 +154,7 @@
 
             </span>
 
-            <!--Spacer to get rid of big bars-->
+            <!--Spacer to get rid of big bars--> 
 
             <span class="std_nav_spacer" id="nav_spacer_left"></span>
 
@@ -230,10 +230,13 @@
                 <!-- Whole create / edit menu -->
                 <div id="newElement_Create">
                     <h3>
+
                         New Shape
                     </h3>
                     <div class="std_body_list" style="max-width: initial; width: 100%;">
                         <select class="list_body"
+                        onclick="if(this.value==='newShape') {tutorialMovement(120,120,'2', 0);}"
+"
                                 onchange="if(this.value !== 'newShape'){console.log(this.value);newShape(this.value,0,0,0,0,0,0,'#FF0000','#000000');} this.selectedIndex = 0;"
                                 id="newShapes_select">
                             <option value="newShape">Create Shape</option>
@@ -287,8 +290,9 @@
                         <h3>
                             Dimensions
                         </h3>
+                      
                         <div class="std_input_text">
-                            <input type="number" step="any" id="diemsions_x" onchange="resizeShape('x', Number(this.value));"  required>
+                            <input type="number" step="any" id="diemsions_x" onchange="resizeShape('x', Number(this.value));{tutorialMovement(120,120,'3', 0);}"  required>
                             <span class="text_highlight"></span>
                             <span class="text_bar"></span>
                             <label>X</label>
@@ -433,7 +437,7 @@
                         Border Color
                     </div>
 
-                    <div id="element_visibility" class="std_body_button" onclick="toggleVisibility()" style="max-width: initial;">
+                    <div id="element_visibility" class="std_body_button" onclick="toggleVisibility(); tutorialMovement(10,10,'11', 0);" style="max-width: initial;">
                         <span class="button_body" id="element_visibility_button">Hide Element</span>
                         <span class="button_bar"></span>
                     </div>
@@ -805,6 +809,7 @@
                         <li>Corbin E.</li>
                         <li>Daniel F.</li>
                         <li>Jordan M.</li>
+                        
                     </ul>
 
                     <p class="about_developmentTeam">Save Engine</p>
@@ -905,7 +910,7 @@
                 </span>
 
                 <div id="timelineNavbar_buttonContainer">
-                    <span class="timeline_button" id="timeline_addKeyframe" onclick="addFrame(); ">
+                    <span class="timeline_button" id="timeline_addKeyframe" onclick="addFrame()">
                         <img  class="std_icon_normal"
                             src="./style/assets/svgs/timeline_icons/timeline_addKeyframe_icon.svg"
                             />
@@ -913,7 +918,7 @@
                             src="./style/assets/svgs/timeline_icons/timeline_addKeyframe_dark_icon.svg"
                             />
                     </span>
-                    <span class="timeline_button" id="timeline_removeKeyframe" onclick="removeFrame(keyFrames.length-1);">
+                    <span class="timeline_button" id="timeline_removeKeyframe" onclick="removeFrame(keyFrames.length-1)">
                         <img class="std_icon_normal"
                             src="./style/assets/svgs/timeline_icons/timeline_deleteKeyframe_icon.svg"
                             />
@@ -921,7 +926,7 @@
                             src="./style/assets/svgs/timeline_icons/timeline_deleteKeyframe_dark_icon.svg"
                             />
                     </span>
-                    <span class="timeline_button" id="timeline_record" onclick="record()">
+                    <span class="timeline_button" id="timeline_record" onclick="record(); {tutorialMovement(120,120,'6', 0);}">
                         <img  class="std_icon_normal"
                               src="./style/assets/svgs/timeline_icons/timeline_record_icon.svg"
                         />
@@ -937,7 +942,7 @@
                              src="./style/assets/svgs/timeline_icons/timeline_play_dark_icon.svg"
                             />
                     </span>
-                    <span onclick="loop()" class="timeline_button" id="timeline_repeat">
+                    <span onclick="loop();{tutorialMovement(120,120,'7', 0);}"" class="timeline_button" id="timeline_repeat">
                         <img  class="std_icon_normal"
                             src="./style/assets/svgs/timeline_icons/timeline_loop_icon.svg"
                             />
