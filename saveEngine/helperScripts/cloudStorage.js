@@ -95,7 +95,7 @@ class CloudStorage{
     }
 
     getUserData(){
-        let cont = false;
+        // let cont = false;
         // if(!this.userDataRef){
             this.userDataRef = this.firestore.collection("userData").doc(saveEngine.cloudStorage.userUID);
             this.saveDataRef = this.firestore.collection("saveData").doc("data").collection(saveEngine.cloudStorage.userUID);
@@ -104,32 +104,33 @@ class CloudStorage{
             if(data.exists) {
                 saveEngine.cloudStorage.downloadedFileIDs = JSON.parse(data.data().fileIDs);
                 saveEngine.cloudStorage.downloadedSettings = JSON.parse(data.data().settings);
-                cont = true;
+                // cont = true;
                 console.log(JSON.parse(data.data().fileIDs));
             }
             else {
-                cont = false;
+                // cont = false;
             }
         });
-            for(let i =0; i< this.downloadedFileIDs.length; i++){
-                //this might cause issues down the line
-                this.saveDataRef.doc(this.downloadedFileIDs[i]).get().then(function(data){
-                    if(data.exists) {
-                        saveEngine.cloudSaveFriendlyNamesList.push(data.data().name);
-                    }
-                    else{
-                        saveEngine.cloudStorage.downloadedFileIDs.splice(i,1);
-                        i--;
-                    }
-                }).error(function (err) {
-                    //if this throws an error then the doc doesn't exist
+        
+        for(let i =0; i< this.downloadedFileIDs.length; i++){
+            //this might cause issues down the line
+            this.saveDataRef.doc(this.downloadedFileIDs[i]).get().then(function(data){
+                if(data.exists) {
+                    saveEngine.cloudSaveFriendlyNamesList.push(data.data().name);
+                }
+                else{
                     saveEngine.cloudStorage.downloadedFileIDs.splice(i,1);
                     i--;
-                });
+                }
+            }).error(function (err) {
+                //if this throws an error then the doc doesn't exist
+                saveEngine.cloudStorage.downloadedFileIDs.splice(i,1);
+                i--;
+            });
 
-            }
-            saveEngine.cloudSaveIdList = saveEngine.cloudStorage.downloadedFileIDs;
         }
+        saveEngine.cloudSaveIdList = saveEngine.cloudStorage.downloadedFileIDs;
+
     }
 
     createNewUser(email, password){
