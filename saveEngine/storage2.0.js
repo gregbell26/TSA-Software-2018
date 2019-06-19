@@ -356,7 +356,7 @@ class SaveEngine {
         }
     }
 
-    setCloudStorageSelectorElement(domSelect, defaultValue, updateNeeded){
+    setCloudStorageSelectorElement(domSelectElement, defaultValue, updateNeeded){
         if(this.cloudStorageEnable) {
             let saveId;
             let saveFriendlyName;

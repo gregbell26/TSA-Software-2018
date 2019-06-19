@@ -44,7 +44,7 @@ window.onload = function(){
     stylesheetLoader(settings.userInterface.stylesheetPref);
     saveEngine.setLocalStorageSelectorElement("ws_loadMenu", "Load Save", false);
     saveEngine.setLocalStorageSelectorElement("localStorage_saveSelector", "none", true);
-    saveEngine.setCloudStorageSelectorElement("localStorage_saveSelector", "none", true);
+    saveEngine.setCloudStorageSelectorElement("signedIn_loadSelector", "Load Cloud Save", true);
 
     // saveSubSystem.loadSaveNames("ws_loadMenu");
     // saveSubSystem.loadSaveNames("localStorage_saveSelector");

@@ -16,6 +16,7 @@ firebase.initializeApp(firebaseConfig);
 firebase.auth().onAuthStateChanged(function (user) {
     if(saveEngine) {
         if (user) {
+            console.log("Signed In");
             saveEngine.cloudStorage.userSignedIn = true;
             saveEngine.cloudStorage.userName = user.email;
             saveEngine.cloudStorage.userUID = user.uid;
@@ -25,6 +26,7 @@ firebase.auth().onAuthStateChanged(function (user) {
             document.getElementById("account_sub_signedIn").style.display = "inherit";
             document.getElementById("account_sub_signedOut").style.display = "none";
         } else {
+            console.log("Signed Out");
             saveEngine.cloudStorage.userSignedIn = false;
             // saveEngine.cloudStorage.userName = false;
             // saveEngine.cloudStorage.userUID = false;
@@ -103,24 +105,30 @@ class CloudStorage{
                 saveEngine.cloudStorage.downloadedFileIDs = JSON.parse(data.data().fileIDs);
                 saveEngine.cloudStorage.downloadedSettings = JSON.parse(data.data().settings);
                 cont = true;
+                console.log(JSON.parse(data.data().fileIDs));
             }
             else {
                 cont = false;
             }
         });
-        if(cont){
             for(let i =0; i< this.downloadedFileIDs.length; i++){
                 //this might cause issues down the line
-                saveEngine.cloudSaveFriendlyNamesList.push(this.saveDataRef.doc(this.downloadedFileIDs[i]).get().then(function(data){
-                    return data.name
+                this.saveDataRef.doc(this.downloadedFileIDs[i]).get().then(function(data){
+                    if(data.exists) {
+                        saveEngine.cloudSaveFriendlyNamesList.push(data.data().name);
+                    }
+                    else{
+                        saveEngine.cloudStorage.downloadedFileIDs.splice(i,1);
+                        i--;
+                    }
                 }).error(function (err) {
                     //if this throws an error then the doc doesn't exist
                     saveEngine.cloudStorage.downloadedFileIDs.splice(i,1);
                     i--;
-                })
-                );
+                });
+
             }
-            saveEngine.cloudSaveIdList = this.downloadedFileIDs;
+            saveEngine.cloudSaveIdList = saveEngine.cloudStorage.downloadedFileIDs;
         }
     }
 
