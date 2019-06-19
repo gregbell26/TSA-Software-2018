@@ -102,34 +102,34 @@ class CloudStorage{
         // }
         this.userDataRef.get().then(function(data){
             if(data.exists) {
+
                 saveEngine.cloudStorage.downloadedFileIDs = JSON.parse(data.data().fileIDs);
                 saveEngine.cloudStorage.downloadedSettings = JSON.parse(data.data().settings);
                 // cont = true;
                 console.log(JSON.parse(data.data().fileIDs));
+
+                for(let i =0; i< saveEngine.cloudStorage.downloadedFileIDs.length; i++){
+                    //this might cause issues down the line
+                    saveEngine.cloudStorage.saveDataRef.doc(saveEngine.cloudStorage.downloadedFileIDs[i]).get().then(function(data){
+                        if(data.exists) {
+                            saveEngine.cloudSaveFriendlyNamesList.push(data.data().name);
+                        }
+                        else{
+                            saveEngine.cloudStorage.downloadedFileIDs.splice(i,1);
+                            i--;
+                        }
+                    });
+
+                }
+
+                saveEngine.cloudSaveIdList = saveEngine.cloudStorage.downloadedFileIDs;
             }
             else {
                 // cont = false;
             }
         });
-        
-        for(let i =0; i< this.downloadedFileIDs.length; i++){
-            //this might cause issues down the line
-            this.saveDataRef.doc(this.downloadedFileIDs[i]).get().then(function(data){
-                if(data.exists) {
-                    saveEngine.cloudSaveFriendlyNamesList.push(data.data().name);
-                }
-                else{
-                    saveEngine.cloudStorage.downloadedFileIDs.splice(i,1);
-                    i--;
-                }
-            }).error(function (err) {
-                //if this throws an error then the doc doesn't exist
-                saveEngine.cloudStorage.downloadedFileIDs.splice(i,1);
-                i--;
-            });
 
-        }
-        saveEngine.cloudSaveIdList = saveEngine.cloudStorage.downloadedFileIDs;
+
 
     }
 
