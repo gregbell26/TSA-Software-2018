@@ -52,9 +52,6 @@ function removeShape(){
             saveSubSystem.removeText(shapes[selectedShape].geometry.parameters.text);
         }
         // For keyFrames2.0
-        for (let i = 0; i < keyFrames.length; i++){
-            keyFrames[i].removeFrameShape(shapes[selectedShape].uuid);
-        }
         scene.remove(shapes[selectedShape]);
         scene.remove(borders[selectedShape]);
         shapes.splice(selectedShape,1);

@@ -23,7 +23,7 @@ function updateTimeline(){
     getId("timeLine_animationFinish").innerHTML = (getTotalAnimationTime()/1000).toString() + " s";
     var currentX = 5;
     for(var i=0; i<keyFrames.length; i++){
-        timeline.innerHTML += "<div class='timeline_keyframe' onclick='showKeyframePopup(" + i + "); tutorialMovement(10, 10, The duration of the keyframe is in miliseconds. Click on duration and change the duration, 0);' style='left: " + currentX + "px'></div>";
+        timeline.innerHTML += ("<div class='timeline_keyframe' onclick='showKeyframePopup(" + i + "); tutorialMovement(10, 10, 10, 0);' style='left: "+currentX+"px;'></div>");
         // toggleCheck.push(0)
         // durArea.innerHTML += ("<div class='timeline_text' style='position: absolute; left: "+ currentX + "px;'> <div onclick='let id =" + i + "; timesCheck(id, this)'>" + keyFrames[i].duration +"</div> ms</div>");
         currentX+=keyFrames[i].duration/timelineScale;
@@ -130,7 +130,6 @@ function timelineScrub(pageX) {
 }
 
 function changeTimelineDuration(value){
-    tutorialMovement(120,120,"Now scroll to the bottom of the keyframe menu and click Comit Changes.",0);
     while(value > -keyFrames[keyFrames.length-2].duration){
         keyFrames.splice(keyFrames.length-1,1);
         value+=keyFrames[keyFrames.length-1].duration;
