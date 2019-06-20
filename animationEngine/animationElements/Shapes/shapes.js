@@ -63,7 +63,7 @@ function removeShape(){
         selectedShape = -1;
         setSelectedShape(selectedShape);
 
-        for(var i; i < keyFrames.length; i++){
+        for(var i = 0; i < keyFrames.length; i++){
             keyFrames[i].shapes.splice(selectedShape,1);
             keyFrames[i].scales.splice(selectedShape,1);
         }

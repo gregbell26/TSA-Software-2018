@@ -175,7 +175,8 @@ class SaveEngine {
     }
 
     downloadCloudSave(idToDownload){
-        if(this.cloudStorageEnable && saveEngine.cloudStorage.userSignedIn){
+        if (idToDownload !== "default") {
+            if(this.cloudStorageEnable && saveEngine.cloudStorage.userSignedIn){
 //             watch(saveEngine.cloudStorage.downloadData, function(prop, action, newvalue, oldvalue){
 // alert("HOE");
 //                 saveEngine.stagedScene = newvalue.scene;
@@ -204,10 +205,12 @@ class SaveEngine {
 //
 //                 unwatch(saveEngine.cloudStorage.downloadData, this);
 //             });
-            this.cloudStorage.downloadSave(idToDownload);
+                this.cloudStorage.downloadSave(idToDownload);
 
 
+            }
         }
+
 
     }
 
@@ -244,7 +247,7 @@ class SaveEngine {
 
             if(saveEngine.cloudStorage.userSignedIn) {
                 for (let i = 0; i < this.cloudStorageUpdateList[0].length; i++)
-                    this.setCloudStorageSelectorElement(this.cloudStorageUpdateList[0][i], this.cloudSaveFriendlyNamesList[1][i], false);
+                    this.setCloudStorageSelectorElement(this.cloudStorageUpdateList[0][i], this.cloudStorageUpdateList[1][i], false);
             }
 
             return this.loadLocalSave(this.localFileID);
@@ -327,7 +330,7 @@ class SaveEngine {
 
             if(saveEngine.cloudStorage.userSignedIn) {
                 for (let i = 0; i < this.cloudStorageUpdateList[0].length; i++)
-                    this.setCloudStorageSelectorElement(this.cloudStorageUpdateList[0][i], this.cloudSaveFriendlyNamesList[1][i], false);
+                    this.setCloudStorageSelectorElement(this.cloudStorageUpdateList[0][i], this.cloudStorageUpdateList[1][i], false);
             }
         }
     }
@@ -392,7 +395,7 @@ class SaveEngine {
             let selectorElement = document.getElementById(domSelectElement);
             selectorElement.innerHTML = "";
             if (defaultValue !== "none") {
-                selectorElement.innerHTML += " <option> " + defaultValue + "</option>";
+                selectorElement.innerHTML += " <option value='default'> " + defaultValue + "</option>";
             }
             if(saveEngine.cloudStorage.userSignedIn) {
                 for (var i = 0; i < this.cloudSaveIdList.length; i++) {
@@ -413,7 +416,7 @@ class SaveEngine {
             this.setLocalStorageSelectorElement(this.localStorageUpdateList[0][i], this.localStorageUpdateList[1][i], false);
         if(saveEngine.cloudStorage.userSignedIn) {
             for (let i = 0; i < this.cloudStorageUpdateList[0].length; i++)
-                this.setCloudStorageSelectorElement(this.cloudStorageUpdateList[0][i], this.cloudSaveFriendlyNamesList[1][i], false);
+                this.setCloudStorageSelectorElement(this.cloudStorageUpdateList[0][i], this.cloudStorageUpdateList[1][i], false);
         }
     }
 
