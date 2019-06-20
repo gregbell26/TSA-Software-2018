@@ -132,7 +132,7 @@ function borderVisibility(){
 function toggleEditShapeOrLight(isLight){
     showingLight = isLight;
     if(isLight){
-        getId("currentEditing_type").innerHTML = "light";
+        getId("currentEditing_type").innerHTML = "Light";
         getId("currentEditing_dimensions").style.display="none";
         getId("currentEditing_intensity").style.display="inherit";
         getId("currentEditing_rotation").style.display="none";
@@ -160,7 +160,7 @@ function toggleEditShapeOrLight(isLight){
     }
     else{
         //tutorialMovement(100,120,"13", 0);
-        getId("currentEditing_type").innerHTML = "shape";
+        getId("currentEditing_type").innerHTML = "Shape";
         getId("currentEditing_dimensions").style.display="inherit";
         getId("currentEditing_intensity").style.display="none";
         getId("currentEditing_rotation").style.display="inherit";

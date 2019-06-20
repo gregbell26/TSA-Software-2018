@@ -161,7 +161,7 @@ class CloudStorage{
             };
             let newCloudSave = false;
             for(let i = 0; i < this.downloadedFileIDs.length; i++){
-                if(this.downloadedFileIDs[i]===saveID)
+                if(this.downloadedFileIDs[i]!==saveID)
                     newCloudSave = true;
             }
             if(newCloudSave)
@@ -194,8 +194,8 @@ class CloudStorage{
                 saveEngine.cloudStorage.downloadData = data.data();
                 // saveEngine.cloudStorage.downloadComplete = true;
                 alert("HOE");
-                saveEngine.stagedScene = conversion.convertJSONToScene(data.data().scene);
-                saveEngine.stagedKeyframes = data.data().keyframes;
+                saveEngine.stagedScene = conversion.convertJSONToScene(JSON.parse(data.data().scene));
+                saveEngine.stagedKeyframes = JSON.parse(data.data().keyframes);
                 saveEngine.localFileName = data.data().name;
                 saveEngine.localFileID = saveIDtoGet;
 
@@ -211,13 +211,7 @@ class CloudStorage{
                     saveEngine.addNewSave(saveEngine.localFileID);
                 }
 
-                keyFrames = saveEngine.stagedKeyframes;
-                shapes = saveEngine.stagedShapes;
-                scales = saveEngine.stagedScales;
-                lights = saveEngine.stagedLights;
-                borders = saveEngine.stagedBorders;
-                // updateTimeline();
-                scene = saveEngine.stagedScene;
+                scene = saveEngine.loadLocalSave(saveIDtoGet);
             }
             else {
                 console.log("save not found")
