@@ -55,9 +55,9 @@ window.onload = function(){
         actionElement.setAttribute('src', "helperScripts/UI_helper_scripts/mobileStyle.js");
         document.getElementsByTagName("head")[0].removeChild(document.getElementById("newStyleJS"));
         document.getElementsByTagName("head")[0].appendChild(actionElement);
-        document.getElementById("ws_loadMenu").style.top = "150px";
-        document.getElementById("ws_loadMenu").style.left = "calc(50% - 225px)";
-        document.getElementById("ws_loadMenu").style.width = "400px";
+        document.getElementById("ws_body").removeChild(document.getElementById("ws_body").children[2]);
+        document.getElementById("ws_loadMenu").style.top = "0";
+        document.getElementById("ws_loadMenu").style.left = "50%";
 
     }
 
