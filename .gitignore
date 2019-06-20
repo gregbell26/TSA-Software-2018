@@ -367,3 +367,9 @@ fabric.properties
 
 # Android studio 3.1+ serialized cache file
 .idea/caches/build_file_checksums.ser
+cordova/monarchAnimation/hooks/README.md
+cordova/monarchAnimation/package.json
+cordova/monarchAnimation/www/css/index.css
+cordova/monarchAnimation/www/img/logo.png
+cordova/monarchAnimation/www/index.html
+cordova/monarchAnimation/www/js/index.js
