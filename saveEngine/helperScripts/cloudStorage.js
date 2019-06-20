@@ -161,7 +161,7 @@ class CloudStorage{
             };
             let newCloudSave = false;
             for(let i = 0; i < this.downloadedFileIDs.length; i++){
-                if(this.downloadedFileIDs[i]===saveID)
+                if(this.downloadedFileIDs[i]!==saveID)
                     newCloudSave = true;
             }
             if(newCloudSave)
