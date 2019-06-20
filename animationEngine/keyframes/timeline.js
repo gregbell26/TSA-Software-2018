@@ -251,8 +251,7 @@ function setKeyframePopupData(){
 
     keyframePopup.children[3].children[0].value = keyFrames[activeKeyframeIndex].duration;
     keyframePopup.children[4].children[0].value = getTotalAnimationTime().toString();
-
-
+    
 }
 
 function applyChanges(){
