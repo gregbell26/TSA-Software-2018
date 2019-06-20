@@ -252,18 +252,18 @@ function setKeyframePopupData(){
 
     keyframePopup.children[3].children[0].value = keyFrames[activeKeyframeIndex].duration;
     keyframePopup.children[4].children[0].value = getTotalAnimationTime().toString();
-    
+
 }
 
 function applyChanges(){
 
-    keyFrames[activeKeyframeIndex].duration = parseInt(keyframePopup.children[5].children[0].value);
+    keyFrames[activeKeyframeIndex].duration = parseInt(keyframePopup.children[3].children[0].value);
 
     if(!(keyFrames.length >= 1)) {
         changeKeyframePosition(activeKeyframeIndex, (parseInt(keyframePopup.children[1].children[0].value) - 1));
 
-        moveKeyframeto(activeKeyframeIndex, parseInt(keyframePopup.children[3].children[0].value));
-        changeTimelineDuration(parseInt(keyframePopup.children[6].children[0].value));
+        moveKeyframeto(activeKeyframeIndex, parseInt(keyframePopup.children[2].children[0].value));
+        changeTimelineDuration(parseInt(keyframePopup.children[4].children[0].value));
     }
     updateTimeline();
 
@@ -276,10 +276,17 @@ function hideKeyframePopup(){
     keyframePopup.children[0].innerHTML = "";
 
     keyframePopup.children[1].children[0].value = "";
-    keyframePopup.children[3].children[0].value = "";
+    // keyframePopup.children[3].children[0].value = "";
+    //
+    //
+    // keyframePopup.children[5].children[0].value = "";
+    // keyframePopup.children[6].children[0].value = "";
+
+    keyframePopup.children[2].children[0].value = getAnimationTimeUpToIndex(activeKeyframeIndex).toString();
 
 
-    keyframePopup.children[5].children[0].value = "";
-    keyframePopup.children[6].children[0].value = "";
+    keyframePopup.children[3].children[0].value = keyFrames[activeKeyframeIndex].duration;
+    keyframePopup.children[4].children[0].value = getTotalAnimationTime().toString();
+
 
 }
