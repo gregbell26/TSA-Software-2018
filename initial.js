@@ -62,7 +62,7 @@ window.onload = function(){
     }
 
 
-    saveEngine = new SaveEngine(true, false);
+    saveEngine = new SaveEngine(true, true);
     stylesheetLoader(settings.userInterface.stylesheetPref);
     saveEngine.setLocalStorageSelectorElement("ws_loadMenu", "Load Save", false);
     saveEngine.setLocalStorageSelectorElement("localStorage_saveSelector", "none", true);
