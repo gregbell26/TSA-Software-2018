@@ -10,7 +10,7 @@
 //control variables
 let init = false;
 let saveEngine;
-
+let mobile;
 let animationRunning = false;
 let loopAnimation = false;
 let animationTimer;
@@ -40,6 +40,12 @@ var borders = [];
 //This will set the boxes to what they need to be
 window.onload = function(){
     //saveSubSystem.loadSettings();
+    //mobile dection
+    if(mobile){
+
+    }
+
+
     saveEngine = new SaveEngine(true, true);
     stylesheetLoader(settings.userInterface.stylesheetPref);
     saveEngine.setLocalStorageSelectorElement("ws_loadMenu", "Load Save", false);
@@ -189,6 +195,7 @@ function start(){
     getId("localStorage_saveSelector").selectedIndex = saveEngine.localFileIndex;
 
     init = true;
+    saveEngine.forceLoadSelectUpdate();
     onWindowResize();
 }
 

@@ -152,7 +152,7 @@ class SaveEngine {
                 this.stagedScales = brokenOutScene[1];
                 this.stagedBorders = brokenOutScene[2];
                 this.stagedLights = brokenOutScene[3];
-                this.stagedScene = brokenOutScene[4];
+            this.stagedScene = brokenOutScene[4];
                 if(!this.stagedScene.background)
                     this.stagedScene.background  = new THREE.Color("#000000");
             // }
@@ -164,6 +164,7 @@ class SaveEngine {
             scales = this.stagedScales;
             lights = this.stagedLights;
             borders = this.stagedBorders;
+            updateTimeline();
             return this.stagedScene;
 
 
@@ -172,13 +173,40 @@ class SaveEngine {
     }
 
     downloadCloudSave(idToDownload){
-        if(this.cloudStorageEnable){
-            let downloadedData = this.cloudStorage.downloadSave(idToDownload);
-            this.stagedScene = downloadedData.scene;
-            this.stagedKeyframes = downloadedData.keyframes;
-            this.localFileName = downloadedData.name;
-            this.localFileID = idToDownload;
+        if(this.cloudStorageEnable && saveEngine.cloudStorage.userSignedIn){
+//             watch(saveEngine.cloudStorage.downloadData, function(prop, action, newvalue, oldvalue){
+// alert("HOE");
+//                 saveEngine.stagedScene = newvalue.scene;
+//                 saveEngine.stagedKeyframes = newvalue.keyframes;
+//                 saveEngine.localFileName = newvalue.name;
+//                 saveEngine.localFileID = idToDownload;
+//                 saveEngine.localStore.saveToStorage(saveEngine.localFileID, saveEngine.localFileName);
+//                 saveEngine.localStore.saveToStorage(saveEngine.getKeyName("scene"), saveEngine.stagedScene);
+//                 saveEngine.localStore.saveToStorage(saveEngine.getKeyName("keyframes"), saveEngine.stagedKeyframes);
+//                 let exists = false;
+//                 for(let i = 0; i < saveEngine.localSaveIdList.length; i++){
+//                     if(saveEngine.localSaveIdList[i]===idToDownload)
+//                         exists = true;
+//                 }
+//                 if(!exists) {
+//                     saveEngine.addNewSave(saveEngine.localFileID);
+//                 }
+//
+//                 keyFrames = saveEngine.stagedKeyframes;
+//                 shapes = saveEngine.stagedShapes;
+//                 scales = saveEngine.stagedScales;
+//                 lights = saveEngine.stagedLights;
+//                 borders = saveEngine.stagedBorders;
+//                 updateTimeline();
+//                 scene = saveEngine.stagedScene;
+//
+//                 unwatch(saveEngine.cloudStorage.downloadData, this);
+//             });
+            this.cloudStorage.downloadSave(idToDownload);
+
+
         }
+
     }
 
 
