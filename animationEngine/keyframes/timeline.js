@@ -132,7 +132,6 @@ function timelineScrub(pageX) {
 }
 
 function changeTimelineDuration(value){
-    tutorialMovement(120,120,"Now scroll to the bottom of the keyframe menu and click Comit Changes.",0);
     while(value > -keyFrames[keyFrames.length-2].duration){
         keyFrames.splice(keyFrames.length-1,1);
         value+=keyFrames[keyFrames.length-1].duration;
