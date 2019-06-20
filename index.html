@@ -889,7 +889,7 @@
                     <span class="button_bar"></span>
                 </div>
                 <div class="std_body_button"
-                     onclick="applyChanges(); hideKeyframePopup();">
+                     onclick="applyChanges(); tutorialMovement(120,120, 'You can delete the keyframe in that popup or delete the last keyframe by clicking the delete keyframe button' ,0); hideKeyframePopup();">
                     <span class="button_body">Commit Changes</span>
                     <span class="button_bar"></span>
                 </div>
@@ -927,7 +927,7 @@
                             src="./style/assets/svgs/timeline_icons/timeline_deleteKeyframe_dark_icon.svg"
                             />
                     </span>
-                    <span class="timeline_button" id="timeline_record" onclick="record(); tutorialMovement(120,120,'6', 0);">
+                    <span class="timeline_button" id="timeline_record" onclick="record(); tutorialMovement(120,120,'6', 0)">
                         <img  class="std_icon_normal"
                               src="./style/assets/svgs/timeline_icons/timeline_record_icon.svg"
                         />
@@ -943,9 +943,9 @@
                              src="./style/assets/svgs/timeline_icons/timeline_play_dark_icon.svg"
                             />
                     </span>
-                    <span onclick="loop(); tutorialMovement(120,120,'Now if you want to delete a keyframe, you can do so. Click Continue and follow the arrow to delete the last keyframe', 0);" class="timeline_button" id="timeline_repeat">
+                    <span onclick="loop(); tutorialMovement(120,120,'Now if you want to delete a keyframe, you can do so. Click Continue and follow the arrow to delete the last keyframe', 0)" class="timeline_button" id="timeline_repeat">
                         <img  class="std_icon_normal"
-                            src="./style/assets/svgs/timeline_icons/timeline_loop_icon.svg".
+                            src="./style/assets/svgs/timeline_icons/timeline_loop_icon.svg"
                             />
                         <img  class="std_icon_dark"
                             src="./style/assets/svgs/timeline_icons/timeline_loop_dark_icon.svg"
