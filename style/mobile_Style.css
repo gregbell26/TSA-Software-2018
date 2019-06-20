@@ -208,8 +208,8 @@ REMOVED
         opacity: 0.0;
     }
     to {
-        height: 60%;
-        width: 40%;
+        height: calc(100% - 200px);
+        width: calc(100% - 200px);
         opacity: 1.0;
     }
 }
@@ -1270,11 +1270,11 @@ input[type="range"]::-webkit-slider-thumb:hover, input[type="range"]::-webkit-sl
     /*width: 35%;*/
     height: 0;
     width: 0;
-    max-height: 538px;
-    max-width: 437px;
-    min-height:  538px;
-    top: 15%;
-    left: 30%;
+    /*max-height: 538px;*/
+    /*max-width: 437px;*/
+    /*min-height:  538px;*/
+    top: 70px;
+    left: 70px;
     color: var(--std_color_text_primary);
     background-color: var(--std_color_primary);
     border: 2px solid var(--std_color_secondary);
