@@ -76,30 +76,8 @@ function changeZoomSensitivity(change) {//Changes the Zoom sensitivity to change
     settings.camera.zoomAmount = 1 + change/2;
 }
 
-$(document).on('mousedown',function(e){
-    if(inAnimationWindow==1) {
-        xStart = e.pageX;
-        yStart = e.pageY;
-        mouseDown = true;
-    }
-    else if(e.pageY >= window.innerHeight-100 && e.pageY<=window.innerHeight-25){
-        // console.log("Mouse scrub enabled");
-        mouseOnTimeline = true;
-        timelineScrub(e.pageX);
-    }
-});
-$(document).on('touchstart',function(e){
-    if(inAnimationWindow==1) {
-        xStart = e.pageX;
-        yStart = e.pageY;
-        mouseDown = true;
-    }
-    else if(e.pageY >= window.innerHeight-100 && e.pageY<=window.innerHeight-25){
-        // console.log("Mouse scrub enabled");
-        mouseOnTimeline = true;
-        timelineScrub(e.pageX);
-    }
-});
+
+
 // //triggers on the event that the mouse is down on the document. it creates a custom function that checks if it is in the animation window and creates the mouse handler.
 //
 $(document).on('change',function(e){
@@ -112,14 +90,40 @@ $(document).on('change',function(e){
 });
 var mouseOnTimeline = false;
 //
+$(document).on('mousedown',function(e){
+    if(inAnimationWindow==1) {
+        xStart = e.pageX;
+        yStart = e.pageY;
+        mouseDown = true;
+    }
+    else if(e.pageY >= window.innerHeight-100 && e.pageY<=window.innerHeight-25){
+        // console.log("Mouse scrub enabled");
+        mouseOnTimeline = true;
+        timelineScrub(e.pageX);
+    }
+});
 $(document).on('mouseup',function(e){
     if(e.pageX>=300 && e.pageY >=50 && e.pageY<window.innerHeight-70) {
         mouseDown = false;
     }
     mouseOnTimeline = false;
 });
+$(document).on('touchstart',function(e){
+    console.log("touchstart")
+    if(inAnimationWindow==1) {
+        xStart = e.pageX;
+        yStart = e.pageY;
+        mouseDown = true;
+        console.log(xStart + " , " + yStart);
+    }
+    else if(e.pageY >= window.innerHeight-100 && e.pageY<=window.innerHeight-25){
+        /console.log("Mouse scrub enabled");
+        mouseOnTimeline = true;
+        timelineScrub(e.pageX);
+    }
+});
 $(document).on('touchend',function(e){
-    if(e.pageX>=300 && e.pageY >=50 && e.pageY<window.innerHeight-70) {
+    if(e.pageY >=50 && e.pageY<window.innerHeight-70) {
         mouseDown = false;
     }
     mouseOnTimeline = false;
@@ -145,7 +149,7 @@ $(document).ready(function(){
         else{
             inAnimationWindow = 0;
         }
-        if(mouseDown && inAnimationWindow==1 && !settingsOpen /*&& !(animationRunning && lockCamera)*/){
+        if(mouseDown && inAnimationWindow==1 && !settingsOpen && !(animationRunning && lockCamera)){
 
             var MvX = settings.camera.mouseSensitivity*(e.pageX-xStart)/100;
             var MvY = settings.camera.mouseSensitivity*(e.pageY-yStart)/100;
@@ -165,20 +169,21 @@ $(document).ready(function(){
 
 $(document).ready(function(){
     $(document).on('touchmove', function(e){
-        if(e.pageX>=300 && e.pageY >=50 && e.pageY<window.innerHeight-150) {
+        console.log("touchmove");
+        if(e.pageY >= 50 && e.pageY<window.innerHeight-150 && (activeMenu === init)) {
             inAnimationWindow = 1;
         }
         else{
             inAnimationWindow = 0;
         }
-        if(mouseDown && inAnimationWindow==1 && !settingsOpen /*&& !(animationRunning && lockCamera)*/){
+        if((activeMenu === init) && inAnimationWindow==1 && !settingsOpen && !(animationRunning && lockCamera)){
 
             var MvX = settings.camera.mouseSensitivity*(e.pageX-xStart)/100;
             var MvY = settings.camera.mouseSensitivity*(e.pageY-yStart)/100;
             rotateCamera(MvX,MvY);
 
 
-            if(e.pageX>=300 && e.pageY >=50 && e.pageY<window.innerHeight-70) {
+            if(e.pageY >=50 && e.pageY<window.innerHeight-70) {
                 xStart = e.pageX;
                 yStart = e.pageY;
             }
