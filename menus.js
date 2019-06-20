@@ -57,7 +57,7 @@ function setSelectedShape(num){
 function setSelectedLight(num) {
     selectedLight = num;
     if(num === -1){
-        //howMenu("menu_newShapes");
+        //showMenu("menu_newShapes");
         document.getElementById("element_Information").style.display = 'none';
         document.getElementById('currentEditing_type').style.display = 'none';
         return;
@@ -114,15 +114,8 @@ function hideAll(){
 function shapeMenu(){
     // hideAll();
     document.getElementById("shapeMenu").style.display="inherit";
-    // if(usingTutorial){
-    //     if(confirm("Now create a shape")){
-    //        // animateArrow(15, 75, 120, 120);
-    //     }
-    //     else{
-    //         usingTutorial = false;
-    //     }
-    // }
-    tutorialMovement(15, 75, "Now create a shape", false);
+
+    //tutorialMovement(15, 75, "Now create a shape", false);
 }
 
 function borderVisibility(){
@@ -158,9 +151,6 @@ function toggleEditShapeOrLight(isLight){
             getId("currentEditing_positions").style.display="inherit";
             getId("element_border_color").style.display="none";
             getId("currentEditing_spotlight_parameters").style.display="inherit";
-            if (lights[selectedLight].target.type === "Object3D"){
-                getId("default_target_position").style.display = "inherit";
-            }
             setTargetList();
         }else {
             getId("currentEditing_positions").style.display="inherit";
@@ -169,7 +159,7 @@ function toggleEditShapeOrLight(isLight){
         }
     }
     else{
-        tutorialMovement(100,120,"13", 0);
+        //tutorialMovement(100,120,"13", 0);
         getId("currentEditing_type").innerHTML = "shape";
         getId("currentEditing_dimensions").style.display="inherit";
         getId("currentEditing_intensity").style.display="none";

@@ -77,7 +77,7 @@ function keyName(name,frame){
 }
 
 function removeFrame(frame){
-    tutorialMovement(120,120,'5', 0);
+    tutorialMovement(120,120,'You have finished the tutorial! You can view a list of our advanced options in settings.', 0);
     keyFrames.splice(frame,1);
     updateTimeline();
 }

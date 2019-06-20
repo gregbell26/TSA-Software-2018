@@ -34,13 +34,12 @@ var activeMenu ="init";//init value
 function showMenu(menuToShow){
   
     //getId("std_menu_container").style.display = "inherit";
-    if(menuToShow=='menu_newShapes'&& selectedShape!=-1 && showingLight){
-        tutorialMovement(10,10,"10", 0);
+    if(menuToShow=='menu_newShapes' && selectedShape!=-1 && showingLight){
+        tutorialMovement(10,10,"This is the light editor. You can change the intensity and position of most lights. Some lights have specific settings. Follow the arrow to see a list of all assets in the scene.", 0);
     }
 
-    if(menuToShow=='menu_newShapes'&& selectedShape!=-1 && !showingLight){
-        alert("Menu Shapes Called");
-        tutorialMovement(10,10,"11", false);
+    if(menuToShow=='menu_newShapes' && selectedShape!=-1 && !showingLight){
+        tutorialMovement(10,10,"Now you can make an animation. Click this button to add a new keyframe. Press this, change some attributes of the shape, and press it again to see it animate.", false);
     }
     if(activeMenu !== "init") {
         getId(activeMenu).classList.remove("menu_show");
@@ -259,7 +258,7 @@ function UISpacer(){
     getId("nav_spacer_left").style.bottom = (UIDiemsions.std_navBar.defaultPadding).toString()+UIDiemsions.std_navBar.defaultUnit;
     getId("nav_spacer_left").style.left = (UIDiemsions.std_navBar.spacer_placement[0]).toString();
 
-
+    
     getId("nav_spacer_right").style.width = (UIDiemsions.std_navBar.rightSpacer_width).toString() +UIDiemsions.std_navBar.defaultUnit;
     getId("nav_spacer_right").style.top = (UIDiemsions.std_navBar.defaultPadding).toString()+UIDiemsions.std_navBar.defaultUnit;
     getId("nav_spacer_right").style.bottom = (UIDiemsions.std_navBar.defaultPadding).toString()+UIDiemsions.std_navBar.defaultUnit;
