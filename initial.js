@@ -10,7 +10,7 @@
 //control variables
 let init = false;
 let saveEngine;
-
+let mobile;
 let animationRunning = false;
 let loopAnimation = false;
 let animationTimer;
@@ -40,7 +40,29 @@ var borders = [];
 //This will set the boxes to what they need to be
 window.onload = function(){
     //saveSubSystem.loadSettings();
-    saveEngine = new SaveEngine(true, true);
+    //mobile dection
+    if(mobile){
+        let actionElement;
+        actionElement = document.createElement('link');
+        actionElement.setAttribute("rel", "stylesheet");
+        actionElement.setAttribute("type", "text/css");
+        actionElement.setAttribute("href", "style/mobile_Style.css");
+        document.getElementsByTagName("head")[0].removeChild(document.getElementById("defaultStyle"));
+        document.getElementsByTagName("head")[0].appendChild(actionElement);
+        document.getElementById("std_nav_bar").removeChild(document.getElementById("std_statusBox"));
+        document.getElementById("std_nav_bar").removeChild(document.getElementById("nav_spacer_left"));
+        actionElement = document.createElement('script');
+        actionElement.setAttribute('src', "helperScripts/UI_helper_scripts/mobileStyle.js");
+        document.getElementsByTagName("head")[0].removeChild(document.getElementById("newStyleJS"));
+        document.getElementsByTagName("head")[0].appendChild(actionElement);
+        document.getElementById("ws_loadMenu").style.top = "150px";
+        document.getElementById("ws_loadMenu").style.left = "calc(50% - 225px)";
+        document.getElementById("ws_loadMenu").style.width = "400px";
+
+    }
+
+
+    saveEngine = new SaveEngine(true, false);
     stylesheetLoader(settings.userInterface.stylesheetPref);
     saveEngine.setLocalStorageSelectorElement("ws_loadMenu", "Load Save", false);
     saveEngine.setLocalStorageSelectorElement("localStorage_saveSelector", "none", true);
@@ -189,6 +211,7 @@ function start(){
     getId("localStorage_saveSelector").selectedIndex = saveEngine.localFileIndex;
 
     init = true;
+    saveEngine.forceLoadSelectUpdate();
     onWindowResize();
 }
 

@@ -11,7 +11,6 @@
 * */
 
 var timelineScale = 0;
-let toggleCheck = [];
 function updateTimeline(){
     var duration = getTotalAnimationTime();
 
@@ -25,7 +24,7 @@ function updateTimeline(){
     var currentX = 5;
     for(var i=0; i<keyFrames.length; i++){
         timeline.innerHTML += ("<div class='timeline_keyframe' onclick='showKeyframePopup(" + i + "); tutorialMovement(10, 10, 10, 0);' style='left: "+currentX+"px;'></div>");
-        toggleCheck.push(0)
+        // toggleCheck.push(0)
         // durArea.innerHTML += ("<div class='timeline_text' style='position: absolute; left: "+ currentX + "px;'> <div onclick='let id =" + i + "; timesCheck(id, this)'>" + keyFrames[i].duration +"</div> ms</div>");
         currentX+=keyFrames[i].duration/timelineScale;
     }
@@ -240,11 +239,18 @@ function setKeyframePopupData(){
     keyframePopup.children[0].innerHTML = "Editing Keyframe " + (activeKeyframeIndex+1).toString();
 
     keyframePopup.children[1].children[0].value = (activeKeyframeIndex+1).toString();
-    keyframePopup.children[3].children[0].value = getAnimationTimeUpToIndex(activeKeyframeIndex).toString();
+    // keyframePopup.children[3].children[0].value = getAnimationTimeUpToIndex(activeKeyframeIndex).toString();
+    //
+    //
+    // keyframePopup.children[5].children[0].value = keyFrames[activeKeyframeIndex].duration;
+    // keyframePopup.children[6].children[0].value = getTotalAnimationTime().toString();
+
+    keyframePopup.children[2].children[0].value = getAnimationTimeUpToIndex(activeKeyframeIndex).toString();
 
 
-    keyframePopup.children[5].children[0].value = keyFrames[activeKeyframeIndex].duration;
-    keyframePopup.children[6].children[0].value = getTotalAnimationTime().toString();
+    keyframePopup.children[3].children[0].value = keyFrames[activeKeyframeIndex].duration;
+    keyframePopup.children[4].children[0].value = getTotalAnimationTime().toString();
+
 
 }
 

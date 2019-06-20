@@ -123,11 +123,11 @@ class CloudStorage{
                 }
 
                 saveEngine.cloudSaveIdList = saveEngine.cloudStorage.downloadedFileIDs;
+
             }
             else {
                 // cont = false;
             }
-            saveEngine.forceLoadSelectUpdate();
         });
 
 
@@ -182,15 +182,47 @@ class CloudStorage{
         }
     }
 
-    downloadData;
+    downloadData = {
+        name: "default",
+        keyframes: "default",
+        scene: "default",
+    };
+    // downloadComplete = false;
     downloadSave(saveIDtoGet){
         this.saveDataRef.doc(saveIDtoGet).get().then(function (data) {
             if(data.exists) {
-                saveEngine.cloudStorage = data.data();
-                //console.log(gotten)
+                saveEngine.cloudStorage.downloadData = data.data();
+                // saveEngine.cloudStorage.downloadComplete = true;
+                alert("HOE");
+                saveEngine.stagedScene = conversion.convertJSONToScene(data.data().scene);
+                saveEngine.stagedKeyframes = data.data().keyframes;
+                saveEngine.localFileName = data.data().name;
+                saveEngine.localFileID = saveIDtoGet;
+
+                saveEngine.localStore.saveToStorage(saveEngine.localFileID, saveEngine.localFileName);
+                saveEngine.localStore.saveToStorage(saveEngine.getKeyName("scene"), saveEngine.stagedScene);
+                saveEngine.localStore.saveToStorage(saveEngine.getKeyName("keyframes"), saveEngine.stagedKeyframes);
+                let exists = false;
+                for(let i = 0; i < saveEngine.localSaveIdList.length; i++){
+                    if(saveEngine.localSaveIdList[i]===saveIDtoGet)
+                        exists = true;
+                }
+                if(!exists) {
+                    saveEngine.addNewSave(saveEngine.localFileID);
+                }
+
+                keyFrames = saveEngine.stagedKeyframes;
+                shapes = saveEngine.stagedShapes;
+                scales = saveEngine.stagedScales;
+                lights = saveEngine.stagedLights;
+                borders = saveEngine.stagedBorders;
+                // updateTimeline();
+                scene = saveEngine.stagedScene;
+            }
+            else {
+                console.log("save not found")
             }
         });
-        return this.downloadData;
     }
 
     deleteCloudSave(saveIDtoDelete){
