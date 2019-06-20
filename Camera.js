@@ -117,7 +117,7 @@ $(document).on('touchstart',function(e){
         console.log(xStart + " , " + yStart);
     }
     else if(e.pageY >= window.innerHeight-100 && e.pageY<=window.innerHeight-25){
-        /console.log("Mouse scrub enabled");
+        //console.log("Mouse scrub enabled");
         mouseOnTimeline = true;
         timelineScrub(e.pageX);
     }
