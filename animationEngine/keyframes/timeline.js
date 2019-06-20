@@ -13,7 +13,7 @@
 var timelineScale = 0;
 function updateTimeline(){
     var duration = getTotalAnimationTime();
-
+    let tutorialText = "The duration of the keyframe is in milliseconds. Click on duration and change the duration";
     timelineScale = duration/(window.innerWidth-50);
 
     var timeline = getId("std_timeline").children.item(1);
@@ -22,9 +22,11 @@ function updateTimeline(){
     // durArea.innerHTML = "";
     getId("timeLine_animationFinish").innerHTML = (getTotalAnimationTime()/1000).toString() + " s";
     var currentX = 5;
+    //onclick='showKeyframePopup(" + i + "); tutorialMovement(10, 10," + tutorialText.toString() + ", 0);'
     for(var i=0; i<keyFrames.length; i++){
-        timeline.innerHTML += "<div class='timeline_keyframe' onclick='showKeyframePopup(" + i + "); tutorialMovement(10, 10, The duration of the keyframe is in miliseconds. Click on duration and change the duration, 0);' style='left: " + currentX + "px'></div>";
+        timeline.innerHTML += "<div class='timeline_keyframe' style='left: " + currentX + "px'></div>";
         // toggleCheck.push(0)
+        timeline.children[i+1].setAttribute('onclick', "showKeyframePopup("+i+"); tutorialMovement(10,10,\"The duration of the keyframe is in milliseconds. Click on duration and change the duration\", 0);")
         // durArea.innerHTML += ("<div class='timeline_text' style='position: absolute; left: "+ currentX + "px;'> <div onclick='let id =" + i + "; timesCheck(id, this)'>" + keyFrames[i].duration +"</div> ms</div>");
         currentX+=keyFrames[i].duration/timelineScale;
     }

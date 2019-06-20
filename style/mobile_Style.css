@@ -208,7 +208,7 @@ REMOVED
         opacity: 0.0;
     }
     to {
-        height: calc(100% - 200px);
+        height: calc(100% - 300px);
         width: calc(100% - 200px);
         opacity: 1.0;
     }
