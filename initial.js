@@ -169,11 +169,21 @@ var lastTickAnimated = 0;
 
 function start(){
     camera = new THREE.PerspectiveCamera(75, UIDiemsions.std_body.window_width/UIDiemsions.std_body.window_height, 0.1, 1000);
-    renderer = new THREE.WebGLRenderer({logarithmicDepthBuffer: true, antialias: true });
-    renderer.setSize(UIDiemsions.std_body.renderer_width, UIDiemsions.std_body.renderer_height);
-    renderer.shadowMap.enabled = true;
-    renderer.shadowMapSoft = true;
-    renderer.shadowMap.type = THREE.PCFSoftShadowMap;
+    if(mobile){
+        renderer = new THREE.WebGLRenderer({logarithmicDepthBuffer: true});
+        renderer.setSize(UIDiemsions.std_body.renderer_width, UIDiemsions.std_body.renderer_height);
+        renderer.shadowMap.enabled = false;
+        // renderer.shadowMapSoft = true;
+        // renderer.shadowMap.type = THREE.PCFSoftShadowMap;
+    }
+    else{
+        renderer = new THREE.WebGLRenderer({logarithmicDepthBuffer: true, antialias: true });
+        renderer.setSize(UIDiemsions.std_body.renderer_width, UIDiemsions.std_body.renderer_height);
+        renderer.shadowMap.enabled = true;
+        renderer.shadowMapSoft = true;
+        renderer.shadowMap.type = THREE.PCFSoftShadowMap;
+    }
+
     document.getElementById("animationEngine_renderArea").appendChild(renderer.domElement);
     let selectedSaveId = document.getElementById("ws_loadMenu").options[document.getElementById("ws_loadMenu").selectedIndex].value;
     //Making sure that everything is empty
