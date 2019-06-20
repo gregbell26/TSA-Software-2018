@@ -152,6 +152,7 @@ class SaveEngine {
                 this.stagedScales = brokenOutScene[1];
                 this.stagedBorders = brokenOutScene[2];
                 this.stagedLights = brokenOutScene[3];
+                this.stagedDefaultTargets = brokenOutScene[5];
             this.stagedScene = brokenOutScene[4];
                 if(!this.stagedScene.background)
                     this.stagedScene.background  = new THREE.Color("#000000");
@@ -164,6 +165,7 @@ class SaveEngine {
             scales = this.stagedScales;
             lights = this.stagedLights;
             borders = this.stagedBorders;
+            defaultTargets = this.stagedDefaultTargets;
             updateTimeline();
             return this.stagedScene;
 

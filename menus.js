@@ -77,9 +77,11 @@ function setSelectedLight(num) {
     document.getElementById("intensity_slider").value = lights[selectedLight].intensity * 100;
     document.getElementById("intensity_value").innerHTML = lights[selectedLight].intensity * 100 + "";
     document.getElementById("light_castShadow").checked = lights[selectedLight].castShadow;
-    document.getElementById("target_x").value = defaultTargets[selectedLight].position.x;
-    document.getElementById("target_y").value = defaultTargets[selectedLight].position.y;
-    document.getElementById("target_z").value = defaultTargets[selectedLight].position.z;
+    if(lights[selectedLight].name === "Spot Light" && lights[selectedLight].target.isObject3D()) {
+        document.getElementById("target_x").value = lights[selectedLight].target.position.x;
+        document.getElementById("target_y").value = lights[selectedLight].target.position.y;
+        document.getElementById("target_z").value = lights[selectedLight].target.position.z;
+    }
     if (lights[selectedLight].visible){
         getId("element_visibility_button").innerHTML = "<span class='button_body' id='element_visibility_button'>Hide Element</span>"
     } else {

@@ -174,7 +174,6 @@ function stylesheetLoader(stylesheetName){
 }
 
 
-
 /**
  * This function will space the elements so they look nice
  * This function is about halfway clean. I can prolly do some more cleaning its just that I, well Dont want to

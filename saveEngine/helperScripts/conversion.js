@@ -89,7 +89,7 @@ class conversion {
 
 
     static breakoutScene(stagedScene){
-        let extractedArray = [[],[],[], [], Object];
+        let extractedArray = [[],[],[], [], Object, []];
         if(stagedScene.children !== undefined) {
             for (let i = 0; i < stagedScene.children.length; i++) {
                 if (this.isShape(stagedScene.children[i])) {

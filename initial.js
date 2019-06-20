@@ -42,11 +42,24 @@ window.onload = function(){
     //saveSubSystem.loadSettings();
     //mobile dection
     if(mobile){
+        let actionElement;
+        actionElement = document.createElement('link');
+        actionElement.setAttribute("rel", "stylesheet");
+        actionElement.setAttribute("type", "text/css");
+        actionElement.setAttribute("href", "style/mobile_Style.css");
+        document.getElementsByTagName("head")[0].removeChild(document.getElementById("defaultStyle"));
+        document.getElementsByTagName("head")[0].appendChild(actionElement);
+        actionElement = document.createElement('script');
+        actionElement.setAttribute('src', "helperScripts/UI_helper_scripts/mobileStyle.js");
+        document.getElementsByTagName("head")[0].removeChild(document.getElementById("newStyleJS"));
+        document.getElementsByTagName("head")[0].appendChild(actionElement);
+
+
 
     }
 
 
-    saveEngine = new SaveEngine(true, true);
+    saveEngine = new SaveEngine(true, false);
     stylesheetLoader(settings.userInterface.stylesheetPref);
     saveEngine.setLocalStorageSelectorElement("ws_loadMenu", "Load Save", false);
     saveEngine.setLocalStorageSelectorElement("localStorage_saveSelector", "none", true);
