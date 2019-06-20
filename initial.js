@@ -49,12 +49,15 @@ window.onload = function(){
         actionElement.setAttribute("href", "style/mobile_Style.css");
         document.getElementsByTagName("head")[0].removeChild(document.getElementById("defaultStyle"));
         document.getElementsByTagName("head")[0].appendChild(actionElement);
+        document.getElementById("std_nav_bar").removeChild(document.getElementById("std_statusBox"));
+        document.getElementById("std_nav_bar").removeChild(document.getElementById("nav_spacer_left"));
         actionElement = document.createElement('script');
         actionElement.setAttribute('src', "helperScripts/UI_helper_scripts/mobileStyle.js");
         document.getElementsByTagName("head")[0].removeChild(document.getElementById("newStyleJS"));
         document.getElementsByTagName("head")[0].appendChild(actionElement);
-
-
+        document.getElementById("ws_loadMenu").style.top = "150px";
+        document.getElementById("ws_loadMenu").style.left = "calc(50% - 225px)";
+        document.getElementById("ws_loadMenu").style.width = "400px";
 
     }
 

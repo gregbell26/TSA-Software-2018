@@ -33,31 +33,40 @@ async function initMainUI(){
 * Shows and hides menus in a more elegant fashion
 * */
 var activeMenu ="init";//init value
+var std_menu = document.getElementById("std_menu_container");
 function showMenu(menuToShow){
-    //
-    // //getId("std_menu_container").style.display = "inherit";
-    // if(menuToShow=='menu_newShapes'&& selectedShape!=-1 && showingLight){
-    //     tutorialMovement(10,10,"10", 0);
-    // }
-    //
-    // if(menuToShow=='menu_newShapes'&& selectedShape!=-1 && !showingLight){
-    //     alert("Menu Shapes Called");
-    //     tutorialMovement(10,10,"11", false);
-    // }
-    if(activeMenu !== "init") {
+    std_menu = document.getElementById("std_menu_container");
+console.log(menuToShow +" " +activeMenu);
+    if(menuToShow === activeMenu){
         getId(activeMenu).classList.remove("menu_show");
         getId(activeMenu).classList.add("menu_hidden");
+        std_menu.style.display = "none";
+        activeMenu = "init";
+
+    }
+    else {
+        if (activeMenu !== "init") {
+            console.log("not init")
+            getId(activeMenu).classList.remove("menu_show");
+            getId(activeMenu).classList.add("menu_hidden");
+            getId(menuToShow).classList.remove("menu_hidden");
+            getId(menuToShow).classList.add("menu_show");
+            activeMenu = menuToShow;
+
+        } else {
+            console.log("is init")
+            std_menu.style.display = "block";
+            getId(menuToShow).classList.remove("menu_hidden");
+            getId(menuToShow).classList.add("menu_show");
+            activeMenu = menuToShow;
+
+        }
     }
 
-    // if(activeMenu ==="menu_newShapes"){
-    //     getId("element_Information").style.display = 'none';
-    //     getId('currentEditing_type').style.display = 'none';
-    // }
 
-    getId(menuToShow).classList.remove("menu_hidden");
-    getId(menuToShow).classList.add("menu_show");
 
-    activeMenu = menuToShow;
+
+
 }
 
 function timelineButtonToggle(buttonToToggle){
@@ -183,7 +192,7 @@ function UISpacer(){
     //functions vars
     var nextLeftElementLoc;
     var nextRightElementLoc;
-    var statusWidthHalved;
+    // var statusWidthHalved;
     //Gets all of the nav buttons by class name then stuffs them into an array
     var elementList = document.getElementsByClassName("std_nav_button");
     elementList = Array.from(elementList);//Converts the list into an array
@@ -202,8 +211,8 @@ function UISpacer(){
 
     UIDiemsions.std_navBar.button_width = elementList[0].clientWidth;
     UIDiemsions.std_navBar.nav_width = getId("std_nav_bar").clientWidth;
-    UIDiemsions.std_navBar.status_width = getId("std_statusBox").clientWidth;
-    statusWidthHalved = UIDiemsions.std_navBar.status_width/2;
+    // UIDiemsions.std_navBar.status_width = getId("std_statusBox").clientWidth;
+    // statusWidthHalved = UIDiemsions.std_navBar.status_width/2;
     UIDiemsions.std_navBar.menuContainer_placement = UIDiemsions.std_navBar.nav_height - (UIDiemsions.std_navBar.defaultPadding) ;
 
 
@@ -228,13 +237,13 @@ function UISpacer(){
     }
 
     //Sets all of the other things based off of what the for loop set
-    UIDiemsions.std_navBar.menuContainer_width = nextLeftElementLoc-2;
-    UIDiemsions.std_navBar.leftSpacer_width = (UIDiemsions.std_navBar.nav_width/2) - nextLeftElementLoc - statusWidthHalved - UIDiemsions.std_navBar.defaultPadding;
-    UIDiemsions.std_navBar.rightSpacer_width = (UIDiemsions.std_navBar.nav_width/2) - nextRightElementLoc - statusWidthHalved - UIDiemsions.std_navBar.defaultPadding;
-
-    UIDiemsions.std_navBar.status_placement = (UIDiemsions.std_navBar.nav_width/2) - (statusWidthHalved);
-    UIDiemsions.std_navBar.spacer_placement.push(nextLeftElementLoc.toString() + UIDiemsions.std_navBar.defaultUnit);
-    UIDiemsions.std_navBar.spacer_placement.push(nextRightElementLoc.toString() + UIDiemsions.std_navBar.defaultUnit);
+    UIDiemsions.std_navBar.menuContainer_width = 100;
+    // UIDiemsions.std_navBar.leftSpacer_width = (UIDiemsions.std_navBar.nav_width/2) - nextLeftElementLoc - statusWidthHalved - UIDiemsions.std_navBar.defaultPadding;
+    UIDiemsions.std_navBar.rightSpacer_width = (UIDiemsions.std_navBar.nav_width) - nextLeftElementLoc - nextRightElementLoc; //- UIDiemsions.std_navBar.defaultPadding;
+    //
+    // UIDiemsions.std_navBar.status_placement = (UIDiemsions.std_navBar.nav_width/2) - (statusWidthHalved);
+    // UIDiemsions.std_navBar.spacer_placement.push(nextLeftElementLoc.toString() + UIDiemsions.std_navBar.defaultUnit);
+    // UIDiemsions.std_navBar.spacer_placement.push(nextRightElementLoc.toString() + UIDiemsions.std_navBar.defaultUnit);
 
 
     // if(window.innerWidth<=500 || isMobile()){
@@ -245,38 +254,43 @@ function UISpacer(){
     //     getId("std_statusBox").style.display = "inherit";
     // }
 ///This can be cleaned up a little more
-    getId("std_menu_container").style.width = UIDiemsions.std_navBar.menuContainer_width.toString()+UIDiemsions.std_navBar.defaultUnit;
+    getId("std_menu_container").style.width = UIDiemsions.std_navBar.menuContainer_width.toString()+'%';
     getId("std_menu_container").style.top= UIDiemsions.std_navBar.menuContainer_placement.toString()+UIDiemsions.std_navBar.defaultUnit;
 
     getId("std_settings").style.width = getId("std_menu_container").style.width;
     getId("std_settings").style.top = getId("std_menu_container").style.top;
 
-    getId("std_statusBox").style.top = UIDiemsions.std_navBar.defaultPadding.toString()+UIDiemsions.std_navBar.defaultUnit;
-    getId("std_statusBox").style.bottom = UIDiemsions.std_navBar.defaultPadding.toString()+UIDiemsions.std_navBar.defaultUnit;
-    getId("std_statusBox").style.left = UIDiemsions.std_navBar.status_placement.toString()+UIDiemsions.std_navBar.defaultUnit;
+    // getId("std_statusBox").style.top = UIDiemsions.std_navBar.defaultPadding.toString()+UIDiemsions.std_navBar.defaultUnit;
+    // getId("std_statusBox").style.bottom = UIDiemsions.std_navBar.defaultPadding.toString()+UIDiemsions.std_navBar.defaultUnit;
+    // getId("std_statusBox").style.left = UIDiemsions.std_navBar.status_placement.toString()+UIDiemsions.std_navBar.defaultUnit;
 
-    getId("nav_spacer_left").style.width = (UIDiemsions.std_navBar.leftSpacer_width).toString() +UIDiemsions.std_navBar.defaultUnit;
-    getId("nav_spacer_left").style.top = (UIDiemsions.std_navBar.defaultPadding).toString()+UIDiemsions.std_navBar.defaultUnit;
-    getId("nav_spacer_left").style.bottom = (UIDiemsions.std_navBar.defaultPadding).toString()+UIDiemsions.std_navBar.defaultUnit;
-    getId("nav_spacer_left").style.left = (UIDiemsions.std_navBar.spacer_placement[0]).toString();
+    // getId("nav_spacer_left").style.width = (UIDiemsions.std_navBar.leftSpacer_width).toString() +UIDiemsions.std_navBar.defaultUnit;
+    // getId("nav_spacer_left").style.top = (UIDiemsions.std_navBar.defaultPadding).toString()+UIDiemsions.std_navBar.defaultUnit;
+    // getId("nav_spacer_left").style.bottom = (UIDiemsions.std_navBar.defaultPadding).toString()+UIDiemsions.std_navBar.defaultUnit;
+    // getId("nav_spacer_left").style.left = (UIDiemsions.std_navBar.spacer_placement[0]).toString();
 
 
     getId("nav_spacer_right").style.width = (UIDiemsions.std_navBar.rightSpacer_width).toString() +UIDiemsions.std_navBar.defaultUnit;
     getId("nav_spacer_right").style.top = (UIDiemsions.std_navBar.defaultPadding).toString()+UIDiemsions.std_navBar.defaultUnit;
     getId("nav_spacer_right").style.bottom = (UIDiemsions.std_navBar.defaultPadding).toString()+UIDiemsions.std_navBar.defaultUnit;
-    getId("nav_spacer_right").style.right = (UIDiemsions.std_navBar.spacer_placement[1]).toString();
+    getId("nav_spacer_right").style.right = (nextRightElementLoc).toString()+UIDiemsions.std_navBar.defaultUnit;
+
     UIDiemsions.std_body.body_height = getId("std_body").clientHeight;
     UIDiemsions.std_body.body_width = getId("std_body").clientWidth;
     UIDiemsions.std_body.renderer_top = UIDiemsions.std_navBar.nav_height;
-    UIDiemsions.std_body.renderer_left = UIDiemsions.std_navBar.menuContainer_width;
+    UIDiemsions.std_body.renderer_left = 0;
+
     // if(window.innerWidth<=500 || isMobile()){
     //     UIDiemsions.std_body.renderer_left = 0;
     // }
+
     UIDiemsions.std_body.renderer_height = UIDiemsions.std_body.body_height- UIDiemsions.std_navBar.nav_height - UIDiemsions.std_timeline.timeline_height;
-    UIDiemsions.std_body.renderer_width = UIDiemsions.std_body.body_width - UIDiemsions.std_navBar.menuContainer_width;
+    UIDiemsions.std_body.renderer_width = 100;
 
     getId("animationEngine_renderArea").style.top =(UIDiemsions.std_body.renderer_top).toString()+UIDiemsions.std_navBar.defaultUnit;
     getId("animationEngine_renderArea").style.left =(UIDiemsions.std_body.renderer_left).toString()+UIDiemsions.std_navBar.defaultUnit;
+    getId("animationEngine_renderArea").style.width = UIDiemsions.std_body.renderer_width.toString() + "%";
+
 
     getId("std_menu_container").style.height =
         (UIDiemsions.std_body.body_height - UIDiemsions.std_navBar.nav_height - UIDiemsions.std_timeline.timeline_height).toString() + UIDiemsions.std_navBar.defaultUnit;
