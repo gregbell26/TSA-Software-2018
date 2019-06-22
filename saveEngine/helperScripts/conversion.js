@@ -1,5 +1,16 @@
+/*
+
+    This file handles all conversion from JSONS to renderable objects and arrays.
+    It will also verify that the data loaded in to memory is valid by mainly checking for NaNs
+
+        This file is licensed under the Apache 2.0 license.
+        That means that you can freely use and modify this code for all uses except for
+            commercial use provided this header is at the top of all files
+        Copyright 2018-2019 Monarch TSA
+ */
+var lastLoadedShape;
+
 class conversion {
-    static lastLoadedShape;
 
     static isShape(tst){
         try {
@@ -15,33 +26,14 @@ class conversion {
                 || tst.geometry.type === "TorusGeometry"
                 || tst.geometry.type === "TextGeometry"
             ) {
-                this.lastLoadedShape = tst;
+                lastLoadedShape = tst;
                 return true;
             }
             return false;
         } catch (TypeError) {
             return false;
-            //Because apparently if (tst === undefined) doesn't work
         }
 
-    }
-
-    static addBorder(badBorder){
-        let createdEdges = new THREE.EdgesGeometry(this.lastLoadedShape.geometry);
-        let createdGeometry = new THREE.LineSegments(createdEdges, new THREE.LineBasicMaterial( {color: badBorder.material.color} ));
-        createdGeometry.visible = badBorder.visible;
-        createdGeometry.position.x = this.lastLoadedShape.position.x;
-        createdGeometry.position.y = this.lastLoadedShape.position.y;
-        createdGeometry.position.z = this.lastLoadedShape.position.z;
-        createdGeometry.scale.x = this.lastLoadedShape.scale.x;
-        createdGeometry.scale.y = this.lastLoadedShape.scale.y;
-        createdGeometry.scale.z = this.lastLoadedShape.scale.z;
-        createdGeometry.rotation.x = this.lastLoadedShape.rotation.x;
-        createdGeometry.rotation.y = this.lastLoadedShape.rotation.y;
-        createdGeometry.rotation.z = this.lastLoadedShape.rotation.z;
-
-        this.lastLoadedShape =null;
-        return createdGeometry;
     }
 
     static isLight(tst){
@@ -60,11 +52,29 @@ class conversion {
 
     }
 
+    static addBorder(badBorder){
+        let createdEdges = new THREE.EdgesGeometry(lastLoadedShape.geometry);
+        let createdGeometry = new THREE.LineSegments(createdEdges, new THREE.LineBasicMaterial( {color: badBorder.material.color} ));
+        createdGeometry.visible = badBorder.visible;
+        createdGeometry.position.x = lastLoadedShape.position.x;
+        createdGeometry.position.y = lastLoadedShape.position.y;
+        createdGeometry.position.z = lastLoadedShape.position.z;
+        createdGeometry.scale.x = lastLoadedShape.scale.x;
+        createdGeometry.scale.y = lastLoadedShape.scale.y;
+        createdGeometry.scale.z = lastLoadedShape.scale.z;
+        createdGeometry.rotation.x = lastLoadedShape.rotation.x;
+        createdGeometry.rotation.y = lastLoadedShape.rotation.y;
+        createdGeometry.rotation.z = lastLoadedShape.rotation.z;
+
+        lastLoadedShape =null;
+        return createdGeometry;
+    }
+
+
     static isBoarder(tst){
         try{
-            if(tst.type === "LineSegments")
-                return true;
-            return false;
+            return tst.type === "LineSegments";
+
         }catch (TypeError) {
             return false;
         }

@@ -3,7 +3,7 @@
  *
  */
 
-class localStore{
+class LocalStore{
     constructor(){
 
     }

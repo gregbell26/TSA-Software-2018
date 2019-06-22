@@ -38920,6 +38920,7 @@ console.log("Got Here");
 
                             break;
 
+
                         case 'BufferGeometry':
                         case 'InstancedBufferGeometry':
 
@@ -38945,7 +38946,7 @@ console.log("Got Here");
 
                         default:
 
-                            console.warn( 'THREE.ObjectLoader: Unsupported geometry type "' + data.type + '"' );
+                            // console.warn( 'THREE.ObjectLoader: Unsupported geometry type "' + data.type + '"' );
 
                             continue;
 
@@ -39205,10 +39206,10 @@ console.log("Got Here");
 
                 if ( geometries[ name ] === undefined ) {
 
-                    console.warn( 'THREE.ObjectLoader: Undefined geometry', name );
+                    console.log( 'THREE.ObjectLoader: Undefined geometry', name );
 
                 }
-                console.log(name);
+                // console.log(name);
 
                 return geometries[ name ];
 
@@ -39347,8 +39348,8 @@ console.log("Got Here");
 
                     var geometry = getGeometry( data.geometry );
                     var material = getMaterial( data.material );
-                    console.log(geometry);
-                    console.log(material);
+                    // console.log(geometry);
+                    // console.log(material);
 
                     if ( geometry.bones && geometry.bones.length > 0 ) {
 
@@ -39456,7 +39457,7 @@ console.log("Got Here");
                 var children = data.children;
 
                 for ( var i = 0; i < children.length; i ++ ) {
-                    console.log(children[i]);
+                    // console.log(children[i]);
                     object.add( this.parseObject( children[ i ], geometries, materials ) );
 
                 }
