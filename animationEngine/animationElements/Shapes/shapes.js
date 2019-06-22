@@ -58,6 +58,7 @@ function removeShape(){
         scales.splice(selectedShape,1);
         borders.splice(selectedShape,1);
         selectedShape = -1;
+        //it's so you can't press remove again, feel free to remove to improve
         setSelectedShape(selectedShape);
 
         for(var i = 0; i < keyFrames.length; i++){
@@ -65,7 +66,7 @@ function removeShape(){
             keyFrames[i].scales.splice(selectedShape,1);
         }
         saveEngine.save(true,false);
-        //it's so you can't press remove again, feel free to remove to improve
+
     }
 }
 
@@ -444,6 +445,7 @@ function newShape(type,x,y,z,posX,posY,posZ,color,border,text){
         keyFrames[i].shapes.push([0,0,0,0,0,0,false]);
         keyFrames[i].scales.push([0,0,0]);
         keyFrames[i].color.push([0,0,0]);
+        keyFrames[i].borderColor.push([0,0,0]);
     }
 }
 
