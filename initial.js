@@ -194,7 +194,7 @@ function start(){
     selectedShape = -1;
     selectedLight = -1;
     toggleEditShapeOrLight(false);
-    if(!saveEngine.localStorageEnable){
+    if(!saveEngine._localStorageEnable){
         showPopUp("popUp_error_body", "Warning", "The local save engine has been disabled",-1);
 //debugging
     }
