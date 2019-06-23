@@ -14,10 +14,10 @@ firebase.initializeApp(firebaseConfig);
 
 
 firebase.auth().onAuthStateChanged(function (user) {
-    if(saveEngine) {
+    try {
         if (user) {
             console.log("Signed In");
-            saveEngine.cloudStorage.userSignedIn = true;
+            CloudStorage.userSignedIn = true;
             saveEngine.cloudStorage.userName = user.email;
             saveEngine.cloudStorage.userUID = user.uid;
             saveEngine.cloudStorage.generateUserData();//this will only run if a new user signed in.
@@ -34,6 +34,9 @@ firebase.auth().onAuthStateChanged(function (user) {
             document.getElementById("account_sub_signedIn").style.display = "none";
         }
     }
+    catch (TypeError) {
+        //If the save engine hasn't been loaded yet then catch the error
+    }
 });
 
 
@@ -49,29 +52,36 @@ firebase.auth().onAuthStateChanged(function (user) {
 // });
 
 class CloudStorage{
-    static userSignedIn = false;
-
-    static userName;
-
-    static userUID;
-
-    firestore;
-
-    userDataRef;
-
-    saveDataRef;
-
-    firebaseRef;
-
-    newUser = false;
-
-    downloadedFileIDs;
-    downloadedSettings;
 
 
     constructor(){
+        this.userSignedIn = false;
+
+        this.userName =  "";
+
+        this.userUID=  "";
+
+        this.firestore=  {};
+
+        this.userDataRef=  "";
+
+        this.saveDataRef=  "";
+
+        //this.firebaseRef=  "";
+
+        this.newUser = false;
+
+        this.downloadedFileIDs=  [];
+        this.downloadedSettings=  {};
+
         this.firestore = firebase.firestore();
         // this.firebaseRef = firebase.storage().ref();
+
+        this.downloadData = {
+            name: "default",
+            keyframes: "default",
+            scene: "default",
+        };
     }
 
 
@@ -164,7 +174,7 @@ class CloudStorage{
                 if(this.downloadedFileIDs[i]!==saveID)
                     newCloudSave = true;
             }
-            if(newCloudSave)
+            if(!newCloudSave)
                 this.downloadedFileIDs.push(saveID);
 
             //the saves
@@ -182,11 +192,7 @@ class CloudStorage{
         }
     }
 
-    downloadData = {
-        name: "default",
-        keyframes: "default",
-        scene: "default",
-    };
+
     // downloadComplete = false;
     downloadSave(saveIDtoGet){
         this.saveDataRef.doc(saveIDtoGet).get().then(function (data) {
