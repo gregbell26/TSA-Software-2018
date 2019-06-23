@@ -1,5 +1,5 @@
 function addFrame(){
-    tutorialMovement(120,120,'When you are done, click continue, follow the arrow, and click on the PLAY button', 0);
+    tutorialMovement(300,430,'When you are done, click continue, follow the arrow, and click on the PLAY button', 0);
     if(!scene.background){
         scene.background = new THREE.Color("#000000");
     }
@@ -49,7 +49,7 @@ function loadKeyList(){
 // All of the properties for each time is found in each iteration of the array. this takes the values
 // in each keyframe and makes the attributes shift from the original values to the ones in the new frame
 function playAnimation(frameValue) {
-    tutorialMovement(120,120,'You can also click the play button again to stop. Click the button to the right of it to loop the animation.', 0);
+    tutorialMovement(370,430,'You can also click the play button again to stop. Click the button to the right of it to loop the animation.', 0);
     var dontRun = false;
     if (keyFrames.length === 0){
         dontRun = true;

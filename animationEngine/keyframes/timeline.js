@@ -26,7 +26,7 @@ function updateTimeline(){
     for(var i=0; i<keyFrames.length; i++){
         timeline.innerHTML += "<div class='timeline_keyframe' style='left: " + currentX + "px'></div>";
         // toggleCheck.push(0)
-        timeline.children[i+1].setAttribute('onclick', "showKeyframePopup("+i+"); tutorialMovement(10,10,\"The duration of the keyframe is in milliseconds. Click on duration and change the duration\", 0);")
+        timeline.children[i+1].setAttribute('onclick', "showKeyframePopup("+i+"); tutorialMovement(360,210,\"The duration of the keyframe is in milliseconds. Click on duration and change the duration\", 0);")
         // durArea.innerHTML += ("<div class='timeline_text' style='position: absolute; left: "+ currentX + "px;'> <div onclick='let id =" + i + "; timesCheck(id, this)'>" + keyFrames[i].duration +"</div> ms</div>");
         currentX+=keyFrames[i].duration/timelineScale;
     }
@@ -79,7 +79,7 @@ function keyName(name,frame){
 }
 
 function removeFrame(frame){
-    tutorialMovement(120,120,'You have finished the tutorial! You can view a list of our advanced options in settings.', 0);
+    tutorialMovement(120, 250,'You can also hide the shape. Go back to the shapes options menu at the left, scroll all the way down, and click on HIDE SHAPE', 0);
     keyFrames.splice(frame,1);
     updateTimeline();
 }
