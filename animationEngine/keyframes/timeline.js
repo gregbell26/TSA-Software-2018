@@ -79,7 +79,7 @@ function keyName(name,frame){
 }
 
 function removeFrame(frame){
-    tutorialMovement(120, 250,'You can also hide the shape. Go back to the shapes options menu at the left, scroll all the way down, and click on HIDE SHAPE', 0);
+    addfortutorial("remove_frame");
     keyFrames.splice(frame,1);
     updateTimeline();
 }

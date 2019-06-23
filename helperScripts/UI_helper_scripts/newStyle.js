@@ -35,11 +35,11 @@ function showMenu(menuToShow){
   
     //getId("std_menu_container").style.display = "inherit";
     if(menuToShow=='menu_newShapes' && selectedShape!=-1 && showingLight){
-        tutorialMovement(50,-100,"This is the light editor. You can change the intensity and position of most lights. Some lights have specific settings. Follow the arrow to see a list of all assets in the scene.", 0);
+       addfortutorial("light_menu");
     }
 
     if(menuToShow=='menu_newShapes' && selectedShape!=-1 && !showingLight){
-        tutorialMovement(120,430,"Now you can make an animation. Click this button to add a new keyframe. Press this, change some attributes of the shape, and press it again to see it animate.", false);
+       addfortutorial("shape_menu");
     }
     if(activeMenu !== "init") {
         getId(activeMenu).classList.remove("menu_show");
