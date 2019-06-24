@@ -29,6 +29,38 @@ async function initMainUI(){
     for (let el of document.querySelectorAll('#ws_body')) el.hidden = true;
 }
 
+function navButtonToggle(menuShown, toggled){
+    let navButton;
+    switch (menuShown) {
+        case "menu_shapesList":
+            navButton = getId("nav_shapesList");
+            break;
+        case "menu_newShapes":
+            navButton = getId("nav_newShape");
+            break;
+        case "menu_camera":
+            navButton = getId("nav_camera");
+            break;
+        case "menu_scene":
+            navButton = getId("nav_scene");
+            break;
+        case "std_settings":
+            navButton = getId("nav_settings");
+            break;
+
+    }
+    if(toggled) {
+        navButton.classList.add("nav_button_toggled");
+        iconSwapper(navButton.id, "swap");
+    }
+    else{
+        navButton.classList.remove("nav_button_toggled");
+        iconSwapper(navButton.id, "swap");
+    }
+
+
+}
+
 /*
 * Shows and hides menus in a more elegant fashion
 * */
@@ -36,29 +68,38 @@ var activeMenu ="init";//init value
 var std_menu = document.getElementById("std_menu_container");
 function showMenu(menuToShow){
     std_menu = document.getElementById("std_menu_container");
-console.log(menuToShow +" " +activeMenu);
+// console.log(menuToShow +" " +activeMenu);
+    //The user clicked again so they must want to hide the menu
     if(menuToShow === activeMenu){
         getId(activeMenu).classList.remove("menu_show");
         getId(activeMenu).classList.add("menu_hidden");
         std_menu.style.display = "none";
+        navButtonToggle(activeMenu, false);
         activeMenu = "init";
 
     }
     else {
+        //We are already showing a menu
         if (activeMenu !== "init") {
-            console.log("not init")
+            // console.log("not init")
             getId(activeMenu).classList.remove("menu_show");
             getId(activeMenu).classList.add("menu_hidden");
+
             getId(menuToShow).classList.remove("menu_hidden");
             getId(menuToShow).classList.add("menu_show");
+            navButtonToggle(activeMenu, false);
             activeMenu = menuToShow;
+            navButtonToggle(activeMenu, true);
 
-        } else {
-            console.log("is init")
+        }
+        //We are not showing a menu
+        else {
+            // console.log("is init")
             std_menu.style.display = "block";
             getId(menuToShow).classList.remove("menu_hidden");
             getId(menuToShow).classList.add("menu_show");
             activeMenu = menuToShow;
+            navButtonToggle(activeMenu, true);
 
         }
     }
@@ -86,12 +127,17 @@ function settingsToggle(){
         getId("settings_menu").classList.remove("settings_hide");
         getId("std_settings").classList.add("settings_show");
         getId("settings_menu").classList.add("settings_show");
+        navButtonToggle("std_settings", true);
+
     }
     else{
         getId("std_settings").classList.remove("settings_show");
         getId("settings_menu").classList.remove("settings_show");
         getId("std_settings").classList.add("settings_hide");
         getId("settings_menu").classList.add("settings_hide");
+        navButtonToggle("std_settings", false);
+
+
     }
 }
 

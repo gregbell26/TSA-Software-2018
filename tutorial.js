@@ -78,7 +78,6 @@ switch (tutorialnum){
             break; 
     case 10:
             if(msg=='dimenX'){
-            $("#element_information").scrollTo("#element_visibility");
             tutorialMovement(120,430,'Now add Another Keyframe',0);
             }
         else

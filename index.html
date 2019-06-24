@@ -130,11 +130,11 @@
                          src="./style/assets/svgs/nav_icons/nav_animationElements_dark_icon.svg" class="nav_buttonIcon std_icon_dark"/>
 
             </span>
-            <span class="std_nav_button" id="nav_camera" onclick="showMenu('menu_camera'); tutorialMovement(120,120, 'This is the camera menu, here you can do things like change its position. To change these values, simply click on the numbers like you did with the shapes dimentions.'  ,0);">
-                    <img onclick="/*showMenu('menu_camera');*/ tutorialMovement(120,120,'This is the camera menu, here you can do things like change its position. To change these values, simply click on the numbers like you did with the shapes dimentions.',0);" src="./style/assets/svgs/nav_icons/nav_camera_icon.svg"
+            <span class="std_nav_button" id="nav_camera" onclick="showMenu('menu_camera'); tutorialMovement(120,120, 'This is the camera menu, here you can do things like change its position. Changing these will change the camera.'  ,0);">
+                    <img onclick="/*showMenu('menu_camera');*/ tutorialMovement(120,120,'This is the camera menu, here you can do things like change its position. Changing these will change the camera.',0);" src="./style/assets/svgs/nav_icons/nav_camera_icon.svg"
                          class="nav_buttonIcon std_icon_normal"/>
 
-                <img onclick="/*showMenu('menu_camera');*/ tutorialMovement(120,120,'This is the camera menu, here you can do things like change its position. To change these values, simply click on the numbers like you did with the shapes dimentions.',0);" src="./style/assets/svgs/nav_icons/nav_camera_dark_icon.svg"
+                <img onclick="/*showMenu('menu_camera');*/ tutorialMovement(120,120,'This is the camera menu, here you can do things like change its position. Changing these will change the camera.',0);" src="./style/assets/svgs/nav_icons/nav_camera_dark_icon.svg"
                          class="nav_buttonIcon std_icon_dark"/>
 
             </span>
@@ -279,7 +279,7 @@
 
 
                 <!-- Editing selected shape -->
-                <h3>Edit Current <h3 id="currentEditing_type">Shape</h3></h3>
+                <h3 id="currentEditing_type">Edit Current Shape</h3>
                 <div id="element_Information">
                     <div id="currentEditing_dimensions">
 
@@ -434,7 +434,7 @@
                     </div>
 
                     <div id="element_visibility" class="std_body_button" onclick="toggleVisibility(); addfortutorial('hide_shape')" style="max-width: initial;">
-                        <span class="button_body" id="element_visibility_button">Hide Element</span>
+                        <span class="button_body"> <!--id="element_visibility_button">-->Hide Element</span>
                         <span class="button_bar"></span>
                     </div>
                     <div id="element_remove" class="std_body_button" onclick="removeElement()" style="max-width: initial;">
