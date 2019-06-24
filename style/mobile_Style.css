@@ -1154,7 +1154,7 @@ input[type="range"] {
     margin-left: 10px;
     margin-bottom: 30px;
     margin-top: 30px;
-    height: 5px;
+    height: 2px;
     outline: none;
     overflow: initial;
     background-color: var(--std_color_secondary);
@@ -1169,7 +1169,7 @@ input[type="range"]::-webkit-slider-thumb {
     width: 50px;
     background-color:var(--std_color_primary);
     transition: 200ms ease all;
-    border:5px solid var(--std_color_secondary);
+    border:2px solid var(--std_color_secondary);
 }
 
 input[type="range"]:hover{
@@ -1177,7 +1177,7 @@ input[type="range"]:hover{
 }
 
 input[type="range"]::-webkit-slider-thumb:hover, input[type="range"]::-webkit-slider-thumb:focus, input[type="range"]:hover ~input[type="range"]::-webkit-slider-thumb {
-    border: 5px solid var(--std_color_accent);
+    border: 2px solid var(--std_color_accent);
 }
 
 

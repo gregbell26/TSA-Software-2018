@@ -58,9 +58,9 @@ function setSelectedShape(num){
     document.getElementById("shape_castShadow").checked = shapes[selectedShape].castShadow;
     document.getElementById("shape_receiveShadow").checked = shapes[selectedShape].receiveShadow;
     if (shapes[selectedShape].visible){
-        getId("element_visibility_button").innerHTML = "<span class='button_body' id='element_visibility_button'>Hide Element</span>"
+        getId("element_visibility").children[0].innerHTML = "Hide Element";
     } else {
-        getId("element_visibility_button").innerHTML = "<span class='button_body' id='element_visibility_button'>Show Element</span>"
+        getId("element_visibility").children[0].innerHTML = "Show Element";
     }
     showMenu("menu_newShapes");
 }
