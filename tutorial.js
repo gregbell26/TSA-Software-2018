@@ -36,7 +36,7 @@ switch (tutorialnum){
             break;
     case 3:
             if(msg=='new_shape')
-            tutorialMovement(150,410,'Now click on the shape you want and give it at least two dimentions so that you can see it. Either scroll down or press TAB to access the other dimentions.', 0);
+            tutorialMovement(150,410,'Now click on the shape you want.', 0);
        else
        tutorialnum--;
             break; 
