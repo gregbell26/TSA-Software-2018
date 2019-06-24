@@ -57,9 +57,14 @@ window.onload = function(){
         actionElement.setAttribute('src', "helperScripts/UI_helper_scripts/mobileStyle.js");
         document.getElementsByTagName("head")[0].removeChild(document.getElementById("newStyleJS"));
         document.getElementsByTagName("head")[0].appendChild(actionElement);
-        document.getElementById("ws_loadMenu").style.top = "150px";
-        document.getElementById("ws_loadMenu").style.left = "calc(50% - 225px)";
-        document.getElementById("ws_loadMenu").style.width = "400px";
+        document.getElementById("ws_body").removeChild(document.getElementById("ws_body").children[2]);
+        document.getElementById("ws_loadMenu").style.top = "5%";
+        document.getElementById("ws_loadMenu").style.left = "calc(50% + 25px)";
+        document.getElementById("std_timeline_popUp").children[5].style.width = "655px";
+        document.getElementById("std_timeline_popUp").children[5].style.marginLeft = "calc(50% - 324.5px)";
+        document.getElementById("std_timeline_popUp").children[5].children[0].style.maxWidth = "345px";
+        document.getElementById("std_timeline_popUp").children[5].children[0].style.marginLeft = "calc(50% - 172.5px)";
+
 
     }
 

@@ -69,25 +69,25 @@ function removeShape(){
 }
 
 function toggleVisibility() {
-    let buttonText = getId("element_visibility_button");
+    let buttonText = getId("element_visibility").children[0];
     let visible;
     if (showingLight) {
         visible = lights[selectedLight].visible;
         if (visible){
             lights[selectedLight].visible = false;
-            buttonText.innerHTML = "<span class='button_body' id='element_visibility_button'>Hide Element</span>"
+            buttonText.innerHTML = "Show Element"
         }else {
             lights[selectedLight].visible = true;
-            buttonText.innerHTML = "<span class='button_body' id='element_visibility_button'>Hide Element</span>"
+            buttonText.innerHTML = "Hide Element"
         }
     } else {
         visible = shapes[selectedShape].visible;
         if (visible){
             shapes[selectedShape].visible = false;
-            buttonText.innerHTML = "<span class='button_body'>Show Element</span>"
+            buttonText.innerHTML = "Show Element"
         }else {
             shapes[selectedShape].visible = true;
-            buttonText.innerHTML = "<span class='button_body'>Hide Element</span>"
+            buttonText.innerHTML = "Hide Element"
         }
     }
 }
@@ -126,109 +126,6 @@ function toggleColorBorder(checked){//if checked is true turns on the border, if
 //array spot 1,i will be the border geomrty for the shape
 //Array spot 2,i will be scale data for the shape
 
-function convertColor(r,g,b){
-    r*=255;
-    g*=255;
-    b*=255;
-    var returnieBoi = "#";
-    var a = r.toString(16);
-    if(a.length==1){
-        a = "0" + a;
-    }
-    returnieBoi +=a;
-    a = g.toString(16);
-    if(a.length==1){
-        a = "0" + a;
-    }
-    returnieBoi +=a;
-    a = b.toString(16);
-    if(a.length==1){
-        a = "0" + a;
-    }
-    returnieBoi +=a;
-
-    return returnieBoi;
-
-}
-
-function processShapeData(loadedShapes,loadedScales, loadedText) {
-    var shapeData =[[],[]];
-    //var shapeData = [3, loadedShapes.length];
-    var newGeometry;
-    var borderGeometry;
-    var currentTextIndex = 0;
-    var geometryToAdd;
-    var borderToAdd;
-    var edgyBoi;
-    //Creating the table of data.
-
-    //const newMaterial = new THREE.MeshBasicMaterial({color: 0x00ff00});
-
-    if(loadedShapes.length !== loadedScales.length){
-        console.log("Invalid data loaded.");
-        shapeData[0][0] =1;
-        return shapeData;
-    }
-
-    for(var i=0; i<loadedShapes.length; i++) {
-        //console.log(i);
-        newGeometry = null;
-        borderGeometry = null;
-        var type;
-        switch (loadedShapes[i].type) {
-            case "BoxGeometry":
-                type = "cube";
-                break;
-            case "ConeGeometry":
-                type = "cone";
-                break;
-            case "CylinderGeometry":
-                type = "cylinder";
-                break;
-            case "CustomGeometry2":
-                type = "custom";
-                break;
-            case "DodecahedronGeometry":
-                type = "dodecahedron";
-                break;
-            case "IcosahedronGeometry":
-                type = "icosahedron";
-                break;
-            case "OctahedronGeometry":
-                type = "octahedron";
-                break;
-            case "TetrahedronGeometry":
-                type = "pyramid";
-                break;
-            case "SphereGeometry":
-                type = "sphere";
-                break;
-            case "TorusGeometry":
-                type = "ring";
-                break;
-            case "TextGeometry":
-                type = "text";
-                break;
-            default:
-                type = "cube";
-                break;
-        }
-        var text;
-        console.log(loadedText);
-        if (type === "text") {
-            text = loadedText[currentTextIndex];
-            currentTextIndex++;
-        }
-        newShape(type, loadedScales[i][0], loadedScales[i][1], loadedScales[i][2], loadedShapes[i].positionX, loadedShapes[i].positionY, loadedShapes[i].positionZ, convertColor(loadedShapes[i].r, loadedShapes[i].g, loadedShapes[i].b), convertColor(loadedShapes[i].borderR || 0, loadedShapes[i].borderG || 0, loadedShapes[i].borderB || 0), text);
-        if (!loadedShapes[i].borders) {
-            borders[i].visible = false;
-        }
-
-    }
-        return shapeData;
-
-
-}
 
 function duplicateCurrentShape(){
     let shape = shapes[selectedShape];
@@ -337,10 +234,12 @@ function newShape(type,x,y,z,posX,posY,posZ,color,border,text){
                 geometry = new THREE.SphereBufferGeometry(0.5, 100, 100);
                 break;
             default:
-                newGeometry = new THREE.BoxGeometry(1, 1, 1);
-                geometry = new THREE.BoxBufferGeometry( 1, 1, 1 );
+                showPopUp("popUp_error_body", "Error", "Invalid Shape",-1);
+
                 break;
         }
+
+        type = type.charAt(0).toUpperCase();
         var newMaterial = new THREE.MeshLambertMaterial({color: color});
         newMaterial.lights = true;
         shapes[shapes.length]=new THREE.Mesh(newGeometry, newMaterial);
@@ -379,10 +278,10 @@ function newShape(type,x,y,z,posX,posY,posZ,color,border,text){
         // getId("shapeList_shapes").innerHTML+="<button onclick='setSelectedShape("+selectedShape+");showMenu(\"menu_newShapes\");' style='color:black'>"+type+"</button><br>";
         getId("newShapes_select").selectedIndex = 0;
     }
-    else if(type==="textIn"){
+    else if(type==="TextIn"){
         showPopUp("popUp_input_body", "New Text", "Enter Text",1);
     }
-    else if(type==="text"){
+    else if(type==="Text"){
         let loader = new THREE.FontLoader();
         loader.load( 'https://threejs.org/examples/fonts/helvetiker_regular.typeface.json', function ( font ) {
             let newGeometry = new THREE.TextGeometry( text, {
@@ -399,7 +298,7 @@ function newShape(type,x,y,z,posX,posY,posZ,color,border,text){
             newMaterial.lights = true;
             shapes[shapes.length]=new THREE.Mesh(newGeometry, newMaterial);
             let length = scales.length;
-            newGeometry.name = "text";
+            newGeometry.name = text;
             scales[length]=[];
             scales[length][0]=x;
             scales[length][1]=y;
@@ -439,6 +338,8 @@ function newShape(type,x,y,z,posX,posY,posZ,color,border,text){
             getId("newShapes_select").selectedIndex = 0;
         } );
     }
+
+
     for(var i = 0; i < keyFrames.length; i++){
         keyFrames[i].shapes.push([0,0,0,0,0,0,false]);
         keyFrames[i].scales.push([0,0,0]);
