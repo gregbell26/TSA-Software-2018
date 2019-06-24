@@ -6,14 +6,25 @@ function showList(){
     let lightsList = document.getElementById("shapesList_lights").children[0];
     shapesList.innerHTML="";
     lightsList.innerHTML="";
-
-    for (let i=0; i<shapes.length; i++){
-        shapesList.innerHTML+="<li class='elementList_body' onclick='setSelectedShape("+i+")'>" + shapes[i].geometry.name +
-            "<div style='display: block;margin-left: 5px;width: 20px; float: left;height: 20px;background-color: #"+shapes[i].material.color.getHexString()+";'</li>"
+    if(mobile){
+        for (let i=0; i<shapes.length; i++){
+            shapesList.innerHTML+="<li class='elementList_body' onclick='setSelectedShape("+i+")'>" + shapes[i].geometry.name +
+                "<div style='display: block;margin-left: 5px;width: 50px; float: left;height: 50px;background-color: #"+shapes[i].material.color.getHexString()+";'</li>"
+        }
+        for (let i = 0; i < lights.length; i++){
+            lightsList.innerHTML+="<li class='elementList_body' onclick='setSelectedLight("+i+")'>" + lights[i].name +
+                "<div style='display: block;margin-left: 5px;width: 50px; float: left;height: 50px;background-color: #"+lights[i].color.getHexString()+";'</li>"
+        }
     }
-    for (let i = 0; i < lights.length; i++){
-        lightsList.innerHTML+="<li class='elementList_body' onclick='setSelectedLight("+i+")'>" + lights[i].name +
-            "<div style='display: block;margin-left: 5px;width: 20px; float: left;height: 20px;background-color: #"+lights[i].color.getHexString()+";'</li>"
+    else {
+        for (let i = 0; i < shapes.length; i++) {
+            shapesList.innerHTML += "<li class='elementList_body' onclick='setSelectedShape(" + i + ")'>" + shapes[i].geometry.name +
+                "<div style='display: block;margin-left: 5px;width: 20px; float: left;height: 20px;background-color: #" + shapes[i].material.color.getHexString() + ";'</li>"
+        }
+        for (let i = 0; i < lights.length; i++) {
+            lightsList.innerHTML += "<li class='elementList_body' onclick='setSelectedLight(" + i + ")'>" + lights[i].name +
+                "<div style='display: block;margin-left: 5px;width: 20px; float: left;height: 20px;background-color: #" + lights[i].color.getHexString() + ";'</li>"
+        }
     }
 }
 
@@ -47,9 +58,9 @@ function setSelectedShape(num){
     document.getElementById("shape_castShadow").checked = shapes[selectedShape].castShadow;
     document.getElementById("shape_receiveShadow").checked = shapes[selectedShape].receiveShadow;
     if (shapes[selectedShape].visible){
-        getId("element_visibility_button").innerHTML = "<span class='button_body' id='element_visibility_button'>Hide Element</span>"
+        getId("element_visibility").children[0].innerHTML = "Hide Element";
     } else {
-        getId("element_visibility_button").innerHTML = "<span class='button_body' id='element_visibility_button'>Show Element</span>"
+        getId("element_visibility").children[0].innerHTML = "Show Element";
     }
     showMenu("menu_newShapes");
 }
@@ -83,9 +94,9 @@ function setSelectedLight(num) {
         document.getElementById("target_z").value = lights[selectedLight].target.position.z;
     }
     if (lights[selectedLight].visible){
-        getId("element_visibility_button").innerHTML = "<span class='button_body' id='element_visibility_button'>Hide Element</span>"
+        getId("element_visibility").children[0].innerHTML = "Hide Element";
     } else {
-        getId("element_visibility_button").innerHTML = "<span class='button_body' id='element_visibility_button'>Show Element</span>"
+        getId("element_visibility").children[0].innerHTML = "Show Element";
     }
     showMenu("menu_newShapes");
     // lightEditMenu();
@@ -132,7 +143,7 @@ function borderVisibility(){
 function toggleEditShapeOrLight(isLight){
     showingLight = isLight;
     if(isLight){
-        getId("currentEditing_type").innerHTML = "Light";
+        getId("currentEditing_type").innerHTML = "Edit Current Light";
         getId("currentEditing_dimensions").style.display="none";
         getId("currentEditing_intensity").style.display="inherit";
         getId("currentEditing_rotation").style.display="none";
@@ -160,7 +171,7 @@ function toggleEditShapeOrLight(isLight){
     }
     else{
         //tutorialMovement(100,120,"13", 0);
-        getId("currentEditing_type").innerHTML = "Shape";
+        getId("currentEditing_type").innerHTML = "Edit Current Shape";
         getId("currentEditing_dimensions").style.display="inherit";
         getId("currentEditing_intensity").style.display="none";
         getId("currentEditing_rotation").style.display="inherit";

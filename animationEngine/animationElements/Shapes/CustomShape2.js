@@ -169,14 +169,15 @@ console.log("Shape Ends at "+index);
 
     scene.add(shapes[shapes.length - 1]);
     selectedShape = shapes.length - 1;
-    geometry.computeVertexNormals()
+    geometry.computeVertexNormals();
+
     borderToAdd.scale.x = x;
     borderToAdd.scale.y = y;
     borderToAdd.scale.z = z;
 
     borders.push(borderToAdd);
     scene.add( borderToAdd );
-
+    borders[borders.length-1].visible=false;
     var length = scales.length;
     scales[length] = [];
     scales[length][0] = x;

@@ -52,11 +52,11 @@ function newLight(type,color,intensity,positionX,positionY,positionZ,color2) {
     }
     setSelectedLight(selectedLight);
     for(var i = 0; i < keyFrames.length; i++){
-        keyFrames[i].lights.push({intensity: 0,
-                                  position: [0,0,0],
-                                  color: "#000000",
-                                  rotation: [0,0,0],
-                                  visible: false});
+        keyFrames[i].lights.push([0,
+                                  0,0,0,
+                                  0,0,0,
+                                  0,0,0,
+                                  false]);
     }
 }
 
