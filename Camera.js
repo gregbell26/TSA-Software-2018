@@ -112,15 +112,21 @@ $(document).on('mouseup',function(e){
 });
 $(document).on('touchstart',function(e){
     console.log("touchstart");
+    if(e.touches[0].pageY >= 50 && e.touches[0].pageY<window.innerHeight-150) {
+        inAnimationWindow = 1;
+    }
+    else{
+        inAnimationWindow = 0;
+    }
     if(inAnimationWindow==1) {
-        xStart = e.pageX;
-        yStart = e.pageY;
+        xStart = e.touches[0].pageX;
+        yStart = e.touches[0].pageY;
         console.log(xStart + " , " + yStart);
     }
-    else if(e.pageY >= window.innerHeight-100 && e.pageY<=window.innerHeight-25){
+    else if(e.touches[0].pageY >= window.innerHeight-100 && e.touches[0].pageY<=window.innerHeight-25){
         //console.log("Mouse scrub enabled");
         mouseOnTimeline = true;
-        timelineScrub(e.pageX);
+        timelineScrub(e.touches[0].pageX);
     }
 });
 $(document).on('touchend',function(e){
@@ -171,23 +177,23 @@ $(document).ready(function(){
 $(document).ready(function(){
     $(document).on('touchmove', function(e){
         console.log("touchmove");
-        if(e.pageY >= 50 && e.pageY<window.innerHeight-150) {
+        if(e.touches[0].pageY >= 50 && e.touches[0].pageY<window.innerHeight-150) {
             inAnimationWindow = 1;
         }
         else{
             inAnimationWindow = 0;
         }
-        if((activeMenu === init) && inAnimationWindow==1 && !settingsOpen && !(animationRunning && lockCamera)){
+        if((activeMenu === "init") && inAnimationWindow==1 && !settingsOpen && !(animationRunning && lockCamera)){
 
-            var MvX = settings.camera.mouseSensitivity*(e.pageX-xStart)/100;
-            var MvY = settings.camera.mouseSensitivity*(e.pageY-yStart)/100;
+            var MvX = settings.camera.mouseSensitivity*(e.touches[0].pageX-xStart)/100;
+            var MvY = settings.camera.mouseSensitivity*(e.touches[0].pageY-yStart)/100;
             console.log("MvX " + MvX + " MvY " + MvY);
             rotateCamera(MvX,MvY);
 
 
-            if(e.pageY >=50 && e.pageY<window.innerHeight-70) {
-                xStart = e.pageX;
-                yStart = e.pageY;
+            if(e.touches[0].pageY >=50 && e.touches[0].pageY<window.innerHeight-150) {
+                xStart = e.touches[0].pageX;
+                yStart = e.touches[0].pageY;
             }
         }
         if(mouseOnTimeline){
