@@ -199,4 +199,11 @@ console.log("Shape Ends at "+index);
     document.getElementById('position_y').value = posY;
     document.getElementById('position_z').value = posZ;
 
+    //disables save engine because it will mess things up
+    saveEngine._localStorageEnable = false;
+    saveEngine._cloudStorageEnable = false;
+
+    showPopUp("popUp_error_body", "Warning", "Uploading OBJs disables the save engine due to their large amount of polygons",-1);
+
+
 }
