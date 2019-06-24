@@ -17,7 +17,7 @@ firebase.auth().onAuthStateChanged(function (user) {
     try {
         if (user) {
             console.log("Signed In");
-            CloudStorage.userSignedIn = true;
+            saveEngine.cloudStorage.userSignedIn = true;
             saveEngine.cloudStorage.userName = user.email;
             saveEngine.cloudStorage.userUID = user.uid;
             saveEngine.cloudStorage.generateUserData();//this will only run if a new user signed in.
@@ -36,6 +36,7 @@ firebase.auth().onAuthStateChanged(function (user) {
     }
     catch (TypeError) {
         //If the save engine hasn't been loaded yet then catch the error
+        console.log("error")
     }
 });
 
@@ -155,11 +156,13 @@ class CloudStorage{
         firebase.auth().signInWithEmailAndPassword(email, password).catch(function(error){
             //handle errors
             //display message to user
+            console.log(error)
         });
     }
 
     signOut(){
         showPopUp("popUp_confirm_body", "Confirm", "Do you want to sign out?", 4);
+
     }
 
     saveToCloud(saveName, saveID, keyframes, scene, settings ){
@@ -169,12 +172,12 @@ class CloudStorage{
                 keyframes: JSON.stringify(keyframes),
                 scene: JSON.stringify(scene),
             };
-            let newCloudSave = false;
+            let newCloudSave = true;
             for(let i = 0; i < this.downloadedFileIDs.length; i++){
-                if(this.downloadedFileIDs[i]!==saveID)
-                    newCloudSave = true;
+                if(this.downloadedFileIDs[i]===saveID)
+                    newCloudSave = false;
             }
-            if(!newCloudSave)
+            if(newCloudSave)
                 this.downloadedFileIDs.push(saveID);
 
             //the saves

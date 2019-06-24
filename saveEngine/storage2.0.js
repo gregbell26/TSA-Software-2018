@@ -188,12 +188,9 @@ class SaveEngine {
         if (idToDownload !== "default") {
             if(this._cloudStorageEnable && saveEngine.cloudStorage.userSignedIn){
                 this.cloudStorage.downloadSave(idToDownload);
-
-
+                getId("signedIn_loadSelector").selectedIndex = 0;
             }
         }
-
-
     }
 
 

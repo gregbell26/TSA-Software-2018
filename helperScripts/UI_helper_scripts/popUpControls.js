@@ -39,7 +39,7 @@ function popUpAction(action){
     else{
         return;
     }
-    if(action !== (3||4||100)) {
+    if(!(action === 3 || action === 4 || action === 100)) {
         getId(getId(shownPopUp).children.item(1).children.item(0).value = "");
     }
 }
