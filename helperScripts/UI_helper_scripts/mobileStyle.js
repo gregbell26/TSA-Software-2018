@@ -333,6 +333,7 @@ function UISpacer(){
     getId("animationEngine_renderArea").style.top =(UIDiemsions.std_body.renderer_top).toString()+UIDiemsions.std_navBar.defaultUnit;
     getId("animationEngine_renderArea").style.left =(UIDiemsions.std_body.renderer_left).toString()+UIDiemsions.std_navBar.defaultUnit;
     getId("animationEngine_renderArea").style.width = UIDiemsions.std_body.renderer_width.toString() + UIDiemsions.std_navBar.defaultUnit;
+    getId("std_timeline").style.top = (UIDiemsions.std_body.renderer_height + UIDiemsions.std_navBar.nav_height).toString() + UIDiemsions.std_navBar.defaultUnit;
 
 
     getId("std_menu_container").style.height =
