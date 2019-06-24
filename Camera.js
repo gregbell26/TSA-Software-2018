@@ -196,6 +196,15 @@ $(document).ready(function(){
 
 function zoomCameraM(amount) {
     zoom = Math.pow((Math.pow(xPosition, 2) + Math.pow(yPosition, 2) + Math.pow(zPosition, 2)), .5);//zoom calc here
+    if(zoom*amount>1*Math.pow(10,100) || zoom * amount < 1*Math.pow(10,-100)){
+        xPosition = 10;
+        yPosition = 10;
+        zPosition = 10;
+        showPopUp("popUp_error_body", "You dun messed up", "You have zoomed to infinity and entered easter egg mode, where css styling degrades into madness and everything is pain. " +
+            "Remember to save your changes before refreshing the page to end this madness.",-1);
+        stylesheetLoader("memeMode");
+        return;
+    }
     zoom*=amount;
     zoomZ = Math.cos(Math.asin(yPosition / zoom));
     var cameraRz;
