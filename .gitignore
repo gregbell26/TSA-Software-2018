@@ -1023,7 +1023,7 @@ cordova/monarchAnimation/platforms/android/app/build/intermediates/assets/debug/
 cordova/monarchAnimation/platforms/android/app/build/intermediates/assets/debug/www/helperScripts/keyevents.js
 cordova/monarchAnimation/platforms/android/app/build/intermediates/assets/debug/www/helperScripts/UI_helper_scripts/diemsions.js
 cordova/monarchAnimation/platforms/android/app/build/intermediates/assets/debug/www/helperScripts/UI_helper_scripts/mobileStyle.js
-cordova/monarchAnimation/platforms/android/app/build/intermediates/assets/debug/www/helperScripts/UI_helper_scripts/newStyle.js
+cordova/monarchAnimation/platforms/android/app/build/intermediates/assets/debug/www/helperScripts/UI_helper_scripts/normalStyle.js
 cordova/monarchAnimation/platforms/android/app/build/intermediates/assets/debug/www/helperScripts/UI_helper_scripts/popUpControls.js
 cordova/monarchAnimation/platforms/android/app/build/intermediates/assets/debug/www/index.html
 cordova/monarchAnimation/platforms/android/app/build/intermediates/assets/debug/www/initial.js
@@ -1037,7 +1037,7 @@ cordova/monarchAnimation/platforms/android/app/build/intermediates/assets/debug/
 cordova/monarchAnimation/platforms/android/app/build/intermediates/assets/debug/www/saveEngine/helperScripts/cloudStorage.js
 cordova/monarchAnimation/platforms/android/app/build/intermediates/assets/debug/www/saveEngine/helperScripts/conversion.js
 cordova/monarchAnimation/platforms/android/app/build/intermediates/assets/debug/www/saveEngine/helperScripts/localStorage.js
-cordova/monarchAnimation/platforms/android/app/build/intermediates/assets/debug/www/saveEngine/storage2.0.js
+cordova/monarchAnimation/platforms/android/app/build/intermediates/assets/debug/www/saveEngine/SaveEngine.js
 cordova/monarchAnimation/platforms/android/app/build/intermediates/assets/debug/www/scene.js
 cordova/monarchAnimation/platforms/android/app/build/intermediates/assets/debug/www/settings.js
 cordova/monarchAnimation/platforms/android/app/build/intermediates/assets/debug/www/style/amoledMode_Style.css
@@ -1225,7 +1225,7 @@ cordova/monarchAnimation/platforms/android/app/src/main/assets/www/helperScripts
 cordova/monarchAnimation/platforms/android/app/src/main/assets/www/helperScripts/keyevents.js
 cordova/monarchAnimation/platforms/android/app/src/main/assets/www/helperScripts/UI_helper_scripts/diemsions.js
 cordova/monarchAnimation/platforms/android/app/src/main/assets/www/helperScripts/UI_helper_scripts/mobileStyle.js
-cordova/monarchAnimation/platforms/android/app/src/main/assets/www/helperScripts/UI_helper_scripts/newStyle.js
+cordova/monarchAnimation/platforms/android/app/src/main/assets/www/helperScripts/UI_helper_scripts/normalStyle.js
 cordova/monarchAnimation/platforms/android/app/src/main/assets/www/helperScripts/UI_helper_scripts/popUpControls.js
 cordova/monarchAnimation/platforms/android/app/src/main/assets/www/index.html
 cordova/monarchAnimation/platforms/android/app/src/main/assets/www/initial.js
@@ -1239,7 +1239,7 @@ cordova/monarchAnimation/platforms/android/app/src/main/assets/www/saveEngine/he
 cordova/monarchAnimation/platforms/android/app/src/main/assets/www/saveEngine/helperScripts/cloudStorage.js
 cordova/monarchAnimation/platforms/android/app/src/main/assets/www/saveEngine/helperScripts/conversion.js
 cordova/monarchAnimation/platforms/android/app/src/main/assets/www/saveEngine/helperScripts/localStorage.js
-cordova/monarchAnimation/platforms/android/app/src/main/assets/www/saveEngine/storage2.0.js
+cordova/monarchAnimation/platforms/android/app/src/main/assets/www/saveEngine/SaveEngine.js
 cordova/monarchAnimation/platforms/android/app/src/main/assets/www/scene.js
 cordova/monarchAnimation/platforms/android/app/src/main/assets/www/settings.js
 cordova/monarchAnimation/platforms/android/app/src/main/assets/www/style/amoledMode_Style.css
@@ -2623,7 +2623,7 @@ cordova/monarchAnimation/platforms/browser/www/helperScripts/jquery-3.3.1.min.js
 cordova/monarchAnimation/platforms/browser/www/helperScripts/keyevents.js
 cordova/monarchAnimation/platforms/browser/www/helperScripts/UI_helper_scripts/diemsions.js
 cordova/monarchAnimation/platforms/browser/www/helperScripts/UI_helper_scripts/mobileStyle.js
-cordova/monarchAnimation/platforms/browser/www/helperScripts/UI_helper_scripts/newStyle.js
+cordova/monarchAnimation/platforms/browser/www/helperScripts/UI_helper_scripts/normalStyle.js
 cordova/monarchAnimation/platforms/browser/www/helperScripts/UI_helper_scripts/popUpControls.js
 cordova/monarchAnimation/platforms/browser/www/index.html
 cordova/monarchAnimation/platforms/browser/www/initial.js
@@ -2638,7 +2638,7 @@ cordova/monarchAnimation/platforms/browser/www/saveEngine/helperScripts/base64.j
 cordova/monarchAnimation/platforms/browser/www/saveEngine/helperScripts/cloudStorage.js
 cordova/monarchAnimation/platforms/browser/www/saveEngine/helperScripts/conversion.js
 cordova/monarchAnimation/platforms/browser/www/saveEngine/helperScripts/localStorage.js
-cordova/monarchAnimation/platforms/browser/www/saveEngine/storage2.0.js
+cordova/monarchAnimation/platforms/browser/www/saveEngine/SaveEngine.js
 cordova/monarchAnimation/platforms/browser/www/scene.js
 cordova/monarchAnimation/platforms/browser/www/settings.js
 cordova/monarchAnimation/platforms/browser/www/style/amoledMode_Style.css
@@ -2745,7 +2745,7 @@ cordova/monarchAnimation/www/helperScripts/jquery-3.3.1.min.js
 cordova/monarchAnimation/www/helperScripts/keyevents.js
 cordova/monarchAnimation/www/helperScripts/UI_helper_scripts/diemsions.js
 cordova/monarchAnimation/www/helperScripts/UI_helper_scripts/mobileStyle.js
-cordova/monarchAnimation/www/helperScripts/UI_helper_scripts/newStyle.js
+cordova/monarchAnimation/www/helperScripts/UI_helper_scripts/normalStyle.js
 cordova/monarchAnimation/www/helperScripts/UI_helper_scripts/popUpControls.js
 cordova/monarchAnimation/www/initial.js
 cordova/monarchAnimation/www/LICENSE
@@ -2758,7 +2758,7 @@ cordova/monarchAnimation/www/saveEngine/helperScripts/base64.js
 cordova/monarchAnimation/www/saveEngine/helperScripts/cloudStorage.js
 cordova/monarchAnimation/www/saveEngine/helperScripts/conversion.js
 cordova/monarchAnimation/www/saveEngine/helperScripts/localStorage.js
-cordova/monarchAnimation/www/saveEngine/storage2.0.js
+cordova/monarchAnimation/www/saveEngine/SaveEngine.js
 cordova/monarchAnimation/www/scene.js
 cordova/monarchAnimation/www/settings.js
 cordova/monarchAnimation/www/style/amoledMode_Style.css
@@ -4505,7 +4505,7 @@ cordova/monarchAnimation/platforms/osx/www/helperScripts/jquery-3.3.1.min.js
 cordova/monarchAnimation/platforms/osx/www/helperScripts/keyevents.js
 cordova/monarchAnimation/platforms/osx/www/helperScripts/UI_helper_scripts/diemsions.js
 cordova/monarchAnimation/platforms/osx/www/helperScripts/UI_helper_scripts/mobileStyle.js
-cordova/monarchAnimation/platforms/osx/www/helperScripts/UI_helper_scripts/newStyle.js
+cordova/monarchAnimation/platforms/osx/www/helperScripts/UI_helper_scripts/normalStyle.js
 cordova/monarchAnimation/platforms/osx/www/helperScripts/UI_helper_scripts/popUpControls.js
 cordova/monarchAnimation/platforms/osx/www/index.html
 cordova/monarchAnimation/platforms/osx/www/initial.js
@@ -4519,7 +4519,7 @@ cordova/monarchAnimation/platforms/osx/www/saveEngine/helperScripts/base64.js
 cordova/monarchAnimation/platforms/osx/www/saveEngine/helperScripts/cloudStorage.js
 cordova/monarchAnimation/platforms/osx/www/saveEngine/helperScripts/conversion.js
 cordova/monarchAnimation/platforms/osx/www/saveEngine/helperScripts/localStorage.js
-cordova/monarchAnimation/platforms/osx/www/saveEngine/storage2.0.js
+cordova/monarchAnimation/platforms/osx/www/saveEngine/SaveEngine.js
 cordova/monarchAnimation/platforms/osx/www/scene.js
 cordova/monarchAnimation/platforms/osx/www/settings.js
 cordova/monarchAnimation/platforms/osx/www/style/amoledMode_Style.css
@@ -4599,7 +4599,7 @@ cordova/monarchAnimation/platforms/windows/www/helperScripts/jquery-3.3.1.min.js
 cordova/monarchAnimation/platforms/windows/www/helperScripts/keyevents.js
 cordova/monarchAnimation/platforms/windows/www/helperScripts/UI_helper_scripts/diemsions.js
 cordova/monarchAnimation/platforms/windows/www/helperScripts/UI_helper_scripts/mobileStyle.js
-cordova/monarchAnimation/platforms/windows/www/helperScripts/UI_helper_scripts/newStyle.js
+cordova/monarchAnimation/platforms/windows/www/helperScripts/UI_helper_scripts/normalStyle.js
 cordova/monarchAnimation/platforms/windows/www/helperScripts/UI_helper_scripts/popUpControls.js
 cordova/monarchAnimation/platforms/windows/www/index.html
 cordova/monarchAnimation/platforms/windows/www/initial.js
@@ -4613,7 +4613,7 @@ cordova/monarchAnimation/platforms/windows/www/saveEngine/helperScripts/base64.j
 cordova/monarchAnimation/platforms/windows/www/saveEngine/helperScripts/cloudStorage.js
 cordova/monarchAnimation/platforms/windows/www/saveEngine/helperScripts/conversion.js
 cordova/monarchAnimation/platforms/windows/www/saveEngine/helperScripts/localStorage.js
-cordova/monarchAnimation/platforms/windows/www/saveEngine/storage2.0.js
+cordova/monarchAnimation/platforms/windows/www/saveEngine/SaveEngine.js
 cordova/monarchAnimation/platforms/windows/www/scene.js
 cordova/monarchAnimation/platforms/windows/www/settings.js
 cordova/monarchAnimation/platforms/windows/www/style/amoledMode_Style.css
@@ -4660,3 +4660,13 @@ cordova/monarchAnimation/platforms/windows/www/style/normalMode_Style.css
 cordova/monarchAnimation/platforms/windows/www/TEMP.js
 cordova/monarchAnimation/platforms/windows/www/tutorial.js
 cordova/monarchAnimation/platforms/windows/www/Web.config
+cordova/monarchAnimation/platforms/android/app/src/main/assets/www/helperScripts/UI_helper_scripts/newStyle.js
+cordova/monarchAnimation/platforms/android/app/src/main/assets/www/saveEngine/storage2.0.js
+cordova/monarchAnimation/platforms/browser/www/helperScripts/UI_helper_scripts/newStyle.js
+cordova/monarchAnimation/platforms/browser/www/saveEngine/storage2.0.js
+cordova/monarchAnimation/platforms/osx/www/helperScripts/UI_helper_scripts/newStyle.js
+cordova/monarchAnimation/platforms/osx/www/saveEngine/storage2.0.js
+cordova/monarchAnimation/platforms/windows/www/helperScripts/UI_helper_scripts/newStyle.js
+cordova/monarchAnimation/platforms/windows/www/saveEngine/storage2.0.js
+cordova/monarchAnimation/www/helperScripts/UI_helper_scripts/newStyle.js
+cordova/monarchAnimation/www/saveEngine/storage2.0.js

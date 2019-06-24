@@ -9,7 +9,7 @@
 *
 *
 * list of dependent files:
-* newStyle.js
+* normalStyle.js
 * initial.js
 *
 *
@@ -41,7 +41,7 @@ var UIDiemsions = {
 
         //The placement for the elements
         //Will always be the left value expect for the settings button and right spacer.
-        button_placement : [],//array for each element pos set relative to the one in newStyle.js
+        button_placement : [],//array for each element pos set relative to the one in normalStyle.js
         spacer_placement : [],//array for the 2 spacers 0 = sp1 1 = sp2
         status_placement : 0, //the left value for the status box
         menuContainer_placement : 0,

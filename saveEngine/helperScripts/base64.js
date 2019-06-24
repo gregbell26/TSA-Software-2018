@@ -1,19 +1,3 @@
-/*
- *  base64.js
- *
- *  Licensed under the BSD 3-Clause License.
- *    http://opensource.org/licenses/BSD-3-Clause
- *
- *  Link:
- *    https://github.com/dankogai/js-base64
- *
- *  References:
- *    http://en.wikipedia.org/wiki/Base64
- *
- *  Author: Dan Kogai
- *
- *  Licensed to Monarch TSA on 5-31-19
- */
 ;(function (global, factory) {
     typeof exports === 'object' && typeof module !== 'undefined'
         ? module.exports = factory(global)

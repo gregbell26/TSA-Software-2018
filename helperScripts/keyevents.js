@@ -19,13 +19,15 @@ onkeydown = function(e){
     if(map[32]){
         mouseOnTimeline = false;
         playAnimation(timelinePosition);
-        console.log(timelinePosition);
+        //console.log(timelinePosition);
     }
 };
 
 onchange = function() {
     saveEngine.save(true,false);
 };
+
+
 
 
 /*

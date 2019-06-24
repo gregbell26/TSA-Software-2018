@@ -41,17 +41,6 @@ firebase.auth().onAuthStateChanged(function (user) {
 });
 
 
-// This for some reason doesn't work correctly.. Firebase throws a fit
-// let connectedToServer = firebase.database().ref(".info/connected");
-// connectedToServer.on("value", function(connected){
-//     if(connected.value){
-//         saveEngine.connectionStateChanged(true);
-//     }
-//     else{
-//         saveEngine.connectionStateChanged(false);
-//     }
-// });
-
 class CloudStorage{
 
 
