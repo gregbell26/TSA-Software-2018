@@ -21,11 +21,14 @@ window.addEventListener( 'resize', onWindowResize, false );
 
 function onWindowResize(){
     if (init) {
+        renderer.setSize(UIDiemsions.std_body.renderer_width, UIDiemsions.std_body.renderer_height);
         //This is called whenever a user resizes the window. This makes sure that the scene window stays the correct size and aspect ratio.
-        camera.aspect = getId("animationEngine_renderArea").offsetWidth / getId("animationEngine_renderArea").offsetHeight;
+        camera.aspect = UIDiemsions.std_body.renderer_width / UIDiemsions.std_body.renderer_height;
+        // console.log(camera.aspect);
         camera.updateProjectionMatrix();
         updateTimeline();
-        renderer.setSize(getId("animationEngine_renderArea").offsetWidth, getId("animationEngine_renderArea").offsetHeight);
+
+
         // camera.aspect = window.innerWidth / window.innerHeight;
         // camera.updateProjectionMatrix();
         //
