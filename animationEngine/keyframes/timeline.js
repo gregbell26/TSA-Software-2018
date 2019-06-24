@@ -80,6 +80,8 @@ function keyName(name,frame){
 
 function removeFrame(frame){
     addfortutorial("remove_frame");
+    if(animationRunning)
+        playAnimation(0);
     keyFrames.splice(frame,1);
     updateTimeline();
 }
