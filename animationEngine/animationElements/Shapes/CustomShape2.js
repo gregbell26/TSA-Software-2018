@@ -178,6 +178,7 @@ console.log("Shape Ends at "+index);
     borders.push(borderToAdd);
     scene.add( borderToAdd );
     borders[borders.length-1].visible=false;
+
     var length = scales.length;
     scales[length] = [];
     scales[length][0] = x;

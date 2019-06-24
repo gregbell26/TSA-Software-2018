@@ -11,6 +11,7 @@ function showPopUp(popUpToShow, popUpContent, otherText, mode){
 
     shownPopUp = popUpToShow;
 }
+
 function popUpAction(action){
     if(action===0){
         saveEngine.createNewLocalSave(getPopUpInput());

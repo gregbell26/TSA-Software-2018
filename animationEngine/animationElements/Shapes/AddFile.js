@@ -98,6 +98,5 @@ function parseFile1(strina) {
        // newCustom2(1, 1, 1, 0, 0, 0, '#ff0000', '#000000', verticies, faces);
         //console.log("After newCustom2()");
 }
-//TODO change this element for now its commented out
 document.getElementById('newShape_OBJUploader').addEventListener('change', readSingleFile, false);
 
