@@ -892,8 +892,8 @@ Width is determined at runtime by the spacer function
 */
 #std_timeline{
     overflow: initial;
-    position: relative;
-    bottom: calc(-100vh + 150px);
+    position: absolute;
+    /*bottom: calc(-100vh + 150px);*/
     height: 150px;
     z-index: 6;
     margin-right: 4px;
