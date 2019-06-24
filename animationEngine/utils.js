@@ -14,6 +14,7 @@ function changeColor(value){
     //changes the color of the currently selected shape
     if(showingLight){
         lights[selectedLight].color.set(value);
+        toggleLightsShown();
     }
     else{
         shapes[selectedShape].material.color.set(value);

@@ -100,7 +100,4 @@ var settings = {
 
 
     }
-
-
-
 };
