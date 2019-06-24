@@ -26,7 +26,7 @@ function updateTimeline(){
     for(var i=0; i<keyFrames.length; i++){
         timeline.innerHTML += "<div class='timeline_keyframe' style='left: " + currentX + "px'></div>";
         // toggleCheck.push(0)
-        timeline.children[i+1].setAttribute('onclick', "showKeyframePopup("+i+"); tutorialMovement(360,210,\"This is the keyframes menu. You can edit stuff for this keyframe like the duration. Duration is in miliseconds. Click comit changes at the bottom to continue.\", 0);")
+        timeline.children[i+1].setAttribute('onclick', "showKeyframePopup("+i+"); tutorialMovement(10000,10000,\"This is the keyframes menu. You can edit stuff for this keyframe like the duration. Duration is in miliseconds. Click comit changes at the bottom to continue.\", 0);")
         // durArea.innerHTML += ("<div class='timeline_text' style='position: absolute; left: "+ currentX + "px;'> <div onclick='let id =" + i + "; timesCheck(id, this)'>" + keyFrames[i].duration +"</div> ms</div>");
         currentX+=keyFrames[i].duration/timelineScale;
     }
