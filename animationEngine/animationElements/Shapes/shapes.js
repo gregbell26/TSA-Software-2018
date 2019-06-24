@@ -48,9 +48,7 @@ function removeElement(){
 }
 function removeShape(){
     if(selectedShape >= 0){
-        if(shapes[selectedShape].geometry.type==="TextGeometry"){
-            saveSubSystem.removeText(shapes[selectedShape].geometry.parameters.text);
-        }
+        //
         // For keyFrames2.0
         scene.remove(shapes[selectedShape]);
         scene.remove(borders[selectedShape]);
