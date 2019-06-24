@@ -239,7 +239,7 @@ function newShape(type,x,y,z,posX,posY,posZ,color,border,text){
                 break;
         }
 
-        type = type.charAt(0).toUpperCase() + type.splice(0, 1);
+        type = type.charAt(0).toUpperCase() + type.substring(1, type.length);
         var newMaterial = new THREE.MeshLambertMaterial({color: color});
         newMaterial.lights = true;
         shapes[shapes.length]=new THREE.Mesh(newGeometry, newMaterial);
