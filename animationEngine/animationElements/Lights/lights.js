@@ -48,11 +48,11 @@ function newLight(type,color,intensity,positionX,positionY,positionZ,color2) {
     }
     setSelectedLight(selectedLight);
     for(var i = 0; i < keyFrames.length; i++){
-        keyFrames[i].lights.push({intensity: JSON.parse(JSON.stringify(lights[selectedLight].intensity)),
-                                  position: JSON.parse(JSON.stringify(lights[selectedLight].position)),
-                                  color: JSON.parse(JSON.stringify(lights[selectedLight].color)),
-                                  rotation: JSON.parse(JSON.stringify(lights[selectedLight].rotation)),
-                                  visible: lights[selectedLight].visible});
+        keyFrames[i].lights.push({intensity: 0,
+                                  position: [0,0,0],
+                                  color: "#000000",
+                                  rotation: [0,0,0],
+                                  visible: false});
     }
 }
 
