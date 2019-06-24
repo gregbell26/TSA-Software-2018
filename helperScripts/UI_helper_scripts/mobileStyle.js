@@ -127,12 +127,17 @@ function settingsToggle(){
         getId("settings_menu").classList.remove("settings_hide");
         getId("std_settings").classList.add("settings_show");
         getId("settings_menu").classList.add("settings_show");
+        navButtonToggle("std_settings", true);
+
     }
     else{
         getId("std_settings").classList.remove("settings_show");
         getId("settings_menu").classList.remove("settings_show");
         getId("std_settings").classList.add("settings_hide");
         getId("settings_menu").classList.add("settings_hide");
+        navButtonToggle("std_settings", false);
+
+
     }
 }
 
