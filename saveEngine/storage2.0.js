@@ -261,13 +261,7 @@ class SaveEngine {
             this.localSaveIdList.splice(indexToDelete, 1);
             this.localSaveFriendlyNamesList.splice(indexToDelete, 1);
             this.localStore.saveToStorage(settings.sessionId, this.localSaveIdList);
-            // if (this.legacySupport) {
-            //     this.localStore.deleteFromStorage(this.getKeyName("shapes"));
-            //     this.localStore.deleteFromStorage(this.getKeyName("scales"));
-            //     this.localStore.deleteFromStorage(this.getKeyName("lights"));
-            // } else
-
-                this.localStore.deleteFromStorage(this.getKeyName(scene));
+            this.localStore.deleteFromStorage(this.getKeyName(scene));
             this.localStore.deleteFromStorage(this.getKeyName(keyFrames));
 
             if (oldID === idToDelete) {

@@ -11,6 +11,7 @@
 let init = false;
 let saveEngine;
 let mobile;
+let smallScreen;
 let animationRunning = false;
 let loopAnimation = false;
 let animationTimer;
@@ -41,6 +42,7 @@ var borders = [];
 window.onload = function(){
     //saveSubSystem.loadSettings();
     //mobile dection
+    //This makes loads a new style sheet and UI controller and removes some dom elements as well as changes HTML defined styling for some elements
     if(mobile){
         let actionElement;
         actionElement = document.createElement('link');
@@ -59,6 +61,11 @@ window.onload = function(){
         document.getElementById("ws_loadMenu").style.left = "calc(50% - 225px)";
         document.getElementById("ws_loadMenu").style.width = "400px";
 
+    }
+
+    //If we are on a smaller screen then we are gonna hide some things
+    if(smallScreen){
+        document.getElementById("status_ver").style.display = "none";
     }
 
 

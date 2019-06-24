@@ -34,11 +34,11 @@ var activeMenu ="init";//init value
 function showMenu(menuToShow){
   
     //getId("std_menu_container").style.display = "inherit";
-    if(menuToShow=='menu_newShapes' && selectedShape!=-1 && showingLight){
+    if(menuToShow==='menu_newShapes' && selectedShape!==-1 && showingLight){
        addfortutorial("light_menu");
     }
 
-    if(menuToShow=='menu_newShapes' && selectedShape!=-1 && !showingLight){
+    if(menuToShow==='menu_newShapes' && selectedShape!==-1 && !showingLight){
        addfortutorial("shape_menu");
     }
     if(activeMenu !== "init") {

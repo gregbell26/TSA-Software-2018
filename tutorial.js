@@ -131,9 +131,9 @@ function tutorialMovement(arrowX, arrowY, promptText, isFinal){
                 "exitTutorial();")
         } else {
             tutorialPopUp.children[2].children[0].setAttribute("onclick", "" +
-                "moveArrow(" + arrowX + ", " + arrowY + "); " +
                 "hideTutorialPopup();" );
         }
+        moveArrow(arrowX, arrowY);
         showTutorialPopup(promptText);
     }
 
