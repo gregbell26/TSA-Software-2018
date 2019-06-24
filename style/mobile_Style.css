@@ -895,6 +895,7 @@ Width is determined at runtime by the spacer function
     position: absolute;
     /*bottom: calc(-100vh + 150px);*/
     height: 150px;
+    width: 100%;
     z-index: 6;
     margin-right: 4px;
     /* background-color: rgba(0,0,0,0.15); */
