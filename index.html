@@ -130,11 +130,11 @@
                          src="./style/assets/svgs/nav_icons/nav_animationElements_dark_icon.svg" class="nav_buttonIcon std_icon_dark"/>
 
             </span>
-            <span class="std_nav_button" id="nav_camera" onclick="showMenu('menu_camera'); tutorialMovement(120,120, 'This is the camera menu, here you can do things like change its position. Changing these will change the camera.'  ,0);">
-                    <img onclick="/*showMenu('menu_camera');*/ tutorialMovement(120,120,'This is the camera menu, here you can do things like change its position. Changing these will change the camera.',0);" src="./style/assets/svgs/nav_icons/nav_camera_icon.svg"
+            <span class="std_nav_button" id="nav_camera" onclick="showMenu('menu_camera'); tutorialMovement(10000,10000, 'This is the camera menu, here you can do things like change its position. Changing these will change the camera.'  ,0);">
+                    <img onclick="/*showMenu('menu_camera');*/ tutorialMovement(10000,10000,'This is the camera menu, here you can do things like change its position. Changing these will change the camera.',0);" src="./style/assets/svgs/nav_icons/nav_camera_icon.svg"
                          class="nav_buttonIcon std_icon_normal"/>
 
-                <img onclick="/*showMenu('menu_camera');*/ tutorialMovement(120,120,'This is the camera menu, here you can do things like change its position. Changing these will change the camera.',0);" src="./style/assets/svgs/nav_icons/nav_camera_dark_icon.svg"
+                <img onclick="/*showMenu('menu_camera');*/ tutorialMovement(10000,10000,'This is the camera menu, here you can do things like change its position. Changing these will change the camera.',0);" src="./style/assets/svgs/nav_icons/nav_camera_dark_icon.svg"
                          class="nav_buttonIcon std_icon_dark"/>
 
             </span>
@@ -142,11 +142,11 @@
             This menu has been moved and its controls relocated to the timeline
             <span class="std_nav_button" id="nav_keyframes" onclick="showMenu('menu_keyframes')"></span>
             -->
-            <span class="std_nav_button" id="nav_scene" onclick="showMenu('menu_scene'); tutorialMovement(120,120,'This is the scene menu. Any changes to this field will alter everything in the scene by the changed amount.',0)">
-                  <img onclick="/*showMenu('menu_scene');*/ tutorialMovement(120,120,'This is the scene menu. Any changes to this field will alter everything in the scene by the changed amount.',0)" src="./style/assets/svgs/nav_icons/nav_scene_icon.svg"
+            <span class="std_nav_button" id="nav_scene" onclick="showMenu('menu_scene'); tutorialMovement(10000,10000,'This is the scene menu. Any changes to this field will alter everything in the scene by the changed amount.',0)">
+                  <img onclick="/*showMenu('menu_scene');*/ tutorialMovement(10000,10000,'This is the scene menu. Any changes to this field will alter everything in the scene by the changed amount.',0)" src="./style/assets/svgs/nav_icons/nav_scene_icon.svg"
                          class="nav_buttonIcon std_icon_normal"/>
 
-                <img onclick="/*showMenu('menu_scene');*/ tutorialMovement(120,120,'This is the scene menu. Any changes to this field will alter everything in the scene by the changed amount.',0)" src="./style/assets/svgs/nav_icons/nav_scene_dark_icon.svg"
+                <img onclick="/*showMenu('menu_scene');*/ tutorialMovement(10000,10000,'This is the scene menu. Any changes to this field will alter everything in the scene by the changed amount.',0)" src="./style/assets/svgs/nav_icons/nav_scene_dark_icon.svg"
                          class="nav_buttonIcon std_icon_dark"/>
 
             </span>
@@ -452,7 +452,7 @@
                 </h2>
                 <h3>Camera Position</h3>
                 <div class="std_input_text">
-                    <input type="number" step="any" id="camera_x" onchange="moveCamera('x', Number(this.value)); tutorialMovement(120,120,'You just moved the camera. This will move the camera to the new position you just set. ',0);" required>
+                    <input type="number" step="any" id="camera_x" onchange="moveCamera('x', Number(this.value)); tutorialMovement(10000,10000,'You just moved the camera. This will move the camera to the new position you just set. ',0);" required>
                     <span class="text_highlight"></span>
                     <span class="text_bar"></span>
                     <label>X</label>
@@ -927,7 +927,7 @@
                             src="./style/assets/svgs/timeline_icons/timeline_deleteKeyframe_dark_icon.svg"
                             />
                     </span>
-                    <span class="timeline_button" id="timeline_record" onclick="record(); tutorialMovement(300,430,'This is the record button. Press this to record your animation and press it again to stop recording. It is recording when this button is grey.', 0);">
+                    <span class="timeline_button" id="timeline_record" onclick="record(); tutorialMovement(10000,10000,'This is the record button. Press this to record your animation and press it again to stop recording. It is recording when this button is grey.', 0);">
                         <img  class="std_icon_normal"
                               src="./style/assets/svgs/timeline_icons/timeline_record_icon.svg"
                         />
