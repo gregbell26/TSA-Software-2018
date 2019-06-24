@@ -91,6 +91,8 @@ $(document).on('change',function(e){
 var mouseOnTimeline = false;
 //
 $(document).on('mousedown',function(e){
+    if(mobile)
+        return;
     if(inAnimationWindow==1) {
         xStart = e.pageX;
         yStart = e.pageY;
@@ -109,11 +111,10 @@ $(document).on('mouseup',function(e){
     mouseOnTimeline = false;
 });
 $(document).on('touchstart',function(e){
-    console.log("touchstart")
+    console.log("touchstart");
     if(inAnimationWindow==1) {
         xStart = e.pageX;
         yStart = e.pageY;
-        mouseDown = true;
         console.log(xStart + " , " + yStart);
     }
     else if(e.pageY >= window.innerHeight-100 && e.pageY<=window.innerHeight-25){
@@ -170,7 +171,7 @@ $(document).ready(function(){
 $(document).ready(function(){
     $(document).on('touchmove', function(e){
         console.log("touchmove");
-        if(e.pageY >= 50 && e.pageY<window.innerHeight-150 && (activeMenu === init)) {
+        if(e.pageY >= 50 && e.pageY<window.innerHeight-150) {
             inAnimationWindow = 1;
         }
         else{
@@ -180,6 +181,7 @@ $(document).ready(function(){
 
             var MvX = settings.camera.mouseSensitivity*(e.pageX-xStart)/100;
             var MvY = settings.camera.mouseSensitivity*(e.pageY-yStart)/100;
+            console.log("MvX " + MvX + " MvY " + MvY);
             rotateCamera(MvX,MvY);
 
 
