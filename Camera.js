@@ -99,7 +99,6 @@ $(document).on('mousedown',function(e){
         mouseDown = true;
     }
     else if(e.pageY >= window.innerHeight-100 && e.pageY<=window.innerHeight-25){
-        // console.log("Mouse scrub enabled");
         mouseOnTimeline = true;
         timelineScrub(e.pageX);
     }
@@ -140,6 +139,18 @@ $(document).on('keydown',function(e) {
             zoomCameraM(settings.camera.zoomAmount);
         else if (e.key == "=")
             zoomCameraM(1/settings.camera.zoomAmount);
+    }
+});
+$(document).on('wheel',function(e) {
+    if(mobile && activeMenu !== "init"){
+        return;
+    }
+    console.log(e.originalEvent.deltaY);
+    if (inAnimationWindow==1 && !settingsOpen && !(animationRunning && lockCamera)) {
+        if (e.originalEvent.deltaY > 0)
+            zoomCameraM(settings.camera.zoomAmount/1.16667);
+        else if (e.originalEvent.deltaY < 0)
+            zoomCameraM(1/(settings.camera.zoomAmount/1.16667));
     }
 });
 $(document).on('mouseup',function(e){
@@ -186,7 +197,7 @@ $(document).ready(function(){
 
             var MvX = settings.camera.mouseSensitivity*(e.touches[0].pageX-xStart)/100;
             var MvY = settings.camera.mouseSensitivity*(e.touches[0].pageY-yStart)/100;
-            console.log("MvX " + MvX + " MvY " + MvY);
+
             rotateCamera(MvX,MvY);
 
 
@@ -202,6 +213,7 @@ $(document).ready(function(){
 });
 
 function zoomCameraM(amount) {
+    console.log(amount);
     zoom = Math.pow((Math.pow(xPosition, 2) + Math.pow(yPosition, 2) + Math.pow(zPosition, 2)), .5);//zoom calc here
     if(zoom*amount>1*Math.pow(10,100) || zoom * amount < 1*Math.pow(10,-100)){
         xPosition = 10;
@@ -236,6 +248,7 @@ function zoomCameraM(amount) {
         cameraRy = Math.PI;
     else if (yPosition < 0)
         cameraRy = -Math.PI;
+
 
     yPosition = zoom * Math.sin(cameraRy);
     xPosition = (zoom * Math.cos(Math.asin(yPosition/zoom))) * Math.cos(cameraRz);
