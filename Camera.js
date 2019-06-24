@@ -197,7 +197,7 @@ $(document).ready(function(){
             }
         }
         if(mouseOnTimeline){
-            timelineScrub(e.pageX);
+            timelineScrub(e.touches[0].pageX);
         }
     });
 });
