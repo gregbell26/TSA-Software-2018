@@ -207,10 +207,12 @@ function updateAnimation(timingCounter,a){
             else if (keyFrames[a].zCLook - zPosition < 0)
                 Rz1v = -Math.PI;
 
-            if (xPosition < 0 && Rz1v < 0)
-                Rz1v += Math.PI;
-            else if (xPosition < 0 && Rz1v > 0)
-                Rz1v -= Math.PI;
+            if(xPosition < 0) {
+                if (Rz1v < 0)
+                    Rz1v += Math.PI;
+                else if (Rz1v > 0)
+                    Rz1v -= Math.PI;
+            }
 
             if (keyFrames[a].xCLook - xPosition !== 0 || zPosition -  keyFrames[a].zCLook !== 0)
                 Ry1v = Math.atan((keyFrames[a].yCLook - yPosition) / zoom1Zv);
@@ -287,10 +289,12 @@ function updateAnimation(timingCounter,a){
                 else if (keyFrames[a].zPosition < 0)
                     Rz1 = -Math.PI;
 
-                if (keyFrames[a].xPosition < 0 && Rz1 < 0)
-                    Rz1 += Math.PI;
-                else if (keyFrames[a].xPosition < 0 && Rz1 > 0)
-                    Rz1 -= Math.PI;
+                if(keyFrames[a].xPosition < 0) {
+                    if (Rz1 < 0)
+                        Rz1 += Math.PI;
+                    else if (Rz1 > 0)
+                        Rz1 -= Math.PI;
+                }
 
                 if (keyFrames[a].xPosition !== 0 || keyFrames[a].zPosition !== 0)
                     Ry1 = Math.atan((keyFrames[a].yPosition) / zoom1Z);
@@ -314,10 +318,12 @@ function updateAnimation(timingCounter,a){
                 else if (keyFrames[a + 1].zPosition < 0)
                     Rz2 = -Math.PI;
 
-                if (keyFrames[a + 1].xPosition < 0 && Rz2 < 0)
-                    Rz2 += Math.PI;
-                else if (keyFrames[a + 1].xPosition < 0 && Rz2 > 0)
-                    Rz2 -= Math.PI;
+                if(keyFrames[a + 1].xPosition < 0) {
+                    if (Rz2 < 0)
+                        Rz2 += Math.PI;
+                    else if (Rz2 > 0)
+                        Rz2 -= Math.PI;
+                }
 
                 if (keyFrames[a + 1].xPosition !== 0 || keyFrames[a + 1].zPosition !== 0)
                     Ry2 = Math.atan((keyFrames[a + 1].yPosition) / zoom2Z);

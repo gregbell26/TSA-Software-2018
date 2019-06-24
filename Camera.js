@@ -207,10 +207,12 @@ function zoomCameraM(amount) {
     else if (zPosition < 0)
         cameraRz = -Math.PI;
 
-    if (xPosition < 0 && cameraRz < 0)
-        cameraRz += Math.PI;
-    else if (xPosition < 0 && cameraRz > 0)
-        cameraRz -= Math.PI;
+    if(xPosition < 0) {
+        if (cameraRz < 0)
+            cameraRz += Math.PI;
+        else if (cameraRz > 0)
+            cameraRz -= Math.PI;
+    }
 
     if (xPosition !== 0 || zPosition !== 0)
         cameraRy = Math.atan((yPosition) / (Math.pow(Math.pow(xPosition, 2) + Math.pow(zPosition, 2), .5)));
