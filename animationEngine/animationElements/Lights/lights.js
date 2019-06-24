@@ -44,10 +44,6 @@ function newLight(type,color,intensity,positionX,positionY,positionZ,color2) {
         lights[selectedLight].position.z = positionZ;
         getId("newLights_select").value = "newLight";
     }
-
-    if (type !== "ambient"){
-        toggleLightsShown();
-    }
     setSelectedLight(selectedLight);
     for(var i = 0; i < keyFrames.length; i++){
         keyFrames[i].lights.push([0,
@@ -136,7 +132,6 @@ function removeLight(){
         for(var i = 0; i < keyFrames.length; i++){
             keyFrames[i].lights.splice(selectedLight,1);
         }
-        toggleLightsShown();
         saveEngine.save(true,false);
     }
 }
@@ -165,36 +160,5 @@ function changeIntensity(){
     let value = document.getElementById("intensity_value");
     value.innerHTML = slider.value;
     lights[selectedLight].intensity = (slider.value/100);
-}
-
-function toggleLightsShown() {
-    let check = getId("show_lights_toggle");
-    if (check.checked){
-        for (let i = 0; i < scene.children.length; i++){
-            let element = scene.children[i];
-            if (element.name === "Light Marker"){
-                scene.remove(element);
-            }
-        }
-        for (let i = 0; i < lights.length; i++){
-            let light = lights[i];
-            if (light.type !== "AmbientLight") {
-                let geometry = new THREE.TetrahedronGeometry(0.5, 0);
-                let material = new THREE.MeshBasicMaterial({color: light.color});
-                let mesh = new THREE.Mesh(geometry, material);
-                mesh.name = "Light Marker";
-                mesh.position = light.position;
-                scene.add(mesh);
-            }
-        }
-    } else {
-        for (let i = 0; i < scene.children.length; i++){
-            let element = scene.children[i];
-            if (element.name === "Light Marker"){
-                scene.remove(element);
-            }
-        }
-    }
-
 }
 
