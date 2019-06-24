@@ -298,11 +298,13 @@ $(document).ready(function () {
     getId("std_statusBox").children[0].innerHTML = "READY";
     getId("std_statusBox").children[1].innerHTML = settings.version;
 
-    //When the user resizes the program rerun UI spacer
-    $(window).resize(function () {
-        UISpacer();
-        onWindowResize();
-    });
+
+});
+
+//When the user resizes the program rerun UI spacer
+$(window).resize(function () {
+    UISpacer();
+    onWindowResize();
 });
 
 function mobileHideSideBar(){
