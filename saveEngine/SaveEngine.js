@@ -1,45 +1,4 @@
 class SaveEngine {
-    // localStore;// = new localStore();
-    // cloudStorage;// = new CloudStorage();
-    // localStorageEnable = false;
-    //
-    // cloudStorageEnable = false;
-    //
-    // localNewSave = false;
-    //
-    // firstRun = false;
-    //
-    // legacySupport = false;
-    //
-    // localFileName = "";
-    // localFileID = "init";//will be unique to each save
-    // localFileIndex = 0;
-    //
-    // localStorageUpdateList=[[], []];
-    // cloudStorageUpdateList=[[], []];
-    //
-    //
-    // //List of local names
-    // localSaveIdList = [];
-    // localSaveFriendlyNamesList = [];
-    //
-    // //cloud lists
-    // cloudSaveIdList = [];
-    // cloudSaveFriendlyNamesList = [];
-    //
-    // //These are either about to be saved or about to be loaded.
-    // stagedLights = [];
-    // stagedShapes = [];
-    // stagedKeyframes = [];
-    // stagedScales = [];
-    // stagedBorders = [];
-    // stagedDefaultTargets = [];
-    // //This is for the new engine
-    // stagedScene = [];
-    //
-    //
-    // stagedSettings = [];
-
 
     constructor(localEnable, cloudEnable){
         this._localStorageEnable = localEnable;
@@ -356,22 +315,6 @@ class SaveEngine {
         }
     }
 
-
-
-
-
-
-
-
-
-    //Export/Import Functions
-
-
-
-
-
-
-
     //Helper functions
     getKeyName(key){
         if(this.localFileID === "init")
@@ -406,11 +349,5 @@ class SaveEngine {
 
     }
 
-
-    //true: we are connected
-    //false: we are disconnected
-    static connectionStateChanged(connected){
-
-    }
 
 }

@@ -1,5 +1,5 @@
 /*
-This file contains assorted functions that asssit the animation engine with some things
+This file contains assorted functions that assist the animation engine with some things
 
 This file is licensed under the Apache 2.0 license.
 That means that you can freely use and modify this code for all uses except for
@@ -29,7 +29,7 @@ function rgbToHex (num) {
         hex = "0" + hex;
     }
     return hex;
-};
+}
 
 function addShape(){
     //tutorialMovement(0,0, "When you are done do stuff", true);

@@ -1,5 +1,3 @@
-//TODO This will need to be fixed later on these elements need to be changed
-
 //value.innerText = slider.value;
 
 
