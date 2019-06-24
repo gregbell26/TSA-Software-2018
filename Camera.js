@@ -111,7 +111,7 @@ $(document).on('mouseup',function(e){
     mouseOnTimeline = false;
 });
 $(document).on('touchstart',function(e){
-    console.log("touchstart");
+
     if(e.touches[0].pageY >= 50 && e.touches[0].pageY<window.innerHeight-150) {
         inAnimationWindow = 1;
     }
@@ -121,7 +121,6 @@ $(document).on('touchstart',function(e){
     if(inAnimationWindow==1) {
         xStart = e.touches[0].pageX;
         yStart = e.touches[0].pageY;
-        console.log(xStart + " , " + yStart);
     }
     else if(e.touches[0].pageY >= window.innerHeight-100 && e.touches[0].pageY<=window.innerHeight-25){
         //console.log("Mouse scrub enabled");
@@ -176,7 +175,7 @@ $(document).ready(function(){
 
 $(document).ready(function(){
     $(document).on('touchmove', function(e){
-        console.log("touchmove");
+
         if(e.touches[0].pageY >= 50 && e.touches[0].pageY<window.innerHeight-150) {
             inAnimationWindow = 1;
         }
