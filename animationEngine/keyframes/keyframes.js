@@ -25,12 +25,12 @@ function addFrame(){
             name: "Frame "+keyFrames.length.toString(),
             borderColor: getColors(borders),
             borderVisible: getBorderVisbility(borders),
-            scene: {
-                color: [scene.background.r, scene.background.g, scene.background.b],
-                scale: [scene.scale.x, scene.scale.y, scene.scale.z],
-                rotation: [scene.rotation.x, scene.rotation.y, scene.rotation.z],
-                position: [scene.position.x, scene.position.y, scene.position.z],
-            },
+            scene: [
+                scene.background.r, scene.background.g, scene.background.b,
+                scene.scale.x, scene.scale.y, scene.scale.z,
+                scene.rotation.x, scene.rotation.y, scene.rotation.z,
+                scene.position.x, scene.position.y, scene.position.z,
+            ],
             lights: getLights(lights)
         }
     );
@@ -136,16 +136,16 @@ function getShapes(s){
 function getLights(s){
     var ret = [];
     for(var i=0; i<s.length; i++){
-        ret.push({
-            intensity: JSON.parse(JSON.stringify(s[i].intensity)),
-            position: JSON.parse(JSON.stringify(s[i].position)),
-            color: JSON.parse(JSON.stringify(s[i].color)),
-            rotation: JSON.parse(JSON.stringify(s[i].rotation)),
-            visible: s[i].visible
-        });
-        // if(s[i].type === "hemisphereLight"){
-        //     ret[i] += {color2:JSON.parse(JSON.stringify(s[i].groundColor))}
-        // }
+        ret.push([
+            s[i].intensity,
+            s[i].position.x, s[i].position.y, s[i].position.z,
+            s[i].color.r, s[i].color.g, s[i].color.b,
+            s[i].rotation.x, s[i].rotation.y, s[i].rotation.z,
+            s[i].visible
+        ]);
+        if(s[i].type === "HemisphereLight"){
+            ret[i].push(s[i].groundColor.r, s[i].groundColor.g, s[i].groundColor.b);
+        }
     }
 
     return ret;
@@ -364,52 +364,32 @@ function updateAnimation(timingCounter,a){
             zPosition = keyFrames[a].zPosition + (keyFrames[a + 1].zPosition - keyFrames[a].zPosition) / keyFrames[a].duration * timingCounter;
         }
     }//non camera stuff
-    scene.background.r = keyFrames[a].scene.color[0] + (keyFrames[a + 1].scene.color[0] - keyFrames[a].scene.color[0]) / keyFrames[a].duration * timingCounter;
-    scene.background.g = keyFrames[a].scene.color[1] + (keyFrames[a + 1].scene.color[1] - keyFrames[a].scene.color[1]) / keyFrames[a].duration * timingCounter;
-    scene.background.b = keyFrames[a].scene.color[2] + (keyFrames[a + 1].scene.color[2] - keyFrames[a].scene.color[2]) / keyFrames[a].duration * timingCounter;
-    scene.scale.x = keyFrames[a].scene.scale[0] + (keyFrames[a + 1].scene.scale[0] - keyFrames[a].scene.scale[0]) / keyFrames[a].duration * timingCounter;
-    scene.scale.y = keyFrames[a].scene.scale[1] + (keyFrames[a + 1].scene.scale[1] - keyFrames[a].scene.scale[1]) / keyFrames[a].duration * timingCounter;
-    scene.scale.z = keyFrames[a].scene.scale[2] + (keyFrames[a + 1].scene.scale[2] - keyFrames[a].scene.scale[2]) / keyFrames[a].duration * timingCounter;
-    scene.rotation.x = keyFrames[a].scene.rotation[0] + (keyFrames[a + 1].scene.rotation[0] - keyFrames[a].scene.rotation[0]) / keyFrames[a].duration * timingCounter;
-    scene.rotation.y = keyFrames[a].scene.rotation[1] + (keyFrames[a + 1].scene.rotation[1] - keyFrames[a].scene.rotation[1]) / keyFrames[a].duration * timingCounter;
-    scene.rotation.z = keyFrames[a].scene.rotation[2] + (keyFrames[a + 1].scene.rotation[2] - keyFrames[a].scene.rotation[2]) / keyFrames[a].duration * timingCounter;
-    scene.position.x = keyFrames[a].scene.position[0] + (keyFrames[a + 1].scene.position[0] - keyFrames[a].scene.position[0]) / keyFrames[a].duration * timingCounter;
-    scene.position.y = keyFrames[a].scene.position[1] + (keyFrames[a + 1].scene.position[1] - keyFrames[a].scene.position[1]) / keyFrames[a].duration * timingCounter;
-    scene.position.z = keyFrames[a].scene.position[2] + (keyFrames[a + 1].scene.position[2] - keyFrames[a].scene.position[2]) / keyFrames[a].duration * timingCounter;
+    scene.background.fromArray(updateElement([scene.background.r, scene.background.g, scene.background.b], [0, 1, 2], a, timingCounter, "scene", 0));
+    scene.scale.fromArray(updateElement([scene.scale.x, scene.scale.y, scene.scale.z], [3, 4, 5], a, timingCounter, "scene", 0));
+    scene.rotation.fromArray(updateElement([scene.rotation.x, scene.rotation.y, scene.rotation.z], [6, 7, 8], a, timingCounter, "scene", 0));
+    scene.position.fromArray(updateElement([scene.position.x, scene.position.y, scene.position.z], [9, 10, 11], a, timingCounter, "scene", 0));
     for (var i = 0; i < keyFrames[a].scales.length; i++) {//individual stuff for shapes
         shapes[i].visible = keyFrames[a+1].shapes[i][6];
         borders[i].visible = keyFrames[a+1].shapes[i][6] && keyFrames[a+1].borderVisible[i];
-        scales[i][0] = keyFrames[a].scales[i][0] + (keyFrames[a + 1].scales[i][0] - keyFrames[a].scales[i][0]) / keyFrames[a].duration * timingCounter;
-        scales[i][1] = keyFrames[a].scales[i][1] + (keyFrames[a + 1].scales[i][1] - keyFrames[a].scales[i][1]) / keyFrames[a].duration * timingCounter;
-        scales[i][2] = keyFrames[a].scales[i][2] + (keyFrames[a + 1].scales[i][2] - keyFrames[a].scales[i][2]) / keyFrames[a].duration * timingCounter;
-        borders[i].scale.x = keyFrames[a].scales[i][0] + (keyFrames[a + 1].scales[i][0] - keyFrames[a].scales[i][0]) / keyFrames[a].duration * timingCounter;
-        borders[i].scale.y = keyFrames[a].scales[i][1] + (keyFrames[a + 1].scales[i][1] - keyFrames[a].scales[i][1]) / keyFrames[a].duration * timingCounter;
-        borders[i].scale.z = keyFrames[a].scales[i][2] + (keyFrames[a + 1].scales[i][2] - keyFrames[a].scales[i][2]) / keyFrames[a].duration * timingCounter;
-        shapes[i].position.x = keyFrames[a].shapes[i][0] + (keyFrames[a + 1].shapes[i][0] - keyFrames[a].shapes[i][0]) / keyFrames[a].duration * timingCounter;
-        shapes[i].position.y = keyFrames[a].shapes[i][1] + (keyFrames[a + 1].shapes[i][1] - keyFrames[a].shapes[i][1]) / keyFrames[a].duration * timingCounter;
-        shapes[i].position.z = keyFrames[a].shapes[i][2] + (keyFrames[a + 1].shapes[i][2] - keyFrames[a].shapes[i][2]) / keyFrames[a].duration * timingCounter;
-        shapes[i].rotation.x = keyFrames[a].shapes[i][3] + (keyFrames[a + 1].shapes[i][3] - keyFrames[a].shapes[i][3]) / keyFrames[a].duration * timingCounter;
-        shapes[i].rotation.y = keyFrames[a].shapes[i][4] + (keyFrames[a + 1].shapes[i][4] - keyFrames[a].shapes[i][4]) / keyFrames[a].duration * timingCounter;
-        shapes[i].rotation.z = keyFrames[a].shapes[i][5] + (keyFrames[a + 1].shapes[i][5] - keyFrames[a].shapes[i][5]) / keyFrames[a].duration * timingCounter;
-        borders[i].position.x = keyFrames[a].shapes[i][0] + (keyFrames[a + 1].shapes[i][0] - keyFrames[a].shapes[i][0]) / keyFrames[a].duration * timingCounter;
-        borders[i].position.y = keyFrames[a].shapes[i][1] + (keyFrames[a + 1].shapes[i][1] - keyFrames[a].shapes[i][1]) / keyFrames[a].duration * timingCounter;
-        borders[i].position.z = keyFrames[a].shapes[i][2] + (keyFrames[a + 1].shapes[i][2] - keyFrames[a].shapes[i][2]) / keyFrames[a].duration * timingCounter;
-        borders[i].rotation.x = keyFrames[a].shapes[i][3] + (keyFrames[a + 1].shapes[i][3] - keyFrames[a].shapes[i][3]) / keyFrames[a].duration * timingCounter;
-        borders[i].rotation.y = keyFrames[a].shapes[i][4] + (keyFrames[a + 1].shapes[i][4] - keyFrames[a].shapes[i][4]) / keyFrames[a].duration * timingCounter;
-        borders[i].rotation.z = keyFrames[a].shapes[i][5] + (keyFrames[a + 1].shapes[i][5] - keyFrames[a].shapes[i][5]) / keyFrames[a].duration * timingCounter;
-        shapes[i].material.color.r = keyFrames[a].color[i][0] + (keyFrames[a + 1].color[i][0] - keyFrames[a].color[i][0]) / keyFrames[a].duration * timingCounter;
-        shapes[i].material.color.g = keyFrames[a].color[i][1] + (keyFrames[a + 1].color[i][1] - keyFrames[a].color[i][1]) / keyFrames[a].duration * timingCounter;
-        shapes[i].material.color.b = keyFrames[a].color[i][2] + (keyFrames[a + 1].color[i][2] - keyFrames[a].color[i][2]) / keyFrames[a].duration * timingCounter;
-        borders[i].material.color.r = keyFrames[a].borderColor[i][0] + (keyFrames[a + 1].borderColor[i][0] - keyFrames[a].borderColor[i][0]) / keyFrames[a].duration * timingCounter;
-        borders[i].material.color.g = keyFrames[a].borderColor[i][1] + (keyFrames[a + 1].borderColor[i][1] - keyFrames[a].borderColor[i][1]) / keyFrames[a].duration * timingCounter;
-        borders[i].material.color.b = keyFrames[a].borderColor[i][2] + (keyFrames[a + 1].borderColor[i][2] - keyFrames[a].borderColor[i][2]) / keyFrames[a].duration * timingCounter;
+        scales[i] = updateElement([scales[i][0], scales[i][1], scales[i][2]], [0, 1, 2], a, timingCounter, "scales", i);
+        borders[i].scale.fromArray(updateElement([borders[i].scale.x, borders[i].scale.y, borders[i].scale.z], [0, 1, 2], a, timingCounter, "scales", i));
+        shapes[i].position.fromArray(updateElement([shapes[i].position.x, shapes[i].position.y, shapes[i].position.z], [0, 1, 2], a, timingCounter, "shapes", i));
+        shapes[i].rotation.fromArray(updateElement([shapes[i].rotation.x, shapes[i].rotation.y, shapes[i].rotation.z], [3, 4, 5], a, timingCounter, "shapes", i));
+        borders[i].position.fromArray(updateElement([borders[i].position.x, borders[i].position.y, borders[i].position.z], [0, 1, 2], a, timingCounter, "shapes", i));
+        borders[i].rotation.fromArray(updateElement([borders[i].rotation.x, borders[i].rotation.y, borders[i].rotation.z], [3, 4, 5], a, timingCounter, "shapes", i));
+        shapes[i].material.color.fromArray(updateElement([shapes[i].material.color.r, shapes[i].material.color.g, shapes[i].material.color.b], [0, 1, 2], a, timingCounter, "shape color", i));
+        borders[i].material.color.fromArray(updateElement([borders[i].material.color.r, borders[i].material.color.g, borders[i].material.color.b], [0, 1, 2], a, timingCounter, "border color", i));
     }
     for(var i=0; i<lights.length; i++){
         if(keyFrames[a].lights[i]!=null && keyFrames[a+1].lights[i]!=null){
             lights[i].visible = keyFrames[a].lights.visible;
-            lights[i].position.x = keyFrames[a].lights[i].position.x + (keyFrames[a + 1].lights[i].position.x - keyFrames[a].lights[i].position.x) / keyFrames[a].duration * timingCounter;
-            lights[i].position.y = keyFrames[a].lights[i].position.y + (keyFrames[a + 1].lights[i].position.y - keyFrames[a].lights[i].position.y) / keyFrames[a].duration * timingCounter;
-            lights[i].position.z = keyFrames[a].lights[i].position.z + (keyFrames[a + 1].lights[i].position.z - keyFrames[a].lights[i].position.z) / keyFrames[a].duration * timingCounter;
+            lights[i].position.fromArray(updateElement([lights[i].position.x, lights[i].position.y, lights[i].position.z], [1, 2, 3], a, timingCounter, "lights", i));
+            lights[i].rotation.fromArray(updateElement([lights[i].rotation.x, lights[i].rotation.y, lights[i].rotation.z], [7, 8, 9], a, timingCounter, "lights", i));
+            lights[i].color.fromArray(updateElement([lights[i].color.r, lights[i].color.g, lights[i].color.b], [4, 5, 6], a, timingCounter, "lights", i));
+            if (lights[i].type === "HemisphereLight"){
+                lights[i].groundColor.fromArray(updateElement([lights[i].groundColor.r, lights[i].groundColor.g, lights[i].groundColor.b], [10, 11, 12], a, timingCounter, "lights", i))
+            }
+            lights[i].intensity = updateElement([lights[i].intensity], [0], a, timingCounter, "lights", i)[0];
         }
     }
     lastTickAnimated = 0;
@@ -418,6 +398,43 @@ function updateAnimation(timingCounter,a){
     }
     lastTickAnimated += timingCounter;
 }
+
+function updateElement(valsToChange, keyframeVal, a, timingCounter, parent, i) {
+    switch (parent) {
+        case "shapes":
+            for (let j = 0; j < valsToChange.length; j++){
+                valsToChange[j] = keyFrames[a].shapes[i][keyframeVal[j]] + (keyFrames[a + 1].shapes[i][keyframeVal[j]] - keyFrames[a].shapes[i][keyframeVal[j]]) / keyFrames[a].duration * timingCounter;
+            }
+            break;
+        case "shape color":
+            for (let j = 0; j < valsToChange.length; j++){
+                valsToChange[j] = keyFrames[a].color[i][keyframeVal[j]] + (keyFrames[a + 1].color[i][keyframeVal[j]] - keyFrames[a].color[i][keyframeVal[j]]) / keyFrames[a].duration * timingCounter;
+            }
+            break;
+        case "border color":
+            for (let j = 0; j < valsToChange.length; j++){
+                valsToChange[j] = keyFrames[a].borderColor[i][keyframeVal[j]] + (keyFrames[a + 1].borderColor[i][keyframeVal[j]] - keyFrames[a].borderColor[i][keyframeVal[j]]) / keyFrames[a].duration * timingCounter;
+            }
+            break;
+        case "scales":
+            for (let j = 0; j < valsToChange.length; j++){
+                valsToChange[j] = keyFrames[a].scales[i][keyframeVal[j]] + (keyFrames[a + 1].scales[i][keyframeVal[j]] - keyFrames[a].scales[i][keyframeVal[j]]) / keyFrames[a].duration * timingCounter;
+            }
+            break;
+        case "lights":
+            for (let j = 0; j < valsToChange.length; j++){
+                valsToChange[j] = keyFrames[a].lights[i][keyframeVal[j]] + (keyFrames[a + 1].lights[i][keyframeVal[j]] - keyFrames[a].lights[i][keyframeVal[j]]) / keyFrames[a].duration * timingCounter;
+            }
+            break;
+        case "scene":
+            for (let j = 0; j < valsToChange.length; j++){
+                valsToChange[j] = keyFrames[a].scene[keyframeVal[j]] + (keyFrames[a + 1].scene[keyframeVal[j]] - keyFrames[a].scene[keyframeVal[j]]) / keyFrames[a].duration * timingCounter;
+            }
+            break;
+    }
+    return valsToChange;
+}
+
 var recording = false;
 function record(){
     recording = true;
