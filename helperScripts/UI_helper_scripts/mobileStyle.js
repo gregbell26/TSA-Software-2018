@@ -326,16 +326,13 @@ function UISpacer(){
     UIDiemsions.std_body.renderer_top = UIDiemsions.std_navBar.nav_height;
     UIDiemsions.std_body.renderer_left = 0;
 
-    // if(window.innerWidth<=500 || isMobile()){
-    //     UIDiemsions.std_body.renderer_left = 0;
-    // }
 
     UIDiemsions.std_body.renderer_height = UIDiemsions.std_body.body_height- UIDiemsions.std_navBar.nav_height - UIDiemsions.std_timeline.timeline_height;
-    UIDiemsions.std_body.renderer_width = 100;
+    UIDiemsions.std_body.renderer_width = UIDiemsions.std_body.body_width;
 
     getId("animationEngine_renderArea").style.top =(UIDiemsions.std_body.renderer_top).toString()+UIDiemsions.std_navBar.defaultUnit;
     getId("animationEngine_renderArea").style.left =(UIDiemsions.std_body.renderer_left).toString()+UIDiemsions.std_navBar.defaultUnit;
-    getId("animationEngine_renderArea").style.width = UIDiemsions.std_body.renderer_width.toString() + "%";
+    getId("animationEngine_renderArea").style.width = UIDiemsions.std_body.renderer_width.toString() + UIDiemsions.std_navBar.defaultUnit;
 
 
     getId("std_menu_container").style.height =
