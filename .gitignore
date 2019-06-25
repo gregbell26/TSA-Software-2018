@@ -5388,3 +5388,62 @@ cordova/monarchAnimation/platforms/ios/www/style/normalMode_Style.css
 cordova/monarchAnimation/platforms/ios/www/tutorial.js
 cordova/monarchAnimation/platforms/ios/www/Web.config
 cordova/monarchAnimation/plugins/ios.json
+closure-build/three.min.js
+closure-build/style/normalMode_Style.css
+closure-build/style/mobile_Style.css
+closure-build/style/memeMode_style.css
+closure-build/style/fonts/robotoSlab.css
+closure-build/style/fonts/openSans.css
+closure-build/style/default_Style.css
+closure-build/style/darkMode_Style.css
+closure-build/style/assets/UI Element Codes
+closure-build/style/assets/svgs/timeline_icons/timeline_record_icon.svg
+closure-build/style/assets/svgs/timeline_icons/timeline_record_dark_icon.svg
+closure-build/style/assets/svgs/timeline_icons/timeline_play_icon.svg
+closure-build/style/assets/svgs/timeline_icons/timeline_play_dark_icon.svg
+closure-build/style/assets/svgs/timeline_icons/timeline_loop_icon.svg
+closure-build/style/assets/svgs/timeline_icons/timeline_loop_dark_icon.svg
+closure-build/style/assets/svgs/timeline_icons/timeline_deleteKeyframe_icon.svg
+closure-build/style/assets/svgs/timeline_icons/timeline_deleteKeyframe_dark_icon.svg
+closure-build/style/assets/svgs/timeline_icons/timeline_addKeyframe_icon.svg
+closure-build/style/assets/svgs/timeline_icons/timeline_addKeyframe_dark_icon.svg
+closure-build/style/assets/svgs/nav_icons/raw/nav_icons_raw_NFP.ai
+closure-build/style/assets/svgs/nav_icons/nav_shapes_icon.svg
+closure-build/style/assets/svgs/nav_icons/nav_shapes_dark_icon.svg
+closure-build/style/assets/svgs/nav_icons/nav_settings_icon_alt.svg
+closure-build/style/assets/svgs/nav_icons/nav_settings_icon.svg
+closure-build/style/assets/svgs/nav_icons/nav_settings_dark_icon.svg
+closure-build/style/assets/svgs/nav_icons/nav_scene_icon.svg
+closure-build/style/assets/svgs/nav_icons/nav_scene_dark_icon.svg
+closure-build/style/assets/svgs/nav_icons/nav_Icon_License
+closure-build/style/assets/svgs/nav_icons/nav_camera_icon.svg
+closure-build/style/assets/svgs/nav_icons/nav_camera_dark_icon.svg
+closure-build/style/assets/svgs/nav_icons/nav_animationElements_icon.svg
+closure-build/style/assets/svgs/nav_icons/nav_animationElements_dark_icon.svg
+closure-build/style/assets/pngs/unused/icons/Shapes Icon.png
+closure-build/style/assets/pngs/unused/icons/Settings Icon.png
+closure-build/style/assets/pngs/unused/icons/Scene Icon.png
+closure-build/style/assets/pngs/unused/icons/Old Settings Icon.png
+closure-build/style/assets/pngs/unused/icons/Camera Icon.png
+closure-build/style/assets/pngs/unused/icons/Animation Icon.png
+closure-build/style/assets/pngs/unused/icons/Alternate Settings Icon.png
+closure-build/style/assets/pngs/monarchAnimation_Icon_License
+closure-build/style/assets/pngs/monarchAnimation_Icon.png
+closure-build/style/amoledMode_Style.css
+closure-build/normalStyle.js
+closure-build/monarchAnimation.min.js
+closure-build/mobileStyle.js
+closure-build/index.html
+closure-build/helperScripts/UI_helper_scripts/normalStyle.js
+closure-build/helperScripts/UI_helper_scripts/mobileStyle.js
+closure-build/helperScripts/jquery-3.3.1.min.js
+closure-build/helperScripts/firebase-firestore.js
+closure-build/helperScripts/firebase-database.js
+closure-build/helperScripts/firebase-auth.js
+closure-build/helperScripts/firebase-app.js
+closure-build/helperScripts/ccapture.min.js
+closure-build/animationEngine/three.min.js
+closure-build/three.min.js
+closure-build/normalStyle.js
+closure-build/monarchAnimation.min.js
+closure-build/mobileStyle.js

@@ -1,12 +1,12 @@
 #!/bin/bash
 
 echo -e "This will compile Monarch Animation"
-echo -e "\n"
 echo -e "copyright 2019 Monarch TSA"
 
 if [ -d "closure-build" ]; then
-    #clears the build path
+    #clears the build path for everything but the style stuff
     cd closure-build
+    mv index.html style/
     cd helperScripts/UI_helper_scripts
     rm *
     cd ..
@@ -19,6 +19,7 @@ if [ -d "closure-build" ]; then
     rm *
     rmdir *
     cd ..
+
 else 
     mkdir closure-build
 fi
@@ -56,9 +57,19 @@ cp helperScripts/jquery-3.3.1.min.js closure-build/
 
 cd closure-build
 
+mv style/index.html ../
+
 mkdir helperScripts
 mkdir animationEngine
+cd helperScripts
 
+#download firebase files
+wget https://www.gstatic.com/firebasejs/6.1.1/firebase-app.js
+wget https://www.gstatic.com/firebasejs/6.1.1/firebase-auth.js
+wget https://www.gstatic.com/firebasejs/6.1.1/firebase-firestore.js
+wget https://www.gstatic.com/firebasejs/6.1.1/firebase-database.js
+
+cd ..
 mv ccapture.min.js helperScripts/
 mv jquery-3.3.1.min.js helperScripts/
 
@@ -72,6 +83,7 @@ cd ..
 
 mv normalStyle.js helperScripts/UI_helper_scripts/
 mv mobileStyle.js helperScripts/UI_helper_scripts/
+
 
 echo -e "Generation Complete."
 
