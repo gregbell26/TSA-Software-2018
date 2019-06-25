@@ -282,13 +282,8 @@ function UISpacer(){
     getId("std_settings").style.height = getId("std_menu_container").style.height;
 
 }
-/*
-* Hides things for mobile users.
-* */
-function mobileHider(){
-    //this is a lot simpler than I thought it would be
-    for (let el of document.querySelectorAll('.std_mobile_hidden')) el.hidden = true;
-}
+
+
 
 
 /*
@@ -297,7 +292,6 @@ function mobileHider(){
 $(document).ready(function () {
     getId("std_statusBox").children[0].innerHTML = "READY";
     getId("std_statusBox").children[1].innerHTML = settings.version;
-
 
 });
 

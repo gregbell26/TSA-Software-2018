@@ -134,7 +134,7 @@ $(document).on('touchend',function(e){
     mouseOnTimeline = false;
 });
 $(document).on('keydown',function(e) {
-    if (inAnimationWindow==1 && !settingsOpen && !(animationRunning && lockCamera)) {
+    if (inAnimationWindow==1 && getId("std_settings").classList.contains("settings_hide") && !(animationRunning && lockCamera)) {
         if (e.key == "-")
             zoomCameraM(settings.camera.zoomAmount);
         else if (e.key == "=")
@@ -145,8 +145,8 @@ $(document).on('wheel',function(e) {
     if(mobile && activeMenu !== "init"){
         return;
     }
-    console.log(e.originalEvent.deltaY);
-    if (inAnimationWindow==1 && !settingsOpen && !(animationRunning && lockCamera)) {
+    //console.log(e.originalEvent.deltaY);
+    if (inAnimationWindow==1 && getId("std_settings").classList.contains("settings_hide") && !(animationRunning && lockCamera)) {
         if (e.originalEvent.deltaY > 0)
             zoomCameraM(settings.camera.zoomAmount/1.16667);
         else if (e.originalEvent.deltaY < 0)
@@ -166,7 +166,7 @@ $(document).ready(function(){
         else{
             inAnimationWindow = 0;
         }
-        if(mouseDown && inAnimationWindow==1 && !settingsOpen && !(animationRunning && lockCamera)){
+        if(mouseDown && inAnimationWindow==1 && getId("std_settings").classList.contains("settings_hide") && !(animationRunning && lockCamera)){
 
             var MvX = settings.camera.mouseSensitivity*(e.pageX-xStart)/100;
             var MvY = settings.camera.mouseSensitivity*(e.pageY-yStart)/100;
@@ -193,7 +193,7 @@ $(document).ready(function(){
         else{
             inAnimationWindow = 0;
         }
-        if((activeMenu === "init") && inAnimationWindow==1 && !settingsOpen && !(animationRunning && lockCamera)){
+        if((activeMenu === "init") && inAnimationWindow==1 && getId("std_settings").classList.contains("settings_hide") && !(animationRunning && lockCamera)){
 
             var MvX = settings.camera.mouseSensitivity*(e.touches[0].pageX-xStart)/100;
             var MvY = settings.camera.mouseSensitivity*(e.touches[0].pageY-yStart)/100;
@@ -213,7 +213,7 @@ $(document).ready(function(){
 });
 
 function zoomCameraM(amount) {
-    console.log(amount);
+    //console.log(amount);
     zoom = Math.pow((Math.pow(xPosition, 2) + Math.pow(yPosition, 2) + Math.pow(zPosition, 2)), .5);//zoom calc here
     if(zoom*amount>1*Math.pow(10,100) || zoom * amount < 1*Math.pow(10,-100)){
         xPosition = 10;
