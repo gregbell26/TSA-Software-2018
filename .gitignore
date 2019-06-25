@@ -1017,7 +1017,7 @@ cordova/monarchAnimation/platforms/android/app/build/intermediates/assets/debug/
 cordova/monarchAnimation/platforms/android/app/build/intermediates/assets/debug/www/default/img/logo.png
 cordova/monarchAnimation/platforms/android/app/build/intermediates/assets/debug/www/default/index.html
 cordova/monarchAnimation/platforms/android/app/build/intermediates/assets/debug/www/default/js/index.js
-cordova/monarchAnimation/platforms/android/app/build/intermediates/assets/debug/www/helperScripts/ccapture.js
+cordova/monarchAnimation/platforms/android/app/build/intermediates/assets/debug/www/helperScripts/ccapture.min.js
 cordova/monarchAnimation/platforms/android/app/build/intermediates/assets/debug/www/helperScripts/debugTools.js
 cordova/monarchAnimation/platforms/android/app/build/intermediates/assets/debug/www/helperScripts/jquery-3.3.1.min.js
 cordova/monarchAnimation/platforms/android/app/build/intermediates/assets/debug/www/helperScripts/keyevents.js
@@ -1219,7 +1219,7 @@ cordova/monarchAnimation/platforms/android/app/src/main/assets/www/default/css/i
 cordova/monarchAnimation/platforms/android/app/src/main/assets/www/default/img/logo.png
 cordova/monarchAnimation/platforms/android/app/src/main/assets/www/default/index.html
 cordova/monarchAnimation/platforms/android/app/src/main/assets/www/default/js/index.js
-cordova/monarchAnimation/platforms/android/app/src/main/assets/www/helperScripts/ccapture.js
+cordova/monarchAnimation/platforms/android/app/src/main/assets/www/helperScripts/ccapture.min.js
 cordova/monarchAnimation/platforms/android/app/src/main/assets/www/helperScripts/debugTools.js
 cordova/monarchAnimation/platforms/android/app/src/main/assets/www/helperScripts/jquery-3.3.1.min.js
 cordova/monarchAnimation/platforms/android/app/src/main/assets/www/helperScripts/keyevents.js
@@ -2617,7 +2617,7 @@ cordova/monarchAnimation/platforms/browser/www/default/img/logo.png
 cordova/monarchAnimation/platforms/browser/www/default/index.html
 cordova/monarchAnimation/platforms/browser/www/default/js/index.js
 cordova/monarchAnimation/platforms/browser/www/favicon.ico
-cordova/monarchAnimation/platforms/browser/www/helperScripts/ccapture.js
+cordova/monarchAnimation/platforms/browser/www/helperScripts/ccapture.min.js
 cordova/monarchAnimation/platforms/browser/www/helperScripts/debugTools.js
 cordova/monarchAnimation/platforms/browser/www/helperScripts/jquery-3.3.1.min.js
 cordova/monarchAnimation/platforms/browser/www/helperScripts/keyevents.js
@@ -2739,7 +2739,7 @@ cordova/monarchAnimation/www/default/css/index.css
 cordova/monarchAnimation/www/default/img/logo.png
 cordova/monarchAnimation/www/default/index.html
 cordova/monarchAnimation/www/default/js/index.js
-cordova/monarchAnimation/www/helperScripts/ccapture.js
+cordova/monarchAnimation/www/helperScripts/ccapture.min.js
 cordova/monarchAnimation/www/helperScripts/debugTools.js
 cordova/monarchAnimation/www/helperScripts/jquery-3.3.1.min.js
 cordova/monarchAnimation/www/helperScripts/keyevents.js
@@ -4499,7 +4499,7 @@ cordova/monarchAnimation/platforms/osx/www/animationEngine/keyframes/timeline.js
 cordova/monarchAnimation/platforms/osx/www/animationEngine/three.js
 cordova/monarchAnimation/platforms/osx/www/animationEngine/utils.js
 cordova/monarchAnimation/platforms/osx/www/Camera.js
-cordova/monarchAnimation/platforms/osx/www/helperScripts/ccapture.js
+cordova/monarchAnimation/platforms/osx/www/helperScripts/ccapture.min.js
 cordova/monarchAnimation/platforms/osx/www/helperScripts/debugTools.js
 cordova/monarchAnimation/platforms/osx/www/helperScripts/jquery-3.3.1.min.js
 cordova/monarchAnimation/platforms/osx/www/helperScripts/keyevents.js
@@ -4593,7 +4593,7 @@ cordova/monarchAnimation/platforms/windows/www/animationEngine/keyframes/timelin
 cordova/monarchAnimation/platforms/windows/www/animationEngine/three.js
 cordova/monarchAnimation/platforms/windows/www/animationEngine/utils.js
 cordova/monarchAnimation/platforms/windows/www/Camera.js
-cordova/monarchAnimation/platforms/windows/www/helperScripts/ccapture.js
+cordova/monarchAnimation/platforms/windows/www/helperScripts/ccapture.min.js
 cordova/monarchAnimation/platforms/windows/www/helperScripts/debugTools.js
 cordova/monarchAnimation/platforms/windows/www/helperScripts/jquery-3.3.1.min.js
 cordova/monarchAnimation/platforms/windows/www/helperScripts/keyevents.js
@@ -5323,7 +5323,7 @@ cordova/monarchAnimation/platforms/ios/www/cordova-js-src/plugin/ios/console.js
 cordova/monarchAnimation/platforms/ios/www/cordova-js-src/plugin/ios/logger.js
 cordova/monarchAnimation/platforms/ios/www/cordova.js
 cordova/monarchAnimation/platforms/ios/www/cordova_plugins.js
-cordova/monarchAnimation/platforms/ios/www/helperScripts/ccapture.js
+cordova/monarchAnimation/platforms/ios/www/helperScripts/ccapture.min.js
 cordova/monarchAnimation/platforms/ios/www/helperScripts/jquery-3.3.1.min.js
 cordova/monarchAnimation/platforms/ios/www/helperScripts/keyevents.js
 cordova/monarchAnimation/platforms/ios/www/helperScripts/UI_helper_scripts/diemsions.js

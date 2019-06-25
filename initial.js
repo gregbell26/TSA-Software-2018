@@ -184,7 +184,7 @@ function start(){
     if(mobile){
         renderer = new THREE.WebGLRenderer({logarithmicDepthBuffer: true});
         renderer.setSize(UIDiemsions.std_body.renderer_width, UIDiemsions.std_body.renderer_height);
-        renderer.shadowMap.enabled = false;
+        renderer.shadowMap.enabled = true;
         // renderer.shadowMapSoft = true;
         // renderer.shadowMap.type = THREE.PCFSoftShadowMap;
     }
