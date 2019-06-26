@@ -44,20 +44,21 @@ closure-compiler --js_output_file="normalStyle.js" --js="**normalStyle.js"
 mv mobileStyle.js closure-build/
 mv normalStyle.js closure-build/
 
-# echo -e "Complation Complete. Verifying files..."
+# echo -e "Compilation Complete. Verifying files..."
 
 
-echo -e "Complation Complete. Re-generating Project..."
+echo -e "Compilation Complete. Re-generating Project..."
 
 #Moves files into working directory
+cd closure-build
+mv style/index.html ../closure-build
+cd ..
 
 cp -R style/ closure-build/style
 cp helperScripts/ccapture.min.js closure-build/
 cp helperScripts/jquery-3.3.1.min.js closure-build/
 
 cd closure-build
-
-mv style/index.html ../
 
 mkdir helperScripts
 mkdir animationEngine

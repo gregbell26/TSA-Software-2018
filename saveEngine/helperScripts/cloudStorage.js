@@ -191,7 +191,6 @@ class CloudStorage{
             if(data.exists) {
                 saveEngine.cloudStorage.downloadData = data.data();
                 // saveEngine.cloudStorage.downloadComplete = true;
-                alert("HOE");
                 saveEngine.stagedScene = conversion.convertJSONToScene(JSON.parse(data.data().scene));
                 saveEngine.stagedKeyframes = JSON.parse(data.data().keyframes);
                 saveEngine.localFileName = data.data().name;
