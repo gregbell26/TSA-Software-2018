@@ -68,6 +68,7 @@
         -->
         <script defer src="helperScripts/ccapture.min.js"></script>
         <script src="helperScripts/keyevents.js"></script>
+        <script src="helperScripts/jscolor.js"></script>
         <script src="menus.js"></script>
         <script src="tutorial.js"></script>
         <script src="settings.js"></script>
@@ -427,12 +428,12 @@
                     </h3>
 
                     <div class="std_input_color" id="element_color">
-                        <input type="color" onchange="changeColor(this.value)">
+                        <input class="jscolor" onchange="changeColor(this.jscolor.toHEXString())">
                         Element Color
                     </div>
 
                     <div class="std_input_color" id="element_border_color">
-                        <input type="color" onchange="borderChange(this.value)">
+                        <input class="jscolor" onchange="borderChange(this.jscolor.toHEXString())">
                         Border Color
                     </div>
 
@@ -611,7 +612,7 @@
                 <h3>
                     Color
                 </h3>
-                <input type="color" onchange="sceneBackground(this.value)" id="scene_color">
+                <input class="jscolor" onchange="sceneBackground(this.jscolor.toHEXString())" id="scene_color">
                 <div class="bottom_menu_spacer">
                 </div>
             </div>

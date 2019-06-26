@@ -40,9 +40,9 @@ function setSelectedShape(num){
         document.getElementById('currentEditing_type').style.display = 'initial';
     }
     //document.getElementById('boxSelected').innerHTML="#"+(selectedShape+1);
-    console.log(shapes[selectedShape].material.color.getHexString());
-    document.getElementById('element_color').children[0].value = "#"+shapes[selectedShape].material.color.getHexString();
-    document.getElementById("element_border_color").children[0].value = "#"+borders[selectedShape].material.color.getHexString();
+    // console.log(shapes[selectedShape].material.color.getHexString());
+    document.getElementById('element_color').children[0].jscolor.fromString(shapes[selectedShape].material.color.getHexString());// = "#"+shapes[selectedShape].material.color.getHexString();
+    document.getElementById("element_border_color").children[0].jscolor.fromString(borders[selectedShape].material.color.getHexString());//= "#"+borders[selectedShape].material.color.getHexString();
     document.getElementById('position_x').value = shapes[selectedShape].position.x;
     document.getElementById('position_y').value = shapes[selectedShape].position.y;
     document.getElementById('position_z').value = shapes[selectedShape].position.z;
@@ -76,10 +76,10 @@ function setSelectedLight(num) {
         document.getElementById('currentEditing_type').style.display = 'initial';
     }
     if (lights[selectedLight].name === "Hemisphere light"){
-        document.getElementById("element_border_color").children[0].value = "#"+lights[selectedLight].groundColor.getHexString();
+        document.getElementById("element_border_color").children[0].jscolor.fromString(lights[selectedLight].groundColor.getHexString());// = "#"+lights[selectedLight].groundColor.getHexString();
     }
     toggleEditShapeOrLight(true);
-    document.getElementById("element_color").children[0].value = "#"+lights[selectedLight].color.getHexString();
+    document.getElementById("element_color").children[0].jscolor.fromString(lights[selectedLight].color.getHexString());// = "#"+lights[selectedLight].color.getHexString();
     document.getElementById("position_x").value = lights[selectedLight].position.x;
     document.getElementById("position_y").value = lights[selectedLight].position.y;
     document.getElementById("position_z").value = lights[selectedLight].position.z;
