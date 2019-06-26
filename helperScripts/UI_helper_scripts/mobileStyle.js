@@ -1,377 +1,46 @@
-
-
-/*
-This file
-
-This file is licensed under the Apache 2.0 license.
-That means that you can freely use and modify this code for all uses except for
-    commercial use provided this header is at the top of all files
-Copyright 2018-2019 Monarch TSA
-
-Author Gregory Bell
-Edited 4/17/19
-Rev 20
-
- */
-
-
-//----------------------------CLASS-ADDERS-----------------------------------------
-/*
-* Adds class to hide the welcome screen in a cool animation
-* After it does that is starts all of the needed functions for the program.
-* */
-async function initMainUI(){
-    getId("std_ws_container").classList.add("ws_hide");
-    getId("ws_body").classList.add("ws_hide");
-    UISpacer();
-    await new Promise(resolve => setTimeout(resolve, 2250));
-    for (let el of document.querySelectorAll('#std_ws_container')) el.hidden = true;
-    for (let el of document.querySelectorAll('#ws_body')) el.hidden = true;
-}
-
-function navButtonToggle(menuShown, toggled){
-    let navButton;
-    switch (menuShown) {
-        case "menu_shapesList":
-            navButton = getId("nav_shapesList");
-            break;
-        case "menu_newShapes":
-            navButton = getId("nav_newShape");
-            break;
-        case "menu_camera":
-            navButton = getId("nav_camera");
-            break;
-        case "menu_scene":
-            navButton = getId("nav_scene");
-            break;
-        case "std_settings":
-            navButton = getId("nav_settings");
-            break;
-
-    }
-    if(toggled) {
-        navButton.classList.add("nav_button_toggled");
-        iconSwapper(navButton.id, "swap");
-    }
-    else{
-        navButton.classList.remove("nav_button_toggled");
-        iconSwapper(navButton.id, "swap");
-    }
-
-
-}
-
-/*
-* Shows and hides menus in a more elegant fashion
-* */
-var activeMenu ="init";//init value
-var std_menu = document.getElementById("std_menu_container");
-function showMenu(menuToShow){
-    std_menu = document.getElementById("std_menu_container");
-// console.log(menuToShow +" " +activeMenu);
-    //The user clicked again so they must want to hide the menu
-    if(menuToShow === activeMenu){
-        getId(activeMenu).classList.remove("menu_show");
-        getId(activeMenu).classList.add("menu_hidden");
-        std_menu.style.display = "none";
-        navButtonToggle(activeMenu, false);
-        activeMenu = "init";
-
-    }
-    else {
-        //We are already showing a menu
-        if (activeMenu !== "init") {
-            // console.log("not init")
-            getId(activeMenu).classList.remove("menu_show");
-            getId(activeMenu).classList.add("menu_hidden");
-
-            getId(menuToShow).classList.remove("menu_hidden");
-            getId(menuToShow).classList.add("menu_show");
-            navButtonToggle(activeMenu, false);
-            activeMenu = menuToShow;
-            navButtonToggle(activeMenu, true);
-
-        }
-        //We are not showing a menu
-        else {
-            // console.log("is init")
-            std_menu.style.display = "block";
-            getId(menuToShow).classList.remove("menu_hidden");
-            getId(menuToShow).classList.add("menu_show");
-            activeMenu = menuToShow;
-            navButtonToggle(activeMenu, true);
-
-        }
-    }
-
-
-
-
-
-}
-
-function timelineButtonToggle(buttonToToggle){
-    if(getId(buttonToToggle).classList.contains("timeline_buttonToggled")) {
-        getId(buttonToToggle).classList.remove("timeline_buttonToggled");
-
-    }
-    else{
-        getId(buttonToToggle).classList.add("timeline_buttonToggled");
-    }
-    iconSwapper(buttonToToggle, "swap");
-}
-
-function settingsToggle(){
-    if(getId("std_settings").classList.contains("settings_hide")){
-        getId("std_settings").classList.remove("settings_hide");
-        getId("settings_menu").classList.remove("settings_hide");
-        getId("std_settings").classList.add("settings_show");
-        getId("settings_menu").classList.add("settings_show");
-        navButtonToggle("std_settings", true);
-
-    }
-    else{
-        getId("std_settings").classList.remove("settings_show");
-        getId("settings_menu").classList.remove("settings_show");
-        getId("std_settings").classList.add("settings_hide");
-        getId("settings_menu").classList.add("settings_hide");
-        navButtonToggle("std_settings", false);
-
-
-    }
-}
-
-
-
-
-
-
-//----------------------------STYLE-FUNCTIONS--------------------------------------------------
-function iconSwapper(target, mode){
-    if(target ==="all"){
-        if(mode === "darkMode"){
-            for (let el of document.querySelectorAll('.std_icon_normal')) el.style.display = "none";
-            for (let el of document.querySelectorAll('.std_icon_dark')) el.style.display = "block";
-        }
-        else {
-            for (let el of document.querySelectorAll('.std_icon_dark')) el.style.display = "none";
-            for (let el of document.querySelectorAll('.std_icon_normal')) el.style.display = "block";
-        }
-    }
-    //if we are swapping a specific one do this
-    else{
-        if(mode === "swap"){
-            if(getId(target).children[0].style.display === "block"){
-                getId(target).children[0].style.display = "none";
-                getId(target).children[1].style.display = "block";
-
-            }
-            else if (getId(target).children[1].style.display === "block"){
-                getId(target).children[1].style.display = "none";
-                getId(target).children[0].style.display = "block";
-
-            }
-        }
-    }
-
-}
-
-/*
-* Dynamically loads style sheets and allows for different themes to be easily created
-* */
-var stylesheetLoaded = false;
-var defautStyle = true;
-var loadedStyleTag= "";
-function stylesheetLoader(stylesheetName){
-    var validStyleSheet=false;
-    var cssToLoad=document.createElement("link");
-    cssToLoad.setAttribute("rel", "stylesheet");
-    cssToLoad.setAttribute("type", "text/css");
-
-    if(stylesheetLoaded){
-        document.getElementsByTagName("head")[0].removeChild(loadedStyleTag);
-        stylesheetLoaded=false;
-        loadedStyleTag = "";
-
-    }
-    if(stylesheetName === "normalMode"){
-        cssToLoad.setAttribute("href", "./style/normalMode_Style.css");
-        validStyleSheet = true;
-        iconSwapper("all", "normalMode")
-    }
-
-    else if (stylesheetName ==="darkMode"){
-        cssToLoad.setAttribute("href", "./style/darkMode_Style.css");
-        validStyleSheet =true;
-        iconSwapper("all", "darkMode")
-    }
-
-    else if(stylesheetName === "amoledMode"){
-        cssToLoad.setAttribute("href", "./style/amoledMode_Style.css");
-        validStyleSheet =true;
-        iconSwapper("all", "darkMode")
-    }
-    else if(stylesheetName ==="memeMode"){
-        cssToLoad.setAttribute("href", "./style/memeMode_style.css");
-        validStyleSheet =true;
-        iconSwapper("all", "normalMode")
-    }
-
-    else {
-        console.log("ERROR: Invalid CSS")
-    }
-
-    if(validStyleSheet) {
-        document.getElementsByTagName("head")[0].appendChild(cssToLoad);
-        stylesheetLoaded = true;
-        loadedStyleTag = cssToLoad;
-    }
-}
-
-
-/**
- * This function will space the elements so they look nice
- * This function is about halfway clean. I can prolly do some more cleaning its just that I, well Dont want to
- * This function updates diemsions in diemsions.js
- */
-function UISpacer(){
-    //functions vars
-    var nextLeftElementLoc;
-    var nextRightElementLoc;
-    // var statusWidthHalved;
-    //Gets all of the nav buttons by class name then stuffs them into an array
-    var elementList = document.getElementsByClassName("std_nav_button");
-    elementList = Array.from(elementList);//Converts the list into an array
-
-    //Things to be reset on launch when function runs
-    //This hasn't hampered performance in my tests but who knows it might in production
-    //So I'm clearing the arrays
-    UIDiemsions.std_navBar.button_placement = [];
-    UIDiemsions.std_navBar.spacer_placement = [];
-
-
-    //sets diemsions
-    //See parent class for what each of these things do.
-    UIDiemsions.std_navBar.nav_height = getId("std_nav_bar").clientHeight;
-    UIDiemsions.std_navBar.element_height = UIDiemsions.std_navBar.nav_height - (UIDiemsions.std_navBar.defaultPadding*2);
-
-    UIDiemsions.std_navBar.button_width = elementList[0].clientWidth;
-    UIDiemsions.std_navBar.nav_width = getId("std_nav_bar").clientWidth;
-    // UIDiemsions.std_navBar.status_width = getId("std_statusBox").clientWidth;
-    // statusWidthHalved = UIDiemsions.std_navBar.status_width/2;
-    UIDiemsions.std_navBar.menuContainer_placement = UIDiemsions.std_navBar.nav_height - (UIDiemsions.std_navBar.defaultPadding) ;
-
-
-    nextLeftElementLoc = UIDiemsions.std_navBar.defaultPadding;
-    nextRightElementLoc = UIDiemsions.std_navBar.defaultPadding;
-
-    //Start of the spacing
-    //This spaces the buttons bc those are what the rest of the spacing is based off of.
-    for(i = 0; i < elementList.length; i++){
-        elementList[i].style.top = (UIDiemsions.std_navBar.defaultPadding).toString()+UIDiemsions.std_navBar.defaultUnit;
-        elementList[i].style.bottom = (UIDiemsions.std_navBar.defaultPadding).toString()+UIDiemsions.std_navBar.defaultUnit;
-        if(!elementList[i].classList.contains("std_nav_alignRight")) {
-            elementList[i].style.left = (nextLeftElementLoc).toString() + UIDiemsions.std_navBar.defaultUnit;
-            UIDiemsions.std_navBar.button_placement.push((elementList[i].style.left).toString());
-            nextLeftElementLoc += UIDiemsions.std_navBar.button_width + UIDiemsions.std_navBar.defaultPadding;
-        }
-        else {
-            elementList[i].style.right = (nextRightElementLoc).toString() + UIDiemsions.std_navBar.defaultUnit;
-            UIDiemsions.std_navBar.button_placement.push((elementList[i].style.right).toString());
-            nextRightElementLoc += UIDiemsions.std_navBar.button_width + UIDiemsions.std_navBar.defaultPadding;
-        }
-    }
-
-    //Sets all of the other things based off of what the for loop set
-    UIDiemsions.std_navBar.menuContainer_width = 100;
-    // UIDiemsions.std_navBar.leftSpacer_width = (UIDiemsions.std_navBar.nav_width/2) - nextLeftElementLoc - statusWidthHalved - UIDiemsions.std_navBar.defaultPadding;
-    UIDiemsions.std_navBar.rightSpacer_width = (UIDiemsions.std_navBar.nav_width) - nextLeftElementLoc - nextRightElementLoc; //- UIDiemsions.std_navBar.defaultPadding;
-    //
-    // UIDiemsions.std_navBar.status_placement = (UIDiemsions.std_navBar.nav_width/2) - (statusWidthHalved);
-    // UIDiemsions.std_navBar.spacer_placement.push(nextLeftElementLoc.toString() + UIDiemsions.std_navBar.defaultUnit);
-    // UIDiemsions.std_navBar.spacer_placement.push(nextRightElementLoc.toString() + UIDiemsions.std_navBar.defaultUnit);
-
-
-    // if(window.innerWidth<=500 || isMobile()){
-    //     UIDiemsions.std_navBar.menuContainer_width = window.innerWidth;
-    //     getId("std_statusBox").style.display = "none";
-    // }
-    // else{
-    //     getId("std_statusBox").style.display = "inherit";
-    // }
-///This can be cleaned up a little more
-    getId("std_menu_container").style.width = UIDiemsions.std_navBar.menuContainer_width.toString()+'%';
-    getId("std_menu_container").style.top= UIDiemsions.std_navBar.menuContainer_placement.toString()+UIDiemsions.std_navBar.defaultUnit;
-
-    getId("std_settings").style.width = getId("std_menu_container").style.width;
-    getId("std_settings").style.top = getId("std_menu_container").style.top;
-
-    // getId("std_statusBox").style.top = UIDiemsions.std_navBar.defaultPadding.toString()+UIDiemsions.std_navBar.defaultUnit;
-    // getId("std_statusBox").style.bottom = UIDiemsions.std_navBar.defaultPadding.toString()+UIDiemsions.std_navBar.defaultUnit;
-    // getId("std_statusBox").style.left = UIDiemsions.std_navBar.status_placement.toString()+UIDiemsions.std_navBar.defaultUnit;
-
-    // getId("nav_spacer_left").style.width = (UIDiemsions.std_navBar.leftSpacer_width).toString() +UIDiemsions.std_navBar.defaultUnit;
-    // getId("nav_spacer_left").style.top = (UIDiemsions.std_navBar.defaultPadding).toString()+UIDiemsions.std_navBar.defaultUnit;
-    // getId("nav_spacer_left").style.bottom = (UIDiemsions.std_navBar.defaultPadding).toString()+UIDiemsions.std_navBar.defaultUnit;
-    // getId("nav_spacer_left").style.left = (UIDiemsions.std_navBar.spacer_placement[0]).toString();
-
-
-    getId("nav_spacer_right").style.width = (UIDiemsions.std_navBar.rightSpacer_width).toString() +UIDiemsions.std_navBar.defaultUnit;
-    getId("nav_spacer_right").style.top = (UIDiemsions.std_navBar.defaultPadding).toString()+UIDiemsions.std_navBar.defaultUnit;
-    getId("nav_spacer_right").style.bottom = (UIDiemsions.std_navBar.defaultPadding).toString()+UIDiemsions.std_navBar.defaultUnit;
-    getId("nav_spacer_right").style.right = (nextRightElementLoc).toString()+UIDiemsions.std_navBar.defaultUnit;
-
-    UIDiemsions.std_body.body_height = getId("std_body").clientHeight;
-    UIDiemsions.std_body.body_width = getId("std_body").clientWidth;
-    UIDiemsions.std_body.renderer_top = UIDiemsions.std_navBar.nav_height;
-    UIDiemsions.std_body.renderer_left = 0;
-
-
-    UIDiemsions.std_body.renderer_height = UIDiemsions.std_body.body_height- UIDiemsions.std_navBar.nav_height - UIDiemsions.std_timeline.timeline_height;
-    UIDiemsions.std_body.renderer_width = UIDiemsions.std_body.body_width;
-
-    getId("animationEngine_renderArea").style.top =(UIDiemsions.std_body.renderer_top).toString()+UIDiemsions.std_navBar.defaultUnit;
-    getId("animationEngine_renderArea").style.left =(UIDiemsions.std_body.renderer_left).toString()+UIDiemsions.std_navBar.defaultUnit;
-    getId("animationEngine_renderArea").style.width = UIDiemsions.std_body.renderer_width.toString() + UIDiemsions.std_navBar.defaultUnit;
-    getId("std_timeline").style.top = (UIDiemsions.std_body.renderer_height + UIDiemsions.std_navBar.nav_height).toString() + UIDiemsions.std_navBar.defaultUnit;
-
-
-    getId("std_menu_container").style.height =
-        (UIDiemsions.std_body.body_height - UIDiemsions.std_navBar.nav_height - UIDiemsions.std_timeline.timeline_height).toString() + UIDiemsions.std_navBar.defaultUnit;
-
-    getId("std_settings").style.height = getId("std_menu_container").style.height;
-
-}
-/*
-* Hides things for mobile users.
-* */
-function mobileHider(){
-    //this is a lot simpler than I thought it would be
-    for (let el of document.querySelectorAll('.std_mobile_hidden')) el.style.display = "none";
-}
-
-
-/*
--------------------------------JQUERY---------------------------------------------------
- */
-$(document).ready(function () {
-    // getId("std_statusBox").children[0].innerHTML = "READY";
-    // getId("std_statusBox").children[1].innerHTML = settings.version;
-
-    //When the user resizes the program rerun UI spacer
-    $(window).resize(function () {
-        UISpacer();
-        onWindowResize();
-    });
-});
-
-function mobileHideSideBar(){
-    getId("std_menu_container").style.display = "none";
-}
-
-
-// else if(stylesheetName === "mobile"){
-//     cssToLoad.setAttribute("href", "mobileMode_Style.css");
-//     mobileHider();
-//     validStyleSheet = true;
-// }
+var $jscomp=$jscomp||{};$jscomp.scope={};$jscomp.arrayIteratorImpl=function(a){var b=0;return function(){return b<a.length?{done:!1,value:a[b++]}:{done:!0}}};$jscomp.arrayIterator=function(a){return{next:$jscomp.arrayIteratorImpl(a)}};$jscomp.makeIterator=function(a){var b="undefined"!=typeof Symbol&&Symbol.iterator&&a[Symbol.iterator];return b?b.call(a):$jscomp.arrayIterator(a)};
+$jscomp.getGlobal=function(a){return"undefined"!=typeof window&&window===a?a:"undefined"!=typeof global&&null!=global?global:a};$jscomp.global=$jscomp.getGlobal(this);$jscomp.ASSUME_ES5=!1;$jscomp.ASSUME_NO_NATIVE_MAP=!1;$jscomp.ASSUME_NO_NATIVE_SET=!1;$jscomp.SIMPLE_FROUND_POLYFILL=!1;$jscomp.defineProperty=$jscomp.ASSUME_ES5||"function"==typeof Object.defineProperties?Object.defineProperty:function(a,b,c){a!=Array.prototype&&a!=Object.prototype&&(a[b]=c.value)};
+$jscomp.polyfill=function(a,b,c,e){if(b){c=$jscomp.global;a=a.split(".");for(e=0;e<a.length-1;e++){var d=a[e];d in c||(c[d]={});c=c[d]}a=a[a.length-1];e=c[a];b=b(e);b!=e&&null!=b&&$jscomp.defineProperty(c,a,{configurable:!0,writable:!0,value:b})}};$jscomp.FORCE_POLYFILL_PROMISE=!1;
+$jscomp.polyfill("Promise",function(a){function b(){this.batch_=null}function c(a){return a instanceof d?a:new d(function(b,g){b(a)})}if(a&&!$jscomp.FORCE_POLYFILL_PROMISE)return a;b.prototype.asyncExecute=function(a){if(null==this.batch_){this.batch_=[];var b=this;this.asyncExecuteFunction(function(){b.executeBatch_()})}this.batch_.push(a)};var e=$jscomp.global.setTimeout;b.prototype.asyncExecuteFunction=function(a){e(a,0)};b.prototype.executeBatch_=function(){for(;this.batch_&&this.batch_.length;){var a=
+this.batch_;this.batch_=[];for(var b=0;b<a.length;++b){var c=a[b];a[b]=null;try{c()}catch(k){this.asyncThrow_(k)}}}this.batch_=null};b.prototype.asyncThrow_=function(a){this.asyncExecuteFunction(function(){throw a;})};var d=function(a){this.state_=0;this.result_=void 0;this.onSettledCallbacks_=[];var b=this.createResolveAndReject_();try{a(b.resolve,b.reject)}catch(h){b.reject(h)}};d.prototype.createResolveAndReject_=function(){function a(a){return function(g){c||(c=!0,a.call(b,g))}}var b=this,c=!1;
+return{resolve:a(this.resolveTo_),reject:a(this.reject_)}};d.prototype.resolveTo_=function(a){if(a===this)this.reject_(new TypeError("A Promise cannot resolve to itself"));else if(a instanceof d)this.settleSameAsPromise_(a);else{a:switch(typeof a){case "object":var b=null!=a;break a;case "function":b=!0;break a;default:b=!1}b?this.resolveToNonPromiseObj_(a):this.fulfill_(a)}};d.prototype.resolveToNonPromiseObj_=function(a){var b=void 0;try{b=a.then}catch(h){this.reject_(h);return}"function"==typeof b?
+this.settleSameAsThenable_(b,a):this.fulfill_(a)};d.prototype.reject_=function(a){this.settle_(2,a)};d.prototype.fulfill_=function(a){this.settle_(1,a)};d.prototype.settle_=function(a,b){if(0!=this.state_)throw Error("Cannot settle("+a+", "+b+"): Promise already settled in state"+this.state_);this.state_=a;this.result_=b;this.executeOnSettledCallbacks_()};d.prototype.executeOnSettledCallbacks_=function(){if(null!=this.onSettledCallbacks_){for(var a=0;a<this.onSettledCallbacks_.length;++a)f.asyncExecute(this.onSettledCallbacks_[a]);
+this.onSettledCallbacks_=null}};var f=new b;d.prototype.settleSameAsPromise_=function(a){var b=this.createResolveAndReject_();a.callWhenSettled_(b.resolve,b.reject)};d.prototype.settleSameAsThenable_=function(a,b){var c=this.createResolveAndReject_();try{a.call(b,c.resolve,c.reject)}catch(k){c.reject(k)}};d.prototype.then=function(a,b){function c(a,b){return"function"==typeof a?function(b){try{e(a(b))}catch(l){g(l)}}:b}var e,g,f=new d(function(a,b){e=a;g=b});this.callWhenSettled_(c(a,e),c(b,g));return f};
+d.prototype.catch=function(a){return this.then(void 0,a)};d.prototype.callWhenSettled_=function(a,b){function c(){switch(d.state_){case 1:a(d.result_);break;case 2:b(d.result_);break;default:throw Error("Unexpected state: "+d.state_);}}var d=this;null==this.onSettledCallbacks_?f.asyncExecute(c):this.onSettledCallbacks_.push(c)};d.resolve=c;d.reject=function(a){return new d(function(b,c){c(a)})};d.race=function(a){return new d(function(b,d){for(var e=$jscomp.makeIterator(a),g=e.next();!g.done;g=e.next())c(g.value).callWhenSettled_(b,
+d)})};d.all=function(a){var b=$jscomp.makeIterator(a),e=b.next();return e.done?c([]):new d(function(a,d){function g(b){return function(c){f[b]=c;h--;0==h&&a(f)}}var f=[],h=0;do f.push(void 0),h++,c(e.value).callWhenSettled_(g(f.length-1),d),e=b.next();while(!e.done)})};return d},"es6","es3");$jscomp.SYMBOL_PREFIX="jscomp_symbol_";$jscomp.initSymbol=function(){$jscomp.initSymbol=function(){};$jscomp.global.Symbol||($jscomp.global.Symbol=$jscomp.Symbol)};
+$jscomp.Symbol=function(){var a=0;return function(b){return $jscomp.SYMBOL_PREFIX+(b||"")+a++}}();$jscomp.initSymbolIterator=function(){$jscomp.initSymbol();var a=$jscomp.global.Symbol.iterator;a||(a=$jscomp.global.Symbol.iterator=$jscomp.global.Symbol("iterator"));"function"!=typeof Array.prototype[a]&&$jscomp.defineProperty(Array.prototype,a,{configurable:!0,writable:!0,value:function(){return $jscomp.iteratorPrototype($jscomp.arrayIteratorImpl(this))}});$jscomp.initSymbolIterator=function(){}};
+$jscomp.initSymbolAsyncIterator=function(){$jscomp.initSymbol();var a=$jscomp.global.Symbol.asyncIterator;a||(a=$jscomp.global.Symbol.asyncIterator=$jscomp.global.Symbol("asyncIterator"));$jscomp.initSymbolAsyncIterator=function(){}};$jscomp.iteratorPrototype=function(a){$jscomp.initSymbolIterator();a={next:a};a[$jscomp.global.Symbol.iterator]=function(){return this};return a};$jscomp.underscoreProtoCanBeSet=function(){var a={a:!0},b={};try{return b.__proto__=a,b.a}catch(c){}return!1};
+$jscomp.setPrototypeOf="function"==typeof Object.setPrototypeOf?Object.setPrototypeOf:$jscomp.underscoreProtoCanBeSet()?function(a,b){a.__proto__=b;if(a.__proto__!==b)throw new TypeError(a+" is not extensible");return a}:null;$jscomp.generator={};$jscomp.generator.ensureIteratorResultIsObject_=function(a){if(!(a instanceof Object))throw new TypeError("Iterator result "+a+" is not an object");};
+$jscomp.generator.Context=function(){this.isRunning_=!1;this.yieldAllIterator_=null;this.yieldResult=void 0;this.nextAddress=1;this.finallyAddress_=this.catchAddress_=0;this.finallyContexts_=this.abruptCompletion_=null};$jscomp.generator.Context.prototype.start_=function(){if(this.isRunning_)throw new TypeError("Generator is already running");this.isRunning_=!0};$jscomp.generator.Context.prototype.stop_=function(){this.isRunning_=!1};
+$jscomp.generator.Context.prototype.jumpToErrorHandler_=function(){this.nextAddress=this.catchAddress_||this.finallyAddress_};$jscomp.generator.Context.prototype.next_=function(a){this.yieldResult=a};$jscomp.generator.Context.prototype.throw_=function(a){this.abruptCompletion_={exception:a,isException:!0};this.jumpToErrorHandler_()};$jscomp.generator.Context.prototype.return=function(a){this.abruptCompletion_={return:a};this.nextAddress=this.finallyAddress_};
+$jscomp.generator.Context.prototype.jumpThroughFinallyBlocks=function(a){this.abruptCompletion_={jumpTo:a};this.nextAddress=this.finallyAddress_};$jscomp.generator.Context.prototype.yield=function(a,b){this.nextAddress=b;return{value:a}};$jscomp.generator.Context.prototype.yieldAll=function(a,b){a=$jscomp.makeIterator(a);var c=a.next();$jscomp.generator.ensureIteratorResultIsObject_(c);if(c.done)this.yieldResult=c.value,this.nextAddress=b;else return this.yieldAllIterator_=a,this.yield(c.value,b)};
+$jscomp.generator.Context.prototype.jumpTo=function(a){this.nextAddress=a};$jscomp.generator.Context.prototype.jumpToEnd=function(){this.nextAddress=0};$jscomp.generator.Context.prototype.setCatchFinallyBlocks=function(a,b){this.catchAddress_=a;void 0!=b&&(this.finallyAddress_=b)};$jscomp.generator.Context.prototype.setFinallyBlock=function(a){this.catchAddress_=0;this.finallyAddress_=a||0};$jscomp.generator.Context.prototype.leaveTryBlock=function(a,b){this.nextAddress=a;this.catchAddress_=b||0};
+$jscomp.generator.Context.prototype.enterCatchBlock=function(a){this.catchAddress_=a||0;a=this.abruptCompletion_.exception;this.abruptCompletion_=null;return a};$jscomp.generator.Context.prototype.enterFinallyBlock=function(a,b,c){c?this.finallyContexts_[c]=this.abruptCompletion_:this.finallyContexts_=[this.abruptCompletion_];this.catchAddress_=a||0;this.finallyAddress_=b||0};
+$jscomp.generator.Context.prototype.leaveFinallyBlock=function(a,b){b=this.finallyContexts_.splice(b||0)[0];if(b=this.abruptCompletion_=this.abruptCompletion_||b){if(b.isException)return this.jumpToErrorHandler_();void 0!=b.jumpTo&&this.finallyAddress_<b.jumpTo?(this.nextAddress=b.jumpTo,this.abruptCompletion_=null):this.nextAddress=this.finallyAddress_}else this.nextAddress=a};$jscomp.generator.Context.prototype.forIn=function(a){return new $jscomp.generator.Context.PropertyIterator(a)};
+$jscomp.generator.Context.PropertyIterator=function(a){this.object_=a;this.properties_=[];for(var b in a)this.properties_.push(b);this.properties_.reverse()};$jscomp.generator.Context.PropertyIterator.prototype.getNext=function(){for(;0<this.properties_.length;){var a=this.properties_.pop();if(a in this.object_)return a}return null};$jscomp.generator.Engine_=function(a){this.context_=new $jscomp.generator.Context;this.program_=a};
+$jscomp.generator.Engine_.prototype.next_=function(a){this.context_.start_();if(this.context_.yieldAllIterator_)return this.yieldAllStep_(this.context_.yieldAllIterator_.next,a,this.context_.next_);this.context_.next_(a);return this.nextStep_()};
+$jscomp.generator.Engine_.prototype.return_=function(a){this.context_.start_();var b=this.context_.yieldAllIterator_;if(b)return this.yieldAllStep_("return"in b?b["return"]:function(a){return{value:a,done:!0}},a,this.context_.return);this.context_.return(a);return this.nextStep_()};
+$jscomp.generator.Engine_.prototype.throw_=function(a){this.context_.start_();if(this.context_.yieldAllIterator_)return this.yieldAllStep_(this.context_.yieldAllIterator_["throw"],a,this.context_.next_);this.context_.throw_(a);return this.nextStep_()};
+$jscomp.generator.Engine_.prototype.yieldAllStep_=function(a,b,c){try{var e=a.call(this.context_.yieldAllIterator_,b);$jscomp.generator.ensureIteratorResultIsObject_(e);if(!e.done)return this.context_.stop_(),e;var d=e.value}catch(f){return this.context_.yieldAllIterator_=null,this.context_.throw_(f),this.nextStep_()}this.context_.yieldAllIterator_=null;c.call(this.context_,d);return this.nextStep_()};
+$jscomp.generator.Engine_.prototype.nextStep_=function(){for(;this.context_.nextAddress;)try{var a=this.program_(this.context_);if(a)return this.context_.stop_(),{value:a.value,done:!1}}catch(b){this.context_.yieldResult=void 0,this.context_.throw_(b)}this.context_.stop_();if(this.context_.abruptCompletion_){a=this.context_.abruptCompletion_;this.context_.abruptCompletion_=null;if(a.isException)throw a.exception;return{value:a.return,done:!0}}return{value:void 0,done:!0}};
+$jscomp.generator.Generator_=function(a){this.next=function(b){return a.next_(b)};this.throw=function(b){return a.throw_(b)};this.return=function(b){return a.return_(b)};$jscomp.initSymbolIterator();this[Symbol.iterator]=function(){return this}};$jscomp.generator.createGenerator=function(a,b){b=new $jscomp.generator.Generator_(new $jscomp.generator.Engine_(b));$jscomp.setPrototypeOf&&$jscomp.setPrototypeOf(b,a.prototype);return b};
+$jscomp.asyncExecutePromiseGenerator=function(a){function b(b){return a.next(b)}function c(b){return a.throw(b)}return new Promise(function(e,d){function f(a){a.done?e(a.value):Promise.resolve(a.value).then(b,c).then(f,d)}f(a.next())})};$jscomp.asyncExecutePromiseGeneratorFunction=function(a){return $jscomp.asyncExecutePromiseGenerator(a())};$jscomp.asyncExecutePromiseGeneratorProgram=function(a){return $jscomp.asyncExecutePromiseGenerator(new $jscomp.generator.Generator_(new $jscomp.generator.Engine_(a)))};
+$jscomp.polyfill("Array.from",function(a){return a?a:function(a,c,e){c=null!=c?c:function(a){return a};var b=[],f="undefined"!=typeof Symbol&&Symbol.iterator&&a[Symbol.iterator];if("function"==typeof f){a=f.call(a);for(var g=0;!(f=a.next()).done;)b.push(c.call(e,f.value,g++))}else for(f=a.length,g=0;g<f;g++)b.push(c.call(e,a[g],g));return b}},"es6","es3");
+function initMainUI(){var a,b,c,e,d;return $jscomp.asyncExecutePromiseGeneratorProgram(function(f){if(1==f.nextAddress)return getId("std_ws_container").classList.add("ws_hide"),getId("ws_body").classList.add("ws_hide"),UISpacer(),f.yield(new Promise(function(a){return setTimeout(a,2250)}),2);a=$jscomp.makeIterator(document.querySelectorAll("#std_ws_container"));for(b=a.next();!b.done;b=a.next())c=b.value,c.hidden=!0;e=$jscomp.makeIterator(document.querySelectorAll("#ws_body"));for(b=e.next();!b.done;b=
+e.next())d=b.value,d.hidden=!0;f.jumpToEnd()})}function navButtonToggle(a,b){switch(a){case "menu_shapesList":var c=getId("nav_shapesList");break;case "menu_newShapes":c=getId("nav_newShape");break;case "menu_camera":c=getId("nav_camera");break;case "menu_scene":c=getId("nav_scene");break;case "std_settings":c=getId("nav_settings")}b?c.classList.add("nav_button_toggled"):c.classList.remove("nav_button_toggled");iconSwapper(c.id,"swap")}var activeMenu="init",std_menu=document.getElementById("std_menu_container");
+function showMenu(a){std_menu=document.getElementById("std_menu_container");a===activeMenu?(getId(activeMenu).classList.remove("menu_show"),getId(activeMenu).classList.add("menu_hidden"),std_menu.style.display="none",navButtonToggle(activeMenu,!1),activeMenu="init"):("init"!==activeMenu?(getId(activeMenu).classList.remove("menu_show"),getId(activeMenu).classList.add("menu_hidden"),getId(a).classList.remove("menu_hidden"),getId(a).classList.add("menu_show"),navButtonToggle(activeMenu,!1)):(std_menu.style.display=
+"block",getId(a).classList.remove("menu_hidden"),getId(a).classList.add("menu_show")),activeMenu=a,navButtonToggle(activeMenu,!0))}function timelineButtonToggle(a){getId(a).classList.contains("timeline_buttonToggled")?getId(a).classList.remove("timeline_buttonToggled"):getId(a).classList.add("timeline_buttonToggled");iconSwapper(a,"swap")}
+function settingsToggle(){getId("std_settings").classList.contains("settings_hide")?(getId("std_settings").classList.remove("settings_hide"),getId("settings_menu").classList.remove("settings_hide"),getId("std_settings").classList.add("settings_show"),getId("settings_menu").classList.add("settings_show"),navButtonToggle("std_settings",!0)):(getId("std_settings").classList.remove("settings_show"),getId("settings_menu").classList.remove("settings_show"),getId("std_settings").classList.add("settings_hide"),
+getId("settings_menu").classList.add("settings_hide"),navButtonToggle("std_settings",!1))}
+function iconSwapper(a,b){if("all"===a)if("darkMode"===b){b=$jscomp.makeIterator(document.querySelectorAll(".std_icon_normal"));for(a=b.next();!a.done;a=b.next())a.value.style.display="none";b=$jscomp.makeIterator(document.querySelectorAll(".std_icon_dark"));for(a=b.next();!a.done;a=b.next())a.value.style.display="block"}else{b=$jscomp.makeIterator(document.querySelectorAll(".std_icon_dark"));for(a=b.next();!a.done;a=b.next())a.value.style.display="none";b=$jscomp.makeIterator(document.querySelectorAll(".std_icon_normal"));
+for(a=b.next();!a.done;a=b.next())a.value.style.display="block"}else"swap"===b&&("block"===getId(a).children[0].style.display?(getId(a).children[0].style.display="none",getId(a).children[1].style.display="block"):"block"===getId(a).children[1].style.display&&(getId(a).children[1].style.display="none",getId(a).children[0].style.display="block"))}var stylesheetLoaded=!1,defautStyle=!0,loadedStyleTag="";
+function stylesheetLoader(a){var b=!1,c=document.createElement("link");c.setAttribute("rel","stylesheet");c.setAttribute("type","text/css");stylesheetLoaded&&(document.getElementsByTagName("head")[0].removeChild(loadedStyleTag),stylesheetLoaded=!1,loadedStyleTag="");"normalMode"===a?(c.setAttribute("href","./style/normalMode_Style.css"),b=!0,iconSwapper("all","normalMode")):"darkMode"===a?(c.setAttribute("href","./style/darkMode_Style.css"),b=!0,iconSwapper("all","darkMode")):"amoledMode"===a?(c.setAttribute("href",
+"./style/amoledMode_Style.css"),b=!0,iconSwapper("all","darkMode")):"memeMode"===a?(c.setAttribute("href","./style/memeMode_style.css"),b=!0,iconSwapper("all","normalMode")):console.log("ERROR: Invalid CSS");b&&(document.getElementsByTagName("head")[0].appendChild(c),stylesheetLoaded=!0,loadedStyleTag=c)}
+function UISpacer(){var a,b=document.getElementsByClassName("std_nav_button");b=Array.from(b);UIDiemsions.std_navBar.button_placement=[];UIDiemsions.std_navBar.spacer_placement=[];UIDiemsions.std_navBar.nav_height=getId("std_nav_bar").clientHeight;UIDiemsions.std_navBar.element_height=UIDiemsions.std_navBar.nav_height-2*UIDiemsions.std_navBar.defaultPadding;UIDiemsions.std_navBar.button_width=b[0].clientWidth;UIDiemsions.std_navBar.nav_width=getId("std_nav_bar").clientWidth;UIDiemsions.std_navBar.menuContainer_placement=
+UIDiemsions.std_navBar.nav_height-UIDiemsions.std_navBar.defaultPadding;var c=a=UIDiemsions.std_navBar.defaultPadding;for(i=0;i<b.length;i++)b[i].style.top=UIDiemsions.std_navBar.defaultPadding.toString()+UIDiemsions.std_navBar.defaultUnit,b[i].style.bottom=UIDiemsions.std_navBar.defaultPadding.toString()+UIDiemsions.std_navBar.defaultUnit,b[i].classList.contains("std_nav_alignRight")?(b[i].style.right=c.toString()+UIDiemsions.std_navBar.defaultUnit,UIDiemsions.std_navBar.button_placement.push(b[i].style.right.toString()),
+c+=UIDiemsions.std_navBar.button_width+UIDiemsions.std_navBar.defaultPadding):(b[i].style.left=a.toString()+UIDiemsions.std_navBar.defaultUnit,UIDiemsions.std_navBar.button_placement.push(b[i].style.left.toString()),a+=UIDiemsions.std_navBar.button_width+UIDiemsions.std_navBar.defaultPadding);UIDiemsions.std_navBar.menuContainer_width=100;UIDiemsions.std_navBar.rightSpacer_width=UIDiemsions.std_navBar.nav_width-a-c;getId("std_menu_container").style.width=UIDiemsions.std_navBar.menuContainer_width.toString()+
+"%";getId("std_menu_container").style.top=UIDiemsions.std_navBar.menuContainer_placement.toString()+UIDiemsions.std_navBar.defaultUnit;getId("std_settings").style.width=getId("std_menu_container").style.width;getId("std_settings").style.top=getId("std_menu_container").style.top;getId("nav_spacer_right").style.width=UIDiemsions.std_navBar.rightSpacer_width.toString()+UIDiemsions.std_navBar.defaultUnit;getId("nav_spacer_right").style.top=UIDiemsions.std_navBar.defaultPadding.toString()+UIDiemsions.std_navBar.defaultUnit;
+getId("nav_spacer_right").style.bottom=UIDiemsions.std_navBar.defaultPadding.toString()+UIDiemsions.std_navBar.defaultUnit;getId("nav_spacer_right").style.right=c.toString()+UIDiemsions.std_navBar.defaultUnit;UIDiemsions.std_body.body_height=getId("std_body").clientHeight;UIDiemsions.std_body.body_width=getId("std_body").clientWidth;UIDiemsions.std_body.renderer_top=UIDiemsions.std_navBar.nav_height;UIDiemsions.std_body.renderer_left=0;UIDiemsions.std_body.renderer_height=UIDiemsions.std_body.body_height-
+UIDiemsions.std_navBar.nav_height-UIDiemsions.std_timeline.timeline_height;UIDiemsions.std_body.renderer_width=UIDiemsions.std_body.body_width;getId("animationEngine_renderArea").style.top=UIDiemsions.std_body.renderer_top.toString()+UIDiemsions.std_navBar.defaultUnit;getId("animationEngine_renderArea").style.left=UIDiemsions.std_body.renderer_left.toString()+UIDiemsions.std_navBar.defaultUnit;getId("animationEngine_renderArea").style.width=UIDiemsions.std_body.renderer_width.toString()+UIDiemsions.std_navBar.defaultUnit;
+getId("std_timeline").style.top=(UIDiemsions.std_body.renderer_height+UIDiemsions.std_navBar.nav_height).toString()+UIDiemsions.std_navBar.defaultUnit;getId("std_menu_container").style.height=(UIDiemsions.std_body.body_height-UIDiemsions.std_navBar.nav_height-UIDiemsions.std_timeline.timeline_height).toString()+UIDiemsions.std_navBar.defaultUnit;getId("std_settings").style.height=getId("std_menu_container").style.height}
+function mobileHider(){for(var a=$jscomp.makeIterator(document.querySelectorAll(".std_mobile_hidden")),b=a.next();!b.done;b=a.next())b.value.style.display="none"}$(document).ready(function(){$(window).resize(function(){UISpacer();onWindowResize()})});function mobileHideSideBar(){getId("std_menu_container").style.display="none"};
