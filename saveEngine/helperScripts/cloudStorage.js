@@ -128,6 +128,7 @@ class CloudStorage{
             else {
                 // cont = false;
             }
+            saveEngine.forceLoadSelectUpdate();
         });
 
 
