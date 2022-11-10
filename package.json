@@ -16,7 +16,7 @@
   "author": "",
   "license": "UNLICENSED",
   "devDependencies": {
-    "electron": "^9.4.0",
+    "electron": "^18.3.7",
     "electron-packager": "^13.0.1"
   },
   "dependencies": {
